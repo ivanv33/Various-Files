@@ -1,0 +1,915 @@
+{
+  "episode_date": "2025-10-23",
+  "episode_title": "ai-buildout-capex-wall-browser-company-effect",
+  "companies": [
+    {
+      "name": "The Browser Company of New York",
+      "type": "startup",
+      "context": "Six-year-old startup acquired by Atlassian this week; praised for pioneering a legacy naming convention that inspired an estimated 50\u2013100 copycat companies, turning the style into an anti-signal.",
+      "sentiment": "bullish",
+      "sector": "Browser/Software"
+    },
+    {
+      "name": "Atlassian",
+      "type": "public",
+      "context": "Acquired The Browser Company of New York, with the deal closing this week.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Discussed extensively for the ChatGPT Atlas browser launch, Sora video platform, strong cohort retention metrics, and circular investment structures; Adam Fry (product lead) appeared as a guest.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Jacob Andreou (Microsoft AI) appeared to discuss the consumer Copilot app, Edge's agentic Copilot Mode, first-party models entering LM Arena top 5\u201310 within six weeks, and the Clippy easter egg embedded in the new Miko persona.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Enterprise Software"
+    },
+    {
+      "name": "Dropbox",
+      "type": "public",
+      "context": "CEO Drew Houston appeared to discuss Dropbox Dash, a self-serve universal context and search layer for enterprise AI; $2.5B revenue, 500K paying businesses cited.",
+      "sentiment": "bullish",
+      "sector": "Cloud Storage/AI"
+    },
+    {
+      "name": "Ledger",
+      "type": "private",
+      "context": "CEO Ian Rogers appeared from Paris to announce the Ledger Nano Gen 5 ($179 touchscreen hardware wallet) and revealed Ledger secures approximately 20% of all crypto assets globally.",
+      "sentiment": "bullish",
+      "sector": "Crypto/Security"
+    },
+    {
+      "name": "Muon Space",
+      "type": "startup",
+      "context": "CEO Johnny Dyer discussed the Starlink inter-satellite laser partnership enabling high-bandwidth satellite connectivity, a $140M two-part Series B, and a 50+ satellite global wildfire monitoring constellation.",
+      "sentiment": "bullish",
+      "sector": "Space/Defense"
+    },
+    {
+      "name": "Traba",
+      "type": "startup",
+      "context": "CEO Mike Shebat discussed the industrial staffing tech platform's 150-person team, 996 work culture, expansion to most US markets, potential roll-up acquisitions, and readiness for humanoid robot integration in five or more years.",
+      "sentiment": "bullish",
+      "sector": "HR Tech/Marketplace"
+    },
+    {
+      "name": "Knox",
+      "type": "startup",
+      "context": "Molly Cantillon discussed Knox's cross-platform messaging product that combines iMessage and WhatsApp using OS-level automation to bypass platform restrictions, currently in general availability on Mac.",
+      "sentiment": "bullish",
+      "sector": "Consumer Software/Messaging"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "A single year of Nvidia revenue reportedly exceeds the past 25 years of combined R&D and capex of the five largest semiconductor equipment companies; also announced an AI shipbuilding partnership with Saronic, drawing skepticism.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors/AI"
+    },
+    {
+      "name": "TSMC",
+      "type": "public",
+      "context": "Described as being in a strong financial position given Nvidia revenue dwarfs its multi-year capex, but characterized as underbuilding relative to AGI timeline demands such as Sam Altman's goal of a gigawatt of infrastructure per week.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Rigetti Computing",
+      "type": "public",
+      "context": "Named as a target of reported Trump administration equity stake discussions in quantum computing; Josh Wolfe called the sector 'fraudulent BS' and the stock had been selling off before the news.",
+      "sentiment": "bearish",
+      "sector": "Quantum Computing"
+    },
+    {
+      "name": "IonQ",
+      "type": "public",
+      "context": "Cited alongside Rigetti and D-Wave as a potential government equity investment target; met with heavy skepticism from hosts and commentators.",
+      "sentiment": "bearish",
+      "sector": "Quantum Computing"
+    },
+    {
+      "name": "D-Wave Quantum",
+      "type": "public",
+      "context": "Named among quantum computing companies the Trump administration reportedly considered taking equity stakes in; hosts questioned the strategic rationale.",
+      "sentiment": "bearish",
+      "sector": "Quantum Computing"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Mentioned for having the world's most advanced quantum computing efforts, the AlphaGo/DeepMind documentary as a brand-building case study, and for operating its first data center in a former aluminum plant.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Cloud"
+    },
+    {
+      "name": "DeepMind",
+      "type": "private",
+      "context": "AlphaGo documentary highlighted as a gold standard for brand-building; Demis Hassabis's character and mission were introduced to a mainstream audience through the film in a way no podcast appearance could replicate.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Mentioned for a hunger-strike protest outside its offices by an AI doomer, and for recent consumer marketing campaigns that some felt resembled Apple ads from the 1980s\u201390s.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Waymo",
+      "type": "startup",
+      "context": "Doing 876,000 rides per month in California, a 6x year-over-year increase and 69x increase since August 2020; debate on whether the Uber partnership is long-term or whether Waymo becomes a luxury tier above mainstream ride-share.",
+      "sentiment": "bullish",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Uber",
+      "type": "public",
+      "context": "Discussed as Waymo's distribution partner and for a reported initiative allowing Uber drivers to perform one-off AI tasks; Susan Fowler's whistleblowing history at Uber also referenced.",
+      "sentiment": "neutral",
+      "sector": "Rideshare/Marketplace"
+    },
+    {
+      "name": "Snap",
+      "type": "public",
+      "context": "Jacob Andreou (Microsoft AI guest) spent nine years at Snap; Evan Spiegel's founding pitch connecting disappearing content to institutional trust collapse was called prescient.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "MetaVibes AI short-form video app discussed as potentially overhyped and unlikely to achieve containment as a standalone platform; Threads referenced as a comp for Atlas browser launch trajectory.",
+      "sentiment": "neutral",
+      "sector": "Social Media/AI"
+    },
+    {
+      "name": "Paramount Skydance",
+      "type": "private",
+      "context": "David Ellison (advised by Larry Ellison) reportedly reluctant to pay more than $25/share for Warner Brothers Discovery; third offer of $23.50 was rejected; a hostile offer is being considered.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Warner Brothers Discovery",
+      "type": "public",
+      "context": "Subject of ongoing acquisition drama with Paramount Skydance; Zaslav holding out for a higher price above $23.50/share; Comcast cited as a blocked alternative due to regulatory roadblocks.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Six Flags Entertainment",
+      "type": "public",
+      "context": "Travis Kelce invested approximately $200M for a 9% stake; stock trading below 1x revenue; hosts debated whether physical entertainment is counter-positioned to digital slop or just a different form of it.",
+      "sentiment": "mixed",
+      "sector": "Entertainment/Leisure"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "iPhone Air reportedly seeing virtually no consumer demand due to battery tradeoffs; iMessage cited as the single most important factor driving iPhone purchase decisions and Apple's competitive moat.",
+      "sentiment": "mixed",
+      "sector": "Consumer Electronics/Software"
+    },
+    {
+      "name": "Intel",
+      "type": "public",
+      "context": "Mentioned as a potential vehicle for Nvidia to fund new fab capacity through deals, analogous to how Nvidia could subsidize advanced fab construction at below-market terms.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "Characterized as the company investors are most worried about in circular AI deal structures, contrasted with TSMC which is seen as financially secure.",
+      "sentiment": "bearish",
+      "sector": "Cloud/AI Infrastructure"
+    },
+    {
+      "name": "xAI",
+      "type": "startup",
+      "context": "Operates the Colossus data center in Memphis; viral thermal camera footage was framed as a gotcha but Elon Musk had publicly disclosed the energy figures himself; local politicians raised environmental concerns.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Data Centers"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Cited alongside The Browser Company as a case study where design quality was so compelling that founders explicitly set out to clone it, illustrating how great design can become an anti-signal when copied.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/SaaS"
+    },
+    {
+      "name": "Interaction Company of California",
+      "type": "startup",
+      "context": "Used the legacy naming convention but broke through with a novel consumer AI product under the Pokea.com brand; hosts advised abandoning the legacy name entirely in favor of Pokea, citing the Instagram/Burbn precedent.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Consumer"
+    },
+    {
+      "name": "Star Cloud",
+      "type": "startup",
+      "context": "Announced a partnership with Crusoe to enable the first public cloud in space next year, with plans for larger Crusoe data centers powered by Star Cloud energy.",
+      "sentiment": "bullish",
+      "sector": "Space/Cloud"
+    },
+    {
+      "name": "Crusoe",
+      "type": "startup",
+      "context": "Builder of OpenAI's Stargate data center; partnered with Star Cloud for the first public cloud in space.",
+      "sentiment": "bullish",
+      "sector": "AI Infrastructure"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Starlink inter-satellite laser links are the backbone of Muon Space's new high-bandwidth connectivity partnership; Colossus data center energy use also referenced in relation to Elon Musk.",
+      "sentiment": "bullish",
+      "sector": "Space/Aerospace"
+    },
+    {
+      "name": "Glean",
+      "type": "startup",
+      "context": "Named as a competitor to Dropbox Dash in enterprise search; Dropbox positioned as more self-serve, lower-cost to onboard, and better suited to SMB and lower mid-market.",
+      "sentiment": "neutral",
+      "sector": "AI/Enterprise Search"
+    },
+    {
+      "name": "HubSpot",
+      "type": "public",
+      "context": "Brian Halligan commented that private markets are in bubble territory while public markets still seem rational; cited as an upcoming guest on the show.",
+      "sentiment": "neutral",
+      "sector": "CRM/Marketing"
+    },
+    {
+      "name": "ASML",
+      "type": "public",
+      "context": "One of the five largest semiconductor equipment companies whose multi-decade cumulative capex is dwarfed by a single year of Nvidia revenue, per Dwarkesh Patel's essay.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Applied Materials",
+      "type": "public",
+      "context": "Cited alongside ASML in the semiconductor equipment capex-vs-Nvidia-revenue comparison in the AGI buildout essay.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Tokyo Electron",
+      "type": "public",
+      "context": "Mentioned as one of the five largest semiconductor equipment companies in the AGI infrastructure capex discussion.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "SK Hynix",
+      "type": "public",
+      "context": "Mentioned as one of the five largest semiconductor equipment companies in the AGI infrastructure capex discussion.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Micron",
+      "type": "public",
+      "context": "Mentioned as one of the five largest semiconductor equipment companies in the AGI infrastructure capex discussion.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Alibaba",
+      "type": "public",
+      "context": "Cited as a Chinese hyperscaler that could collaborate with China State Grid to direct power buildout toward AI data centers without competing for existing US capacity.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Tencent",
+      "type": "public",
+      "context": "Cited alongside Alibaba and Baidu as part of China's state-collaborative AI infrastructure buildout that can avoid the zero-sum energy race seen in the US.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Baidu",
+      "type": "public",
+      "context": "Cited as one of China's hyperscalers positioned to benefit from state-directed energy infrastructure for AI data centers.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Comcast",
+      "type": "public",
+      "context": "Mentioned as an interested acquirer of Warner Brothers Discovery that is blocked by regulatory roadblocks, per the Charles Gasparino scoop.",
+      "sentiment": "neutral",
+      "sector": "Media/Telecom"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Elon Musk's failed attempt at an all-robotics gigafactory cited as a cautionary tale for full industrial automation; had to revert to a human-robot hybrid model.",
+      "sentiment": "neutral",
+      "sector": "EVs/Manufacturing"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Cited as the largest robot operator that is simultaneously one of the largest employers, illustrating that robots and humans scale together rather than substituting one for the other.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Cloud"
+    },
+    {
+      "name": "Lyft",
+      "type": "public",
+      "context": "Mentioned as a historical comp for potential Waymo market bifurcation; Lyft was a cheaper Uber alternative in college, suggesting Waymo could occupy a premium tier.",
+      "sentiment": "neutral",
+      "sector": "Rideshare"
+    },
+    {
+      "name": "Yasa",
+      "type": "private",
+      "context": "Mercedes-owned motor company smashed its own record with a 28-pound, 1,000-horsepower production-intent EV motor; discussed for potential drone, aircraft, and six-wheel G-Wagon EV applications.",
+      "sentiment": "bullish",
+      "sector": "EV/Automotive"
+    },
+    {
+      "name": "Instagram",
+      "type": "public",
+      "context": "Cited as a precedent for successful rebrand (originally Burbn) and as a naming convention that was successfully mimicked by Instacart without becoming an anti-signal.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Instacart",
+      "type": "public",
+      "context": "Mentioned as a successful example of copying Instagram's naming convention and still building a valuable public company.",
+      "sentiment": "neutral",
+      "sector": "Grocery Delivery"
+    },
+    {
+      "name": "Binance",
+      "type": "private",
+      "context": "CZ (Changpeng Zhao), former CEO, was pardoned by the Trump administration, prompting speculation that Elizabeth Holmes could be next.",
+      "sentiment": "neutral",
+      "sector": "Crypto"
+    },
+    {
+      "name": "Hubble",
+      "type": "startup",
+      "context": "Muon Space customer using BLE tracking from space; vision is to replace bespoke satellite IoT networks with a consumer-grade Bluetooth asset tracking layer for shipping containers and remote equipment.",
+      "sentiment": "bullish",
+      "sector": "Space/IoT"
+    },
+    {
+      "name": "Reddit",
+      "type": "public",
+      "context": "Mentioned as a platform actively working to verify that users are human rather than bots, in the context of Ian Rogers's digital identity discussion.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Match Group",
+      "type": "public",
+      "context": "Match.com cited alongside Reddit as running large efforts to verify human users, illustrating the growing demand for machine-readable proof of personhood.",
+      "sentiment": "neutral",
+      "sector": "Consumer/Dating"
+    },
+    {
+      "name": "LVMH",
+      "type": "public",
+      "context": "Ian Rogers's previous employer; he moved to Paris 10 years ago to work for LVMH before joining Ledger.",
+      "sentiment": "neutral",
+      "sector": "Luxury/Consumer"
+    },
+    {
+      "name": "Beeper",
+      "type": "startup",
+      "context": "Mentioned as a prior attempt at cross-platform messaging interoperability that Knox studied; Beeper had users hand over iCloud credentials, which Knox considers an inelegant and insecure approach.",
+      "sentiment": "neutral",
+      "sector": "Consumer Software/Messaging"
+    },
+    {
+      "name": "Saronic",
+      "type": "startup",
+      "context": "Nvidia announced an AI shipbuilding partnership with Saronic, which commentator Delian cited as a possible market-top signal for Nvidia's diversification announcements.",
+      "sentiment": "neutral",
+      "sector": "Defense/Maritime"
+    },
+    {
+      "name": "Bloomberg",
+      "type": "private",
+      "context": "Ramp data made available in the Bloomberg Terminal for tracking AI adoption rates by business size; Bloomberg also mentioned as a vertical SaaS Microsoft will not try to displace.",
+      "sentiment": "neutral",
+      "sector": "Financial Data"
+    },
+    {
+      "name": "Lucy",
+      "type": "startup",
+      "context": "Nicotine company mentioned as the official tax partner of Numeral HQ; Palmer Lucky's TBPN comments about nicotine sparked broader discussion about its cognitive effects and addictiveness.",
+      "sentiment": "neutral",
+      "sector": "Consumer Health"
+    },
+    {
+      "name": "Prudential Insurance Company of America",
+      "type": "public",
+      "context": "Cited as a ~150-year-old example of the descriptive legacy naming convention that The Browser Company of New York revived.",
+      "sentiment": "neutral",
+      "sector": "Insurance/Finance"
+    },
+    {
+      "name": "Goldman Sachs",
+      "type": "public",
+      "context": "Cited as an example of the eponymous legacy naming convention ('name it who we are') alongside Morgan Stanley.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "Morgan Stanley",
+      "type": "public",
+      "context": "Cited alongside Goldman Sachs as an example of the eponymous legacy naming convention.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor; corporate cards, bill pay, and accounting; Ramp data is now available in the Bloomberg Terminal for tracking AI spending adoption.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Sponsor; live streaming to 30+ destinations simultaneously.",
+      "sentiment": "neutral",
+      "sector": "Media Tech"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Sponsor; luxury watch marketplace with 26,500+ watches authenticated in-house.",
+      "sentiment": "neutral",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising platform.",
+      "sentiment": "neutral",
+      "sector": "AdTech"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor; premium short-term rental platform with properties including Smoky Woods and Smoky Peaks in Tennessee.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor; multi-asset investing platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Sponsor; AI-native CRM.",
+      "sentiment": "neutral",
+      "sector": "CRM/AI"
+    },
+    {
+      "name": "Turbopuffer",
+      "type": "startup",
+      "context": "Sponsor; serverless vector and full-text search built on object storage.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Fal.ai",
+      "type": "startup",
+      "context": "Sponsor; generative image, audio, and video models with serverless GPUs and on-demand clusters.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Julius AI",
+      "type": "startup",
+      "context": "Sponsor; AI data analyst tool for connecting datasets and generating insights.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Data"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor; compliance automation and continuous risk management.",
+      "sentiment": "neutral",
+      "sector": "Security/Compliance"
+    },
+    {
+      "name": "Graphite.dev",
+      "type": "startup",
+      "context": "Sponsor; AI-powered code review for GitHub teams.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Numeral HQ",
+      "type": "startup",
+      "context": "Sponsor; sales tax and VAT compliance automation; official tax partner of Lucy nicotine company.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Compliance"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Sponsor; helps brands get mentioned in ChatGPT to reach consumers discovering products via AI.",
+      "sentiment": "neutral",
+      "sector": "AI Marketing"
+    },
+    {
+      "name": "Privy",
+      "type": "startup",
+      "context": "Sponsor; developer platform for building on crypto rails with white-label wallets and on-chain infrastructure.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Web3"
+    },
+    {
+      "name": "Fin.ai",
+      "type": "startup",
+      "context": "Sponsor; AI agent platform for customer support.",
+      "sentiment": "neutral",
+      "sector": "AI/Customer Service"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Sponsor; collaborative design and development platform for product teams.",
+      "sentiment": "neutral",
+      "sector": "Design/Developer Tools"
+    }
+  ],
+  "people": [
+    {
+      "name": "Jacob Andreou",
+      "role": "Head of Product and Growth, Microsoft AI (Copilot)",
+      "context": "Guest; discussed the consumer Copilot app, Edge's agentic Copilot Mode, Microsoft's first-party models entering LM Arena top 5\u201310 within six weeks, the Miko AI persona, and the surprise Clippy easter egg demanded by Satya Nadella."
+    },
+    {
+      "name": "Drew Houston",
+      "role": "CEO, Dropbox",
+      "context": "Guest; discussed Dropbox Dash as a self-serve universal context layer for enterprise AI search, the PLG playbook scaling Dropbox to $2.5B revenue and 500K paying businesses, and the fox-in-the-henhouse tension between foundation model companies and enterprise SaaS."
+    },
+    {
+      "name": "Adam Fry",
+      "role": "Product Lead, ChatGPT Atlas, OpenAI",
+      "context": "Guest; discussed the ChatGPT Atlas browser launch available to all free and paid users, incentive programs for setting it as default, long-term retention focus, and future agentic and proactive browser behaviors including website co-evolution with agents."
+    },
+    {
+      "name": "Ian Rogers",
+      "role": "CEO, Ledger",
+      "context": "Guest from Paris; announced the Ledger Nano Gen 5 at $179, revealed Ledger secures ~20% of all crypto assets globally, and discussed hardware-anchored digital identity and agent authorization as the next frontier."
+    },
+    {
+      "name": "Johnny Dyer",
+      "role": "Co-founder, Muon Space",
+      "context": "Guest; discussed the SpaceX Starlink inter-satellite laser partnership enabling high-bandwidth satellite connectivity, the $140M Series B, a 50+ satellite wildfire monitoring constellation, and the inevitability of space data centers on a multi-year timeline."
+    },
+    {
+      "name": "Molly Cantillon",
+      "role": "Founder, Knox",
+      "context": "Guest; discussed Knox's OS-level automation approach to combining iMessage and WhatsApp in one interface, lessons from Beeper's mistakes, and the regulatory path toward forcing platform interoperability."
+    },
+    {
+      "name": "Mike Shebat",
+      "role": "CEO, Traba",
+      "context": "Guest; discussed Traba's industrial staffing tech platform, 996 work culture as an anti-burnout and alignment mechanism, expansion to most US markets, interest in roll-up acquisitions, and a five-year outlook for humanoid robot integration."
+    },
+    {
+      "name": "Dwarkesh Patel",
+      "role": "Podcaster/Writer",
+      "context": "Co-authored an essay with Romeo Dean on AGI infrastructure bottlenecks, showing Nvidia revenue dwarfs decades of semiconductor equipment capex and modeling US vs. China probability distributions for achieving AGI first."
+    },
+    {
+      "name": "Romeo Dean",
+      "role": "Co-author/Analyst",
+      "context": "Co-authored the AGI capex buildout essay with Dwarkesh Patel, including the US vs. China electricity generation comparison and AGI timeline probability density chart."
+    },
+    {
+      "name": "Palmer Lucky",
+      "role": "Founder, Oculus/Anduril",
+      "context": "Previously appeared on TBPN; his comments about nicotine benefits and about wishing he had married his wife sooner went viral and created a wedge debate spanning pro-tech and anti-tech communities."
+    },
+    {
+      "name": "Josh Hirsch",
+      "role": "Founder, The Browser Company of New York",
+      "context": "Credited with bringing a fresh branding perspective to startups through the company's distinctive name and design aesthetic, which inspired an estimated 50\u2013100 copycat companies over six years."
+    },
+    {
+      "name": "Satya Nadella",
+      "role": "CEO, Microsoft",
+      "context": "Reportedly demanded the Clippy easter egg be included in the new Miko AI persona; described as loving the experience of poking the Miko character."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Referenced for his stated goal of deploying a gigawatt of new AI infrastructure per week, which Dwarkesh Patel's essay used as the target to analyze supply chain bottlenecks against."
+    },
+    {
+      "name": "Larry Ellison",
+      "role": "Co-founder/CTO, Oracle",
+      "context": "Mentioned for orchestrating circular AI deals with OpenAI as early as 2019, and for advising son David Ellison to cap the Warner Brothers acquisition offer at $25/share."
+    },
+    {
+      "name": "David Ellison",
+      "role": "CEO, Paramount Skydance",
+      "context": "Reportedly reluctant to pay more than $25/share for Warner Brothers Discovery; Zaslav rejected his third offer at $23.50; a hostile offer is under consideration."
+    },
+    {
+      "name": "David Zaslav",
+      "role": "CEO, Warner Brothers Discovery",
+      "context": "Holding out for a price above $23.50/share in the Paramount Skydance acquisition talks; has now rejected three offers."
+    },
+    {
+      "name": "Demis Hassabis",
+      "role": "Co-founder/CEO, DeepMind",
+      "context": "AlphaGo documentary cited as a masterclass in authentic brand-building that introduced him as a character to a mass audience\u2014something hosts argued OpenAI missed the equivalent opportunity for with its Dota matches."
+    },
+    {
+      "name": "Evan Spiegel",
+      "role": "Co-founder/CEO, Snap",
+      "context": "Described by Jacob Andreou as having magnetic star quality; his founding thesis connecting Snap's ephemeral content to institutional trust breakdown (post-Iraq War, post-financial crisis) called prescient given today's context."
+    },
+    {
+      "name": "Josh Wolfe",
+      "role": "Co-founder, Lux Capital",
+      "context": "Posted that government equity investment in quantum computing is 'beyond stupid, absolute waste of taxpayer money' and called quantum computing 'utterly irrelevant fraudulent BS.'"
+    },
+    {
+      "name": "Andrej Karpathy",
+      "role": "AI researcher, former Tesla/OpenAI",
+      "context": "His podcast episode on the 'march of nines' reliability problem in AI agents cited as a frame for why AGI timelines may be longer than consensus expects, with self-driving as the instructive analogy."
+    },
+    {
+      "name": "Travis Kelce",
+      "role": "NFL player/investor",
+      "context": "Invested approximately $200M for a 9% stake in Six Flags Entertainment alongside an activist group; hosts debated whether theme parks are strategically sound in an era of increasing digital entertainment."
+    },
+    {
+      "name": "Susan Fowler",
+      "role": "Former Uber engineer and whistleblower",
+      "context": "Revealed as the wife of Rigetti Computing founder Chad Rigetti; her viral Uber blog post and subsequent memoir competed head-to-head on release with Mike Isaac's Uber book."
+    },
+    {
+      "name": "Chad Rigetti",
+      "role": "Founder, Rigetti Computing",
+      "context": "Founder of the quantum computing company subject to reported government equity investment talks; married to Uber whistleblower Susan Fowler."
+    },
+    {
+      "name": "Tyler Cowen",
+      "role": "Economist, George Mason University",
+      "context": "His 2023 post on the elasticity of supply cited in support of optimism that market forces will produce energy solutions for AI data centers, referencing the discovery of a vast lithium deposit in Nevada/Oregon as precedent."
+    },
+    {
+      "name": "Andrew Huberman",
+      "role": "Neuroscience podcaster",
+      "context": "Responded on X to Palmer Lucky's TBPN nicotine comments, confirming nicotine increases focus, is habit-forming but not carcinogenic unless smoked/vaped/dipped, and simultaneously focuses and relaxes the user."
+    },
+    {
+      "name": "Brian Halligan",
+      "role": "Co-founder, HubSpot",
+      "context": "Commented publicly that private markets are in bubble territory while public markets still seem rational; mentioned as an upcoming show guest."
+    },
+    {
+      "name": "Tony Fadell",
+      "role": "Founder, Nest; co-inventor of the iPhone",
+      "context": "Involved in Ledger hardware design; told Ian Rogers upon his joining that Ledger's existing business was 'business to geek' and his job was to create a genuine consumer business."
+    },
+    {
+      "name": "Changpeng Zhao (CZ)",
+      "role": "Former CEO, Binance",
+      "context": "Pardoned by the Trump administration; mentioned alongside Elizabeth Holmes as a beneficiary of executive clemency that signals potential pardons for other tech figures."
+    },
+    {
+      "name": "Elizabeth Holmes",
+      "role": "Former CEO, Theranos",
+      "context": "Discussed as a potential early-release candidate based on good-behavior calculations suggesting release within three to four years; described as watching CZ's pardon with interest."
+    },
+    {
+      "name": "Bill Peebles",
+      "role": "Sora Research Lead, OpenAI",
+      "context": "Announced a new Sora feature allowing users to register real-world subjects such as pets as reusable 'cameos' for personalized AI video generation."
+    },
+    {
+      "name": "Eliezer Yudkowsky",
+      "role": "AI safety researcher, MIRI",
+      "context": "His new book 'If Anyone Builds It We All Die' cited as part of the AI protest canon; described as a prominent AI doomer whose views could form a coalition with environmental activists opposing data centers."
+    },
+    {
+      "name": "David Chase",
+      "role": "TV creator, The Sopranos",
+      "context": "Developing a new limited HBO series about the CIA's Project MK Ultra."
+    },
+    {
+      "name": "Filip Johnston",
+      "role": "Founder, Star Cloud",
+      "context": "Announced Star Cloud's partnership with Crusoe to launch the first public cloud in space next year."
+    },
+    {
+      "name": "Delian",
+      "role": "Partner, Founders Fund",
+      "context": "Posted skeptically about Nvidia's announcements of space data centers and an AI shipbuilding partnership in two days, suggesting it could be a market top signal; noted he had been less active with new investments recently."
+    },
+    {
+      "name": "Ben Thompson",
+      "role": "Writer, Stratechery",
+      "context": "Referenced for extensive writing on Uber-Waymo dynamics and the open question of whether consumers will consolidate onto one super-app or split between Waymo and Uber for different use cases."
+    },
+    {
+      "name": "Rune",
+      "role": "X/Twitter personality",
+      "context": "Deleted a post arguing there is a moral panic about short-form AI video; debated Nir about whether Sora is harmful, ultimately landing on simply liking Sora content as a personal preference."
+    },
+    {
+      "name": "Nir",
+      "role": "X/Twitter personality",
+      "context": "Challenged Rune on whether short-form AI video is genuinely harmful, arguing that Sora's API availability prevents containment as a standalone consumption platform."
+    },
+    {
+      "name": "Mike Isaac",
+      "role": "Reporter, New York Times",
+      "context": "Covered the Uber/Travis Kalanick ouster story; his Uber book competed head-to-head with Susan Fowler's memoir; posted commentary on Travis Kelce's Six Flags investment."
+    },
+    {
+      "name": "Charles Gasparino",
+      "role": "Journalist, Fox Business",
+      "context": "Reported that David Ellison is reluctant to pay more than $25/share for Warner Brothers Discovery and that Zaslav rejected a third offer at $23.50; noted a hostile offer is being weighed."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Silicon Valley Company Naming and Branding",
+      "summary": "Jory Hayes presented an essay arguing The Browser Company of New York's legacy naming convention was brilliant as a one-time juxtaposition but inspired 50\u2013100 copycats, turning it into an anti-signal. Broader thesis: founders should steal inspiration from outside the tech bubble rather than within it, and the true Apple of AI will not emulate 1980s Apple ads.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AGI Infrastructure Capex and Fab Bottlenecks",
+      "summary": "Analysis of Dwarkesh Patel's essay showing a single year of Nvidia revenue exceeds 25 years of combined capex from the top five semiconductor equipment companies, suggesting fabs are the most critical upstream bottleneck. Discussion covered data center construction, energy sourcing, and the shape of a healthy vs. fat buildout.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Browser Wars",
+      "summary": "Both OpenAI (ChatGPT Atlas) and Microsoft (Copilot Mode in Edge) launched agentic browser capabilities the same week. Hosts viewed this as a multi-year journey with retention as the near-term metric; Atlas is free to all ChatGPT users; Edge proactively takes browsing actions and creates journey continuations.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Short-Form AI Video (Sora and Meta Vibes)",
+      "summary": "Rune argued there is a moral panic about AI short-form video; Nir countered that making Sora available via API prevents platform containment. Consensus emerged that the TAM for people who exclusively want AI video is near zero today but will grow; Sora's new 'cameos' feature for personalizing video with real-world subjects seen as the right pivot toward personal content.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "US Government Equity Stakes in Quantum Computing",
+      "summary": "Reports of the Trump administration seeking equity stakes in IonQ, Rigetti, and D-Wave sparked heavy criticism including Josh Wolfe calling it 'beyond stupid.' Hosts distinguished between legitimate science projects (Google's quantum work) and misguided public investment; conspiracy floated that the story may have been planted for call-option exit liquidity.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "US vs. China AGI Race and Energy",
+      "summary": "Dwarkesh Patel's essay modeled that China generates 2x the electricity of the US and is growing it 10x faster, allowing coordinated state-hyperscaler AI buildout without the zero-sum US capacity competition. If AGI arrives in 2035, China may have higher probability of producing it first despite a current chip disadvantage.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "ChatGPT Retention Data",
+      "summary": "A chart shared by Farid showed ChatGPT's 10-month cohort retention improved from ~45% two years ago to ~70% for recent cohorts\u2014described as beyond best-in-class for any consumer app and a strong signal of deepening habitual use.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Bubble Debate",
+      "summary": "Cotu research presented four charts arguing the market is not in a bubble (multiples below dot-com levels, capex funded by cash flow, large-cap valuations below 1999 peaks, concentration not inherently negative). Brian Halligan countered that private markets are in bubble territory while public markets seem rational.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Warner Brothers Discovery Acquisition Drama",
+      "summary": "Charles Gasparino reported David Ellison (advised by Larry Ellison) is capped at $25/share for WBD, with a third offer at $23.50 rejected by Zaslav; stock at ~$21.34; a hostile offer and Comcast regulatory blockage are both active.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Waymo Growth and Ride-Share Future",
+      "summary": "Waymo reached 876,000 rides/month in California (6x YoY, 69x since August 2020); debate on whether consumers will use one super-app combining Waymo and human drivers or split apps, and whether Waymo becomes a premium tier above standard Uber pricing.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Palmer Lucky Controversies: Nicotine and Marriage Age",
+      "summary": "Palmer Lucky's TBPN comments about nicotine benefits and about wishing he had married his wife sooner each went viral as distinct wedge issues; Huberman validated the nicotine cognitive performance claims on X; hosts noted the marriage-age comments were more politically explosive than his views on nuclear testing or whale cognition.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "iMessage as Primary Social Network",
+      "summary": "Hosts argued iMessage is their actual social network for real-life planning while X/Twitter functions as a professional network; iMessage cited as the single biggest driver of iPhone purchase decisions and Apple's most defensible moat.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Data Center Energy and Environmental Concerns",
+      "summary": "Colossus data center in Memphis attracted thermal-camera scrutiny framed as a gotcha despite Musk publicly disclosing energy figures; local politicians raised water and air quality concerns; hosts predicted debate will escalate into extreme camps of AI acceleration vs. environmental protection, with potential strange-bedfellows coalitions between AI doomers and environmentalists.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Tertiary Private Equity Fund Structures",
+      "summary": "A chart visualizing tertiary funds\u2014buying secondary interest in secondary funds\u2014sparked comparisons to pre-2008 CDO/CDS structures, with concern about GP fee harvesting at each layer and increasing disconnection from underlying portfolio company value.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Work Culture: 996 vs. Zero-Zero-Two",
+      "summary": "Mike Shebat discussed Traba's all-in 996 culture as a hiring filter and burnout preventer (winning prevents burnout). A WSJ article on AI researchers working 'zero-zero-two' (midnight to midnight with a two-hour break) prompted debate on performance theater vs. genuine intensity.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Digital Identity and Agent Authorization",
+      "summary": "Ian Rogers argued that as AI agents act on behalf of users across the web, hardware-anchored digital identity (via secure element chips) will become critical for proving humanness, federating credentials to apps, and authorizing agent transactions without exposing raw credentials.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Product-Led Growth for Enterprise AI",
+      "summary": "Drew Houston discussed applying Dropbox's PLG playbook to Dropbox Dash for enterprise search, emphasizing self-serve onboarding, no six-month implementation cycles, and targeting the vast SMB segment ignored by enterprise-only players like Glean.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "iPhone Air Demand",
+      "summary": "Mac Rumors reported virtually no demand for the iPhone Air due to battery life tradeoffs; a former Apple employee returned it within 48 hours. Hosts debated whether battery anxiety is addressable through routine charging habits and noted iPhones feel underpriced given their value.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Humanoid Robots",
+      "summary": "Unit Tree G1's video showing a humanoid transforming into an insect-like crawling form discussed for potential film/horror applications; Traba's Mike Shebat sees humanoids as a five-year horizon that Traba will be well-positioned to deploy as a staffing intermediary.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Space Data Centers and Satellite Infrastructure",
+      "summary": "Star Cloud/Crusoe partnership for the first public cloud in space, Muon Space's Starlink laser connectivity, and Nvidia's data-centers-in-space announcement all discussed; Muon's Johnny Dyer views space IT infrastructure as inevitable on a multi-year timeline, while skeptics question near-term economics.",
+      "sentiment": "mixed"
+    }
+  ],
+  "key_claims": [
+    "A single year of Nvidia revenue exceeds the past 25 years of combined R&D and capex from the five largest semiconductor equipment companies (ASML, Applied Materials, Tokyo Electron, SK Hynix, Micron) combined.",
+    "TSMC's multi-year capex is dwarfed by a single year of Nvidia revenue, suggesting massive fab underbuilding relative to AGI demand timelines.",
+    "China generates more than twice the electricity of the United States and its generation is growing more than 10 times faster, giving it a structural energy advantage for AI data center buildout.",
+    "If AGI arrives in 2035, China has a higher probability of producing it first due to superior energy growth rates, despite the US having a current head start in chip capability.",
+    "Waymo is doing 876,000 rides per month in California\u2014a 6x increase year-over-year and a 69x increase since August 2020.",
+    "Approximately 20% of all crypto assets globally are secured by Ledger hardware devices.",
+    "ChatGPT's 10-month cohort retention improved from approximately 45% for cohorts from two years ago to approximately 70% for more recent cohorts\u2014described as beyond best-in-class for any consumer app.",
+    "The Browser Company of New York's naming convention inspired an estimated 50\u2013100 companies to adopt the same legacy naming style, turning it into an anti-signal for the companies that followed.",
+    "Microsoft AI's first-party language and image models entered the LM Arena top 5\u201310 within six weeks of starting private evaluations\u2014a first for Microsoft.",
+    "Chips represent 60\u201370% of total data center capex, making semiconductor fab capacity the most critical upstream bottleneck for AI infrastructure buildout.",
+    "Dropbox has $2.5 billion in annual revenue and 500,000 paying businesses.",
+    "Muon Space raised approximately $140 million in a two-part Series B and is 10x-ing its production capacity in the South Bay before year-end.",
+    "OpenAI's ChatGPT Atlas browser is available at launch to all free, Plus, and Pro users globally with no GPU constraint for basic browsing features.",
+    "The Economist (September 2025) concluded that nicotine is hugely addictive but does boost mental performance\u2014a claim validated by Andrew Huberman on X in response to Palmer Lucky's TBPN appearance.",
+    "Josh Wolfe called government equity investment in quantum computing companies 'beyond stupid, absolute waste of taxpayer money' and quantum computing itself 'utterly irrelevant fraudulent BS.'",
+    "Travis Kelce invested approximately $200 million for a 9% stake in Six Flags Entertainment, which trades below 1x revenue.",
+    "Sam Altman's stated goal is to deploy a gigawatt of new AI infrastructure per week, which Dwarkesh Patel's essay used as the benchmark to analyze supply chain bottlenecks."
+  ],
+  "technologies": [
+    "Large Language Models (LLMs)",
+    "Agentic AI / AI Agents",
+    "AI Browsers (Chromium-based)",
+    "Secure Element Chips",
+    "E-ink Displays (Organic TFT)",
+    "Inter-satellite Laser Links (Free Space Optical)",
+    "Satellite Constellations",
+    "H100 GPUs",
+    "Quantum Computing",
+    "Humanoid Robotics",
+    "Generative Video (Sora)",
+    "Retrieval Augmented Generation (RAG)",
+    "Vector Search / Semantic Search",
+    "Gas Turbines",
+    "Nuclear Power",
+    "Bluetooth Low Energy (BLE) Asset Tracking",
+    "OS-level Automation",
+    "Voice Mode AI",
+    "Passkeys / Hardware-anchored Digital Identity Tokens",
+    "Reinforcement Learning",
+    "Semiconductor Fab Technology (Extreme UV Lithography)",
+    "EV Motor Technology (Organic Substrate)",
+    "Serverless GPU Clusters",
+    "LM Arena Benchmarking"
+  ],
+  "_stats": {
+    "word_count": 38555,
+    "estimated_input_tokens": 51278,
+    "input_tokens": 3,
+    "output_tokens": 26556,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 54440,
+    "duration_ms": 521111,
+    "wall_time_s": 522.7,
+    "cost_usd": 1.0087735,
+    "tokens_per_sec": 50.8
+  }
+}

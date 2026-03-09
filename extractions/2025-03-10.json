@@ -1,0 +1,618 @@
+{
+  "episode_date": "2025-03-10",
+  "episode_title": "x-under-attack-dom-day-yardsale-thesis-manus-bread-and-taxes-deepseek",
+  "companies": [
+    {
+      "name": "X (Twitter)",
+      "type": "private",
+      "context": "Experienced a major cyberattack attributed by Elon Musk to a nation-state; platform outages discussed throughout the episode.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Manus AI",
+      "type": "startup",
+      "context": "Chinese autonomous AI agent that went viral; revealed to be built on Claude Sonnet with browser-use tooling, not a proprietary foundation model.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Manus AI was found to be built on Claude Sonnet 3.5; hosts briefly debated whether Anthropic is a US or European company.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "DeepSeek",
+      "type": "startup",
+      "context": "Chinese AI lab spun out of quant hedge fund High Flyer; founder Liang Wenfang rejecting outside investment and maintaining open-source, free model strategy.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "High Flyer",
+      "type": "fund",
+      "context": "Chinese quant hedge fund founded by Liang Wenfang that spun out DeepSeek; AUM shrank significantly after underperforming in 2022-2023.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Discussed as likely to surpass X in monthly active users by end of year; potential integration with World/WorldCoin floated.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "World (WorldCoin)",
+      "type": "startup",
+      "context": "Sam Altman's biometric identity startup has scanned irises of 11 million people; building an everything app to compete with X, not yet operational in the US due to regulatory concerns.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Identity"
+    },
+    {
+      "name": "Anduril Industries",
+      "type": "startup",
+      "context": "Palmer Luckey's defense tech company profiled in WSJ; announced nearly $1B factory in Ohio for autonomous jet fighters and took over Microsoft's $22B Army AR headset contract.",
+      "sentiment": "bullish",
+      "sector": "Defense/AI"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Stock down over 36% in the past month; hosts jokingly attributed decline partly to competition from a giant humanoid robot rumor.",
+      "sentiment": "bearish",
+      "sector": "EV/Robotics"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "One host bought Nvidia after it dropped ~15% following the DeepSeek announcement and got a round trip on the trade.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Intel",
+      "type": "public",
+      "context": "Intel tweeted 'AI' and was mocked by David Holz of Midjourney as a sign of the company's decline; seen as out of touch.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "Reported to be raising hundreds of millions at a $10B valuation; hosts broke down the liquidation preference math showing investors need a $300M floor to lose money.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "Mentioned as a competitor to Cursor that YC partners are promoting; shared a YC shoutout video.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "ServiceNow",
+      "type": "public",
+      "context": "$160B cloud computing company acquiring Moveworks for nearly $3B; discussed as an example of massive B2B SaaS value creation.",
+      "sentiment": "bullish",
+      "sector": "Enterprise SaaS"
+    },
+    {
+      "name": "Moveworks",
+      "type": "startup",
+      "context": "AI platform for enterprise IT acquired by ServiceNow for nearly $3B; backed by Bain Capital, Lightspeed, and Kleiner Perkins.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "ServiceTitan",
+      "type": "public",
+      "context": "Mentioned as an ~$8B company that started as software for garage door repair businesses; used as an example of TAM being a bad reason to pass on investments.",
+      "sentiment": "bullish",
+      "sector": "Enterprise SaaS"
+    },
+    {
+      "name": "Redfin",
+      "type": "public",
+      "context": "Announced acquisition; CEO Glenn quoted on earnings call saying plan B was to 'drink our own urine or our competitors' blood' if mortgage rates don't come down.",
+      "sentiment": "neutral",
+      "sector": "Proptech"
+    },
+    {
+      "name": "Relativity Space",
+      "type": "startup",
+      "context": "Breaking news: Eric Schmidt joined as CEO and has been bankrolling the company since October; seen as a credible challenger to SpaceX Falcon 9.",
+      "sentiment": "bullish",
+      "sector": "Space/Aerospace"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Referenced as the dominant player in medium-lift rockets that Relativity Space aims to challenge.",
+      "sentiment": "neutral",
+      "sector": "Space/Aerospace"
+    },
+    {
+      "name": "Anduril (Oculus VR)",
+      "type": "startup",
+      "context": "Palmer Luckey sold Oculus VR to Facebook for billions before founding Anduril; background context in WSJ profile.",
+      "sentiment": "neutral",
+      "sector": "VR/AR"
+    },
+    {
+      "name": "Meta (Facebook)",
+      "type": "public",
+      "context": "Acquired Oculus from Palmer Luckey; Zuckerberg reportedly told Congress that Lucky's departure had nothing to do with politics.",
+      "sentiment": "neutral",
+      "sector": "Social Media/AI"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Mentioned as a Western AI counterpart to Manus; Gemini cited as requiring human prompts unlike Manus claims.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Google DeepMind",
+      "type": "private",
+      "context": "Philip Schmid from DeepMind noted Manus is built on Claude Sonnet with 29 tools and browser-use, not a proprietary model.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Tencent",
+      "type": "public",
+      "context": "Testing DeepSeek to power features including search in its messaging and payment app without paying DeepSeek.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Alibaba",
+      "type": "public",
+      "context": "Met with DeepSeek founder Liang Wenfang to discuss potential cooperation.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Bank of China",
+      "type": "gov",
+      "context": "State-owned bank offered low-interest loans to DeepSeek amid the company's server overload and traffic surge challenges.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Peter Thiel's fund was an original backer of Anduril; mentioned in Palmer Luckey profile.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Anduril was co-founded with Palantir alums; also referenced in context of Max Mayer working with a Palantir co-founder.",
+      "sentiment": "neutral",
+      "sector": "Defense/AI"
+    },
+    {
+      "name": "Twitch",
+      "type": "private",
+      "context": "Emmett Shear reflected on advice he gave interns as CEO of Twitch regarding career frameworks.",
+      "sentiment": "neutral",
+      "sector": "Media/Streaming"
+    },
+    {
+      "name": "Cognition (Devin)",
+      "type": "startup",
+      "context": "Scott Wu from Cognition mentioned as someone hosts want on the show to discuss autonomous AI agent trends.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "TSMC",
+      "type": "public",
+      "context": "Acquired podcast interview with founder Morris Chang discussed; described as the only trillion-dollar company not on the US West Coast.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Kettle & Fire",
+      "type": "private",
+      "context": "Justin Mares's bone broth company profiled in Forbes as a cover story; reportedly doing ~$100M in annual revenue.",
+      "sentiment": "bullish",
+      "sector": "Consumer Health/Food"
+    },
+    {
+      "name": "10X (PMF or Die)",
+      "type": "startup",
+      "context": "Blake Anderson's startup currently in the PMF or Die cage challenge; founder claims it will reach $100M ARR within a year.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Optify (10X)",
+      "type": "startup",
+      "context": "YC startup that caused controversy with its 'worker 17' productivity software; leaned into the meme with 'Justice for Worker 17' t-shirts.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Orca Energy Water",
+      "type": "startup",
+      "context": "New energy water brand in a clear plastic can launched by Michael Moriarty after 13 months and four failed production runs; facing criticism from competitors claiming it merely licensed a patent.",
+      "sentiment": "neutral",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "Vercel",
+      "type": "startup",
+      "context": "Guillermo Rauch of Vercel quoted on focusing on quality and depth in a world of infinite possibility.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Mentioned as preferred corporate card and expense management platform; hosts noted IMO gold medalists going to work for Ramp.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Podcast sponsor; hosts praised the product effusively, with one noting misery sleeping at the Ritz-Carlton without it.",
+      "sentiment": "bullish",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Podcast sponsor for out-of-home advertising; hosts drew comparison to Ted Turner's father's billboard business.",
+      "sentiment": "bullish",
+      "sector": "AdTech"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Podcast sponsor for luxury watch resale; hosts promoted it as preferred platform for watch collecting.",
+      "sentiment": "bullish",
+      "sector": "E-commerce/Luxury"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Podcast sponsor for premium vacation rentals; offering a free trip giveaway to audience members.",
+      "sentiment": "bullish",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Podcast sponsor for multi-asset investing platform; described as preferred platform of the show.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Mentioned briefly in context of Amazon attempting to replace credit cards with palm scanning biometrics.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Tech"
+    },
+    {
+      "name": "Ant Group",
+      "type": "private",
+      "context": "Referenced as a Chinese company enabling facial recognition payments, compared to World's iris-scanning approach.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Anduril took over Microsoft's $22B US Army augmented reality headset contract.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Tech"
+    },
+    {
+      "name": "Graza",
+      "type": "startup",
+      "context": "Olive oil brand cited as a success story for winning retail distribution; used as example of how retail wins define consumer product companies.",
+      "sentiment": "bullish",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "Variable",
+      "type": "startup",
+      "context": "HQ'd in Dallas; offers on-demand labor platform for manufacturers; promoted via a listener-submitted ad.",
+      "sentiment": "neutral",
+      "sector": "Future of Work"
+    },
+    {
+      "name": "Jane Street",
+      "type": "private",
+      "context": "Mentioned alongside Citadel as firms that have moved toward less outside capital and position themselves more like tech companies.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "Citadel",
+      "type": "private",
+      "context": "Referenced alongside Jane Street as quant firms that market themselves like technology companies in hiring.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "Barings Bank",
+      "type": "private",
+      "context": "Referenced in 'Yard Sale Thesis' as a 233-year-old UK merchant bank that collapsed in February 1995 during ski season due to rogue trader Nick Leeson's unauthorized losses of \u00a3830M.",
+      "sentiment": "bearish",
+      "sector": "Finance"
+    }
+  ],
+  "people": [
+    {
+      "name": "Elon Musk",
+      "role": "Owner of X; CEO of Tesla and SpaceX",
+      "context": "Attributed the X platform cyberattack to a nation-state; Tesla stock discussed as down 36% in a month."
+    },
+    {
+      "name": "Liang Wenfang",
+      "role": "Founder of DeepSeek and High Flyer hedge fund",
+      "context": "Rejecting outside investors and government-linked capital to preserve DeepSeek's science-project ethos; met Xi Jinping at a February event."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO of OpenAI; Co-founder of World",
+      "context": "His everything app World/WorldCoin is building a bot-proof social and payments platform to compete with X using iris-scanning orbs."
+    },
+    {
+      "name": "Alex Blania",
+      "role": "CEO of World",
+      "context": "Leading World's expansion; expects direct competition with X within 12 months and believes World will become legal in the US in 2025."
+    },
+    {
+      "name": "Palmer Luckey",
+      "role": "Founder of Anduril Industries; founder of Oculus VR",
+      "context": "Profiled in WSJ as Trump's 'original tech bro'; Anduril announced a $1B Ohio factory for autonomous jet fighters and took over Microsoft's Army AR contract."
+    },
+    {
+      "name": "Eric Schmidt",
+      "role": "Former CEO of Google; incoming CEO of Relativity Space",
+      "context": "Breaking news during the episode that Schmidt is joining Relativity Space as CEO and has been bankrolling the company since October 2024."
+    },
+    {
+      "name": "Morris Chang",
+      "role": "Founder of TSMC",
+      "context": "Interviewed by the Acquired podcast; pushed back on the characterization of TSMC's success as 'unlikely,' saying he never doubted it."
+    },
+    {
+      "name": "David Holz",
+      "role": "Founder of Midjourney",
+      "context": "Quote-tweeted Intel's 'AI' tweet saying 'it's over,' interpreted as a commentary on Intel's irrelevance in the AI era."
+    },
+    {
+      "name": "Scott Wu",
+      "role": "CEO of Cognition",
+      "context": "Hosts expressed desire to have him on the show to discuss autonomous AI agent trends, noting he has been building in this space."
+    },
+    {
+      "name": "Philip Schmid",
+      "role": "AI engineer at Google DeepMind",
+      "context": "Debunked Manus hype by revealing it runs on Claude Sonnet with 29 tools and browser-use; concluded the alpha is in tooling and integration, not foundation model training."
+    },
+    {
+      "name": "Justin Mares",
+      "role": "Founder of Kettle & Fire",
+      "context": "Featured on Forbes cover; scheduled as a Thursday guest to discuss consumer health, MAHA trends, and his bone broth business."
+    },
+    {
+      "name": "Emmett Shear",
+      "role": "Former CEO of Twitch",
+      "context": "Posted a framework he used to advise interns on career decisions, covering money, prestige, power, and impact."
+    },
+    {
+      "name": "Nikita Bier",
+      "role": "Consumer app entrepreneur",
+      "context": "Referenced for suggesting users Google any reply to check if the person is real; also cited for a tipping mechanic in his apps."
+    },
+    {
+      "name": "Gary Tan",
+      "role": "President and CEO of Y Combinator",
+      "context": "Posted in favor of housing deregulation following the LA fire aftermath and a Simpsons producer being forced to demolish a treehouse for failing ADA compliance."
+    },
+    {
+      "name": "Jen Zhu",
+      "role": "Claimed investor",
+      "context": "Identified as a suspicious account aggressively promoting Manus on X; her fund had no employees on LinkedIn and used an AI-generated profile image."
+    },
+    {
+      "name": "Ben Horowitz",
+      "role": "Co-founder of Andreessen Horowitz",
+      "context": "Said on his podcast that loosening crypto regulations mean World will likely become legal in the US in 2025."
+    },
+    {
+      "name": "Glenn Kelman",
+      "role": "CEO of Redfin",
+      "context": "Quoted from an earnings call saying plan B if mortgage rates don't fall is to 'drink our own urine or our competitors' blood'; company subsequently acquired."
+    },
+    {
+      "name": "Leopold Aschenbrenner",
+      "role": "Former OpenAI researcher; hedge fund founder",
+      "context": "Hosts and Richard Craib questioned how his Situational Awareness hedge fund is performing amid the current market selloff, given its presumed long-AI positioning."
+    },
+    {
+      "name": "Richard Craib",
+      "role": "Founder of Numerai hedge fund",
+      "context": "Posted wondering how Leopold Aschenbrenner's Situational Awareness hedge fund is performing amid the market downturn."
+    },
+    {
+      "name": "Blake Anderson",
+      "role": "Co-founder of 10X (PMF or Die contestant)",
+      "context": "Currently locked in the PMF or Die productivity cage; publicly claiming 10X will reach $100M ARR within one year."
+    },
+    {
+      "name": "Avi Schiffman",
+      "role": "Serial entrepreneur",
+      "context": "Posted that companies should shut down when the founder leaves, sparking a discussion about company longevity."
+    },
+    {
+      "name": "Augustus Torrico",
+      "role": "Content creator / community member",
+      "context": "Referenced as someone who took hosts on a tour of El Segundo and is coded as anti-B2B SaaS; hosts jokingly suggested a wellness check given the ServiceNow discussion."
+    },
+    {
+      "name": "Tim Higgins",
+      "role": "Wall Street Journal reporter",
+      "context": "Authored the Palmer Luckey profile in the WSJ; hosts critiqued the framing while acknowledging the quality of reporting."
+    },
+    {
+      "name": "Mike White",
+      "role": "Creator of White Lotus; writer/director",
+      "context": "Mentioned as having attended the same high school as one of the hosts; also directed School of Rock."
+    }
+  ],
+  "topics": [
+    {
+      "name": "X Cyberattack",
+      "summary": "Elon Musk attributed a major platform outage on March 10 to a nation-state cyberattack; hosts humorously speculated it could be a PR stunt or cover for hedge fund position unwinding.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Yard Sale Thesis",
+      "summary": "Hosts proposed a satirical theory that major financial frauds and market crashes are catalyzed by candid conversations between capital allocators on ski lifts during ski season, citing Black Monday, Barings Bank, Enron, SVB, FTX, and others as examples.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Manus AI Hype vs. Reality",
+      "summary": "Manus was hyped in a Forbes contributor piece as China's second DeepSeek moment and the world's first fully autonomous AI agent, but was quickly debunked as a Claude Sonnet wrapper using browser-use tooling with obfuscated code.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "World / WorldCoin Everything App",
+      "summary": "Sam Altman's biometric identity startup is building a super app and autonomous proof-of-human system using iris-scanning orbs to compete with X, having already scanned 11 million people globally but not yet operating in the US.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Palmer Luckey and Anduril",
+      "summary": "WSJ profile of Anduril founder Palmer Luckey highlighted his defense product company model, $1B Ohio factory for autonomous jet fighters, takeover of Microsoft's Army AR contract, and his political rehabilitation under Trump.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "DeepSeek Funding and Strategy",
+      "summary": "DeepSeek founder Liang Wenfang is resisting outside investment and government-linked capital while accepting a low-interest loan from the Bank of China, aiming to keep models free and maintain a science-project ethos ahead of a potential April model release.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Cursor $10B Valuation",
+      "summary": "Hosts broke down the liquidation preference math on Cursor's rumored $300M raise at $10B valuation, arguing investors only lose money if the company exits below $300M and the real question is whether it can reach $20-50B.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Smart Car Features Backlash",
+      "summary": "WSJ article covered growing consumer frustration with overly complex automotive tech features; hosts discussed personal annoyances with lane-keeping assist and auto-stop engines defaulting on.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Market Selloff / Yard Sale",
+      "summary": "Broad market downturn discussed throughout episode with Tesla down 36%, tech stocks under pressure, and hosts advising dollar cost averaging rather than timing the market.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "AI Agents as a Category",
+      "summary": "Broader discussion of autonomous AI agents as an emerging product category, with Manus, Cognition, and browser-use cited; consensus that existing models have significant untapped potential through better tooling without needing new foundation models.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "TSMC and Morris Chang Interview",
+      "summary": "Acquired podcast flew to Taiwan to interview TSMC founder Morris Chang; hosts highlighted his pushback on the characterization of TSMC's success as 'unlikely.'",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Housing Deregulation",
+      "summary": "Gary Tan's posts on housing deregulation discussed in context of a Simpsons producer forced to demolish a treehouse for failing ADA compliance in post-fire LA.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Biometric Identity and Bot Problem",
+      "summary": "Growing problem of AI bots impersonating humans online discussed alongside World's iris-scanning solution; hosts see a legitimate need but question whether the product-market fit is there yet in the West.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Consumer Beverage Entrepreneurship",
+      "summary": "Orca Energy Water's launch in a novel clear plastic can discussed; hosts defended founder Michael Moriarty against a hater, noting the difficulty of consumer product manufacturing and retail distribution.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Relativity Space and Eric Schmidt",
+      "summary": "Breaking news that Eric Schmidt is joining Relativity Space as CEO and has been bankrolling the company, positioning it as a SpaceX Falcon 9 competitor.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Forbes Contributor Model",
+      "summary": "Hosts discussed how Forbes has both legitimate editorial content and an open contributor network, using the Manus profile as an example of what appears to be a thinly veiled PR piece.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "ServiceNow Acquiring Moveworks",
+      "summary": "ServiceNow's ~$3B acquisition of Moveworks discussed as a validation of AI-powered enterprise workflow automation; hosts noted the irony of massive value creation in B2B SaaS.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "White Lotus Season 3",
+      "summary": "Hosts briefly discussed enjoying the new White Lotus season set in Thailand; noted creator Mike White attended the same high school as one host.",
+      "sentiment": "bullish"
+    }
+  ],
+  "key_claims": [
+    "Elon Musk publicly attributed the March 10, 2025 X platform cyberattack to a nation-state actor with significant resources.",
+    "Manus AI, marketed as the world's first fully autonomous AI agent, was found to be running on Anthropic's Claude Sonnet with browser-use tooling and 29 standard tools \u2014 not a proprietary Chinese foundation model.",
+    "Manus outperforms OpenAI Deep Research on the GAIA benchmark despite being a wrapper on Claude Sonnet.",
+    "DeepSeek is ranked #20 in the App Store productivity category as of the episode date, ahead of Grok at #31.",
+    "World (WorldCoin) has scanned the irises of 11 million people globally and is valued at $7.95B fully diluted, ~$800M on circulating supply.",
+    "One host claims OpenAI will have more monthly active users than X by end of 2025.",
+    "Tesla stock is down over 36% in the past month as of March 10, 2025.",
+    "A company in the current YC batch reportedly hit $50 million in annualized profit within two months of launching.",
+    "Eric Schmidt has been bankrolling Relativity Space since October 2024 and is joining as CEO.",
+    "High Flyer quant fund outperformed market benchmarks by 20-50 percentage points between 2015 and 2020 before fading; AUM shrank significantly by end of 2024.",
+    "DeepSeek's next model (V3 successor) targeting complex reasoning problems may launch as early as April 2025.",
+    "Anduril announced plans to invest nearly $1B in an Ohio factory to manufacture autonomous jet fighters and took over Microsoft's $22B US Army augmented reality headset contract.",
+    "Cursor is rumored to be raising ~$300M at a $10B valuation led by Thrive Capital and Kushner Companies.",
+    "The dot-com peak (NASDAQ) was March 10, 2000 \u2014 exactly 25 years before this episode \u2014 followed by a 78% index decline by 2002.",
+    "World tokens pay 16-25 tokens (~$16-25) per iris scan depending on timing, yet only 11 million people have been scanned despite monetary incentive."
+  ],
+  "technologies": [
+    "Claude Sonnet",
+    "Browser Use",
+    "GAIA Benchmark",
+    "Lattice OS (Anduril)",
+    "Face ID",
+    "WorldCoin Orb / Iris Scanning",
+    "Autonomous AI Agents",
+    "Multi-Agent Architecture",
+    "Large Language Models (LLMs)",
+    "Augmented Reality (AR) Headsets",
+    "Autonomous Jet Fighters",
+    "Humanoid Robots",
+    "Quant / Algorithmic Trading",
+    "Vibe Coding",
+    "RAG / Tool Use",
+    "Eight Sleep Pod",
+    "Carbon Fiber / Clear PET Beverage Cans"
+  ],
+  "_stats": {
+    "word_count": 28468,
+    "estimated_input_tokens": 37862,
+    "input_tokens": 3,
+    "output_tokens": 5805,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 41784,
+    "duration_ms": 127514,
+    "wall_time_s": 128.9,
+    "cost_usd": 0.41089849999999994,
+    "tokens_per_sec": 45.1
+  }
+}

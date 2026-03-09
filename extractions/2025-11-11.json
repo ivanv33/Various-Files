@@ -1,0 +1,854 @@
+{
+  "episode_date": "2025-11-11",
+  "episode_title": "silicon-valley-vs-the-vatican-bryan-johnsons-shroom-trip",
+  "companies": [
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Projected to be profitable by 2027, three years ahead of OpenAI, with $70B revenue and $17B profit projected for 2028. Claude Code is nearing $1B ARR.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "GPT-4o deprecation controversy discussed extensively, with users making threats against the employee sunsetting the model. Sam Altman cited electrons as OpenAI's biggest bottleneck.",
+      "sentiment": "mixed",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Andreessen Horowitz (a16z)",
+      "type": "fund",
+      "context": "Mark Andreessen drew intense backlash for repeatedly posting a 'confused' meme in response to Pope Leo XIV's AI ethics posts. Fund's portfolio and $100M lobbying super PAC also discussed.",
+      "sentiment": "mixed",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Neros",
+      "type": "startup",
+      "context": "Announced a $75M Series B; producing approximately 2,500 FPV military drones per month, holds a $17M Marine Corps purchase order, and was selected for the US Army's P-BASS program.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "Anduril",
+      "type": "startup",
+      "context": "VP of Marketing Jeff Miller discussed brand strategy, the YFQ-44A's first flight in just over 500 days from clean sheet, NASCAR Anduril 250 sponsorship, and the Arsenal 1 Ohio manufacturing facility.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "Valor Atomics",
+      "type": "startup",
+      "context": "Announced $130M Series A to power up a nuclear reactor built in 14 months in Utah on seed funding. Plans 25 MW modular electric units and is building its own TRISO fuel plant on site.",
+      "sentiment": "bullish",
+      "sector": "Energy/Nuclear"
+    },
+    {
+      "name": "Uniswap Labs",
+      "type": "startup",
+      "context": "Founder Hayden Adams announced a governance proposal to activate protocol fees, burn treasury tokens, and formalize a service-provider relationship with the DAO. Processes ~$2T annually in trading volume.",
+      "sentiment": "bullish",
+      "sector": "Crypto/DeFi"
+    },
+    {
+      "name": "Gamma",
+      "type": "startup",
+      "context": "Announced $2.1B valuation Series B from Andreessen Horowitz; profitable for two years with $100M+ ARR and a team of only 50. Building AI-native presentation software with an API platform strategy.",
+      "sentiment": "bullish",
+      "sector": "AI/SaaS"
+    },
+    {
+      "name": "OpenDoor",
+      "type": "public",
+      "context": "New CEO Kaz Nejatian discussed shipping weekly product updates, launched a 7-day home return guarantee, earns $1/year salary with all-performance equity, and defended the 50-year mortgage proposal.",
+      "sentiment": "bullish",
+      "sector": "Real Estate Tech"
+    },
+    {
+      "name": "MicroStrategy (Strategy)",
+      "type": "public",
+      "context": "Raised concerns: $689M interest due in 2026 with ~$50M cash on hand, requiring capital raises at 10.5% preferred yield. Market cap ~$70B, down 40% in six months from a ~$128B peak.",
+      "sentiment": "bearish",
+      "sector": "Crypto/Fintech"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "FSD data showing 1 intervention per 3,000 miles discussed; George Hotz projects Tesla achieves human-level self-driving (~1 per 500,000 miles) in approximately 8 years at current improvement rates.",
+      "sentiment": "bullish",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Waymo",
+      "type": "private",
+      "context": "Cited as an example of a company that deliberately pushed technology far beyond the human baseline before broad deployment rather than accepting a marginal improvement.",
+      "sentiment": "bullish",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Comma.ai",
+      "type": "startup",
+      "context": "George Hotz presented self-driving timelines at comma.con using Tesla FSD data, estimating comma.ai will achieve human-level autonomy in ~10 years, two years behind Tesla's projected timeline.",
+      "sentiment": "bullish",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Semi-Analysis",
+      "type": "private",
+      "context": "Jordan Nanos presented ClusterMax 2.0, rating 84 GPU cloud providers (up from 26). Fluid Stack debuted at gold, Google improved significantly, and AWS was criticized for networking complexity.",
+      "sentiment": "neutral",
+      "sector": "Research/AI Infrastructure"
+    },
+    {
+      "name": "Fluid Stack",
+      "type": "startup",
+      "context": "Debuted at gold tier in ClusterMax 2.0 for making lower-tier GPUs usable for Frontier Labs with surprisingly strong enterprise customers.",
+      "sentiment": "bullish",
+      "sector": "Cloud Computing"
+    },
+    {
+      "name": "CoreWeave",
+      "type": "startup",
+      "context": "Mentioned as one of the leading GPU cloud providers in the neocloud market tracked by Semi-Analysis ClusterMax 2.0.",
+      "sentiment": "neutral",
+      "sector": "Cloud Computing"
+    },
+    {
+      "name": "AWS (Amazon)",
+      "type": "public",
+      "context": "Criticized in ClusterMax 2.0: custom EFA networking accounts for less than 1% of cluster TCO but more than 50% of customer debugging time per user surveys.",
+      "sentiment": "bearish",
+      "sector": "Cloud Computing"
+    },
+    {
+      "name": "Microsoft (Azure)",
+      "type": "public",
+      "context": "Mentioned as having lost ~$320B in RPO to Oracle on an OpenAI data center deal; Satya Nadella's GPU fleet fungibility strategy discussed as potentially cautious versus Oracle's bold bet.",
+      "sentiment": "mixed",
+      "sector": "Cloud Computing/AI"
+    },
+    {
+      "name": "Google (GCP)",
+      "type": "public",
+      "context": "Improved significantly in ClusterMax 2.0 and potentially near gold tier as it transitions from Hopper to Blackwell GPUs. Google AI Studio also mentioned as a sponsor.",
+      "sentiment": "bullish",
+      "sector": "Cloud Computing/AI"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "Won a major OpenAI data center deal gaining ~$320B in RPO from Microsoft; viewed as a bold, AGI-dependent bet with some risk if depreciation schedules shift.",
+      "sentiment": "mixed",
+      "sector": "Cloud Computing"
+    },
+    {
+      "name": "Shopify",
+      "type": "public",
+      "context": "Mentioned as Kaz Nejatian's previous employer where he ran merchant services and became COO; described as a company everyone told him not to join in 2019 that proved them wrong.",
+      "sentiment": "bullish",
+      "sector": "E-Commerce"
+    },
+    {
+      "name": "DJI",
+      "type": "private",
+      "context": "Discussed as the dominant Chinese drone manufacturer deliberately selling components to both Ukrainian and Russian sides, generating tens of billions in revenue from the war.",
+      "sentiment": "bearish",
+      "sector": "Defense Tech/Hardware"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Mentioned for its meritocracy hiring model and in an Elon Musk meme context; investor Doug Philippone spent 17 years as head of global defense at Palantir before backing Valor Atomics.",
+      "sentiment": "neutral",
+      "sector": "Defense Tech/AI"
+    },
+    {
+      "name": "Netscape",
+      "type": "private",
+      "context": "Historical 1996 email between Mark Andreessen and Ben Horowitz surfaced showing fierce internal conflict during the browser wars over a leaked product strategy.",
+      "sentiment": "neutral",
+      "sector": "Technology (Historical)"
+    },
+    {
+      "name": "The Infatuation",
+      "type": "private",
+      "context": "CEO Paul Needham discussed their Best New Restaurants 2025 campaign, having visited 5,000+ restaurants with a team of 50 in cities including LA, NYC, and San Francisco.",
+      "sentiment": "neutral",
+      "sector": "Media/Food Tech"
+    },
+    {
+      "name": "McDonald's",
+      "type": "public",
+      "context": "Mentioned as seeing a notable drop in purchasing from lower-income customers, cited as a broader restaurant industry demand concern.",
+      "sentiment": "bearish",
+      "sector": "Restaurants/Consumer"
+    },
+    {
+      "name": "Chipotle",
+      "type": "public",
+      "context": "Mentioned alongside other QSR brands as companies discussing the uneven state of the restaurant industry in recent earnings.",
+      "sentiment": "neutral",
+      "sector": "Restaurants/Consumer"
+    },
+    {
+      "name": "Sana AI",
+      "type": "startup",
+      "context": "An AI workspace startup whose viral office tour video drew criticism for emphasizing surfing, kayaking, and lifestyle perks heavily over work output and product.",
+      "sentiment": "bearish",
+      "sector": "AI/SaaS"
+    },
+    {
+      "name": "Snap",
+      "type": "public",
+      "context": "Jeff Miller's employer before Anduril where he spent six years building the marketing team pre- and post-IPO, describing it as 'eating potato chips'\u2014fun but not impactful.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor: corporate cards, bill payments, and accounting platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Sponsor: live streaming to 30+ destinations simultaneously.",
+      "sentiment": "neutral",
+      "sector": "Media Tech"
+    },
+    {
+      "name": "Privy",
+      "type": "startup",
+      "context": "Sponsor: wallet infrastructure for banks building on crypto rails via a single API.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Fintech"
+    },
+    {
+      "name": "Cognition (Devin)",
+      "type": "startup",
+      "context": "Sponsor: makers of Devin, the AI software engineer for clearing engineering backlogs.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor: AI-powered compliance management and risk automation platform.",
+      "sentiment": "neutral",
+      "sector": "Security/Compliance"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Sponsor: design and development collaboration platform; campaign runs through Bigma.com URL.",
+      "sentiment": "neutral",
+      "sector": "Design Software"
+    },
+    {
+      "name": "Graphite",
+      "type": "startup",
+      "context": "Sponsor: AI-powered code review platform for GitHub teams.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Julius.ai",
+      "type": "startup",
+      "context": "Sponsor: AI data analyst for querying data in plain English without coding.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Fal.ai",
+      "type": "startup",
+      "context": "Sponsor: generative media platform offering image, video, and audio models with serverless GPU infrastructure.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "TurboPuffer",
+      "type": "startup",
+      "context": "Sponsor: serverless vector and full-text search built from first principles on object storage.",
+      "sentiment": "neutral",
+      "sector": "Database/Search"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Sponsor: platform to secure brand mentions inside ChatGPT and AI-powered search experiences.",
+      "sentiment": "neutral",
+      "sector": "Marketing Tech"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Sponsor: project management system for modern software development teams.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sponsor: sales tax compliance automation, under five minutes per month.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Tax"
+    },
+    {
+      "name": "Finn.ai",
+      "type": "startup",
+      "context": "Sponsor: number-one ranked AI agent for customer service by G2 and competitive bakeoffs.",
+      "sentiment": "neutral",
+      "sector": "AI/Customer Service"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Sponsor: AI-native CRM platform for building and scaling companies.",
+      "sentiment": "neutral",
+      "sector": "CRM/SaaS"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor and one host's current lodging; premium vacation home rental with hotel-grade amenities and personalized welcome (toys provided for the host's children upon arrival).",
+      "sentiment": "bullish",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor: multi-asset investing platform for serious investors with high-yield products.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Investing"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor: technology-driven out-of-home advertising platform; also referenced as a tool the hosts use themselves.",
+      "sentiment": "bullish",
+      "sector": "Advertising Tech"
+    },
+    {
+      "name": "8Sleep",
+      "type": "startup",
+      "context": "Sponsor: smart sleep technology (Pod 5 mattress cover) with 30-night risk-free trial.",
+      "sentiment": "neutral",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Sponsor: luxury watch marketplace with concierge sourcing for any watch on the planet.",
+      "sentiment": "neutral",
+      "sector": "Marketplace"
+    },
+    {
+      "name": "Vulcan Elements",
+      "type": "startup",
+      "context": "Mentioned as signing a ~$1.5B deal with the Department of Defense for critical minerals supply chain development.",
+      "sentiment": "bullish",
+      "sector": "Defense/Mining"
+    },
+    {
+      "name": "MP Materials",
+      "type": "public",
+      "context": "Mentioned as a domestic rare earth materials company relevant to reducing China dependency in drone component supply chains.",
+      "sentiment": "neutral",
+      "sector": "Mining/Defense"
+    },
+    {
+      "name": "Allen Control Systems",
+      "type": "startup",
+      "context": "Mentioned as building automated gun turrets that 'smack drones out of the sky' for counter-UAS last-line defense.",
+      "sentiment": "neutral",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "Redwood Materials",
+      "type": "startup",
+      "context": "Mentioned as a battery recycling company that could help reclaim neodymium from domestic electronics for drone motor supply chains.",
+      "sentiment": "neutral",
+      "sector": "Clean Energy/Recycling"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Cited as a model for Isaiah Taylor's modular nuclear reactor strategy: downsizing to bus-sized units for iteration speed, analogous to Falcon 9 before Starship.",
+      "sentiment": "bullish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Databricks",
+      "type": "startup",
+      "context": "Cited as an example of a16z's multi-billion-dollar bet on 'boring' enterprise data infrastructure to contrast with controversial seed-stage bets.",
+      "sentiment": "neutral",
+      "sector": "AI/Data"
+    },
+    {
+      "name": "Snowflake",
+      "type": "public",
+      "context": "Listed as one of OpenDoor's top expense line items that Kaz Nejatian scrutinized when reviewing all invoices after joining as CEO.",
+      "sentiment": "neutral",
+      "sector": "Cloud Data"
+    },
+    {
+      "name": "Nebius",
+      "type": "startup",
+      "context": "Mentioned as a Microsoft-partnered neocloud in the broader GPU cloud market covered by ClusterMax 2.0.",
+      "sentiment": "neutral",
+      "sector": "Cloud Computing"
+    },
+    {
+      "name": "Lambda",
+      "type": "startup",
+      "context": "Mentioned as one of the GPU cloud neocloud providers tracked in ClusterMax 2.0.",
+      "sentiment": "neutral",
+      "sector": "Cloud Computing"
+    },
+    {
+      "name": "Crusoe",
+      "type": "startup",
+      "context": "Mentioned as one of the GPU cloud neocloud providers tracked in ClusterMax 2.0.",
+      "sentiment": "neutral",
+      "sector": "Cloud Computing"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Peter Thiel's VC fund; referenced in the context of Thiel's leaked 'Antichrist Lectures' and Mike Solana's tweet about Pope defenders skipping Mass.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Y Combinator",
+      "type": "fund",
+      "context": "Mentioned in the context of a drone startup targeting mosquitoes and the Giga startup interview with Harj Taggar.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Hendrick Motorsports",
+      "type": "private",
+      "context": "Anduril's NASCAR partner team with driver William Byron; also has its own defense division, creating storytelling synergies with Anduril's mission.",
+      "sentiment": "bullish",
+      "sector": "Sports/Defense"
+    },
+    {
+      "name": "Glean",
+      "type": "startup",
+      "context": "Mentioned as a potential enterprise integration partner for Gamma's API, providing company knowledge context for automated deck creation.",
+      "sentiment": "neutral",
+      "sector": "Enterprise AI"
+    },
+    {
+      "name": "Granola",
+      "type": "startup",
+      "context": "Mentioned as an example prosumer integration: meeting transcripts from Granola fed into Gamma to auto-generate client recap decks.",
+      "sentiment": "neutral",
+      "sector": "Productivity/AI"
+    },
+    {
+      "name": "Zapier",
+      "type": "private",
+      "context": "Mentioned as an automation integration layer for Gamma's prosumer API use cases connecting favorite productivity tools.",
+      "sentiment": "neutral",
+      "sector": "Automation/SaaS"
+    },
+    {
+      "name": "Tome",
+      "type": "startup",
+      "context": "Mentioned as a prior AI presentation software entrant that did not successfully crack the market, contrasting with Gamma's success.",
+      "sentiment": "bearish",
+      "sector": "AI/SaaS"
+    },
+    {
+      "name": "Pitch.com",
+      "type": "startup",
+      "context": "Mentioned alongside Tome as a presentation software competitor that did not fully dominate the market.",
+      "sentiment": "neutral",
+      "sector": "Presentation Software"
+    },
+    {
+      "name": "Giga",
+      "type": "startup",
+      "context": "Went viral for alleged extreme work culture: 12 hours/day, 7 days/week, misleading revenue dashboards, and a goat sacrifice for good luck per a former employee who quit after day one.",
+      "sentiment": "bearish",
+      "sector": "AI/SaaS"
+    },
+    {
+      "name": "Ford",
+      "type": "public",
+      "context": "Mentioned for the Mustang Mach-E EV, which a neighbor reportedly found useful for Malibu-to-SF highway commuting with decent self-driving, though its capabilities were questioned.",
+      "sentiment": "neutral",
+      "sector": "Automotive"
+    },
+    {
+      "name": "ABL Space Systems",
+      "type": "startup",
+      "context": "Briefly noted as being co-located in El Segundo alongside Neros and other defense tech companies.",
+      "sentiment": "neutral",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "A24",
+      "type": "private",
+      "context": "Mentioned as opening 'Wild Cherry,' a restaurant in New York's West Village connected to a small theater, cited as an example of location-specific restaurant personality.",
+      "sentiment": "neutral",
+      "sector": "Entertainment/Hospitality"
+    },
+    {
+      "name": "Citron Research",
+      "type": "private",
+      "context": "Mentioned for issuing a bearish 2019 report predicting Shopify would go bankrupt within 12 months, which proved entirely wrong.",
+      "sentiment": "neutral",
+      "sector": "Investment Research"
+    },
+    {
+      "name": "Meta (Facebook)",
+      "type": "public",
+      "context": "Referenced as Kaz Nejatian's employer prior to Shopify; everyone told him leaving Facebook for Shopify was a mistake.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "PepsiCo",
+      "type": "public",
+      "context": "Mentioned as Jeff Miller's early career stop where he learned classic brand marketing principles before moving to LA and Snap.",
+      "sentiment": "neutral",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "Ogilvy",
+      "type": "private",
+      "context": "Advertising agency where Jeff Miller began his career, inspired by Spike Lee commercials; David Ogilvy's principles (7 words or less for out-of-home) cited as Anduril's framework.",
+      "sentiment": "neutral",
+      "sector": "Advertising"
+    }
+  ],
+  "people": [
+    {
+      "name": "Soren Monroe-Anderson",
+      "role": "Co-founder/CEO, Neros",
+      "context": "Announced Neros's $75M Series B and US Army P-BASS selection; detailed FPV drone manufacturing at 2,500/month, the $17M Marine Corps purchase order, China-free supply chain efforts, and the company's Ukraine battlefield iteration loop."
+    },
+    {
+      "name": "Jeff Miller",
+      "role": "VP of Marketing, Anduril",
+      "context": "Detailed Anduril's 'no renders' rule, anime cinematic universe (Chapter 3 confirmed for 2026), NASCAR Anduril 250 sponsorship at a Navy base, Ohio State partnership for Arsenal 1, and the 'Don't Work at Anduril' campaign that drove a 30% application lift."
+    },
+    {
+      "name": "Kaz Nejatian",
+      "role": "CEO, OpenDoor",
+      "context": "Described his $1/year salary with all-performance equity, the 7-day home return guarantee launched in ~7 days, his case for 50-year mortgages addressing first-time buyer age now averaging 40, and his critique of consultant-dependent corporate executives."
+    },
+    {
+      "name": "Paul Needham",
+      "role": "CEO, The Infatuation",
+      "context": "Discussed the Best New Restaurants 2025 campaign (5,000+ restaurants visited anonymously), headwinds from reduced alcohol sales, the 5:30pm dining trend, and cities like Miami maintaining unique restaurant personality."
+    },
+    {
+      "name": "Jordan Nanos",
+      "role": "Analyst, Semi-Analysis",
+      "context": "Presented ClusterMax 2.0 findings covering 84 GPU cloud providers; highlighted Fluid Stack at gold, Google improving toward gold, AWS networking as a major pain point, and growing institutional capital interest in the GPU infrastructure market."
+    },
+    {
+      "name": "Isaiah Taylor",
+      "role": "CEO/Founder, Valor Atomics",
+      "context": "Announced $130M Series A to turn on a nuclear reactor built in 14 months on seed funding in the Utah desert; discussed 25 MW unit sizing, TRISO fuel production, and the vision for energy 10x cheaper than today."
+    },
+    {
+      "name": "Hayden Adams",
+      "role": "Founder and CEO, Uniswap Labs",
+      "context": "Announced a governance proposal to activate Uniswap protocol fees, burn treasury tokens, and formalize a service provider deal between Uniswap Labs and the DAO, reorienting the company toward the protocol as the primary value driver."
+    },
+    {
+      "name": "Grant Lee",
+      "role": "CEO, Gamma",
+      "context": "Announced $2.1B valuation Series B; described Gamma's path to $100M+ ARR and two years of profitability with 50 employees by combining pre-AI editing building blocks with generative AI workflows."
+    },
+    {
+      "name": "Mark Andreessen",
+      "role": "Co-founder, Andreessen Horowitz",
+      "context": "Drew widespread backlash for repeatedly posting a 'confused woman' meme in response to Pope Leo XIV's AI ethics posts; interpreted as mocking the call for moral discernment in AI development."
+    },
+    {
+      "name": "Pope Leo XIV",
+      "role": "Pope, Catholic Church",
+      "context": "Posted multiple times about AI ethics, calling technological innovation 'a form of participation in the divine act of creation' and urging AI builders to 'cultivate moral discernment' reflecting justice, solidarity, and reverence for life."
+    },
+    {
+      "name": "George Hotz",
+      "role": "CEO, Comma.ai",
+      "context": "Presented at comma.con with analysis projecting Tesla achieves human-level FSD (~1 per 500,000 miles) in ~8 years based on current doubling rate from 1 per 3,000 miles today; comma.ai projected ~10 years."
+    },
+    {
+      "name": "Brian Johnson",
+      "role": "Founder, Blueprint (anti-aging)",
+      "context": "Publicly took 5 grams of psilocybin mushrooms over a monitored weekend in a controlled setting; emerged posting that the trip 'changed him, not as expected,' appearing to maintain his anti-aging mission."
+    },
+    {
+      "name": "David Sacks",
+      "role": "White House AI & Crypto Czar",
+      "context": "Quoted claiming AI chatbots are the most-adopted technology in history yet least popular by polling, attributing the gap to a 'doomer industrial complex' funded by over $1B from Moskovitz, Tallinn, and Buterin."
+    },
+    {
+      "name": "Palmer Luckey",
+      "role": "Founder, Anduril",
+      "context": "Referenced for his 'world's arms dealer' framing for US defense posture and confirmed as an investor in Valor Atomics' $130M Series A round."
+    },
+    {
+      "name": "Dario Amodei",
+      "role": "CEO, Anthropic",
+      "context": "Mentioned in context of Anthropic's financial projections; publicly expects superhuman AI by 2027, leading observers to question whether the $70B revenue projection reflects that belief or is aspirational."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Quoted at a Tyler Cowan event saying the only thing holding OpenAI back is 'electrons,' with natural gas as the best near-term solution for data center power demand."
+    },
+    {
+      "name": "Peter Thiel",
+      "role": "Co-founder, Founders Fund / PayPal",
+      "context": "Quoted from leaked 'Antichrist Lectures' audio expressing concern about JD Vance's closeness to the Pope and warning against 'Caesar-Papist fusion,' while nuancing that praying for the Pope may be sufficient Catholic observance without full doctrinal compliance."
+    },
+    {
+      "name": "Dustin Moskovitz",
+      "role": "Co-founder, Facebook / Asana",
+      "context": "Named by David Sacks as one of three EA billionaires who collectively donated over $1B to fund AI safety organizations and spread 'doomer narratives' about AI."
+    },
+    {
+      "name": "Jaan Tallinn",
+      "role": "Co-founder, Skype",
+      "context": "Named by David Sacks as a key funder of AI safety causes with $1B+ donated collectively with peers; Estonia's capital Tallinn was noted to be named after him."
+    },
+    {
+      "name": "Vitalik Buterin",
+      "role": "Co-founder, Ethereum",
+      "context": "Named by David Sacks as one of three EA billionaires who collectively donated $1B+ to AI safety and doomer-narrative organizations."
+    },
+    {
+      "name": "Ben Horowitz",
+      "role": "Co-founder, Andreessen Horowitz (formerly VP at Netscape)",
+      "context": "A 1996 email surfaced where Mark Andreessen blasted him for losing $3B in market cap by leaking product strategy to Computer Reseller News, telling him to 'do the fucking interview yourself next time.'"
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO, Tesla / SpaceX / xAI",
+      "context": "Mentioned in a meme context: allegedly celebrated a $1 trillion pay package by making Grok say 'I love you,' framed by commenters as 'calling the top.'"
+    },
+    {
+      "name": "Satya Nadella",
+      "role": "CEO, Microsoft",
+      "context": "Mentioned for his GPU fleet fungibility philosophy\u2014preferring diverse, multi-customer infrastructure over single-customer buildouts\u2014which may have caused Microsoft to cede a large OpenAI RPO to Oracle."
+    },
+    {
+      "name": "Brad Gerstner",
+      "role": "Founder/CEO, Altimeter Capital",
+      "context": "Mentioned for comments arguing that 'decel' and 'AI safety' labels are being used as a cudgel to shut down legitimate questions about AI's negative externalities."
+    },
+    {
+      "name": "Mike Solana",
+      "role": "VP, Founders Fund",
+      "context": "Quoted observing that people who 'furiously defended the Pope' online likely did not attend Mass the next morning, calling it pure status signaling."
+    },
+    {
+      "name": "Aubrey Strobel",
+      "role": "Tech/crypto commentator",
+      "context": "Shared that Pope Leo XIV intentionally chose his name after Pope Leo XIII, who guided the church through the industrial revolution, signaling a deliberate role guiding the church through the AI era."
+    },
+    {
+      "name": "Nick Tomaino",
+      "role": "Crypto investor / Twitter commentator",
+      "context": "Isaiah Taylor's self-described 'biggest Twitter hater' wrote a tweet Taylor praised: offering a universal $10B MOU to any nuclear company that can actually build a reactor on time and on budget."
+    },
+    {
+      "name": "Doug Philippone",
+      "role": "Founder, Snowpoint Ventures; ex-Palantir Global Defense head; Army Ranger",
+      "context": "Led Valor Atomics' $130M Series A; ran global defense at Palantir for ~17 years and is a former J-SOC commander; arrived at the Utah groundbreaking by Black Hawk helicopter."
+    },
+    {
+      "name": "JD Vance",
+      "role": "US Vice President",
+      "context": "Mentioned in Peter Thiel's leaked audio as being too aligned with the Pope, with Thiel warning against Caesar-Papist fusion and hoping Vance's Catholicism means only praying for the Pope, not following his policy guidance."
+    },
+    {
+      "name": "Warren Buffett",
+      "role": "CEO, Berkshire Hathaway",
+      "context": "Announced he is going quiet and accelerating charitable giving to his children's foundations as he steps back from leadership; Berkshire continues to hold a large cash position."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Pope Leo XIV's AI Ethics Posts and Andreessen Backlash",
+      "summary": "Pope Leo XIV posted multiple times urging AI builders to cultivate moral discernment and calling technological innovation a form of divine participation. Mark Andreessen's repeated meme responses were widely interpreted as mocking the Pope, triggering fierce backlash and broader debate about Silicon Valley's dismissiveness toward ethical AI governance.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI Safety vs. AI Development Debate",
+      "summary": "Discussion ranged from sci-fi doomer scenarios (Terminator, paperclips) to real near-term harms: GPT psychosis, AI romantic companions, and children's brain rot from infinite AI video. David Sacks claimed $1B+ in EA funding has muddied 'AI safety' into a political label used to shut down legitimate critique.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "GPT-4o Deprecation and Unprecedented User Attachment",
+      "summary": "OpenAI's sunsetting of GPT-4o sparked extraordinary backlash including death threats against the employee (Rune) managing the deprecation. Framed as evidence of unprecedented human-software attachment and a lesson in how model deprecations function as 'negative launches' that take something from users.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Military FPV Drone Technology and the Ukraine War",
+      "summary": "Neros CEO Soren Monroe-Anderson detailed how FPV drones revolutionized warfare in Ukraine, the dominance of Chinese component supply chains, drone-on-drone interception warfare, the US military's rapid upskilling, and Neros's scaling toward tens of thousands of drones per month.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Anduril Defense Tech Brand Strategy and Marketing",
+      "summary": "Jeff Miller outlined Anduril's marketing philosophy: no renders/CGI, brutalist simplicity, anime cinematic universe (Chapter 3 in 2026), NASCAR Anduril 250 sponsorship at a Navy base, Ohio State partnership for Arsenal 1, and the 'Don't Work at Anduril' campaign that drove a 30% application lift.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Real Estate Technology and the 50-Year Mortgage Debate",
+      "summary": "Kaz Nejatian defended the 50-year mortgage as necessary given the average first-time homebuyer is now 40 years old and crushed by student debt, drawing parallels to pushback against the 30-year mortgage in 1931. OpenDoor also launched a 7-day home return guarantee.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Restaurant Industry Trends 2025",
+      "summary": "The Infatuation's Best New Restaurants campaign covered 5,000+ spots. Key trends: reduced alcohol spending hurting restaurant margins, 5:30pm dining surge, $10 pastry indulgences, LA headwinds from entertainment industry slowdown, and cities like Miami maintaining distinct local personality.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "GPU Cloud Provider Rankings (ClusterMax 2.0)",
+      "summary": "Semi-Analysis rated 84 GPU cloud neoclouds (up from 26), with Fluid Stack debuting at gold, Google improving near gold, and AWS criticized for networking complexity. Sovereign AI buildouts multiplying globally; institutional capital entering the space but fungibility vs. commitment tradeoffs discussed.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Nuclear Energy Startup Landscape",
+      "summary": "Valor Atomics announced $130M Series A to power up a reactor built in 14 months on seed funding. Isaiah Taylor argues modular 25 MW units (bus-sized) enable rapid iteration; TRISO fuel production on site; uranium's easy logistics advantage over natural gas for scaling AI data center power.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Uniswap Protocol Fee Activation",
+      "summary": "Hayden Adams announced a governance proposal to turn on Uniswap protocol fees, burn treasury tokens symbolically representing historical foregone revenue, and formalize a service-provider relationship, reorienting Uniswap Labs toward the protocol rather than app-layer products.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Presentation Software and the Gamma Breakout",
+      "summary": "Gamma announced $2.1B valuation Series B with $100M+ ARR, profitable for two years, team of 50. Google Slides has 800M MAU; combined with PowerPoint represents 1B+ addressable users. Gamma's API strategy targets enterprise automation and third-party developer integrations.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "MicroStrategy (Strategy) Bitcoin Treasury Risk",
+      "summary": "Concerns raised about $689M interest due in 2026 with ~$50M cash on hand; company must keep raising debt at elevated rates. Market cap down 40% in six months from a ~$128B peak. Bitcoin holdings still valuable but the treasury company premium is compressing.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Self-Driving Car Timelines (George Hotz Analysis)",
+      "summary": "George Hotz at comma.con analyzed Tesla FSD data (1 intervention per 3,000 miles today vs. 1 crash per 500,000 miles for humans) with a doubling-per-year model projecting human-level FSD in ~8 years for Tesla and ~10 years for comma.ai.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Brian Johnson's Psilocybin Trip",
+      "summary": "Anti-aging entrepreneur Brian Johnson publicly took 5 grams of psilocybin in a controlled, climate-controlled setting over a weekend. He emerged unchanged in mission, posting that the trip 'changed him, not as expected,' defying speculation he might abandon his anti-aging crusade.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "AI Application Layer vs. Foundation Model Providers Debate",
+      "summary": "Sparked by former Reddit CEO Yishan Wong's claim that AI app startups have 12-18 months before foundation models absorb their functionality. Counterarguments: labs cannot staff every product category, and Claude Code-style scaffolding creates durable advantages.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Sovereign AI and Data Center Financing (Backstop Debate)",
+      "summary": "Discussion of whether the US government should backstop AI data center loans, compared to sovereign AI buildouts in the Middle East, Norway, Asia, and Canada. Semi-Analysis noted an energy model companion to its data center model is forthcoming.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "El Segundo / Gundo Defense Tech Community",
+      "summary": "Multiple El Segundo-area companies (Neros, Valor Atomics) celebrated fundraising milestones the same day, with cumulative capital raised across the group approaching half a billion dollars. Praised as proof the community went from meme to genuine execution after a period of media silence.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Giga Startup Work Culture Controversy",
+      "summary": "A startup called Giga went viral for an alleged extreme work culture: 12 hours/day, 7 days/week, PTO subject to change, misleading revenue dashboards, and a goat sacrifice ritual. A former hire claimed to quit after day one upon seeing red flags.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Stimulus Checks / Tariff Dividend Rumors",
+      "summary": "Reports circulated (posted on Truth Social) about potential $2,000 stimulus checks framed as a 'tariff dividend,' attributed by some to Warren Buffett ironically. Discussed briefly as an economic policy signal.",
+      "sentiment": "neutral"
+    }
+  ],
+  "key_claims": [
+    "Anthropic projected to be profitable by 2027, three years ahead of OpenAI, with $70B revenue and $17B profit projected for 2028.",
+    "Claude Code is nearing $1 billion in ARR.",
+    "Dario Amodei expects superhuman AI by 2027.",
+    "George Hotz: Tesla FSD is at 1 intervention per 3,000 miles; human crash rate is approximately 1 per 500,000 miles; Tesla projected to reach human-level FSD in ~8 years.",
+    "George Hotz: comma.ai projected to achieve human-level self-driving in ~10 years, two years behind Tesla.",
+    "US motor vehicle deaths: approximately 40,000 per year.",
+    "Neros produces approximately 2,500 FPV drones per month and claims to be the highest-rate drone producer in America.",
+    "Ukraine uses approximately 5 million drones per year; Neros represents roughly 1% of that demand.",
+    "Anduril's YFQ-44A autonomous fighter jet completed its first flight in just over 500 days from clean sheet\u2014described as unheard of in the industry.",
+    "Anduril's Arsenal 1 facility near Ohio State: 5 million sq ft, creating 4,000 direct and 4,000 indirect jobs.",
+    "The 'Don't Work at Anduril' campaign drove a 30% lift in job applications.",
+    "Gamma: $2.1B valuation Series B from a16z, profitable for 2 years, $100M+ ARR with a team of 50 employees.",
+    "Uniswap processes approximately $2 trillion per year in trading volume.",
+    "Google Slides has 800 million monthly active users; combined with PowerPoint represents over 1 billion monthly active users.",
+    "Average age of first-time homebuyer in the US has crossed 40 years old due to student debt crushing debt-to-income ratios.",
+    "MicroStrategy/Strategy has $689M of interest due in 2026 with approximately $50M cash on hand, requiring ongoing capital raises at 10.5% preferred share yield.",
+    "MicroStrategy peaked at approximately $128B market cap in July; now approximately $70B, down 40% in six months.",
+    "David Sacks claims Dustin Moskovitz, Jaan Tallinn, and Vitalik Buterin collectively donated over $1 billion to fund AI safety and doomer-narrative organizations.",
+    "Kaz Nejatian's salary at OpenDoor: $1/year; total compensation is performance-based equity that pays zero if the stock stays below his join-date price.",
+    "OpenDoor's 7-day home return guarantee went from idea to live product in approximately 7 days.",
+    "Valor Atomics built its first nuclear reactor within 14 months of founding the company on a $19M seed round.",
+    "Valor Atomics targets 25 MW electric modular units, requiring approximately 40 reactors per gigawatt.",
+    "Sam Altman told Tyler Cowan that the only thing holding OpenAI back is electrons, with natural gas as the best near-term solution.",
+    "Neros has a $17 million purchase order with the US Marine Corps.",
+    "China deliberately sells drone components to both Ukraine and Russia, generating tens of billions from the war; Ukrainian entrepreneurs negotiate hundred-million-dollar component deals in Shenzhen despite official bans.",
+    "Microsoft reportedly lost approximately $320B in remaining performance obligations (RPO) to Oracle on an OpenAI data center deal.",
+    "Semi-Analysis ClusterMax 2.0 now covers 84 neoclouds, up from 26 in the prior edition; 213 total neoclouds identified globally.",
+    "There are now more neoclouds being tracked than Semi-Analysis can fully cover\u2014four new ones learned about since the report published.",
+    "Eishaan Wong (former Reddit CEO) claims AI application startups have only 12-18 months to generate cash flow before foundation models absorb their functionality."
+  ],
+  "technologies": [
+    "FPV Drones",
+    "Fiber Optic Drone Communications",
+    "Electronic Warfare (EW) Systems",
+    "Counter-UAS / Anti-Drone Technology",
+    "Autonomous Drones / Drone-on-Drone Interception",
+    "Full Self-Driving (FSD)",
+    "Large Language Models (LLMs)",
+    "GPT-4o",
+    "Claude / Claude Code",
+    "TRISO Nuclear Fuel",
+    "Modular Nuclear Reactors",
+    "H100 / Hopper GPUs",
+    "Blackwell GPUs",
+    "EFA (Elastic Fabric Adapter) Networking",
+    "Automated Market Making (AMM)",
+    "Decentralized Finance (DeFi) / Smart Contracts",
+    "Blockchain / Unichain",
+    "Starlink",
+    "Generative AI (Image, Video, Audio)",
+    "Serverless Vector Search",
+    "Anti-Jam Communications",
+    "AI Safety Systems / Guardrails",
+    "Psilocybin (Psychedelic-Assisted Therapy)",
+    "Neodymium Magnets / Critical Minerals",
+    "Computer Vision for Drones",
+    "AI Agents",
+    "GPU Cloud Computing / Neoclouds",
+    "Out-of-Home (OOH) Advertising Technology",
+    "Teleoperations for Autonomous Vehicles"
+  ],
+  "_stats": {
+    "word_count": 45348,
+    "estimated_input_tokens": 60312,
+    "input_tokens": 3,
+    "output_tokens": 26917,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 64512,
+    "duration_ms": 507972,
+    "wall_time_s": 509.2,
+    "cost_usd": 1.0807485,
+    "tokens_per_sec": 52.9
+  }
+}

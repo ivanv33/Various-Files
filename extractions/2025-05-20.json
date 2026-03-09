@@ -1,0 +1,728 @@
+{
+  "episode_date": "2025-05-20",
+  "episode_title": "google-io-microsoft-build-openai-stargate-recap",
+  "companies": [
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Hosted Build 2025 developer conference; Satya Nadella called for an open agentic web, announced MCP support, GitHub Copilot as full coding agent, NLWeb, and Azure hosting of Grok models.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Cloud"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Hosted Google I/O; announced Gemini 2.5, VO3 with audio, real-time Meet translation, Jules coding agent, NotebookLM mobile app, AI Mode in Search, and Gemini on Glasses.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Consumer Tech"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Discussed in context of Stargate data center project, Codex coding agent, ChatGPT image generation, and competitive positioning versus Google and Anthropic.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Creator of MCP protocol (open-sourced); Dario Amodei profiled by Bloomberg; mentioned as OpenAI rival and co-author of scaling laws paper.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "xAI",
+      "type": "startup",
+      "context": "Grok 3 and Grok 3 Mini confirmed to be hosted on Azure; received 168 Tesla megapacks for Colossus 2 data center; Elon Musk joined Satya Nadella on stage.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "One of three main Stargate partners alongside OpenAI and SoftBank; leasing data center and filling it with servers; holds only 3% of cloud market.",
+      "sentiment": "neutral",
+      "sector": "Cloud, AI Infrastructure"
+    },
+    {
+      "name": "SoftBank",
+      "type": "public",
+      "context": "Financial backer of Stargate committing $19 billion to start; Masayoshi Son described as confident despite past Vision Fund losses including WeWork.",
+      "sentiment": "neutral",
+      "sector": "Fund, AI Infrastructure"
+    },
+    {
+      "name": "Crusoe",
+      "type": "startup",
+      "context": "Co-founder Chase Lockmiller overseeing construction of Stargate's Abilene data center; expected costs to reach $12 billion; built its own gas power plant on site.",
+      "sentiment": "bullish",
+      "sector": "AI Infrastructure, Energy"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "GPUs to be installed in Stargate Abilene facility; chips made mainly by TSMC; tariff risk discussed.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Semiconductors"
+    },
+    {
+      "name": "TSMC",
+      "type": "public",
+      "context": "Manufactures Nvidia GPUs used in Stargate; subject to potential tariff impact from Trump trade policies.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "168 Tesla megapacks delivered to xAI for Colossus 2 data center; retail value estimated at ~$850 million.",
+      "sentiment": "neutral",
+      "sector": "Energy, EV"
+    },
+    {
+      "name": "GitHub",
+      "type": "private",
+      "context": "GitHub Copilot announced as graduating to a full coding agent (Project Padawan) capable of autonomous feature work, bug fixes, and refactors.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Developer Tools"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Scott Wu (CEO) scheduled to appear on the show; builds Devin, an enterprise AI coding agent with top-down enterprise sales model.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Developer Tools"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "Mentioned as a ground-up enterprise AI IDE competitor; noted for strong UX focus rather than purely model-focused approach.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Developer Tools"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "Now owned by OpenAI; discussed as an AI IDE sitting alongside developers; competes with Cursor in the prosumer/enterprise coding market.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Developer Tools"
+    },
+    {
+      "name": "Coinbase",
+      "type": "public",
+      "context": "Suffered a data breach where offshore CX reps sold customer data including home addresses and Bitcoin balances; expects to spend hundreds of millions in reimbursements.",
+      "sentiment": "bearish",
+      "sector": "Crypto/Web3, Fintech"
+    },
+    {
+      "name": "Circle",
+      "type": "private",
+      "context": "Rumored to be in acquisition talks with Coinbase and Ripple after its S1 received poor market reception due to heavy dependence on Coinbase revenue.",
+      "sentiment": "bearish",
+      "sector": "Crypto/Web3, Fintech"
+    },
+    {
+      "name": "Klarna",
+      "type": "private",
+      "context": "Net losses doubled year-over-year to ~$100M for Q1 2025 despite 13% revenue growth; IPO plans put on hold.",
+      "sentiment": "bearish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Brex",
+      "type": "startup",
+      "context": "Announced partnership with Zip; Zip stepped back from corporate card market while Brex stepped back from enterprise procurement, creating a complementary arrangement.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Zip",
+      "type": "startup",
+      "context": "Partnered with Brex after stepping back from corporate card market; both are YC companies with overlapping enterprise customer bases.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Speechify",
+      "type": "startup",
+      "context": "Cliff Weitzman described building the company to 50M+ users and 500K+ five-star reviews; bootstrapped majority of growth; building proprietary TTS AI models.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Consumer Tech"
+    },
+    {
+      "name": "BloomTech",
+      "type": "startup",
+      "context": "Formerly Lambda School; co-founded by Austen Allred; pivoted to training engineers to use AI tools, including the Gauntlet intensive program.",
+      "sentiment": "neutral",
+      "sector": "EdTech, AI/ML"
+    },
+    {
+      "name": "Chapter One",
+      "type": "fund",
+      "context": "Jeff Morris Jr.'s venture fund; announcing promotion of Jameson Sidel to General Partner; focused on AI/ML infrastructure investments including London-based founders.",
+      "sentiment": "bullish",
+      "sector": "Fund"
+    },
+    {
+      "name": "Stripe",
+      "type": "startup",
+      "context": "Acquired Bridge stablecoin company; mentioned in context of credit card companies getting their digital act together for web commerce.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Mentioned as sponsor; described as offering corporate cards, bill payments, accounting, and travel management.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Mentioned as sponsor and as a tool used by a developer who dropped 12 backlog bugs into Codex for autonomous resolution.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Greptile",
+      "type": "startup",
+      "context": "Used by a developer to do code review on AI-generated PRs from Codex; found mostly correct nits.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Developer Tools"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Mentioned as sponsor; automates SOC 2 compliance and trust management for startups.",
+      "sentiment": "neutral",
+      "sector": "Cybersecurity"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Mentioned as sponsor; design and development collaboration platform.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools, Design"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Mentioned as sponsor; vacation home rental platform with upcoming news teased for next week.",
+      "sentiment": "bullish",
+      "sector": "Travel, Consumer Tech"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Mentioned as sponsor for multi-asset investing platform trusted by millions.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Anthropic PBC",
+      "type": "startup",
+      "context": "Dario Amodei profiled by Bloomberg; co-authored original scaling laws paper while at OpenAI before founding Anthropic.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "DeepMind",
+      "type": "private",
+      "context": "Invented the transformer architecture; mentioned in context of London AI talent concentration; WaveNet paper cited as inspiration for Speechify.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Deep Seek",
+      "type": "startup",
+      "context": "Available on Azure; Microsoft has a fine-tuned version; cited as evidence that transformer/reasoning models can be cloned quickly.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Authentic Brands",
+      "type": "private",
+      "context": "Acquired Dockers brand from Levi Strauss; mentioned in passing as a notable M&A event.",
+      "sentiment": "neutral",
+      "sector": "Consumer Brands"
+    },
+    {
+      "name": "Levi Strauss",
+      "type": "public",
+      "context": "Sold Dockers brand to Authentic Brands Group.",
+      "sentiment": "neutral",
+      "sector": "Consumer Brands"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Mentioned as sponsor; luxury watch marketplace with concierge sourcing service.",
+      "sentiment": "neutral",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Mentioned as sponsor; out-of-home advertising platform described as easy and measurable.",
+      "sentiment": "neutral",
+      "sector": "Adtech"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Mentioned as sponsor; automated sales tax compliance platform backed by Benchmark.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "JP Morgan Chase",
+      "type": "public",
+      "context": "Providing loans to finance individual Stargate data center projects.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "MGX",
+      "type": "fund",
+      "context": "Abu Dhabi-based investment firm contributing $7 billion as an equity partner in Stargate alongside OpenAI and SoftBank.",
+      "sentiment": "neutral",
+      "sector": "Fund"
+    },
+    {
+      "name": "Internet Brands",
+      "type": "private",
+      "context": "Owns WebMD, TechCrunch, PC World, Mac World, and automotive forums; discussed as example of ad-supported web businesses under existential threat from AI.",
+      "sentiment": "bearish",
+      "sector": "Media"
+    },
+    {
+      "name": "Substack",
+      "type": "startup",
+      "context": "Discussed as an example of subscription-based content that functions more like crowdfunding creators than a traditional paywall.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Reddit",
+      "type": "public",
+      "context": "Mentioned as a user-generated content site that OpenAI and Google are cutting deals with to address content supply issues for AI training.",
+      "sentiment": "neutral",
+      "sector": "Media, Social"
+    },
+    {
+      "name": "Spotify",
+      "type": "public",
+      "context": "Used as analogy for how AI models might eventually pay content creators based on citation frequency, similar to Spotify's per-stream royalty model.",
+      "sentiment": "neutral",
+      "sector": "Media, Consumer Tech"
+    },
+    {
+      "name": "TechCrunch",
+      "type": "private",
+      "context": "Cited as example of formerly ad-supported tech media now owned by Regent private equity roll-up.",
+      "sentiment": "bearish",
+      "sector": "Media"
+    },
+    {
+      "name": "Built",
+      "type": "startup",
+      "context": "Ankur Jain's company that partnered with Wells Fargo to enable rent payments via credit card; cited as example of aggressive startup deal-making.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Ripple",
+      "type": "private",
+      "context": "In rumored acquisition talks with Circle for its stablecoin business.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Web3"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Discussed in context of Apple Pay enabling browser-level payments; Craig Federighi Bloomberg piece mentioned; Steve Jobs's acquisition of Siri discussed.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Mentioned as example of walled garden winning consumer attention over open web; Llama models noted to have hit a rough patch with Llama 4.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Social"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Mentioned alongside Google and Microsoft as the only companies with true hyperscaler data center experience; pulled back on some data center plans.",
+      "sentiment": "neutral",
+      "sector": "Cloud, AI Infrastructure"
+    },
+    {
+      "name": "StubHub",
+      "type": "private",
+      "context": "Put IPO plans on hold alongside Klarna amid difficult market conditions.",
+      "sentiment": "bearish",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "Granola",
+      "type": "startup",
+      "context": "Founder mentioned as having presented at Chapter One's London conference; cited as example of international founder gravitating to the US.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "CoreWeave",
+      "type": "startup",
+      "context": "Cited alongside Crusoe as a company that successfully pivoted from crypto mining to AI infrastructure, achieving massive scale.",
+      "sentiment": "bullish",
+      "sector": "AI Infrastructure, Cloud"
+    },
+    {
+      "name": "Primary Digital Infrastructure",
+      "type": "private",
+      "context": "Helping orchestrate financing for individual Stargate data center projects.",
+      "sentiment": "neutral",
+      "sector": "AI Infrastructure"
+    }
+  ],
+  "people": [
+    {
+      "name": "Satya Nadella",
+      "role": "CEO, Microsoft",
+      "context": "Opened Build 2025 calling for an open agentic web; appeared on stage with Elon Musk to announce Azure hosting of Grok models."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO, xAI / Tesla; CTO, DOGE",
+      "context": "Joined Satya Nadella via Zoom at Microsoft Build to confirm Azure will host Grok 3 and Grok 3 Mini; described Grok as a truth-seeking, first-principles LLM."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Interviewed by Bloomberg about Project Stargate; testified before Congress to fast-track data center permitting; named Stargate after a sci-fi film."
+    },
+    {
+      "name": "Masayoshi Son",
+      "role": "Founder & CEO, SoftBank",
+      "context": "Described as committing $19B to Stargate; dismissed critics saying they don't need $500B in one day and will go step by step."
+    },
+    {
+      "name": "Larry Ellison",
+      "role": "Chairman, Oracle",
+      "context": "Stood beside Trump and Son at Stargate White House announcement; Oracle is a key Stargate partner leasing and filling data centers."
+    },
+    {
+      "name": "Dario Amodei",
+      "role": "CEO, Anthropic",
+      "context": "Profiled by Bloomberg; co-authored the original scaling laws paper at OpenAI; publicly called Stargate 'chaotic.'"
+    },
+    {
+      "name": "Chase Lockmiller",
+      "role": "Co-founder & CEO, Crusoe",
+      "context": "Overseeing construction of Stargate's Abilene data center with expected costs of $12B; built an on-site natural gas power plant."
+    },
+    {
+      "name": "Ben Thompson",
+      "role": "Analyst, Stratechery",
+      "context": "Wrote a long essay arguing that the internet's ad-supported model was not a sin but that failing to build native payments for the agentic web is the real missed opportunity; advocates stablecoin micropayments."
+    },
+    {
+      "name": "Mark Andreessen",
+      "role": "Co-founder, a16z",
+      "context": "Quoted about the failure to build payments into early browsers and why advertising became the default web business model; mentioned as early browser pioneer."
+    },
+    {
+      "name": "Austen Allred",
+      "role": "Co-founder, BloomTech (Lambda School)",
+      "context": "Appeared on show to discuss AI coding adoption, the Gauntlet intensive training program, and the decimated junior engineering job market."
+    },
+    {
+      "name": "Jeff Morris Jr.",
+      "role": "Founder & GP, Chapter One",
+      "context": "Appeared on show to announce promotion of Jameson Sidel to General Partner; discussed venture dynamics, AI/crypto intersection, and incubation plans with major IP."
+    },
+    {
+      "name": "Jameson Sidel",
+      "role": "Incoming General Partner, Chapter One",
+      "context": "Promoted from within Chapter One to General Partner; focused on AI/ML infrastructure; based in London."
+    },
+    {
+      "name": "Cliff Weitzman",
+      "role": "CEO & Co-founder, Speechify",
+      "context": "Appeared on show to describe building Speechify to 50M+ users with minimal outside funding; discussed bootstrapped growth, proprietary TTS models, and dyslexia mission."
+    },
+    {
+      "name": "Logan Kilpatrick",
+      "role": "Developer Relations / Product, Google",
+      "context": "Appeared on TBPN live from Google I/O to discuss developer tooling, MCP adoption, Jules coding agent, and Gemini API."
+    },
+    {
+      "name": "Tulsee Doshi",
+      "role": "Product Lead, Gemini, Google",
+      "context": "Appeared on TBPN live from Google I/O to discuss Gemini 2.5 improvements, VO3 launch, AI Mode in Search, and Gemini on Glasses."
+    },
+    {
+      "name": "Dan Shipper",
+      "role": "CEO, Every",
+      "context": "Quoted summarizing MCP's dominance after both Microsoft and Google officially supported it; expected as a Thursday guest."
+    },
+    {
+      "name": "Michael Arrington",
+      "role": "Founder, TechCrunch; Investor",
+      "context": "Posted that the Coinbase hack will lead to people dying and called for prison time for executives who fail to protect customer data."
+    },
+    {
+      "name": "Tyler Weitzman",
+      "role": "Head of AI, Speechify",
+      "context": "Cliff's brother; dropped out of Stanford AI master's to build Speechify's proprietary TTS model; leads a 40-person AI engineering team."
+    },
+    {
+      "name": "Scott (CTO, Microsoft)",
+      "role": "CTO, Microsoft",
+      "context": "Described MCP as the HTTP for AI agents and introduced NLWeb as HTML for the agentic web at Microsoft Build."
+    },
+    {
+      "name": "Neelay Patel",
+      "role": "Journalist, The Verge",
+      "context": "Conducted interview with Microsoft CTO Scott about MCP and NLWeb; raised the key question of what website owners get in return for exposing agentic endpoints."
+    },
+    {
+      "name": "Ethan Zuckerman",
+      "role": "Academic/Writer",
+      "context": "Author of the 2014 Atlantic article 'The Internet's Original Sin' arguing advertising corrupted the web; cited extensively in Ben Thompson's essay."
+    },
+    {
+      "name": "TJ Parker",
+      "role": "Healthcare entrepreneur",
+      "context": "Scheduled Thursday guest; posted advice that healthcare startups should use tactical/administrative approaches rather than top-down strategic ones to get in-network with payers."
+    },
+    {
+      "name": "Tyler Cowen",
+      "role": "Economist, George Mason University",
+      "context": "Congratulated for making Time Magazine's 100 most influential people in philanthropy list."
+    },
+    {
+      "name": "Ankur Jain",
+      "role": "CEO, Built",
+      "context": "Praised for doing a landmark deal with Wells Fargo to allow rent payments via credit card; cited as example of aggressive startup deal-making."
+    },
+    {
+      "name": "Josh Woodward",
+      "role": "VP, Google Labs & Gemini App",
+      "context": "Runs Google Labs incubation engine that produced NotebookLM, Jules, Stitch, and Pinhole; mentioned as driving the lab-to-product pipeline."
+    },
+    {
+      "name": "Sharon Gaffarer",
+      "role": "Reporter, Bloomberg",
+      "context": "Got exclusive inside look at Project Stargate Abilene data center and interviewed Sam Altman; also wrote the Dario Amodei profile."
+    },
+    {
+      "name": "Caleb Harris",
+      "role": "Developer/Founder",
+      "context": "Posted that he used Codex to clear 12 backlog bugs from Linear, with Greptile doing code review and Spur QA testing, almost entirely human-out-of-the-loop."
+    },
+    {
+      "name": "Andrew Reed",
+      "role": "Partner, Sequoia Capital",
+      "context": "Posted a joke about Docker containers and Dockers pants both selling to sysadmins after Authentic Brands acquired the Dockers clothing brand."
+    },
+    {
+      "name": "Art (Brex)",
+      "role": "Founder/Executive, Brex",
+      "context": "Announced partnership with Zip; described as a fellow LA-based entrepreneur."
+    },
+    {
+      "name": "Lee Marie",
+      "role": "Partner, Kleiner Perkins",
+      "context": "Scheduled Friday guest to discuss the AI coding landscape and how markets are shaping up."
+    },
+    {
+      "name": "Scott Wu",
+      "role": "CEO, Cognition",
+      "context": "Scheduled Wednesday guest to discuss the AI coding agent landscape; Cognition's Devin uses top-down enterprise sales model."
+    },
+    {
+      "name": "Mike Krieger",
+      "role": "Co-founder, Instagram",
+      "context": "Advised Cliff Weitzman to remove a translation feature from Speechify early on, which turned out to improve key metrics."
+    },
+    {
+      "name": "Dylan Field",
+      "role": "CEO, Figma",
+      "context": "Early angel investor in Speechify who mentored Cliff Weitzman in the early stages of the company."
+    },
+    {
+      "name": "Derek Thompson",
+      "role": "Journalist/Author, The Atlantic",
+      "context": "Co-authored 'Abundance' with Ezra Klein; quoted reacting to Ben Thompson's agentic web vision around AI agents planning birthday parties and booking travel."
+    },
+    {
+      "name": "Balaji Srinivasan",
+      "role": "Entrepreneur/Investor",
+      "context": "Responded to Coinbase hack coverage arguing that the real problem is government-mandated KYC forcing companies to retain more user data than necessary."
+    },
+    {
+      "name": "Martin Casado",
+      "role": "Partner, a16z",
+      "context": "Credited with the insight that good engineers should understand one layer of the stack beneath what they are working on."
+    },
+    {
+      "name": "Larry Page",
+      "role": "Co-founder, Google",
+      "context": "Creator of PageRank algorithm; cited as analogy for how a better technical paradigm can disrupt incumbents like Yahoo."
+    },
+    {
+      "name": "Evan Spiegel",
+      "role": "CEO, Snap",
+      "context": "Credited with inventing the Stories format; mentioned in context of IP not protecting innovations from being copied."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Microsoft Build 2025 Recap",
+      "summary": "Satya Nadella announced an open agentic web vision; key launches included MCP first-party support, NLWeb, GitHub Copilot as full coding agent (Project Padawan), Copilot Studio multi-agent systems, Copilot Tuning, Windows AI Foundry, and Azure hosting Grok 3/3 Mini via xAI partnership.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Google I/O 2025 Recap",
+      "summary": "Google announced Gemini 2.5 Flash and Pro with DeepThink, VO3 with audio generation, real-time Google Meet translation, Jules async coding agent, NotebookLM mobile app, AI Mode in Search, Gemini on Glasses, Stitch, and Pinhole. MCP officially supported in Gemini SDK.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "MCP (Model Context Protocol) Adoption",
+      "summary": "With both Microsoft and Google officially supporting MCP, the protocol is effectively declared the standard for agentic web interoperability. Created by Anthropic and open-sourced, it is now ubiquitously adopted, enabling agents to access content and take actions across services.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Project Stargate / OpenAI Data Center in Abilene, TX",
+      "summary": "Bloomberg got an exclusive inside look at the $500B AI infrastructure project. The Abilene site spans 900 acres, targets 1.2 GW capacity, costs ~$12B to build (plus GPU costs), is funded by OpenAI ($19B), SoftBank ($19B), Oracle ($7B), and MGX ($7B), and is being constructed by Crusoe Energy with its own on-site gas power plant.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Coding Agent Market Structure",
+      "summary": "Discussed four emerging market segments: consumer (ChatGPT writing casual code), prosumer (GitHub Copilot/Codex for repo-level tasks), ground-up enterprise IDE (Cursor/Windsurf), and top-down enterprise (Cognition/Devin). The market is new, additive, and not displacing existing spend.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "The Agentic Web and Native Payments",
+      "summary": "Ben Thompson's essay argued advertising was not the internet's original sin but that failing to build native payments into the agentic web is. He advocates stablecoin micropayments and an auction system paying content creators based on AI citation frequency, enabling a new win-win-win for publishers, AI providers, and users.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Death of the Ad-Supported Open Web",
+      "summary": "AI-powered search, walled gardens (social networks), and SEO spam are accelerating the decline of ad-supported text websites. Google's antitrust issues and reduced motivation to keep the open web alive compound the risk. Transaction-based sites are expected to survive better than pure content-ad sites.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Stablecoin Legislation",
+      "summary": "Stablecoin regulatory bill overcame Senate procedural blockade with bipartisan support; seen as a prerequisite for enabling agentic micropayments and a new content economy. Ben Thompson and hosts bullish on stablecoins as infrastructure.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Coinbase Data Breach",
+      "summary": "Offshore CX reps bribed to sell customer data including home addresses and Bitcoin balances; Coinbase expects to spend hundreds of millions in reimbursements; Michael Arrington called for executive prison time. Data being sold tiered by account balance on dark web markets.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Junior Software Engineering Job Market",
+      "summary": "Junior engineering hiring described as 'decimated' and 'Armageddon' as AI tools provide equivalent output without headcount; universities remain resistant to AI adoption in curriculum; senior engineering demand remains strong.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Scaling Laws and OpenAI's Long-Term Viability",
+      "summary": "Economist piece questioned if OpenAI will ever make real money; hosts pushed back arguing 500M users and massive revenue growth make the Yahoo comparison a stretch; discussed conditions under which a new architectural paradigm could disrupt OpenAI as PageRank disrupted Yahoo.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI in Space / Space Data Centers",
+      "summary": "Teased as an upcoming topic: companies exploring data centers in orbit leveraging free solar energy and passive cooling in vacuum; would eliminate land costs and reduce water usage.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Speechify and Bootstrapped AI Companies",
+      "summary": "Cliff Weitzman described building Speechify to 50M users and 500K five-star reviews largely without institutional VC; owns proprietary TTS models; argues value accrues at the application+model+data layer together, not just models.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "BloomTech / Gauntlet AI Training Program",
+      "summary": "Austen Allred described the Gauntlet program: 100-hour weeks, forced AI-only coding with monitoring software, intensive training to produce engineers who can autonomously build enterprise-grade software using AI tools. Senior engineers take longer to adapt but never go back.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Venture Dynamics in AI Era",
+      "summary": "Jeff Morris Jr. discussed Series B risk being on par with 2021 froth; SPV volume increasing; LPs seeking co-invest; and why promoting from within (Jameson Sidel) beat hiring a flashy external GP.",
+      "sentiment": "mixed"
+    }
+  ],
+  "key_claims": [
+    "MCP is effectively the universal standard for the agentic web after both Microsoft and Google officially adopted it \u2014 'MCP wins' per Dan Shipper",
+    "OpenAI, SoftBank, and Oracle are building Stargate without hyperscaler data center experience; the only companies with that experience are Amazon, Google, and Microsoft",
+    "Stargate's Abilene site will only create 357 full-time jobs despite $12B+ in construction costs and 900 acres",
+    "168 Tesla megapacks delivered to xAI for Colossus 2 have a retail value of ~$850M, roughly half of X's 2024 revenue",
+    "Klarna's net losses doubled year-over-year to ~$100M in Q1 2025 despite 13% revenue growth; IPO plans on hold",
+    "Junior software engineering hiring market is 'completely decimated' \u2014 even Stanford graduates struggle to get internships",
+    "Ben Thompson argues the real 'original sin' is not building native payments into the agentic web, not the ad-supported model",
+    "Google rate-limited a paying Gemini subscriber after generating a few AI videos; hosts cite this as the biggest bull case for building more data centers",
+    "Speechify has 50M+ users and 500K+ five-star reviews built largely without institutional venture capital",
+    "Elon Musk was rejected from a job at Netscape, lingered in the lobby, and eventually interned at Microsoft before starting Zip2",
+    "Steve Jobs called the CEO of Siri every day for 24 consecutive days before securing the acquisition",
+    "VO3 launched at Google I/O with native audio generation capability, a major upgrade from VO2",
+    "Google's Stargate Abilene data center built its own on-site natural gas power plant to avoid dependence on the local grid",
+    "Coinbase breach victims' data being sold on dark web tiered by Bitcoin balance (e.g., 'gold' tier for accounts over $50K)",
+    "Masayoshi Son's SoftBank committed $19B to Stargate despite Vision Fund losses; Son says they don't need $500B in one day"
+  ],
+  "technologies": [
+    "MCP (Model Context Protocol)",
+    "NLWeb (Natural Language Web)",
+    "Gemini 2.5 Pro",
+    "Gemini 2.5 Flash",
+    "VO2",
+    "VO3",
+    "DeepThink (Google parallel reasoning)",
+    "Diffusion Language Models",
+    "GitHub Copilot / Project Padawan",
+    "Codex (OpenAI)",
+    "Grok 3",
+    "Grok 3 Mini",
+    "Azure AI Foundry",
+    "Windows AI Foundry",
+    "Copilot Studio",
+    "Copilot Tuning",
+    "Jules (Google async coding agent)",
+    "NotebookLM",
+    "Stitch (Google Labs)",
+    "Pinhole (Google Labs)",
+    "Windsurf",
+    "Cursor",
+    "Devin (Cognition)",
+    "Transformer Architecture",
+    "WaveNet",
+    "PageRank",
+    "Stablecoins",
+    "Nvidia H100 GPUs",
+    "Liquid Cooling / Direct Liquid Cooling",
+    "Natural Gas Power Generation for Data Centers",
+    "Mechanical Turk",
+    "Text-to-Speech (TTS)",
+    "SQL Server 2025",
+    "Windows Subsystem for Linux",
+    "Llama 4",
+    "Deep Research (Google/OpenAI)",
+    "AI Mode (Google Search)"
+  ],
+  "_stats": {
+    "word_count": 40259,
+    "estimated_input_tokens": 53544,
+    "input_tokens": 3,
+    "output_tokens": 6975,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 57247,
+    "duration_ms": 152752,
+    "wall_time_s": 154.0,
+    "cost_usd": 0.53679225,
+    "tokens_per_sec": 45.3
+  }
+}

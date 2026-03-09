@@ -1,0 +1,641 @@
+{
+  "episode_date": "2025-04-29",
+  "episode_title": "live-from-washington-dc-hill-and-valley-intel-tsmc-amazon-tariffs",
+  "companies": [
+    {
+      "name": "Intel",
+      "type": "public",
+      "context": "New CEO Lip-bu Tan gave a stark earnings diagnosis, cutting jobs and removing management layers. Revenue forecast came in well below analyst expectations and shares slid ~10%.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "TSMC",
+      "type": "public",
+      "context": "Reported strong Q1 results with mid-20% growth outlook for 2025 and doubled AI revenue goals. Announced $100B additional US investment bringing total to $165B, but share price has underperformed due to Taiwan geopolitical risk.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "UPS",
+      "type": "public",
+      "context": "Missed EPS ($2.05 vs $2.17 expected) and revenue ($21.4B vs $21.7B expected); domestic package volume fell 3.5%.",
+      "sentiment": "bearish",
+      "sector": "Logistics"
+    },
+    {
+      "name": "Coca-Cola",
+      "type": "public",
+      "context": "Beat earnings expectations; seen as a positive signal for consumer spending.",
+      "sentiment": "bullish",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "General Motors",
+      "type": "public",
+      "context": "Massive earnings beat with EPS of $2.22 vs $1.88 expected and revenue of $43B vs ~$42B expected.",
+      "sentiment": "bullish",
+      "sector": "Automotive"
+    },
+    {
+      "name": "Pfizer",
+      "type": "public",
+      "context": "Beat earnings at $0.62/share; COVID product sales fell as expected but oncology and vaccines showed moderate growth; stock up 1%.",
+      "sentiment": "neutral",
+      "sector": "Pharma/Healthcare"
+    },
+    {
+      "name": "Visa",
+      "type": "public",
+      "context": "Issued guidance alongside data showing consumer confidence dropped the biggest monthly drop since 2022.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "X (Twitter)",
+      "type": "private",
+      "context": "Wall Street banks sold the final $1.2B slug of the $13B acquisition debt at 98 cents on the dollar after 2.5 years on balance sheets. XAI's rise and Trump's election helped change fortunes.",
+      "sentiment": "bullish",
+      "sector": "Social Media"
+    },
+    {
+      "name": "XAI",
+      "type": "startup",
+      "context": "Discussed as a rapidly growing AI company whose rise helped refinance X's debt; reportedly pursuing new $20B financing round.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Denied plans to display tariff impact at checkout after Trump called Bezos directly. White House called the idea 'hostile and political.' Also launched 27 Project Kuiper satellites to rival Starlink.",
+      "sentiment": "neutral",
+      "sector": "E-Commerce/Cloud"
+    },
+    {
+      "name": "SpaceX",
+      "type": "startup",
+      "context": "Referenced as dominant in satellite internet with 7,000+ Starlink satellites and 5M+ users; cost advantage cited due to self-launch capability.",
+      "sentiment": "bullish",
+      "sector": "Aerospace/Satellite"
+    },
+    {
+      "name": "Benchmark",
+      "type": "fund",
+      "context": "Mentioned as investing in Manus, a Chinese AI company, which was cited as a top tech story of the week.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Mentioned as a co-investor in Apex Space's Series C and as an early investor in X's acquisition and Pinecone.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Perplexity",
+      "type": "startup",
+      "context": "CEO Aravind Srinivas appeared on TBPN and discussed the browser as a second act; TechCrunch wrote a controversial piece claiming the browser would track users and sell hyper-personalized ads, which hosts argued misrepresented a hypothetical discussion.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Discussed integrating Shopify shopping into ChatGPT; referenced as a platform that consumer agentic companies must treat as a roadmap threat.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Shopify",
+      "type": "public",
+      "context": "Announced shopping integration with OpenAI/ChatGPT allowing users to transact via Shop Pay within the chat interface.",
+      "sentiment": "bullish",
+      "sector": "E-Commerce"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Discussed as having canceled non-binding LOIs for 2+ gigawatts of data center capacity while still holding 5GW under binding contracts; Copilot adoption seen as plateauing.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Apex Space",
+      "type": "startup",
+      "context": "Closed a $200M Series C led by Point72 Ventures and co-led by ABC and Andreessen Horowitz to scale satellite bus platform production for defense and commercial use.",
+      "sentiment": "bullish",
+      "sector": "Aerospace/Defense"
+    },
+    {
+      "name": "Pinecone",
+      "type": "startup",
+      "context": "Used as a case study in the vector database hype cycle; Andreessen Horowitz invested $100M two years prior but standalone vector databases are now seen as commoditized.",
+      "sentiment": "bearish",
+      "sector": "AI/ML Infrastructure"
+    },
+    {
+      "name": "Chroma",
+      "type": "startup",
+      "context": "Cited as the fastest growing open source vector database; Will Minaitis said he was the first check in.",
+      "sentiment": "bullish",
+      "sector": "AI/ML Infrastructure"
+    },
+    {
+      "name": "Thrive Capital",
+      "type": "fund",
+      "context": "Josh Kushner announced Thrive Holdings, a permanent capital vehicle to invest in, acquire, and operate businesses long-term with a focus on applying technology to enterprises.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Duolingo",
+      "type": "public",
+      "context": "CEO sent all-hands email declaring the company will go 'AI first,' comparing the shift to betting on mobile in 2012.",
+      "sentiment": "bullish",
+      "sector": "EdTech/AI"
+    },
+    {
+      "name": "Rivian",
+      "type": "public",
+      "context": "Mentioned as a Bezos-backed EV company competing with Tesla; cited alongside Slate Truck as Bezos's bets against Musk in EVs.",
+      "sentiment": "neutral",
+      "sector": "Automotive/EV"
+    },
+    {
+      "name": "Slate Truck",
+      "type": "startup",
+      "context": "Bezos-backed small electric truck startup; praised for its design but criticized for ~150-mile range. An anagram conspiracy theory suggested it was secretly a Tesla project.",
+      "sentiment": "neutral",
+      "sector": "Automotive/EV"
+    },
+    {
+      "name": "Blue Origin",
+      "type": "startup",
+      "context": "Mentioned as Bezos's rocket company that could lower launch costs for Project Kuiper if successful, enabling competition with Starlink.",
+      "sentiment": "neutral",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "United Launch Alliance",
+      "type": "private",
+      "context": "Handled the launch of Amazon's 27 Project Kuiper satellites; described as the second-biggest private launch provider, a Boeing-Lockheed joint venture with a history of project struggles.",
+      "sentiment": "neutral",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Lockheed Martin",
+      "type": "public",
+      "context": "Posted marketing claiming to have used AI for over 40 years; hosts mocked the claim as retroactively labeling linear regression as AI.",
+      "sentiment": "neutral",
+      "sector": "Aerospace/Defense"
+    },
+    {
+      "name": "Galvanic",
+      "type": "startup",
+      "context": "Josh Steinman's company that secures the American industrial base; launched a promotional video that hosts watched on their flight to DC.",
+      "sentiment": "bullish",
+      "sector": "Defense/Tech"
+    },
+    {
+      "name": "Icon",
+      "type": "startup",
+      "context": "Kenan's AI ad maker praised for provocative website design and marketing tactics including countdown timers and a comparison chart showing competitors lack tier-one investors.",
+      "sentiment": "bullish",
+      "sector": "AI/Marketing"
+    },
+    {
+      "name": "Morgan Stanley",
+      "type": "public",
+      "context": "Led the original $13B debt financing for Musk's Twitter acquisition; held the loans on books for 2.5 years before finally selling.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "Bank of America",
+      "type": "public",
+      "context": "One of the banks that agreed to lend money for Musk's Twitter acquisition in April 2022.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "Sequoia",
+      "type": "fund",
+      "context": "Mentioned as a co-investor in Elon Musk's Twitter acquisition alongside other investors.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "TechCrunch",
+      "type": "private",
+      "context": "Wrote a controversial article about Perplexity's browser monetization plans that hosts argued misrepresented a hypothetical question; Michael Arrington publicly expressed shame at what TechCrunch has become.",
+      "sentiment": "bearish",
+      "sector": "Media"
+    },
+    {
+      "name": "Polymarket",
+      "type": "startup",
+      "context": "Correctly predicted the Canadian election outcome; hosts discussed its growing accuracy and potential role in future US elections.",
+      "sentiment": "bullish",
+      "sector": "Prediction Markets/Fintech"
+    },
+    {
+      "name": "Telesat",
+      "type": "public",
+      "context": "Canadian satellite operator developing a new LEO fleet called Lightspeed, mentioned as a competitor to Starlink and Project Kuiper.",
+      "sentiment": "neutral",
+      "sector": "Satellite/Telecom"
+    },
+    {
+      "name": "Foxconn",
+      "type": "public",
+      "context": "Mentioned alongside TSMC as a Taiwanese company announcing new US manufacturing facilities.",
+      "sentiment": "bullish",
+      "sector": "Manufacturing/Electronics"
+    },
+    {
+      "name": "ASML",
+      "type": "public",
+      "context": "Mentioned briefly as a chip equipment supplier whose disappointing report contributed to a broad market sell-off alongside Nvidia export restrictions.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Tokyo Electron",
+      "type": "public",
+      "context": "Mentioned as a TSMC supplier whose shares climbed after TSMC's strong earnings report.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Podcast sponsor; corporate card and spend management platform repeatedly referenced throughout the episode.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Bridgewater",
+      "type": "fund",
+      "context": "Discussed in the context of a conspiracy theory that it is a media/research business rather than a real hedge fund, as employees reportedly have never seen a trade placed.",
+      "sentiment": "neutral",
+      "sector": "Hedge Fund"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Podcast sponsor; product planning and building tool used by the TBPN team.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/SaaS"
+    },
+    {
+      "name": "Point72 Ventures",
+      "type": "fund",
+      "context": "Led Apex Space's $200M Series C funding round.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Podcast sponsor; sales tax compliance automation platform humorously described by hosts as having achieved 'AGI for sales tax.'",
+      "sentiment": "bullish",
+      "sector": "Fintech/Tax"
+    },
+    {
+      "name": "Stripe",
+      "type": "startup",
+      "context": "Mentioned as an example of a long-held private company that a permanent capital vehicle like Thrive Holdings could hold beyond a typical fund's 10-year lifecycle.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Punchbowl News",
+      "type": "private",
+      "context": "Reported Amazon was planning to display tariff costs at checkout; hosts noted Punchbowl is supported by Amazon, raising conflict-of-interest questions.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Podcast sponsor; pre-owned watch marketplace.",
+      "sentiment": "neutral",
+      "sector": "E-Commerce/Luxury"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Podcast sponsor; out-of-home advertising platform mentioned in context of SF billboards being dominated by SaaS brands.",
+      "sentiment": "bullish",
+      "sector": "AdTech"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Podcast sponsor; smart mattress company.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Podcast sponsor and Will Minaitis investment; short-term rental property platform.",
+      "sentiment": "bullish",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Podcast sponsor; multi-asset investing platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Hyundai",
+      "type": "public",
+      "context": "Praised for the Ioniq 5 N's fake DCT that simulates manual transmission sounds, designed by former BMW M division head.",
+      "sentiment": "bullish",
+      "sector": "Automotive"
+    }
+  ],
+  "people": [
+    {
+      "name": "Will Minaitis",
+      "role": "First in-person guest and Chairman of TBPN; investor",
+      "context": "Joined live from Washington DC for Hill and Valley; discussed Intel/TSMC earnings, permanent capital vehicles, vector databases, and authored an essay on craft vs. slop in the AI age. Was the first check into Chroma."
+    },
+    {
+      "name": "Lip-bu Tan",
+      "role": "CEO of Intel",
+      "context": "Delivered first earnings report as CEO; diagnosed Intel's bureaucratic culture, announced job cuts and return-to-office mandate, but gave vague answers on foundry strategy."
+    },
+    {
+      "name": "Pat Gelsinger",
+      "role": "Former CEO of Intel",
+      "context": "Discussed as a beloved former CEO with a redemption arc; known for faith-centered leadership, reportedly building seven churches in the Bay Area and praying one day a week for Intel employees."
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO of Nvidia (implied)",
+      "context": "Referenced indirectly in context of Nvidia's $100B US investment announcement and chip export restrictions to China."
+    },
+    {
+      "name": "Aravind Srinivas",
+      "role": "CEO of Perplexity",
+      "context": "Previously appeared on TBPN; TechCrunch wrote a controversial piece based on his hypothetical answers about browser monetization and ad tracking."
+    },
+    {
+      "name": "Josh Kushner",
+      "role": "Founder, Thrive Capital",
+      "context": "Announced Thrive Holdings, a permanent capital vehicle dedicated to long-term investing and operating businesses via strategic application of technology."
+    },
+    {
+      "name": "Andy Jassy",
+      "role": "CEO of Amazon",
+      "context": "Cited for writing about Project Kuiper in Amazon's annual shareholder letter; Amazon was pressured by Trump after Punchbowl reported tariff display plans."
+    },
+    {
+      "name": "Jeff Bezos",
+      "role": "Founder of Amazon",
+      "context": "Received a direct call from Trump over Amazon's alleged plan to display tariff costs at checkout; also backing Rivian and Slate Truck as EV bets against Musk."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO of Tesla, SpaceX, X; head of DOGE",
+      "context": "Discussed in context of X debt refinancing, proximity to political power, potential to take over Intel's foundry, and competing with Bezos across EVs, space, and social media."
+    },
+    {
+      "name": "Ben Thompson",
+      "role": "Analyst, Stratechery",
+      "context": "Quoted calling Intel earnings 'absolutely brutal'; analyzed TSMC's deepening US manufacturing commitment and Intel vs. TSMC market performance divergence."
+    },
+    {
+      "name": "Michael Arrington",
+      "role": "Founder of TechCrunch",
+      "context": "Publicly stated he is 'deeply ashamed' at what TechCrunch has become after the Perplexity article controversy."
+    },
+    {
+      "name": "Ray Dalio",
+      "role": "Founder of Bridgewater Associates",
+      "context": "Dropped a long piece referenced on the timeline; a commenter questioned whether Dalio would be wrong again; conspiracy theory discussed that Bridgewater may be a media business rather than a real hedge fund."
+    },
+    {
+      "name": "Josh Steinman",
+      "role": "CEO of Galvanic",
+      "context": "Launched a promotional video for Galvanic; hosts saw him on their flight to DC and praised the company's mission to secure the American industrial base."
+    },
+    {
+      "name": "Hadley Harris",
+      "role": "Venture capitalist",
+      "context": "Wrote a post analyzing the Pinecone/vector database hype cycle, arguing standalone vector databases are now commoditized after peak hype in 2022-2023."
+    },
+    {
+      "name": "Dylan Field",
+      "role": "CEO of Figma",
+      "context": "Posted a thread arguing O3 makes trivial math errors and that models are 'latent space search engines,' not remotely close to AGI."
+    },
+    {
+      "name": "Nancy Pelosi",
+      "role": "Former US House Speaker",
+      "context": "The 'PELOSI Act' (Preventing Elected Leaders from Owning Securities and Investments Act) was introduced in Congress, named after her reputation for outperforming markets."
+    },
+    {
+      "name": "Josh Hawley",
+      "role": "US Senator",
+      "context": "Introduced the PELOSI Act targeting congressional stock trading and insider information."
+    },
+    {
+      "name": "Ian Cinnamon",
+      "role": "CEO of Apex Space",
+      "context": "Announced $200M Series C to scale satellite bus production amid exponentially growing demand for space-based capabilities."
+    },
+    {
+      "name": "Tyler Cowen",
+      "role": "Economist, blogger",
+      "context": "Referenced for claiming AGI is here and for his take that enterprise AI diffusion will take a very long time regardless of model capability."
+    },
+    {
+      "name": "Satya Nadella",
+      "role": "CEO of Microsoft",
+      "context": "Discussed in context of Microsoft pulling back from non-binding data center lease commitments and stepping back from media visibility."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Hill and Valley Forum 2025",
+      "summary": "Tech industry gathering in Washington DC drawing ~1,200 attendees; central theme was reindustrialization. Hosts attended a press briefing and noted tension with legacy media journalists focused on tariffs rather than tech policy.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Intel Earnings Q1 2025",
+      "summary": "New CEO Lip-bu Tan delivered a brutal earnings call; revenue forecast missed badly, shares down ~10%, foundry strategy vague, but some was priced in. Intel benefited financially from being less competitive at the high end.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "TSMC Earnings Q1 2025",
+      "summary": "Strong Q1 results with mid-20% revenue growth and doubling AI revenue; $100B additional US investment announced bringing total to $165B including three new fabs and two packaging fabs in Arizona. Share price depressed by Taiwan geopolitical risk despite strong fundamentals.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Amazon Tariff Display Controversy",
+      "summary": "Reports surfaced Amazon planned to show tariff costs at checkout; Amazon denied it after Trump called Bezos directly. White House called it a 'hostile and political act.' Hosts discussed the mechanics of who absorbs tariff costs across Amazon's seller ecosystem.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "X / Twitter Debt Refinancing",
+      "summary": "Wall Street banks sold the final $1.2B slug of the $13B Twitter acquisition debt at 98 cents on the dollar, ending a 2.5-year quagmire. XAI's rise and Trump's election were credited with changing fortunes.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Project Kuiper vs Starlink",
+      "summary": "Amazon launched 27 Kuiper satellites via ULA to begin building a 3,200-satellite LEO constellation. Faces major manufacturing and cost disadvantages vs SpaceX's Starlink which already has 7,000+ satellites and 5M users.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Vector Database Hype Cycle",
+      "summary": "Hadley Harris argued the vector database market peaked post-ChatGPT launch as Postgres, Redis, and MongoDB added native vector search. Will Minaitis pushed back saying this is 'terminal VC brain' and that large vector database winners will still emerge for enterprise unstructured data.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Permanent Capital Vehicles",
+      "summary": "Josh Kushner announced Thrive Holdings as a permanent capital vehicle. Hosts discussed the structure vs VC funds, Berkshire Hathaway as a model, and how it enables holding long-duration assets like Stripe beyond a traditional fund's 10-year life.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Reindustrialization of America",
+      "summary": "Central theme of Hill and Valley; TSMC's $165B US commitment and Foxconn's new US facilities cited as evidence the trend is real. Hosts bullish that reshoring advanced semiconductor manufacturing is actually happening after being deemed impossible.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI in Enterprise (Diffusion Speed)",
+      "summary": "Debate over how quickly AI capabilities will diffuse into Fortune 500 companies; Microsoft Copilot adoption seen as plateauing. Will Minaitis argued enterprise diffusion is a 20-year project, supporting Microsoft's data center pullback thesis.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Benchmark Investing in Manus",
+      "summary": "Briefly discussed as the top tech story of the week \u2014 Benchmark investing in Manus, a Chinese AI company. Legacy media attendees at Hill and Valley were not focused on this story.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Consumer Confidence and Tariffs",
+      "summary": "Visa's guidance and other data showed biggest monthly drop in consumer confidence since 2022. People are not yet feeling tariff impacts but expect to, which is affecting sentiment and spending behavior.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Perplexity Browser and TechCrunch Controversy",
+      "summary": "TechCrunch published a piece claiming Perplexity's browser will track everything users do and sell hyper-personalized ads based on a hypothetical question on TBPN. Hosts argued this was a bad-faith misrepresentation; Michael Arrington publicly expressed shame. A community note on X corrected the framing.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "OpenAI Shopping Integration",
+      "summary": "OpenAI integrated Shopify shopping into ChatGPT allowing users to research and purchase products via Shop Pay without leaving the chat interface. Hosts discussed implications for AI shopping assistant startups that are now on OpenAI's roadmap.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Duolingo Going AI First",
+      "summary": "CEO sent all-hands email declaring Duolingo an AI-first company, comparing the moment to betting on mobile in 2012. Hosts speculated about which companies could be run by a single CEO using AI.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "PELOSI Act",
+      "summary": "Senator Josh Hawley introduced the Preventing Elected Leaders from Owning Securities and Investments Act, targeting congressional stock trading. Hosts joked about supporting a 'RAMP Act' and discussed giving market participants direct access to the legal code.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Microsoft Data Center Strategy",
+      "summary": "Dylan Pissigel posted that Microsoft canceled non-binding LOIs for 2+ gigawatts of capacity. Hosts noted Microsoft still holds 5GW under binding contracts and previously accounted for 60%+ of all new leased turnkey capacity in 2023-2024.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Craft vs Slop in the AI Age",
+      "summary": "Will Minaitis argued AI is being used to automate meaningful labor rather than just toil, producing cultural and physical homogenization (cities looking alike, identical homes, slop content). Prescription is to orient toward meaningful, artisanal creation.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Convertible Cars and Tech Culture",
+      "summary": "Light-hearted discussion about tech workers discovering convertibles and non-Tesla cars; hosts argued the real opportunity is the manual transmission and that Tesla/Rivian have ignored the convertible market.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Prediction Markets and Canadian Election",
+      "summary": "Polymarket correctly predicted the Canadian election with Carney winning; hosts discussed how prediction markets are becoming more accepted and accurate, and debated their potential role in future US elections and even the papal conclave.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Unauthorized AI Persuasion Experiment on Reddit",
+      "summary": "Researchers from University of Zurich secretly ran AI bots on Reddit that mined post history to craft hyper-personalized persuasive responses, including fabricated identities. Reddit's top lawyer threatened legal action.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "de minimis Tariff Loophole Closure",
+      "summary": "The de minimis exemption that allowed Temu and Shein to ship low-cost goods directly from China is now closed. Amazon Haul cited as another affected platform. Hosts joked this may reduce cancer rates from cheap polyester clothing.",
+      "sentiment": "neutral"
+    }
+  ],
+  "key_claims": [
+    "TSMC's total US investment commitment is now $165B including three new wafer fabs, two advanced packaging fabs, and an R&D center in Arizona",
+    "Microsoft accounted for more than 60% of all new leased turnkey capacity from Q1 2023 to Q2 2024",
+    "Microsoft has 5 gigawatts of pre-leased data center capacity under binding contracts starting operations between 2025 and 2028, despite canceling non-binding LOIs",
+    "Wall Street banks sold the final $1.2B of X's acquisition debt at 98 cents on the dollar after 2.5 years on balance sheets",
+    "X's $13B acquisition debt was considered the worst buyout banks had agreed to finance since the 2008 financial crisis, as of summer 2024",
+    "Consumer confidence dropped the biggest monthly amount since 2022 per Visa's guidance data",
+    "Polymarket correctly predicted the Canadian federal election outcome with Carney's win",
+    "Researchers from University of Zurich secretly ran AI persuasion bots on Reddit that mined individual post histories to craft personalized arguments, including fabricating identities such as rape survivors",
+    "TSMC CEO confirmed Arizona Fab 1 was upgraded to a 4nm (third-gen 5nm) node and Fab 2 will produce 2nm chips in the future",
+    "Benchmark invested in Manus, a Chinese AI company, which hosts called the top tech story of the week",
+    "Amazon is under cost-support agreements where some vendors who tried to raise prices after tariffs were asked to pay Amazon back to cover the increase",
+    "Elon Musk paying a 40% premium to buy Twitter at $44B was described as effectively spending $44B to preserve free speech on the internet",
+    "Will Minaitis claims enterprise AI diffusion into Fortune 500 companies is a 20-year project, supporting the thesis that Microsoft over-built data center capacity",
+    "Apex Space raised $200M Series C with exponentially increasing demand for satellite bus platforms, led by Point72 Ventures",
+    "Starlink has more than 7,000 satellites in orbit and more than 5 million users",
+    "Amazon's Project Kuiper plans to have 3,200 satellites in orbit over the next few years",
+    "The de minimis loophole that allowed Temu and Shein to ship cheaply directly from China is now closed"
+  ],
+  "technologies": [
+    "Large Language Models (LLMs)",
+    "Vector Databases",
+    "RAG (Retrieval-Augmented Generation)",
+    "Transformer Models",
+    "Reinforcement Learning from Human Feedback (RLHF)",
+    "Deep Research (OpenAI)",
+    "O3 (OpenAI model)",
+    "GPT-4.5",
+    "Qwen 30B (Alibaba)",
+    "DeepSeek",
+    "4nm / 2nm Semiconductor Nodes",
+    "Advanced Semiconductor Packaging",
+    "Low Earth Orbit (LEO) Satellite Constellations",
+    "Starlink",
+    "Project Kuiper",
+    "Satellite Bus Platforms",
+    "Shop Pay",
+    "Agentic AI / AI Agents",
+    "Prediction Markets",
+    "Passkeys / FIDO2",
+    "Okta",
+    "Face ID",
+    "Fake DCT (Simulated Manual Transmission)",
+    "Drone Show Advertising",
+    "4K Live Streaming",
+    "ARC-AGI Benchmarks",
+    "Multiple Regression / Linear Regression",
+    "Neural Networks",
+    "BM25 (keyword search algorithm)",
+    "Permanent Capital Vehicles",
+    "Corporate Cards / Expense Automation"
+  ],
+  "_stats": {
+    "word_count": 20432,
+    "estimated_input_tokens": 27174,
+    "input_tokens": 3,
+    "output_tokens": 6296,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 30821,
+    "duration_ms": 129277,
+    "wall_time_s": 130.9,
+    "cost_usd": 0.35465475,
+    "tokens_per_sec": 48.1
+  }
+}

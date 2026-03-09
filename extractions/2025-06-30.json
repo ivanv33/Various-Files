@@ -1,0 +1,840 @@
+{
+  "episode_date": "2025-06-30",
+  "episode_title": "openai-responds-to-meta-offers-metas-secret-list",
+  "companies": [
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Meta aggressively poached top researchers; Chief Research Officer Mark Chen sent an emotional Slack memo calling it 'someone has broken into our home.' Company planning a one-week July 4th shutdown and reevaluating comp aggressively.",
+      "sentiment": "bearish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Zuckerberg launched a superintelligence lab by recruiting over a dozen top researchers from OpenAI, Google DeepMind, and Anthropic with reported $100M packages; stock hit all-time high, up ~5% on the week.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "X (Twitter)",
+      "type": "private",
+      "context": "Hired Nikita Beer as head of product; hosts described it as the most important social network and the origin of internet culture.",
+      "sentiment": "bullish",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "F1 movie debuted at $55.6M domestic box office, Apple's first real box office hit; sold eight-figure sponsorships to Expensify, SharkNinja, and IWC. Also reportedly weighing using Anthropic or OpenAI to power Siri.",
+      "sentiment": "bullish",
+      "sector": "Consumer Tech/Entertainment"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Completed the world's first autonomous car delivery, a Model Y driving 30 minutes from the Gigafactory in Texas to a new owner's home crossing parking lots and highways.",
+      "sentiment": "bullish",
+      "sector": "Autonomous Vehicles/EVs"
+    },
+    {
+      "name": "Xiaomi",
+      "type": "public",
+      "context": "New electric SUV received 289,000 non-refundable orders in its first hour of launch, described as closely resembling the Song Way in design.",
+      "sentiment": "bullish",
+      "sector": "EVs/Consumer Electronics"
+    },
+    {
+      "name": "Robinhood",
+      "type": "public",
+      "context": "Tokenized private company stocks including OpenAI and SpaceX for European users; launching its own L2 chain built with Arbitrum called the Robinhood chain.",
+      "sentiment": "bullish",
+      "sector": "Fintech/Crypto"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Described as less of a culture fit for Meta's recruits due to its mission-driven safety focus; not heavily targeted in Zuckerberg's talent raid. Joel Pobar left Anthropic to join Meta.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Scale AI",
+      "type": "startup",
+      "context": "Founder Alex Wang was effectively acquired by Meta as chief AI officer of the new superintelligence lab in a deal worth potentially over $100M.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Google / Alphabet",
+      "type": "public",
+      "context": "Mentioned as a prior source of talent Meta raided in 2010-2011; Google DeepMind researchers among those joining Meta's new lab.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Google DeepMind",
+      "type": "public",
+      "context": "Jack Ray, pre-training tech lead for Gemini 2.5 and early lead on Gopher and Chinchilla, left to join Meta's superintelligence lab.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Mentioned in context of tense OpenAI deal renegotiation allegedly taking a 20% cut; OpenAI reportedly exploring TPU use partly due to friction with Microsoft.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Tech/AI"
+    },
+    {
+      "name": "GitHub",
+      "type": "private",
+      "context": "Former CEO Nat Friedman joined Meta's new superintelligence lab as co-leader focused on AI products and applied research.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Discord",
+      "type": "private",
+      "context": "Nikita Beer previously sold a startup to Discord before joining X as head of product.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Anduril",
+      "type": "startup",
+      "context": "Luke Metro, an Anduril employee, posted about Robinhood's private company stock tokenization potentially including Anduril stock options.",
+      "sentiment": "neutral",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Mentioned as one of the private company stocks being tokenized by Robinhood for European users.",
+      "sentiment": "neutral",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Republic",
+      "type": "startup",
+      "context": "Building a platform for private company stock tokenization; founder Ken appeared on the show the prior week.",
+      "sentiment": "bullish",
+      "sector": "Fintech/Crypto"
+    },
+    {
+      "name": "Expensify",
+      "type": "public",
+      "context": "Paid an eight-figure sum to become title sponsor of Apple's fictional F1 team APXGP in the F1 movie.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "SharkNinja",
+      "type": "public",
+      "context": "Purchased a product sponsorship in Apple's F1 movie alongside Expensify and IWC.",
+      "sentiment": "neutral",
+      "sector": "Consumer Products"
+    },
+    {
+      "name": "IWC",
+      "type": "private",
+      "context": "Luxury watch brand that purchased a sponsorship in Apple's F1 movie.",
+      "sentiment": "neutral",
+      "sector": "Luxury Goods"
+    },
+    {
+      "name": "Polymarket",
+      "type": "startup",
+      "context": "Had prediction markets for the F1 movie box office; correctly predicted an over-$55M opening at 71% probability about a week before release.",
+      "sentiment": "bullish",
+      "sector": "Prediction Markets/Crypto"
+    },
+    {
+      "name": "SSI (Safe Superintelligence)",
+      "type": "startup",
+      "context": "Mentioned as a prior OpenAI talent departure alongside Thinking Machines and xAI; OpenAI survived each exodus with dominant market position intact.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Thinking Machines",
+      "type": "startup",
+      "context": "Mentioned as another company formed by former OpenAI talent, part of a pattern of departures OpenAI has weathered.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "xAI",
+      "type": "startup",
+      "context": "Elon Musk's AI company mentioned as a prior OpenAI talent departure that did not derail OpenAI's consumer dominance.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor; corporate cards, bill payments, and accounting platform. Hosts praised its virality within the finance community.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Figma",
+      "type": "startup",
+      "context": "Sponsor; design and development collaboration tool described as helping teams think bigger and build faster.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/Design"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Sponsor; product planning tool. Host joked that if Zuckerberg accessed OpenAI's Linear, it would reveal the high performers to poach.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor; trust management platform automating compliance and security processes.",
+      "sentiment": "neutral",
+      "sector": "Cybersecurity/Compliance"
+    },
+    {
+      "name": "Numeral HQ",
+      "type": "startup",
+      "context": "Sponsor; sales tax automation platform described as the official sales tax provider for the show.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Compliance"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Sponsor; AI-native CRM platform for building and scaling companies.",
+      "sentiment": "neutral",
+      "sector": "CRM/AI"
+    },
+    {
+      "name": "Intercom",
+      "type": "private",
+      "context": "Finn AI customer service agent is a sponsor ranked #1 on G2; Anthropic reportedly uses it for CX. Hosts praised CEO Owen McCabe's business.",
+      "sentiment": "bullish",
+      "sector": "Customer Service/AI"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor; multi-asset investing platform with industry-leading yields trusted by millions.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Investing"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Sponsor; sleep tracking tech. Host scored a 92 sleep score and credited the product.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor; premium vacation rental service with hotel amenities and 24/7 concierge. A video collaboration with the show was teased.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising platform making billboard advertising easy and measurable.",
+      "sentiment": "neutral",
+      "sector": "AdTech"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Sponsor; watch marketplace with concierge service able to source any watch on the planet.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Luxury"
+    },
+    {
+      "name": "Ulysses",
+      "type": "startup",
+      "context": "Guest company building autonomous surface and underwater vehicles at 10x lower cost; started with seagrass restoration, expanding to defense applications monitoring illegal fishing fleets.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech/Robotics"
+    },
+    {
+      "name": "Chai Discovery",
+      "type": "startup",
+      "context": "Guest company launched CHI2 model achieving 15-20% antibody design success rates vs 0.1% for prior methods, enabling near-zero-shot drug discovery.",
+      "sentiment": "bullish",
+      "sector": "Biotech/AI"
+    },
+    {
+      "name": "Campfire",
+      "type": "startup",
+      "context": "Guest company; modern AI-powered ERP for high-growth companies announced $35M Series A led by Excel (Accel); customers ripping out NetSuite, SAP, and Oracle to adopt it.",
+      "sentiment": "bullish",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "Bitmine Immersion Technologies",
+      "type": "public",
+      "context": "NYSE-listed company pivoting to an Ethereum treasury strategy; raised $250M private placement; stock rose 679% on the announcement. Tom Lee joined as chairman.",
+      "sentiment": "bullish",
+      "sector": "Crypto/Finance"
+    },
+    {
+      "name": "Fundstrat",
+      "type": "private",
+      "context": "Tom Lee's research firm with 300 hedge fund clients, 10,000 RIAs, and the $1.4B Granny Shots ETF. Lee joined Bitmine as chairman separately.",
+      "sentiment": "neutral",
+      "sector": "Finance/Research"
+    },
+    {
+      "name": "Circle",
+      "type": "public",
+      "context": "Second largest stablecoin issuer described as probably the most successful IPO in several years; trades at ~100x EV/EBITDA. Runs on Ethereum, used as valuation benchmark for ETH.",
+      "sentiment": "bullish",
+      "sector": "Fintech/Crypto"
+    },
+    {
+      "name": "Xero",
+      "type": "public",
+      "context": "Acquired B2B payments company Melio for $2.5B to strengthen its US position and counter QuickBooks' AP product launch via Melio's Fiserv/Clover distribution.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Accounting"
+    },
+    {
+      "name": "Melio",
+      "type": "startup",
+      "context": "B2B payments company acquired by Xero for $2.5B; strong in indirect channels through Fiserv and Clover, competing with Bill.com in the SMB AP market.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Payments"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "AI coding tool announced availability on mobile and web browsers, allowing users to spin off dozens of agents and review them later in their editor.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/AI"
+    },
+    {
+      "name": "ConsenSys",
+      "type": "private",
+      "context": "Joe Lubin's Ethereum infrastructure company; Lubin also co-led Sharp Link (SBET), another Ethereum treasury strategy comparable to Bitmine.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Blockchain"
+    },
+    {
+      "name": "Sharp Link (SBET)",
+      "type": "public",
+      "context": "Another Ethereum treasury strategy company co-led by Joe Lubin, mentioned as a comparable vehicle to Bitmine's strategy.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Finance"
+    },
+    {
+      "name": "Pantera Capital",
+      "type": "fund",
+      "context": "Participated in Bitmine's $250M private placement as a strategic investor.",
+      "sentiment": "bullish",
+      "sector": "Crypto VC"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Participated in Bitmine's $250M private placement as a strategic investor.",
+      "sentiment": "bullish",
+      "sector": "VC"
+    },
+    {
+      "name": "Kraken",
+      "type": "private",
+      "context": "Crypto exchange that partnered in Bitmine's Ethereum treasury strategy.",
+      "sentiment": "neutral",
+      "sector": "Crypto"
+    },
+    {
+      "name": "Galaxy Digital",
+      "type": "public",
+      "context": "Crypto financial services firm that partnered in Bitmine's $250M private placement.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Finance"
+    },
+    {
+      "name": "Falcon X",
+      "type": "private",
+      "context": "Crypto prime brokerage that partnered in Bitmine's $250M private placement.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Finance"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Mentioned as potentially entering the inference serving market; referenced in context of AI compute infrastructure.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors/AI"
+    },
+    {
+      "name": "CoreWeave",
+      "type": "public",
+      "context": "Mentioned as a potential compute partner for Meta if it wanted to serve closed AI models outside AWS.",
+      "sentiment": "neutral",
+      "sector": "Cloud Computing/AI"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Mentioned as a company spending over $10M on OpenAI's model customization and RFT service.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software/AI"
+    },
+    {
+      "name": "Netflix",
+      "type": "public",
+      "context": "Criticized for undermining movie windowing by releasing content that audiences would pay to see in theaters; Apple TV+ discussed as trying to differentiate with prestige content.",
+      "sentiment": "bearish",
+      "sector": "Entertainment/Streaming"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "Mentioned as maker of legacy ERP and parent of NetSuite; Safra Catz referenced as a sharp executive.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "SAP",
+      "type": "public",
+      "context": "Mentioned as a legacy ERP being ripped out by Campfire customers moving to a modern platform.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "NetSuite",
+      "type": "public",
+      "context": "Common ERP being displaced by Campfire; a 10,000-employee company with $100B+ market cap is reportedly still on NetSuite.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "Bill.com",
+      "type": "public",
+      "context": "Mentioned as the dominant player in AP payments with $1B in AP revenue; QuickBooks launched a competing AP product prompting Xero to acquire Melio.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Payments"
+    },
+    {
+      "name": "Brex",
+      "type": "startup",
+      "context": "Mentioned as a company that launched embedded go-to-market, a trend also adopted by Melio.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Stripe",
+      "type": "private",
+      "context": "Mentioned as the payment processor used for sponsor billing; also referenced as an example of Irish-founded tech success.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Payments"
+    },
+    {
+      "name": "Fiserv",
+      "type": "public",
+      "context": "Distributes Melio through its Clover point-of-sale system; mentioned as a key part of the rationale for Xero's acquisition of Melio.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Payments"
+    },
+    {
+      "name": "Coinbase",
+      "type": "public",
+      "context": "Mentioned briefly as a company where typical YC founders have worked as product managers.",
+      "sentiment": "neutral",
+      "sector": "Crypto"
+    },
+    {
+      "name": "Amazon / AWS",
+      "type": "public",
+      "context": "Meta uses AWS for cloud infrastructure; Walmart and Amazon mentioned as likely stablecoin adopters.",
+      "sentiment": "neutral",
+      "sector": "Cloud/E-commerce"
+    },
+    {
+      "name": "Goldman Sachs",
+      "type": "public",
+      "context": "Mentioned as a financial institution that would offer margin loans to OpenAI employees backed by illiquid equity.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "Morgan Stanley",
+      "type": "public",
+      "context": "Mentioned alongside Goldman as institutions offering loans to tech employees with illiquid stock holdings.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "Walmart",
+      "type": "public",
+      "context": "Mentioned as a large consumer company likely to adopt Ethereum-based stablecoins as they become mainstream.",
+      "sentiment": "neutral",
+      "sector": "Retail"
+    },
+    {
+      "name": "MicroStrategy",
+      "type": "public",
+      "context": "Referenced as the original Bitcoin treasury company that pioneered the corporate treasury crypto strategy now being adapted for Ethereum by Bitmine.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Finance"
+    },
+    {
+      "name": "Higgs Field",
+      "type": "startup",
+      "context": "Mentioned as having a new image model creating photorealistic images indistinguishable from real photos; reportedly founded by an ex-Snapchat team.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Cluely",
+      "type": "startup",
+      "context": "Mentioned as a product that would pair well with the Meta Quest VR headset for real-time AI assistance.",
+      "sentiment": "neutral",
+      "sector": "AI/Productivity"
+    },
+    {
+      "name": "Waymo",
+      "type": "startup",
+      "context": "Cited as an example of the shift from small numbers of expensive assets to large networks of small autonomous vehicles, analogous to what Ulysses is doing for the ocean.",
+      "sentiment": "neutral",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Stargate",
+      "type": "startup",
+      "context": "OpenAI's compute joint venture expected online December 2025; will host the largest single pre-training cluster ever, potentially unlocking a new tier of RL-heavy model training.",
+      "sentiment": "bullish",
+      "sector": "AI Infrastructure"
+    },
+    {
+      "name": "Wired",
+      "type": "private",
+      "context": "Published the leaked OpenAI Slack memo and broke the story of Meta's talent raid and Zuckerberg's formal superintelligence lab announcement.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Wall Street Journal",
+      "type": "public",
+      "context": "Published a story on Meta's secret list of AI genius recruits and separately covered the F1 movie; confirmed the $100M offer figure to their editorial standards.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    }
+  ],
+  "people": [
+    {
+      "name": "Mark Chen",
+      "role": "Chief Research Officer, OpenAI",
+      "context": "Sent an emotional all-hands Slack memo describing Meta's talent raid as 'someone has broken into our home and stolen something'; pledged to fight for retention while maintaining internal pay fairness."
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO, Meta",
+      "context": "Personally coordinating recruitment for Meta's superintelligence lab, reportedly calling OpenAI employees directly and offering up to $100M packages; formally announced the new lab and its leadership team."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Praised Mark Chen's leadership on Slack; discussed $100M signing bonuses on a podcast with his brother; described by hosts as Machiavellian and one of the best at hype management and product delivery."
+    },
+    {
+      "name": "Nikita Beer",
+      "role": "Head of Product, X",
+      "context": "Joined X as head of product; previously sold startups to Discord and Facebook; a prolific X poster who says the platform is where he met his girlfriend and built his professional network."
+    },
+    {
+      "name": "Bill Gurley",
+      "role": "Retired investor / podcaster",
+      "context": "Posted with a cowboy hat emoji pointing out that OpenAI, already planning to lose $7B this year, is now reevaluating comp to compete with Meta's aggressive offers."
+    },
+    {
+      "name": "Alex Wang",
+      "role": "Chief AI Officer, Meta (formerly founder/CEO of Scale AI)",
+      "context": "Joined Meta as chief AI officer and leader of the new Meta Superintelligence Lab; deal structured as a high-value acquisition estimated at well over $100M."
+    },
+    {
+      "name": "Nat Friedman",
+      "role": "Co-leader, Meta Superintelligence Lab (formerly CEO of GitHub)",
+      "context": "Joined Meta's superintelligence lab as co-leader focused on AI products and applied research alongside Alex Wang."
+    },
+    {
+      "name": "Daniel Gross",
+      "role": "AI investor/entrepreneur",
+      "context": "Previously reported by The Information as joining Meta's superintelligence lab with Nat Friedman but notably absent from Zuckerberg's official announcement memo; situation described as more complex due to his CEO role."
+    },
+    {
+      "name": "Brett Taylor",
+      "role": "Chairman of the Board, OpenAI",
+      "context": "Cited as an example of top talent riding successive tech waves \u2014 from Google to Meta CTO to OpenAI chairman \u2014 illustrating how hard it is to retain the best people long-term."
+    },
+    {
+      "name": "Jony Ive",
+      "role": "Founding Designer, OpenAI",
+      "context": "Joined OpenAI in a deal structured as an acquisition giving him a few percentage points of the company; used as an example of large, creatively structured compensation packages for top creative talent."
+    },
+    {
+      "name": "Yann LeCun",
+      "role": "Chief AI Scientist, Meta (FAIR)",
+      "context": "Discussed as running an academic research org (FAIR) isolated from Llama and product; seen as right that AGI is not imminent but criticized for not driving product outcomes."
+    },
+    {
+      "name": "Dylan Patel",
+      "role": "Analyst, SemiAnalysis",
+      "context": "Appeared on Jordan Schneider's podcast skeptical of $100M cash signing bonuses; said Stargate comes online December 2025; noted OpenAI was using FP8 weight quantization two years before DeepSeek published it."
+    },
+    {
+      "name": "Ben Thompson",
+      "role": "Analyst/Writer, Stratechery",
+      "context": "Referenced for analysis on movie windowing strategy, Taylor Swift's pricing model as a template, and criticism of Yann LeCun for not driving consumer product at Meta."
+    },
+    {
+      "name": "Trappit Bonsal",
+      "role": "AI Researcher, joined Meta from OpenAI",
+      "context": "Pioneered reinforcement learning on chain of thought and co-created the O-series models at OpenAI; joined Meta's superintelligence lab."
+    },
+    {
+      "name": "Jack Ray",
+      "role": "AI Researcher, joined Meta from Google DeepMind",
+      "context": "Was pre-training tech lead for Gemini and reasoning for Gemini 2.5; led Gopher and Chinchilla at DeepMind; joined Meta's superintelligence lab."
+    },
+    {
+      "name": "Joel Pobar",
+      "role": "AI Researcher, joined Meta from Anthropic",
+      "context": "Led inference at Anthropic; previously at Meta for 11 years working on HHVM and performance tooling; returned to Meta as part of the superintelligence lab."
+    },
+    {
+      "name": "Roon",
+      "role": "Researcher, OpenAI",
+      "context": "Posted publicly arguing there is a pro-consumer case for non-competes in AI due to IP seepage of tacit knowledge walking out with recruited researchers."
+    },
+    {
+      "name": "Tom Lee",
+      "role": "Founder/CIO, Fundstrat; Chairman, Bitmine Immersion Technologies",
+      "context": "Guest; announced joining Bitmine as chairman to lead its pivot to an Ethereum treasury strategy backed by $250M; bullish on stablecoins driving Ethereum demand."
+    },
+    {
+      "name": "Will O'Brien",
+      "role": "Co-founder, Ulysses",
+      "context": "Guest; building autonomous surface and underwater vehicles starting with seagrass restoration at ten times lower cost than competitors, now targeting defense applications."
+    },
+    {
+      "name": "Joshua Meier",
+      "role": "Co-founder, Chai Discovery",
+      "context": "Guest; announced CHI2 model achieving 15-20% antibody design hit rates; company's stated goal for the entire year was 1% and they exceeded 15% by mid-year."
+    },
+    {
+      "name": "John Glasgow",
+      "role": "Founder/CEO, Campfire",
+      "context": "Guest; former 15-year finance executive building modern ERP software; announced $35M Series A led by Excel/Accel with customers ripping out NetSuite and SAP."
+    },
+    {
+      "name": "Kylie Robison",
+      "role": "Reporter, Wired",
+      "context": "Guest; broke the leaked OpenAI memo story and the formal Meta superintelligence lab announcement; reported over Pride weekend. Noted Daniel Gross was absent from Zuckerberg's official list."
+    },
+    {
+      "name": "Joe Lubin",
+      "role": "Founder, ConsenSys",
+      "context": "Co-led Sharp Link (SBET), another Ethereum treasury strategy company, mentioned as comparable to Bitmine."
+    },
+    {
+      "name": "Palmer Luckey",
+      "role": "Founder, Anduril",
+      "context": "Mentioned for his thesis that soldiers will wear VR headsets before mainstream consumers because the military can subsidize the high cost of hardware."
+    },
+    {
+      "name": "Lauren Brickter",
+      "role": "Software developer, inventor of pull-to-refresh",
+      "context": "Credited with inventing the pull-to-refresh interaction at Twitter; Twitter chose not to enforce the patent, allowing it to become a universal mobile UI pattern."
+    },
+    {
+      "name": "George Hotz",
+      "role": "Hacker/entrepreneur",
+      "context": "Previously appeared on the show; described AI as being like having five CIA agents following you around convincing you to buy products \u2014 a dark use case for Meta's ad business."
+    },
+    {
+      "name": "Jamie Wetterburn",
+      "role": "Co-founder, Ulysses",
+      "context": "Scottish engineer who co-founded Ulysses after discovering seagrass on a dive trip and realizing no one had built the tractor equivalent for ocean-scale restoration tasks."
+    },
+    {
+      "name": "Toby Lukey",
+      "role": "X poster/commentator",
+      "context": "Summarized Tesla's autonomous car delivery milestone, calling for it to be put on the front page of all newspapers."
+    },
+    {
+      "name": "Paul Buchheit",
+      "role": "Engineer (formerly Google)",
+      "context": "Mentioned as having worked with Brett Taylor on Gmail at Google; referenced in context of the typical career trajectory of top startup talent."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Meta's AI Talent Raid on OpenAI",
+      "summary": "Meta recruited over a dozen senior researchers from OpenAI, Google DeepMind, and Anthropic with reported $100M packages. Zuckerberg formally announced the Meta Superintelligence Lab led by Alex Wang and Nat Friedman. Mark Chen's emotional all-hands memo called it a break-in and promised to fight back.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "OpenAI Company Response and Retention",
+      "summary": "OpenAI is aggressively reevaluating comp, planning a week-long July 4th company shutdown, and pivoting its product calendar toward the AGI race. Hosts noted the painful internal dynamic of having to pay retained employees more only after they receive outside offers.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Nikita Beer Joining X as Head of Product",
+      "summary": "Serial entrepreneur and prolific X poster Nikita Beer joined X as head of product. Hosts were bullish given his track record of rapid viral product iteration and his deep familiarity with the platform.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Apple F1 Movie Box Office Success",
+      "summary": "Apple's F1 movie debuted at $55.6M domestic \u2014 its first real box office hit \u2014 after spending nearly $250M on production. The film sold eight-figure sponsorships to Expensify, SharkNinja, and IWC, generating significant non-box-office revenue. Polymarket correctly predicted the outcome.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Tesla Autonomous Car Delivery",
+      "summary": "Tesla completed what it described as the world's first autonomous delivery of a car, a Model Y driving 30 minutes from Gigafactory Texas to a new owner's home. Hosts speculated this could meaningfully reduce Tesla's delivery cost structure.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Robinhood Tokenizing Private Company Stocks",
+      "summary": "Robinhood launched tokenized private company stocks including OpenAI and SpaceX for European users on its new Arbitrum-based L2. Parallel to Republic's similar offering, part of a crypto-friendly regulatory wave.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Xiaomi Electric SUV Launch",
+      "summary": "Xiaomi's new electric SUV received 289,000 non-refundable orders in its first hour. Hosts acknowledged the apparent design similarities to the Song Way but rang the gong for the commercial success.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Researcher Compensation War",
+      "summary": "$100M packages reportedly offered to top AI researchers; hosts debated accuracy \u2014 possibly structured over time with clawbacks \u2014 and the game theory of Sam Altman potentially spreading the number strategically. The precedent-setting nature of the moment was compared to Zuckerberg's Google raid in 2010-2011.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Ethereum Treasury Strategy",
+      "summary": "Bitmine raised $250M to buy Ethereum as a treasury asset on the NYSE; Tom Lee argued ETH is undervalued relative to Circle's 100x EV/EBITDA given that stablecoins run on Ethereum and staking yields 4%.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Stablecoins and Asset Tokenization",
+      "summary": "Stablecoins described as the ChatGPT of fintech at $250B market with potential to reach $2T. Robinhood and Republic tokenizing private equity. Ethereum positioned as the dominant layer-one backbone of this trend.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Stargate Compute Cluster",
+      "summary": "OpenAI's Stargate cluster expected online December 2025 per Dylan Patel; will enable the largest pre-training and RL runs ever. Hosts debated whether centralized compute still matters given distributed RL approaches.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Meta Quest 3S Xbox Edition Intern Challenge",
+      "summary": "Hosts challenged intern Tyler to beat the first level of Halo on the Meta Quest 3S Xbox Edition within 45 minutes including unboxing and setup. He succeeded with 2 minutes 45 seconds to spare. Hosts praised comfort and passthrough quality.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Drug Discovery",
+      "summary": "Chai Discovery's CHI2 model achieves 15-20% antibody design success rates versus 0.1% previously, potentially enabling zero-shot drug design and opening new modalities like bispecific antibodies.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Modern ERP Disruption",
+      "summary": "Campfire raised $35M Series A to replace legacy ERPs for high-growth companies by automating migration and leveraging AI throughout. Hosts discussed the large addressable market and painful incumbent implementation processes.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Xero Acquiring Melio",
+      "summary": "Xero acquired B2B payments company Melio for $2.5B to strengthen its US position and counter QuickBooks' AP launch, leveraging Melio's indirect distribution through Fiserv and Clover.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "IP and Non-Competes in AI",
+      "summary": "OpenAI researcher Roon argued publicly for non-competes in AI due to IP seepage of tacit knowledge; hosts found this unusual for a tech worker and discussed how little software IP protection exists compared to other industries.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Apple TV+ Strategy and Movie Windowing",
+      "summary": "Hosts discussed Apple's challenge balancing brand prestige standards against Netflix's content breadth; referenced Ben Thompson's windowing analysis using Taylor Swift as the model for maximizing value across live, theatrical, and streaming releases.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Autonomous Ocean Vehicles and Maritime Security",
+      "summary": "Ulysses is building autonomous surface and underwater vehicles at 10x lower cost than incumbents; started with seagrass restoration and now targeting defense applications. Discussed illegal Chinese fishing fleets decimating fisheries in South America and West Africa as a major use case.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Superintelligence Buzzword Cycle",
+      "summary": "Hosts joked that AGI is already pass\u00e9 and superintelligence will be next, coining 'giga intelligence' as the inevitable next buzzword as the field accelerates through milestones faster than terminology can keep up.",
+      "sentiment": "mixed"
+    }
+  ],
+  "key_claims": [
+    "OpenAI has approximately 90% market share in consumer AI \u2014 people say 'chat' without even saying ChatGPT anymore.",
+    "Meta generates approximately $100 billion in free cash flow annually, giving Zuckerberg unconstrained ability to spend on AI talent while remaining profitable.",
+    "OpenAI is planning to lose $7 billion this year even as it recruits and retains top talent.",
+    "Meta offered $100 million signing packages to some top OpenAI researchers per multiple sources confirming to both Wired and the Wall Street Journal.",
+    "Xiaomi's new electric SUV received 289,000 non-refundable orders in the first hour of launch.",
+    "Apple's F1 movie debuted at $55.6 million domestic box office, its first real box office hit after six years in entertainment.",
+    "Apple spent nearly $250 million to produce the F1 movie, more than any other studio thought it was worth.",
+    "Brad Pitt was paid more than $20 million for the F1 movie plus a revenue share.",
+    "Tesla completed the world's first autonomous car delivery, a Model Y driving 30 minutes from Gigafactory Texas to a new owner's home.",
+    "Chai Discovery's CHI2 model achieves 15-20% antibody design hit rates versus 0.1% for previous methods \u2014 the company's stated goal for the entire year was just 1%.",
+    "Campfire raised a $35M Series A led by Excel (Accel).",
+    "Bitmine Immersion Technologies stock rose 679% on the day of its Ethereum treasury strategy announcement.",
+    "Bitmine raised $250 million in a private placement to acquire Ethereum as a treasury asset.",
+    "Circle trades at approximately 100x EV/EBITDA; Ethereum staking yields 4%, implying Ethereum could be worth ~$12,000 per unit if priced comparably to Circle.",
+    "Treasury Secretary Besant estimated stablecoins could grow from $250B to $2 trillion.",
+    "Stargate compute cluster is expected to come online in December 2025 per Dylan Patel.",
+    "OpenAI was using FP8 weight quantization two years before DeepSeek open-sourced it \u2014 DeepSeek just made it visible to the world.",
+    "Xero acquired Melio for $2.5 billion.",
+    "Meta's superintelligence lab aims to recruit approximately 50 top researchers total.",
+    "Zuckerberg is personally coordinating recruitment for the superintelligence lab and calling OpenAI employees directly.",
+    "OpenAI plans a full company shutdown for the week of July 4th.",
+    "Apple is reportedly weighing using Anthropic or OpenAI to power Siri in a major reversal of strategy.",
+    "Apple TV+ has had zero box office hits in six years: its biggest films grossed between $42M and $221M worldwide.",
+    "Xfinity is enabling Wi-Fi signal motion detection in homes at no extra cost, which could allow mapping of resident presence and schedules."
+  ],
+  "technologies": [
+    "Large Language Models (LLMs)",
+    "Reinforcement Learning (RL) on Chain of Thought",
+    "Reinforcement Fine-Tuning (RFT)",
+    "Antibody design / protein modeling (AI-driven)",
+    "AlphaFold-equivalent structure prediction",
+    "Autonomous surface vehicles",
+    "Autonomous underwater vehicles",
+    "Virtual Reality (VR / Meta Quest 3S)",
+    "Mixed reality passthrough",
+    "Cloud gaming (Xbox Game Pass streaming)",
+    "Ethereum blockchain",
+    "Arbitrum L2",
+    "Stablecoins",
+    "Asset tokenization (private company stock tokens)",
+    "Autonomous vehicle delivery",
+    "FP8 (floating-point 8) weight quantization",
+    "Transformer architecture",
+    "Image generation (text-to-image, Ghibli-style)",
+    "TPU (Tensor Processing Units) for inference",
+    "Wi-Fi motion detection",
+    "Pull-to-refresh",
+    "Infinite scroll",
+    "Grok (X AI model)",
+    "AI-powered ERP automation",
+    "Bispecific antibodies"
+  ],
+  "_stats": {
+    "word_count": 34840,
+    "estimated_input_tokens": 46337,
+    "input_tokens": 3,
+    "output_tokens": 22811,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 50219,
+    "duration_ms": 426234,
+    "wall_time_s": 427.5,
+    "cost_usd": 0.8887672500000001,
+    "tokens_per_sec": 53.4
+  }
+}

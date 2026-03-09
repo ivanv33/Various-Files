@@ -1,0 +1,908 @@
+{
+  "episode_date": "2025-11-18",
+  "episode_title": "gemini-3-launch-big-tech-backs-anthropic-openai-adds-fidji-simo",
+  "companies": [
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Launched Gemini 3 Pro, described as the most intelligent model yet with state-of-the-art reasoning, vibe coding, and deep multimodal understanding. Also unveiled Anti-Gravity IDE for agentic development and showed AI-generated shareable interactive UI via Google Search.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Announced $350B valuation after $5B from Microsoft and $10B from Nvidia; committed to spend $30B on Microsoft Cloud compute. Claude Sonnet 4.5 referenced as a benchmark comparison for Gemini 3.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Launched collaborative group chats and profiled new CEO of Applications Fiji Simo in Wired; GPT-5.1 benchmarked against Gemini 3 across multiple evals. Previously committed $250B in Microsoft Cloud compute spending.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "ARC Prize",
+      "type": "private",
+      "context": "Mike Knoop discussed Gemini 3 scoring 31% on ARC AGI V2\u2014roughly 2x previous SOTA\u2014and noted ongoing jagged intelligence findings. ARC V3 is in development targeting Q1 2026 release with interactive games and full dataset.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Invested $5B in Anthropic and will receive $30B in cloud compute commitments from them; OpenAI separately committed $250B in Azure spending under an earlier deal.",
+      "sentiment": "bullish",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Invested $10B in Anthropic as part of the $350B valuation round alongside Microsoft.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Lambda",
+      "type": "startup",
+      "context": "Stephen Balaban announced a $1.5B all-equity raise led by TWG Global; the company exited a $200M+ annual hardware business and inference API to focus on vertically integrated AI data center infrastructure.",
+      "sentiment": "bullish",
+      "sector": "AI/ML Infrastructure"
+    },
+    {
+      "name": "Monad",
+      "type": "startup",
+      "context": "Keone Hon announced a token sale via Coinbase's new platform targeting $187M total (~$120M raised at time of show). EVM-compatible blockchain achieving 10,000 TPS via parallel execution and a new consensus mechanism, aimed at high-fidelity finance.",
+      "sentiment": "bullish",
+      "sector": "Blockchain/Crypto"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "CPO Jeremy Epling announced AI Agent 2.0 and the VantIcon conference; positioning the platform as an agentic GRC trust layer with a risk graph, memory-aware compliance agent, and automated policy remediation.",
+      "sentiment": "bullish",
+      "sector": "Cybersecurity/GRC"
+    },
+    {
+      "name": "Sweetgreen",
+      "type": "public",
+      "context": "Co-founder/CEO Jonathan Neiman discussed the 18-year journey to ~300 stores, the Infinite Kitchen producing 500 bowls/hour, seed oil removal, and the opening of the first drive-through with automation.",
+      "sentiment": "bullish",
+      "sector": "Food/Restaurant"
+    },
+    {
+      "name": "Spice Kitchen",
+      "type": "startup",
+      "context": "MIT-founded restaurant automation startup acquired by Sweetgreen ~4 years ago; Sweetgreen sold it to Wonder for $186M while retaining full access to the technology.",
+      "sentiment": "bullish",
+      "sector": "Food Tech/Robotics"
+    },
+    {
+      "name": "Wonder",
+      "type": "startup",
+      "context": "Mark Lore's food company purchased Spice Kitchen automation technology from Sweetgreen for $186M to scale across its own operations.",
+      "sentiment": "neutral",
+      "sector": "Food Tech"
+    },
+    {
+      "name": "Valar Atomics",
+      "type": "startup",
+      "context": "Isaiah Taylor announced Project Nova achieved first nuclear criticality in collaboration with Los Alamos, claiming to be the first startup in history to split the atom. Community debate arose over how much hardware Valar vs. LANL contributed.",
+      "sentiment": "bullish",
+      "sector": "Nuclear Energy"
+    },
+    {
+      "name": "Radiant",
+      "type": "startup",
+      "context": "Submitted a DOE authorization request to test its microreactor design at Idaho National Laboratory's DOME facility, on track for next year per the show.",
+      "sentiment": "bullish",
+      "sector": "Nuclear Energy"
+    },
+    {
+      "name": "Figure",
+      "type": "startup",
+      "context": "Brett Adcock's humanoid robotics company valued at $39B; mentioned in context of a public social media dispute with Chinese rival UB Tech and comparisons to Unitree.",
+      "sentiment": "neutral",
+      "sector": "Robotics"
+    },
+    {
+      "name": "Unitree",
+      "type": "private",
+      "context": "Chinese humanoid robotics company valued at $7B; discussed as a formidable competitive threat to US makers and a potential future regulatory target similar to DJI.",
+      "sentiment": "bullish",
+      "sector": "Robotics"
+    },
+    {
+      "name": "Boston Dynamics",
+      "type": "private",
+      "context": "Ashley Vance expressed skepticism that Boston Dynamics would be America's answer to Unitree, noting it mostly sells to the military despite impressive demos.",
+      "sentiment": "bearish",
+      "sector": "Robotics"
+    },
+    {
+      "name": "UB Tech",
+      "type": "private",
+      "context": "Chinese humanoid robotics company that publicly beefed with Figure/Brett Adcock on social media.",
+      "sentiment": "neutral",
+      "sector": "Robotics"
+    },
+    {
+      "name": "DJI",
+      "type": "private",
+      "context": "Cited as precedent for Chinese hardware regulation given widespread use by US police and military despite national security concerns.",
+      "sentiment": "bearish",
+      "sector": "Drones"
+    },
+    {
+      "name": "New Limit",
+      "type": "startup",
+      "context": "Longevity biotech backed by Brian Armstrong and run by Jacob Kimmel; Ashley Vance described as doing incredible science with very few people, with surprises expected in early 2026.",
+      "sentiment": "bullish",
+      "sector": "Biotech/Longevity"
+    },
+    {
+      "name": "Helion",
+      "type": "startup",
+      "context": "Ashley Vance visited their fusion facility and saw a new reactor he was not allowed to film, describing it as one of the most impressive pieces of room-sized hardware he had ever seen.",
+      "sentiment": "bullish",
+      "sector": "Energy/Fusion"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "Financial Times claimed Oracle is underwater on its $300B OpenAI deal as its stock returned to pre-announcement levels; hosts debated whether this framing was unfair and noted Oracle has become OpenAI's US public market proxy.",
+      "sentiment": "bearish",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Acquired Windsurf after the earlier Google talent deal fell through; hosts described the outcome as having worked out for the best.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "AI IDE product that was acquired by Cognition; some top team members left to join Google to build the competing Anti-Gravity IDE.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "TWG Global",
+      "type": "fund",
+      "context": "Led Lambda's $1.5B all-equity round; backed by Legendary Entertainment founder Thomas Tull and LA Dodgers/Lakers owner Mark Walter.",
+      "sentiment": "bullish",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "Revolution",
+      "type": "fund",
+      "context": "Steve Case's fund was Sweetgreen's first VC investor, backing the thesis that technology could transform the restaurant business.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "DoorDash",
+      "type": "public",
+      "context": "Powers Sweetgreen's white-label native delivery; described as a great partner for customer acquisition but one that charges fees, withholds customer data, and requires paid placement for feed visibility.",
+      "sentiment": "neutral",
+      "sector": "Food Delivery"
+    },
+    {
+      "name": "Zipline",
+      "type": "startup",
+      "context": "Sweetgreen announced as an early pilot partner for Zipline drone delivery; described as compelling for suburban delivery with backyards and open space.",
+      "sentiment": "bullish",
+      "sector": "Drone Delivery"
+    },
+    {
+      "name": "Coinbase",
+      "type": "public",
+      "context": "Launched a new token sales platform; Monad is the first token launched on it, enabling broad retail distribution as a core rationale.",
+      "sentiment": "bullish",
+      "sector": "Blockchain/Crypto"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Referenced for a $700M actuator order suggesting near-term Optimus humanoid production; Tesla diner in context of robots serving popcorn while humans cook in the back.",
+      "sentiment": "neutral",
+      "sector": "EV/Robotics"
+    },
+    {
+      "name": "xAI",
+      "type": "startup",
+      "context": "Grok 4 and Grok 4 Thinking were previously the highest-scoring models on the ARC AGI V2 chart before Gemini 3 surpassed them.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Robinhood",
+      "type": "public",
+      "context": "Launched short selling on mobile and web, described as a classic feature the platform previously lacked.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Launched Generated Assets, an agentic brokerage allowing users to create AI-generated custom portfolios with tax-loss harvesting at the individual stock level.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "SpaceX",
+      "type": "startup",
+      "context": "Referenced as a model for staying private during risky rocket development to avoid retail investor panic from launch failures.",
+      "sentiment": "bullish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Joby Aviation",
+      "type": "public",
+      "context": "Ashley Vance recalled attending some of the first test flights; eVTOL category cited as having taken far longer than expected to reach commercial roads.",
+      "sentiment": "neutral",
+      "sector": "Aviation/eVTOL"
+    },
+    {
+      "name": "D-Wave",
+      "type": "public",
+      "context": "Ashley Vance wrote his first story on D-Wave ~15 years ago when they promised near-term general-purpose quantum computing; now worth billions but he remains deeply skeptical of delivery.",
+      "sentiment": "bearish",
+      "sector": "Quantum Computing"
+    },
+    {
+      "name": "Skydio",
+      "type": "startup",
+      "context": "Mentioned as a US alternative to DJI in the context of potential Chinese drone regulations.",
+      "sentiment": "neutral",
+      "sector": "Drones"
+    },
+    {
+      "name": "Rocket Lab",
+      "type": "public",
+      "context": "Mentioned as a company where retail investors made money based on Ashley Vance's early coverage.",
+      "sentiment": "bullish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Planet Labs",
+      "type": "public",
+      "context": "Mentioned alongside Rocket Lab as a company where early readers of Ashley Vance's work made gains.",
+      "sentiment": "bullish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Starship Technologies",
+      "type": "startup",
+      "context": "Sidewalk delivery robot company mentioned alongside Coco as examples of street robots that have been expanding in the past year, though hosts found them slightly unsettling.",
+      "sentiment": "neutral",
+      "sector": "Delivery Robotics"
+    },
+    {
+      "name": "Coco",
+      "type": "startup",
+      "context": "Sidewalk delivery robot startup mentioned alongside Starship Technologies as part of the expanding ground-level autonomous delivery market.",
+      "sentiment": "neutral",
+      "sector": "Delivery Robotics"
+    },
+    {
+      "name": "1X",
+      "type": "startup",
+      "context": "Ashley Vance referenced 1X demos when evaluating whether teleoperation humanoids are ready for home use; noted they still fall over quickly.",
+      "sentiment": "neutral",
+      "sector": "Robotics"
+    },
+    {
+      "name": "AST SpaceMobile",
+      "type": "public",
+      "context": "Mentioned as a stock with a cult retail investor following that harasses Ashley Vance to visit their Midland, Texas facility.",
+      "sentiment": "neutral",
+      "sector": "Aerospace/Telecom"
+    },
+    {
+      "name": "Blue Origin",
+      "type": "private",
+      "context": "Mentioned alongside SpaceX as a private rocket company that benefits from avoiding retail investor panic during launch failures.",
+      "sentiment": "neutral",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Listed as a company in the $300\u2013400B market cap range to contextualize Anthropic's $350B valuation.",
+      "sentiment": "neutral",
+      "sector": "AI/Defense Tech"
+    },
+    {
+      "name": "ASML",
+      "type": "public",
+      "context": "Listed as a company in the $300\u2013400B market cap range to contextualize Anthropic's $350B valuation.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Instacart",
+      "type": "public",
+      "context": "Fiji Simo's previous role as CEO before joining OpenAI as CEO of Applications.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Delivery"
+    },
+    {
+      "name": "Gin Lane",
+      "type": "private",
+      "context": "Emmett Shine's design agency built Sweetgreen's early mobile app, described as the most beautiful software a restaurant had ever had.",
+      "sentiment": "bullish",
+      "sector": "Design/Agency"
+    },
+    {
+      "name": "Chipotle",
+      "type": "public",
+      "context": "Compared to Sweetgreen as a direct competitor that has gotten ~40% more expensive since 2019 and is targeting 7,500 locations; hosts noted quality degradation over a decade.",
+      "sentiment": "bearish",
+      "sector": "Food/Restaurant"
+    },
+    {
+      "name": "Jump Trading",
+      "type": "private",
+      "context": "Keone Hon spent 8 years there leading a trading team focused on futures markets and short-horizon price prediction before founding Monad.",
+      "sentiment": "neutral",
+      "sector": "Finance/Trading"
+    },
+    {
+      "name": "Legendary Entertainment",
+      "type": "private",
+      "context": "Thomas Tull's production company (Batman, Dune, Inception); Tull is a co-investor through TWG Global in Lambda's $1.5B raise.",
+      "sentiment": "neutral",
+      "sector": "Entertainment"
+    },
+    {
+      "name": "Starbucks",
+      "type": "public",
+      "context": "Referenced as an example of highly data-driven real estate selection for restaurant chains, with teams optimizing placement down to sunny vs. shady side of the street.",
+      "sentiment": "neutral",
+      "sector": "Food/Restaurant"
+    },
+    {
+      "name": "McDonald's",
+      "type": "public",
+      "context": "Discussed as a real estate company first; average value meal now ~$12, compared to Sweetgreen's $15\u201316 bowl, narrowing the historical price gap between fast food and fast casual.",
+      "sentiment": "neutral",
+      "sector": "Food/Restaurant"
+    },
+    {
+      "name": "Chick-fil-A",
+      "type": "private",
+      "context": "Cited as a great restaurant chain built on culture and people rather than just franchise scale.",
+      "sentiment": "bullish",
+      "sector": "Food/Restaurant"
+    },
+    {
+      "name": "In-N-Out",
+      "type": "private",
+      "context": "Cited as an example of a strong regional brand that took a long time to expand nationally; still primarily a West Coast presence.",
+      "sentiment": "neutral",
+      "sector": "Food/Restaurant"
+    },
+    {
+      "name": "Raising Cane's",
+      "type": "private",
+      "context": "Cited alongside Chick-fil-A and In-N-Out as examples of great restaurant chains built on culture.",
+      "sentiment": "bullish",
+      "sector": "Food/Restaurant"
+    },
+    {
+      "name": "Los Alamos National Laboratory",
+      "type": "gov",
+      "context": "Collaborated with Valar Atomics on Project Nova criticality test, providing the Critical Assembly Facility, safety envelope, and experimental expertise.",
+      "sentiment": "neutral",
+      "sector": "Nuclear/Government"
+    },
+    {
+      "name": "Idaho National Laboratory",
+      "type": "gov",
+      "context": "Radiant submitted a DOE authorization request to test its microreactor at INL's DOME facility.",
+      "sentiment": "neutral",
+      "sector": "Nuclear/Government"
+    },
+    {
+      "name": "DARPA",
+      "type": "gov",
+      "context": "Mentioned for the original Grand Challenge that kicked off modern autonomous vehicle research; cars barely moved in the first event.",
+      "sentiment": "neutral",
+      "sector": "Government/Defense"
+    },
+    {
+      "name": "SemiAnalysis",
+      "type": "private",
+      "context": "Research firm that posted a humorous 'enemies to lovers' take on the Anthropic-Microsoft-Nvidia deal; Doug O'Loughlin referenced returning from vacation to find Oracle CDS spread discussion.",
+      "sentiment": "neutral",
+      "sector": "Research/Media"
+    },
+    {
+      "name": "Zapier",
+      "type": "private",
+      "context": "Mike Knoop referenced Zapier sales conversations as evidence that AI adoption into production workflows is still in early innings.",
+      "sentiment": "neutral",
+      "sector": "Automation/SaaS"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor; corporate card, bill payment, and accounting platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Sponsor; multi-streaming platform enabling one live stream to 30+ destinations.",
+      "sentiment": "neutral",
+      "sector": "Media/Streaming"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising platform combining technology, data, and expertise.",
+      "sentiment": "neutral",
+      "sector": "AdTech"
+    },
+    {
+      "name": "Bezell",
+      "type": "startup",
+      "context": "Sponsor; luxury watch marketplace with 26,000+ authenticated watches.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Luxury"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor; premium short-term rental company with concierge service and high-end amenities.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Sponsor; smart mattress/sleep technology company.",
+      "sentiment": "neutral",
+      "sector": "Consumer Health Tech"
+    },
+    {
+      "name": "Fal.ai",
+      "type": "startup",
+      "context": "Sponsor; platform to build and deploy AI video and image models at scale.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Sponsor; purpose-built software development planning and project management tool.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Sponsor; AI-native CRM for building and growing companies.",
+      "sentiment": "neutral",
+      "sector": "CRM/SaaS"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Sponsor; platform to get brand mentions in ChatGPT and reach consumers discovering products via AI search.",
+      "sentiment": "neutral",
+      "sector": "AI Marketing"
+    },
+    {
+      "name": "TurboPuffer",
+      "type": "startup",
+      "context": "Sponsor; serverless vector and full-text search built on object storage, described as 10x cheaper than alternatives.",
+      "sentiment": "neutral",
+      "sector": "Developer Infrastructure"
+    },
+    {
+      "name": "Graphite",
+      "type": "startup",
+      "context": "Sponsor; code review platform for AI-assisted development on GitHub.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Fin.ai",
+      "type": "startup",
+      "context": "Sponsor; described as the number one AI agent for customer service.",
+      "sentiment": "neutral",
+      "sector": "AI/Customer Service"
+    },
+    {
+      "name": "Julius.ai",
+      "type": "startup",
+      "context": "Sponsor; AI data analyst tool for connecting data sources and getting insights.",
+      "sentiment": "neutral",
+      "sector": "AI/Analytics"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sponsor; sales tax and VAT compliance automation.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Compliance"
+    },
+    {
+      "name": "Privy",
+      "type": "startup",
+      "context": "Sponsor; API for building on crypto rails with white-label wallets and on-chain infrastructure.",
+      "sentiment": "neutral",
+      "sector": "Blockchain/Crypto"
+    },
+    {
+      "name": "Figma",
+      "type": "startup",
+      "context": "Sponsor; design and development collaboration platform.",
+      "sentiment": "neutral",
+      "sector": "Design/Developer Tools"
+    },
+    {
+      "name": "Postwrite.ai",
+      "type": "startup",
+      "context": "Kevin Norton Jr's startup for posting across social platforms simultaneously; he left Google after a viral tweet pledging to quit got 10,000 likes.",
+      "sentiment": "neutral",
+      "sector": "Social Media/AI"
+    },
+    {
+      "name": "Uber Eats",
+      "type": "public",
+      "context": "Mentioned alongside DoorDash as a major third-party delivery marketplace that Sweetgreen partners with.",
+      "sentiment": "neutral",
+      "sector": "Food Delivery"
+    }
+  ],
+  "people": [
+    {
+      "name": "Mike Knoop",
+      "role": "Co-founder, ARC Prize",
+      "context": "Discussed Gemini 3's ~2x improvement on ARC AGI V2, the surprising finding that it still makes obvious mistakes on V1, and ARC V3 development targeting Q1 2026 with interactive game-based puzzles."
+    },
+    {
+      "name": "Jonathan Neiman",
+      "role": "Co-founder and CEO, Sweetgreen",
+      "context": "Discussed the 18-year journey from a 500 sq ft DC dorm-room concept to ~300 stores, including the Infinite Kitchen sale to Wonder, seed oil removal, and the first automated drive-through."
+    },
+    {
+      "name": "Ashley Vance",
+      "role": "Journalist / Founder, Core Memory",
+      "context": "Discussed humanoid robotics (China vs US actuator supply chain fears), hard tech companies Helion and New Limit, data centers in West Texas, historical eVTOL timelines, and deep quantum computing skepticism."
+    },
+    {
+      "name": "Jeremy Epling",
+      "role": "Chief Product Officer, Vanta",
+      "context": "Announced AI Agent 2.0 as a built-in GRC engineer with memory and context, a visual risk graph linking internal and vendor risks, and the VantIcon conference."
+    },
+    {
+      "name": "Keone Hon",
+      "role": "Co-founder, Monad",
+      "context": "Announced Monad's token sale via Coinbase raising $187M total (~$120M completed); discussed blockchain's 10,000 TPS architecture and prior HFT career at Jump Trading."
+    },
+    {
+      "name": "Stephen Balaban",
+      "role": "Founder/CEO, Lambda",
+      "context": "Announced a $1.5B all-equity raise and outlined a Tesla-for-AI-factories vertical integration strategy covering energy procurement, data center construction, and liquid cooling."
+    },
+    {
+      "name": "Sundar Pichai",
+      "role": "CEO, Google",
+      "context": "Referenced as having been mocked post-ChatGPT for repeatedly saying 'AI' at Google I/O; Gemini 3's benchmark dominance seen as full vindication of his AI-first strategy."
+    },
+    {
+      "name": "Fidji Simo",
+      "role": "CEO of Applications, OpenAI",
+      "context": "Profiled in Wired as the executive responsible for all OpenAI monetization; works remotely from LA due to a POTS relapse and is active on Slack from 8am to midnight responding within five minutes."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Referenced for $1 trillion spending commitments that, per Gavin Baker, shifted the AI investing landscape and prevented a 1999-style market melt-up while making an IPO harder."
+    },
+    {
+      "name": "Andrej Karpathy",
+      "role": "AI researcher",
+      "context": "Posted early-access impressions of Gemini 3 praising its personality, writing, humor, and vibe coding, calling it 'clearly a tier 1 LLM' while urging caution on public benchmarks due to potential test-set overfitting."
+    },
+    {
+      "name": "Patrick Collison",
+      "role": "CEO, Stripe",
+      "context": "Shared a Gemini 3 demo generating an interactive web page summarizing genetic breakthroughs as a shareable URL, highlighted as a compelling generative UI growth loop."
+    },
+    {
+      "name": "Matt Schumer",
+      "role": "AI commentator",
+      "context": "Claimed the Gemini 3 capability jump is the largest since GPT-4 in March 2023, declaring 'we are entering a new era.'"
+    },
+    {
+      "name": "Isaiah Taylor",
+      "role": "Founder, Valar Atomics",
+      "context": "Announced Project Nova achieved first nuclear criticality in collaboration with Los Alamos National Laboratory, claiming to be the first startup in history to split the atom."
+    },
+    {
+      "name": "Brett Adcock",
+      "role": "CEO, Figure",
+      "context": "Mentioned for a public social media dispute with Chinese robotics company UB Tech; Figure is valued at $39B vs Unitree's $7B."
+    },
+    {
+      "name": "Jacob Kimmel",
+      "role": "CEO, New Limit",
+      "context": "Runs the Brian Armstrong-backed longevity startup; Ashley Vance described it as doing incredible science with very few people and expected surprises early in 2026."
+    },
+    {
+      "name": "Brian Armstrong",
+      "role": "CEO, Coinbase",
+      "context": "Backs longevity startup New Limit run by Jacob Kimmel."
+    },
+    {
+      "name": "Mark Lore",
+      "role": "Founder, Wonder",
+      "context": "Purchased Spice Kitchen restaurant automation technology from Sweetgreen for $186M to scale across Wonder's operations."
+    },
+    {
+      "name": "Steve Case",
+      "role": "Founder, Revolution",
+      "context": "Was Sweetgreen's first VC investor, backing the thesis that technology could transform the restaurant business."
+    },
+    {
+      "name": "Emmett Shine",
+      "role": "Co-founder, Gin Lane",
+      "context": "His design agency built Sweetgreen's early mobile app, described by Neiman as the most beautiful software a restaurant had ever had."
+    },
+    {
+      "name": "Thomas Tull",
+      "role": "Founder, Legendary Entertainment / Co-investor, TWG Global",
+      "context": "Business partner with Mark Walter in TWG Global, which led Lambda's $1.5B all-equity round."
+    },
+    {
+      "name": "Mark Walter",
+      "role": "Owner, LA Dodgers and Lakers / Co-investor, TWG Global",
+      "context": "Co-invested with Thomas Tull in Lambda's $1.5B round through TWG Global."
+    },
+    {
+      "name": "Gavin Baker",
+      "role": "Investor",
+      "context": "Posted that Sam Altman's $1 trillion spending commitments shifted AI investing, prevented a 1999-style melt-up, and paradoxically made an OpenAI IPO harder by forcing fundamental scrutiny."
+    },
+    {
+      "name": "Vinod Khosla",
+      "role": "Founder, Khosla Ventures",
+      "context": "Suggested the US government could take a 10% stake in all public companies to soften the economic blow of AGI."
+    },
+    {
+      "name": "Emil Michael",
+      "role": "Undersecretary of War, US DoD",
+      "context": "Mentioned as firmly in the role overseeing critical technology areas including applied AI, quantum, biotech, scaled directed energy, and hypersonics."
+    },
+    {
+      "name": "Francois Chollet",
+      "role": "Creator, ARC AGI",
+      "context": "Referenced by Mike Knoop for predicting that when humans can no longer generate tasks easy for humans but hard for frontier AI, that signals AGI; V3 game generation is still firmly in that regime."
+    },
+    {
+      "name": "Dario Amodei",
+      "role": "CEO, Anthropic",
+      "context": "Named in SemiAnalysis's satirical post about the Microsoft-Nvidia-Anthropic deal as having decided to 'open the relationship' after intense internal discussion."
+    },
+    {
+      "name": "Casey Hamer",
+      "role": "Hard tech entrepreneur",
+      "context": "Cited by Ashley Vance as the most under-hyped hard tech person to watch; described as extremely smart with a massive vision that Vance wants to see succeed."
+    },
+    {
+      "name": "Anthony Levandowski",
+      "role": "Self-driving car pioneer",
+      "context": "Recalled as a ~22-year-old at the first DARPA Grand Challenge competing with a motorcycle, one of the early signals that autonomous vehicles were possible."
+    },
+    {
+      "name": "George Hotz",
+      "role": "Hacker/Entrepreneur",
+      "context": "Built his own self-driving car in a garage in about a month and drove it on the freeway, an early proof point for consumer autonomous vehicles."
+    },
+    {
+      "name": "Karen Howe",
+      "role": "Author, Empire of AI",
+      "context": "Acknowledged a ~1000x data error in her book about OpenAI's water footprint in Chile, caused by wrong units in a government source document."
+    },
+    {
+      "name": "Sergei Brin",
+      "role": "Co-founder, Google",
+      "context": "Was piloting his $150M airship around San Francisco on Gemini 3 launch day; hosts debated the blimp vs. airship distinction and called for a Gemini-branded livery."
+    },
+    {
+      "name": "John Carmack",
+      "role": "Programmer/AI researcher",
+      "context": "Mentioned alongside Elon Musk and Stargate as part of the thesis that superintelligence will emerge from remote Texas data centers."
+    },
+    {
+      "name": "Jeremy Berman",
+      "role": "ARC Prize 2025 contestant",
+      "context": "One of two public leaderboard contestants who explained their refinement loop approach, a key 2025 technique significantly boosting ARC scores over test-time fine-tuning."
+    },
+    {
+      "name": "Eric Pang",
+      "role": "ARC Prize 2025 contestant",
+      "context": "Co-presented with Jeremy Berman on refinement loop approaches that significantly boosted ARC 2025 public leaderboard scores."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Gemini 3 Pro Launch",
+      "summary": "Google launched Gemini 3 Pro with state-of-the-art reasoning, vibe coding, and multimodal understanding, scoring 31% on ARC AGI V2 and outperforming GPT-5.1 and Claude Sonnet 4.5 on multiple benchmarks including Humanity's Last Exam at 37.5%. Also launched Anti-Gravity IDE and generative shareable UI features.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "ARC AGI V2 Benchmarking and Gemini 3",
+      "summary": "Gemini 3 Pro scored 31% on ARC AGI V2 and Deep Think Preview scored 45% at $77/task, roughly 2x the previous SOTA. Mike Knoop discussed the surprising finding that the model still makes obvious mistakes on V1 despite excelling at the harder V2, pointing to jagged intelligence and incomplete search-space exploration.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "ARC AGI V3 Development",
+      "summary": "ARC Prize is building V3 with interactive games requiring goal acquisition, exploration, and action efficiency measurement, targeting a Q1 2026 release alongside Arc Prize 2026. Mike Knoop noted V3 games are again clearly easy for humans but hard for frontier AI, maintaining the benchmark's signal quality.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Anthropic $350B Valuation and Big Tech Investment",
+      "summary": "Anthropic closed a round at $350B valuation with $5B from Microsoft and $10B from Nvidia, committing to $30B in Azure compute spend. Timed on Gemini 3 day, framed by SemiAnalysis humorously as an 'enemies to lovers arc' between Dario Amodei and Jensen Huang.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Model Race: Acceleration or Deceleration",
+      "summary": "Hosts debated whether capability progress is accelerating or decelerating; Gemini 3 is clearly better incrementally but lacks a clear binary 'before/after' moment like ChatGPT or early coding agents. Matt Schumer's claim of a GPT-4-magnitude jump was discussed alongside Karpathy's cautious benchmark skepticism.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Google Anti-Gravity IDE",
+      "summary": "Google launched Anti-Gravity, an agent-first IDE built from scratch with browser use, async agent patterns, and visual commenting on generated UI. Represents Google's first product designed for AI-first development rather than retrofitting AI into existing tools; acquisition of Windsurf talent noted as a catalyst.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Humanoid Robotics: US vs China",
+      "summary": "Ashley Vance raised concerns about US dependence on Chinese actuators; nearly all humanoid robot motors come from China. Figure at $39B vs Unitree at $7B raises questions about valuation rationality. Robot fights are entertaining but motors overheat rapidly; dexterity and software remain key gaps.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Restaurant Automation and Sweetgreen's Strategy",
+      "summary": "Sweetgreen's Infinite Kitchen produces 500 bowls/hour and is in 30 stores; Sweetgreen sold the underlying Spice Kitchen tech to Wonder for $186M while retaining access. First automated drive-through opened the same day. Seed oil removal and protein-forward menus cited as durable health trends.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Nuclear Energy Startup Progress",
+      "summary": "Valar Atomics claimed first startup criticality test via Project Nova with Los Alamos; Radiant submitted DOE authorization for INL testing. Community debate over Valar's exact contribution. Hosts framed the nuclear buildout as an engineering not a science problem, similar to SpaceX's approach to rockets.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Infrastructure and Lambda's $1.5B Raise",
+      "summary": "Lambda raised $1.5B in all-equity, exited $200M+ hardware and inference businesses to focus on vertically integrated AI data centers including behind-the-meter power generation. Stephen Balaban compared the buildout to electrification of the US and emphasized the importance of avoiding debt leverage.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "OpenAI Business Model and Fiji Simo",
+      "summary": "Fiji Simo's Wired profile revealed she works from LA due to POTS, is hyper-responsive on Slack 8am\u2013midnight, and envisions ChatGPT monetizing as a personal shopper, travel agent, financial advisor, and health coach. OpenAI is deeply unprofitable, and the path to profitability remains vague.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Oracle and OpenAI Deal Scrutiny",
+      "summary": "Financial Times claimed Oracle is underwater on its $300B OpenAI deal as its stock returned to pre-announcement levels; hosts debated whether this framing was misleading. Oracle noted as having become OpenAI's de facto US public market proxy.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Monad Blockchain Token Launch",
+      "summary": "Monad launched its token sale on Coinbase's new platform targeting $187M total, with broad retail distribution as a key goal. The EVM-compatible chain delivers 10,000 TPS via parallel execution, aiming to be the performance layer for high-fidelity on-chain finance.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Saudi Arabia $1 Trillion Investment Commitment",
+      "summary": "Saudi officials announced increasing US investment commitments from $600B to nearly $1 trillion across technology, AI, rare earth materials, and magnets during what appeared to be a meeting with President Trump.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Adoption and Diffusion",
+      "summary": "Mike Knoop noted only ~1 in 5 users have tried AI reasoning systems and that the reasoning paradigm is only ~12 months old. Deep Seek credited with democratizing access. Still very early innings for integrating AI breakthroughs into production workflows.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Quantum Computing Skepticism",
+      "summary": "Ashley Vance expressed deep skepticism rooted in 15+ years of coverage, noting even PhDs disagree on whether current systems work. D-Wave is now worth billions despite not delivering on near-term general-purpose promises from 15 years ago.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Generative UI as Growth Loop",
+      "summary": "Patrick Collison's Gemini 3 demo generating a shareable interactive URL was highlighted as the beginning of generative UI as a viral growth mechanism. Hosts noted OpenAI's Canvas product lacks similar shareability.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Reasoning Systems and Mass Automation",
+      "summary": "Mike Knoop argued AI reasoning systems can already enable mass automation of any problem with verifiable feedback signals; any problem castable as generate-and-verify can be automated. Mass innovation requiring novel ideas remains the open challenge closer to AGI-complete.",
+      "sentiment": "bullish"
+    }
+  ],
+  "key_claims": [
+    "Gemini 3 Pro achieves 31% on ARC AGI V2 and Gemini 3 Deep Think Preview achieves 45% at $77/task, roughly 2x the previous state of the art",
+    "Gemini 3 Pro solved a V2 task in 188 seconds vs a human panel average of 147 seconds, approaching human-level speed on ARC AGI",
+    "Gemini 3 Pro outperformed GPT-5.1, Claude Sonnet 4.5, and Grok 4 Thinking on ARC AGI V2 and Humanity's Last Exam (37.5%)",
+    "Matt Schumer: 'The last time we saw a capability jump of this magnitude was the release of GPT-4 in March 2023 \u2014 we are entering a new era'",
+    "Andrej Karpathy called Gemini 3 'clearly a tier 1 LLM' but urged caution on public benchmarks due to possible test-set overfitting",
+    "Mike Knoop: Only two major AI breakthroughs in the last 10 years \u2014 the Transformer (2017) and chain of thought reasoning (2022)",
+    "Mike Knoop: Only about 1 in 5 users have ever used an AI reasoning system",
+    "Mike Knoop predicts ARC AGI V2 will score ~25% on the private leaderboard and ~50% on the public leaderboard by end of 2025",
+    "Anthropic raised at a $350B valuation with $5B from Microsoft and $10B from Nvidia; committed to $30B in Microsoft Azure compute spending",
+    "OpenAI previously committed $250B in Microsoft Azure compute spending as part of its deal",
+    "Lambda raised $1.5B in all-equity and previously exited a $200M+ annual hardware business to focus on vertically integrated infrastructure",
+    "Tesla placed a ~$700M actuator order, suggesting near-term Optimus humanoid production",
+    "Sweetgreen sold Spice Kitchen automation tech to Wonder for $186M while retaining full technology access",
+    "Sweetgreen's Infinite Kitchen produces 500 bowls per hour and is operating in 30 restaurants",
+    "Average Sweetgreen bowl costs $15\u201316 vs ~$12 for a McDonald's value meal, narrowing the historical fast-casual premium",
+    "Sweetgreen and Chipotle are ~25\u201330% and ~40% more expensive respectively since 2019",
+    "Valar Atomics claims to be the first startup in history to split the atom via Project Nova criticality test with Los Alamos",
+    "Saudi Arabia announced increasing its US investment commitment from $600B to nearly $1 trillion",
+    "Karen Howe's Empire of AI contained a water usage data error off by a factor of ~1000 due to wrong units in a government source document",
+    "Gemini 3 Pro made more money in the Vending Bench simulation than GPT-5.1, Claude Sonnet 4.5, and Gemini 2.5 Pro combined",
+    "Gavin Baker: Sam Altman's $1 trillion spending commitments prevented a 1999-style AI market melt-up but made an OpenAI IPO harder",
+    "Monad blockchain achieves 10,000 TPS vs Ethereum's ~10 TPS, a 1,000x improvement",
+    "ARC Prize V3 targets Q1 2026 release with interactive games; Mike Knoop's median estimate for V2 benchmark lifespan is ~24 months",
+    "AI reasoning systems can already automate any problem that can be cast as generate-and-verify \u2014 mass automation without new science, per Mike Knoop"
+  ],
+  "technologies": [
+    "Gemini 3 Pro",
+    "ARC AGI V2",
+    "ARC AGI V3",
+    "Large Language Models",
+    "AI Reasoning Systems",
+    "Chain of Thought Reasoning",
+    "Transformer Architecture",
+    "Test-Time Fine-Tuning",
+    "Reinforcement Learning from Human Feedback",
+    "LoRA",
+    "Refinement Loops",
+    "Parallel Execution (blockchain)",
+    "EVM (Ethereum Virtual Machine)",
+    "Tensor Processing Units (TPUs)",
+    "Generative UI",
+    "Multimodal AI",
+    "Computer Use / Browser Use",
+    "Vibe Coding",
+    "Model Context Protocol (MCP)",
+    "Infinite Kitchen Restaurant Automation",
+    "Drone Delivery",
+    "Humanoid Robotics",
+    "Actuators",
+    "TRISO Nuclear Fuel",
+    "Microreactor (nuclear fission)",
+    "Natural Gas Turbines",
+    "Liquid Cooling (data centers)",
+    "Behind-the-Meter Power Generation",
+    "Stablecoins",
+    "Autonomous Vehicles",
+    "eVTOL",
+    "Quantum Computing",
+    "Gene Editing",
+    "World Models / World Simulators",
+    "Symbolic AI / Program Synthesis",
+    "Vector Search",
+    "AI Agents",
+    "Deep Learning"
+  ],
+  "_stats": {
+    "word_count": 36279,
+    "estimated_input_tokens": 48251,
+    "input_tokens": 3,
+    "output_tokens": 25019,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 52078,
+    "duration_ms": 430673,
+    "wall_time_s": 431.9,
+    "cost_usd": 0.955586,
+    "tokens_per_sec": 57.9
+  }
+}

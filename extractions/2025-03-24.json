@@ -1,0 +1,829 @@
+{
+  "episode_date": "2025-03-24",
+  "episode_title": "saratoga-viral-vercel-replit-cloudflare-23andme-vibe-coding",
+  "companies": [
+    {
+      "name": "Saratoga Water",
+      "type": "private",
+      "context": "Blue bottled water brand that went massively viral after fitness influencer Ashton Hall prominently featured it in a ~1 billion-view morning routine video. Not a sponsor; parent company stock briefly surged ~10% pre-market. Criticized for having a dormant social media presence and missing the PR moment.",
+      "sentiment": "bullish",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "Vercel",
+      "type": "startup",
+      "context": "Web deployment and infrastructure platform, creator of Next.js. Discussed extensively including CVE-2025-29927 middleware auth bypass vulnerability, drama with Cloudflare and Replit, v0 coding agent driving doubled YoY signups, AI SDK at 1M weekly downloads, and $3.25B valuation with 100M+ ARR. CEO Guillermo Rauch appeared as a guest.",
+      "sentiment": "bullish",
+      "sector": "Developer Infrastructure/AI"
+    },
+    {
+      "name": "Replit",
+      "type": "startup",
+      "context": "Browser-based coding environment and AI-powered app builder. CEO Amjad Masad appeared as a guest discussing their V2 agent, vibe coding guardrails, cutting the team in half to ~65 people, above-100% net dollar retention, and a $1.16B valuation. Criticized Next.js as too tied to Vercel and stated preference for open frameworks.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/AI"
+    },
+    {
+      "name": "Cloudflare",
+      "type": "public",
+      "context": "CDN and security company whose CEO Matthew Prince aggressively attacked Vercel after the Next.js CVE, releasing a migration tool to capitalize on the incident. Guillermo counter-attacked citing the 2017 Cloudbleed incident. Public company valued at ~$42B, targeting $5B in annual revenue. Has its own compute, storage (R2), and serverless (Workers) products competing with Vercel.",
+      "sentiment": "neutral",
+      "sector": "Developer Infrastructure/Security"
+    },
+    {
+      "name": "23andMe",
+      "type": "public",
+      "context": "Consumer genetics company that filed for Chapter 11 bankruptcy. Co-founder Anne Wojcicki resigned as CEO to bid independently. Criticized for using inferior microarray/shotgun sequencing technology, not being HIPAA compliant, and prioritizing pharma data sales over consumer health. Had 15M+ customers at time of filing.",
+      "sentiment": "bearish",
+      "sector": "Healthcare/Genomics"
+    },
+    {
+      "name": "Nucleus Genomics",
+      "type": "startup",
+      "context": "Whole genome sequencing startup positioned as the 23andMe successor. CEO Kian Sadeghi appeared celebrating 23andMe's bankruptcy, highlighting HIPAA compliance, physician-ordered clinical-grade testing, and technological superiority. Indicated they are exploring a bid to acquire 23andMe assets.",
+      "sentiment": "bullish",
+      "sector": "Healthcare/Genomics"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Hosted on Vercel (openai.com); praised for its new interface design blending marketing with product. Discussed as potentially the next Google at $300B+ valuation. ChatGPT now drives 5% of Vercel signups, up from under 1% six months prior, growing 30% month over month.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "AWS",
+      "type": "public",
+      "context": "Amazon cloud infrastructure provider that serves as Vercel's underlying hardware layer. Cited as model for passing cost savings to customers via price decreases over time. Cloudflare competes with its products like CloudFront. Cited for the abstraction-vs-cost tradeoff in cloud infrastructure.",
+      "sentiment": "neutral",
+      "sector": "Cloud Infrastructure"
+    },
+    {
+      "name": "Netlify",
+      "type": "startup",
+      "context": "Web deployment platform noted as affected by the Next.js CVE-2025-29927 vulnerability. Its CEO publicly agreed with Amjad Masad's criticism that Next.js is too optimized for Vercel and not truly platform-agnostic.",
+      "sentiment": "neutral",
+      "sector": "Developer Infrastructure"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Corporate card and spend management platform; show sponsor. Mentioned as a Vercel customer that depends on SEO and AI-agent discoverability. Host praised Ramp Travel as a 'magical product' for business travel booking.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Smart mattress company; show sponsor. Mentioned humorously in the context of early morning wake-up routines inspired by Ashton Hall's viral video.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech/Health"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Authenticated luxury watch marketplace; show sponsor. A host mentioned purchasing a Vacheron Constantin through Bezel and humorously suggested watch shopping as a way to resolve the Vercel/Cloudflare beef.",
+      "sentiment": "bullish",
+      "sector": "Marketplace/Luxury"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Vacation rental platform; show sponsor and also a Vercel customer. Described as offering hotel-grade amenities in vacation homes with 24/7 concierge service.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Out-of-home advertising platform; show sponsor. Humorously suggested as the tool Saratoga Water should use to capitalize on their viral moment with billboard campaigns.",
+      "sentiment": "neutral",
+      "sector": "Ad Tech"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Multi-asset investing platform; show sponsor. Mentioned in context of trading tariff-related market news.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Mountain Valley Water",
+      "type": "private",
+      "context": "Bottled water brand mentioned in comparison to Saratoga Water; noted as having catastrophically poor unit economics, with one SKU generating $10M in revenue but only $100K in margin (~1%).",
+      "sentiment": "bearish",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Amjad Masad worked on the React and React Native teams there. Credited with React as one of their greatest inventions. Their non-monetized open source approach to React contrasted with Vercel's tighter coupling of Next.js to its commercial platform.",
+      "sentiment": "neutral",
+      "sector": "Social Media/AI"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Creator of Angular framework; early investor in Vercel (GV Series B) and Replit cloud partner. Discussed as being 'unbundled' as users shift queries to specialist AI products like Perplexity, OpenAI, and Grok instead of Google Search.",
+      "sentiment": "neutral",
+      "sector": "Technology"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Cited by Guillermo Rauch as holding developers hostage through arbitrary App Store rules. He positioned Vercel's permissionless web deployments as a direct counter to the Apple ecosystem and its gating of crypto/AI apps.",
+      "sentiment": "bearish",
+      "sector": "Technology"
+    },
+    {
+      "name": "Perplexity",
+      "type": "startup",
+      "context": "AI answer engine and Vercel customer. Mentioned as an example of the unbundling of Google and as a company building a browser to enable AI agents with full control over iOS apps. Guillermo cited it as where he goes for knowledge queries.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Stripe",
+      "type": "startup",
+      "context": "Mentioned as a notable Vercel enterprise customer that built a viral Black Friday promotional site in just 19 days using Vercel's platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Airbnb",
+      "type": "public",
+      "context": "Mentioned briefly as a notable Vercel enterprise customer.",
+      "sentiment": "neutral",
+      "sector": "Travel/Marketplace"
+    },
+    {
+      "name": "GitHub",
+      "type": "private",
+      "context": "Used as the standard CVE filing mechanism to notify all Next.js users globally about the security vulnerability. Also mentioned as a Vercel enterprise customer.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Uber",
+      "type": "public",
+      "context": "Mentioned as a Vercel enterprise customer and also as a company whose OAuth tokens were exposed and indexed by Google during the Cloudbleed incident.",
+      "sentiment": "neutral",
+      "sector": "Transportation/Technology"
+    },
+    {
+      "name": "Nike",
+      "type": "public",
+      "context": "Mentioned briefly as a notable Vercel enterprise customer.",
+      "sentiment": "neutral",
+      "sector": "Retail/Consumer"
+    },
+    {
+      "name": "Washington Post",
+      "type": "private",
+      "context": "Mentioned briefly as a notable Vercel enterprise customer.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Under Armour",
+      "type": "public",
+      "context": "Mentioned briefly as a notable Vercel enterprise customer.",
+      "sentiment": "neutral",
+      "sector": "Retail/Consumer"
+    },
+    {
+      "name": "Fanatics",
+      "type": "private",
+      "context": "Mentioned briefly as a notable Vercel enterprise customer.",
+      "sentiment": "neutral",
+      "sector": "Retail/E-commerce"
+    },
+    {
+      "name": "HashiCorp",
+      "type": "public",
+      "context": "Mentioned briefly as a notable Vercel enterprise customer.",
+      "sentiment": "neutral",
+      "sector": "Developer Infrastructure"
+    },
+    {
+      "name": "Chick-fil-A",
+      "type": "private",
+      "context": "Mentioned briefly as a notable Vercel enterprise customer; specifically cited as reducing build times from 25 minutes to 5 seconds.",
+      "sentiment": "neutral",
+      "sector": "Food & Beverage"
+    },
+    {
+      "name": "MidJourney",
+      "type": "startup",
+      "context": "AI image generation company that self-hosts Next.js; cited by Guillermo as an inspiration for infusing taste into AI models and as an example of quality embedded in generative AI products.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "GSK",
+      "type": "public",
+      "context": "Pharma company that partnered with 23andMe to use genetic data for drug discovery; the partnership ultimately failed because microarray data was insufficient for identifying novel rare genetic markers needed for drug development.",
+      "sentiment": "neutral",
+      "sector": "Pharmaceuticals"
+    },
+    {
+      "name": "UBiome",
+      "type": "startup",
+      "context": "Lab testing startup that filed for bankruptcy in 2019; cited as a precedent case where a court-appointed consumer privacy ombudsman ultimately approved the sale of personal health data to third-party buyers.",
+      "sentiment": "bearish",
+      "sector": "Healthcare/Genomics"
+    },
+    {
+      "name": "Heroku",
+      "type": "private",
+      "context": "Earlier web deployment platform that Vercel effectively displaced; noted that historically every Y Combinator company deployed on Heroku before Vercel became the default choice.",
+      "sentiment": "bearish",
+      "sector": "Developer Infrastructure"
+    },
+    {
+      "name": "Clerk",
+      "type": "startup",
+      "context": "Authentication partner for Next.js; cited as one of the auth companies that should have been notified before the CVE-2025-29927 was publicly disclosed so they could assess impact.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/Security"
+    },
+    {
+      "name": "StackAuth",
+      "type": "startup",
+      "context": "Authentication partner for Next.js; mentioned as a company that should have been notified before the CVE public disclosure.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/Security"
+    },
+    {
+      "name": "BetterAuth",
+      "type": "startup",
+      "context": "Open source authentication library for Next.js; mentioned as a partner that should have been notified before the CVE public disclosure.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/Security"
+    },
+    {
+      "name": "OpenEvidence",
+      "type": "startup",
+      "context": "AI chatbot for medical queries, described as 'ChatGPT for medicine'; cited by Guillermo as a Vercel customer exemplifying the trend of specialist/expert AI products unbundling Google.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Healthcare"
+    },
+    {
+      "name": "Hebbia",
+      "type": "startup",
+      "context": "AI platform for finance; mentioned as a Vercel customer in the context of expert AI products replacing general-purpose search for professional use cases.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Fintech"
+    },
+    {
+      "name": "xAI",
+      "type": "startup",
+      "context": "Elon Musk's AI company; partnered with Vercel to power the default model on chat.vercel.ai. Grok mentioned as an alternative to Google for deep search queries.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Supabase",
+      "type": "startup",
+      "context": "Open source database and backend platform; mentioned as a Vercel partner enabling full-stack vibe coding while providing rock-solid database infrastructure managed by expert engineers.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Neon",
+      "type": "startup",
+      "context": "Serverless Postgres database provider; mentioned as a Vercel infrastructure partner in the full-stack vibe coding ecosystem.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "UpStash",
+      "type": "startup",
+      "context": "Serverless Redis and Kafka provider; mentioned as a Vercel infrastructure partner in the full-stack development ecosystem.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Tremor",
+      "type": "startup",
+      "context": "React component library for data dashboards; acquired by Vercel in January 2025 as part of their design system and component strategy.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Accel",
+      "type": "fund",
+      "context": "Led Vercel's Series A ($21M in 2020) and later co-led Series E ($250M at $3.25B valuation in May 2024).",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "GV (Google Ventures)",
+      "type": "fund",
+      "context": "Led Vercel's Series B ($40M) as the company scaled its Next.js ecosystem.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "GGV Capital",
+      "type": "fund",
+      "context": "Led Vercel's Series D ($150M at $2.5B valuation) just six months after the Series C in late 2021.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Union Square Ventures",
+      "type": "fund",
+      "context": "Early investor in Cloudflare (Series C, $50M, 2012); Fred Wilson cited in context of vintage VC fund performance data.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Bloomberg Beta",
+      "type": "fund",
+      "context": "Early seed investor in Replit alongside initial bootstrap capital.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Led Replit's seed round ($4.5M) after Replit entered Y Combinator in Winter 2018 batch.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Capital G",
+      "type": "fund",
+      "context": "Led Cloudflare's Series D ($110M) alongside Microsoft and Baidu in 2015 as Cloudflare approached its IPO.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "NEA",
+      "type": "fund",
+      "context": "Led Cloudflare's Series B ($20M) in 2011 as the company scaled to billions of page views.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Blackstone",
+      "type": "fund",
+      "context": "Acquired Ancestry.com for $4.7 billion; cited as a successful consumer genetics/genealogy investment contrasted with 23andMe's struggles.",
+      "sentiment": "neutral",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "Kleiner Perkins",
+      "type": "fund",
+      "context": "Discussed in context of vintage VC fund performance; their 1996 fund produced a 286% IRR on a 17x multiple from a $300M fund, their best-performing vintage according to data shared on the timeline.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Sequoia",
+      "type": "fund",
+      "context": "Mentioned briefly alongside Kleiner Perkins and Mayfield in a discussion of historical vintage VC fund performance data.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Mayfield Fund",
+      "type": "fund",
+      "context": "Mentioned alongside KP and Sequoia in vintage VC fund performance discussion; one of the oldest funds shown with data going back to the 1980s.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Y Combinator",
+      "type": "fund",
+      "context": "Replit entered the Winter 2018 batch; historically all YC companies deployed on Heroku before Vercel became the default. Mentioned in context of founders now defaulting to 'going direct' communications.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital/Accelerator"
+    },
+    {
+      "name": "Rippling",
+      "type": "startup",
+      "context": "HR and finance operations platform; co-founder had a dramatic and widely viral public personal crisis (divorce, alleged police confrontation in Tamil Nadu). Also cited by Amjad Masad as an example of a horizontal SaaS company well-positioned to survive AI disruption due to deep system-of-record integration.",
+      "sentiment": "neutral",
+      "sector": "HR Tech/SaaS"
+    },
+    {
+      "name": "Flock Safety",
+      "type": "startup",
+      "context": "Physical security technology company; an ARR growth chart was shared showing growth from $200K in 2017 to $285M in 2024, cited as an example of impressive private company growth.",
+      "sentiment": "bullish",
+      "sector": "Security Tech"
+    },
+    {
+      "name": "Morning Brew",
+      "type": "private",
+      "context": "Business media newsletter company co-founded by Austin Rief; mentioned as a reference point for building a large media audience. Austin's semi-retirement was discussed as a missed opportunity for someone with his talent.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Sears Home Services",
+      "type": "private",
+      "context": "Replit enterprise customer; a 100+ year old Sears spinoff that used Replit agents to modernize off COBOL and build AI-powered field worker routing tools, skipping an entire era of SaaS adoption.",
+      "sentiment": "bullish",
+      "sector": "Home Services"
+    },
+    {
+      "name": "Ancestry.com",
+      "type": "private",
+      "context": "Genealogy platform acquired by Blackstone for $4.7B; cited as a successful consumer genetics business because it maintained a clear use case (genealogy) with high user touchpoints, contrasted with 23andMe's strategic confusion.",
+      "sentiment": "bullish",
+      "sector": "Consumer Tech/Genomics"
+    },
+    {
+      "name": "Natera",
+      "type": "public",
+      "context": "Clinical genetic testing company cited as a ~$20B market cap proof point that genetics businesses can succeed at scale, countering the 'consumer genetics is dead' narrative.",
+      "sentiment": "bullish",
+      "sector": "Healthcare/Genomics"
+    },
+    {
+      "name": "Illumina",
+      "type": "public",
+      "context": "Genomics sequencing technology company mentioned briefly in the context of whole genome sequencing capabilities that could theoretically have helped 23andMe modernize its technology.",
+      "sentiment": "neutral",
+      "sector": "Healthcare/Genomics"
+    },
+    {
+      "name": "Roblox",
+      "type": "public",
+      "context": "Gaming platform mentioned as a possible aggregator for vibe-coded games; Amjad Masad dismissed this as 'not the big prize' compared to building a general-purpose trillion-dollar creation platform.",
+      "sentiment": "neutral",
+      "sector": "Gaming/Technology"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Design tool cited as still having a place for canvas-based design thinking despite AI coding tools. Guillermo mentioned it as a success story of giving things URLs. Replit was originally described as 'Figma for software development' in its multiplayer coding phase.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/Design"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "AI coding tool mentioned in vibe coding discussion; cited as having low switching costs (users can switch to Windsurf or Copilot in minutes) compared to Replit's deployment-based stickiness.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/AI"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "AI coding tool (by Codeium) mentioned alongside Cursor and GitHub Copilot as examples of VS Code-based tools with low switching costs competing for developer attention.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/AI"
+    },
+    {
+      "name": "Expo",
+      "type": "startup",
+      "context": "React Native tooling framework company; mentioned as an example of building a better developer experience on top of Meta's open source React Native, analogous to how Vercel built on React.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Salesforce",
+      "type": "public",
+      "context": "CRM platform mentioned as a category at risk from AI disruption; founders may choose to build custom AI-generated CRM tools on Replit instead of paying for Salesforce, especially for niche vertical use cases.",
+      "sentiment": "bearish",
+      "sector": "SaaS/CRM"
+    },
+    {
+      "name": "ADP",
+      "type": "public",
+      "context": "HR/payroll platform; mentioned in context of a non-technical Replit user who built a custom org chart tool integrating with ADP instead of buying an off-the-shelf solution.",
+      "sentiment": "neutral",
+      "sector": "HR Tech/SaaS"
+    },
+    {
+      "name": "Datadog",
+      "type": "public",
+      "context": "Application performance monitoring tool; mentioned as a reference point when Replit noted they had to build their own agent tracing/observability tool since no equivalent existed for AI agents yet.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/Observability"
+    },
+    {
+      "name": "Codecademy",
+      "type": "private",
+      "context": "Online coding education platform where Amjad Masad worked before founding Replit; their in-browser coding tutorials were powered by the JS REPL technology Masad developed.",
+      "sentiment": "neutral",
+      "sector": "EdTech"
+    },
+    {
+      "name": "Squarespace",
+      "type": "public",
+      "context": "Website builder cited as an analogy for where Replit is heading\u2014enabling anyone to create a functional app, but with full CRUD functionality rather than just static websites.",
+      "sentiment": "neutral",
+      "sector": "Website Builder/SaaS"
+    },
+    {
+      "name": "Shopify",
+      "type": "public",
+      "context": "Mentioned briefly in context of the Alex Jones deplatforming episode where even a Shopify review widget refused service, illustrating how infrastructure decisions cascade.",
+      "sentiment": "neutral",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "Rostra",
+      "type": "startup",
+      "context": "PR and communications firm founded by Lulu Cheng Meservey, launched approximately one year before this episode. Positioned around the 'going direct' founder communications paradigm.",
+      "sentiment": "bullish",
+      "sector": "PR/Communications"
+    },
+    {
+      "name": "Loyal",
+      "type": "startup",
+      "context": "Dog longevity biotech company whose CEO Celine publicly came out in support of Anne Wojcicki and 23andMe's leadership following the bankruptcy announcement.",
+      "sentiment": "neutral",
+      "sector": "Healthcare/Biotech"
+    },
+    {
+      "name": "Bedrock",
+      "type": "startup",
+      "context": "Research firm that publishes 'narrative violations' charts tracking contrarian investment theses; Kian Sadeghi cited one of their charts to frame Nucleus as the OpenAI-equivalent opportunity in a space where 'consumer genetics is dead' is the dominant but wrong narrative.",
+      "sentiment": "neutral",
+      "sector": "Research/Analytics"
+    },
+    {
+      "name": "Default",
+      "type": "startup",
+      "context": "Company associated with Nico, who posted that the Vercel/Replit/Cloudflare CVE drama is 'like Kendrick vs. Drake for people who know React.'",
+      "sentiment": "neutral",
+      "sector": "Technology"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Invested in Cloudflare alongside Capital G and Baidu in the Series D. Also owns GitHub, which was used for the CVE filing mechanism.",
+      "sentiment": "neutral",
+      "sector": "Technology"
+    },
+    {
+      "name": "Baidu",
+      "type": "public",
+      "context": "Chinese technology company that co-invested in Cloudflare's Series D alongside Microsoft and Capital G as Cloudflare expanded to China.",
+      "sentiment": "neutral",
+      "sector": "Technology"
+    },
+    {
+      "name": "WAP",
+      "type": "startup",
+      "context": "Tech company whose engineering team publicly praised Vercel, with employee Sharkey stating Vercel engineers hop on calls to debug complex critical issues and are deeply invested in the Next.js ecosystem.",
+      "sentiment": "bullish",
+      "sector": "Technology"
+    },
+    {
+      "name": "Weebly",
+      "type": "private",
+      "context": "Website builder mentioned briefly alongside Squarespace as a pre-AI platform that democratized website creation, used as an analogy for what Replit could become for full-stack apps.",
+      "sentiment": "neutral",
+      "sector": "Website Builder/SaaS"
+    },
+    {
+      "name": "Snag.com",
+      "type": "startup",
+      "context": "Premium domain brokerage service run by 'Rob, a friend of the show'; mentioned as a resource for founders seeking great domain names.",
+      "sentiment": "neutral",
+      "sector": "Domain/Web Services"
+    },
+    {
+      "name": "Indie.vc",
+      "type": "fund",
+      "context": "Venture fund associated with investor Bryce Roberts, who shared a post about contrasting car dealership sales experiences illustrating the importance of digital-first customer experience.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    }
+  ],
+  "people": [
+    {
+      "name": "Ashton Hall",
+      "role": "Fitness influencer and online coaching business owner",
+      "context": "His highly produced morning routine video went viral with ~1 billion views, featuring Saratoga Water and rituals like rubbing banana on his face. Already had millions of Instagram followers, a team of three, and a coaching business funnel to monetize the attention. Reports seven-figure annual revenue."
+    },
+    {
+      "name": "Guillermo Rauch",
+      "role": "CEO and co-founder of Vercel",
+      "context": "Appeared as a guest to discuss the Next.js CVE-2025-29927 vulnerability and communication missteps, Vercel's AI SDK and v0 growth, the case for decentralizing AI through open source, and his vision of agentic deployment infrastructure as the next major opportunity."
+    },
+    {
+      "name": "Amjad Masad",
+      "role": "CEO and co-founder of Replit",
+      "context": "Appeared as a guest discussing Replit's V2 agent and vibe coding for non-technical users, his critique of Next.js being too Vercel-dependent, cutting the team to ~65 people during a founder mode reset, above-100% net dollar retention, and his vision for a billion-person creation platform like Excel."
+    },
+    {
+      "name": "Lulu Cheng Meservey",
+      "role": "Founder of Rostra, PR and communications strategist",
+      "context": "Appeared as a guest discussing Saratoga Water's missed PR opportunity, the evolution of 'going direct' as the next era shifts to 'attention is all you need,' founder communication archetypes, the ship-to-yap ratio principle, and concentric-circle sequencing for communications rollouts."
+    },
+    {
+      "name": "Kian Sadeghi",
+      "role": "CEO of Nucleus Genomics",
+      "context": "Appeared as a guest reacting to 23andMe's bankruptcy, explaining the technological superiority of whole genome sequencing over microarray/shotgun methods, urging 23andMe users to download data and move to HIPAA-compliant platforms, and hinting Nucleus is exploring a bid for 23andMe assets."
+    },
+    {
+      "name": "Matthew Prince",
+      "role": "CEO of Cloudflare",
+      "context": "Criticized by Guillermo Rauch for releasing 'cringe-worthy memes' and a Vercel migration tool immediately after the Next.js CVE, described as an aggressive competitive move from a public company CEO. Referred to by his detractors as 'the triangle boy.'"
+    },
+    {
+      "name": "Anne Wojcicki",
+      "role": "Co-founder and former CEO of 23andMe",
+      "context": "Resigned as CEO following the Chapter 11 filing, stating she was disappointed but supportive, and intends to pursue an independent bid to reacquire the company she co-founded 19 years ago."
+    },
+    {
+      "name": "Scott Bessent",
+      "role": "U.S. Treasury Secretary",
+      "context": "Coined the term 'Dirty 15' to describe the roughly 15% of nations running persistent trade imbalances with the US that are the focus of revised, more targeted reciprocal tariff policy."
+    },
+    {
+      "name": "Paul Graham",
+      "role": "Co-founder of Y Combinator",
+      "context": "Publicly supported Guillermo Rauch after the CVE drama, calling Rauch's solicitation of complaints 'a sign of a company still run by the founder' and distinguishing it from the behavior of a hired CEO."
+    },
+    {
+      "name": "Andrej Karpathy",
+      "role": "AI researcher, former Tesla Autopilot lead and OpenAI co-founder",
+      "context": "Mentioned for nominative determinism (Karpathy \u2192 Carpath \u2192 self-driving cars). Also cited for his framework distinguishing vibe coding for creation and exploration (where AI excels) from debugging and infrastructure management (where human care is still critical)."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO of OpenAI",
+      "context": "Cited for the view that people may want to learn how to use AI rather than focus purely on coding. OpenAI's website redesign (leading with 'What can I help with?' rather than marketing content) was praised by Guillermo as a model for AI-native product design."
+    },
+    {
+      "name": "Dario Amodei",
+      "role": "CEO of Anthropic",
+      "context": "Quoted as predicting that all code will eventually be AI-generated, a claim used to frame the debate about whether learning to code still has long-term value."
+    },
+    {
+      "name": "Alex Hormozi",
+      "role": "Entrepreneur and content creator",
+      "context": "Referenced by Ashton Hall as an influence for his philosophy of building a team-leveraged online coaching business, including appointment setters, closers, and app-based client management."
+    },
+    {
+      "name": "Prasanna Sankar",
+      "role": "Co-founder of Rippling",
+      "context": "Posted a viral 17 million-view thread about going through a divorce and reportedly hiding from police in Tamil Nadu before apparently being exonerated. The situation was described as resolved by the time of broadcast."
+    },
+    {
+      "name": "Peter Thiel",
+      "role": "Investor and entrepreneur",
+      "context": "Quoted by Amjad Masad on the paradox of the internet: it was supposed to decentralize wealth but instead concentrated it in Silicon Valley. Framed as motivation for Replit's mission to democratize software creation."
+    },
+    {
+      "name": "David Senra",
+      "role": "Host of the Founders podcast",
+      "context": "Mentioned in context of the 'building in silence' vs. 'going direct' debate; has studied families and entrepreneurs who built multi-generational empires with zero public profile and discussed whether that strategy works in the internet era."
+    },
+    {
+      "name": "Hayley Welch",
+      "role": "Viral internet celebrity ('Hawk Tuah Girl')",
+      "context": "Cited as a cautionary example of viral fame without a pre-existing monetization infrastructure, contrasted with Ashton Hall who already had a team, product, and funnel. Her pivot to launching a crypto coin was noted as the result of lacking better monetization options."
+    },
+    {
+      "name": "Nikita Beer",
+      "role": "Writer and investor",
+      "context": "Referenced for writing about the possibility of a single aggregator company emerging from the AI/vibe-coding wave to dominate new app and website creation."
+    },
+    {
+      "name": "Derek Thompson",
+      "role": "Journalist and author at The Atlantic",
+      "context": "Cited for the insight that the best viral content is 'a little bit new, but a little bit familiar,' used in the context of advising TBPN on how to pitch mainstream press."
+    },
+    {
+      "name": "Nat Friedman",
+      "role": "Investor and former GitHub CEO",
+      "context": "Named as an early investor in Vercel's Series A ($21M in 2020), described by the hosts as 'a classic goat' for recognizing Vercel's potential early."
+    },
+    {
+      "name": "Bryce Roberts",
+      "role": "Founder and general partner at Indie.vc",
+      "context": "Shared a post contrasting two car dealership sales experiences\u2014one that refused to communicate digitally versus one that handled everything over text\u2014as an illustration of modern customer experience expectations."
+    },
+    {
+      "name": "Gurgley Orosz",
+      "role": "Engineering newsletter writer (The Pragmatic Engineer)",
+      "context": "Cited for a post noting that the unwritten rule of competitors not publicly attacking each other during security incidents or outages appears to be breaking down, pointing to Replit and Cloudflare's behavior after the Next.js CVE as evidence."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Ashton Hall Morning Routine Virality and Saratoga Water PR Opportunity",
+      "summary": "Fitness influencer Ashton Hall's highly produced morning routine video reached ~1 billion views, prominently featuring Saratoga Water with no sponsorship deal. Saratoga's parent company stock briefly surged ~10% pre-market. Discussion covered the anatomy of the viral video, Hall's pre-existing monetization infrastructure, and Lulu Cheng Meservey's analysis of how Saratoga should have capitalized on the moment but failed due to a dormant social media presence.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Vercel vs. Cloudflare vs. Replit Drama (Next.js CVE-2025-29927)",
+      "summary": "A critical Next.js middleware auth bypass vulnerability disclosed March 22 triggered aggressive competitive attacks. Cloudflare released a Vercel migration tool and CEO Matthew Prince posted memes; Replit's Amjad Masad publicly criticized Next.js as too Vercel-dependent. Guillermo Rauch admitted communication missteps and counter-attacked with Cloudbleed history. The episode featured all three CEOs discussing whether such competitive pile-ons are productive given the massive AI opportunity ahead.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "23andMe Bankruptcy and Consumer Genomics Disruption",
+      "summary": "23andMe filed for Chapter 11; Anne Wojcicki resigned as CEO to pursue an independent bid. Extensive discussion of the technology gap between microarray and whole genome sequencing, 23andMe's strategic confusion between pharma data business and consumer health, data privacy risks in a bankruptcy sale, and Nucleus Genomics as the positioned successor.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Vibe Coding and AI-Powered App Development",
+      "summary": "Broad discussion on democratization of software creation via AI agents. Guillermo argued vibe coding will eat frontend development and Vercel's agentic deployment infrastructure is the next major opportunity. Amjad Masad emphasized Replit's guardrails for non-technical users, V2 agent performance improvements, and his vision of a billion-person creation platform. Both agreed the definition of 'developer' is expanding dramatically.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Going Direct and Founder Mode Communications Evolution",
+      "summary": "Lulu Cheng Meservey discussed how 'going direct' has become mainstream and outlined the next era: 'attention is all you need.' She covered founder authenticity archetypes (you can be in an archetype but not between them), the ship-to-yap ratio principle, sequencing communications from inner to outer circles before going public, and converting viral attention into durable revenue rather than catch-and-release.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Value Accrual and Aggregation Theory",
+      "summary": "Discussion of where value accrues across the AI stack: foundation models, application layer, agentic infrastructure, and energy. Guillermo argued specialist/expert AI products are unbundling Google. The hosts debated whether OpenAI at $300B+ is priced as the next Google and what its source of monopoly power would be. Amjad predicted vertical niche SaaS will be disrupted while horizontal ecosystem SaaS survives.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Tariffs and U.S. Stock Market Rally",
+      "summary": "The S&P 500 and Dow rallied ~500 points on optimism that reciprocal tariffs would be more targeted than feared, narrowed to the 'Dirty 15' nations with persistent trade imbalances. Treasury Secretary Scott Bessent's framing discussed. Sectoral tariffs unlikely on April 2nd. Described as a typical pattern of bad initial headlines followed by more reasonable policy details.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Vintage VC Fund Performance Data",
+      "summary": "A shared chart of Kleiner Perkins vintage fund returns showed their 1996 fund produced 286% IRR on a 17x multiple from a $300M fund\u2014their best vintage. Discussion of how 70s-80s funds were tiny ($8M) but produced extraordinary multiples, and whether current frothy seed/pre-seed markets can produce returns without traditional power law winners.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Future of SaaS Under AI Disruption",
+      "summary": "Amjad Masad argued that vertical niche SaaS tools are highly vulnerable to AI-generated replacements on platforms like Replit, while horizontal system-of-record SaaS (Rippling, Salesforce) has more defensibility due to ecosystem depth. The old 'not invented here' stigma around custom software is fading as AI makes custom tools fast and cheap to build.",
+      "sentiment": "mixed"
+    }
+  ],
+  "key_claims": [
+    "Vercel doubled year-over-year signups, attributed primarily to the v0 coding agent launch.",
+    "5% of Vercel signups now come from ChatGPT referrals, up from under 1% six months ago, growing at 30% month over month.",
+    "Every major frontier AI model tested by Guillermo (GPT, Claude, Grok, etc.) recommends Vercel when asked the best way to deploy a web application.",
+    "Whole genome sequencing cost has fallen from approximately $10 million per sample in 2006 to a few hundred dollars today, making 23andMe's microarray technology technologically obsolete.",
+    "23andMe was not HIPAA compliant despite holding genetic data from over 15 million customers.",
+    "Dario Amodei stated that all code will eventually be AI-generated.",
+    "Replit has above 100% net dollar retention even on its consumer subscription plan.",
+    "Cloudbleed (Cloudflare's 2017 security incident) exposed OAuth tokens from major companies including Uber that were indexed and findable via Google Search, making it more catastrophic in real-world impact than the Next.js CVE.",
+    "Ashton Hall's morning routine video reached ~1 billion views despite not being posted by Hall himself on X\u2014it was posted by the third-party account 'Tips for Men Fashion Essentials Luxury.'",
+    "Saratoga Water's parent company stock briefly surged ~10% pre-market on the viral video despite the brand not sponsoring the content and having posted nothing on X since 2022.",
+    "Replit cut its team by approximately half to ~65 employees in a founder mode reset and relocated from San Francisco SOMA to Foster City.",
+    "OpenAI is currently valued at over $300 billion, implicitly pricing it as the next Google.",
+    "Vercel has 100M+ ARR, 1 million+ monthly active Next.js users, and tens of millions of applications deployed on its platform.",
+    "Vercel's AI SDK has 1 million downloads per week and is described as the most popular way to add AI to JavaScript applications.",
+    "Sears Home Services used Replit agents to skip an entire era of SaaS adoption and move directly to AI-powered operations, including field worker route optimization.",
+    "The ship-to-yap ratio matters more than the absolute volume of founder posting\u2014high output of shipped product justifies high volume of public posting, as exemplified by Elon Musk.",
+    "It has been illegal since 2008 (GINA) for health insurers or employers to discriminate based on genetic information, a fact underappreciated in the 23andMe data privacy panic."
+  ],
+  "technologies": [
+    "Next.js",
+    "React",
+    "AI SDK (Vercel)",
+    "v0 (Vercel coding agent)",
+    "Socket.io",
+    "WebSockets",
+    "CDN (Content Delivery Network)",
+    "Serverless architecture",
+    "Cloudflare Workers",
+    "Whole Genome Sequencing",
+    "Microarray / Shotgun Sequencing",
+    "Large Language Models (LLMs)",
+    "Tailwind CSS",
+    "TypeScript",
+    "Node.js",
+    "Python",
+    "COBOL",
+    "Kubernetes",
+    "React Native",
+    "Ghostwriter (Replit AI coding assistant)",
+    "GitHub Copilot",
+    "Turbo (Vercel monorepo tooling)",
+    "ShadCN (Vercel component library)",
+    "R2 (Cloudflare S3-compatible object storage)",
+    "D1 (Cloudflare serverless SQL database)",
+    "Fluid Compute (Vercel)",
+    "CVE-2025-29927 (Next.js middleware auth bypass)",
+    "CodeMirror",
+    "Monaco Editor",
+    "Lava lamp entropy generation (Cloudflare)",
+    "1.1.1.1 DNS resolver (Cloudflare)",
+    "HIPAA-compliant health data infrastructure",
+    "Angular",
+    "Visual Basic",
+    "Flutter",
+    "WebAssembly"
+  ],
+  "_stats": {
+    "word_count": 37675,
+    "estimated_input_tokens": 50107,
+    "input_tokens": 3,
+    "output_tokens": 29612,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 54315,
+    "duration_ms": 511626,
+    "wall_time_s": 513.3,
+    "cost_usd": 1.08439225,
+    "tokens_per_sec": 57.7
+  }
+}

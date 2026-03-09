@@ -1,0 +1,817 @@
+{
+  "episode_date": "2025-09-08",
+  "episode_title": "ai-adoption-census-data-openai-critters-film-smart-glasses-domination",
+  "companies": [
+    {
+      "name": "Apollo Global Management",
+      "type": "private",
+      "context": "Published a blog post on Apollo Academy analyzing U.S. Census Bureau data showing AI adoption trending down for large companies.",
+      "sentiment": "neutral",
+      "sector": "Finance/Asset Management"
+    },
+    {
+      "name": "U.S. Census Bureau",
+      "type": "gov",
+      "context": "Conducts bi-weekly survey among 1.2 million firms on AI adoption; data showed firms with 250+ employees declining from 14% to 12% AI usage, sparking viral debate.",
+      "sentiment": "neutral",
+      "sector": "Government"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Developing AI-generated animated feature film 'Critters' with a sub-$30M budget targeting Cannes 2026; also reported projected cash burn of $115B through 2029, $80B higher than previously expected.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor and data source; Ramp spend data shows 43% of U.S. businesses have paid AI subscriptions versus the government's 8% estimate, with 70% of tech firms and 20% of restaurants adopting AI.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Friend",
+      "type": "startup",
+      "context": "Avi Schiffmann's AI companion pendant received its first major review from Wired titled 'I Hate My Friend'; Schiffmann defended the product, citing power users sending 1,000+ messages daily and a massive 300-billboard outdoor campaign.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Consumer Hardware"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Announced a fundraise at a $10.2B valuation led by Founders Fund; makes Devin AI coding agent and acquired Windsurf, seeing accelerating growth with enterprise customers achieving 8-15x engineering speedups.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Developer Tools"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "AI coding IDE acquired by Cognition; combined with Devin has accelerated growth for both products since the merger.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Developer Tools"
+    },
+    {
+      "name": "Groq",
+      "type": "startup",
+      "context": "Inference infrastructure company; CEO Sunny Madra attended White House AI dinner and discussed the American AI stack framework published with the Department of Commerce; has launched 14 data centers this year including the largest inference cluster in the Middle East.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Cloud Infrastructure"
+    },
+    {
+      "name": "Warp",
+      "type": "startup",
+      "context": "AI-powered terminal company adding ~$1M ARR every 7-8 days; launched 'Code Country' campaign focused on helping developers wrangle and review AI agents to prevent shipping insecure or incomprehensible code.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Developer Tools"
+    },
+    {
+      "name": "ElevenLabs",
+      "type": "startup",
+      "context": "Voice AI company launched a $100M tender offer at a $6.6B valuation (double prior valuation); reached $200M ARR, with the path from $100M to $200M taking only 10 months; powers Fortnite's Darth Vader NPC, Chess.com, Perplexity, Cisco, and others.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Voice AI"
+    },
+    {
+      "name": "Truck Smarter",
+      "type": "startup",
+      "context": "Freight technology platform raised $16M from Associate Ventures, Founders Fund, Thrive Capital, A16Z, and BCV; offers a free load board and layers on financial services for small trucking companies.",
+      "sentiment": "bullish",
+      "sector": "Logistics/Freight Tech"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Upcoming smart glasses 'Hypernova' expected to launch at $800 at Connect event September 17-18; current Ray-Ban Meta glasses priced $200-$400; faces competition from Chinese manufacturers.",
+      "sentiment": "neutral",
+      "sector": "Consumer Hardware, AI/ML"
+    },
+    {
+      "name": "Alibaba",
+      "type": "public",
+      "context": "Released smart glasses called 'Quark Vision' at 1,999 yuan (~$280), pressuring Meta to price Hypernova lower than initially expected above $1,400.",
+      "sentiment": "neutral",
+      "sector": "Consumer Hardware, AI/ML"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Mentioned in the American AI stack; Jensen Huang was an early ElevenLabs user and praised the company's artistry in crafting voice experiences.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Semiconductors"
+    },
+    {
+      "name": "Broadcom",
+      "type": "public",
+      "context": "Mentioned as co-developing custom silicon with OpenAI and helping companies like Google build their own chips.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Acquiring EchoStar's AWS4 and H-Block spectrum licenses for ~$17B ($8.5B cash + $8.5B SpaceX stock), enabling direct-to-device mobile services independent of T-Mobile partnership.",
+      "sentiment": "bullish",
+      "sector": "Aerospace, Telecom"
+    },
+    {
+      "name": "EchoStar",
+      "type": "public",
+      "context": "Selling spectrum licenses to SpaceX for ~$17B; shares rose 26% to record high; now holds $8.5B in SpaceX stock, making it the most concentrated public vehicle for SpaceX exposure despite $29B in debt.",
+      "sentiment": "bullish",
+      "sector": "Telecom"
+    },
+    {
+      "name": "T-Mobile",
+      "type": "public",
+      "context": "Stock dropped meaningfully on EchoStar/SpaceX news as SpaceX will be able to bypass T-Mobile for direct-to-device mobile services by owning its own spectrum.",
+      "sentiment": "bearish",
+      "sector": "Telecom"
+    },
+    {
+      "name": "AT&T",
+      "type": "public",
+      "context": "Stock dropped on EchoStar/SpaceX spectrum deal news alongside T-Mobile and Verizon.",
+      "sentiment": "bearish",
+      "sector": "Telecom"
+    },
+    {
+      "name": "Verizon",
+      "type": "public",
+      "context": "Stock dropped on EchoStar/SpaceX spectrum deal news; market cap ~$182B.",
+      "sentiment": "bearish",
+      "sector": "Telecom"
+    },
+    {
+      "name": "Unitree Robotics",
+      "type": "private",
+      "context": "Filing for IPO on a Chinese stock exchange at $7B valuation with $140M annual revenue; 65% of revenue from robot dogs representing 70% of the global robot dog market; 30% from humanoid robots.",
+      "sentiment": "neutral",
+      "sector": "Robotics"
+    },
+    {
+      "name": "ASML",
+      "type": "public",
+      "context": "Invested in Mistral AI's $2B Series C, described by critics as jumping layers of the tech stack; hosts debated whether it's a national champion play or a strategic AI-for-lithography research partnership.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Mistral AI",
+      "type": "startup",
+      "context": "Received investment from ASML in a $2B Series C; described as France's and Europe's AI national champion; valuation just above Cognition's latest round.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Led Cognition's latest $400M round at $10.2B valuation; Napoleon and Peter Thiel supported the Windsurf acquisition and offered follow-on capital.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Investor in Truck Smarter; AJ Midha posted 'The Empire Strikes Back' analysis showing ChatGPT vs. Gemini interest over time amid Gemini's 'nanobanana' spike.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Sequoia",
+      "type": "fund",
+      "context": "Investor in ElevenLabs, participated in tender offer round.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Thrive Capital",
+      "type": "fund",
+      "context": "Investor in Truck Smarter.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Lululemon",
+      "type": "public",
+      "context": "Worst S&P 500 performer year-to-date, down 56%; discussed as losing market share to Alo and Fabletics, failing to adapt to current cultural branding trends.",
+      "sentiment": "bearish",
+      "sector": "Retail/Consumer"
+    },
+    {
+      "name": "Nike",
+      "type": "public",
+      "context": "Mentioned alongside Lululemon as a declining stock, peaked in 2021 after going heavy into e-commerce.",
+      "sentiment": "bearish",
+      "sector": "Retail/Consumer"
+    },
+    {
+      "name": "Gartner",
+      "type": "public",
+      "context": "Mentioned for the Hype Cycle framework used to analyze AI adoption stages; stock itself is down 50% year-to-date, jokingly said to be 'in the trough of disillusionment.'",
+      "sentiment": "bearish",
+      "sector": "Research/Consulting"
+    },
+    {
+      "name": "Trade Desk",
+      "type": "public",
+      "context": "Stock down 55% year-to-date; previously praised for elegant business model and not raising external capital.",
+      "sentiment": "bearish",
+      "sector": "AdTech"
+    },
+    {
+      "name": "Midjourney",
+      "type": "startup",
+      "context": "Sued by Warner Brothers Discovery, Disney, and Comcast Universal for allegedly making copies of copyrighted properties.",
+      "sentiment": "bearish",
+      "sector": "AI/ML, Generative Media"
+    },
+    {
+      "name": "Warner Brothers Discovery",
+      "type": "public",
+      "context": "Filed suit against Midjourney last week for making copies of copyrighted properties.",
+      "sentiment": "neutral",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Disney",
+      "type": "public",
+      "context": "Sued Midjourney; also experimenting with AI tools for production, UX, and marketing but wary of wholesale adoption due to guild concerns.",
+      "sentiment": "neutral",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Netflix",
+      "type": "public",
+      "context": "Mentioned as experimenting with AI tools for production, UX, and marketing work.",
+      "sentiment": "neutral",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Mentioned in context of a copyright lawsuit involving writers and use of Libgen training data.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Runway",
+      "type": "startup",
+      "context": "Mentioned as having put on an AI short film festival in LA, a precursor to OpenAI's Critters film effort.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Generative Media"
+    },
+    {
+      "name": "Vertigo Films",
+      "type": "private",
+      "context": "London-based co-production company for OpenAI's Critters animated film; co-founder James Richardson noted the film targets a nine-month production timeline vs. typical three years.",
+      "sentiment": "bullish",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Native Foreign",
+      "type": "startup",
+      "context": "Studio co-producing OpenAI's Critters film that specializes in using AI alongside traditional visual production tools.",
+      "sentiment": "bullish",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Fal",
+      "type": "startup",
+      "context": "Generative media platform for developers; crossed $100M run rate; works with Adobe and Canva; new TBPN sponsor offering a single API for image, video, and audio models.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Generative Media"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Mentioned humorously in a viral post where someone placed fake 'Palantir Home Security' signs to deter burglars.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Defense Tech"
+    },
+    {
+      "name": "Sierra",
+      "type": "startup",
+      "context": "Conversational AI company raised at $10B valuation; discussed as a competitor to healthcare-focused voice AI players; hosts noted its API-friendly integrations with Shopify contrasted with healthcare's complex legacy systems.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Conversational AI"
+    },
+    {
+      "name": "Perplexity",
+      "type": "startup",
+      "context": "Mentioned as an ElevenLabs client for voice interaction; hosts discussed whether Perplexity is 'over' and whether there will be another run for the search product.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Search"
+    },
+    {
+      "name": "Epic Games",
+      "type": "private",
+      "context": "Used ElevenLabs to power the Darth Vader NPC in Fortnite, described as one of the biggest voice AI deployments ever.",
+      "sentiment": "bullish",
+      "sector": "Gaming"
+    },
+    {
+      "name": "Chess.com",
+      "type": "private",
+      "context": "Uses ElevenLabs for personalized learning experiences during chess games.",
+      "sentiment": "neutral",
+      "sector": "Gaming/Education"
+    },
+    {
+      "name": "Cisco",
+      "type": "public",
+      "context": "Uses ElevenLabs for internal use cases and deploys voice AI to their clients.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Tech"
+    },
+    {
+      "name": "xAI",
+      "type": "startup",
+      "context": "Mentioned in context of AI companion product 'Grok/ony' facing similar public pushback as Friend; noted for likely pursuing virtual goods and clothing for companion products.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Waymo",
+      "type": "private",
+      "context": "Mentioned as a real 2023 AI milestone that generated genuine hype through rolling out to general consumers.",
+      "sentiment": "bullish",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Stripe",
+      "type": "private",
+      "context": "Mentioned as an example of AI being embedded invisibly in software\u2014fraud detection uses machine learning, making businesses de facto AI users without self-identifying as such.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Varda Industries",
+      "type": "startup",
+      "context": "Andrew McCollop works there on space manufacturing; mentioned in context of his side project launching an autonomous drone ship to circumnavigate the globe.",
+      "sentiment": "neutral",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Strategy",
+      "type": "public",
+      "context": "Formerly MicroStrategy; mentioned as the model for how companies become levered public vehicles for holding alternative assets (Bitcoin), compared to EchoStar becoming a de facto levered SpaceX vehicle.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Finance"
+    },
+    {
+      "name": "Y Combinator",
+      "type": "private",
+      "context": "Mentioned for statistic that 30% of the current YC batch are college students or new grads, cited in Business Insider 'youth quake' article.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Decagon",
+      "type": "startup",
+      "context": "Mentioned as an ElevenLabs client for voice AI customer service deployments.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Conversational AI"
+    },
+    {
+      "name": "Carbon Health",
+      "type": "startup",
+      "context": "Former employer of Truck Smarter's founding team; Dan spent 3.5 years there before leaving to start Truck Smarter in April 2021.",
+      "sentiment": "neutral",
+      "sector": "Healthcare Tech"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Mentioned as a sponsor enabling multi-destination live streaming to 30+ platforms.",
+      "sentiment": "neutral",
+      "sector": "Media Tech"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Mentioned as a sponsor; referenced in context of design-to-code workflows and Figma Make for vibe coding prototypes.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/Design"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Mentioned as a sponsor for automated compliance and trust management.",
+      "sentiment": "neutral",
+      "sector": "Security/Compliance"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Mentioned as a sponsor; example cited alongside Cursor as power users of TurboPuffer.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Graphite",
+      "type": "startup",
+      "context": "Mentioned as a sponsor for AI-powered code review on GitHub.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "TurboPuffer",
+      "type": "startup",
+      "context": "Mentioned as a sponsor for serverless vector and full-text search built on object storage; Linear and Cursor cited as customers.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Data Infrastructure"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Mentioned as a sponsor enabling brand mentions in ChatGPT and other AI discovery surfaces; cited as successfully dog-fooding their own product.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Marketing Tech"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Mentioned as a sponsor for multi-asset investing; TBPN team met with their team and received a celebratory cake.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Mentioned as a sponsor for smart mattress temperature regulation; hosts shared their sleep scores.",
+      "sentiment": "neutral",
+      "sector": "Consumer Hardware"
+    },
+    {
+      "name": "Adquick",
+      "type": "startup",
+      "context": "Mentioned as a sponsor for programmatic out-of-home advertising; hosts suggested it as the tool Avi Schiffmann likely used for his 300-billboard Friend campaign.",
+      "sentiment": "bullish",
+      "sector": "AdTech"
+    },
+    {
+      "name": "Julius",
+      "type": "startup",
+      "context": "Mentioned as a sponsor for AI-powered data analysis used by over 2 million users.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Data Analytics"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Mentioned as a sponsor; described as an AI-native CRM.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, CRM"
+    },
+    {
+      "name": "Fin.ai",
+      "type": "startup",
+      "context": "Mentioned as a sponsor; described as the #1 AI agent for customer service on G2 benchmarks.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Customer Service"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Mentioned as a sponsor offering upscale vacation home rentals with hotel-grade amenities and concierge service.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Lego",
+      "type": "private",
+      "context": "Will Manitis shared a 24-hour visit to Lego HQ in Billund, Denmark; noted for never taking equity financing, being family-owned since 1932, and functionally owning the town of Billund\u2014cited as a model for patient capital and potential company-town revival.",
+      "sentiment": "bullish",
+      "sector": "Consumer Products"
+    },
+    {
+      "name": "Prime Intellect",
+      "type": "startup",
+      "context": "Mentioned in context of Semi-Analysis cluster list; founder Will Brown humorously brought a printed copy to a family wedding in Spain.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Cox Enterprises",
+      "type": "private",
+      "context": "Backs Associate Ventures, the lead investor in Truck Smarter's latest round.",
+      "sentiment": "neutral",
+      "sector": "Private Equity/Media"
+    },
+    {
+      "name": "Adobe",
+      "type": "public",
+      "context": "Mentioned as a Fal platform client using generative media models.",
+      "sentiment": "neutral",
+      "sector": "Software"
+    },
+    {
+      "name": "Canva",
+      "type": "private",
+      "context": "Mentioned as a Fal platform client leveraging multiple generative AI models.",
+      "sentiment": "neutral",
+      "sector": "Software/Design"
+    },
+    {
+      "name": "GitHub",
+      "type": "public",
+      "context": "Mentioned as a potential data source for measuring 996 working culture via commit timestamps; CEO previously appeared on TBPN.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Mentioned in context of GitHub ownership and developer AI tools; Microsoft Build presentation on Cognition/Devin cited for re-platforming use cases.",
+      "sentiment": "neutral",
+      "sector": "Software/Cloud"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Mentioned for Gemini 2.5 (used by Friend), Chrome browser history (2005 Sergey Brin email to Steve Jobs), Search AI overviews, and Waymo; nanobanana AI image generation caused a search interest spike.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Software"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Mentioned for Vision Pro AR headset technology, Tim Cook vs. Steve Jobs office comparison, and iPhones; Vision Pro's display quality cited as benchmark for spatial computing.",
+      "sentiment": "neutral",
+      "sector": "Consumer Hardware, Software"
+    }
+  ],
+  "people": [
+    {
+      "name": "Avi Schiffmann",
+      "role": "Founder, Friend",
+      "context": "Appeared on show to rebut Wired's 'I Hate My Friend' review; defended product by citing power users sending 1,000+ messages daily and announced a 300-billboard outdoor advertising campaign described as the biggest billboard campaign of all time."
+    },
+    {
+      "name": "Scott Wu",
+      "role": "CEO, Cognition",
+      "context": "Announced $400M fundraise at $10.2B valuation led by Founders Fund; discussed Devin's enterprise traction showing 8-15x engineering speedups, the Windsurf integration, and rebutted bearish AI adoption census data with record July-August growth."
+    },
+    {
+      "name": "Sunny Madra",
+      "role": "Executive, Groq",
+      "context": "Attended White House AI dinner with tech leaders; described the meeting with President Trump focused on unblocking export controls, tariffs, and AI infrastructure investment; discussed Groq's 14 new data centers and the American AI stack framework."
+    },
+    {
+      "name": "Ara Karazian",
+      "role": "Analyst/Executive, Ramp",
+      "context": "Discussed Ramp spend data showing 43% of U.S. businesses have paid AI subscriptions (vs. government's 8%), validated the 996 working culture phenomenon in San Francisco via Saturday business meal expenses, and found the trend started only in the last six months."
+    },
+    {
+      "name": "Zach Lloyd",
+      "role": "CEO, Warp",
+      "context": "Discussed Warp's rapid revenue growth (~$1M ARR every 7-8 days), launched 'Code Country' campaign, and emphasized the problem of AI agents producing hard-to-debug, insecure code that developers don't understand."
+    },
+    {
+      "name": "Mati Staniszewski",
+      "role": "CEO/Co-founder, ElevenLabs",
+      "context": "Announced $100M tender offer at $6.6B valuation; shared ARR milestones (20 months to $100M, 10 months to $200M); discussed Jensen Huang's view that voice AI requires artistry, and predicted first Hollywood film using ElevenLabs voice in English by 2027."
+    },
+    {
+      "name": "Daniel Kao",
+      "role": "Co-founder & CEO, Truck Smarter",
+      "context": "Announced $16M raise from Associate Ventures, Founders Fund, Thrive Capital, A16Z, and BCV; explained free load board model and AI dispatch product launch targeting the 1 million small trucking companies with under 5 trucks."
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO, Nvidia",
+      "context": "Cited by ElevenLabs CEO as an early and current user of the product who noted that true voice AI requires artistry, validating ElevenLabs' differentiation despite expectations of commoditization."
+    },
+    {
+      "name": "Chad Nelson",
+      "role": "Creative Specialist, OpenAI",
+      "context": "Brainchild behind OpenAI's 'Critters' animated film; began sketching characters three years ago using DALL-E and is now leading the effort to debut the feature film at Cannes in May 2026."
+    },
+    {
+      "name": "James Richardson",
+      "role": "Co-founder, Vertigo Films",
+      "context": "Stated the Critters production team aims to make the film in about nine months instead of the typical three years, citing AI tools as the key accelerant."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Humorously referenced as having too many simultaneous projects (BCI, phone, eyewear, AI film) while OpenAI projects $115B in cash burn through 2029."
+    },
+    {
+      "name": "Sergey Brin",
+      "role": "Co-founder, Google",
+      "context": "A 2005 internal email from Brin about an 'irate call from Steve Jobs' over recruiting from the Safari team went viral; notably Brin told Jobs Google was not building a browser\u2014three years before launching Chrome."
+    },
+    {
+      "name": "Elizabeth Holmes",
+      "role": "Theranos founder, incarcerated",
+      "context": "Discussed for posting thought leadership content on X from prison; hosts debated authenticity and suggested her path to redemption would be sharing differentiated views on biology and biotech rather than general growth advice."
+    },
+    {
+      "name": "Napoleon (Founders Fund)",
+      "role": "Partner, Founders Fund",
+      "context": "Cited by Scott Wu as supportive of the Windsurf acquisition and key to giving Cognition confidence to close the deal; supported the subsequent $400M fundraise."
+    },
+    {
+      "name": "AJ Midha",
+      "role": "Partner, Andreessen Horowitz",
+      "context": "Posted 'The Empire Strikes Back' analysis comparing ChatGPT vs. Gemini search interest trends amid Gemini's 'nanobanana' launch spike."
+    },
+    {
+      "name": "Will Brown",
+      "role": "Founder, Prime Intellect",
+      "context": "Went viral for bringing a printed Semi-Analysis GPU cluster rankings list to a family wedding in Spain and asking relatives why Prime Intellect was underperforming on the list."
+    },
+    {
+      "name": "Palmer Luckey",
+      "role": "Founder, Oculus/Anduril",
+      "context": "Cited for predicting that the end-state of augmented reality is reprojection (camera passthrough), the approach used in Apple Vision Pro, due to physics limitations of true AR display brightness."
+    },
+    {
+      "name": "Scott Bessent",
+      "role": "U.S. Treasury Secretary",
+      "context": "Went viral for reportedly telling someone 'Why the F are you talking to the president about me? F you, I'll punch you in your effing face,' earning praise from the tech community for directness."
+    },
+    {
+      "name": "Andrew McCollop",
+      "role": "Engineer, Varda Industries",
+      "context": "Launched Project Bob, an autonomous drone ship attempting to circumnavigate the globe, tracking via dashboard.projectbob.xyz and Starlink; praised by hosts as emblematic of hobbyist builder culture."
+    },
+    {
+      "name": "Roy Lee",
+      "role": "Founder/entrepreneur",
+      "context": "Quoted in Business Insider 'youth quake' piece claiming the worst thing someone wanting a stable future could do is work in big tech, citing mass layoffs."
+    },
+    {
+      "name": "David Sachs",
+      "role": "AI & Crypto Czar, White House",
+      "context": "Mentioned by Sunny Madra as one of the White House contacts tech leaders can work with to unblock issues like export controls and tariffs."
+    },
+    {
+      "name": "Chip Wilson",
+      "role": "Founder, Lululemon",
+      "context": "Mentioned for a controversial interview where he implied Lululemon clothes are not for everyone (implying not for less fit people), which led to backlash and a shift toward more inclusive branding."
+    }
+  ],
+  "topics": [
+    {
+      "name": "U.S. Census AI Adoption Data",
+      "summary": "Census Bureau bi-weekly survey of 1.2M firms showed AI adoption for companies with 250+ employees dropped from ~14% to ~12%, going viral as a potential bearish signal. Hosts and guests debated the methodology, arguing the definition of AI is too narrow and self-reported business surveys miss embedded AI in SaaS tools. Ramp data showing 43% paid AI adoption was cited as a more accurate counterpoint.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Gartner Hype Cycle and AI Sentiment",
+      "summary": "Hosts used the Gartner Hype Cycle to contextualize AI sentiment, debating whether the market is in the trough of disillusionment or climbing the slope of enlightenment. The consensus leaned toward the plateau of productivity emerging, with bearish data points like the census data and developer productivity studies seen as noise rather than genuine signals of decline.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "OpenAI 'Critters' Animated Film",
+      "summary": "OpenAI is producing a sub-$30M AI-generated animated feature film targeting Cannes 2026 in nine months vs. the typical three years. Human actors will voice characters and artists will provide sketch inputs fed into AI rendering tools. Hosts debated whether this is a distraction or a legitimate product demo strategy, and why OpenAI chose human voices over AI voice generation.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Smart Glasses Market and China Competition",
+      "summary": "Meta's upcoming Hypernova smart glasses are expected at $800, lower than anticipated, partly due to pressure from Alibaba's Quark Vision at ~$280. Hosts discussed the generational roadmap (Gen 1 no display, Gen 2 low-res display, Gen 3 full-color 2K) and the physics limitations of true AR vs. passthrough reprojection.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Cognition $400M Fundraise and Devin Growth",
+      "summary": "Scott Wu announced a $400M raise at $10.2B valuation led by Founders Fund. Devin AI coding agent and Windsurf IDE together are accelerating, with enterprise customers achieving 8-15x speedups on toil tasks like refactoring, migrations, and testing. Wu pushed back on bearish AI adoption data citing record July-August months.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "SpaceX / EchoStar Spectrum Deal",
+      "summary": "SpaceX is acquiring EchoStar's AWS4 and H-Block spectrum for ~$17B ($8.5B cash + $8.5B SpaceX stock), enabling direct-to-device mobile services independent of T-Mobile. EchoStar shares surged 26% and now functions as the most concentrated public vehicle for SpaceX exposure despite $29B in debt.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Unitree Robotics IPO Filing",
+      "summary": "Chinese robotics company Unitree filing for IPO at $7B valuation on a Chinese exchange with $140M annual revenue, 65% from robot dogs (70% global market share) and 30% from humanoid robots. Hosts noted the 50x revenue multiple sets uncomfortable public comps for humanoid robot companies.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "ASML Investment in Mistral AI",
+      "summary": "ASML invested in Mistral's $2B Series C, raising debate about whether it was a national champion play, a strategic AI-for-lithography R&D partnership, or a poor capital allocation decision. Groq's Sunny Madra argued the real value is using Mistral to improve ASML's own machine-making processes.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "ElevenLabs Tender Offer and Growth",
+      "summary": "ElevenLabs launched a $100M tender offer at $6.6B valuation (double prior) to provide liquidity to early employees and investors. Reached $200M ARR in milestones of 20, 10 months; targeting $300M by year-end. Revenue is roughly 50/50 between creator platform and enterprise AI agents.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "996 Working Culture in Silicon Valley",
+      "summary": "Ramp spend data validated the 996 (9am-9pm, 6 days/week) working culture trend as a real, measurable phenomenon in San Francisco only, not New York, Austin, or Miami. The trend emerged in the last six months and shows up as increased Saturday business meal expenses by employees at SF startups.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "AI Coding Security Vulnerabilities",
+      "summary": "Discussed anecdotal and survey data suggesting AI coding tools lead to developers producing twice as much code but 10x as many security vulnerabilities. Scott Wu contextualized this as manageable through existing code review processes, and suggested security-focused agent personas as a natural product extension.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Vibe Coding Cleanup Specialists",
+      "summary": "A new category of LinkedIn profiles emerged for engineers branding themselves as 'vibe coding cleanup specialists,' cleaning up AI-generated code. Hosts debated whether this is a symptom of poor tooling or a legitimate new role analogous to engineers who prefer to work from functional prototypes rather than Figma files.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "AI Adoption in Healthcare (Patient/Truck Smarter context)",
+      "summary": "Alex Cohen from Patient (healthcare voice AI) discussed the complexity of healthcare-specific AI agent deployment vs. general conversational AI, emphasizing that vertical focus and deep EHR/practice management system integration is the defensible moat. Multi-agent switching and 5-10% failure rates are current realities.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Stablecoins and U.S. Debt Dollarization",
+      "summary": "Russia's Putin advisor Kobayakov accused the U.S. of planning to use stablecoins to socialize its $35T debt globally. Hosts discussed how stablecoins could accelerate dollar-denominated transactions globally, extending dollarization dynamics and potentially making foreign citizens indirect holders of U.S. inflationary debt.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Company Towns and Long-Term Capital",
+      "summary": "Analysis of Lego's HQ in Billund, Denmark, where the Christiansen family through holding company KIRKBI functionally owns the town, was used to argue that patient private capital enables remarkably long-term decisions. Hosts predicted more tech company towns will emerge as late-stage privates build fortress balance sheets.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Lululemon Stock Decline",
+      "summary": "Lululemon is the worst S&P 500 performer year-to-date at -56%, attributed to market share loss to Alo and Fabletics, failure to adapt to current Americana/Sydney Sweeney branding trends, and founder Chip Wilson's past controversial 'not for everyone' comments.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "White House AI Dinner",
+      "summary": "Sunny Madra described attending a White House dinner with tech leaders where President Trump offered to help unblock issues like export controls and tariffs, framing the administration as supportive of America winning the AI race; attendees received challenge coins and pens.",
+      "sentiment": "bullish"
+    }
+  ],
+  "key_claims": [
+    "Ramp data shows 43% of U.S. businesses have paid AI subscriptions vs. the Census Bureau's estimate of ~8-10%, suggesting census methodology is severely undercounting AI adoption",
+    "52% of U.S. adults report using AI LLMs like ChatGPT, making the Census claim that only 10% of businesses use AI statistically incoherent",
+    "ElevenLabs reached $200M ARR: first $100M took 20 months, second $100M took only 10 months; targeting $300M ARR by end of 2025",
+    "Cognition enterprise customers achieve 8-15x engineering speedups using Devin for refactoring, migrations, and testing tasks",
+    "OpenAI's cumulative projected cash burn through 2029 is $115B, approximately $80B higher than previously expected",
+    "AI coding tools anecdotally produce twice as much code but 10x as many security vulnerabilities",
+    "Warp is adding approximately $1M in ARR every 7-8 days",
+    "Unitree Robotics files for IPO at $7B valuation on $140M revenue (50x multiple), with 65% of revenue from robot dogs representing 70% of the global robot dog market",
+    "SpaceX is acquiring EchoStar spectrum for ~$17B, making EchoStar the most concentrated public market vehicle for SpaceX exposure with $8.5B in SpaceX stock on its balance sheet",
+    "EchoStar has $29B in debt despite the SpaceX stock windfall, making it an extremely leveraged SpaceX proxy",
+    "The 996 working culture in San Francisco is a measurable real phenomenon per Ramp spend data, visible only in SF, not New York, Austin, or Miami, and emerged in the last six months",
+    "30% of the current Y Combinator batch are college students or recent graduates, reflecting the AI-driven youth entrepreneurship wave",
+    "Groq has launched 14 new data centers in 2025, including what it claims is the largest inference cluster in the Middle East",
+    "Meta Hypernova smart glasses will launch at ~$800, far below initially expected $1,400+, driven partly by Alibaba's Quark Vision at ~$280",
+    "ElevenLabs projects the first Hollywood film featuring their English voice AI technology by 2027",
+    "Devin is being used by a Latin American bank that 10x'd their contract within 8-9 months and is growing headcount, not cutting it",
+    "OpenAI's Critters animated film has a budget under $30M and targets a 9-month production timeline vs. the typical 3 years",
+    "Avi Schiffmann claims Friend.com's billboard campaign is the largest single-creative billboard campaign of all time with 300 billboards purchased"
+  ],
+  "technologies": [
+    "Large Language Models (LLMs)",
+    "Generative AI",
+    "Voice AI / Text-to-Speech",
+    "Speech-to-Text",
+    "Multi-agent AI systems",
+    "AI coding agents",
+    "Vibe coding",
+    "Natural Language Processing (NLP)",
+    "Machine Learning",
+    "Predictive Analytics",
+    "Computer Vision / Image Processing",
+    "Voice Recognition",
+    "Retrieval-Augmented Generation (RAG)",
+    "Serverless Vector Search",
+    "Full-text Search",
+    "Augmented Reality (AR)",
+    "Virtual Reality (VR)",
+    "Smart Glasses / Wearables",
+    "Passthrough / Reprojection Display",
+    "Starlink / Satellite Internet",
+    "Direct-to-Device Mobile (satellite)",
+    "Spectrum Licensing Technology",
+    "Stablecoins",
+    "AI Image Generation (DALL-E, Midjourney, nanobanana)",
+    "AI Video Generation",
+    "Reinforcement Learning",
+    "Post-training / Fine-tuning",
+    "Custom Silicon / ASICs",
+    "GPU Clusters",
+    "Inference Infrastructure",
+    "EHR / Practice Management System Integration",
+    "Function Calling / Tool Use",
+    "Robot Dogs",
+    "Humanoid Robotics",
+    "Brain-Computer Interface (BCI)",
+    "Fraud Detection ML",
+    "AI-powered Code Review",
+    "GitHub Commit Analysis",
+    "Object Storage"
+  ],
+  "_stats": {
+    "word_count": 35401,
+    "estimated_input_tokens": 47083,
+    "input_tokens": 3,
+    "output_tokens": 12359,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 50524,
+    "duration_ms": 258096,
+    "wall_time_s": 259.7,
+    "cost_usd": 0.6293735,
+    "tokens_per_sec": 47.6
+  }
+}

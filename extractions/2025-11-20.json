@@ -1,0 +1,795 @@
+{
+  "episode_date": "2025-11-20",
+  "episode_title": "nvidia-beats-earnings-nanobanana-pro-food-delivery-ai-infrastructure-robotics",
+  "companies": [
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Beat Q3 earnings with $57B revenue (up 62% YoY) and guided $65B for Q4 vs analyst estimate of $60B. Jensen Huang declared 'we've entered the virtuous cycle of artificial intelligence.' Stock sold off despite near-perfect results due to ultra-high expectations.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Semiconductors"
+    },
+    {
+      "name": "Picnic",
+      "type": "startup",
+      "context": "Travis Kalanick's new corporate meal delivery platform under City Storage Systems offering no tipping and no fees, targeting teams of 25+. Customers include Wells Fargo, Live Nation, EY, KPMG, and PwC.",
+      "sentiment": "bullish",
+      "sector": "Food Delivery"
+    },
+    {
+      "name": "City Storage Systems",
+      "type": "startup",
+      "context": "Travis Kalanick's holding company owning Cloud Kitchens, Otter, and Picnic \u2014 described as a vertically integrated food delivery ecosystem from kitchen infrastructure to front-end consumer experience.",
+      "sentiment": "bullish",
+      "sector": "Food Delivery"
+    },
+    {
+      "name": "Cloud Kitchens",
+      "type": "startup",
+      "context": "Ghost kitchen subsidiary of City Storage Systems founded by Travis Kalanick. Described as secretive but a core part of the vertically integrated food delivery stack.",
+      "sentiment": "neutral",
+      "sector": "Food Delivery"
+    },
+    {
+      "name": "Otter",
+      "type": "startup",
+      "context": "Travis Kalanick's POS and ordering infrastructure platform under City Storage Systems, described as a competitor to Toast and Square.",
+      "sentiment": "neutral",
+      "sector": "Fintech, Food Tech"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Launched Gemini 3 (trained entirely on TPUs without Nvidia chips) and Nanobanana Pro image model achieving 8% text error rate vs OpenAI's 38%. TPU described as a clear #2 to Nvidia. Hosts praised it as a major comeback after being 'asleep at the wheel.'",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Cloud"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Discussed for lack of a new base pre-training run; GPT-4.5 characterized as a 'failed run.' Released GPT-5.1 Codex landing on the Meter task-duration trendline, added group chats to ChatGPT, and released OpenAI for Science paper on solving previously unsolved problems.",
+      "sentiment": "mixed",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Described as an API-first business reliant on raw model capability where continual pre-training is critical. Nvidia's earnings commentary on Anthropic investment was noted as stronger language than used for OpenAI.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Semi-Analysis",
+      "type": "startup",
+      "context": "Doug O'Loflin's research firm that released new reports 'Leverage Max' and 'Inference Max.' Discussed Nvidia earnings, Gemini 3 training economics, OpenAI's pre-training gaps, and hyperscaler debt capacity.",
+      "sentiment": "neutral",
+      "sector": "Research, AI/ML"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "Financial Times Alphaville reported Oracle is 'underwater' on its $300B OpenAI deal due to stock performance. Doug O'Loflin dismissed this as rage bait and noted Oracle is near its debt ceiling this year but not truly underwater on revenue.",
+      "sentiment": "bearish",
+      "sector": "Cloud, AI Infrastructure"
+    },
+    {
+      "name": "Brookfield",
+      "type": "public",
+      "context": "Announced a $100B OpenAI data center deal, but only $5B is actually committed. Cited as a prime example of the 'press release economy.'",
+      "sentiment": "neutral",
+      "sector": "Infrastructure, Real Estate"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Released SAM 3 (Segment Anything Model 3) for video tracking praised as a major leap. Also discussed as an example of aggressive balance sheet financing for AI. Loredana Crisan spent a decade at Meta leading Messenger, Instagram DMs, and consumer AI.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Social Media"
+    },
+    {
+      "name": "CoreWeave",
+      "type": "startup",
+      "context": "Cloud computing company that attempted an all-equity acquisition of Core Scientific, which was rejected. Reliant on Core Scientific capacity; Denton facility delay described as 'a big deal' for CoreWeave.",
+      "sentiment": "bearish",
+      "sector": "Cloud, AI Infrastructure"
+    },
+    {
+      "name": "Core Scientific",
+      "type": "public",
+      "context": "Bitcoin miner that rejected CoreWeave's all-equity acquisition offer on investor advice citing peer re-ratings. Stock fell ~20% post-rejection. Behind schedule on Denton facility delivery.",
+      "sentiment": "bearish",
+      "sector": "Bitcoin Mining, Data Centers"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Loredana Crisan joined as Chief Design Officer 2 months prior. Shipped 20+ major AI features including Figma Make. Discussed integrating Nanobanana Pro to help designers iterate on AI-generated assets with precision.",
+      "sentiment": "bullish",
+      "sector": "Design, AI/ML"
+    },
+    {
+      "name": "Sunday Robotics",
+      "type": "startup",
+      "context": "Tony Zhao's wheeled humanoid robot company that released a viral demo of robot Memo picking up wine glasses and doing household tasks. Uses skill capture gloves for training data instead of teleoperation. Beta planned late 2026, GA in 2027-28.",
+      "sentiment": "bullish",
+      "sector": "Robotics"
+    },
+    {
+      "name": "Flexion",
+      "type": "startup",
+      "context": "Nikita Rudin's robotics intelligence company building the AI brain for humanoids and mobile manipulators. Raised $50M with DST Global and Nvidia as investors. Uses simulation-based reinforcement learning without teleoperation or world models. Based in Zurich.",
+      "sentiment": "bullish",
+      "sector": "Robotics, AI/ML"
+    },
+    {
+      "name": "Stute (St\u016b)",
+      "type": "startup",
+      "context": "Tarek Alaruri's AI-powered accounts receivable platform that announced a $29.5M Series A led by a16z. Claims to recover 40% of overdue invoices in 6 months and goes live in 3 days for Fortune 100 customers. Uses AI voice calls, email, and SMS.",
+      "sentiment": "bullish",
+      "sector": "Fintech, AI/ML"
+    },
+    {
+      "name": "Andreessen Horowitz (a16z)",
+      "type": "fund",
+      "context": "Led Stute's $29.5M Series A. Also mentioned as Active and Coastal participated in the round.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Clay",
+      "type": "startup",
+      "context": "Music AI company led by producer Ari Addy that became the first to reach licensing deals with all three major record labels (Universal, Sony, Warner). Plans to let users remake songs in different AI styles.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Music"
+    },
+    {
+      "name": "Suno",
+      "type": "startup",
+      "context": "Music AI company that raised a new funding round; no further details provided.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Music"
+    },
+    {
+      "name": "Universal Music Group",
+      "type": "public",
+      "context": "One of three major labels signing a licensing deal with music AI company Clay.",
+      "sentiment": "neutral",
+      "sector": "Music"
+    },
+    {
+      "name": "Sony Music",
+      "type": "private",
+      "context": "One of three major labels signing a licensing deal with music AI company Clay.",
+      "sentiment": "neutral",
+      "sector": "Music"
+    },
+    {
+      "name": "Warner Music Group",
+      "type": "public",
+      "context": "One of three major labels signing a licensing deal with music AI company Clay.",
+      "sentiment": "neutral",
+      "sector": "Music"
+    },
+    {
+      "name": "Zipline",
+      "type": "startup",
+      "context": "Drone delivery company delivering food in ~4 minutes vs 20 minutes by car. Discussed as potential partner for Travis Kalanick's food stack; Travis Kalanick may be an investor but could not be confirmed. Hosts noted drones can't fit 25 bundled orders.",
+      "sentiment": "neutral",
+      "sector": "Drone Delivery, Logistics"
+    },
+    {
+      "name": "DoorDash",
+      "type": "public",
+      "context": "Mentioned as a major incumbent in food delivery. CEO Tony Xu praised by David Chang as doing 'unbelievable' work. Has corporate ordering offerings but lacks Picnic's transparent pricing model.",
+      "sentiment": "neutral",
+      "sector": "Food Delivery"
+    },
+    {
+      "name": "Uber",
+      "type": "public",
+      "context": "Discussed as Travis Kalanick's original company; tipping-free early Uber used as case study for why tipping becomes inevitable. ATG (autonomous vehicle group) was spun down after Kalanick left.",
+      "sentiment": "neutral",
+      "sector": "Ride-Hailing, Delivery"
+    },
+    {
+      "name": "X.AI (xAI)",
+      "type": "startup",
+      "context": "Announced a new data center project in Saudi Arabia with Nvidia. Praised for speed in building Colossus supercomputer \u2014 described as having 'the speed run record.' Discussed as potential cloud AI infrastructure provider for Saudi buyers.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Infrastructure"
+    },
+    {
+      "name": "Waymo",
+      "type": "startup",
+      "context": "Mentioned as a more logical autonomous delivery partner for Picnic's high-volume bundled orders than drone solutions like Zipline.",
+      "sentiment": "neutral",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Coco",
+      "type": "startup",
+      "context": "Sidewalk delivery robotics company briefly mentioned as part of the autonomous food delivery landscape.",
+      "sentiment": "neutral",
+      "sector": "Robotics, Food Delivery"
+    },
+    {
+      "name": "Starship",
+      "type": "startup",
+      "context": "Delivery robotics company briefly mentioned alongside Coco as part of the autonomous food delivery landscape.",
+      "sentiment": "neutral",
+      "sector": "Robotics, Food Delivery"
+    },
+    {
+      "name": "Financial Times (Alphaville)",
+      "type": "private",
+      "context": "Published article claiming Oracle is 'underwater' on its $300B OpenAI deal; hosts and Doug O'Loflin criticized it as 'rage bait' and 'mid' analysis. Hosts proposed renaming Alphaville to 'Midville.'",
+      "sentiment": "bearish",
+      "sector": "Media"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "CEO Alex Karp's Patek Philippe Aquanaut watch mentioned. Tarek Alaruri cited Palantir as an aspirational brand benchmark for Stute's long-term trajectory.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Data Analytics"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "A 1993 clip of Satya Nadella as a technical marketing manager demonstrating Excel integrated with mainframe data surfaced; framed humorously as an early precursor to agentic AI workflows.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "DST Global",
+      "type": "fund",
+      "context": "Participated in Flexion's $50M funding round alongside Nvidia and other investors.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Blue Owl",
+      "type": "fund",
+      "context": "Mentioned as an example of alternative credit financing for hyperscaler data centers via off-balance-sheet sale-leaseback arrangements.",
+      "sentiment": "neutral",
+      "sector": "Private Credit"
+    },
+    {
+      "name": "Momofuku",
+      "type": "private",
+      "context": "David Chang's restaurant group spanning fine dining, fast casual, and CPG (noodles, sauces). Refocused strategy post-pandemic, closing global expansion plans and doubling down on CPG and media.",
+      "sentiment": "neutral",
+      "sector": "Food & Beverage"
+    },
+    {
+      "name": "Athletic Brewing",
+      "type": "startup",
+      "context": "Non-alcoholic beer company David Chang invested in during 2019 after observing declining alcohol sales in his own restaurants over several years.",
+      "sentiment": "bullish",
+      "sector": "Food & Beverage"
+    },
+    {
+      "name": "Maple",
+      "type": "private",
+      "context": "Ghost kitchen company David Chang co-founded in 2016 with Thrive Capital, doing 10,000 meals/day in NYC as a full-stack delivery app \u2014 claimed as one of the first ghost kitchens before the term existed.",
+      "sentiment": "neutral",
+      "sector": "Food Delivery"
+    },
+    {
+      "name": "Ando",
+      "type": "private",
+      "context": "Fast food delivery startup David Chang founded with Garrett Camp's Expa fund, focused on cheesesteak and fried chicken delivery. Described as '6 years too early' to market.",
+      "sentiment": "neutral",
+      "sector": "Food Delivery"
+    },
+    {
+      "name": "Thrive Capital",
+      "type": "fund",
+      "context": "VC firm (Will Gaybrick's team) that partnered with David Chang on Maple ghost kitchen in 2016.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Expa",
+      "type": "fund",
+      "context": "Garrett Camp's startup studio that co-founded Ando food delivery with David Chang.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Netflix",
+      "type": "public",
+      "context": "David Chang's podcast moving to Netflix in January; discussed as part of Netflix's expansion into podcast content.",
+      "sentiment": "neutral",
+      "sector": "Media, Streaming"
+    },
+    {
+      "name": "The Ringer",
+      "type": "private",
+      "context": "Bill Simmons' podcast network where David Chang's podcast has been hosted; Chang describes close friendship with Simmons.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Meter",
+      "type": "startup",
+      "context": "AI evaluation company whose task-duration benchmark shows AI autonomous task duration doubling every ~8 months on a log-linear trajectory. GPT-5.1 Codex landed precisely on the expected trendline.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Benchmarking"
+    },
+    {
+      "name": "Vals.ai",
+      "type": "startup",
+      "context": "AI benchmarking company whose independent SWE-bench leaderboard showed Gemini 3 as #1, though OpenAI's newest Codex model had not yet been tested.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Benchmarking"
+    },
+    {
+      "name": "Shopify",
+      "type": "public",
+      "context": "Briefly mentioned in context of DTC brand pricing strategies and psychological pricing tricks (countdown timers, fee stacking) used by high-performing stores vs transparent pricing experiments.",
+      "sentiment": "neutral",
+      "sector": "E-Commerce"
+    },
+    {
+      "name": "Costco",
+      "type": "public",
+      "context": "Cited as the canonical durable example of vertical integration and private-label cost leadership (Kirkland brand) that Picnic's model was compared to.",
+      "sentiment": "neutral",
+      "sector": "Retail"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Mentioned in context of Elon Musk's history of raising capital from Saudi investors when taking Twitter private, used to support xAI's Saudi data center partnership logic.",
+      "sentiment": "neutral",
+      "sector": "Automotive, EV"
+    },
+    {
+      "name": "Wells Fargo",
+      "type": "public",
+      "context": "Listed as a corporate customer of Picnic, Travis Kalanick's no-tip meal delivery platform.",
+      "sentiment": "neutral",
+      "sector": "Financial Services"
+    },
+    {
+      "name": "Live Nation",
+      "type": "public",
+      "context": "Listed as a corporate customer of Picnic, Travis Kalanick's no-tip meal delivery platform.",
+      "sentiment": "neutral",
+      "sector": "Entertainment"
+    },
+    {
+      "name": "EY (Ernst & Young)",
+      "type": "private",
+      "context": "Listed as a corporate customer of Picnic, Travis Kalanick's no-tip meal delivery platform.",
+      "sentiment": "neutral",
+      "sector": "Professional Services"
+    },
+    {
+      "name": "KPMG",
+      "type": "private",
+      "context": "Listed as a corporate customer of Picnic, Travis Kalanick's no-tip meal delivery platform.",
+      "sentiment": "neutral",
+      "sector": "Professional Services"
+    },
+    {
+      "name": "PwC",
+      "type": "private",
+      "context": "Listed as a corporate customer of Picnic, Travis Kalanick's no-tip meal delivery platform.",
+      "sentiment": "neutral",
+      "sector": "Professional Services"
+    },
+    {
+      "name": "Robinhood",
+      "type": "public",
+      "context": "Mentioned in context of launching a weather prediction market feature, used to illustrate prediction markets expanding into everyday events.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "A Capital",
+      "type": "fund",
+      "context": "Posted a detailed rebuttal to Michael Burry's AI bubble thesis, citing locked CAPEX contracts, real workloads, and Nvidia's sequential growth as evidence this is the early stage of a major infrastructure build-out, not a bubble.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Day Job",
+      "type": "startup",
+      "context": "Branding agency that designed both TBPN's brand and Stute's branding; praised by Tarek Alaruri for creating the Clippy-inspired mascot that resonates with Stute's customers.",
+      "sentiment": "bullish",
+      "sector": "Design, Branding"
+    },
+    {
+      "name": "Bishop Lifting",
+      "type": "private",
+      "context": "Stute customer that reduced past-due invoices by 35% using Stute's AR automation platform.",
+      "sentiment": "neutral",
+      "sector": "Industrial"
+    },
+    {
+      "name": "Perkin Elmer",
+      "type": "public",
+      "context": "Cited as an example type of Stute's target customer \u2014 large established industrial/scientific companies in flyover states.",
+      "sentiment": "neutral",
+      "sector": "Life Sciences"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Sponsor; makers of Devin, the AI software engineer, described as a personal AI engineering team for crushing backlogs.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Developer Tools"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Sponsor; multistreaming platform sending one live stream to 30+ destinations.",
+      "sentiment": "neutral",
+      "sector": "Media Tech"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Sponsor; purpose-built software planning and development tool.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Turbo Puffer",
+      "type": "startup",
+      "context": "Sponsor; serverless vector and full-text search built on object storage, claiming 10x cost reduction vs alternatives.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Infrastructure"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor; AI trust management platform for automating compliance and security.",
+      "sentiment": "neutral",
+      "sector": "Cybersecurity, Compliance"
+    },
+    {
+      "name": "Graphite",
+      "type": "startup",
+      "context": "Sponsor; code review tool for GitHub teams positioned as 'code review for the age of AI.'",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Julius AI",
+      "type": "startup",
+      "context": "Sponsor; AI data analyst platform for connecting data sources and generating insights.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Data Analytics"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Sponsor; platform for getting brand mentions in AI chatbot responses to reach consumers discovering products via AI search.",
+      "sentiment": "neutral",
+      "sector": "Marketing Tech, AI/ML"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sponsor; automated sales tax and VAT compliance platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech, Compliance"
+    },
+    {
+      "name": "Adquick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising platform for launching billboard campaigns.",
+      "sentiment": "neutral",
+      "sector": "AdTech"
+    },
+    {
+      "name": "8Sleep",
+      "type": "startup",
+      "context": "Sponsor; sleep technology platform for improving sleep quality.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech, Health"
+    },
+    {
+      "name": "Fin.ai",
+      "type": "startup",
+      "context": "Sponsor; described as the #1 AI agent for customer service.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Customer Service"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Sponsor; AI-powered CRM platform.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, CRM"
+    },
+    {
+      "name": "Privy",
+      "type": "startup",
+      "context": "Sponsor; crypto infrastructure for white-label wallets, signed transactions, and on-chain integrations via API.",
+      "sentiment": "neutral",
+      "sector": "Web3, Crypto"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor; vacation home rental platform with hotel-grade amenities.",
+      "sentiment": "neutral",
+      "sector": "Travel, Hospitality"
+    },
+    {
+      "name": "Capital.com",
+      "type": "startup",
+      "context": "Sponsor; corporate cards, bill pay, and accounting platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Getbezzle",
+      "type": "startup",
+      "context": "Luxury watch marketplace briefly mentioned in jest about getting Sunday Robotics' Memo robot a Richard Mille watch.",
+      "sentiment": "neutral",
+      "sector": "Luxury, E-Commerce"
+    }
+  ],
+  "people": [
+    {
+      "name": "Travis Kalanick",
+      "role": "Founder of Uber; CEO of City Storage Systems",
+      "context": "Replied to TBPN's post explaining that delivery app tipping is a psychological pricing hack: consumers treat $1 in tip as only $0.80 in pain while couriers value it at $1.20, making tipping an inevitable competitive feature. Discussed his new product Picnic and broader vertically integrated food delivery thesis."
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO of Nvidia",
+      "context": "Quoted on Nvidia's Q3 earnings call: 'We've entered the virtuous cycle of artificial intelligence. AI is going everywhere, doing everything all at once.' Also mentioned for his signature leather jackets and a viral beer-chugging moment in South Korea preceding the earnings beat."
+    },
+    {
+      "name": "Doug O'Loflin",
+      "role": "Founder and analyst at Semi-Analysis",
+      "context": "Guest who discussed Nvidia's near-perfect earnings beat, Gemini 3's TPU training as a 'crack in Nvidia's monopoly narrative,' OpenAI's lack of new base pre-training runs, estimated Gemini 3 training cost at ~$1B, projected hyperscalers could raise ~$6T in debt for AI infra, and the CoreWeave/Core Scientific dynamics. Also announced his engagement after proposing in Japan."
+    },
+    {
+      "name": "David Chang",
+      "role": "Chef, restaurateur, author, TV personality; founder of Momofuku",
+      "context": "Guest who discussed ghost kitchen history (Maple, 2016), the broken economics of food delivery (30% platform fees), alcohol sales declining 15-18% in restaurants, the challenge of scaling the 'middle' of the restaurant market, drone delivery skepticism, and his podcast moving to Netflix. Invested in Athletic Brewing in 2019 as a bet on non-alcoholic alternatives."
+    },
+    {
+      "name": "Loredana Crisan",
+      "role": "Chief Design Officer at Figma; former VP at Meta",
+      "context": "Guest who discussed Figma's 20+ AI features shipped in 2 months and the vision for AI as a precise creative tool that keeps designers in control. Spent a decade at Meta leading Messenger, Instagram DM teams, and consumer AI product. Praised Nanobanana Pro for consistency and controllability."
+    },
+    {
+      "name": "Tarek Alaruri",
+      "role": "CEO and co-founder of Stute (St\u016b)",
+      "context": "Guest who announced Stute's $29.5M Series A led by a16z. Explained Stute's AI-powered AR automation using voice calls, email, and SMS, with a flat monthly fee model rather than success-based pricing. Claims 40% recovery of overdue invoices in 6 months."
+    },
+    {
+      "name": "Tony Zhao",
+      "role": "Co-founder of Sunday Robotics; former Stanford PhD student",
+      "context": "Guest who discussed Sunday Robotics' wheeled humanoid Memo after releasing a viral demo. Advocates skill capture gloves over teleoperation for training data. Plans beta for late 2026 and GA in 2027-28. Previously worked on Aloha robot arms at Stanford and had stints at DeepMind, Tesla, and Google."
+    },
+    {
+      "name": "Nikita Rudin",
+      "role": "CEO and co-founder of Flexion",
+      "context": "Guest who discussed Flexion's simulation-based RL approach to robot intelligence, using LLMs for common-sense reasoning and RL for motion. Company raised $50M with DST Global and Nvidia as investors. Background at DeepMind, Tesla, and Google. Based in Zurich, currently in San Francisco hiring."
+    },
+    {
+      "name": "Alex Karp",
+      "role": "CEO of Palantir",
+      "context": "Mentioned for his Patek Philippe Aquanaut watch with orange band, and cited for his framing that each AI model is 'individually a profitable company' \u2014 spend $1B on training, then earn $100M/month for years."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO of OpenAI",
+      "context": "Referenced in context of a described 'bad interview' involving Sarah Fryer and a federal backstop request; and credited with successfully adding social/group chat features to ChatGPT before Meta's standalone AI app could compete."
+    },
+    {
+      "name": "Dario Amodei",
+      "role": "CEO of Anthropic",
+      "context": "Mentioned for his framing that each AI model functions as an individually profitable company: spend $1B on training, make $100M/month thereafter \u2014 used to discuss AI CAPEX accounting debates."
+    },
+    {
+      "name": "Michael Burry",
+      "role": "Investor",
+      "context": "Posted a chart alleging suspicious revenue recognition across the AI ecosystem, claiming 'true end demand is ridiculously small' and that almost all AI customers are 'funded by their dealers.' Challenged readers to name OpenAI's auditor within an hour."
+    },
+    {
+      "name": "Satya Nadella",
+      "role": "CEO of Microsoft",
+      "context": "A 1993 clip surfaced of Nadella as a Microsoft technical marketing manager demonstrating Excel integrated with mainframe data via DRDA \u2014 framed humorously as an early precursor to modern agentic AI automation."
+    },
+    {
+      "name": "Garrett Camp",
+      "role": "Co-founder of Uber; founder of Expa",
+      "context": "Mentioned as David Chang's partner on Ando, a fast food delivery startup funded through Camp's Expa studio."
+    },
+    {
+      "name": "Sarah Fryer",
+      "role": "CFO of OpenAI (implied)",
+      "context": "Referenced in context of an interview described as 'bad' in which she reportedly requested a federal backstop, causing market concern about OpenAI's financial position."
+    },
+    {
+      "name": "Kevin Weill",
+      "role": "Executive at OpenAI",
+      "context": "Posted about OpenAI for Science, highlighting 13 examples of GPT-5 accelerating research across math, physics, biology, and materials science, including finding proofs to previously unsolved problems."
+    },
+    {
+      "name": "Boris Power",
+      "role": "Head of Applied Research at OpenAI",
+      "context": "Shared public surprise at new Saarland University research overturning the 200-year-old explanation for why ice is slippery (electrical charges, not friction/pressure)."
+    },
+    {
+      "name": "Ari Addy",
+      "role": "CEO of Clay; music producer",
+      "context": "Leading Clay as the first music AI company to reach licensing deals with all three major record labels, enabling AI-powered song remixing at scale."
+    },
+    {
+      "name": "Garrett Camp",
+      "role": "Co-founder of Uber; founder of Expa",
+      "context": "Mentioned as David Chang's partner on Ando food delivery startup, funded through Camp's Expa studio."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Nvidia Q3 2025 Earnings Beat",
+      "summary": "Nvidia reported $57B quarterly revenue up 62% YoY with Q4 guidance of $65B vs analyst estimate of $60B. Jensen Huang stated Nvidia has line of sight to half a trillion in 2026 revenue. Stock sold off despite near-perfect results, reflecting extreme expectations priced in and broader market weakness.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Travis Kalanick / Picnic Corporate Meal Delivery",
+      "summary": "Kalanick's new platform offers no-tip, no-fee bundled delivery for corporate teams of 25+. He explained via Twitter reply that tipping is a psychological pricing hack making tips feel cheaper to consumers and more valuable to couriers, making tipping adoption inevitable for competitors. Picnic is counter-positioned in the B2B segment where pricing predictability matters more.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Tipping Psychology and Economic Irrationality",
+      "summary": "Kalanick's framework: consumers treat $1 tip as ~$0.80 in pain (less than fees or menu price), while couriers treat $1 tip as ~$1.20 in value. This asymmetry creates surplus for platforms that implement tipping, making it competitively inevitable even for apps built around a no-tip brand.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Gemini 3 and Nanobanana Pro Launch",
+      "summary": "Google launched Gemini 3 trained entirely on TPUs without Nvidia chips, achieving state-of-the-art benchmarks. Nanobanana Pro image model achieves only 8% text error rate vs OpenAI's 38%. Demoed for RPG map generation, Lego transformations, infographic creation, and academic paper summarization into whiteboards.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "OpenAI Pre-Training Concerns and Model Quality",
+      "summary": "Doug O'Loflin argued OpenAI has not done a new base pre-training run; GPT-4.5 was characterized as a failed run that didn't scale as expected. GPT-5.1 Codex is RL-scaled from an existing base, not a new pre-train. Gemini 3 as a genuine new pre-trained model gives Google a key advantage; OpenAI's absence from new base model territory is the central open question.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "AI Infrastructure Financing and Leverage",
+      "summary": "Doug O'Loflin estimated hyperscalers (ex-Oracle) could collectively raise ~$6T in debt at current market rates. GPU clusters have ~18-month payback periods enabling a shale-like recycling of capital. Oracle is near its debt ceiling this year but will have capacity as revenue grows. Meta cited as the most aggressive potential balance-sheet optimizer.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Press Release Economy and Circular AI Deals",
+      "summary": "Discussion of inflated headline deal sizes vs reality: Brookfield's $100B OpenAI deal has only $5B committed; MBS escalating from $600B to $1T with Trump. Hosts coined 'press release economy' to describe the gap between announced and actual committed capital in AI infrastructure.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "CoreWeave and Core Scientific Dynamics",
+      "summary": "CoreWeave attempted an all-equity acquisition of Core Scientific, which was rejected by shareholders citing peer company re-ratings. Core Scientific stock fell ~20% post-rejection as deal-driven holders exited. Core Scientific's Denton facility delay is creating supply problems for CoreWeave.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Food Delivery Market Dynamics",
+      "summary": "Discussion of 30% platform fees making food delivery unsustainable for restaurants, the difficulty of scaling quality, and whether Travis Kalanick's vertically integrated stack can crack the economics. David Chang predicted 3-4 winners in food delivery and praised both DoorDash's Tony Xu and Kalanick's strategic positioning.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Restaurant Industry Structural Challenges",
+      "summary": "David Chang highlighted declining beverage sales (~15-18% drop) driven by Gen Z avoiding alcohol, rising labor costs, and the unsustainable economics of mid-tier restaurants. He argued food prices must rise and that the industry is too slow to adopt new technology, using the failure to adopt the metric system as an example.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Humanoid and Wheeled Robotics",
+      "summary": "Sunday Robotics' Memo robot went viral with a demo of picking up wine glasses and household tasks using a wheeled design optimized for passive safety. Flexion builds robot intelligence via simulation-based RL. Both companies are raising capital. Expert estimate puts human-level kitchen dexterity ~15 years away.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Task Duration Benchmark (Meter)",
+      "summary": "Meter's benchmark tracking AI autonomous task duration shows a doubling every ~8 months on a log-linear trajectory. GPT-5.1 Codex landed precisely on the expected trendline. If the trend holds, models could handle week- or month-long projects within a few years. The AI 2027 fast-takeoff scenario is tracking slightly behind projected timelines.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Music AI Licensing Breakthrough",
+      "summary": "Clay became the first music AI company to reach deals with all three major record labels (Universal, Sony, Warner), enabling licensed AI remixing. Suno also raised a new round. Hosts noted that one early investor thought these deals would be impossible to secure.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "ChatGPT Social and Group Chat Features",
+      "summary": "OpenAI rolled out group chats in ChatGPT globally for all logged-in users. Hosts interpreted this as OpenAI successfully pivoting toward social features to reduce churn, moving faster than Meta's standalone AI app could compete.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Bubble Skepticism vs Bull Case",
+      "summary": "Michael Burry alleged suspicious revenue recognition and 'ridiculously small' true AI demand, with circular financing between AI companies. A Capital rebutted citing locked CAPEX contracts, real workloads, and Nvidia's sequential growth as evidence of a genuine infrastructure buildout \u2014 not a bubble.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Market Selloff Despite Nvidia Beat",
+      "summary": "NASDAQ fell 2.1% and Bitcoin dropped ~5% to ~$86K on the day of Nvidia's strong earnings. Attributed to fading Fed rate cut expectations and the market being in one of its longest above-50-DMA stretches since 1997.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "xAI Saudi Arabia Data Center",
+      "summary": "X.AI and Nvidia announced a new data center project in Saudi Arabia. xAI praised for holding the speed record for building AI supercomputing infrastructure (Colossus). Hosts noted existing Saudi investor relationships from the Twitter private equity deal make this a natural partnership.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Design Tools and Creative Workflows",
+      "summary": "Loredana Crisan discussed Figma's 20+ AI features shipped in 2 months, emphasizing AI must keep designers in control rather than boxing them in. The core UX problem: AI generates 98% great assets but reprompting causes unwanted full regeneration. Nanobanana Pro praised for consistency across iterative edits.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Model Longevity and Consumer Lock-In",
+      "summary": "Discussion of whether consumers and enterprises will stick with older models forever \u2014 analogous to RuneScape Classic having a stable loyal user base. Tension between this fragmentation thesis and the competitive pressure to keep scaling pre-training runs, especially for coding-focused models.",
+      "sentiment": "mixed"
+    }
+  ],
+  "key_claims": [
+    "Nvidia Q3 revenue $57B, up 62% YoY; Q4 guidance $65B vs analyst estimate of $60B; Jensen Huang: 'line of sight to half a trillion in revenue in 2026.'",
+    "Travis Kalanick: for every $1 in tip, consumers behave as if it costs $0.80 in pain while couriers treat it as $1.20 in value \u2014 making tipping an inevitable competitive feature for any delivery app.",
+    "Doug O'Loflin: OpenAI has not released a new base pre-training run; GPT-4.5 was a 'failed run' that did not scale as expected with compute.",
+    "Doug O'Loflin: Gemini 3 pre-training run likely cost approximately $1 billion, with total R&D spend potentially 10x the final training cost.",
+    "Doug O'Loflin: Hyperscalers (excluding Oracle) could collectively raise approximately $6 trillion in debt financing for AI infrastructure at current market rates.",
+    "Doug O'Loflin: GPU cluster payback period is approximately 18 months, enabling a shale-oil-style capital recycling loop.",
+    "Brookfield's $100B OpenAI data center deal has only $5B actually committed \u2014 cited as the defining example of the 'press release economy.'",
+    "Nanobanana Pro (Gemini 3 image model) achieves an 8% text error rate vs OpenAI's 38% in image generation benchmarks.",
+    "Meter benchmark: AI autonomous task duration doubles every ~8 months on a log-linear trajectory; GPT-5.1 Codex landed precisely on the expected trendline.",
+    "David Chang: restaurant industry beverage (alcohol) sales are down approximately 15-18% on average, with Gen Z treating drinking 'like smoking cigarettes.'",
+    "David Chang: Co-founded one of the first ghost kitchens (Maple) in 2016, doing 10,000 meals/day in NYC before the term 'ghost kitchen' was coined.",
+    "David Chang: 'Food needs to get more expensive' \u2014 cited as the most important structural fix for restaurant economics, yet politically toxic to say publicly.",
+    "Sunday Robotics (Tony Zhao): a cited robotics expert believes human-level kitchen robot dexterity is approximately 15 years away.",
+    "Sunday Robotics plans to use skill capture gloves worn by humans as the primary robot training data source \u2014 not teleoperation or simulation \u2014 targeting 1% of 8B humans as potential contributors.",
+    "Stute raised $29.5M Series A led by a16z; claims 40% recovery of overdue invoices in first 6 months, going live in 3 days for Fortune 100 companies.",
+    "Flexion raised $50M with DST Global and Nvidia investing; uses simulation-based RL without teleoperation, teleoperation data, or world models.",
+    "Clay became the first music AI company to reach licensing deals with all three major record labels simultaneously (Universal, Sony, Warner).",
+    "Michael Burry claims true end demand for AI is 'ridiculously small' and almost all AI customers are 'funded by their dealers,' calling it potentially the largest accounting fraud in history.",
+    "New Saarland University research suggests ice is slippery due to electrical charges rather than pressure-induced friction melt \u2014 overturning a 200-year-old scientific explanation.",
+    "AI 2027 fast-takeoff scenario is tracking slightly behind projected timelines per the Meter benchmark comparison, though still broadly consistent with an exponential trajectory toward autonomous multi-week AI projects."
+  ],
+  "technologies": [
+    "Nvidia H100 / GB200 GPUs",
+    "Google TPU (TPUv7)",
+    "Gemini 3",
+    "Nanobanana Pro (Gemini 3 image generation model)",
+    "GPT-5.1 Codex",
+    "Reinforcement Learning (RL)",
+    "Simulation-based robot training",
+    "Gaussian Splats",
+    "Segment Anything Model 3 (SAM 3, Meta)",
+    "Large Language Models (LLMs)",
+    "Skill capture / teleoperation gloves (Sunday Robotics)",
+    "Drone delivery",
+    "Autonomous vehicles (Waymo)",
+    "Ghost kitchens",
+    "Agentic AI / AI agents",
+    "Voice AI (outbound AI phone calls)",
+    "Google Pathways (multi-datacenter distributed training)",
+    "Vibe coding",
+    "Generative image AI",
+    "Figma Make",
+    "Prediction markets",
+    "Inference scaling / chain-of-thought reasoning",
+    "World models",
+    "Physics-based simulation (Unreal Engine-style)",
+    "Reinforcement learning from human feedback (RLHF)",
+    "Graph viz / generative data visualization",
+    "Segment Anything (image processing for robot training)"
+  ],
+  "_stats": {
+    "word_count": 33063,
+    "estimated_input_tokens": 43973,
+    "input_tokens": 3,
+    "output_tokens": 25533,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 47894,
+    "duration_ms": 484091,
+    "wall_time_s": 485.2,
+    "cost_usd": 0.942286,
+    "tokens_per_sec": 52.6
+  }
+}

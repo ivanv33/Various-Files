@@ -1,0 +1,870 @@
+{
+  "episode_date": "2025-08-13",
+  "episode_title": "openai-prepares-chatgpt-ad-driven-era-ai-paradigm-shift",
+  "companies": [
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Debated as both threatened by OpenAI's agentic commerce and potentially resilient due to DeepMind, TPU chips, and GCP momentum. Ben Thompson argued Google's college-campus research culture may be key to surviving multiple paradigm shifts.",
+      "sentiment": "mixed",
+      "sector": "AI/ML, Advertising, Cloud"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "GPT-5 framed as an intelligent router allocating compute based on query monetizability, enabling agentic commerce. Visits up 135% YoY, ranked #5 website globally, youngest site in the top 10.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Semi-Analysis",
+      "type": "private",
+      "context": "Published bearish analysis arguing GPT-5's router enables ChatGPT to dominate agentic commerce and threaten Google's ad revenue; Doug from Semi-Analysis appeared on the show the prior week.",
+      "sentiment": "neutral",
+      "sector": "Research/Media"
+    },
+    {
+      "name": "Stratechery",
+      "type": "private",
+      "context": "Ben Thompson wrote 'Paradigm Shifts and the Winner's Curse' taking a bullish Google stance, citing its research culture and track record surviving multiple tech eras.",
+      "sentiment": "neutral",
+      "sector": "Research/Media"
+    },
+    {
+      "name": "DeepMind",
+      "type": "private",
+      "context": "Google's AI lab credited with producing top-tier models Gemini, VO3, and Genie 3; Noam Shazeer's return cited as reason for Gemini's improvement.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Ranked #3 lab on the METIS list with 22 researchers; 30% of Claude users reportedly use it for emotional support, raising mental health concerns.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "xAI",
+      "type": "startup",
+      "context": "Co-founder Igor Babushkin (METIS #24) announced departure to start a venture firm focused on AI safety and agentic systems.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "NVIDIA",
+      "type": "public",
+      "context": "Trump approved H20 GPU exports to China with approximately 15% revenue share to the U.S. government; China's regulators then urged domestic companies to avoid H20s in favor of domestic alternatives.",
+      "sentiment": "mixed",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Open Door",
+      "type": "public",
+      "context": "Keith Rabois argued the company needs a new AI-native CEO, dramatic GNA cost cuts via AI, and cessation of partnerships with legacy real estate brokers; compared unfavorably to Carvana despite operating in a larger market.",
+      "sentiment": "mixed",
+      "sector": "Real Estate Tech"
+    },
+    {
+      "name": "Sequoia Capital",
+      "type": "fund",
+      "context": "Alfred Lin discussed the firm's seed-to-growth strategy, ARC company-building program, and the trend toward fewer employees per company due to AI.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Bessemer Venture Partners",
+      "type": "fund",
+      "context": "Talia Goldberg presented the 'State of AI' report showing AI supernovas reaching $100M ARR in 1.5 years vs 6-7 years for prior cloud companies.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Upstart",
+      "type": "public",
+      "context": "Dave Girouard described AI-native lending marketplace; reported triple-digit revenue growth. Upstart macro index shows consumer credit defaults at highest levels since pre-COVID.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "InWorld",
+      "type": "startup",
+      "context": "Kylan Gibbs announced $120M raised and launch of first AI runtime for consumer applications; partners include NVIDIA, Xbox, Niantic, and Disney for NPC AI and generative gaming content.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Gaming"
+    },
+    {
+      "name": "Method Security",
+      "type": "startup",
+      "context": "Sam Jones' venture-backed cybersecurity startup building offensive and defensive AI tools deployed with DOD and U.S. government as a dual-use company.",
+      "sentiment": "bullish",
+      "sector": "Cybersecurity"
+    },
+    {
+      "name": "Perplexity",
+      "type": "startup",
+      "context": "Talia Goldberg is a Bessemer investor; Comet browser praised as fully replacing the Chrome experience by providing full-context AI natively across all web activity.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Search"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Building Meta Super Intelligence Lab (MSL) with heavy AI hiring; Jan LeCun dropped off METIS list entirely as Zuckerberg rebuilds the AI team. Only 8 researchers on METIS list despite aggressive hiring spree.",
+      "sentiment": "mixed",
+      "sector": "AI/ML, Social Media"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "AWS highlighted by Ben Thompson as co-definer of the smartphone era alongside Apple; Amazon cited as secretly achieving significant AI-driven business transformation internally.",
+      "sentiment": "bullish",
+      "sector": "Cloud, E-commerce"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Azure performed well in recent earnings; historically identified as a loser of the smartphone era due to overreliance on the Windows PC paradigm.",
+      "sentiment": "neutral",
+      "sector": "Cloud, AI/ML"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Identified as winner of the smartphone era; app store take rate cited as an analogy for potential ChatGPT agentic commerce commission model.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Instacart",
+      "type": "public",
+      "context": "Fiji Simo departed as CEO to join OpenAI in May; cited in the monetization timeline as an early agentic purchasing adopter in January.",
+      "sentiment": "neutral",
+      "sector": "E-commerce, Delivery"
+    },
+    {
+      "name": "DoorDash",
+      "type": "public",
+      "context": "OpenAI building RL training environments simulating DoorDash to enable agentic checkout; also cited as IPO example of a company that kept shipping aggressively post-listing.",
+      "sentiment": "neutral",
+      "sector": "Delivery, E-commerce"
+    },
+    {
+      "name": "Shopify",
+      "type": "public",
+      "context": "Named as OpenAI consumer commerce partner enabling merchants to support direct checkout within ChatGPT.",
+      "sentiment": "bullish",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "Stripe",
+      "type": "private",
+      "context": "Named as OpenAI's consumer-side payment commerce partner for agentic checkout; Will Daybrook cited as a model AI-native executive.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Visa",
+      "type": "public",
+      "context": "Named as one of OpenAI's consumer-side payment partnerships for agentic commerce.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "PayPal",
+      "type": "public",
+      "context": "Named as one of OpenAI's consumer-side payment partnerships for agentic commerce.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Booking.com",
+      "type": "public",
+      "context": "Named as OpenAI's enterprise travel commerce partner enabling agentic hotel booking.",
+      "sentiment": "neutral",
+      "sector": "Travel, E-commerce"
+    },
+    {
+      "name": "CoreWeave",
+      "type": "public",
+      "context": "Q2 revenue tripled YoY but posted $290.5M loss, 15% above analyst expectations; described as investing aggressively for growth despite bottom-line misses.",
+      "sentiment": "mixed",
+      "sector": "AI/ML, Cloud Infrastructure"
+    },
+    {
+      "name": "Circle",
+      "type": "public",
+      "context": "Share price quintupled since June 2025 IPO; revenue up 53% YoY but posted $482M Q2 loss versus $338M expected.",
+      "sentiment": "mixed",
+      "sector": "Crypto/Fintech"
+    },
+    {
+      "name": "DeepSeek",
+      "type": "startup",
+      "context": "Credited with optimizing LLM training on H20 chips despite their export-control limitations; two researchers now appear on the METIS list.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Carvana",
+      "type": "public",
+      "context": "Cited as a $40B company with more competition than Open Door, used as benchmark for what Open Door could achieve with better leadership and AI-driven transformation.",
+      "sentiment": "bullish",
+      "sector": "Automotive, E-commerce"
+    },
+    {
+      "name": "Thinking Machines",
+      "type": "startup",
+      "context": "John Shulman's new company ranked #4 lab on the METIS list with 12 researchers; described as having many top AI talent despite its small size.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "SSI (Safe Superintelligence)",
+      "type": "startup",
+      "context": "Ilya Sutskever's company dropped to #2 lab on METIS list; partly attributed to not publishing any research in the past year.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Alfred Lin used as an example of a decade-long journey to a successful outcome; Dylan Field cited as shipping code and answering support tickets on IPO day.",
+      "sentiment": "bullish",
+      "sector": "Design/Software"
+    },
+    {
+      "name": "Airbnb",
+      "type": "public",
+      "context": "Cited as an example of a consumer marketplace succeeding despite not being first mover; will be five years public in December 2025.",
+      "sentiment": "bullish",
+      "sector": "Travel, Marketplace"
+    },
+    {
+      "name": "Facebook",
+      "type": "public",
+      "context": "Fiji Simo's career-defining tenure; credited with auto-play video, mobile monetization, and gaming monetization; used as analogy for how AI ads should feel native rather than intrusive.",
+      "sentiment": "neutral",
+      "sector": "Social Media, Advertising"
+    },
+    {
+      "name": "Alibaba",
+      "type": "public",
+      "context": "Chinese tech giant reportedly asked by regulators to justify H20 GPU orders and consider domestic chip alternatives.",
+      "sentiment": "bearish",
+      "sector": "Cloud, AI/ML"
+    },
+    {
+      "name": "ByteDance",
+      "type": "private",
+      "context": "Chinese tech giant asked by regulators to justify H20 GPU orders; TikTok algorithm creator humorously cited as deserving a spot on a hypothetical engagement-maximization list.",
+      "sentiment": "neutral",
+      "sector": "Social Media, AI/ML"
+    },
+    {
+      "name": "Citadel Securities",
+      "type": "private",
+      "context": "Alfred Lin sits on its board; cited as an example of a finance firm employing heavy quantitative AI and ML research at scale.",
+      "sentiment": "neutral",
+      "sector": "Fintech, Trading"
+    },
+    {
+      "name": "Jane Street",
+      "type": "private",
+      "context": "Cited as a source of top ML talent being poached by AI labs; Matt Mull's inference optimization work cited as originating there.",
+      "sentiment": "neutral",
+      "sector": "Trading/Finance"
+    },
+    {
+      "name": "Sunflower Sober",
+      "type": "startup",
+      "context": "Keith Sakata advises this startup using AI to support addiction recovery; cited as a model for baking clinical safety guardrails into AI products from the start.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "ShareAura (Aura)",
+      "type": "startup",
+      "context": "Zach Pogrob's fitness content sharing app launched publicly with 20,000+ waitlist; targets runners sharing workout screenshots to social media; no monetization yet but planned via brand creative asset partnerships.",
+      "sentiment": "bullish",
+      "sector": "Consumer Tech, Fitness"
+    },
+    {
+      "name": "Character.ai",
+      "type": "startup",
+      "context": "Cited as an early AI social platform that didn't fully realize its potential; Noam Shazeer returned to Google from Character.ai before its rise.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Social Media"
+    },
+    {
+      "name": "Pika Labs",
+      "type": "startup",
+      "context": "Founder appeared on the show the prior day; building an AI-native social media app with AI-generated content.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Social Media"
+    },
+    {
+      "name": "Strava",
+      "type": "private",
+      "context": "Fitness tracking app whose screenshot-sharing user behavior inspired Zach Pogrob to build ShareAura.",
+      "sentiment": "neutral",
+      "sector": "Fitness Tech"
+    },
+    {
+      "name": "AMD",
+      "type": "public",
+      "context": "Mentioned alongside NVIDIA in the H20 export approval to China, though noted as lower importance than NVIDIA in the deal.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Moonshot AI (Kimi)",
+      "type": "startup",
+      "context": "Chinese AI lab noted as significant in the landscape; one researcher appears on the METIS list.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "SMIC",
+      "type": "public",
+      "context": "Chinese semiconductor manufacturer cited as part of China's strategy to develop an indigenous chip supply chain to reduce reliance on NVIDIA.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Grubhub",
+      "type": "public",
+      "context": "Alfred Lin cited as a consolidator in food delivery eventually overtaken by DoorDash, illustrating that even dominant consumer platforms can be disrupted.",
+      "sentiment": "bearish",
+      "sector": "Delivery, E-commerce"
+    },
+    {
+      "name": "Nokia",
+      "type": "public",
+      "context": "Cited by Ben Thompson as a loser of the smartphone era because it failed to shed its previous paradigm dominance.",
+      "sentiment": "bearish",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Niantic",
+      "type": "startup",
+      "context": "Listed as one of InWorld's major enterprise partners for AI-powered consumer applications.",
+      "sentiment": "neutral",
+      "sector": "Gaming, AR"
+    },
+    {
+      "name": "Xbox (Microsoft)",
+      "type": "public",
+      "context": "InWorld partnership for AI-powered NPC characters and consumer AI runtime for gaming; game developers cited as adapting to AI unpredictability as a feature.",
+      "sentiment": "bullish",
+      "sector": "Gaming"
+    },
+    {
+      "name": "Disney",
+      "type": "public",
+      "context": "Listed as one of InWorld's major enterprise partners for AI-powered consumer applications.",
+      "sentiment": "neutral",
+      "sector": "Entertainment"
+    },
+    {
+      "name": "Status",
+      "type": "startup",
+      "context": "Gaming company using InWorld's technology popular with Gen Alpha/Z; created a game where users role-play characters from alternative universe social platforms.",
+      "sentiment": "bullish",
+      "sector": "Gaming"
+    },
+    {
+      "name": "Replica",
+      "type": "startup",
+      "context": "Mentioned as an early example of AI companion apps predating the ChatGPT era, contextualizing the longer history of AI relationship products.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Consumer Tech"
+    },
+    {
+      "name": "Fal.ai",
+      "type": "startup",
+      "context": "Listed as a Bessemer Venture Partners portfolio company by Talia Goldberg alongside Perplexity, Deep L, and ServiceTitan.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Deep L",
+      "type": "startup",
+      "context": "Listed as a Bessemer Venture Partners portfolio company by Talia Goldberg.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Translation"
+    },
+    {
+      "name": "ServiceTitan",
+      "type": "public",
+      "context": "Listed as a Bessemer Venture Partners portfolio company by Talia Goldberg.",
+      "sentiment": "neutral",
+      "sector": "Software/SaaS"
+    },
+    {
+      "name": "First Round Capital",
+      "type": "fund",
+      "context": "Started Dorm Room Fund at Penn with Talia Goldberg; noted as the only VC with a Philadelphia office at the time.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Jeffries",
+      "type": "public",
+      "context": "David Zervos is Managing Director there; discussed as a potential Fed chair candidate with an eccentric fashion sense.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor; corporate cards, bill payment, and accounting platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor; automated compliance and trust management platform replacing manual security processes.",
+      "sentiment": "neutral",
+      "sector": "Security/Compliance"
+    },
+    {
+      "name": "Graphite",
+      "type": "startup",
+      "context": "Sponsor; AI-age code review platform for GitHub teams.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Sponsor; purpose-built project management and product roadmap tool for software teams.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Julius",
+      "type": "startup",
+      "context": "Sponsor; AI-powered data analysis platform with 2M+ users trusted by Princeton, BCG, and Zapier.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Analytics"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sponsor; automated sales tax compliance platform, Benchmark Series A.",
+      "sentiment": "neutral",
+      "sector": "Fintech, Compliance"
+    },
+    {
+      "name": "Fin.ai",
+      "type": "startup",
+      "context": "Sponsor; ranked #1 AI agent for customer service across performance benchmarks and G2.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Customer Service"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Sponsor; AI-native CRM platform.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, CRM"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising technology platform.",
+      "sentiment": "neutral",
+      "sector": "Advertising Tech"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Sponsor; Pod Five sleep tracking mattress cover with sleep scores; hosts compared scores on air.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech, Health"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor; multi-asset investing platform for serious investors.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Sponsor; platform helping brands get mentioned in ChatGPT and other AI interfaces to capture AI-driven consumer discovery.",
+      "sentiment": "bullish",
+      "sector": "Marketing Tech, AI/ML"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor; vacation rental platform with hotel-grade amenities and 24/7 concierge service.",
+      "sentiment": "neutral",
+      "sector": "Travel, Real Estate"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Sponsor; luxury watch marketplace with concierge sourcing.",
+      "sentiment": "neutral",
+      "sector": "E-commerce, Luxury"
+    }
+  ],
+  "people": [
+    {
+      "name": "Ben Thompson",
+      "role": "Founder, Stratechery",
+      "context": "Wrote 'Paradigm Shifts and the Winner's Curse' arguing Google may survive the AI era due to its research culture; described himself as a 'Google fanboy' on his Sharp Tech podcast."
+    },
+    {
+      "name": "Dylan Patel",
+      "role": "Founder, Semi-Analysis",
+      "context": "Published analysis arguing GPT-5 is an intelligent router enabling agentic commerce that will threaten Google's ad revenue; argued GPT-5 is not a bigger pre-training model but heavily RL-trained."
+    },
+    {
+      "name": "Keith Rabois",
+      "role": "Investor, former Open Door board member",
+      "context": "Argued Open Door needs a new AI-native CEO, significant GNA cost cuts via AI to potentially 100 employees, and should stop partnering with legacy real estate brokers; called for replacing Fed Chair Powell."
+    },
+    {
+      "name": "Alfred Lin",
+      "role": "Partner, Sequoia Capital",
+      "context": "Discussed Sequoia's ARC company-building program, early-stage investment philosophy, IPO window, and AI's impact on reducing headcount per company; sold pizza in college as an early entrepreneurial signal."
+    },
+    {
+      "name": "Keith Sakata",
+      "role": "Psychiatrist, UCSF",
+      "context": "Documented 12 hospitalizations at UCSF this year tied to AI model interactions exacerbating existing mental health vulnerabilities; argues AI psychosis isn't causal but supercharges pre-existing conditions."
+    },
+    {
+      "name": "Talia Goldberg",
+      "role": "Partner, Bessemer Venture Partners",
+      "context": "Presented the 'State of AI' report showing AI supernovas reaching $100M ARR in 1.5 years; discussed supernova vs shooting star company frameworks and predicted browser emergence as dominant agentic AI interface."
+    },
+    {
+      "name": "Dave Girouard",
+      "role": "CEO, Upstart",
+      "context": "Described applying AI/ML to consumer lending for 13 years; reported triple-digit revenue growth; noted consumer credit defaults at highest levels since pre-COVID and that agentic loan applications are an anticipated future vector."
+    },
+    {
+      "name": "Kylan Gibbs",
+      "role": "CEO, InWorld",
+      "context": "Announced $120M total raised and launch of first AI runtime for consumer applications; working with Xbox, NVIDIA, Disney, and Niantic on NPC AI and generative content."
+    },
+    {
+      "name": "Sam Jones",
+      "role": "CEO and Co-founder, Method Security",
+      "context": "Described building offensive and defensive AI cybersecurity tools for critical institutions and DOD; argues AI is enabling known attack techniques at unprecedented scale rather than generating novel zero-days."
+    },
+    {
+      "name": "Zach Pogrob",
+      "role": "Founder, ShareAura (Aura)",
+      "context": "Launched fitness content sharing app targeting runner screenshot-sharing behavior; has 1.3M Instagram followers and 20,000+ app waitlist; plans brand partnership monetization on creative assets."
+    },
+    {
+      "name": "Fiji Simo",
+      "role": "CEO of Applications, OpenAI (formerly CEO of Instacart)",
+      "context": "Highlighted as potentially one of the most qualified people alive to monetize AI; her Facebook track record on auto-play video and mobile/gaming monetization cited as key signal of OpenAI's advertising ambitions."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Quoted calling ads a 'last resort' in earlier interviews but softening tone recently; described agentic checkout commissions as preferable to display ads; used deep research to find a rare Acura NSX in Japan as an example of highly monetizable queries."
+    },
+    {
+      "name": "Noam Shazeer",
+      "role": "AI Researcher, Google DeepMind",
+      "context": "Moved to #1 on the METIS AI researcher list; credited with improving Gemini after returning to Google from Character.ai."
+    },
+    {
+      "name": "Ilya Sutskever",
+      "role": "Co-founder, SSI (Safe Superintelligence)",
+      "context": "Dropped to #2 on METIS list, partly attributed to SSI not publishing research in the past year."
+    },
+    {
+      "name": "Demis Hassabis",
+      "role": "CEO, Google DeepMind",
+      "context": "Added back to METIS list at #3 after being omitted from the first version; acknowledged as both a lab leader and key research decision-maker."
+    },
+    {
+      "name": "Dario Amodei",
+      "role": "CEO, Anthropic",
+      "context": "Moved up to #4 on the METIS list; noted as having appeared on Dwarkesh Patel's podcast, which has now interviewed 7 of the top 10 METIS researchers."
+    },
+    {
+      "name": "John Shulman",
+      "role": "Co-founder, Thinking Machines (formerly OpenAI)",
+      "context": "Ranked #5 on the METIS list; Thinking Machines has 12 researchers on the list, the 4th most of any lab."
+    },
+    {
+      "name": "Igor Babushkin",
+      "role": "Co-founder, xAI",
+      "context": "Breaking news: leaving xAI to start a venture firm supporting AI safety research and backing agentic systems startups; was ranked #24 on the METIS list."
+    },
+    {
+      "name": "Jan LeCun",
+      "role": "Chief AI Scientist, Meta",
+      "context": "Dropped entirely off the METIS list from a previous top-10 position; has lost influence within Meta as Zuckerberg builds the Meta Super Intelligence Lab largely without his involvement."
+    },
+    {
+      "name": "Noam Brown",
+      "role": "AI Researcher, OpenAI",
+      "context": "Rose 36 spots on METIS list; part of OpenAI's RL post-training team and key member of the IMO gold medal team."
+    },
+    {
+      "name": "Paul Christiano",
+      "role": "AI Safety Researcher",
+      "context": "Described as an OG in RLHF research now focused on safety; included on the METIS list."
+    },
+    {
+      "name": "Peter Abbeel",
+      "role": "Professor, UC Berkeley",
+      "context": "Moved up 66 spots on the METIS list; influential through advising top researchers and contributing to many papers despite not currently being at an industry lab."
+    },
+    {
+      "name": "J\u00fcrgen Schmidhuber",
+      "role": "AI Researcher",
+      "context": "Dropped 53 spots on the METIS list; controversy noted around his attempts to claim credit during the Nobel Prize announcement cycle."
+    },
+    {
+      "name": "Mark Chen",
+      "role": "AI Researcher, OpenAI",
+      "context": "Broke into the METIS top 10 at #6, rising 19 spots."
+    },
+    {
+      "name": "Eric Jackson",
+      "role": "Retail Investor",
+      "context": "Leading retail investor campaign spotlighting Open Door's potential and pushing for leadership change; referenced by Keith Rabois as bringing important public market attention to the company."
+    },
+    {
+      "name": "Yuri Milner",
+      "role": "Investor, DST Global",
+      "context": "Cited as having argued 7 years ago that the largest real estate platform in the West being worth only ~$18B makes no sense given real estate is the largest asset class."
+    },
+    {
+      "name": "Vinod Khosla",
+      "role": "Founder, Khosla Ventures",
+      "context": "Referenced as having warned Open Door management in 2015 that fixed cost structure was too high for real estate market cycles; Rabois says management didn't listen."
+    },
+    {
+      "name": "David Zervos",
+      "role": "Managing Director, Jeffries",
+      "context": "Discussed as a potential Federal Reserve chair candidate; known for eccentric fashion including orange suits; previously advised the Fed in 2009."
+    },
+    {
+      "name": "Tyler Cosgrove",
+      "role": "Show intern / METIS List curator",
+      "context": "Presented updates to the METIS list of top 128 AI researchers, defending methodology changes including Noam Shazeer moving to #1 and Jan LeCun's removal."
+    },
+    {
+      "name": "Will Daybrook",
+      "role": "Head of AI, Stripe",
+      "context": "Cited by Keith Rabois as an example of the type of AI-native executive that Open Door needs as its next CEO."
+    },
+    {
+      "name": "John Collison",
+      "role": "Co-founder, Stripe",
+      "context": "Made a viral post comparing selecting O3 to ordering from a legacy model menu, used as a metaphor for the post-GPT-5 upgrade experience."
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO, Meta",
+      "context": "Building out Meta Super Intelligence Lab (MSL) with aggressive AI hiring, largely separate from Jan LeCun's existing organization; described as in 'season 2026' mode."
+    },
+    {
+      "name": "Larry Page",
+      "role": "Co-founder, Google",
+      "context": "Described by Ben Thompson as preferring a college-campus research environment over traditional business efficiency, which may be key to Google surviving multiple tech paradigms."
+    },
+    {
+      "name": "Sergei Brin",
+      "role": "Co-founder, Google",
+      "context": "Co-cited with Larry Page for Google's college-campus culture that has persisted for nearly 30 years and prioritizes research over analytical clarity."
+    },
+    {
+      "name": "Nat Friedman",
+      "role": "Investor / Former GitHub CEO",
+      "context": "Mentioned as appearing on the METIS AI researcher list alongside Daniel Gross and Alex Wang."
+    },
+    {
+      "name": "Daniel Gross",
+      "role": "AI Investor",
+      "context": "Mentioned as appearing on the METIS AI researcher list alongside Nat Friedman and Alex Wang."
+    },
+    {
+      "name": "Alex Wang",
+      "role": "CEO, Scale AI",
+      "context": "Mentioned as appearing on the METIS AI researcher list alongside Nat Friedman and Daniel Gross."
+    }
+  ],
+  "topics": [
+    {
+      "name": "OpenAI GPT-5 Model Router",
+      "summary": "GPT-5 is framed not as a bigger pre-training model but as an intelligent router allocating compute based on query monetizability. High-value queries like 'DUI lawyer near me' trigger expensive reasoning models with many tool calls; trivial queries get cheap fast responses. Enables variable-cost agentic commerce.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "ChatGPT Advertising and Agentic Commerce",
+      "summary": "Semi-Analysis argues ChatGPT will replace Google's ad revenue through agentic checkout commissions rather than display ads. Fiji Simo's hire as CEO of Applications signals intent; Sam Altman's tone on ads has softened. Commerce partners include Stripe, Visa, PayPal, Shopify, Booking.com, Instacart, and Mercari.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Google vs. OpenAI Strategic Debate",
+      "summary": "Debated from bull and bear perspectives. Bear: ChatGPT growing 135% YoY threatens search ad revenue; marginal costs now exist for AI unlike zero-cost Google search. Bull: Google has DeepMind, TPUs, GCP momentum, and a research culture Ben Thompson argues enables paradigm survival.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "METIS AI Researcher Rankings v2",
+      "summary": "Updated ranking of top 128 AI researchers. Noam Shazeer #1, Ilya Sutskever #2, Demis Hassabis added at #3, Dario Amodei #4, John Shulman #5. Jan LeCun dropped off entirely. By lab: OpenAI 24, DeepMind 23, Anthropic 22, Thinking Machines 12, Meta 8. By country: USA 51, China 14, UK 13, Canada 12.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Open Door Real Estate Tech Revival",
+      "summary": "Keith Rabois argues Open Door could be a $50-100B company with a new AI-native CEO, GNA cuts to potentially 100 employees via AI, and a pivot away from legacy broker partnerships. Current management has failed to capitalize on its disruptive potential during a three-year window.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "NVIDIA H20 Chip Exports to China",
+      "summary": "Trump approved H20 GPU exports to China with approximately 15% revenue share to the U.S. government. China's regulators urged Alibaba, ByteDance, and others to avoid H20s and justify orders. Constitutional questions raised about an export tax on chips not manufactured in the U.S.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI Psychosis and Mental Health",
+      "summary": "UCSF psychiatrist Keith Sakata documented 12 hospitalizations this year linked to AI model interactions exacerbating existing vulnerabilities like sleep loss or substance use. AI does not cause psychosis but softens reality's pushback and creates reinforcing feedback loops. Recommended human-in-the-loop safety and pro-social AI design.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Early-Stage Venture Capital in the AI Era",
+      "summary": "Alfred Lin from Sequoia discussed the ARC company-building program, founder-driven transformation, AI enabling fewer employees per startup, and the importance of stealth before launch to avoid inviting competition.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Supernova vs. Shooting Star Companies",
+      "summary": "Bessemer's State of AI report shows top AI companies reaching $100M ARR in 1.5 years vs 6-7 years for prior cloud companies. Many have negative gross margins as compute demand grows faster than model efficiency improvements. Revenue durability and gross margin trajectory are key underwriting questions.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Browser Wars and Agentic AI Interface",
+      "summary": "Bessemer predicts browsers will be the dominant agentic AI interface. Perplexity's Comet praised for replacing Chrome via full-context AI across all web activity. OpenAI expected to launch a browser. Owning the browser context may be necessary to deliver truly personalized AI.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Federal Reserve Interest Rate Policy and AI Growth",
+      "summary": "Keith Rabois called for replacing Fed Chair Powell, arguing rates are too high and that AI-driven productivity can enable consistent 3%+ GDP growth without inflation, similar to 1950-2010 patterns. Upstart's data shows consumer stress with defaults at post-COVID highs and personal savings at historic lows.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI in Consumer Gaming and Entertainment",
+      "summary": "InWorld raised $120M and launched an AI runtime enabling conversational NPCs and generative on-the-fly content for Xbox, Disney, and Niantic. Addresses the core problem of content creation velocity failing to keep pace with user consumption speed.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI-Powered Cybersecurity",
+      "summary": "Method Security is building offensive and defensive AI tools for DOD and commercial clients. AI is enabling known attack techniques at unprecedented scale; one billion dollars earmarked for offensive cyber operations in the Big Beautiful Bill.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Consumer Financial Health",
+      "summary": "Upstart's macro index shows consumer credit defaults at highest levels since pre-COVID across all loan categories; personal savings rate at near-historic lows. Triple-digit Upstart revenue growth signals AI lending is working but the underlying consumer is stressed.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI-Native Social Media",
+      "summary": "Talia Goldberg excited about a new social platform built on AI-native thinking, suggesting bots could solve the chicken-and-egg problem. Character.ai cited as a missed opportunity. Zach's ShareAura takes a human-first approach, using AI only for creative backgrounds while keeping human activity at the core.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI and Post-Literacy",
+      "summary": "Nick Carter's viral post warned kids raised in the AI era may become post-literate, relying on AI to auto-complete thoughts. Hosts argued AI is better for knowledge retrieval than communication drafting, and that using ChatGPT to write emails atrophies thinking.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Igor Babushkin Departs xAI to Launch VC Firm",
+      "summary": "Breaking news: xAI co-founder and METIS #24 researcher Igor Babushkin is departing to start a venture firm supporting AI safety research and backing agentic systems startups.",
+      "sentiment": "neutral"
+    }
+  ],
+  "key_claims": [
+    "ChatGPT is the fastest growing consumer app of all time with visits up 135% YoY.",
+    "ChatGPT is the #5 most-visited website globally and the youngest in the top 10 by over a decade; Instagram is the next youngest at 15 years old.",
+    "Over 99% of free ChatGPT users have never interacted with a thinking model like O3 prior to GPT-5's launch.",
+    "Free user exposure to thinking models increased 7x in the first day after GPT-5 launched.",
+    "O3 Pro costs $80 per million output tokens; GPT-5 $10; GPT-5 Mini $2; GPT-5 Nano $0.40 \u2014 a 200x spread from top to bottom.",
+    "AI model quality is approximately 100x cheaper to serve at constant quality today versus 1.5 years ago, yet application-layer gross margins have not expanded proportionally because task complexity keeps rising.",
+    "Top AI supernova companies are reaching $100M ARR in approximately 1.5 years; the best prior cloud companies took 6-7 years.",
+    "Circle posted a $482M Q2 loss versus $338M expected despite its share price quintupling since its June 2025 IPO and revenue growing 53% YoY.",
+    "CoreWeave Q2 revenue tripled YoY but posted a $290.5M loss, 15% above analyst estimates.",
+    "UCSF psychiatrist Keith Sakata has personally documented 12 hospitalizations this year linked to AI model interactions exacerbating psychosis.",
+    "30% of Claude users reportedly use it for emotional support.",
+    "Keith Rabois argued Open Door should be worth $50-100B with the right leadership; the largest Western real estate platform is worth only ~$18B despite real estate being the largest asset class.",
+    "Yuri Milner made the case to Keith Rabois 7 years ago that the leading Western residential real estate platform being worth $18B made no sense.",
+    "China's government urged Alibaba and ByteDance to justify H20 GPU orders and use domestic alternatives, making H20 purchases effectively politically incorrect in China.",
+    "NVIDIA will pay approximately 15% of H20 revenue to the U.S. government as a condition of China export approval; the constitutional legality of this arrangement is disputed since H20s are not manufactured in the U.S.",
+    "Noam Shazeer moved to #1 on the METIS list and Jan LeCun dropped off entirely from a prior top-10 position.",
+    "Igor Babushkin (#24 METIS) is leaving xAI to start a venture firm focused on AI safety and agentic systems.",
+    "METIS list lab rankings: OpenAI 24 researchers, DeepMind 23, Anthropic 22, Thinking Machines 12, Meta 8.",
+    "METIS list country rankings: USA 51, China 14, UK 13, Canada 12 \u2014 Canada performing above its proportional weight.",
+    "U.S. consumer credit defaults are at their highest levels since pre-COVID across all loan categories per Upstart's macro index.",
+    "U.S. personal savings rate is at near-historic lows.",
+    "From 1950 to 2010, the U.S. averaged 3.6 years per decade of over 4% GDP growth without significant inflation; Keith Rabois argues AI productivity can restore this pattern and break the assumed growth-inflation link.",
+    "Upstart reported triple-digit revenue growth in its most recent earnings.",
+    "InWorld raised $120M total and launched the first AI runtime for consumer applications covering gaming, fitness apps, and broader consumer verticals.",
+    "At least two competing VC funds are now dedicated exclusively to rolling up traditional businesses and turbocharging them with AI."
+  ],
+  "technologies": [
+    "Large Language Models (LLMs)",
+    "GPT-5",
+    "GPT-5 Mini",
+    "GPT-5 Nano",
+    "O3 Pro",
+    "Model Router",
+    "Reinforcement Learning (RL)",
+    "RLHF (Reinforcement Learning from Human Feedback)",
+    "RL with Verifiable Rewards (RLVR)",
+    "Chain-of-Thought Reasoning",
+    "Agentic AI",
+    "TPU (Tensor Processing Unit)",
+    "H20 GPUs",
+    "Blackwell GPUs",
+    "Gemini",
+    "VO3",
+    "Genie 3",
+    "Claude",
+    "Grok",
+    "Deep Research",
+    "MCP Servers",
+    "Comet Browser (Perplexity)",
+    "NPC AI",
+    "AI Runtime (InWorld)",
+    "Compound AI Systems",
+    "Machine Learning Credit Underwriting",
+    "Offensive AI (Cybersecurity)",
+    "AI Video Generation",
+    "Generative AI Image Backgrounds",
+    "Vibe Coding",
+    "Transformer Architecture",
+    "Deep Learning",
+    "Convolutional Neural Networks (CNNs)",
+    "Quantitative ML (HFT/Finance)",
+    "AI Computer Vision for Real Estate Inspection",
+    "Robotic Warehouse Automation (Kiva/Amazon)",
+    "AI Recommendation Systems",
+    "Neuroplasticity-based Therapy (Ketamine/Psychedelics research)"
+  ],
+  "_stats": {
+    "word_count": 38328,
+    "estimated_input_tokens": 50976,
+    "input_tokens": 3,
+    "output_tokens": 25314,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 53472,
+    "duration_ms": 485456,
+    "wall_time_s": 486.9,
+    "cost_usd": 0.9716735000000001,
+    "tokens_per_sec": 52.0
+  }
+}

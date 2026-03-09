@@ -1,0 +1,932 @@
+{
+  "episode_date": "2025-10-13",
+  "episode_title": "jp-morgan-patriot-mode-dutch-seize-nexperia-alexis-ohanian-ryan-peterson-serena",
+  "companies": [
+    {
+      "name": "JP Morgan Chase",
+      "type": "public",
+      "context": "Announced a $1.5 trillion 10-year security and resiliency initiative with up to $10B in direct equity and VC investments targeting critical minerals, defense tech, AI, and energy independence.",
+      "sentiment": "bullish",
+      "sector": "Finance/Banking"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor; mentioned in the NYT article about TBPN. Used as an example of AI applying Llama 3 for expense categorization.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Polymarket",
+      "type": "startup",
+      "context": "Mentioned in NYT article; cited as prediction market with 13% odds of tariffs going through on November 1st, described as a valuable but thinly traded signal for trade policy.",
+      "sentiment": "bullish",
+      "sector": "Crypto/DeFi"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Sponsor; multi-destination live streaming platform enabling simultaneous streaming to 30+ platforms.",
+      "sentiment": "neutral",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "OpenAI",
+      "type": "private",
+      "context": "Partnered with Broadcom to deploy 10 gigawatts of OpenAI-designed chips; discussed as likely beneficiary of JP Morgan initiative; GPT-OSS benchmarked competitively against DeepSeek on Inference Max; made deal with Mattel/Barbie; friction with Microsoft over CAPEX demands discussed.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Broadcom",
+      "type": "public",
+      "context": "Partnering with OpenAI to deploy 10 gigawatts of chips; stock up 10% on news, market cap at $1.68 trillion; discussed as underappreciated compared to Nvidia in public awareness.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Discussed in context of Inference Max benchmark vs AMD; referenced as primary AI chip provider; 2.5x more energy-efficient than Huawei Cloud Matrix at rack scale per benchmark data.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Briefly compared to Broadcom in terms of public name recognition despite Broadcom's larger market cap.",
+      "sentiment": "neutral",
+      "sector": "Automotive/EV"
+    },
+    {
+      "name": "MP Materials",
+      "type": "public",
+      "context": "Stock up 23% on rare earth news; cited as one of the few US companies working on rare earth mining and processing.",
+      "sentiment": "bullish",
+      "sector": "Energy/Mining"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Rumored to have poached Andrew Tulloch of Thinking Machines for $3.5B; launched Vibes app criticized as rushed compared to SORA; discussed as aggressive AI talent acquirer; spent down net cash from $30B to near zero on CAPEX.",
+      "sentiment": "bullish",
+      "sector": "Social Media/AI"
+    },
+    {
+      "name": "Thinking Machines",
+      "type": "startup",
+      "context": "AI lab co-founded by Andrew Tulloch; he reportedly turned down $1.5B offer from Meta in summer 2025 before accepting a rumored $3.5B offer two months later.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Sponsor; maker of Devin, described as an AI software engineer for crushing engineering backlogs.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Flexport",
+      "type": "private",
+      "context": "Ryan Peterson joined as guest; discussed tariff volatility causing 60% volume drops from China, customs fraud by non-resident importers, port automation, and river freight opportunities. Hosting customer conference.",
+      "sentiment": "neutral",
+      "sector": "Supply Chain/Logistics"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor; described as multi-asset investing platform for serious investors offering bonds, equities, and high yields.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Hyperliquid",
+      "type": "startup",
+      "context": "Two new accounts allegedly made ~$200M shorting Bitcoin ahead of tariff news, described as suspicious possible insider trading; hosts declined to hit the size gong for alleged insider trading.",
+      "sentiment": "bearish",
+      "sector": "Crypto/DeFi"
+    },
+    {
+      "name": "TikTok",
+      "type": "private",
+      "context": "Barron Trump potentially getting named as board director; discussed as frozen in product development during ownership uncertainty; praised for historically strong ML-driven recommendation algorithms.",
+      "sentiment": "mixed",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Nexperia",
+      "type": "private",
+      "context": "Dutch government invoked Goods Availability Act to seize control from Chinese majority owner Wing Tech; produces chips for European automotive and consumer electronics; CEO suspended by Amsterdam Court of Appeal.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Wing Tech",
+      "type": "private",
+      "context": "Chinese technology group that has majority-owned Nexperia since 2019; Dutch government ordered Nexperia not to adjust assets, IP, or personnel for one year.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Discussed as strategically stepping back from CAPEX risk, letting Oracle and neoclouds build infrastructure while positioning to acquire distressed assets; Satya Nadella reportedly delegating business tasks to focus on AI; held IVAS contract before Anduril.",
+      "sentiment": "neutral",
+      "sector": "AI/ML/Cloud"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "Mentioned as taking on CAPEX risk that Microsoft is avoiding in AI infrastructure buildout.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Acquired WinSurf; TPU mentioned as forthcoming addition to Inference Max benchmark; Gemini translated Geert Wilders post during show.",
+      "sentiment": "neutral",
+      "sector": "AI/ML/Cloud"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "60% of Amazon marketplace sellers are non-resident importers from China according to Ryan Peterson; Trainium mentioned as forthcoming on Inference Max benchmark.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Cloud"
+    },
+    {
+      "name": "AMD",
+      "type": "public",
+      "context": "Shown to be competitive with Nvidia in certain inference workloads on Inference Max benchmark; George Hotz and Dylan Patel described as pressuring AMD to improve; Lisa Su in dialogue with them.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Huawei",
+      "type": "private",
+      "context": "Cloud Matrix 384/385 competes with Nvidia NVL-72 at rack scale but is 2.5x less energy efficient; hosts called for US government to fund Huawei chip benchmarking on Inference Max to understand the true gap.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Privy",
+      "type": "startup",
+      "context": "Sponsor; wallet infrastructure for banks enabling white-label crypto wallet buildout and on-chain integration via API.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Crypto"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Sponsor; design and development collaboration platform.",
+      "sentiment": "neutral",
+      "sector": "SaaS/Design"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor; automated security compliance and trust management platform.",
+      "sentiment": "neutral",
+      "sector": "Cybersecurity/SaaS"
+    },
+    {
+      "name": "Graphite",
+      "type": "startup",
+      "context": "Sponsor; code review platform for GitHub designed for the AI age.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Fal",
+      "type": "startup",
+      "context": "Sponsor; generative media platform for developers offering image, video, and audio models with serverless GPUs.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Sponsor; purpose-built issue tracking and product planning tool for modern software development.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/SaaS"
+    },
+    {
+      "name": "Turbopuffer",
+      "type": "startup",
+      "context": "Sponsor; full-text search platform built on object storage described as 10x cheaper and highly scalable.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/Data"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising technology platform combining data and expertise for measurable ad buying.",
+      "sentiment": "neutral",
+      "sector": "Adtech"
+    },
+    {
+      "name": "8Sleep",
+      "type": "startup",
+      "context": "Sponsor; Pod 5 sleep tracking and temperature regulation product; hosts compared their sleep scores after the NYT article night.",
+      "sentiment": "neutral",
+      "sector": "Consumer Hardware/Health"
+    },
+    {
+      "name": "Julius.ai",
+      "type": "startup",
+      "context": "Mentioned as a personal AI data analyst; hosts suggested it could serve as a personal Jarvis for life optimization; suggested Apple should partner with Julius instead of building their own AI.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Snap",
+      "type": "public",
+      "context": "Kylie Jenner reportedly returning to Snapchat and announcing a music video launch on the platform; discussed as attempting revival; retail traders reportedly long on the stock.",
+      "sentiment": "mixed",
+      "sector": "Social Media"
+    },
+    {
+      "name": "AlphaSense",
+      "type": "private",
+      "context": "Research platform cited as source of interview with former OpenAI employee confirming infrastructure capacity friction between OpenAI and Microsoft.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Research"
+    },
+    {
+      "name": "Import Genius",
+      "type": "private",
+      "context": "Flexport-owned data service making public ocean freight shipping manifests searchable; used by journalists, logistics companies, and for market share analysis and fraud detection.",
+      "sentiment": "bullish",
+      "sector": "Supply Chain/Data"
+    },
+    {
+      "name": "Redwood Materials",
+      "type": "startup",
+      "context": "Founded by JB Straubel; focused on recycling rare earth materials from deprecated electric vehicle batteries to reintroduce them into the supply chain.",
+      "sentiment": "bullish",
+      "sector": "Energy/Cleantech"
+    },
+    {
+      "name": "Stokespace",
+      "type": "startup",
+      "context": "Alexis Ohanian's first space tech investment; announced approximately $500M in new funding; planning first launch from Cape Canaveral in summer 2026 with fully reusable rockets.",
+      "sentiment": "bullish",
+      "sector": "Space/Aerospace"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Mentioned as the dominant force that has changed the world in space; Stokespace cited as providing competition.",
+      "sentiment": "neutral",
+      "sector": "Space/Aerospace"
+    },
+    {
+      "name": "Anduril",
+      "type": "startup",
+      "context": "Unveiled Eagle Eye family of warfighter AR augments placing AI and mission command directly in operator helmets; took over Microsoft's IVAS contract for military AR headsets; ran full-page WSJ ad for the product.",
+      "sentiment": "bullish",
+      "sector": "Defense/Aerospace"
+    },
+    {
+      "name": "Tiny",
+      "type": "public",
+      "context": "Andrew Wilkinson's Canadian tech holding company criticized in investor letter for fundamental financial underperformance, covenant violations on $100M debt, dilutive equity sale, and Wilkinson continuing to take victory laps publicly.",
+      "sentiment": "bearish",
+      "sector": "Private Equity/Holding"
+    },
+    {
+      "name": "Arrow Press",
+      "type": "private",
+      "context": "Subsidiary of Tiny mentioned briefly as a valuable asset within the holding company.",
+      "sentiment": "neutral",
+      "sector": "Media/Publishing"
+    },
+    {
+      "name": "Data Curve",
+      "type": "startup",
+      "context": "Founded by Serena at 18 via YC; raised $15M Series A; provides high-skill coding training data for foundation model labs via bounty-based platform; has paid out $1M in bounties and targets complex multi-hour coding tasks for RL training.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Athlos",
+      "type": "startup",
+      "context": "Alexis Ohanian's women's track and field team-based league; drew over 3.5 million viewers for its New York event; distributed across YouTube, X, ESPN, and The Zone.",
+      "sentiment": "bullish",
+      "sector": "Sports/Entertainment"
+    },
+    {
+      "name": "Angel City FC",
+      "type": "private",
+      "context": "Women's soccer team co-owned by Alexis Ohanian; on the cusp of playoff contention; host's friend attended a recent match.",
+      "sentiment": "bullish",
+      "sector": "Sports"
+    },
+    {
+      "name": "Waymo",
+      "type": "private",
+      "context": "Group of 50 people performed a coordinated Waymo DDoS by ordering cars simultaneously to a San Francisco dead-end street; Waymo disabled rides in a two-block vicinity as response and charged $5 no-show fees.",
+      "sentiment": "neutral",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Hosts gave mixed reviews of liquid glass iOS redesign calling it aesthetically cool but functionally worse; Bloomberg reported Apple is pivoting from Vision Air to Meta-style smart glasses and may release a refreshed Vision Pro with same hardware but better chip.",
+      "sentiment": "mixed",
+      "sector": "Consumer Hardware/Software"
+    },
+    {
+      "name": "Semi-Analysis",
+      "type": "private",
+      "context": "Dylan Patel's research firm; launched Inference Max benchmark comparing Nvidia and AMD GPUs across open-source models; Dylan appeared at Georgia football game; hosts called for US government to fund Huawei chip benchmarking.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors/Research"
+    },
+    {
+      "name": "Intel",
+      "type": "public",
+      "context": "Referenced historically for IPO anniversary; raised $6.8M on October 13 at $23.50/share. Also mentioned in context of US government taking a 10% stake debate.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Mod Retro",
+      "type": "startup",
+      "context": "Alexis Ohanian's 776-backed retro gaming hardware company; Ohanian discussed developing an indie game for the Chromatic platform; praised the constraints of low-res pixel art as forcing creative gameplay design.",
+      "sentiment": "bullish",
+      "sector": "Gaming/Consumer Hardware"
+    },
+    {
+      "name": "Mattel",
+      "type": "public",
+      "context": "OpenAI signed a deal with Mattel/Barbie; hosts noted this as a notable distribution partnership for AI in consumer products.",
+      "sentiment": "bullish",
+      "sector": "Consumer Goods/AI"
+    },
+    {
+      "name": "Roe Health",
+      "type": "startup",
+      "context": "Alexis Ohanian is an early investor; CEO Z. Raytono plays Fortnite after board meetings.",
+      "sentiment": "neutral",
+      "sector": "Health/Telehealth"
+    },
+    {
+      "name": "Numeral HQ",
+      "type": "startup",
+      "context": "Sponsor; automated sales tax compliance platform claiming under five minutes per month of work required.",
+      "sentiment": "neutral",
+      "sector": "Fintech/SaaS"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Sponsor; luxury watch marketplace with a concierge service.",
+      "sentiment": "neutral",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor; premium short-term rental platform with hotel-like services.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Fin.ai",
+      "type": "startup",
+      "context": "Sponsor; AI agent for customer service described as number one in performance benchmarks, competitive bakeoffs, and G2 rankings.",
+      "sentiment": "neutral",
+      "sector": "AI/ML/SaaS"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Sponsor; AI-powered CRM platform.",
+      "sentiment": "neutral",
+      "sector": "SaaS/AI"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "AUM cited at approximately $65 billion for comparison with JP Morgan initiative; mentioned as knowing how to attract talent to platforms like TikTok.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "General Catalyst",
+      "type": "fund",
+      "context": "Mentioned as one of the large venture funds managing tens of billions in AUM.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Lightspeed Venture Partners",
+      "type": "fund",
+      "context": "Mentioned alongside General Catalyst as one of the large venture funds managing tens of billions in AUM.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "EQT",
+      "type": "public",
+      "context": "Natural gas company held by Raghav in a large position; up 46% over the past year; founded in 1888; discussed as potential beneficiary of AI energy demand.",
+      "sentiment": "bullish",
+      "sector": "Energy"
+    },
+    {
+      "name": "WinSurf",
+      "type": "startup",
+      "context": "Acquired by Google; mentioned as an example of a company that had a price and accepted it.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Reddit",
+      "type": "public",
+      "context": "Discussed in context of a founder who bought moderator accounts of a subreddit to control product promotion; cited as critical for GEO/AI training data SEO.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Bumble",
+      "type": "public",
+      "context": "Whitney mentioned as a friend; discussed in context of online dating dynamics and the importance of keeping high-value women engaged to prevent churn.",
+      "sentiment": "neutral",
+      "sector": "Social Media/Dating"
+    },
+    {
+      "name": "Scale AI",
+      "type": "startup",
+      "context": "Discussed as the incumbent data labeling company Data Curve is competing against; characterized as leaning toward simpler, lower-skill annotation tasks compared to Data Curve's high-skill coding focus.",
+      "sentiment": "neutral",
+      "sector": "AI/ML/Data"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Dario Amodei met with Indian PM Modi; Claude Code use up 5x in India since June; published paper showing 250 poisoned documents can insert a sleeper agent into LLM training; linked historically to EA/FTX ecosystem departures.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Layer 3",
+      "type": "startup",
+      "context": "Co-founded by Gabby Goldberg, who announced her engagement; hosts celebrated it as a community milestone.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Web3"
+    },
+    {
+      "name": "Y Combinator",
+      "type": "fund",
+      "context": "Funded Reddit with $12K for 7% early on; Serena went through YC at 18-19 with the Uncle GPT concept before pivoting to Data Curve.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Southwest Airlines",
+      "type": "public",
+      "context": "Mentioned as a historical example of using fuel futures hedging to gain pricing power and competitive advantage.",
+      "sentiment": "neutral",
+      "sector": "Aviation"
+    },
+    {
+      "name": "New York Times",
+      "type": "public",
+      "context": "Published cover story on TBPN in the Sunday Business section; Mike Isaac came to the Ultradome; hosts discussed getting a 43 sleep score the night the digital version dropped.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Financial Times",
+      "type": "private",
+      "context": "Broke the story of the Dutch government seizing control of Nexperia; also cited report on social media usage peaking in 2020 with young people cutting back first.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "LinkedIn",
+      "type": "public",
+      "context": "Discussed extensively as the hosts' growth target; received its first ever live chat message during the episode; described as the core of the empire going forward.",
+      "sentiment": "bullish",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Netflix",
+      "type": "public",
+      "context": "K-pop Demon Hunters described as a massive viral hit on the platform, compared to Squid Game level success.",
+      "sentiment": "bullish",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Whatnot",
+      "type": "startup",
+      "context": "Mentioned as a live-streaming commerce platform that has only scratched the surface of live-shopping culture that is more developed in China.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Social"
+    },
+    {
+      "name": "Thrive Capital",
+      "type": "fund",
+      "context": "Josh Kushner's firm; mentioned as subject of a forthcoming Colossus cover story with Patrick O'Shaughnessy.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Perplexity",
+      "type": "startup",
+      "context": "Mentioned in comparison to TikTok valuation; hosts asked whether you'd rather own Perplexity at $20B or TikTok at $15B.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Boston Dynamics",
+      "type": "private",
+      "context": "Mentioned as having posted so many robot dog videos that hosts are no longer impressed by robot dog performances.",
+      "sentiment": "neutral",
+      "sector": "Robotics"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Sponsor; platform for getting brands mentioned in ChatGPT and AI search results.",
+      "sentiment": "neutral",
+      "sector": "Adtech/AI"
+    },
+    {
+      "name": "Sharpie",
+      "type": "public",
+      "context": "Mentioned as a case study of successful US reshoring of manufacturing; noted as a product Trump uses to sign documents.",
+      "sentiment": "neutral",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "Arctreyx",
+      "type": "private",
+      "context": "Mentioned briefly in context of an Alibaba official merchandise collaboration tweet; noted as being owned by a Chinese company.",
+      "sentiment": "neutral",
+      "sector": "Consumer Goods/Apparel"
+    },
+    {
+      "name": "Alibaba",
+      "type": "public",
+      "context": "Mentioned as having an official merchandise collab with Arcteryx in a tweet.",
+      "sentiment": "neutral",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "Dell Computer",
+      "type": "public",
+      "context": "Michael Dell was 23 when Dell crossed $150M in sales; featured in David Senra's second episode; closed a $25M deal on Black Monday October 19, 1987.",
+      "sentiment": "bullish",
+      "sector": "Technology"
+    }
+  ],
+  "people": [
+    {
+      "name": "Ryan Peterson",
+      "role": "CEO, Flexport",
+      "context": "Discussed tariff volatility, customs fraud by non-resident importers, port automation union contracts, river freight opportunity, and Flexport's tariff calculator tool; noted volumes from China dropped 60% when tariffs hit embargo levels in April-May."
+    },
+    {
+      "name": "Alexis Ohanian",
+      "role": "Co-founder, Reddit; GP, 776 Ventures",
+      "context": "Discussed Athlos women's track league (3.5M viewers), Stokespace investment, early-stage AI investment thesis including the 'barnacle economy,' TikTok views, future of social media, consumer hardware, and Mod Retro gaming."
+    },
+    {
+      "name": "Serena",
+      "role": "Founder & CEO, Data Curve",
+      "context": "Dropped out at 18 for YC with Uncle GPT concept, pivoted to Data Curve which provides high-skill coding training data for foundation model labs; announced $15M Series A and $1M in bounties paid to contributors."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Discussed as likely pitching Jamie Dimon to direct JP Morgan's $1.5T initiative toward OpenAI; compared to SBF; described as less fake and with a longer Silicon Valley track record."
+    },
+    {
+      "name": "Jamie Dimon",
+      "role": "CEO, JP Morgan Chase",
+      "context": "Authored statement for JP Morgan's $1.5T national security and resiliency initiative calling out reliance on unreliable supply chains, excessive regulation, and misaligned education."
+    },
+    {
+      "name": "Andrew Tulloch",
+      "role": "Co-founder, Thinking Machines",
+      "context": "Rumored to have been poached by Meta for $3.5B after reportedly turning down $1.5B earlier in the summer; noted as a former 11-year Meta employee 'going home.'"
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO, Meta",
+      "context": "Described as aggressively poaching AI researchers including Andrew Tulloch; spending down Meta's $30B net cash on AI CAPEX; Meta Vibes app criticized as rushed compared to SORA."
+    },
+    {
+      "name": "Dylan Patel",
+      "role": "Founder, Semi-Analysis",
+      "context": "Launched Inference Max benchmark showing AMD competitive with Nvidia in certain workloads; appeared at Georgia football game; discussed Huawei chip gap and energy efficiency comparisons."
+    },
+    {
+      "name": "Dario Amodei",
+      "role": "CEO, Anthropic",
+      "context": "Met with Indian PM Narendra Modi to discuss Anthropic's expansion into India; Claude Code use cited as up 5x since June; photo analyzed for 'aura farming' against Modi."
+    },
+    {
+      "name": "Narendra Modi",
+      "role": "Prime Minister, India",
+      "context": "Met with Dario Amodei to discuss AI deployment across education, healthcare, and agriculture for over one billion people."
+    },
+    {
+      "name": "Hock Tan",
+      "role": "CEO, Broadcom",
+      "context": "Hosts called for making him an Elon-level public meme given Broadcom's $1.68T market cap and partnership with OpenAI."
+    },
+    {
+      "name": "Satya Nadella",
+      "role": "CEO, Microsoft",
+      "context": "Described as strategically risk-off on CAPEX, letting others build infrastructure while positioning to acquire distressed assets; reportedly delegating business tasks to focus on AI."
+    },
+    {
+      "name": "Palmer Luckey",
+      "role": "Founder, Anduril",
+      "context": "Quoted as predicting warfighters will adopt AR/VR headsets before consumers due to cost flexibility; Anduril unveiled Eagle Eye AR warfighter helmet system; also involved with Mod Retro gaming hardware."
+    },
+    {
+      "name": "Peter Thiel",
+      "role": "Investor; co-founder, PayPal",
+      "context": "Leaked lecture series revealed he interprets the manga One Piece as depicting an Antichrist-like one-world government suppressing science, with protagonist Monkey D. Luffy as a Christ-like figure."
+    },
+    {
+      "name": "George Hotz",
+      "role": "Founder, Comma.ai",
+      "context": "Mentioned as pressuring AMD to fix bugs and improve software, contributing to AMD's competitive gains against Nvidia."
+    },
+    {
+      "name": "Lisa Su",
+      "role": "CEO, AMD",
+      "context": "Described as being in dialogue with George Hotz and Dylan Patel about how to improve AMD's AI software stack."
+    },
+    {
+      "name": "Josh Kushner",
+      "role": "Founder, Thrive Capital",
+      "context": "Subject of a forthcoming Colossus cover story with Patrick O'Shaughnessy released the following day."
+    },
+    {
+      "name": "Patrick O'Shaughnessy",
+      "role": "Founder, Colossus / Invest Like the Best",
+      "context": "Announced an upcoming deep-dive cover story on Josh Kushner and Thrive Capital."
+    },
+    {
+      "name": "J.B. Straubel",
+      "role": "Founder, Redwood Materials; Tesla co-founder",
+      "context": "His company Redwood Materials focuses on recycling rare earth materials from deprecated EV batteries to reintroduce into the supply chain."
+    },
+    {
+      "name": "Geert Wilders",
+      "role": "Dutch politician",
+      "context": "His 2024 viral post 'we have a serious problem' was referenced when the Dutch government seized Nexperia; Gemini translated the original post as referring to a 'coercion act' policy dispute."
+    },
+    {
+      "name": "Andrew Wilkinson",
+      "role": "Co-founder, Tiny",
+      "context": "Criticized in an investor letter for acting like nothing is wrong while Tiny faces covenant violations, debt crises, and share dilution; published a book titled 'Burista Billionaire' after his net worth declined."
+    },
+    {
+      "name": "Andy Lapsa",
+      "role": "CEO, Stokespace",
+      "context": "Leading Stokespace toward its first Cape Canaveral launch in summer 2026 with fully reusable rockets; Ohanian described him as doing a hell of a job."
+    },
+    {
+      "name": "Jeffrey Hinton",
+      "role": "Father of deep learning",
+      "context": "Featured in Acquired podcast's Google deep-dive episode; noted as a descendant of the Hinton mathematical dynasty including George Boole; family tree includes the inventor of the jungle gym."
+    },
+    {
+      "name": "Leopold Aschenbrenner",
+      "role": "AI researcher / writer",
+      "context": "Hosts referenced re-listening to his interview when feeling low on 'AGI-pilledness'; noted his predictions about natural gas as the primary AI energy source."
+    },
+    {
+      "name": "Barron Trump",
+      "role": "Son of President Trump",
+      "context": "Reportedly in consideration for a TikTok board director role; credited with advising Trump to appear on Theo Vaughn and take aggressive social media risks during the 2024 campaign."
+    },
+    {
+      "name": "Riley Walls",
+      "role": "Tech personality / internet rascal",
+      "context": "Organized a group of 50 people to simultaneously order Waymo cars to San Francisco's longest dead-end street, creating the 'world's first Waymo DDoS.'"
+    },
+    {
+      "name": "Gabby Goldberg",
+      "role": "Co-founder, Layer 3",
+      "context": "Announced engagement to Layer 3 co-founder Darya; hosts celebrated it as a community milestone comparable to a NYT vows announcement."
+    },
+    {
+      "name": "Michael Dell",
+      "role": "Founder, Dell Computer",
+      "context": "Featured in David Senra's second episode; was 23 years old when Dell crossed $150M in sales and closed a $25M deal on Black Monday in 1987."
+    },
+    {
+      "name": "Sophie (NetCap Girl)",
+      "role": "Analyst / commentator on X",
+      "context": "Predicted AMD-linked AI hardware hype had not yet peaked, saying 'AI won't peak until Broadcom starts getting hyped like Nvidia' \u2014 a prediction that appeared to come true on this episode's date."
+    }
+  ],
+  "topics": [
+    {
+      "name": "JP Morgan $1.5T National Security Initiative",
+      "summary": "JP Morgan announced a 10-year $1.5 trillion initiative to finance and invest in industries critical to national economic security including critical minerals, defense tech, AI, energy, and advanced manufacturing, with up to $10B in direct equity investments.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Dutch Government Seizure of Nexperia",
+      "summary": "The Dutch government invoked the Goods Availability Act to seize control of Chinese-owned chipmaker Nexperia, citing serious governance shortcomings and threats to European technological knowledge; CEO suspended by Dutch court; framed in context of escalating Western-China tech tensions.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "OpenAI-Broadcom Chip Partnership",
+      "summary": "OpenAI announced a partnership with Broadcom to deploy 10 gigawatts of OpenAI-designed chips, sending Broadcom stock up 10% and sparking discussion about whether Broadcom will become as hyped as Nvidia.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Andrew Tulloch Poached by Meta",
+      "summary": "Meta reportedly paid approximately $3.5 billion to poach Thinking Machines co-founder Andrew Tulloch, after he reportedly declined a $1.5B offer earlier in the summer; sparked debate about missionaries vs. mercenaries in AI.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI CAPEX Wars and Microsoft Risk Strategy",
+      "summary": "Discussion of OpenAI's friction with Microsoft over infrastructure CAPEX demands; Microsoft described as strategically risk-off, letting neoclouds and Oracle take on debt while positioning to acquire distressed assets; OpenAI reportedly prefers leasing chips over owning them.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Tariffs, Trade War, and Flexport",
+      "summary": "Ryan Peterson detailed the impact of Trump tariff volatility on Flexport, including 60% volume drops from China, customs fraud by non-resident importers, the tariff calculator tool, port automation union contracts, and river freight as an untapped opportunity.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Customs Fraud by Non-Resident Importers",
+      "summary": "Ryan Peterson revealed that approximately 10% of US ocean freight trade has shifted to factory-as-importer terms, enabling Chinese companies to underreport shipment values and avoid tariffs with minimal legal consequence; 60% of Amazon sellers are non-resident importers.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "AMD vs Nvidia on Inference Max",
+      "summary": "Dylan Patel's Inference Max benchmark showed AMD is more competitive with Nvidia than the market narrative suggests, excelling in certain workloads on a total cost of ownership basis; GPT-OSS shown to be at parity with DeepSeek in open-source benchmarks.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Rare Earth Minerals and US Supply Chain",
+      "summary": "China mines 6x more rare earths than the US, refines ~99% of global rare earths, and produces 85-90% of rare earth magnets; hosts argued the solution is cleaner domestic mining technology, not offshoring; MP Materials cited as a key US player.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Huawei Cloud Matrix vs Nvidia Energy Efficiency",
+      "summary": "Nvidia's NVL-72 rack is 2.5x more energy-efficient than Huawei's Cloud Matrix 384; hosts called on David Sacks and the US government to fund Huawei chip benchmarking on Inference Max to understand the true competitive gap.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Anduril Eagle Eye AR Warfighter Headset",
+      "summary": "Anduril unveiled its Eagle Eye family of AR augments placing AI and mission command in operator helmets; Palmer Luckey previously stated warfighters will adopt AR headsets before consumers due to willingness to pay for life-saving technology.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Apple Liquid Glass iOS Review",
+      "summary": "Hosts gave mixed-to-negative functional reviews of Apple's liquid glass iOS redesign: aesthetically appealing but slower, requires more clicks, causes screenshot privacy issues, and breaks wireless charging. Cameras praised.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Apple Smart Glasses Pivot",
+      "summary": "Bloomberg reported Apple is scaling back Vision Air plans and pivoting toward Meta-style smart glasses; a refreshed Vision Pro may arrive soon with improved chip but same hardware.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Future of Social Media and Consumer Behavior",
+      "summary": "Alexis Ohanian discussed the shift toward verifiably human live content, the 'dead internet' problem of bots and AI slop, the rise of run clubs and offline socializing, and the opportunity for a next-generation social platform that feels deeply intimate and human.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI Training Data Market (Data Curve)",
+      "summary": "Serena described the market for high-skill coding training data for foundation model labs, explaining the bounty-based system, the pipeline for complex multi-hour RL tasks, and competition with Scale AI's lower-skill annotation model.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Reddit Subreddit Buying for GEO",
+      "summary": "A CPG founder revealed buying moderator accounts of a popular subreddit to control product promotion, leveraging the economic incentive of GEO (Generative Engine Optimization) as AI training data scrapes Reddit content.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Retail Trader Leverage and Bitcoin Volatility",
+      "summary": "Bitcoin dropped ~10% on tariff news; discussion of heavily levered retail traders losing large portions of net worth on modest market moves; Zumer's 'leverage is the only way out of permanent underclass' post sparked debate.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Hyperliquid Alleged Insider Trading",
+      "summary": "Two newly created accounts on Hyperliquid shorted Bitcoin before tariff news broke and made approximately $200M; described as suspicious but not definitively insider trading.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Anthropic Sleeper Agent Research",
+      "summary": "Anthropic published a paper showing that just 250 poisoned documents in an LLM training run can insert a sleeper agent causing the model to produce malicious outputs; sparked creative speculation about competitive sabotage scenarios.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Peter Thiel One Piece Lectures",
+      "summary": "Leaked lecture content showed Thiel interprets the anime One Piece as depicting an Antichrist-like one-world government suppressing science, with protagonist Monkey D. Luffy as a Christ-like figure; caused significant online discussion.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Natural Gas as AI Energy Source",
+      "summary": "Leopold Aschenbrenner's thesis discussed that AI data center growth will drive massive natural gas demand; EQT cited as a major beneficiary up 46% over the past year; hosts noted this as an underappreciated retail trade.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Barnacle Economy in AI",
+      "summary": "Alexis Ohanian described companies that sell picks and shovels to foundation model labs as 'barnacles' riding whale-sized AI companies, able to grow from zero to $100M in a few years by solving specific needs like training data or tooling.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Port Automation and US Unions",
+      "summary": "Ryan Peterson confirmed port automation is effectively banned by union contracts on East and West Coasts for 4-5 more years; Long Beach Container Terminal cited as an existing fully automated example; river freight highlighted as a major untapped opportunity.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Waymo DDoS Prank",
+      "summary": "Riley Walls organized 50 people to simultaneously order Waymos to San Francisco's longest dead-end street; Waymo responded by disabling rides within a two-block vicinity and charging $5 no-show fees.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "OpenAI vs FTX Comparison",
+      "summary": "A viral post compared OpenAI to FTX; hosts strongly rejected the comparison, noting structural differences between a subscription-funded AI lab and a leveraged offshore crypto hedge fund trading against its users.",
+      "sentiment": "bearish"
+    }
+  ],
+  "key_claims": [
+    "JP Morgan announced a $1.5 trillion 10-year national security and resiliency initiative with up to $10 billion in direct equity and venture capital investments.",
+    "Broadcom's market cap is $1.68 trillion, larger than Tesla, yet far less recognized by the general public.",
+    "Andrew Tulloch is rumored to have been poached by Meta for approximately $3.5 billion after rejecting a $1.5 billion offer in summer 2025.",
+    "Flexport saw a 60% drop in China-to-US volumes when tariffs hit embargo levels (above ~60% duty) in April-May 2025.",
+    "Approximately 10% of US ocean freight trade has shifted to factory-as-importer terms enabling customs fraud, per Ryan Peterson's analysis of public shipping manifests.",
+    "60% of Amazon marketplace sellers are non-resident importers, primarily from China, according to Ryan Peterson.",
+    "Polymarket put the odds of tariffs going through on November 1st at 13% as of the episode date.",
+    "AMD is competitive with or superior to Nvidia in certain inference workloads on a total cost of ownership basis, per Inference Max benchmark data.",
+    "Nvidia's NVL-72 rack is 2.5x more energy-efficient than Huawei's Cloud Matrix 384 at rack scale.",
+    "China refines approximately 99% of the world's rare earth elements and produces 85-90% of global rare earth magnets.",
+    "Anthropic published a paper showing just 250 poisoned documents can insert a sleeper agent into an LLM training run.",
+    "Two Hyperliquid accounts created on the day of tariff news shorted Bitcoin and made approximately $200 million in a single trade.",
+    "Dario Amodei met with Indian PM Narendra Modi; Claude Code usage in India is up 5x since June 2025.",
+    "Data Curve has paid out $1 million in bounties and raised a $15 million Series A.",
+    "Athlos women's track and field league drew over 3.5 million viewers for its New York event.",
+    "Intel IPO on this date in history raised $6.8 million at $23.50 per share.",
+    "MP Materials stock rose 23% on rare earth news.",
+    "Time spent on social media peaked in 2020, with young people cutting back first, per Financial Times reporting.",
+    "GPT-OSS is performing at parity with DeepSeek on Inference Max open-source benchmarks.",
+    "EQT, a natural gas company founded in 1888, is up 46% over the past year on AI energy demand thesis.",
+    "OpenAI's friction with Microsoft is primarily over infrastructure CAPEX: Microsoft does not want to be on the hook for the CAPEX OpenAI demands.",
+    "Reddit's first YC check was $12,000 for 7% of the company.",
+    "Meta has gone from $30 billion in net cash at the start of the year to near zero on AI CAPEX spending.",
+    "A CPG founder purchased Reddit moderator accounts to covertly control subreddit product promotions for GEO purposes."
+  ],
+  "technologies": [
+    "Inference Max",
+    "Liquid Glass (iOS)",
+    "Cloud Matrix 384/385 (Huawei)",
+    "Eagle Eye AR Warfighter Headset (Anduril)",
+    "GPT-OSS",
+    "DeepSeek",
+    "Llama 3",
+    "Claude",
+    "Trainium (Amazon)",
+    "TPU (Google)",
+    "SORA (OpenAI video generation)",
+    "Vibes (Meta AI social app)",
+    "Waymo autonomous vehicles",
+    "WorldCoin",
+    "Hyperliquid derivatives exchange",
+    "CapCut",
+    "Quantum computing",
+    "Autonomous drones",
+    "Augmented reality headsets",
+    "Generative AI",
+    "Reinforcement Learning from Human Feedback",
+    "Supervised Fine-Tuning",
+    "Rack-scale GPU compute (NVL-72)",
+    "Serverless GPU clusters",
+    "Generative image/video/audio models",
+    "Cameo feature (SORA)",
+    "River freight automation",
+    "Port automation robotics",
+    "Vibe coding",
+    "Natural language voice interfaces",
+    "AI companions"
+  ],
+  "_stats": {
+    "word_count": 32994,
+    "estimated_input_tokens": 43882,
+    "input_tokens": 3,
+    "output_tokens": 14502,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 48662,
+    "duration_ms": 295081,
+    "wall_time_s": 296.3,
+    "cost_usd": 0.671311,
+    "tokens_per_sec": 48.9
+  }
+}

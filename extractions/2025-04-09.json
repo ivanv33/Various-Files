@@ -1,0 +1,931 @@
+{
+  "episode_date": "2025-04-09",
+  "episode_title": "markets-surge-apple-tariff-strategy-ai-agents-distributed-energy",
+  "companies": [
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Discussed extensively for its China supply chain dependency, India manufacturing pivot via airlifting iPhones, and strategy to seek tariff exemptions from the Trump administration.",
+      "sentiment": "bearish",
+      "sector": "Consumer Technology"
+    },
+    {
+      "name": "Foxconn",
+      "type": "public",
+      "context": "Apple's primary iPhone assembler; cited as the manufacturing model the US would need to replicate to onshore production, and noted for knowing how to build iPhones for other companies.",
+      "sentiment": "neutral",
+      "sector": "Contract Manufacturing"
+    },
+    {
+      "name": "Browserbase",
+      "type": "startup",
+      "context": "Paul Klein's company providing AI-native web browser infrastructure for AI agents; powers web browsing for companies like Perplexity and introduced the Stagehand SDK.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Base Power",
+      "type": "startup",
+      "context": "Justin Lopas's distributed battery storage startup that raised a $200M Series B; owns and operates batteries on Texas homes to reduce grid peak load without charging customers capital costs.",
+      "sentiment": "bullish",
+      "sector": "Energy/CleanTech"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Akshay Krishnaswamy discussed the ontology-based AIP platform's commercial traction in healthcare and insurance, forward-deployed engineering model, and new startup cohort building on Palantir.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Mentioned for potential acquisition of a hardware device company co-designed with Johnny Ive, and for the OpenAI Fund's outsized returns from Cursor and Harvey investments.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Goldman Sachs",
+      "type": "public",
+      "context": "Issued a US recession forecast citing tariffs, then retracted it within hours on the same day after Trump's 90-day tariff pause was announced.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Largan Precision",
+      "type": "public",
+      "context": "Taiwan-based Apple camera lens supplier that grew to a ~$240B market cap; cited as proof of enormous value capture from owning a single node in Apple's supply chain.",
+      "sentiment": "bullish",
+      "sector": "Consumer Technology"
+    },
+    {
+      "name": "Sunny Optical",
+      "type": "public",
+      "context": "Chinese optical supplier that briefly entered Apple's iPhone supply chain before losing share back to Largan Precision; may re-enter later in 2025.",
+      "sentiment": "neutral",
+      "sector": "Consumer Technology"
+    },
+    {
+      "name": "Samsung",
+      "type": "public",
+      "context": "Mentioned as a competitive beneficiary if Apple's tariff burden makes iPhones less competitive globally.",
+      "sentiment": "bullish",
+      "sector": "Consumer Technology"
+    },
+    {
+      "name": "Huawei",
+      "type": "private",
+      "context": "Cited alongside Apple as a driver of China's dominance in high-tech smartphone componentry and the shared supply chain ecosystem.",
+      "sentiment": "neutral",
+      "sector": "Consumer Technology"
+    },
+    {
+      "name": "Xiaomi",
+      "type": "public",
+      "context": "Mentioned as part of the Chinese smartphone ecosystem that collectively drove component manufacturing capacity alongside Apple.",
+      "sentiment": "neutral",
+      "sector": "Consumer Technology"
+    },
+    {
+      "name": "DJI",
+      "type": "private",
+      "context": "Cited as an example of Chinese companies winning in consumer tech through long-term investment, and as the dominant drone maker US companies are now trying to replace.",
+      "sentiment": "neutral",
+      "sector": "Drones/Robotics"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Mentioned as experiencing declining sales in China due to Chinese consumer nationalism, illustrating the limits of US brands in that market.",
+      "sentiment": "bearish",
+      "sector": "EV/Automotive"
+    },
+    {
+      "name": "Andril",
+      "type": "startup",
+      "context": "Defense tech company where Base Power founder Justin Lopas previously worked; cited as a model for fast hardware scaling and manufacturing culture.",
+      "sentiment": "bullish",
+      "sector": "Defense Technology"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Cited by Justin Lopas as a formative employer that instilled the manufacturing and operational excellence culture he brought to Base Power.",
+      "sentiment": "bullish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Mentioned as a Palantir AI partner; Dario Amodei appeared on stage with Alex Karp and AIG's CEO to discuss AI-powered underwriting.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "MetaQuest VR headset mentioned as a lower-cost alternative to Apple Vision Pro; John Carmack's vision of a $100, 100-gram VR device at Meta was discussed.",
+      "sentiment": "neutral",
+      "sector": "Consumer Technology"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Cancelled over $1B in planned data center campuses in Licking County, Ohio, with some land being returned to farming use.",
+      "sentiment": "bearish",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Gemini 2.0 Flash topped Browserbase's internal browser automation evals over the weekend of Llama 4's release, outperforming all other models tested.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Perplexity",
+      "type": "startup",
+      "context": "Named as a cutting-edge Browserbase customer and example of how leading AI companies use browser infrastructure.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Twilio",
+      "type": "public",
+      "context": "Jeff Lawson, Twilio's founder and a Browserbase angel investor, was cited for the analogy that SMS\u2014like the browser\u2014has a very long bridge before it disappears.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "OpenAI Fund led the $8M seed in 2023; now at a $2.6B+ valuation, cited as one of two deals that could make the OpenAI Fund a 5x return vehicle.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Harvey",
+      "type": "startup",
+      "context": "OpenAI Fund led the $5M seed in 2022; now valued at $3B at Series D, the other deal cited as driving the OpenAI Fund's outsized paper returns.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor; corporate spend management platform promoted as essential for financial clarity during economic turmoil.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Zipline",
+      "type": "startup",
+      "context": "Drone delivery company expanding to Texas and other US states after building out infrastructure in Africa for blood delivery; hosts praised their distinctive launch video aesthetic.",
+      "sentiment": "bullish",
+      "sector": "Drones/Robotics"
+    },
+    {
+      "name": "Brink Drones",
+      "type": "startup",
+      "context": "25-year-old founder Blake's police drone startup raised a $75M round led by Index Ventures, targeting law enforcement markets now restricted from buying DJI drones.",
+      "sentiment": "bullish",
+      "sector": "Drones/Robotics"
+    },
+    {
+      "name": "Neiros",
+      "type": "startup",
+      "context": "Drone defense company founded by former racing pilot Soren; mentioned as a potential future consumer drone pivot after establishing a defense track record.",
+      "sentiment": "bullish",
+      "sector": "Drones/Robotics"
+    },
+    {
+      "name": "Klarna",
+      "type": "private",
+      "context": "Used as a cautionary tale of over-committing to AI agents prematurely and then having to walk back the strategy.",
+      "sentiment": "bearish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "BYD",
+      "type": "public",
+      "context": "Mentioned as the Chinese EV maker that German automakers fear as a competitive threat in the global market.",
+      "sentiment": "bullish",
+      "sector": "EV/Automotive"
+    },
+    {
+      "name": "Databricks",
+      "type": "startup",
+      "context": "Mentioned as a Palantir ecosystem partner for data tooling within the AIP platform stack.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Amazon Nova SDK was noted as drawing inspiration from Browserbase's Stagehand framework; discussed as a hyperscaler building competing browser automation tooling.",
+      "sentiment": "neutral",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "TSMC",
+      "type": "public",
+      "context": "Cited as building a new fab in Arizona as part of US semiconductor reshoring; used as an example that high-value manufacturing can move to the US.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Intel",
+      "type": "public",
+      "context": "Mentioned in the context of potential reshoring of chip fabrication to the United States.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Stripe",
+      "type": "private",
+      "context": "Cited as the model for a focused infrastructure company that layered a product platform on top of its core payment rails.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Supabase",
+      "type": "startup",
+      "context": "Mentioned as a database primitive developers combine with Browserbase to build agent applications.",
+      "sentiment": "neutral",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "PlanetScale",
+      "type": "startup",
+      "context": "Cited as an example of a focused database provider delivering better developer experience than hyperscaler managed databases.",
+      "sentiment": "neutral",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "WorkOS",
+      "type": "startup",
+      "context": "Founders participated in Browserbase's latest funding round through Octa Ventures.",
+      "sentiment": "bullish",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "Clerk",
+      "type": "startup",
+      "context": "Founders participated in Browserbase's latest funding round through Octa Ventures, bringing authentication expertise.",
+      "sentiment": "bullish",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "Stytch",
+      "type": "startup",
+      "context": "Founders (referred to as 'founders of Stitch') participated in Browserbase's latest funding round through Octa Ventures.",
+      "sentiment": "bullish",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "Octa Ventures",
+      "type": "fund",
+      "context": "Investment vehicle of the founders of Clerk, Stytch, and WorkOS; participated in Browserbase's latest funding round with an authentication-layer thesis for solving the anti-bot problem.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Addition",
+      "type": "fund",
+      "context": "Co-led Base Power's $200M Series B; Lee Fixel joins the Base Power board.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Co-led Base Power's $200M Series B alongside Addition, Lightspeed, and Valor.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Lightspeed Venture Partners",
+      "type": "fund",
+      "context": "Co-led Base Power's $200M Series B.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Valor Equity Partners",
+      "type": "fund",
+      "context": "Co-led Base Power's $200M Series B; Antonio Gracias joins the Base Power board.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Thrive Capital",
+      "type": "fund",
+      "context": "Participated in Base Power's $200M Series B.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Altimeter Capital",
+      "type": "fund",
+      "context": "Participated in Base Power's $200M Series B.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Trust Ventures",
+      "type": "fund",
+      "context": "Participated in Base Power's $200M Series B.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Terrain Capital",
+      "type": "fund",
+      "context": "Participated in Base Power's $200M Series B.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Lerer Hippeau",
+      "type": "fund",
+      "context": "Announced their ninth seed fund at $200M, up from $140M in the prior fund; several LH portfolio founders joined as LPs.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Index Ventures",
+      "type": "fund",
+      "context": "Led Brink Drones' $75M funding round.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "OpenAI Fund",
+      "type": "fund",
+      "context": "Cited for potentially turning $8M in seed checks into ~$600M in paper gains from just two investments (Harvey and Cursor) within a $175M fund.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Skydio",
+      "type": "startup",
+      "context": "Mentioned as a cautionary tale after their Chinese battery supplier was sanctioned, severely disrupting their supply chain.",
+      "sentiment": "bearish",
+      "sector": "Drones/Robotics"
+    },
+    {
+      "name": "Hadrian",
+      "type": "startup",
+      "context": "Robotic manufacturing company cited as an example of American advanced manufacturing using robotic arms and CNC machines at competitive cost.",
+      "sentiment": "bullish",
+      "sector": "Manufacturing/Robotics"
+    },
+    {
+      "name": "Cloudflare",
+      "type": "public",
+      "context": "CEO Matthew Prince posted a theory that Trump's blanket tariff strategy is designed to force every country to choose between trading with the US or China.",
+      "sentiment": "neutral",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "Polymarket",
+      "type": "startup",
+      "context": "Prediction market cited for showing a 16% probability of China invading Taiwan in 2025; also discussed as a potential political betting platform for US midterms.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Sonos",
+      "type": "public",
+      "context": "Described as having notoriously unreliable software; used as a negative comparison to Apple's hardware and software consistency.",
+      "sentiment": "bearish",
+      "sector": "Consumer Technology"
+    },
+    {
+      "name": "AIG",
+      "type": "public",
+      "context": "Palantir commercial customer using AIP to drive AI-powered underwriting automation; CEO appeared on stage with Palantir's Karp and Anthropic's Dario Amodei.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Cleveland Clinic",
+      "type": "private",
+      "context": "Palantir customer using the platform for nurse scheduling and other hospital operational workflows.",
+      "sentiment": "bullish",
+      "sector": "Healthcare"
+    },
+    {
+      "name": "HCA Healthcare",
+      "type": "public",
+      "context": "Palantir customer using the platform for hospital operational workflows.",
+      "sentiment": "bullish",
+      "sector": "Healthcare"
+    },
+    {
+      "name": "Tampa General Hospital",
+      "type": "private",
+      "context": "Palantir customer cited for AI-assisted hospital workflows including patient lifecycle and staff scheduling.",
+      "sentiment": "bullish",
+      "sector": "Healthcare"
+    },
+    {
+      "name": "General Mills",
+      "type": "public",
+      "context": "Palantir customer cited as an example of supply chain retooling and reclaiming control from legacy ERP systems.",
+      "sentiment": "bullish",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "Tyson Foods",
+      "type": "public",
+      "context": "Palantir customer cited alongside General Mills for supply chain modernization work on the platform.",
+      "sentiment": "bullish",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "LangChain",
+      "type": "startup",
+      "context": "AI framework that Browserbase integrated with via the Stagehand SDK, allowing easier agent development.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "LlamaIndex",
+      "type": "startup",
+      "context": "AI framework that Browserbase integrated with via the Stagehand SDK.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "CrewAI",
+      "type": "startup",
+      "context": "AI agent framework that Browserbase integrated with via the Stagehand SDK.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Boeing",
+      "type": "public",
+      "context": "Boeing 707 (1963) and 747 (1970) cited as key enablers of Asian manufacturing by making nonstop transpacific air cargo routine.",
+      "sentiment": "neutral",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Rabbit",
+      "type": "startup",
+      "context": "Rabbit R1 AI hardware device cited as an early attempt at screenless AI hardware that did not succeed as hoped.",
+      "sentiment": "bearish",
+      "sector": "Consumer Technology"
+    },
+    {
+      "name": "Humane",
+      "type": "startup",
+      "context": "AI pin hardware company mentioned alongside Rabbit and Friend as early AI device attempts that struggled.",
+      "sentiment": "bearish",
+      "sector": "Consumer Technology"
+    },
+    {
+      "name": "Friend",
+      "type": "startup",
+      "context": "AI wearable device mentioned alongside Humane and Rabbit as an early AI hardware experiment the hosts want to see succeed.",
+      "sentiment": "neutral",
+      "sector": "Consumer Technology"
+    },
+    {
+      "name": "Workday",
+      "type": "public",
+      "context": "Enterprise software cited as having insufficient APIs for automation needs, prompting companies to use Browserbase for browser-based workarounds.",
+      "sentiment": "bearish",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "Shopify",
+      "type": "public",
+      "context": "Mentioned as an example of a platform where building apps was once discouraged but produced unicorn companies like Honey.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "DeepSeek",
+      "type": "startup",
+      "context": "Chinese open-source AI model discussed for potential security risks in DOD or sensitive enterprise contexts due to CCP government influence and limited mechanical interpretability.",
+      "sentiment": "bearish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "LADWP",
+      "type": "gov",
+      "context": "City of Los Angeles-owned utility mentioned for adversarial relationship with local government and tendency to shut off power during any disturbance.",
+      "sentiment": "bearish",
+      "sector": "Energy/CleanTech"
+    },
+    {
+      "name": "Austin Energy",
+      "type": "gov",
+      "context": "City of Austin-owned utility cited as an example of a government-run utility in the Texas deregulated energy market.",
+      "sentiment": "neutral",
+      "sector": "Energy/CleanTech"
+    },
+    {
+      "name": "SoCal Edison",
+      "type": "public",
+      "context": "Mentioned as an example of a private regulated utility in Southern California, contrasted with government-owned utilities.",
+      "sentiment": "neutral",
+      "sector": "Energy/CleanTech"
+    },
+    {
+      "name": "DTE Energy",
+      "type": "public",
+      "context": "Mentioned by Justin Lopas as the regulated utility in his home state of Michigan as an example of the B2B utility partnership model.",
+      "sentiment": "neutral",
+      "sector": "Energy/CleanTech"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "AI coding IDE that the entire Browserbase engineering team rapidly switched to from Cursor overnight, leaving Paul Klein as the sole Cursor holdout.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Oasis",
+      "type": "startup",
+      "context": "Water quality data startup built by a founder named Cormac who went viral on TikTok posting water quality content, cited as an example of trend-based distribution.",
+      "sentiment": "bullish",
+      "sector": "Consumer Technology"
+    },
+    {
+      "name": "Airbus",
+      "type": "public",
+      "context": "Mentioned as an early Palantir commercial customer where the platform was used to manage the A350 production ramp-up.",
+      "sentiment": "bullish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "BP",
+      "type": "public",
+      "context": "Mentioned as an early Palantir commercial customer where petroleum engineers used the decision-support platform.",
+      "sentiment": "neutral",
+      "sector": "Energy/CleanTech"
+    },
+    {
+      "name": "Helmgard",
+      "type": "startup",
+      "context": "Cited by Akshay Krishnaswamy as a startup building AI-enabled applications on top of Palantir's Foundry and AIP platform.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Public",
+      "type": "startup",
+      "context": "Sponsor; multi-asset investing platform with industry-leading yields highlighted during the market surge day.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Sponsor; luxury watch marketplace with over 24,500 authenticated watches.",
+      "sentiment": "neutral",
+      "sector": "E-Commerce"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor; vacation home rental platform offering hotel-grade amenities with 24/7 concierge service.",
+      "sentiment": "neutral",
+      "sector": "Travel/Real Estate"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising platform; hosts announced an upcoming first TBPN billboard campaign run through AdQuick.",
+      "sentiment": "bullish",
+      "sector": "Advertising"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Sponsor; smart mattress technology for sleep optimization.",
+      "sentiment": "neutral",
+      "sector": "Consumer Technology"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sponsor; sales tax automation platform noting that 25 US states now tax software sales.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    }
+  ],
+  "people": [
+    {
+      "name": "Tracy Alloway",
+      "role": "Bloomberg journalist and Odd Lots podcast co-host",
+      "context": "Joined to explain the basis trade unraveling, bond yield surge, Goldman Sachs recession call retraction, and why she believes tariff uncertainty will persist for the full four-year Trump term."
+    },
+    {
+      "name": "Paul Klein",
+      "role": "Founder and CEO of Browserbase",
+      "context": "Discussed Browserbase's AI browser infrastructure, DOM vs. vision approach to automation, Stagehand SDK, Llama 4 underperformance vs. Gemini 2.0 Flash in evals, and the anti-bot authentication problem."
+    },
+    {
+      "name": "Justin Lopas",
+      "role": "Founder and CEO of Base Power",
+      "context": "Announced Base Power's $200M Series B, explained the distributed battery-as-a-service model for the Texas grid, and discussed supply chain challenges from tariffs and his background at SpaceX and Andril."
+    },
+    {
+      "name": "Akshay Krishnaswamy",
+      "role": "Chief Architect at Palantir",
+      "context": "Explained Palantir's forward-deployed engineering model, AIP adoption in healthcare and insurance, the startup cohort building on Foundry, and argued against using DeepSeek in sensitive enterprise contexts."
+    },
+    {
+      "name": "Ben Thompson",
+      "role": "Analyst and writer, Stratechery",
+      "context": "His multi-article analysis of Apple's China supply chain crisis, Christensen disruption theory applied to US manufacturing, and the argument that blanket tariffs are a policy mistake was extensively quoted."
+    },
+    {
+      "name": "Tim Cook",
+      "role": "CEO of Apple",
+      "context": "Discussed for his supply chain mastery, political pragmatism in working with successive administrations, and the challenge of managing Apple's deep China dependency amid escalating tariffs."
+    },
+    {
+      "name": "Jeff Lawson",
+      "role": "Founder of Twilio, angel investor in Browserbase",
+      "context": "Cited for his analogy that SMS\u2014like the web browser\u2014has a very long bridge before it becomes obsolete, supporting Paul Klein's long-term browser automation thesis."
+    },
+    {
+      "name": "Keith Rabois",
+      "role": "Investor",
+      "context": "Mentioned for his ability to argue any economic outcome as positive, illustrating the difficulty of objectively evaluating Trump trade policy in the moment."
+    },
+    {
+      "name": "Jason Calacanis",
+      "role": "Investor and podcast host",
+      "context": "Cited for his insight that the 2020 vibe shift reflected investors not demanding profitability but market share growth, relevant to current VC market conditions."
+    },
+    {
+      "name": "Bill Ackman",
+      "role": "Hedge fund manager",
+      "context": "Posted that time is not China's friend as every US company is moving supply chains; hosts found the claim somewhat premature for Apple-scale companies."
+    },
+    {
+      "name": "Matthew Prince",
+      "role": "Co-founder and CEO of Cloudflare",
+      "context": "Posted a detailed five-assumption theory that Trump's true strategy is to force every country to choose between the US and China trading blocs."
+    },
+    {
+      "name": "Scott Bessant",
+      "role": "US Treasury Secretary",
+      "context": "Mentioned for prioritizing Japan in trade negotiations and signaling openness to discussing lower tariffs."
+    },
+    {
+      "name": "Carolyn Leavitt",
+      "role": "White House Press Secretary",
+      "context": "Claimed the US has the labor, workforce, and resources to manufacture iPhones domestically, citing Apple's $500B US investment pledge; Ben Thompson called this claim 'ridiculous.'"
+    },
+    {
+      "name": "Maggie Haberman",
+      "role": "New York Times journalist",
+      "context": "Asked the White House Press Secretary whether Trump specifically believed iPhone manufacturing could realistically return to the US."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO of OpenAI",
+      "context": "Mentioned for OpenAI's potential acquisition of a hardware device company he is co-developing with Johnny Ive, reportedly including a screenless AI phone concept."
+    },
+    {
+      "name": "Johnny Ive",
+      "role": "Former Chief Design Officer at Apple",
+      "context": "Reportedly co-designing a new AI hardware device with Sam Altman that OpenAI may acquire."
+    },
+    {
+      "name": "John Carmack",
+      "role": "Former CTO at Oculus/Meta",
+      "context": "Cited for his vision of a 100-gram, $100 VR device that would create the install base needed for mainstream developer adoption of spatial computing."
+    },
+    {
+      "name": "Lee Fixel",
+      "role": "Partner at Addition",
+      "context": "Joins the Base Power board of directors as part of Addition co-leading the $200M Series B."
+    },
+    {
+      "name": "Antonio Gracias",
+      "role": "Founder of Valor Equity Partners",
+      "context": "Joins the Base Power board as part of Valor co-leading the $200M Series B."
+    },
+    {
+      "name": "Howard Lutnick",
+      "role": "US Commerce Secretary",
+      "context": "Mentioned for calling Trump's tariff pause Truth Social post 'one of the most important ever written.'"
+    },
+    {
+      "name": "Clayton Christensen",
+      "role": "Harvard Business School professor, author of The Innovator's Dilemma",
+      "context": "His disruption theory and 'what goes up can't come down' framework were applied to explain why the US cannot easily reshore manufacturing once it moved up to higher-value services."
+    },
+    {
+      "name": "Michael Pillsbury",
+      "role": "Author of The Hundred-Year Marathon",
+      "context": "His book on China's long-term strategy to become a global hegemon was cited as foundational to bipartisan US China policy adopted by both Trump and Biden administrations."
+    },
+    {
+      "name": "Shyam Sankar",
+      "role": "CTO of Palantir",
+      "context": "Cited as the first forward-deployed engineer and key architect of Palantir's field-first product development culture."
+    },
+    {
+      "name": "Alex Karp",
+      "role": "CEO of Palantir",
+      "context": "Appeared on stage with Dario Amodei and AIG's CEO to discuss AI-powered underwriting automation using Palantir AIP."
+    },
+    {
+      "name": "Dario Amodei",
+      "role": "CEO of Anthropic",
+      "context": "Appeared on stage with Alex Karp and AIG's CEO for a joint underwriting automation demonstration; his essay Machines of Loving Grace was cited in the AI safety discussion."
+    },
+    {
+      "name": "David Sacks",
+      "role": "White House AI and Crypto Czar, All In podcast host",
+      "context": "Tracy Alloway cited him as an example of All In hosts making bullish tariff calls that were quickly contradicted by subsequent market moves."
+    },
+    {
+      "name": "Chamath Palihapitiya",
+      "role": "Investor and All In podcast host",
+      "context": "Tracy Alloway noted he publicly cheered on tariffs while simultaneously buying credit default swaps to bet against corporate America."
+    },
+    {
+      "name": "Walter Bloomberg",
+      "role": "Financial news aggregator on Twitter/X",
+      "context": "Mentioned for publishing a mistaken tariff pause headline on Monday that briefly moved markets before the White House rapidly denied it."
+    },
+    {
+      "name": "Bob McGrew",
+      "role": "Early Palantir product leader",
+      "context": "Cited by Akshay as an early core product leader who shaped the Palantir platform alongside the forward-deployed field organization."
+    },
+    {
+      "name": "Blake",
+      "role": "Founder and CEO of Brink Drones",
+      "context": "25-year-old Teal Fellow who raised a $75M round for police drone startup Brink Drones led by Index Ventures."
+    },
+    {
+      "name": "Soren",
+      "role": "Founder of Neiros",
+      "context": "Former drone racing pilot who founded defense drone company Neiros; mentioned as likely wanting to pivot back to consumer drones after defense success."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Trump 90-Day Tariff Pause",
+      "summary": "Trump announced a 90-day tariff pause for non-retaliating countries, sending the NASDAQ up ~10%. Simultaneously, China tariffs were raised to 125%, shifting the narrative from a global trade restructuring to a focused US-China trade war.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Apple China Supply Chain Crisis",
+      "summary": "Extensive analysis via Ben Thompson of Apple's deep China dependency, the India final assembly pivot, the difficulty of reshoring componentry versus assembly, and risks to Apple's global competitive position.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "US Manufacturing Reshoring",
+      "summary": "Debate over whether tariffs can incentivize reshoring; discussed capability gaps, the gravity effect of final assembly pulling component manufacturing, the role of robotics, and whether a trillion-dollar investment could rebuild American supply chains by 2040.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Basis Trade and Bond Market Volatility",
+      "summary": "Tracy Alloway explained how basis trade unraveling contributed to surging bond yields; Goldman Sachs issued then retracted a recession forecast within hours; the financial system was described as not built to handle simultaneous equity declines and yield surges.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "AI Browser Automation and Agents",
+      "summary": "Paul Klein discussed Browserbase's AI browser infrastructure, DOM vs. vision approach to automation, the Stagehand framework, MCP server limitations for older websites, and how the browser is the most primitive universal MCP server.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Foundation Model Competition",
+      "summary": "Llama 4 underperformed in Browserbase's browser automation evals while Gemini 2.0 Flash led; debate over whether Llama 4 Behemoth will change rankings; LM Arena integrity questioned.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Distributed Energy Storage and Grid Modernization",
+      "summary": "Base Power's model of owning batteries on homes to reduce Texas grid peak load was presented as enabling more EVs, AI data centers, and electrification without new infrastructure; tariff impact on battery cell supply chains discussed.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Palantir AIP and Forward-Deployed Engineering",
+      "summary": "Akshay Krishnaswamy explained Palantir's FDE model, AIP commercial traction in healthcare and finance, the ontology-based digital twin approach, and a growing startup cohort building applications on Foundry.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Disruption Theory Applied to US-China Trade",
+      "summary": "Ben Thompson applied Christensen's disruption framework to explain why the US abandoned manufacturing, why China rode the learning curve down, and why going back down market is nearly impossible for a country at full employment with high wages.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "AI Hardware Devices",
+      "summary": "OpenAI's potential acquisition of a Johnny Ive-designed device discussed; Rabbit R1, Humane, and Friend cited as cautionary tales; tariffs could impede the cost curves needed for mass VR and AI hardware adoption.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI Safety and P(Doom)",
+      "summary": "Paul Klein and Akshay both expressed low P(Doom) scores; Akshay emphasized operational testing of AI beyond benchmarks and the importance of the West maintaining a full range of model options independent of Chinese providers.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Vibe Coding and AI IDEs",
+      "summary": "Browserbase team's overnight mass switch from Cursor to Windsurf discussed; vibe coding not used for critical infrastructure but accelerates integrations and partner SDK shipping.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "US-China Geopolitical Decoupling",
+      "summary": "Matthew Prince's theory that tariffs are designed to force countries to choose between US and China trading blocs; Belt and Road, developing nation alignment, and TikTok as a geopolitical chip discussed.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "OpenAI Fund Returns",
+      "summary": "The OpenAI Fund may have turned $8M in seed investments into ~$600M in paper gains from just two deals\u2014Harvey and Cursor\u2014within a $175M fund, potentially a 5x return in under three years.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "DeepSeek Enterprise Security Risk",
+      "summary": "Debate over whether Chinese open-source models could embed hidden behaviors targeting US infrastructure; Akshay argued the composite risk profile and limited mechanistic interpretability justify avoiding them for sensitive use cases.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Microsoft Data Center Pullback",
+      "summary": "Microsoft cancelled over $1B in planned data center campuses in Licking County, Ohio; hosts discussed whether hyperscaler CapEx is slowing amid macro uncertainty.",
+      "sentiment": "bearish"
+    }
+  ],
+  "key_claims": [
+    "Trump's 90-day tariff pause sent the NASDAQ up approximately 10% on April 9, 2025.",
+    "China tariffs were simultaneously raised to 125% while all other non-retaliating countries received the 90-day pause.",
+    "Apple airlifted 5 planes full of iPhones from India to the US in 3 days during the final week of March to beat the April 5th tariff effective date.",
+    "Polymarket showed a 16% probability of China invading Taiwan in 2025.",
+    "Goldman Sachs issued a US recession baseline forecast citing tariffs, then retracted it within hours on the same day after the tariff pause announcement.",
+    "The value-add of iPhone final assembly is in the single-digit dollar range; Apple's software, marketing, and distribution adds hundreds of dollars of value per device.",
+    "Largan Precision, maker of a single iPhone component (camera lenses), has grown to a ~$240B market cap.",
+    "OpenAI Fund may have turned $8M in seed checks into ~$600M in paper gains from just two investments\u2014Harvey and Cursor\u2014within a $175M fund.",
+    "Base Power raised a $200M Series B co-led by Addition, Andreessen Horowitz, Lightspeed, and Valor Equity Partners.",
+    "Lerer Hippeau raised their ninth seed fund at $200M, up from $140M in the prior fund, with portfolio founders participating as LPs.",
+    "Brink Drones raised $75M led by Index Ventures to build American police drones as a DJI replacement.",
+    "Microsoft cancelled over $1B in planned data center campuses in Licking County, Ohio.",
+    "Gemini 2.0 Flash outperformed Llama 4 in Browserbase's internal browser automation evals run immediately after Llama 4's release.",
+    "Browserbase disabled LinkedIn automation on its platform entirely due to spam abuse.",
+    "Mr. Beast stated that due to new US tariffs, it is now cheaper to manufacture his chocolate bars outside the US because other countries do not face a 20% tariff on his cost of goods.",
+    "A Dallas Fed oil patch survey showed dire operator sentiment about tariffs before Liberation Day, with one supplier reporting a Canadian customer asked to move production to Canada.",
+    "Ben Thompson argued blanket tariffs are a mistake because final assembly\u2014the least valuable supply chain step\u2014is what would return, not the high-value componentry that matters for national security.",
+    "Chamath Palihapitiya publicly cheered tariffs while simultaneously buying credit default swaps to bet against corporate America, per Tracy Alloway.",
+    "Tracy Alloway argued that unlike COVID or SVB, the tariff crisis could theoretically reverse overnight via presidential statement, but uncertainty itself is now a persistent feature of the market.",
+    "The Trump administration's own scorecard\u2014wanting lower bond yields and cheaper mortgages\u2014was contradicted by the 10-year Treasury touching 4.5% during the tariff crisis, per Tracy Alloway."
+  ],
+  "technologies": [
+    "AI Agents",
+    "Browser Automation",
+    "Large Language Models",
+    "Model Context Protocol (MCP)",
+    "Computer Use",
+    "DOM-based Web Automation",
+    "Vision-based Screen Understanding",
+    "Stagehand SDK",
+    "Distributed Battery Storage",
+    "Grid Energy Management Software",
+    "Humanoid Robotics",
+    "Robotic Arms and CNC Manufacturing",
+    "VR/AR Hardware",
+    "Drone Delivery",
+    "Police and Defense Drones",
+    "Semiconductor Fabrication",
+    "Transformer-based AI Architectures",
+    "Reasoning Models",
+    "Multimodal Tool Calling",
+    "Long-context Models",
+    "Retrieval-Augmented Generation (RAG)",
+    "Prompt Caching",
+    "Fine-tuning",
+    "Ontology and Digital Twin (Palantir)",
+    "Llama 4",
+    "Gemini 2.0 Flash",
+    "Amazon Nova",
+    "DeepSeek",
+    "Apple Intelligence",
+    "Cursor",
+    "Windsurf",
+    "Neuralink",
+    "Standardized Shipping Containers",
+    "Solar and Wind Energy"
+  ],
+  "_stats": {
+    "word_count": 36314,
+    "estimated_input_tokens": 48297,
+    "input_tokens": 3,
+    "output_tokens": 24529,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 50308,
+    "duration_ms": 451942,
+    "wall_time_s": 453.2,
+    "cost_usd": 0.9322735,
+    "tokens_per_sec": 54.1
+  }
+}

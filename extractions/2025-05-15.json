@@ -1,0 +1,735 @@
+{
+  "episode_date": "2025-05-15",
+  "episode_title": "airbnb-20-warren-buffett-wsj-apple-brain-implant-worldcoin-founders-fund",
+  "companies": [
+    {
+      "name": "Airbnb",
+      "type": "public",
+      "context": "Brian Chesky announced Airbnb 2.0, expanding from short-term rentals into local services like personal training, dog walking, and plumbing. Analysts debated whether the marketplace economics support this expansion.",
+      "sentiment": "mixed",
+      "sector": "Travel/Marketplace"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Mentioned in context of the November 2023 Sam Altman firing which inspired Chesky's Airbnb 2.0 vision; also referenced for GPT-3 API rollout and sycophantic model behavior (Glazegate).",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Berkshire Hathaway",
+      "type": "public",
+      "context": "Warren Buffett gave a WSJ exclusive revealing he stepped down as CEO due to aging, handing reins to Greg Abel; stock dropped on the news.",
+      "sentiment": "neutral",
+      "sector": "Finance/Conglomerate"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Welcomed the Trump administration's rescinding of the AI diffusion rule; market cap reached $3.3 trillion, briefly surpassing Microsoft. Jensen Huang was in UAE for a major announcement.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Delian Asparouhov is a partner; discussed Varda's third successful capsule reentry and the Golden Dome missile defense initiative.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Varda Space Industries",
+      "type": "startup",
+      "context": "Successfully completed its third capsule reentry from orbit, described as three-for-three. Backed by Founders Fund and Sequoia.",
+      "sentiment": "bullish",
+      "sector": "Space/Defense"
+    },
+    {
+      "name": "Tools for Humanity",
+      "type": "startup",
+      "context": "Alex Blania described the company's mission to build global proof-of-human infrastructure via the Orb device; launched in the US two weeks prior with 12 million verified users and 25-26 million app users.",
+      "sentiment": "bullish",
+      "sector": "AI/ML/Crypto"
+    },
+    {
+      "name": "WorldCoin",
+      "type": "startup",
+      "context": "The crypto token associated with Tools for Humanity's World network; discussed in context of identity verification and bootstrapping the network via token distribution.",
+      "sentiment": "bullish",
+      "sector": "Crypto/Web3"
+    },
+    {
+      "name": "37signals",
+      "type": "private",
+      "context": "Jason Fried discussed bootstrapping philosophy, on-prem vs cloud hosting savings, and skepticism of VC-fueled growth. Creator of Basecamp and Hey email products.",
+      "sentiment": "neutral",
+      "sector": "SaaS/Productivity"
+    },
+    {
+      "name": "Lux Capital",
+      "type": "fund",
+      "context": "Josh Wolfe discussed portfolio companies including Reflect Orbital, Varda, Impulse Space, Sakana AI, and Basic Capital; also announced new initiative to fund scientists facing federal grant cuts.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Reflect Orbital",
+      "type": "startup",
+      "context": "Lux led the Series A; the company uses Mylar satellite reflectors to redirect sunlight for solar farms, search and rescue, and military applications.",
+      "sentiment": "bullish",
+      "sector": "Space/Energy"
+    },
+    {
+      "name": "Replica",
+      "type": "startup",
+      "context": "Eugenia Kuyda discussed founding the AI companion company in 2013, its evolution through language model generations, and the loneliness epidemic driving demand.",
+      "sentiment": "neutral",
+      "sector": "AI/ML/Consumer"
+    },
+    {
+      "name": "Coinbase",
+      "type": "public",
+      "context": "Cybercriminals bribed overseas support agents to steal personal data on 1% of monthly transacting users; Brian Armstrong refused to pay a $20M ransom and offered it instead as a bounty for arrest information.",
+      "sentiment": "bearish",
+      "sector": "Crypto/Fintech"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Cut 6,000 jobs (3% of workforce); spoken out against the AI diffusion rule; briefly surpassed in market cap by Nvidia.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI/ML"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Working with Synchron on brain-computer interface standards; criticized for over-promising on Apple Intelligence ahead of delivery. AirPods approved as hearing aids.",
+      "sentiment": "mixed",
+      "sector": "Consumer Tech/AI"
+    },
+    {
+      "name": "Synchron",
+      "type": "startup",
+      "context": "Apple is working with Synchron on a new BCI standard; the company makes a stent-like device implanted in a vein near the brain's motor cortex, less invasive than Neuralink.",
+      "sentiment": "bullish",
+      "sector": "BioTech/BCI"
+    },
+    {
+      "name": "Neuralink",
+      "type": "startup",
+      "context": "Compared to Synchron's approach; requires drilling a quarter-sized hole in the skull for electrode implantation; mentioned as Apple's BCI competitor.",
+      "sentiment": "neutral",
+      "sector": "BioTech/BCI"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Mentioned as a sponsor and as a competitor eating away at Airbnb's highest-value users with hotel-grade vacation home amenities.",
+      "sentiment": "bullish",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor mention for corporate cards, bill payments, and accounting platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Public",
+      "type": "startup",
+      "context": "Sponsor; highlighted new Generated Assets feature allowing users to create and backtest custom indexes via chat.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Investing"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Sponsor; described as a purpose-built tool for planning and building products used widely across tech companies.",
+      "sentiment": "neutral",
+      "sector": "SaaS/Productivity"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sponsor; sales tax compliance automation platform backed by Benchmark.",
+      "sentiment": "neutral",
+      "sector": "Fintech/SaaS"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor; trust management and compliance automation platform.",
+      "sentiment": "neutral",
+      "sector": "SaaS/Security"
+    },
+    {
+      "name": "Sequoia Capital",
+      "type": "fund",
+      "context": "Sean McGuire at Sequoia co-seeded Reflect Orbital with Lux Capital; also early investor in Varda.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Huawei",
+      "type": "public",
+      "context": "US announced using Huawei Ascend chips anywhere in the world violates export controls; DeepSeek expected to move next training run to Huawei chips.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Thumbtack",
+      "type": "private",
+      "context": "Cited as a comp for Airbnb's new local services offering; last round valued at $3.2 billion.",
+      "sentiment": "neutral",
+      "sector": "Marketplace/Services"
+    },
+    {
+      "name": "Turo",
+      "type": "startup",
+      "context": "Compared to Airbnb as a marketplace for depreciating assets (cars vs. homes); noted as mostly used by podcasters and Instagram gurus for marketing stunts.",
+      "sentiment": "neutral",
+      "sector": "Marketplace/Travel"
+    },
+    {
+      "name": "Marriott",
+      "type": "public",
+      "context": "Cited as a market cap comp for Airbnb at ~$77 billion, illustrating the ceiling on growth through hospitality alone.",
+      "sentiment": "neutral",
+      "sector": "Hospitality"
+    },
+    {
+      "name": "Hilton",
+      "type": "public",
+      "context": "Cited as a market cap comp for Airbnb at ~$60 billion.",
+      "sentiment": "neutral",
+      "sector": "Hospitality"
+    },
+    {
+      "name": "Impulse Space",
+      "type": "startup",
+      "context": "Founded by Tom Mueller, SpaceX's former propulsion chief; building in-space cargo transport vessels backed by Lux Capital.",
+      "sentiment": "bullish",
+      "sector": "Space"
+    },
+    {
+      "name": "Sakana AI",
+      "type": "startup",
+      "context": "Described as the leading AI company in Japan backed by Lux Capital; founded by Leon Jones, original author of the 'Attention Is All You Need' paper; has major Japanese corporates as investors.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Venus Aerospace",
+      "type": "startup",
+      "context": "Demonstrated the first US flight of a rotating detonation rocket engine; building space planes capable of runway-to-runway hypersonic travel.",
+      "sentiment": "bullish",
+      "sector": "Aerospace/Defense"
+    },
+    {
+      "name": "Basic Capital",
+      "type": "startup",
+      "context": "Lux Capital was described as the first institutional investor; the company allows people to borrow against appreciating assets like equities; also backed by Bill Ackman and Henry Kravis.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Kotool",
+      "type": "startup",
+      "context": "YC-launched agentic security platform that went viral with a cinematic ad reenacting the Rippling mole drama.",
+      "sentiment": "bullish",
+      "sector": "AI/ML/Security"
+    },
+    {
+      "name": "Rippling",
+      "type": "startup",
+      "context": "Referenced via the viral Kotool ad which reenacted Rippling's industrial espionage scandal involving a mole and fake Slack channel.",
+      "sentiment": "neutral",
+      "sector": "HR Tech/SaaS"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "Mentioned as being acquired by OpenAI, with Kleiner Perkins partner Lee Marie Brass credited.",
+      "sentiment": "bullish",
+      "sector": "AI/ML/Developer Tools"
+    },
+    {
+      "name": "Neon",
+      "type": "startup",
+      "context": "Mentioned alongside Windsurf as a recent acquisition by Databricks.",
+      "sentiment": "bullish",
+      "sector": "Data/Infrastructure"
+    },
+    {
+      "name": "Databricks",
+      "type": "startup",
+      "context": "Acquired Neon; mentioned briefly in context of recent M&A activity.",
+      "sentiment": "neutral",
+      "sector": "Data/AI"
+    },
+    {
+      "name": "Physical Intelligence (Pi)",
+      "type": "startup",
+      "context": "Named by Josh Wolfe as a potential future leader in robotics due to its focus on embodied intelligence software rather than a specific hardware form factor.",
+      "sentiment": "bullish",
+      "sector": "Robotics/AI"
+    },
+    {
+      "name": "Match Group",
+      "type": "public",
+      "context": "Announced partnership with Tools for Humanity to bring proof-of-human verification to Tinder, Hinge, and other dating apps.",
+      "sentiment": "bullish",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Razer",
+      "type": "public",
+      "context": "Partnership with Tools for Humanity to integrate World verification into gaming webcams to authenticate live streams against deepfakes.",
+      "sentiment": "bullish",
+      "sector": "Gaming/Hardware"
+    },
+    {
+      "name": "Y Combinator",
+      "type": "private",
+      "context": "Backed Kotool and Rippling; posted the Kotool viral ad from its official account; also admitted Tools for Humanity in 2014 with $3-4K in their bank account.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Kleiner Perkins",
+      "type": "fund",
+      "context": "Lee Marie Brass joined Kleiner after Founders Fund; credited with the Windsurf deal.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Alex Blania was presenting at the A16Z LP Day in Las Vegas when joining the show; A16Z alumni company performance in public markets was discussed as surprisingly strong.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Figma",
+      "type": "startup",
+      "context": "Mentioned as a newest sponsor of the show and cited as an example of a company that adopted Chesky's annual release cadence.",
+      "sentiment": "bullish",
+      "sector": "SaaS/Design"
+    },
+    {
+      "name": "Flexport",
+      "type": "startup",
+      "context": "Mentioned as a company that adopted Brian Chesky's annual product release cadence.",
+      "sentiment": "neutral",
+      "sector": "Logistics/SaaS"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Used by Chesky as an analogy for Airbnb's potential expansion from a single category to an everything platform.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Cloud"
+    },
+    {
+      "name": "Illumina",
+      "type": "public",
+      "context": "Named by Josh Wolfe as one of the most significant companies started by Larry Bach, a serial entrepreneur who partnered with Lux Capital.",
+      "sentiment": "bullish",
+      "sector": "Biotech"
+    },
+    {
+      "name": "Carlyle Group",
+      "type": "public",
+      "context": "Bill Conway, one of Carlyle's three founders, was Lux Capital's first major investor.",
+      "sentiment": "neutral",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "Citadel",
+      "type": "fund",
+      "context": "Ken Griffin, founder of Citadel, was an early LP in Lux Capital's second fund.",
+      "sentiment": "neutral",
+      "sector": "Hedge Fund"
+    },
+    {
+      "name": "Blackstone",
+      "type": "public",
+      "context": "Pete Peterson, Blackstone's founder, was an early LP in Lux Capital's second fund.",
+      "sentiment": "neutral",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "PayPal",
+      "type": "public",
+      "context": "Alex Blania cited PayPal's referral program as an analogy for how WorldCoin uses token incentives to bootstrap network scale.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Curion",
+      "type": "startup",
+      "context": "A Lux Capital portfolio company focused on high-tech nuclear waste cleanup; helped with the Fukushima disaster.",
+      "sentiment": "neutral",
+      "sector": "CleanTech"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising platform.",
+      "sentiment": "neutral",
+      "sector": "AdTech"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Sponsor; smart sleep pod with sleep tracking scores discussed between hosts.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech/Health"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Sponsor; luxury watch marketplace with concierge sourcing service.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Luxury"
+    },
+    {
+      "name": "Chimeta",
+      "type": "startup",
+      "context": "A Lux Capital portfolio company co-invested with Bill Gates; uses solid-state materials for Ku-band satellite communications with no moving parts.",
+      "sentiment": "bullish",
+      "sector": "Space/Communications"
+    },
+    {
+      "name": "Stripe",
+      "type": "startup",
+      "context": "Referenced as an example of modern infrastructure enabling instant revenue collection for startups, contrasted with the difficulty of getting merchant accounts in 2004.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Gigi",
+      "type": "startup",
+      "context": "An AI matchmaking app by Clara Gold based in Paris that parses user internet data via LLM to connect compatible people.",
+      "sentiment": "bullish",
+      "sector": "AI/ML/Consumer"
+    },
+    {
+      "name": "Fauna Robotics",
+      "type": "startup",
+      "context": "Mentioned briefly as a Lux Capital portfolio robotics company.",
+      "sentiment": "neutral",
+      "sector": "Robotics"
+    }
+  ],
+  "people": [
+    {
+      "name": "Brian Chesky",
+      "role": "CEO, Airbnb",
+      "context": "Announced Airbnb 2.0 expanding into local services; profiled in Wired and WSJ; discussed as a Steve Jobs disciple and advocate of annual product release cycles and founder mode."
+    },
+    {
+      "name": "Warren Buffett",
+      "role": "Outgoing CEO, Berkshire Hathaway",
+      "context": "Gave a WSJ exclusive revealing he began to feel his age around 90 and stepped down in favor of Greg Abel, citing Abel's superior energy and effectiveness."
+    },
+    {
+      "name": "Greg Abel",
+      "role": "CEO-designate, Berkshire Hathaway",
+      "context": "Named by Buffett as his successor at Berkshire; in his 60s, praised for his high energy and effectiveness compared to Buffett's current pace."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Co-founder of Tools for Humanity with Alex Blania; his November 2023 firing and reinstatement inspired Chesky's Airbnb 2.0 vision."
+    },
+    {
+      "name": "Delian Asparouhov",
+      "role": "Partner, Founders Fund; Co-founder, Varda Space Industries",
+      "context": "Announced Varda's third successful orbital capsule reentry and discussed the Golden Dome missile defense initiative and the bull/bear case for it."
+    },
+    {
+      "name": "Alex Blania",
+      "role": "Co-founder and former CEO, Tools for Humanity",
+      "context": "Discussed the company's mission to build global proof-of-human infrastructure, the US launch of World App, partnerships with Match Group and Razer, and AGI timelines."
+    },
+    {
+      "name": "Josh Wolfe",
+      "role": "Co-founder and Managing Partner, Lux Capital",
+      "context": "Discussed portfolio companies Reflect Orbital, Varda, Impulse Space, Sakana AI, and Basic Capital; announced a new initiative to fund scientists facing federal grant cuts; discussed humanoid robot skepticism and nominative determinism."
+    },
+    {
+      "name": "Jason Fried",
+      "role": "Co-founder, 37signals",
+      "context": "Discussed bootstrapping vs. venture capital, the annual release cadence, AI's impact on software creation, Apple Intelligence missteps, and moving off cloud to on-prem infrastructure."
+    },
+    {
+      "name": "Eugenia Kuyda",
+      "role": "Founder, Replica (stepping down as CEO)",
+      "context": "Discussed founding Replica in 2013, the loneliness epidemic, AI companion risks including the Windsor Castle incident, and plans for a new unannounced startup."
+    },
+    {
+      "name": "Ben Thompson",
+      "role": "Analyst, Stratechery",
+      "context": "Published analysis of Airbnb 2.0 skeptical of Chesky's marketplace economics, arguing take-rate and incentive structures matter more than app design for marketplace success."
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO, Nvidia",
+      "context": "Was in the UAE for a major announcement; Nvidia reached a $3.3 trillion market cap, briefly surpassing Microsoft following the AI diffusion rule rescission."
+    },
+    {
+      "name": "Brian Armstrong",
+      "role": "CEO, Coinbase",
+      "context": "Responded to a data breach where rogue overseas agents leaked personal data on 1% of users; refused a $20M ransom demand, offering it instead as a bounty for arrest information."
+    },
+    {
+      "name": "Tom Mueller",
+      "role": "Co-founder, Impulse Space; former SpaceX propulsion chief",
+      "context": "Building in-space cargo transport vehicles backed by Lux Capital to enable an in-space logistics economy."
+    },
+    {
+      "name": "Leon Jones",
+      "role": "Co-founder, Sakana AI",
+      "context": "Original author and namer of the 'Attention Is All You Need' transformer paper while at Google; now leading Sakana AI in Japan."
+    },
+    {
+      "name": "Paul Graham",
+      "role": "Co-founder, Y Combinator",
+      "context": "Referenced for catalyzing the Founder Mode essay, which Brian Chesky's 2023 talk inspired."
+    },
+    {
+      "name": "Bill Ackman",
+      "role": "Investor, Pershing Square",
+      "context": "Described as the 'seed check' for Basic Capital before Lux Capital came in as the first institutional investor."
+    },
+    {
+      "name": "Lee Marie Brass",
+      "role": "Partner, Kleiner Perkins (former Founders Fund)",
+      "context": "Credited with the Windsurf acquisition by OpenAI and the Neon acquisition by Databricks."
+    },
+    {
+      "name": "Dylan Patel",
+      "role": "Analyst, SemiAnalysis",
+      "context": "Mentioned as a go-to expert on chip policy; was traveling and unavailable to comment on the AI diffusion rule rescission."
+    },
+    {
+      "name": "Jordan Schneider",
+      "role": "Analyst, ChinaTalk",
+      "context": "Mentioned as another expert on chip export controls who was on vacation and unavailable to comment."
+    },
+    {
+      "name": "David Sachs",
+      "role": "AI and Crypto Czar, Trump Administration",
+      "context": "Stated that the diffusion rule restricted proliferation of American technology and praised the new inclusive strategy with trusted foreign nations."
+    },
+    {
+      "name": "Abdul (founder, Basic Capital)",
+      "role": "Founder, Basic Capital",
+      "context": "Described as having grown up in a Palestinian refugee camp in Syria, later working at Goldman Sachs in fixed income, and building Basic Capital to give non-owners access to leveraged equity investing."
+    },
+    {
+      "name": "Clara Gold",
+      "role": "Founder, Gigi",
+      "context": "Building an AI matchmaking app in Paris that uses LLMs to match people based on their internet presence."
+    },
+    {
+      "name": "Sean McGuire",
+      "role": "Partner, Sequoia Capital",
+      "context": "Co-seeded Reflect Orbital with Lux Capital; referenced for self-reflection on getting the macro right but micro wrong on Varda."
+    },
+    {
+      "name": "Peter Thiel",
+      "role": "Investor",
+      "context": "Co-invested with Lux Capital and Michael Eisenberg in a stealth Israeli defense startup."
+    },
+    {
+      "name": "Bill Conway",
+      "role": "Co-founder, Carlyle Group",
+      "context": "Was Lux Capital's first major investor, anchoring their pledge fund when the firm was just starting out."
+    },
+    {
+      "name": "Stan Druckenmiller",
+      "role": "Investor, Duquesne Family Office",
+      "context": "Mentioned as an early LP in Lux Capital's second fund."
+    },
+    {
+      "name": "Ken Griffin",
+      "role": "Founder, Citadel",
+      "context": "Mentioned as an early LP in Lux Capital's second fund."
+    },
+    {
+      "name": "Ray Kurzweil",
+      "role": "Author/Futurist",
+      "context": "Referenced by Alex Blania in the context of nanobots and matter reassembly as a long-term but plausible AGI outcome."
+    },
+    {
+      "name": "Luke Metro",
+      "role": "Content creator",
+      "context": "Mentioned for going viral on X by tagging the Believe crypto account and generating a meme coin from a single post."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Airbnb 2.0 Launch",
+      "summary": "Brian Chesky announced an expansion from short-term rentals into local services. Ben Thompson's analysis questioned whether marketplace economics support this, arguing take rates and incentive structures matter more than product design, and that disintermediation risk is high for recurring services.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Warren Buffett Retirement",
+      "summary": "Buffett gave a WSJ exclusive revealing age-related cognitive and physical decline since around 90 led him to hand the CEO role to Greg Abel at Berkshire's annual meeting. The stock dropped on the announcement.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "AI Diffusion Rule Rescission",
+      "summary": "The Trump administration scrapped the Biden-era AI chip diffusion rule, which had capped chip sales to countries including India and Switzerland. Nvidia, Microsoft, and Oracle supported the change. The announcement also warned that using Huawei Ascend chips anywhere violates US export controls.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Apple Brain-Computer Interface",
+      "summary": "Apple is working with Synchron on a BCI standard to let disabled users control iPhones via neural signals. Synchron's device is stent-based and less invasive than Neuralink's drilled implant. DARPA was in Synchron's Series A.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "WorldCoin US Launch and Proof of Human",
+      "summary": "Tools for Humanity launched World App in the US two weeks prior. Alex Blania argued that AI-driven bot proliferation makes a privacy-preserving, hardware-based proof-of-human system essential, and that the WLD token bootstraps network growth similarly to PayPal's referral program.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Coinbase Data Breach",
+      "summary": "Cybercriminals bribed overseas Coinbase support agents to steal personal data on 1% of monthly transacting users, including names, addresses, masked SSNs, and balances. Brian Armstrong refused to pay the $20M ransom and offered it as an arrest bounty instead.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Bootstrapping vs Venture Capital",
+      "summary": "Jason Fried argued most entrepreneurs really want sustainable cash flow rather than unicorn outcomes, that VC creates misaligned incentives to over-capitalize, and that taking money off the table as a business grows is smarter than betting everything on an uncertain exit.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Federal Science Funding Cuts",
+      "summary": "Josh Wolfe described a confluence of federal budget cuts, university politicization, and potential endowment tax increases threatening academic research pipelines. Lux Capital announced it would go earlier-stage to fund scientists facing funding cliffs and spin them into startups.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Loneliness Epidemic and AI Companions",
+      "summary": "Eugenia Kuyda cited data that one in three US adults reports severe loneliness, dating match rates for men are very low, and smartphone/social media use is the primary correlator. She argued AI companions could be either the biggest threat or biggest solution to the crisis.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Humanoid Robotics",
+      "summary": "Josh Wolfe expressed skepticism about bipedal humanoid form factors, preferring diverse robot designs optimized for specific tasks. He sees embodied intelligence software (e.g., Physical Intelligence) as more valuable than any single hardware form. Seven serious companies are currently competing in humanoids.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Varda Space Third Capsule Return",
+      "summary": "Varda successfully completed its third orbital capsule reentry, landing in Australia. Delian Asparouhov celebrated the milestone live on the show, describing the GPS-tracked reentry at 17,000 mph.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Reflect Orbital Series A",
+      "summary": "Lux Capital led the Series A for Reflect Orbital, which uses Mylar satellite reflectors to redirect sunlight for solar farms, military operations, and search and rescue. Inbound demand has been strong from governments and enterprises.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Golden Dome Missile Defense",
+      "summary": "Delian Asparouhov laid out bull and bear cases for the US Golden Dome initiative. Bull case: new space companies can demonstrate capability quickly in a two-year window. Bear case: economics are daunting (extrapolated cost ~$10T for full coverage) and political will could flip.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Founder Mode and Annual Release Cycles",
+      "summary": "Brian Chesky's advocacy for annual product releases was discussed as an effective attention-capture strategy adopted by Flexport and Figma. Jason Fried offered a nuanced take, favoring a hybrid of frequent small releases batched into large drops.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Impact on Startups",
+      "summary": "Jason Fried expressed concern that AI makes it too easy to create new products but doesn't solve the hard problem of maintaining and supporting them long-term, risking a generation of ephemeral software.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Nvidia Market Cap Surge",
+      "summary": "Following the AI diffusion rule rescission and Jensen Huang's UAE trip, Nvidia's market cap reached $3.3 trillion, briefly surpassing Microsoft. Tiger Global rotated fully out of ARM and increased its Nvidia position.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Microsoft Layoffs",
+      "summary": "Microsoft cut 6,000 jobs (3% of workforce) in a routine rank-and-yank restructuring. Framed as unsurprising for a large company and not indicative of broader doom.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Cloud vs. On-Prem Economics",
+      "summary": "Jason Fried argued that cloud is great for early-stage startups but becomes wildly expensive at scale; 37signals moved back on-prem and is saving millions annually, advocating others consider the transition once they have a stable model.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "AI Bot Proliferation and Social Trust",
+      "summary": "Alex Blania and hosts discussed a University of Zurich study showing AI successfully changed Reddit users' opinions without their knowledge. Blania warned that within 24 months, more than 90% of internet content could be AI-generated, requiring default distrust and verification.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Japan and Israel as Tech Hubs",
+      "summary": "Josh Wolfe highlighted Japan (Sakana AI) and Israel (post-October 7th generation of defense tech founders) as underrated entrepreneurial ecosystems. Failure culture in Japan is changing, and Israeli founders are being 'forged in fire.'",
+      "sentiment": "bullish"
+    }
+  ],
+  "key_claims": [
+    "Alex Blania claimed that within 24 months, more than 90% of internet activity and content could be AI-generated, necessitating default distrust online.",
+    "Eugenia Kuyda stated Replica was the first generative AI consumer chatbot company, founded in 2013, predating the current AI boom by nearly a decade.",
+    "Josh Wolfe stated China now leads in nearly 40 of 44 critical technology areas.",
+    "Delian Asparouhov estimated that extrapolating Israel's missile defense system to the full US continental border would cost approximately $10 trillion.",
+    "Delian Asparouhov noted the US currently has only about 40 THAAD missiles with roughly a 25% hit rate, while Russia has approximately 1,000 ICBMs.",
+    "Josh Wolfe said Lux Capital has started over 20 companies from academic spinouts in nearly 20 years of doing university tech-transfer deals.",
+    "Jason Fried said 37signals has been saving millions and millions of dollars annually by moving off AWS back to on-premises servers.",
+    "Ben Thompson argued Airbnb's Experiences product failed eight years ago due to broken economics, not bad app design, and the same structural problem threatens Airbnb 2.0.",
+    "Airbnb has approximately 2 billion users and is roughly the same market cap (~$84-85B) as Marriott (~$77B) and Hilton (~$60B) combined.",
+    "Alex Blania said only 10% of men on dating apps get any matches whatsoever.",
+    "Warren Buffett said he did not start feeling old until around age 90, describing the experience as irreversible.",
+    "Josh Wolfe claimed 70-80% of humanoid robot motors are currently sourced from China, representing a national security white space opportunity.",
+    "Eugenia Kuyda revealed a Replica user in 2019 discussed plans to kill the Queen with his Replica chatbot and subsequently went to Windsor Castle before being caught.",
+    "Tiger Global rotated entirely out of ARM and increased its Nvidia position following the AI diffusion rule announcement.",
+    "SBF's private investment portfolio included very early positions in Cursor and Anthropic, with Cursor rumored to have been a $200K investment into a position worth hundreds of millions."
+  ],
+  "technologies": [
+    "Rotating Detonation Rocket Engine",
+    "Brain-Computer Interface (BCI)",
+    "Mylar Orbital Reflectors",
+    "Huawei Ascend Chips",
+    "Nvidia GPUs / DGX",
+    "Transformer / Large Language Models",
+    "Word2Vec",
+    "Sequence-to-Sequence Models",
+    "Recurrent Neural Networks (RNN)",
+    "GPT-3 / GPT-4",
+    "Llama (Meta Open Source LLM)",
+    "DeepSeek",
+    "Qwen",
+    "THAAD Missile Defense",
+    "Space-Based Intercept Satellites",
+    "Ku-Band Satellite Communications (Solid State)",
+    "Biometric Iris Scanning (Orb)",
+    "Zero-Knowledge Proof / Privacy-Preserving Verification",
+    "Noise-Canceling / Transparency Mode Audio (AirPods)",
+    "Haptic Feedback",
+    "Agentic AI Systems",
+    "Teleoperation / Robot Training Data",
+    "World Models (Robotics)",
+    "Stent-Based Neural Interface",
+    "GPS Reentry Tracking",
+    "Hypersonic Glide Vehicles",
+    "Nuclear Waste Remediation Technology",
+    "Multispectral Authentication (Near-Infrared / Visible Light)",
+    "Vertical SaaS / Marketplace Platforms"
+  ],
+  "_stats": {
+    "word_count": 36715,
+    "estimated_input_tokens": 48830,
+    "input_tokens": 3,
+    "output_tokens": 7191,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 51971,
+    "duration_ms": 153633,
+    "wall_time_s": 155.0,
+    "cost_usd": 0.5092172500000001,
+    "tokens_per_sec": 46.4
+  }
+}

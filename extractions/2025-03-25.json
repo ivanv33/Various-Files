@@ -1,0 +1,786 @@
+{
+  "episode_date": "2025-03-25",
+  "episode_title": "signal-breach-11x-controversy-ai-sdrs-vr-robotics-us-china-secondary-markets",
+  "companies": [
+    {
+      "name": "Signal",
+      "type": "private",
+      "context": "Used by Trump administration officials to discuss Houthi strike plans; praised as most secure messaging app due to open-source protocol and client-side fan-out architecture despite the accidental addition of Atlantic editor Jeffrey Goldberg.",
+      "sentiment": "bullish",
+      "sector": "Cybersecurity/Communications"
+    },
+    {
+      "name": "Microsoft Teams",
+      "type": "public",
+      "context": "Cited as the DoD's officially mandated messaging platform; favored for record retention over end-to-end encryption rather than security.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "iMessage discussed for its 32-person group chat limit due to client-side fan-out encryption; Apple Vision Pro critiqued as too heavy and setting wrong market expectations for VR.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech/VR"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "WhatsApp's server-side fan-out architecture allows Meta to map group membership even without reading message content; Quest VR headsets cited; criticized for spending tens of billions annually to accelerate VR market.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech/Communications"
+    },
+    {
+      "name": "WhatsApp",
+      "type": "public",
+      "context": "Discussed as using server-side fan-out encryption where a central server orchestrates chats, enabling Meta to map group social networks even without decrypting message content.",
+      "sentiment": "neutral",
+      "sector": "Communications"
+    },
+    {
+      "name": "11X",
+      "type": "startup",
+      "context": "AI SDR company embroiled in controversy after TechCrunch reported fake customer logos and inflated ARR claims; raised $74M total from Benchmark and Andreessen Horowitz and reportedly has nearly $70M still on balance sheet.",
+      "sentiment": "bearish",
+      "sector": "AI/ML, Sales Automation"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Led 11X's $50M Series B; emphatically denied TechCrunch rumors of considering legal action and publicly supported founder Hassan Sukkar through partner statements.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Benchmark",
+      "type": "fund",
+      "context": "Led 11X's $24M Series A; also publicly came out in support of founder Hassan Sukkar amid the TechCrunch controversy.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "TechCrunch",
+      "type": "private",
+      "context": "Published an investigative piece on 11X's alleged fake customers and ARR inflation shortly after being sold to private equity, prompting debate about its editorial identity as both a startup launch platform and investigative outlet.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "ZoomInfo",
+      "type": "public",
+      "context": "Denied being an 11X customer, stated it never authorized use of its logo, and reportedly asked 11X for months to remove it; also has a competing AI SDR product.",
+      "sentiment": "neutral",
+      "sector": "Sales Intelligence/AI"
+    },
+    {
+      "name": "Thrive Capital",
+      "type": "fund",
+      "context": "Leading a $40M financing into Rogo AI at up to $350M valuation; also in talks to invest in Cursor at approximately $10B valuation; discussed for early bets on OpenAI and Stripe.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Rogo AI",
+      "type": "startup",
+      "context": "Three-year-old Wall Street AI startup selling software for investment bankers and analysts; raised $40M led by Thrive Capital at up to $350M valuation, styled as Wall Street's first AI analyst.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Fintech"
+    },
+    {
+      "name": "Harvey",
+      "type": "startup",
+      "context": "Legal AI startup with ARR topping $50M in December at a $2.7B valuation; cited as the model for vertical AI in regulated industries and a template for Rogo's approach in investment banking.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Legal Tech"
+    },
+    {
+      "name": "Hebia",
+      "type": "startup",
+      "context": "Mentioned as a competitor to Rogo AI targeting investment banking AI workflows.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Fintech"
+    },
+    {
+      "name": "Scale AI",
+      "type": "startup",
+      "context": "Valued at $14B; considering entering the teleoperation market by leveraging its human contractor workforce to collect robotic training data for humanoid robots.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Robotics"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Referenced for its large investor base including Thrive and Coatue; flagged for data privacy risks when enterprise users upload sensitive client materials that could contaminate training data.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "BigScreen Beyond",
+      "type": "startup",
+      "context": "Launched BigScreen Beyond 2, the world's smallest VR headset at two-thirds the weight of an iPhone; has raised only $17M total from Andreessen Horowitz and True, been cashflow positive for years, and first-day Beyond 2 sales were 10x the first-gen launch.",
+      "sentiment": "bullish",
+      "sector": "Consumer Tech/VR"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Jensen Huang showcased Isaac Sim at GTC for training robots via computer simulation; also referenced for graphics cards required for PC VR setups.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors/AI/ML"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Optimus humanoid robot mentioned as having been teleoperated during demo events, raising questions about true autonomy and whether teleoperation is actually the path to robotic AGI.",
+      "sentiment": "neutral",
+      "sector": "Robotics/EV"
+    },
+    {
+      "name": "Waymo",
+      "type": "private",
+      "context": "George Hotz cited for arguing Waymo is overly teleoperated with humans in the loop overseeing fleets of vehicles at a time.",
+      "sentiment": "neutral",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Unitree",
+      "type": "startup",
+      "context": "Chinese humanoid robotics company discussed as a potential DJI-like competitive threat with impressive viral robot videos; hosts questioned whether the US needs to pay more attention.",
+      "sentiment": "neutral",
+      "sector": "Robotics"
+    },
+    {
+      "name": "Trossen Robotics",
+      "type": "private",
+      "context": "Long-time robot parts seller; now sells Aloha, a four-arm teleoperation device; sold more than 100 units last year at over $3.3M sticker price.",
+      "sentiment": "bullish",
+      "sector": "Robotics"
+    },
+    {
+      "name": "Dexterity",
+      "type": "startup",
+      "context": "Robotics company that connected Xbox controllers to robots to let human staff direct machines to stack boxes in trucks and warehouses.",
+      "sentiment": "neutral",
+      "sector": "Robotics"
+    },
+    {
+      "name": "Sensei",
+      "type": "startup",
+      "context": "Described as a rival to Scale AI for robotics training data; aims to distribute cheap teleoperated devices to a network of human data collectors who perform tasks like folding laundry.",
+      "sentiment": "neutral",
+      "sector": "Robotics/AI"
+    },
+    {
+      "name": "Anduril",
+      "type": "startup",
+      "context": "Mentioned for winning the IVAS military AR program and as an example of a high-demand company in the secondary market with limited supply.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "137 Ventures",
+      "type": "fund",
+      "context": "Growth-stage VC focused on secondary market liquidity programs for top private companies including SpaceX, Stripe, Databricks, and Anduril; described as a differentiated liquidity partner.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Cited as the model for liquidity programs, running two tenders annually totaling over $1.5B per year; has raised only $10B in primary over 23 years while the secondary market dwarfs that.",
+      "sentiment": "bullish",
+      "sector": "Aerospace/Defense"
+    },
+    {
+      "name": "Stripe",
+      "type": "private",
+      "context": "Mentioned as a top private company with a growing secondary market and liquidity program; cited as a Thrive Capital investment that IPO'd at high valuations.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Databricks",
+      "type": "private",
+      "context": "Did a large primary round specifically to cover employee RSU tax bills; mentioned as a company that has transitioned to being cash-flow positive in the private markets.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Data"
+    },
+    {
+      "name": "Carta",
+      "type": "startup",
+      "context": "Mentioned for cap table management software used to run tender programs; reportedly gave up on its secondary brokerage business.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Legal Tech"
+    },
+    {
+      "name": "DeepSeek",
+      "type": "startup",
+      "context": "Chinese AI lab whose rise was attributed partly to America driving away Chinese STEM talent post-2017; core engineering team is all under 30 from top Chinese universities; estimated annual run rate of approximately $300M by analyst Nathan Lambert.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Huawei",
+      "type": "private",
+      "context": "Allegedly manufactured large quantities of AI chips at TSMC through a shell company before US authorities intervened; has stockpiled significant chip supply to last at least two more years.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors/Telecom"
+    },
+    {
+      "name": "TSMC",
+      "type": "public",
+      "context": "Mentioned as having manufactured AI chips for a Huawei shell company until US authorities caught them and demanded it stop.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "ASML",
+      "type": "public",
+      "context": "Makes EUV lithography equipment that China's SMIC has not yet been able to replace; described as the final frontier for Chinese domestic chip manufacturing.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "SMIC",
+      "type": "public",
+      "context": "China's leading chip foundry; has not yet achieved competitive-scale EUV-class chip manufacturing, remaining the key bottleneck for China's AI chip self-sufficiency.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "AI coding assistant cited as the gold standard for AI-first self-serve software; never spent a dime on marketing; Thrive Capital in talks to invest at approximately $10B valuation; discussed as potential Slack-like acquisition target rather than IPO candidate.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Developer Tools"
+    },
+    {
+      "name": "Terrain",
+      "type": "fund",
+      "context": "New early-stage VC firm co-founded by Willem van Lancker and Eric Stromberg; backs founders with specific ambitious visions; launched 'free agency,' a 90-day no-strings pre-idea exploration program with $350K+ in compute credits.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "UpStarts Media",
+      "type": "startup",
+      "context": "New tech media publication launched by Alex Conrad, formerly of Forbes; focused on startup storytelling via Substack twice weekly with Brex as launch partner.",
+      "sentiment": "bullish",
+      "sector": "Media"
+    },
+    {
+      "name": "Forbes",
+      "type": "private",
+      "context": "Alex Conrad's former employer; discussed as an iconic brand that has been diluted and has been trying to sell itself; Austin Russell was reportedly circling as a buyer.",
+      "sentiment": "bearish",
+      "sector": "Media"
+    },
+    {
+      "name": "Substack",
+      "type": "startup",
+      "context": "Alex Conrad's newsletter platform of choice for UpStarts Media; described as an effective social network for reaching startup-curious audiences and pushing into video and notes.",
+      "sentiment": "bullish",
+      "sector": "Media/Tech"
+    },
+    {
+      "name": "Beehive",
+      "type": "startup",
+      "context": "Newsletter platform competitor to Substack; praised for technically impressive features and for pushing Substack to improve its own technology.",
+      "sentiment": "bullish",
+      "sector": "Media/Tech"
+    },
+    {
+      "name": "Brex",
+      "type": "startup",
+      "context": "Named as launch partner for UpStarts Media, sponsoring the free weekly edition of the newsletter.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Corporate card and financial platform; Pavel Asparouhov was one of its first 25 employees; partnered with watchmaker FP Journe for a Padel tournament in Miami; mentioned as sponsor.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Selma Health",
+      "type": "startup",
+      "context": "Healthcare AI startup co-founded by Pavel Asparouhov and Jeff Morelli raising $27M ($5M seed, $22M Series A) to automate prior authorization workflows; operates in 45+ states with hundreds of insurers and tens of thousands of patients.",
+      "sentiment": "bullish",
+      "sector": "Healthcare AI"
+    },
+    {
+      "name": "CoreWeave",
+      "type": "startup",
+      "context": "Briefly mentioned as reportedly 5X oversubscribed for its IPO per Martin Shkreli; a deep-dive on the S-1 was being prepared by a guest named Tane from Wing.",
+      "sentiment": "bullish",
+      "sector": "AI Infrastructure/Cloud"
+    },
+    {
+      "name": "Ant Group",
+      "type": "private",
+      "context": "Mentioned for claiming AI training breakthroughs using entirely Chinese chips; hosts were skeptical, noting the distinction between SMIC chips and Huawei-procured TSMC chips.",
+      "sentiment": "neutral",
+      "sector": "Fintech/AI"
+    },
+    {
+      "name": "ByteDance",
+      "type": "private",
+      "context": "Jordan Schneider considered working there during his time in Beijing; noted as one of the rare interesting jobs for foreigners helping Chinese firms expand globally around 2017-2019.",
+      "sentiment": "neutral",
+      "sector": "Social Media/AI"
+    },
+    {
+      "name": "Kuaishou",
+      "type": "public",
+      "context": "First company to do short video before being overtaken by ByteDance; Jordan Schneider worked there briefly before leaving to focus on his podcast.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Base Power",
+      "type": "startup",
+      "context": "Terrain portfolio company co-founded by Zach Dell and Justin Lopez, pursuing the vision of energy too cheap to meter.",
+      "sentiment": "bullish",
+      "sector": "Energy"
+    },
+    {
+      "name": "Bridge",
+      "type": "startup",
+      "context": "Stablecoin/crypto company co-founded by Zach Abrams and Sean Yoo; cited as an example of building from deep internal conviction before stablecoins were mainstream.",
+      "sentiment": "bullish",
+      "sector": "Fintech/Crypto"
+    },
+    {
+      "name": "Citigroup",
+      "type": "public",
+      "context": "Developing AI tools internally for investment banking tasks similar to what Rogo AI is building externally.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Banking"
+    },
+    {
+      "name": "Bank of America",
+      "type": "public",
+      "context": "Developing AI tools internally for investment banking tasks similar to what Rogo AI is building externally.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Banking"
+    },
+    {
+      "name": "Figure",
+      "type": "startup",
+      "context": "Humanoid robotics company; mentioned as having trained their robot on Joe Biden's movements with plans to train on a more athletic subject next.",
+      "sentiment": "neutral",
+      "sector": "Robotics"
+    },
+    {
+      "name": "FP Journe",
+      "type": "private",
+      "context": "High-end Swiss watchmaker owned by Francois-Paul Journe; partnered with Ramp for a Padel tournament in Miami; described as one of the greatest watchmakers in history.",
+      "sentiment": "bullish",
+      "sector": "Luxury Goods"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Luxury watch marketplace with over 23,500 authenticated watches; mentioned as sponsor and recommended for purchasing watches for robotic arms as a joke.",
+      "sentiment": "bullish",
+      "sector": "E-commerce/Luxury"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Investing platform backed by Josh Kushner; described as offering multi-asset investing and industry-leading yields; mentioned as sponsor.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Out-of-home advertising platform combining technology and data for measurable campaigns; mentioned as sponsor in context of a joke about using billboards instead of Signal for government communications.",
+      "sentiment": "neutral",
+      "sector": "AdTech"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Vacation home rental platform with hotel-grade amenities, top-tier cleaning, and 24/7 concierge; mentioned as sponsor.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "8 Sleep",
+      "type": "startup",
+      "context": "Smart sleep technology company; mentioned as sponsor; one participant noted achieving a 100 sleep score.",
+      "sentiment": "bullish",
+      "sector": "Consumer Health Tech"
+    },
+    {
+      "name": "Salesforce",
+      "type": "public",
+      "context": "Cited as the exemplar of a successful non-self-serve, high-ACV, sticky enterprise software business model and acquirer of Slack.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "Slack",
+      "type": "public",
+      "context": "Cited as a cautionary tale for Cursor, where a dominant product was displaced by Microsoft Teams bundled distribution; used to illustrate the risk of fast-growth AI software companies.",
+      "sentiment": "bearish",
+      "sector": "Enterprise Software/Communications"
+    },
+    {
+      "name": "Y Combinator",
+      "type": "fund",
+      "context": "Discussed as an accelerator with valuable competitive pressure and deadlines; a YC company called Happenstance was cited in the AI SDR space.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital/Accelerator"
+    },
+    {
+      "name": "Happenstance",
+      "type": "startup",
+      "context": "YC-backed AI SDR company mentioned briefly by Carry No Interest as interesting but unlikely to reach $100M ARR near-term.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Sales Automation"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Mentioned as offering EIR programs as an alternative path for founders before they formally launch companies.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Coatue",
+      "type": "fund",
+      "context": "Mentioned as already invested in Rogo AI prior to the Thrive-led $40M round.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "National Science Foundation",
+      "type": "gov",
+      "context": "Mentioned as a US scientific funding institution at risk under the Trump administration's budget priorities, threatening America's talent pipeline advantage.",
+      "sentiment": "bearish",
+      "sector": "Government/Research"
+    },
+    {
+      "name": "National Institutes of Health",
+      "type": "gov",
+      "context": "Mentioned alongside NSF as a US scientific funding body whose potential cuts threaten the US scientific talent advantage over China.",
+      "sentiment": "bearish",
+      "sector": "Government/Research"
+    },
+    {
+      "name": "Canva",
+      "type": "private",
+      "context": "Mentioned briefly as a Forbes cover story subject featuring Melanie Perkins as an example of Alex Conrad's prior work.",
+      "sentiment": "neutral",
+      "sector": "SaaS/Design"
+    },
+    {
+      "name": "Wiz",
+      "type": "startup",
+      "context": "Mentioned briefly by Alex Conrad as having written a Forbes cover story about its founder Assaf Rappaport.",
+      "sentiment": "neutral",
+      "sector": "Cybersecurity"
+    },
+    {
+      "name": "Zenefits",
+      "type": "private",
+      "context": "Mentioned by a host as context for due diligence material thresholds during large funding rounds; used the same law firm at the time of its Series C.",
+      "sentiment": "neutral",
+      "sector": "HR Tech"
+    },
+    {
+      "name": "Rora",
+      "type": "startup",
+      "context": "Mentioned as one of two companies athlete Saquon Barkley has invested in alongside Ramp.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Mercore",
+      "type": "startup",
+      "context": "Mentioned as a company paying knowledge workers globally to answer questions and produce training data for AI models.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Data"
+    },
+    {
+      "name": "Sequoia",
+      "type": "fund",
+      "context": "Mentioned in context of large fund sizes and how mega-funds change competitive dynamics in later-stage secondary rounds.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Referenced in context of a VR art installation simulating Amazon warehouse pick-and-pack work, and as owner of Amazon Studios.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Cloud"
+    },
+    {
+      "name": "Model ML",
+      "type": "startup",
+      "context": "Mentioned as a competitor to Rogo AI in the Wall Street AI analyst tooling space.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Fintech"
+    }
+  ],
+  "people": [
+    {
+      "name": "Jeffrey Goldberg",
+      "role": "Editor-in-Chief, The Atlantic",
+      "context": "Was accidentally added to a Signal group chat by US National Security Advisor Michael Waltz where top officials discussed detailed plans for Houthi strikes in Yemen; published a 3,500-word account of the incident without revealing the operational details."
+    },
+    {
+      "name": "Michael Waltz",
+      "role": "US National Security Advisor",
+      "context": "Apparently sent Goldberg a Signal connection request and added him to the senior officials' group chat discussing Yemen military strike plans."
+    },
+    {
+      "name": "Pete Hegseth",
+      "role": "US Secretary of Defense",
+      "context": "Shared operational details of forthcoming Yemen strikes\u2014including targets, weapons, and attack sequencing\u2014in the Signal group chat before the attack went ahead."
+    },
+    {
+      "name": "Moxie Marlinspike",
+      "role": "Founder, Signal",
+      "context": "Credited as creator of Signal's protocol and app; described as a great technologist and writer; the incident validated Signal's security even while exposing human error."
+    },
+    {
+      "name": "Ben Thompson",
+      "role": "Tech Analyst, Stratechery",
+      "context": "Wrote a detailed Stratechery analysis of the Signal chat incident through a technology lens, breaking down the encryption architectures of Signal, iMessage, and WhatsApp including forward secrecy and self-healing properties."
+    },
+    {
+      "name": "Hassan Sukkar",
+      "role": "Founder & CEO, 11X",
+      "context": "Publicly pushed back against TechCrunch's allegations, denying customers were listed without payment and clarifying that investor lawsuits were false; supported publicly by investors at Andreessen Horowitz and Benchmark."
+    },
+    {
+      "name": "Antonio Garcia Martinez",
+      "role": "Tech commentator, former Meta employee",
+      "context": "Referenced for a Joe Rogan clip where he argued phones are not listening to users, reasoning that if Meta were doing so, ad targeting would be much better."
+    },
+    {
+      "name": "Sarah Taville",
+      "role": "Andreessen Horowitz partner",
+      "context": "Publicly supported 11X founder Hassan Sukkar, citing the company's speed as a strength that brings both opportunity and challenge."
+    },
+    {
+      "name": "Darshan Shankar",
+      "role": "Founder & CEO, BigScreen Beyond",
+      "context": "Launched BigScreen Beyond 2 and discussed the company's decade-long capital-efficient approach, target enthusiast market, NASA and enterprise customers, and Apple Vision Pro's ergonomic shortcomings."
+    },
+    {
+      "name": "Alex Conrad",
+      "role": "Founder, UpStarts Media; former Forbes senior writer",
+      "context": "Announced the launch of UpStarts Media, a new startup-focused tech media publication on Substack with Brex as launch partner; covered Forbes, Canva, Stripe, and Wiz during 12 years at Forbes."
+    },
+    {
+      "name": "Christian Garrett",
+      "role": "Partner, 137 Ventures",
+      "context": "Explained the mechanics of private company secondary markets, tender offers, transfer restrictions post-Facebook, and how top companies like SpaceX structure liquidity programs; displayed a SpaceX rocket engine in his office."
+    },
+    {
+      "name": "Willem van Lancker",
+      "role": "Co-founder, Terrain",
+      "context": "Announced Terrain and its 'free agency' program, a 90-day no-strings pre-idea exploration period for founders; previously led incubations at Thrive Capital."
+    },
+    {
+      "name": "Jordan Schneider",
+      "role": "Host, ChinaTalk podcast and newsletter",
+      "context": "Discussed US-China tech competition, attributed DeepSeek's rise to America's talent pipeline failures, analyzed China's chip stockpiling strategy, critiqued humanoid robotics hype, and was sharply critical of the Trump administration's Signal chat misuse."
+    },
+    {
+      "name": "Pavel Asparouhov",
+      "role": "Co-founder, Selma Health",
+      "context": "Announced $27M raise for Selma Health automating prior authorization workflows; discussed staying quiet until having real business metrics; previously an early employee at Ramp who integrated GPT-3 into vendor contract data extraction."
+    },
+    {
+      "name": "Delian Asparouhov",
+      "role": "Investor; Pavel's older brother",
+      "context": "Called in to hype Pavel's Selma Health fundraising announcement; credited himself with introducing Pavel and Jeff Morelli as co-founders."
+    },
+    {
+      "name": "Jeff Morelli",
+      "role": "Co-founder & CEO, Selma Health",
+      "context": "Co-founded Selma Health with Pavel Asparouhov; has family in healthcare, previously worked with Delian on software for autism therapists, providing foundational domain knowledge."
+    },
+    {
+      "name": "Alex Wang",
+      "role": "CEO, Scale AI",
+      "context": "Referenced for a past interview on the data wall in robotics and the scarcity of human motion training data compared to the abundance of text data that accelerated LLMs."
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO, Nvidia",
+      "context": "Showcased Isaac Sim software at Nvidia's GTC developer conference for creating robot training simulations."
+    },
+    {
+      "name": "George Hotz",
+      "role": "Tech entrepreneur",
+      "context": "Cited for the argument that Waymo is overly teleoperated, with a human in the loop overseeing one to sixteen Waymos at a time."
+    },
+    {
+      "name": "Josh Kushner",
+      "role": "Founder, Thrive Capital",
+      "context": "Discussed for leading Rogo AI's $40M round and being in talks to invest in Cursor; praised for consistently getting into companies before IPOs including OpenAI and Stripe."
+    },
+    {
+      "name": "Eric Stromberg",
+      "role": "Co-founder, Terrain",
+      "context": "Co-founded Terrain alongside Willem van Lancker to back ambitious early-stage founders with specific and ambitious visions of the future."
+    },
+    {
+      "name": "Martin Shkreli",
+      "role": "Investor/commentator",
+      "context": "Claimed on social media that CoreWeave is 5X oversubscribed and will IPO."
+    },
+    {
+      "name": "Taylor Lorenz",
+      "role": "Tech journalist",
+      "context": "Commented on and reposted Alex Conrad's TBPN appearance announcement, calling it a 'powerful collab.'"
+    },
+    {
+      "name": "Zach Dell",
+      "role": "Co-founder, Base Power",
+      "context": "Cited by Willem van Lancker as a prototypical 'call your shot' Terrain portfolio founder pursuing the vision of energy too cheap to meter."
+    },
+    {
+      "name": "Zach Abrams",
+      "role": "Co-founder, Bridge",
+      "context": "Cited as an example of building from deep internal conviction before stablecoins were mainstream or in favor."
+    },
+    {
+      "name": "Alvin Wong",
+      "role": "Investor/analyst",
+      "context": "Over breakfast gave Jordan Schneider the thesis that 'America created DeepSeek' by driving away Chinese STEM talent through hostile policy environment and COVID travel restrictions."
+    },
+    {
+      "name": "Peter Zeihan",
+      "role": "Geopolitical analyst",
+      "context": "Mentioned as a popular tech-circle commentator who argues China's demographic collapse makes it unsustainable long-term; Jordan Schneider implied his China analysis lacks nuance."
+    },
+    {
+      "name": "Melanie Perkins",
+      "role": "CEO, Canva",
+      "context": "Mentioned briefly as subject of one of Alex Conrad's Forbes cover stories."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Trump Administration Signal Group Chat",
+      "summary": "Top US officials including NSA Michael Waltz and Defense Secretary Pete Hegseth accidentally added Atlantic editor Jeffrey Goldberg to a Signal group chat discussing detailed Houthi strike plans. Framed as a fat-finger incident validating Signal's security, not a hack; raises questions about government digital communications policy and record retention obligations under DoD's Microsoft Teams mandate.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Signal Encryption Architecture Deep Dive",
+      "summary": "Ben Thompson's analysis of Signal vs. iMessage vs. WhatsApp was detailed at length, covering client-side fan-out (iMessage, 32-person limit), server-side fan-out (WhatsApp, enables social graph mapping), and Signal's hybrid with forward secrecy and plausible deniability. Signal described as the most secure option even for adversarial nation-state scenarios.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "11X AI SDR Controversy",
+      "summary": "TechCrunch alleged 11X used customer logos without permission and inflated ARR metrics; investors publicly denied lawsuit rumors and backed founder Hassan Sukkar. With ~$70M on the balance sheet from a $74M total raise, the company has time to rebuild. TechCrunch's shift toward investigative journalism post-PE acquisition was criticized as conflicting with its traditional startup-launch identity.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "AI SDR Market Viability",
+      "summary": "Carry No Interest argued the AI SDR category is structurally flawed: third-party email data crushes gross margins, high embarrassment risk with no human review loop, complex onboarding requiring heavy customer success, and high churn rates. Contrasted unfavorably with self-serve sticky models like Cursor. LLM-assisted market mapping without autonomous email sending was seen as the viable narrow utility.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "ARR Inflation and Startup Metrics",
+      "summary": "Discussion of contracted ARR vs. actual recurring revenue, the pressure founders feel to inflate metrics due to competitive dynamics, and how fast rounds with high material thresholds in due diligence allow problematic financials to go undetected. Zenefits era cited as precedent for the current cycle.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Wall Street AI Tooling",
+      "summary": "Rogo AI's $40M raise highlighted growing demand for AI in investment banking workflows. Harvey's legal AI success cited as a template. Data privacy risks of uploading client materials to general-purpose models flagged as the core reason vertical, sequestered LLMs will win in regulated industries.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Robotic Teleoperation and Training Data",
+      "summary": "Debate between teleoperation and simulation (Nvidia Isaac Sim) as paths for humanoid robot training. Scale AI considering entering teleoperation; Trossen Robotics Aloha device gaining traction; Sensei positioning as Scale AI for robotics data. Unitree flagged as a DJI-like Chinese threat in the manufacturing robotics space.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "VR Headset Market and BigScreen Beyond 2",
+      "summary": "BigScreen Beyond 2 launched as the world's smallest VR headset at two-thirds the iPhone's weight; company has raised only $17M total and been cashflow positive for years with 10x first-day sales vs. prior generation. Apple Vision Pro critiqued for weight and wrong-expectations-setting; Meta criticized for inefficient tens-of-billions spend.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Private Market Secondaries and Tender Offers",
+      "summary": "137 Ventures' Christian Garrett explained how top private companies like SpaceX, Stripe, and Databricks manage liquidity through structured tender programs; covered transfer restrictions post-Facebook, ROFR mechanics, material thresholds in due diligence, and growth of the secondary market as companies stay private longer and reach cash-flow positive status.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "US-China Tech Competition",
+      "summary": "Jordan Schneider attributed DeepSeek's rise to America inadvertently driving away Chinese STEM talent post-2017 via policy environment and COVID. Discussed China's chip manufacturing constraints (SMIC, EUV), Huawei's stockpiled supply lasting ~2 years, and existential risks from NIH/NSF funding cuts to America's core talent attraction advantage.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Terrain Free Agency Program",
+      "summary": "Willem van Lancker launched Terrain's 'free agency' program: a 90-day pre-idea exploration period with $350K+ in compute credits, no equity, no demo day, and no capital commitment. Positioned as meeting founders who have domain edge but haven't yet found conviction on an idea, contrasting with accelerators that force premature commitments.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Healthcare AI Prior Authorization",
+      "summary": "Selma Health raised $27M to automate insurance prior authorization for clinical providers, operating in 45+ states. Discussed why LLMs unlock a 10x improvement specifically in healthcare's text-heavy data workflows where prior tech waves (SaaS, APIs) failed to move the needle for in-person clinicians.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Tech Media Landscape",
+      "summary": "Alex Conrad launched UpStarts Media on Substack to fill a gap in founder-journey storytelling; discussed tension between investigative and launch-friendly editorial; debated Substack vs. Beehive; analyzed Forbes brand dilution; argued for ensemble go-direct strategy combining owned media, new media, and legacy outlets.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "CoreWeave IPO",
+      "summary": "Briefly flagged as reportedly 5X oversubscribed per Martin Shkreli; a guest named Tane from Wing was preparing a deep-dive on the S-1 for a future segment.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Talent Pipeline and Immigration",
+      "summary": "Jordan Schneider argued that over 75% of top AI founders and research engineers were not born in the US, making immigration attraction America's core AI superpower; expressed concern that Trump administration university attacks and NIH/NSF cuts threaten this structural advantage that won the Cold War.",
+      "sentiment": "bearish"
+    }
+  ],
+  "key_claims": [
+    "Signal is the most secure messaging app available, more secure than anything the NSA could design, per Ben Thompson's Stratechery analysis.",
+    "China's Salt Typhoon hack gave the Chinese government the ability to read virtually every SMS message in America, prompting the US government to advise citizens to use end-to-end encrypted apps.",
+    "iMessage limits group chats to 32 participants due to its client-side fan-out architecture where each message is individually sent to every recipient.",
+    "WhatsApp's server-side fan-out architecture enables Meta to map the social graph of who is in which groups even without decrypting message content.",
+    "11X approached $10M in ARR two years after founding and has approximately $70M remaining on its balance sheet from $74M raised across pre-seed, Series A, and Series B.",
+    "Harvey's ARR topped $50M in December 2024 at a $2.7B valuation.",
+    "Rogo AI raised $40M led by Thrive Capital at a valuation of up to $350M.",
+    "Scale AI is valued at $14B and is actively considering entering the robotic teleoperation training data market.",
+    "BigScreen Beyond has raised only $17M total from Andreessen Horowitz and True Ventures, has been cashflow positive for years, and BigScreen Beyond 2 first-day sales were 10x the first-generation launch.",
+    "SpaceX has raised $10B in primary capital over 23 years but runs two tender offers annually totaling over $1.5B per year, meaning more equity is bought in secondary than primary over the company's life.",
+    "85% of foreign STEM PhD recipients in the US try to or end up staying in the country.",
+    "DeepSeek's core engineering team is entirely under 30 and from top Chinese universities; analyst Nathan Lambert estimated their annual compute run rate at approximately $300M.",
+    "America effectively created DeepSeek by driving away Chinese STEM talent through post-2017 anti-Asian sentiment, COVID travel restrictions, and rising Chinese domestic economic opportunity.",
+    "Huawei manufactured a large quantity of AI chips at TSMC through a shell company before US authorities intervened and stopped it.",
+    "Cursor has never spent a dollar on marketing and Thrive Capital is in talks to invest at approximately $10B valuation.",
+    "CoreWeave is reportedly 5X oversubscribed for its IPO per Martin Shkreli.",
+    "Selma Health raised $27M ($5M seed, $22M Series A) and operates across 45+ states with hundreds of insurers and tens of thousands of patients.",
+    "Carry No Interest argued the AI SDR business model is structurally broken due to reliance on third-party email databases compressing gross margins, high embarrassment risk without human-in-the-loop review, and churn rates inconsistent with top enterprise software benchmarks.",
+    "Over 75% of top AI founders and research engineers were not born in the United States.",
+    "Terrain's free agency program provides $350K+ in compute and service resources to pre-idea founder participants with no equity or capital strings attached.",
+    "BigScreen Beyond is likely the most capital-efficient company in its investors' portfolios, having raised only $17M while reaching cashflow positive.",
+    "The DoD's primary concern with messaging is record retention, not security, which is why officials are mandated to use Microsoft Teams rather than Signal despite Teams being less secure."
+  ],
+  "_stats": {
+    "word_count": 34523,
+    "estimated_input_tokens": 45915,
+    "input_tokens": 3,
+    "output_tokens": 23527,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 48894,
+    "duration_ms": 467977,
+    "wall_time_s": 469.4,
+    "cost_usd": 0.898386,
+    "tokens_per_sec": 50.1
+  }
+}

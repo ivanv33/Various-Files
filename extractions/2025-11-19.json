@@ -1,0 +1,850 @@
+{
+  "episode_date": "2025-11-19",
+  "episode_title": "gemini-3-reactions-cloudflare-outage-upsides-of-bubbles",
+  "companies": [
+    {
+      "name": "Google / Google DeepMind",
+      "type": "public",
+      "context": "Released Gemini 3, which topped most AI benchmarks and is the first LLM to beat professional GeoGuessr players; trained entirely on Google TPUs with no NVIDIA chips. Also launched Google Antigravity agentic IDE, forked from the Windsurf codebase.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Paying Google to white-label Gemini 3 for Apple Intelligence and Siri; discussed as a walled garden unlikely to allow iMessage data portability to third-party AI systems despite the deeper Gemini integration.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "NVIDIA",
+      "type": "public",
+      "context": "Reported quarterly earnings after the show and stock rose ~3.9%; represents ~8% of the S&P 500. Partnering with XAI on a 500MW Saudi data center. Google's TPU-only Gemini 3 training raised questions about NVIDIA's AI monopoly.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Announced GPT-5.1 Codex Pro Max with a SWE-bench verified score of 77.9%; total spending commitments reportedly ~$1.4 trillion. Concerns raised about potential ChatGPT growth plateau from 800M weekly users.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Sonnet 4.5 retained the top SWE-bench position even after Gemini 3's release, scoring 77.2% (82% with parallel test-time compute); model tiers include Sonnet, Haiku, and Opus with thinking variants.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Cloudflare",
+      "type": "public",
+      "context": "Suffered a major internet outage affecting X, ChatGPT, DoorDash, IKEA, and the NYC MTA, caused by a latent bug in its bot mitigation service triggered by a routine config change. CTO Dane issued a full, widely praised public apology.",
+      "sentiment": "neutral",
+      "sector": "Cloud / Cybersecurity"
+    },
+    {
+      "name": "CoreWeave",
+      "type": "public",
+      "context": "Discussed as a key GPU infrastructure leasing company backed by hedge fund Magnetar; Glenn Hutchins is lead independent director. 4-5 year contracted deals with creditworthy counterparties generate approximately 2x returns on GPU costs.",
+      "sentiment": "bullish",
+      "sector": "Cloud Infrastructure"
+    },
+    {
+      "name": "XAI",
+      "type": "startup",
+      "context": "Partnering with NVIDIA and a Saudi Arabian entity to develop a 500MW data center in Saudi Arabia, announced at the U.S.-Saudi Investment Forum by Elon Musk and Crown Prince MBS.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Ray-Ban smart glasses with AR HUD discussed as impressive but limited by iMessage incompatibility; Zuckerberg's metaverse capex pivot discussed as an example of stock price misalignment affecting recruiting.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech / AI/ML"
+    },
+    {
+      "name": "Luma AI",
+      "type": "startup",
+      "context": "Raised $900M Series C and announced a 2-gigawatt compute cluster with Saudi AI company Humane for multimodal AGI training; inference-to-training compute ratio is already 2:1 and growing.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Humane (Saudi Arabia)",
+      "type": "startup",
+      "context": "Saudi Arabian AI company partnering with Luma AI on a 2-gigawatt compute cluster and with XAI/NVIDIA on a 500MW data center; distinct from the defunct Humane AI Pin company.",
+      "sentiment": "bullish",
+      "sector": "AI Infrastructure"
+    },
+    {
+      "name": "Profluent",
+      "type": "startup",
+      "context": "Ali Madani's company raised $106M with Jeff Bezos on the cap table; trains protein language models on 100B+ proteins (20T+ tokens) to design bespoke medicines from scratch, including Open CRISPR-1 used by thousands globally.",
+      "sentiment": "bullish",
+      "sector": "Biotech / AI/ML"
+    },
+    {
+      "name": "Maxima",
+      "type": "startup",
+      "context": "Yogi Goel's enterprise accounting AI platform raised $41M in a combined C+ and Series A; uses deterministic AI agents to automate month-end close for customers including Scale AI and Rippling.",
+      "sentiment": "bullish",
+      "sector": "Fintech / Enterprise Software"
+    },
+    {
+      "name": "Method Security",
+      "type": "startup",
+      "context": "Sam Jones' cybersecurity startup raised $26M combined seed and Series A from a16z and General Catalyst; builds autonomous offensive and defensive cyber operations for the U.S. government and Fortune 500.",
+      "sentiment": "bullish",
+      "sector": "Cybersecurity"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Owner of Windsurf and its Cascade branding; publicly called out Google for failing to remove Cascade branding from the forked codebase used in the newly launched Google Antigravity IDE.",
+      "sentiment": "neutral",
+      "sector": "AI/ML / Developer Tools"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "AI coding IDE acquired by Google; its Cascade branding was still present in Google's newly launched Antigravity agentic development platform, drawing public criticism.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Brookfield",
+      "type": "public",
+      "context": "Announced a $100 billion global AI infrastructure program in partnership with NVIDIA and the Kuwait Investment Authority.",
+      "sentiment": "bullish",
+      "sector": "Infrastructure / Finance"
+    },
+    {
+      "name": "Kuwait Investment Authority",
+      "type": "fund",
+      "context": "Partnering with Brookfield and NVIDIA on the $100 billion global AI infrastructure program.",
+      "sentiment": "bullish",
+      "sector": "Sovereign Wealth / AI Infrastructure"
+    },
+    {
+      "name": "Silver Lake Partners",
+      "type": "fund",
+      "context": "Glenn Hutchins co-founded Silver Lake in 1999 as the first large-scale firm combining private equity with technology investing, with initial backing from Blackstone.",
+      "sentiment": "neutral",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "North Island Ventures",
+      "type": "fund",
+      "context": "Glenn Hutchins' current investment platform where he is the sole LP; takes concentrated positions in companies like CoreWeave and Santander as lead independent director.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital / Private Equity"
+    },
+    {
+      "name": "Magnetar",
+      "type": "fund",
+      "context": "Sophisticated hedge fund and major backer of CoreWeave; mentioned more often than NVIDIA in CoreWeave's prospectus; known for complex relative-value and structured bets.",
+      "sentiment": "bullish",
+      "sector": "Hedge Fund"
+    },
+    {
+      "name": "Santander",
+      "type": "public",
+      "context": "Glenn Hutchins is vice chairman and lead independent director; stock is up 3.5x over the last three years under his involvement.",
+      "sentiment": "bullish",
+      "sector": "Financial Services"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Co-led Method Security's $26M combined seed and Series A funding round.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "General Catalyst",
+      "type": "fund",
+      "context": "Co-invested with a16z in Method Security's $26M combined seed and Series A.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Blackstone",
+      "type": "public",
+      "context": "Glenn Hutchins joined Blackstone to help build their private equity platform before they seeded the creation of Silver Lake.",
+      "sentiment": "neutral",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "Suno",
+      "type": "startup",
+      "context": "Raised $250 million to build AI-powered music generation.",
+      "sentiment": "bullish",
+      "sector": "AI/ML / Music"
+    },
+    {
+      "name": "Glew",
+      "type": "public",
+      "context": "Christian tech company backed by Pat Gelsinger as executive chair IPO'd on NASDAQ raising $73M; shares wavered below the year's average ~25% IPO pop; uses values-aligned generative AI for Christian organizations.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software / AI/ML"
+    },
+    {
+      "name": "Dunn Global",
+      "type": "startup",
+      "context": "ADHD telemedicine startup; founder Ruthie Ahee found guilty of conspiracy to distribute controlled substances after the platform issued Adderall to 100,000+ patients and collected $100M+ in revenue.",
+      "sentiment": "bearish",
+      "sector": "Healthtech"
+    },
+    {
+      "name": "Coinbase",
+      "type": "public",
+      "context": "Leaked screenshots emerged of an upcoming Coinbase prediction markets product; hosts debated whether they would act as a market maker or use another model.",
+      "sentiment": "neutral",
+      "sector": "Crypto / Fintech"
+    },
+    {
+      "name": "Polymarket",
+      "type": "startup",
+      "context": "Show partner; its prediction market showed an 87% probability of NVIDIA beating quarterly earnings before the report.",
+      "sentiment": "bullish",
+      "sector": "Prediction Markets"
+    },
+    {
+      "name": "Anomily",
+      "type": "fund",
+      "context": "Early-stage frontier tech VC firm where Byrne Hobart is a partner, co-investing alongside him in various frontier tech companies.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Episode sponsor offering corporate cards, bill payments, and accounting in one platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Strong Compute",
+      "type": "startup",
+      "context": "Sponsor providing real-time GPU cluster visualization; Ben Sands sent a crate of Violet Crumble candy from Australia to the hosts.",
+      "sentiment": "neutral",
+      "sector": "AI Infrastructure"
+    },
+    {
+      "name": "Scale AI",
+      "type": "startup",
+      "context": "Mentioned as a customer of Maxima's enterprise accounting platform.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Rippling",
+      "type": "startup",
+      "context": "Mentioned as a customer of Maxima's enterprise accounting platform.",
+      "sentiment": "neutral",
+      "sector": "HR Tech / SaaS"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Previous employer of Method Security co-founders Sam Jones and his CTO before they started their cybersecurity company.",
+      "sentiment": "neutral",
+      "sector": "Data Analytics / Defense"
+    },
+    {
+      "name": "Shield AI",
+      "type": "startup",
+      "context": "Sam Jones worked at Shield AI early in his career before co-founding Method Security.",
+      "sentiment": "neutral",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Elon Musk claimed Tesla will pioneer humanoid robots that, alongside AI, will eliminate poverty; hosts compared the Optimus form factor unfavorably to a multi-armed General Grievous design.",
+      "sentiment": "neutral",
+      "sector": "Robotics / EV"
+    },
+    {
+      "name": "Picnic",
+      "type": "startup",
+      "context": "Travis Kalanick's new startup delivering no-fee, no-tip office lunches from 50+ restaurants directly to office floors; Kalanick broke Twitter retirement to announce it.",
+      "sentiment": "bullish",
+      "sector": "Food Delivery"
+    },
+    {
+      "name": "Cloud Kitchens",
+      "type": "startup",
+      "context": "Travis Kalanick's ghost kitchen infrastructure company; speculated by hosts to be the backend for his new Picnic food delivery service.",
+      "sentiment": "neutral",
+      "sector": "Food Tech"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Cited as holding the world's best credit rating, making it a reliable counterparty for contracted data center deals that underpin the AI infrastructure investment thesis.",
+      "sentiment": "bullish",
+      "sector": "Cloud / AI"
+    },
+    {
+      "name": "TSMC",
+      "type": "public",
+      "context": "Cited as an example of a company that required near-sovereign-credit-scale financing backed by the Taiwan government to build competitive semiconductor fabs, analogous to today's AI data center buildout.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Blue Owl",
+      "type": "public",
+      "context": "Mentioned as an example of private credit entering AI infrastructure financing, representing a new financing paradigm for capital-intensive tech.",
+      "sentiment": "neutral",
+      "sector": "Private Credit / Finance"
+    },
+    {
+      "name": "Amazon Web Services (AWS)",
+      "type": "public",
+      "context": "Suffered a major outage a few weeks before the Cloudflare outage; Tyler moved backend show processes off AWS to on-prem to reduce exposure.",
+      "sentiment": "neutral",
+      "sector": "Cloud Infrastructure"
+    },
+    {
+      "name": "CrowdStrike",
+      "type": "public",
+      "context": "Referenced as a prior example of a software bug causing widespread global outages, analogous to the Cloudflare incident.",
+      "sentiment": "neutral",
+      "sector": "Cybersecurity"
+    },
+    {
+      "name": "MidJourney",
+      "type": "startup",
+      "context": "Mentioned for conducting international inference to leverage cheaper off-peak data center capacity and for using AI image generation with deep style-reference prompting.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Sources.com",
+      "type": "startup",
+      "context": "Alex Heath's independent subscription journalism platform averaging at least one major AI scoop per week, including a Q&A with Demis Hassabis on world models and TPUs.",
+      "sentiment": "bullish",
+      "sector": "Media"
+    },
+    {
+      "name": "Clearly (Cluely)",
+      "type": "startup",
+      "context": "Mentioned in Byrne Hobart's Economist piece as an AI startup whose original product helped candidates cheat in Zoom interviews; raised $15M then pivoted to being a more benign AI meeting assistant.",
+      "sentiment": "bearish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Hello Ahead",
+      "type": "startup",
+      "context": "ADHD telemedicine startup whose executive allegedly DM'd journalist Will Manitis from an anonymous account with details of his care history after he criticized the sector, threatening him to delete a tweet.",
+      "sentiment": "bearish",
+      "sector": "Healthtech"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Sponsor enabling multistreaming to 30+ destinations simultaneously.",
+      "sentiment": "neutral",
+      "sector": "Media Tech"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Sponsor; purpose-built project planning and product development tool for software teams.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools / SaaS"
+    },
+    {
+      "name": "Quarter",
+      "type": "startup",
+      "context": "App that streams earnings calls; announced NVIDIA earnings call streaming at 5pm ET the day of the episode.",
+      "sentiment": "neutral",
+      "sector": "Fintech / Media"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising platform making billboard and physical ad buying easy and measurable.",
+      "sentiment": "neutral",
+      "sector": "Adtech"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "AI-native CRM briefly mentioned as a tool for managing professional relationships.",
+      "sentiment": "neutral",
+      "sector": "CRM / AI"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Sponsor; gets brand mentions surfaced inside AI chat interfaces like ChatGPT to reach consumers discovering products via AI.",
+      "sentiment": "neutral",
+      "sector": "Marketing Tech"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sponsor; handles sales tax and VAT compliance automation for businesses.",
+      "sentiment": "neutral",
+      "sector": "Fintech / Tax"
+    },
+    {
+      "name": "Fin.ai",
+      "type": "startup",
+      "context": "Sponsor; described as the number one AI agent for customer service.",
+      "sentiment": "neutral",
+      "sector": "AI/ML / Customer Service"
+    },
+    {
+      "name": "Graphite.dev",
+      "type": "startup",
+      "context": "Sponsor; AI-powered code review tool for teams on GitHub.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "TurboPuffer",
+      "type": "startup",
+      "context": "Sponsor; vector and full-text search engine built on object storage, described as 10x cheaper than alternatives.",
+      "sentiment": "neutral",
+      "sector": "Data Infrastructure"
+    },
+    {
+      "name": "Julius.ai",
+      "type": "startup",
+      "context": "Sponsor; AI data analyst that lets users connect data sources and ask natural-language questions to get business insights.",
+      "sentiment": "neutral",
+      "sector": "AI/ML / Data Analytics"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor; vacation rental platform with hotel-grade amenities and 24/7 concierge service.",
+      "sentiment": "neutral",
+      "sector": "Travel / Hospitality"
+    },
+    {
+      "name": "Privy",
+      "type": "startup",
+      "context": "Sponsor; white-label crypto wallet and on-chain infrastructure API for developers.",
+      "sentiment": "neutral",
+      "sector": "Crypto / Fintech"
+    },
+    {
+      "name": "Bezzle",
+      "type": "startup",
+      "context": "Sponsor; luxury watch marketplace with 26,500+ authenticated watches verified in-house.",
+      "sentiment": "neutral",
+      "sector": "E-commerce / Luxury"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Sponsor; smart mattress and sleep technology products.",
+      "sentiment": "neutral",
+      "sector": "Consumer Health"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor; multi-asset investing platform trusted by millions of retail investors.",
+      "sentiment": "neutral",
+      "sector": "Fintech / Investing"
+    },
+    {
+      "name": "Fal.ai",
+      "type": "startup",
+      "context": "Sponsor; platform for building and deploying AI video and image generation models at scale.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor; AI-driven compliance and security trust management platform.",
+      "sentiment": "neutral",
+      "sector": "Cybersecurity / Compliance"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Sponsor; design and development collaboration platform. Dylan Field mentioned as preferring fair, fundamentals-tied valuation over inflated stock prices, contrasted with Tesla and Palantir.",
+      "sentiment": "neutral",
+      "sector": "Design Tools / SaaS"
+    },
+    {
+      "name": "GN Solids Control",
+      "type": "private",
+      "context": "China-based manufacturer of soil washing and separation equipment; speculated by hosts to have made the mystery remediation machine discovered in a prospective Ultradome studio space.",
+      "sentiment": "neutral",
+      "sector": "Industrial Equipment"
+    },
+    {
+      "name": "Uber",
+      "type": "public",
+      "context": "Used as a bubble-era example of wealth transfer from rich investors (Saudi sovereign wealth fund) to consumers via heavily subsidized cheap rides.",
+      "sentiment": "neutral",
+      "sector": "Transportation"
+    },
+    {
+      "name": "Netflix",
+      "type": "public",
+      "context": "Cited as a beneficiary of the 1990s telecom infrastructure bubble that left behind cheap bandwidth long after the bubble burst.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Toyota",
+      "type": "public",
+      "context": "Mentioned for encrypting OBD2 ports to block third-party self-driving kits; hosts joked that a humanoid robot in the driver's seat would circumvent this entirely.",
+      "sentiment": "neutral",
+      "sector": "Automotive"
+    },
+    {
+      "name": "AMD",
+      "type": "public",
+      "context": "Briefly mentioned as an alternative chip provider that AI labs are attempting to bring online to reduce dependence on NVIDIA.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Stripe Press",
+      "type": "private",
+      "context": "Publisher of Byrne Hobart and co-author's book 'Boom: Bubbles and the End of Stagnation,' released late 2024.",
+      "sentiment": "neutral",
+      "sector": "Publishing"
+    },
+    {
+      "name": "Sweetgreen",
+      "type": "public",
+      "context": "Mentioned humorously as the protein-per-bowl benchmark leader at 108g, used as an analogy for AI model capability acceleration.",
+      "sentiment": "neutral",
+      "sector": "Food / Retail"
+    },
+    {
+      "name": "SpaceX",
+      "type": "startup",
+      "context": "Mentioned in passing as the branding on Elon Musk's distinctive shoes worn at the Washington D.C. event.",
+      "sentiment": "neutral",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Dogler",
+      "type": "startup",
+      "context": "Satirical fictional company invented by hosts to mock AI startup announcement tropes: 'the first AI-native dating platform for dogs,' claiming a $150M seed round.",
+      "sentiment": "neutral",
+      "sector": "Satirical / AI"
+    }
+  ],
+  "people": [
+    {
+      "name": "Byrne Hobart",
+      "role": "Partner at Anomily VC; author of 'The Diff' newsletter and 'Boom: Bubbles and the End of Stagnation' (Stripe Press)",
+      "context": "Joined the show to argue that financial bubbles coordinate complementary investments across the AI supply chain and serve as time-based industry clusters. Also discussed AI labor displacement timelines, the emerging cognitive overclass/underclass, and the CEO's strategic use of stock price."
+    },
+    {
+      "name": "Glenn Hutchins",
+      "role": "Co-founder of Silver Lake Partners; Chairman of North Island Ventures; Lead Independent Director of CoreWeave and Santander",
+      "context": "Discussed his career arc through private equity financial innovation and argued today's AI infrastructure differs from the dot-com CLEC bubble because data centers have contracted, creditworthy counterparties like Microsoft generating ~2x returns on 4-5 year deals."
+    },
+    {
+      "name": "Yogi Goel",
+      "role": "CEO and co-founder of Maxima",
+      "context": "Announced $41M in combined C+ and Series A funding; described using deterministic AI agents to automate enterprise month-end accounting close while remaining audit-ready for Deloitte and EY."
+    },
+    {
+      "name": "Sam Jones",
+      "role": "CEO and co-founder of Method Security; former Palantir and Shield AI employee",
+      "context": "Announced $26M combined seed and Series A from a16z and General Catalyst; described adversaries using private AI models to scale autonomous cyberattacks and framed national cyber resilience as an urgent priority."
+    },
+    {
+      "name": "Ali Madani",
+      "role": "CEO and co-founder of Profluent; PhD in ML from UC Berkeley; former Salesforce moonshot lead",
+      "context": "Announced $106M fundraise backed by Jeff Bezos; described training protein language models on 100B+ proteins to move biology from random natural discovery to programmable bespoke medicine design, with Open CRISPR-1 as a flagship product."
+    },
+    {
+      "name": "Amit Jain",
+      "role": "Representative at Luma AI",
+      "context": "Announced Luma AI's $900M Series C and a 2-gigawatt compute cluster with Saudi AI company Humane; argued that multimodal world models\u2014not just text scaling\u2014are the path to AGI capable of physical-world simulation, with 2/3 of Luma's compute already going to inference."
+    },
+    {
+      "name": "Demis Hassabis",
+      "role": "CEO of Google DeepMind",
+      "context": "Quoted via Alex Heath's Sources.com Q&A saying world models are his primary research focus and that he would love more TPUs but must balance short- and long-term business requirements."
+    },
+    {
+      "name": "Alex Heath",
+      "role": "Independent journalist and founder of Sources.com",
+      "context": "Praised for averaging at least one major AI scoop per week including the Demis Hassabis Q&A on world models; previously published a long-form interview with Mark Zuckerberg."
+    },
+    {
+      "name": "Greg Brockman",
+      "role": "Co-founder of OpenAI",
+      "context": "Spotted in a Washington D.C. photo with David Sacks, Elon Musk, and Jensen Huang the night before the show, suggesting growing OpenAI-Washington alignment."
+    },
+    {
+      "name": "David Sacks",
+      "role": "White House AI and Crypto Czar",
+      "context": "Pictured at a Washington D.C. event with Greg Brockman, Elon Musk, and Jensen Huang."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO of XAI, Tesla, SpaceX; owner of X",
+      "context": "Announced a 500MW XAI/NVIDIA data center in Saudi Arabia at the U.S.-Saudi Investment Forum; publicly claimed AI and humanoid robots will eliminate poverty; wore distinctive SpaceX-branded shoes at the D.C. event."
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO of NVIDIA",
+      "context": "Pictured at the D.C. event with Musk, Brockman, and Sacks the night before reporting NVIDIA earnings; stock rose ~3.9% after the report."
+    },
+    {
+      "name": "George Hotz",
+      "role": "Hacker and founder of Comma.ai",
+      "context": "Referenced for the observation that full self-driving car compatibility concerns become irrelevant if a humanoid robot can simply sit in the driver's seat and operate any vehicle manually."
+    },
+    {
+      "name": "Pat Gelsinger",
+      "role": "Former CEO of Intel; Executive Chairman of Glew",
+      "context": "Backed Glew, a Christian tech AI company that IPO'd on NASDAQ raising $73M; hosts expressed fondness from a prior show appearance."
+    },
+    {
+      "name": "Travis Kalanick",
+      "role": "Founder of Uber and Cloud Kitchens; founder of Picnic",
+      "context": "Announced Picnic, a no-fee no-tip office lunch delivery startup from 50+ restaurants; came out of 'Twitter retirement' to promote the launch."
+    },
+    {
+      "name": "Ruthie Ahee",
+      "role": "Founder and former CEO of Dunn Global",
+      "context": "Found guilty by a jury of conspiracy to distribute controlled substances after Dunn Global became a ready source of Adderall for 100,000+ patients; reportedly told staff she would buy a Tesla for the first employee arrested."
+    },
+    {
+      "name": "David Brody",
+      "role": "Former top doctor at Dunn Global",
+      "context": "Found guilty alongside Ruthie Ahee on two conspiracy counts and four counts of distributing controlled substances."
+    },
+    {
+      "name": "Andy Masley",
+      "role": "Journalist and researcher",
+      "context": "Identified a major factual error in the book 'Empire of AI': a billion-vs-million liter unit confusion led to a false claim that a Google data center used 1,000x a Chilean city's water, when it actually used ~22%."
+    },
+    {
+      "name": "Marvin von Hagen",
+      "role": "Tech researcher",
+      "context": "Publicly asked which IDE Google used to build Antigravity, prompting the discovery that it was forked from Windsurf with Cascade branding still intact."
+    },
+    {
+      "name": "Silas (Cognition)",
+      "role": "Representative at Cognition AI",
+      "context": "Publicly called out Google for forking the Windsurf codebase for Google Antigravity and failing to remove the Cascade branding."
+    },
+    {
+      "name": "Jeff Bezos",
+      "role": "Founder of Amazon; investor",
+      "context": "Investor in Profluent; referenced for a TED talk drawing parallels between early electrification adoption (irons plugging into light sockets) and early internet/AI adoption curves."
+    },
+    {
+      "name": "Peter Thiel",
+      "role": "Investor; co-founder of Palantir and PayPal",
+      "context": "Mentioned for selling NVIDIA shares through his macro hedge fund without a public statement, contributing to a broader market sell-off in AI and related names."
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO of Meta",
+      "context": "Referenced for admitting Meta might overspend on AI; used as an example of a CEO who adjusted metaverse capex not from board pressure but to protect recruiting ability as stock fell below $100."
+    },
+    {
+      "name": "Dylan Field",
+      "role": "CEO and co-founder of Figma",
+      "context": "Cited as an example of a founder who prefers fundamentals-based fair valuation, contrasted with Tesla and Palantir's strategy of maintaining elevated stock prices as a recruiting and signaling tool."
+    },
+    {
+      "name": "Mike Milken",
+      "role": "Financier",
+      "context": "Credited by Glenn Hutchins for unlocking the high-yield bond market that enabled the early private equity industry to finance leveraged buyouts of companies with minimal hard assets."
+    },
+    {
+      "name": "Scott Beck",
+      "role": "CEO of Glew; former COO of Blockbuster",
+      "context": "Leading Glew's mission to bring Christian organizations into the digital age using values-aligned generative AI."
+    },
+    {
+      "name": "Ben Sands",
+      "role": "Representative at Strong Compute",
+      "context": "Sent a crate of Violet Crumble candy from Australia to the show hosts; Strong Compute is a show sponsor for GPU cluster visualization."
+    },
+    {
+      "name": "Warren Buffett",
+      "role": "CEO of Berkshire Hathaway; investor",
+      "context": "Mentioned for making a major recent bet on Alphabet stock, which has not been enough to offset the broader AI-driven market pullback."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Gemini 3 Release and Benchmarks",
+      "summary": "Google DeepMind released Gemini 3, topping most AI benchmarks (first LLM to beat professional GeoGuessr players) but not SWE-bench. Trained entirely on TPUs with no NVIDIA chips. Apple will integrate it into Apple Intelligence under a white-label deal, with consumers seeing only Siri.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Google-Apple AI Partnership and iMessage Lock-in",
+      "summary": "Apple is paying Google to integrate Gemini 3 into Apple Intelligence. Hosts debated whether iMessage data portability to the broader Gemini ecosystem was desirable or feasible, concluding Apple's walled garden and financial structure make cross-platform data sharing essentially impossible.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Google Antigravity IDE Launch Controversy",
+      "summary": "Google launched Antigravity, an agentic IDE forked from the Windsurf codebase, but failed to remove Cascade branding. Cognition publicly called this out, and hosts noted that even a simple find-and-replace was skipped before a major product launch.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "NVIDIA Earnings and TPU Monopoly Question",
+      "summary": "NVIDIA beat earnings and stock rose ~3.9%. The fact that the best AI model (Gemini 3) was trained entirely on TPUs raised questions about NVIDIA's monopoly, though hosts noted TPUs are not for sale so NVIDIA retains pricing power over all other buyers.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Bubbles and Their Upsides (Byrne Hobart)",
+      "summary": "Byrne Hobart argued bubbles coordinate complementary investments across the AI supply chain and that high asset prices signal 'now is the time to build.' He compared the AI buildout to electrification and the internet, noting that being right about a bubble too early (2001 housing bear, 1995 NASDAQ bear) is economically equivalent to being wrong.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Infrastructure as Investment Thesis (Glenn Hutchins)",
+      "summary": "Glenn Hutchins distinguished today's AI data center buildout from the 1990s CLEC collapse: nearly every data center has a contracted, creditworthy counterparty (e.g., Microsoft) generating ~2x returns over 4-5 years, with embedded optionality on used GPU value. He framed U.S. data centers as the world's new advanced manufacturing.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Saudi Arabia AI Infrastructure Investment",
+      "summary": "Crown Prince MBS announced $1 trillion in Saudi investment in the U.S.; XAI/NVIDIA announced a 500MW data center in Saudi Arabia; Luma AI and Saudi AI company Humane announced a 2-gigawatt compute cluster for multimodal AGI, with majority capacity expected by end of 2027 or early 2028.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Cloudflare Outage Post-Mortem",
+      "summary": "A latent bug in Cloudflare's bot mitigation service triggered by a routine config change caused a multi-hour internet outage affecting major services. CTO Dane issued a full public apology and detailed explanation, winning widespread praise for transparency compared to typical corporate crisis comms.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "AI Labor Displacement Timelines",
+      "summary": "Byrne Hobart argued displacement will take longer than expected due to accountability gaps, organizational inertia, and employee resistance. He predicted AI-native companies will first win small customers, grow them faster than legacy incumbents, and eventually sell into the enterprise\u2014mirroring Stripe's expansion playbook.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Humanoid Robots and Poverty Elimination",
+      "summary": "Elon Musk claimed AI and humanoid robots will eliminate poverty with Tesla pioneering the category. Hosts debated form factors (humanoid vs. R2D2 vs. General Grievous multi-arm), concluding land is the one truly scarce resource even in an era of abundant robotic labor.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "AI Water Usage Misinformation",
+      "summary": "Andy Masley identified a major factual error in the book 'Empire of AI': a billion-vs-million liter unit confusion created a false 1,000x water usage claim about a Google data center in Chile, when the actual figure was ~22% of the city's annual water use.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "ADHD Startup Fraud (Dunn Global)",
+      "summary": "Founder Ruthie Ahee and top doctor David Brody were found guilty of conspiracy to distribute controlled substances after Dunn Global became a pill mill for 100,000+ Adderall patients generating $100M+ in revenue. Hosts framed it as telemedicine incentives misaligned with patient welfare, with Will Manitis having warned about the sector four years earlier.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "AI in Drug Discovery (Profluent)",
+      "summary": "Profluent trains protein language models on 100B+ proteins to design bespoke medicines from scratch rather than relying on random natural discovery. Open CRISPR-1 is already used by thousands of researchers and pharma companies worldwide.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI in Cybersecurity (Method Security)",
+      "summary": "Adversaries are using private AI models to scale and accelerate autonomous cyberattacks with non-deterministic path planning across attack surfaces. Method Security builds dual-use autonomous cyber operations tools for governments and enterprises to safely test their own defenses.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Multimodal World Models vs. Text Scaling",
+      "summary": "Amit Jain argued that video and multimodal models are essential for AGI capable of physical-world simulation and manufacturing design, not just text scaling. Luma's inference compute already exceeds training compute 2:1 and is growing, driving the need for the 2-gigawatt cluster.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI and Writing Quality / Cognitive Divide",
+      "summary": "Byrne Hobart argued AI-generated writing has become the lowest-status content on the internet and that AI is making deep thinking optional in more domains. He warned of an emerging cognitive overclass and underclass, urging education systems to explain why effortful thinking is still valuable.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Private Credit and Financial Innovation for AI",
+      "summary": "Glenn Hutchins described how early PE required teaching markets to lend against cash flow rather than hard assets, and drew a parallel to today's AI data center financing. Blue Owl and similar private credit firms are entering the space, and Sam Altman's calls for financial innovation were noted sympathetically.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Prediction Markets Expansion",
+      "summary": "Leaked screenshots showed Coinbase building a prediction markets product; Polymarket showed 87% odds of NVIDIA beating earnings. Hosts noted the rapid proliferation of partnership announcements across the prediction markets ecosystem.",
+      "sentiment": "bullish"
+    }
+  ],
+  "key_claims": [
+    "Gemini 3 Pro is the first LLM to beat professional human GeoGuessr players on score, though it underperformed on country identification percentage, suggesting it uses different heuristics than human experts.",
+    "Google trained Gemini 3 entirely on its own TPUs with no mention of NVIDIA chips, making it the top-benchmark AI model in the world built without NVIDIA hardware.",
+    "NVIDIA represents approximately 8% of the S&P 500 index weighting.",
+    "OpenAI's total spending commitments amount to approximately $1.4 trillion, equal to 1.2% of global economic output.",
+    "GPT-5.1 Codex Pro Max achieved a SWE-bench verified score of 77.9%; Anthropic's Sonnet 4.5 scored 77.2% officially (82% with parallel test-time compute).",
+    "Some GPT-5.1 Codex tasks ran for more than 24 consecutive hours, representing a meaningful jump in agentic time-horizon capability.",
+    "Luma AI raised $900 million in a Series C round.",
+    "Luma AI and Saudi AI company Humane are building a 2-gigawatt compute cluster for multimodal AGI; majority of capacity expected by end of 2027 or early 2028.",
+    "Luma AI's inference-to-training compute ratio is already 2:1 and growing, driving the need for massive infrastructure.",
+    "Profluent trained its protein language models on over 100 billion proteins representing over 20 trillion tokens, compared to AlphaFold 3's roughly 2-3 billion protein training set.",
+    "Profluent raised $106 million with Jeff Bezos on the cap table.",
+    "Maxima raised $41 million in a combined C+ and Series A round.",
+    "Method Security raised $26 million in a combined seed and Series A from a16z and General Catalyst.",
+    "XAI and NVIDIA are developing a 500MW data center in Saudi Arabia with a Saudi partner announced at the U.S.-Saudi Investment Forum.",
+    "Crown Prince MBS announced $1 trillion in Saudi investment in the U.S.",
+    "Brookfield announced a $100 billion global AI infrastructure program with NVIDIA and the Kuwait Investment Authority.",
+    "Suno raised $250 million for AI music generation.",
+    "Glew IPO'd on NASDAQ raising $73 million; the average U.S. IPO pop for raises above $25M in 2025 is ~25%.",
+    "Dunn Global collected over $100 million in revenue and issued Adderall to over 100,000 patients; founder Ruthie Ahee found guilty of conspiracy and told staff she would buy the first arrested employee a Tesla.",
+    "The book 'Empire of AI' contained a major factual error: a billion-vs-million liter unit confusion created a false claim that a Google data center used 1,000x a Chilean city's annual water, when it actually used ~22%.",
+    "Santander stock has risen 3.5x over three years under Glenn Hutchins' tenure as lead independent director.",
+    "Glenn Hutchins argues AI data center deals generate approximately 2x returns on GPU costs over 4-5 year contracts with creditworthy counterparties, structurally differentiating them from 1990s CLEC overbuilding.",
+    "Byrne Hobart argues that if the AI bubble deflates but GPU construction slows, existing GPU fleets could become higher-margin inference hardware as power costs decline, potentially allowing companies like CoreWeave to report strong GAAP profits even in a downturn.",
+    "Elon Musk publicly claimed at the U.S.-Saudi Investment Forum that AI and humanoid robots will eliminate poverty.",
+    "An investment researcher published a cogent essay warning of a U.S. housing collapse in June 2001\u2014seven years before the crisis\u2014yet at the post-crisis low in 2012, Case-Shiller home prices were still 18% above their June 2001 levels."
+  ],
+  "technologies": [
+    "Gemini 3",
+    "Apple Intelligence",
+    "Siri",
+    "iMessage",
+    "TPUs (Tensor Processing Units)",
+    "NVIDIA H100 GPUs",
+    "Large Language Models (LLMs)",
+    "Protein Language Models",
+    "CRISPR-Cas9 / Open CRISPR-1",
+    "Transformer Models",
+    "World Models",
+    "Multimodal AI",
+    "Video Generation Models",
+    "Autonomous Cyber Operations",
+    "AR Smart Glasses / HUD Displays",
+    "Humanoid Robots",
+    "Full Self-Driving (FSD)",
+    "SWE-bench",
+    "GeoGuessr AI",
+    "Windsurf IDE / Cascade",
+    "Google Antigravity",
+    "Cloudflare Tunnels",
+    "Prediction Markets",
+    "Soil Washing / Remediation Equipment",
+    "Parallel Test-Time Compute",
+    "AI Agents",
+    "GPU Clusters",
+    "Crypto Rails / White-Label Wallets",
+    "Cash-Flow Lending",
+    "AlphaFold"
+  ],
+  "_stats": {
+    "word_count": 34049,
+    "estimated_input_tokens": 45285,
+    "input_tokens": 3,
+    "output_tokens": 26192,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 48604,
+    "duration_ms": 518807,
+    "wall_time_s": 520.0,
+    "cost_usd": 0.9631985000000001,
+    "tokens_per_sec": 50.4
+  }
+}

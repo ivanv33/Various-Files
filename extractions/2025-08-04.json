@@ -1,0 +1,954 @@
+{
+  "episode_date": "2025-08-04",
+  "episode_title": "microsoft-4t-azure-disney-ai-dilemma-mckinsey-disruption",
+  "companies": [
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Hit $4 trillion market cap with blockbuster earnings; Azure grew 39% with non-AI core infrastructure as the primary driver. Non-AI gross margins ~73% vs 30-40% for AI services.",
+      "sentiment": "bullish",
+      "sector": "Cloud/Enterprise Software"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "ChatGPT approaching 1 billion weekly actives and generating ~$1B/month in revenue; Sam Altman is renegotiating the revenue share deal with Microsoft. ChatGPT infrastructure runs on Azure core infrastructure.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "GitHub",
+      "type": "private",
+      "context": "GitHub Copilot estimated at over $1B ARR, up from ~$500M two months prior; described as the first major AI-monetized product built on GPT-3.5.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "AWS grew 17.5% in June quarter, disappointing investors; stock down ~9% since Thursday earnings; announced shutdown of Wondery podcast studio and cut 110 jobs.",
+      "sentiment": "bearish",
+      "sector": "Cloud/E-Commerce"
+    },
+    {
+      "name": "Wondery",
+      "type": "private",
+      "context": "Amazon announced shutdown of the podcast studio it acquired in late 2020, cutting 110 jobs.",
+      "sentiment": "bearish",
+      "sector": "Media/Podcasting"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Growing cloud quickly with Gemini; trading at ~18x forward P/E vs Microsoft's 33x; has a frontier AI lab internally unlike Amazon.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Tightly linked to Amazon infrastructure; generating ~$1B/quarter; published white paper stating 50 gigawatts of energy needed for AI by 2028.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "63% polymarket probability of being the world's largest company by end of 2025; Jensen Huang cited as founder example alongside Microsoft's $4T milestone.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Falling on polymarket for largest company (6% probability); described as the only Mag-7 company not in the AI race; new 'Answers' team building a stripped-down ChatGPT alternative.",
+      "sentiment": "bearish",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Heavy AI CapEx spender with CapEx exceeding a third of total sales; Meta Super Intelligence Lab (MSL) referenced in context of AI researcher culture.",
+      "sentiment": "bullish",
+      "sector": "Social Media/AI"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "3% polymarket probability of being largest company by end of 2025; mentioned as wildcard.",
+      "sentiment": "neutral",
+      "sector": "EV/Tech"
+    },
+    {
+      "name": "Figma",
+      "type": "public",
+      "context": "Recently IPO'd; hosts celebrated with seed-to-series investors and Dylan Field; described as a design-led company that dominated a crowded category. Sponsor of the show.",
+      "sentiment": "bullish",
+      "sector": "Design/SaaS"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Earnings beat: $1B+ revenue up 48% YoY, 81% gross margins, 57% FCF margins, raised full-year guidance 6%; stock up ~3% after hours.",
+      "sentiment": "bullish",
+      "sector": "AI/Data Analytics"
+    },
+    {
+      "name": "McKinsey",
+      "type": "private",
+      "context": "Headcount reduced from 45,000 to 40,000; deployed ~12,000 AI agents for PowerPoint, research, and note-taking. Global managing partner calls AI 'existential' for the profession.",
+      "sentiment": "bearish",
+      "sector": "Consulting"
+    },
+    {
+      "name": "Accenture",
+      "type": "public",
+      "context": "Down 35% in the past 6 months with slowing bookings; has 791,000 employees; moderately impacted by DOGE government spending cuts.",
+      "sentiment": "bearish",
+      "sector": "Consulting/IT Services"
+    },
+    {
+      "name": "Harvey",
+      "type": "startup",
+      "context": "Cited as potential power-law winner in legal AI tooling; likely platform for AI-native law firms replacing traditional junior associate grunt work.",
+      "sentiment": "bullish",
+      "sector": "Legal AI"
+    },
+    {
+      "name": "Atrium",
+      "type": "startup",
+      "context": "Justin Kahn's tech-enabled law firm with a complex dual LLC/C-Corp structure; described as 'a little too early' for AI-native legal services.",
+      "sentiment": "neutral",
+      "sector": "Legal Tech"
+    },
+    {
+      "name": "ClearSpire",
+      "type": "startup",
+      "context": "Earlier attempt at an AI-enabled law firm predating Atrium by ~10 years; also failed.",
+      "sentiment": "neutral",
+      "sector": "Legal Tech"
+    },
+    {
+      "name": "Disney",
+      "type": "public",
+      "context": "Spent 18 months negotiating AI deep fake deal with Metaphysic for Moana; footage ultimately not used. Balancing AI cost savings against union backlash, fan backlash, and IP ownership concerns.",
+      "sentiment": "mixed",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Metaphysic",
+      "type": "startup",
+      "context": "AI company that negotiated with Disney for 18 months to create a digital double of Dwayne Johnson for Moana; footage ultimately not used in the final film.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "DreamWorks",
+      "type": "private",
+      "context": "Mentioned as example of IP risk when AI training data from a competitor's films could appear in Disney productions and trigger royalty claims.",
+      "sentiment": "neutral",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Showrunner",
+      "type": "startup",
+      "context": "Amazon-backed interactive AI content platform hosting 'Exit Valley'; allows viewers to choose their own adventure and put themselves into the show.",
+      "sentiment": "bullish",
+      "sector": "AI/Media"
+    },
+    {
+      "name": "Netflix",
+      "type": "public",
+      "context": "CEO Ted Sarandos previously said its competition was Fortnite; hosts now argue ChatGPT is the new competition for screen time.",
+      "sentiment": "neutral",
+      "sector": "Streaming/Entertainment"
+    },
+    {
+      "name": "Armada",
+      "type": "startup",
+      "context": "Building the 'hyperscaler for the edge'; raised over $200M; partnered with Microsoft and SpaceX; working with US Navy, Saudi Aramco, and energy/mining companies. Announced Leviathan megawatt-scale edge data center product.",
+      "sentiment": "bullish",
+      "sector": "Edge Computing/Defense"
+    },
+    {
+      "name": "Lindy",
+      "type": "startup",
+      "context": "Launched Lindy 3.0 with computer use/autopilot capabilities; uses agents to QA itself hourly; consumption-based pricing starting at $50/month.",
+      "sentiment": "bullish",
+      "sector": "AI/Productivity"
+    },
+    {
+      "name": "Rune Technologies",
+      "type": "startup",
+      "context": "Raised $24M Series A led by Human Capital; building TIROS AI-powered logistics tracking for the US military; deployments with US Army and Marine Corps.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech/Logistics"
+    },
+    {
+      "name": "Whoop",
+      "type": "startup",
+      "context": "Launched Whoop 5.0 and Whoop MG; new healthspan feature with Buck Institute; blood pressure insights feature in active FDA dispute over wellness vs. medical device classification.",
+      "sentiment": "bullish",
+      "sector": "Health Tech/Wearables"
+    },
+    {
+      "name": "NIT",
+      "type": "startup",
+      "context": "Raised $16.1M Series A; AI-powered consumer research platform reducing timelines from 4-6 weeks to days; customers include Amazon, Mars, ESPN, T-Mobile, Paramount, and NASCAR.",
+      "sentiment": "bullish",
+      "sector": "AI/Market Research"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor; corporate card, bill payments, and expense management platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Sponsor; multi-destination live streaming platform supporting 30+ destinations.",
+      "sentiment": "neutral",
+      "sector": "Media Tech"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor; trust management and compliance automation platform.",
+      "sentiment": "neutral",
+      "sector": "Security/Compliance"
+    },
+    {
+      "name": "Graphite",
+      "type": "startup",
+      "context": "Sponsor; AI-powered code review tool for GitHub teams. Hosts met with Merrill (company representative) in New York.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Sponsor; cited by Dylan Field as example of design-led competitive advantage dominating a crowded project management category.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/Project Management"
+    },
+    {
+      "name": "Fin.ai",
+      "type": "startup",
+      "context": "Sponsor; AI customer service agent described as #1 in performance benchmarks, competitive bake-offs, and G2 rankings.",
+      "sentiment": "bullish",
+      "sector": "AI/Customer Service"
+    },
+    {
+      "name": "Numeral HQ",
+      "type": "startup",
+      "context": "Sponsor; sales tax compliance automation platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Tax"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising platform; hosts ran billboards in New York.",
+      "sentiment": "neutral",
+      "sector": "Adtech"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor; multi-asset investing platform for serious investors.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor; luxury vacation home rental platform with hotel-grade amenities.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Sponsor; watch marketplace with concierge sourcing service for any watch globally.",
+      "sentiment": "neutral",
+      "sector": "Luxury/E-Commerce"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Sponsor; AI-native CRM platform.",
+      "sentiment": "neutral",
+      "sector": "AI/CRM"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Starlink used as key connectivity partner for Armada's edge data centers; Starlink now in 140+ countries with Starshield for government use. Go-to-market partner for Armada.",
+      "sentiment": "bullish",
+      "sector": "Aerospace/Connectivity"
+    },
+    {
+      "name": "Saudi Aramco",
+      "type": "public",
+      "context": "Armada customer; technology deployed at one site with global rigs and refineries as expansion target; part of Microsoft/Armada/Aramco partnership announcement.",
+      "sentiment": "neutral",
+      "sector": "Energy"
+    },
+    {
+      "name": "Skydio",
+      "type": "startup",
+      "context": "Armada drone partner; used in edge computing deployments for processing unstructured drone data in remote locations.",
+      "sentiment": "neutral",
+      "sector": "Drones/Defense Tech"
+    },
+    {
+      "name": "Halliburton",
+      "type": "public",
+      "context": "Part of Microsoft/Armada/Halliburton partnership for production automation applications extending to remote energy sites.",
+      "sentiment": "neutral",
+      "sector": "Energy Services"
+    },
+    {
+      "name": "Crusoe",
+      "type": "startup",
+      "context": "Mentioned as predecessor doing stranded energy data centers in a less portable form factor.",
+      "sentiment": "neutral",
+      "sector": "Data Centers/Energy"
+    },
+    {
+      "name": "Buck Institute",
+      "type": "private",
+      "context": "Leading longevity research institute; partnered with Whoop to identify nine biometrics correlating with all-cause mortality for the new healthspan feature.",
+      "sentiment": "neutral",
+      "sector": "Health/Research"
+    },
+    {
+      "name": "Human Capital",
+      "type": "fund",
+      "context": "Led Rune Technologies' $24M Series A round.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Andreessen Horowitz (a16z)",
+      "type": "fund",
+      "context": "Investor in Rune Technologies (reinvested in Series A) and Lovable; mentioned in context of European AI scene.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Point72",
+      "type": "fund",
+      "context": "Reinvested in Rune Technologies' Series A alongside a16z and XYZ.",
+      "sentiment": "neutral",
+      "sector": "Hedge Fund/Venture"
+    },
+    {
+      "name": "Robinhood",
+      "type": "public",
+      "context": "Founder Vlad Tennev mentioned as running a new math-focused AI foundation lab that could potentially support Terence Tao's research.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Coinbase",
+      "type": "public",
+      "context": "Mentioned briefly; Samir Chaudry attended the Coinbase Base launch event where hosts briefly met him.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Fintech"
+    },
+    {
+      "name": "CoreWeave",
+      "type": "public",
+      "context": "Mentioned as example of an AI infrastructure company financed through private credit that performed well; hosts want to connect with its lenders.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI Infrastructure"
+    },
+    {
+      "name": "Mistral",
+      "type": "startup",
+      "context": "European AI company listed in 'European AI on fire' post; discussed as potential Apple acquisition target but rejected since France would not sell its national AI champion.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "ElevenLabs",
+      "type": "startup",
+      "context": "Listed in 'European AI on fire' post; noted as primarily NYC-based despite European founding.",
+      "sentiment": "neutral",
+      "sector": "AI/Voice"
+    },
+    {
+      "name": "Black Forest Labs",
+      "type": "startup",
+      "context": "European AI company mentioned in 'European AI scene on fire' post.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Helsing",
+      "type": "startup",
+      "context": "European AI defense company mentioned in 'European AI scene on fire' post.",
+      "sentiment": "neutral",
+      "sector": "Defense AI"
+    },
+    {
+      "name": "Granola",
+      "type": "startup",
+      "context": "European AI company mentioned in 'European AI scene on fire' post.",
+      "sentiment": "neutral",
+      "sector": "AI/Productivity"
+    },
+    {
+      "name": "Lovable",
+      "type": "startup",
+      "context": "Listed in 'European AI scene on fire' post with a16z as investor; Flo Crivello noted Lindy accidentally replicated Lovable-like functionality using its new computer use capabilities.",
+      "sentiment": "bullish",
+      "sector": "AI/Developer Tools"
+    },
+    {
+      "name": "Perplexity",
+      "type": "startup",
+      "context": "Discussed as a more sensible Apple acquisition target than Anthropic or Mistral (~$18B vs $160B for Anthropic).",
+      "sentiment": "neutral",
+      "sector": "AI/Search"
+    },
+    {
+      "name": "Applied Intuition",
+      "type": "startup",
+      "context": "Tops the 'grind score' chart (highest ratio of positive business outlook to work-life balance).",
+      "sentiment": "bullish",
+      "sector": "Autonomous Vehicles/AI"
+    },
+    {
+      "name": "The Boring Company",
+      "type": "startup",
+      "context": "Among top grind score companies; employees reportedly work extreme hours but remain highly optimistic about the tunneling mission.",
+      "sentiment": "neutral",
+      "sector": "Infrastructure/Tech"
+    },
+    {
+      "name": "Shield AI",
+      "type": "startup",
+      "context": "Mentioned among top grind score companies alongside Ramp and Vanta.",
+      "sentiment": "bullish",
+      "sector": "Defense AI"
+    },
+    {
+      "name": "American Eagle Outfitters",
+      "type": "public",
+      "context": "Stock up 23% after Trump publicly praised their advertisement, described as 'the hottest ad out there.'",
+      "sentiment": "bullish",
+      "sector": "Retail"
+    },
+    {
+      "name": "Bloomberg",
+      "type": "private",
+      "context": "Hosts appeared on Bloomberg Odd Lots podcast with Tracy Allaway and Joe Weisenthal to discuss AI talent wars.",
+      "sentiment": "neutral",
+      "sector": "Media/Finance"
+    },
+    {
+      "name": "UBS",
+      "type": "public",
+      "context": "July survey of cloud computing customers showed clear improvement in tone about spending and migration to cloud.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "New York Stock Exchange",
+      "type": "public",
+      "context": "President Lynn Martin spoke with hosts during Figma IPO day coverage.",
+      "sentiment": "neutral",
+      "sector": "Financial Infrastructure"
+    },
+    {
+      "name": "Renaissance Macro Research",
+      "type": "private",
+      "context": "Head of economic research Neil Duda cited data showing AI CapEx contributed more to US GDP growth in the past two quarters than all consumer spending.",
+      "sentiment": "neutral",
+      "sector": "Finance/Research"
+    },
+    {
+      "name": "Bureau of Labor Statistics",
+      "type": "gov",
+      "context": "Head fired by Trump after negative jobs report with large downward revisions; Ray Dalio called its estimation process obsolete; Derek Thompson criticized destroying these data tools during economic weakness.",
+      "sentiment": "bearish",
+      "sector": "Government"
+    },
+    {
+      "name": "Shopify",
+      "type": "public",
+      "context": "Mentioned as analogy for democratizing platform creation ('Shopify for SaaS').",
+      "sentiment": "neutral",
+      "sector": "E-Commerce/SaaS"
+    },
+    {
+      "name": "FTX",
+      "type": "startup",
+      "context": "Mentioned briefly as cautionary tale of what not to become in an AI CapEx bubble scenario.",
+      "sentiment": "bearish",
+      "sector": "Crypto"
+    },
+    {
+      "name": "Hughes",
+      "type": "private",
+      "context": "Mentioned as geo satellite connectivity option used alongside Starlink in Armada's enterprise edge deployments.",
+      "sentiment": "neutral",
+      "sector": "Satellite Connectivity"
+    },
+    {
+      "name": "Viasat",
+      "type": "public",
+      "context": "Mentioned as geo satellite connectivity option used in Armada's enterprise edge deployments.",
+      "sentiment": "neutral",
+      "sector": "Satellite Connectivity"
+    },
+    {
+      "name": "Cradlepoint",
+      "type": "private",
+      "context": "SD-WAN device partner used in Armada's edge computing deployments.",
+      "sentiment": "neutral",
+      "sector": "Networking"
+    },
+    {
+      "name": "Peplink",
+      "type": "private",
+      "context": "SD-WAN device partner used in Armada's edge computing deployments.",
+      "sentiment": "neutral",
+      "sector": "Networking"
+    },
+    {
+      "name": "IMAX",
+      "type": "public",
+      "context": "Used as analogy for Disney's relationship with technology\u2014companies don't need to own every tool in their stack.",
+      "sentiment": "neutral",
+      "sector": "Media Tech"
+    },
+    {
+      "name": "A24",
+      "type": "private",
+      "context": "Cited as example of a studio betting on smaller-budget films; hosts suggested Disney should emulate this model with $10M filmmaker grants.",
+      "sentiment": "bullish",
+      "sector": "Film/Entertainment"
+    },
+    {
+      "name": "Bain",
+      "type": "private",
+      "context": "Mentioned as one of the 'Big Three' management consulting firms alongside McKinsey and BCG facing AI disruption.",
+      "sentiment": "bearish",
+      "sector": "Consulting"
+    },
+    {
+      "name": "BCG",
+      "type": "private",
+      "context": "Mentioned as one of the 'Big Three' management consulting firms alongside McKinsey and Bain facing AI disruption.",
+      "sentiment": "bearish",
+      "sector": "Consulting"
+    },
+    {
+      "name": "LVMH",
+      "type": "public",
+      "context": "Mentioned as analogy for luxury brands that endure through fast-fashion eras; Moet Hennessy (LVMH brand) is a NIT customer.",
+      "sentiment": "neutral",
+      "sector": "Luxury"
+    },
+    {
+      "name": "Richard Mille",
+      "type": "private",
+      "context": "Cited as the benchmark luxury brand model\u2014extremely high-end, functional, wearable\u2014as inspiration for a proposed new $20M+ car brand for AI researchers.",
+      "sentiment": "neutral",
+      "sector": "Luxury Goods"
+    },
+    {
+      "name": "Replit",
+      "type": "startup",
+      "context": "Mentioned briefly as an example of platform-as-a-service in comparison to Azure's infrastructure and service tiers.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/AI"
+    },
+    {
+      "name": "Heroku",
+      "type": "private",
+      "context": "Mentioned as classic example of platform-as-a-service, contrasted with raw infrastructure-as-a-service like Azure.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/Cloud"
+    },
+    {
+      "name": "Index Ventures",
+      "type": "fund",
+      "context": "Danny Reimer at Index cited in discussion about whether management consulting is fundamentally a mentorship business.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    }
+  ],
+  "people": [
+    {
+      "name": "Satya Nadella",
+      "role": "CEO, Microsoft",
+      "context": "Led Microsoft to $4 trillion market cap; praised for the OpenAI partnership deal; cited as 'manager mode' success story. Reportedly met with Armada CEO Dan Wright and endorsed the company on stage at Microsoft Ignite."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Renegotiating the Microsoft revenue share deal; posted that we are 'entering the fast fashion era of SaaS very soon.'"
+    },
+    {
+      "name": "Nat Friedman",
+      "role": "Former CEO, GitHub",
+      "context": "Led GitHub Copilot when it was the first major AI-monetized product built on GPT-3.5."
+    },
+    {
+      "name": "Ben Thompson",
+      "role": "Analyst, Stratechery",
+      "context": "Discussed whether Microsoft should take cash now from the OpenAI deal or hold it as a venture-style position given Microsoft's role as a $4T public company."
+    },
+    {
+      "name": "Ilya Sutskever",
+      "role": "Co-founder, OpenAI / SSI",
+      "context": "Identified as Zuckerberg's 'white whale' in the AI talent wars Moby Dick analogy discussed on Bloomberg Odd Lots."
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO, Meta",
+      "context": "Referenced in AI talent wars context; quoted saying 'without AI glasses, you'll be at a cognitive disadvantage.'"
+    },
+    {
+      "name": "Andy Jassy",
+      "role": "CEO, Amazon",
+      "context": "Had to answer questions about Azure's outperformance of AWS; called Azure's recent quarterly wins 'just moments in time.'"
+    },
+    {
+      "name": "Dylan Field",
+      "role": "CEO, Figma",
+      "context": "Spoke with hosts during Figma IPO day; said design is becoming an enduring edge for companies; cited as founder mode example due to deep WebGL expertise."
+    },
+    {
+      "name": "Andrew Reed",
+      "role": "Partner, Sequoia (Figma seed lead)",
+      "context": "Spoke with hosts during Figma IPO coverage as the seed lead investor."
+    },
+    {
+      "name": "Lynn Martin",
+      "role": "President, New York Stock Exchange",
+      "context": "Spoke with hosts during Figma IPO day coverage."
+    },
+    {
+      "name": "Bob Sternfels",
+      "role": "Global Managing Partner, McKinsey",
+      "context": "Makes AI a topic at every board meeting; leading McKinsey's restructuring in response to AI disruption. Headcount reduced from 45,000 to 40,000 under his tenure."
+    },
+    {
+      "name": "Katie Smage",
+      "role": "Senior Partner, McKinsey (AI lead)",
+      "context": "Said 'do I think this is existential for our profession? Yes, I do. I think it's an existential good for us.'"
+    },
+    {
+      "name": "Justin Kahn",
+      "role": "Co-founder, Twitch / Founder, Atrium",
+      "context": "Founded Atrium, an AI-enabled law firm with a complex dual LLC/C-Corp structure that was 'a little too early.'"
+    },
+    {
+      "name": "Dwayne Johnson",
+      "role": "Actor",
+      "context": "Disney planned a deep fake using his cousin Tanoa Reed as body double for Moana; 18-month negotiation with Metaphysic ultimately produced footage not used in the final film."
+    },
+    {
+      "name": "Bob Iger",
+      "role": "CEO, Disney",
+      "context": "Described as one of the greatest CEOs of all time; question raised about whether he can navigate the AI shift as effectively as Satya Nadella."
+    },
+    {
+      "name": "Ray Dalio",
+      "role": "Founder, Bridgewater Associates",
+      "context": "Posted that the BLS estimation process is obsolete and error-prone; warned that if Trump fired the BLS head for political reasons, it would be a sign of a system losing checks and balances."
+    },
+    {
+      "name": "Dan Wright",
+      "role": "CEO, Armada",
+      "context": "Guest; discussed building edge computing hyperscaler, partnerships with Microsoft and SpaceX, the new Leviathan product for stranded energy deployments, and work with the US Navy and Aramco."
+    },
+    {
+      "name": "Samir Chaudry",
+      "role": "Co-host, Colin and Samir YouTube channel",
+      "context": "Guest; discussed AI as entertainment competing with Netflix, interactive AI content via Showrunner, how creators use AI for thumbnails and production, and his upcoming in-person creator event in New York."
+    },
+    {
+      "name": "Flo Crivello",
+      "role": "CEO, Lindy",
+      "context": "Guest; announced Lindy 3.0 with computer use/autopilot capabilities; said memory is the biggest gap in current AI models; described agents being used to QA other agents."
+    },
+    {
+      "name": "David Tuttle",
+      "role": "Co-founder & CEO, Rune Technologies",
+      "context": "Guest; discussed raising $24M Series A, the TIROS military logistics system, and deployments at US Army and Marine Corps exercises."
+    },
+    {
+      "name": "Will Ahmed",
+      "role": "CEO, Whoop",
+      "context": "Guest; discussed Whoop 5.0, new healthspan/biological age feature with Buck Institute, and the active FDA dispute over blood pressure insights as wellness vs. medical device."
+    },
+    {
+      "name": "Aneesh Dhawan",
+      "role": "Co-founder & CEO, NIT",
+      "context": "Guest; announced $16.1M Series A; described NIT's AI-powered consumer research platform with enterprise customers including Amazon, Mars, ESPN, T-Mobile, and NASCAR."
+    },
+    {
+      "name": "Vlad Tennev",
+      "role": "Co-founder, Robinhood",
+      "context": "Mentioned as running a new math-focused AI foundation lab; hosts urged him to hire Terence Tao for undirected research."
+    },
+    {
+      "name": "Terence Tao",
+      "role": "Mathematician, UCLA",
+      "context": "Lost UCLA research funding due to political conflict with the Trump administration; hosts calling on tech billionaires to step in and fund his research."
+    },
+    {
+      "name": "Neil Duda",
+      "role": "Head of Economic Research, Renaissance Macro Research",
+      "context": "Cited data showing AI CapEx contributed more to US GDP growth in the past two quarters than all consumer spending combined."
+    },
+    {
+      "name": "Paul Kudrowski",
+      "role": "Investor and tech pundit",
+      "context": "Argues AI infrastructure spending as % of GDP has already exceeded dot-com telecom boom levels; argues AI CapEx is acting as a private-sector stimulus program."
+    },
+    {
+      "name": "Derek Thompson",
+      "role": "Writer/Economist",
+      "context": "Posted that job growth over past 3 months is the lowest since 2010 and services spending has declined three straight months; criticized dismantling BLS tools during potential economic weakness."
+    },
+    {
+      "name": "Noah Smith",
+      "role": "Blogger/Economist",
+      "context": "Wrote piece 'Will data centers crash the economy?' analyzing AI CapEx bubble risks by comparison to the telecom and railroad booms."
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO, Nvidia",
+      "context": "Described as the prototypical founder in the '$4 trillion club' used as example of why founder mode matters."
+    },
+    {
+      "name": "Mustafa Suleiman",
+      "role": "CEO, Microsoft AI",
+      "context": "Mentioned as having appeared on Colin and Samir's show where he used Copilot to prompt a compelling AI-generated podcast."
+    },
+    {
+      "name": "Reid Hoffman",
+      "role": "Co-founder, LinkedIn",
+      "context": "Met with Samir Chaudry; told Samir 'never waste a good crisis' after Samir's home burned down in January."
+    },
+    {
+      "name": "Casey Neistat",
+      "role": "YouTube Creator",
+      "context": "Appeared on a recent episode saying AI is a 'tidal wave that will wash over everyone and nothing will be the same.'"
+    },
+    {
+      "name": "Sahil Bloom",
+      "role": "Author / Creator",
+      "context": "Five Types of Wealth book has sold over 300,000 copies; hosts predict it will hit one million."
+    },
+    {
+      "name": "Joe Weisenthal",
+      "role": "Host, Bloomberg Odd Lots",
+      "context": "Hosts appeared on his podcast to discuss AI talent wars; NY Times profiled him for consuming 15 nicotine pouches per day; to be invited on TBPN to complete the Moby Dick AI analogy."
+    },
+    {
+      "name": "Lena Khan",
+      "role": "Former FTC Chair",
+      "context": "Posted that Figma's successful IPO proves letting startups grow independently generates value; tech community pushed back given she blocked the Adobe/Figma merger."
+    },
+    {
+      "name": "MrBeast (Jimmy Donaldson)",
+      "role": "YouTube Creator",
+      "context": "Received backlash for an AI thumbnail generator with face swap features; hosts argued he should have kept it for democratizing thumbnail creation for small creators."
+    },
+    {
+      "name": "Danny Reimer",
+      "role": "Partner, Index Ventures",
+      "context": "Referenced in discussion about whether management consulting is fundamentally a mentorship business for developing the next generation of talent."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Microsoft $4 Trillion Market Cap and Azure Growth",
+      "summary": "Microsoft hit $4T market cap; Azure grew 39% with non-AI core infrastructure as the primary driver. Over half of Azure's March quarter growth came from non-AI services (IaaS). Non-AI gross margins ~73% vs 30-40% for AI. Microsoft has laid off more in 2025 than the prior three years combined.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Azure Non-AI Cloud Growth Drivers",
+      "summary": "Enterprise migration from on-prem to cloud driving IaaS growth; AI-adjacent workloads (storage, networking) and even ChatGPT itself may be miscategorized as 'core infrastructure' rather than AI services, making the headline misleading.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Microsoft-OpenAI Deal Renegotiation",
+      "summary": "Sam Altman renegotiating the revenue share deal; debate over whether a $4T public company should hold a venture-style position or take cash now and dividend to shareholders.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AWS Growth Disappointment vs Azure Outperformance",
+      "summary": "AWS grew 17.5% in June quarter vs Azure's 39%; Amazon stock fell ~9%. AWS criticized for lacking a dominant consumer AI product like ChatGPT and having no frontier AI lab.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "AI Disruption of Management Consulting",
+      "summary": "McKinsey cut headcount 45K to 40K and deployed ~12,000 AI agents. Senior partner called AI 'existential' for the profession. Discussion of whether the junior analyst gauntlet still serves as a talent filter and how AI changes the economics of leaving to start an independent practice.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Disney's AI Dilemma in Hollywood",
+      "summary": "Disney spent 18 months negotiating a deep fake deal for Dwayne Johnson in Moana that was ultimately unused due to IP ownership, legal, and union concerns. Debate over whether AI is sustaining or disruptive innovation for Disney and how it should restructure its content strategy.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Bureau of Labor Statistics Firing and Jobs Data",
+      "summary": "Trump fired the BLS head after a negative jobs report showing the lowest 3-month job growth since 2010. Ray Dalio said BLS methodology is obsolete; Derek Thompson warned against destroying data infrastructure during economic weakness.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "AI CapEx Boom and Potential Bubble Risk",
+      "summary": "Mag-7 hit record $102.5B CapEx in the most recent quarter; AI infrastructure spending as % of GDP now exceeds the dot-com telecom boom. AI CapEx contributed more to US GDP growth than all consumer spending. Noah Smith analysis warns of financial crisis risk if revenue doesn't keep pace, comparing to railroad and telecom boom/busts.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Edge Computing and Stranded Energy for AI",
+      "summary": "Armada building distributed AI data centers co-located with stranded natural gas and energy assets; 70% of the world lacks AI infrastructure. New Leviathan product deploys megawatt-scale AI factories in weeks vs years. Key customers: US Navy, Saudi Aramco, oil and gas, mining, and emergency response.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI and the Creator Economy",
+      "summary": "Samir Chaudry discussed ChatGPT as entertainment competing directly with Netflix for screen time (30 min/day DAU average); Showrunner as interactive AI content; AI tools for thumbnail creation; educational content declining as AI replaces information retrieval.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Figma IPO",
+      "summary": "Figma celebrated its IPO in New York; hosts covered with seed-to-series investors and Dylan Field. Design cited as an enduring competitive edge. Stock was volatile post-IPO. Lena Khan's post claiming credit for the outcome was controversial.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Legal AI and Law Firm Disruption",
+      "summary": "Lawyers privately acknowledge AI adoption hurts billable hours but can't say it publicly. Harvey cited as power-law winner in legal tooling. Discussion of AI-native law firm model with senior partners using agents instead of junior analysts.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Whoop FDA Blood Pressure Dispute",
+      "summary": "Whoop launched blood pressure insights as a wellness feature after 3 years and tens of millions in development; FDA argues it requires medical device regulation. Whoop fighting under the 21st Century Cures Act wellness/medical distinction.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "European AI Scene",
+      "summary": "Viral post highlighting Mistral, ElevenLabs, Black Forest Labs, Lovable, Helsing, and Granola as a thriving European AI ecosystem; hosts pushed back noting cap tables are majority US-funded and ElevenLabs is NYC-based.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Palantir Earnings Beat",
+      "summary": "Palantir reported $1B+ revenue up 48% YoY, 81% gross margins, 57% FCF margins; raised full-year guidance 6%; stock up ~3% after hours. Hosts argue it deserves Mag-8 inclusion.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Military Logistics Modernization",
+      "summary": "Rune Technologies building TIROS to modernize US military supply chain tracking from analog whiteboard systems to AI-driven platforms. Raised $24M Series A; deployed at Army and Marine Corps exercises. Inspired by lessons from Russia-Ukraine war and Middle East conflicts on munitions consumption rates.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Agent Automation",
+      "summary": "Lindy 3.0 launched with computer use/autopilot; using agents to QA itself; McKinsey deploying 12,000 agents. Discussion of agents enabling solo consultants and replacing junior knowledge work.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Apple vs AI Race",
+      "summary": "Apple described as the only Mag-7 company not in the AI race; new 'Answers' team building a ChatGPT competitor; discussion of whether Apple should acquire Perplexity (~$18B) rather than Anthropic or Mistral.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Incline Walking vs Running Fat Burn",
+      "summary": "Study cited showing incline walking burns more fat than running; hosts endorsed this as validated 'bro science' consistent with bodybuilder cutting practices.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Consumer Research AI Automation",
+      "summary": "NIT raised $16.1M Series A; AI-powered platform reduces enterprise consumer research from 4-6 weeks and tens of thousands of dollars to days at a fraction of cost. Customers include major consumer brands across sports, entertainment, and CPG.",
+      "sentiment": "bullish"
+    }
+  ],
+  "key_claims": [
+    "Microsoft hit $4 trillion market cap; more than half of Azure's 33% revenue growth in the March quarter came from non-AI services.",
+    "GitHub Copilot was at ~$500M ARR two months ago and is likely now over $1 billion ARR.",
+    "ChatGPT is approaching 1 billion weekly active users in 2025 and generating approximately $1 billion per month in revenue.",
+    "Microsoft's non-AI gross margins within Azure are ~73% vs 30-40% for AI services.",
+    "Microsoft has laid off more employees in 2025 than in the previous three years combined.",
+    "McKinsey reduced headcount from 45,000 to 40,000 and deployed roughly 12,000 AI agents.",
+    "Accenture has 791,000 employees\u2014more than the population of San Francisco\u2014and is down 35% in the past 6 months.",
+    "Mag-7 tech firms collectively spent a record $102.5 billion on CapEx in their most recent quarters.",
+    "AI CapEx as a percentage of GDP has already exceeded telecom/internet infrastructure spending from the dot-com boom and is still growing.",
+    "AI CapEx contributed more to US GDP growth in the past two quarters than all consumer spending combined (Renaissance Macro Research).",
+    "Anthropic white paper states 50 gigawatts of energy need to be unlocked by 2028 for AI.",
+    "ChatGPT users average 30 minutes per day, approaching TikTok and Reels usage levels.",
+    "Amazon stock fell ~9% since Thursday earnings; AWS grew only 17.5% in the June quarter vs Azure's 39%.",
+    "Amazon is shutting down Wondery (acquired in late 2020) and cutting 110 jobs.",
+    "Palantir reported $1B+ revenue up 48% YoY with 81% gross margins and 57% free cash flow margins.",
+    "The Bureau of Labor Statistics head was fired by Trump after a negative jobs report; 3-month job growth is the lowest since 2010 with prior months revised down.",
+    "Sahil Bloom's Five Types of Wealth book has sold over 300,000 copies.",
+    "Rune Technologies raised a $24M Series A led by Human Capital; achieved in 8 months what was projected to take 12-18 months.",
+    "NIT raised a $16.1M Series A; customers include Amazon, Mars, ESPN, T-Mobile, Paramount, and NASCAR.",
+    "Armada has raised over $200M in 2.5 years; Microsoft invested and Satya Nadella endorsed the company at Microsoft Ignite.",
+    "Lindy 3.0 launched with computer use capabilities; uses agents to QA itself hourly; starts at $50/month consumption pricing.",
+    "Whoop's blood pressure insights feature is in active FDA dispute over wellness vs. medical device classification under the 21st Century Cures Act.",
+    "Apple has a new 'Answers' team developing a stripped-down ChatGPT alternative for world knowledge queries.",
+    "Inference compute now represents most of the cost of running advanced AI models, with inference improvements driving most recent performance gains.",
+    "AWS lacks both a dominant consumer AI product and a frontier AI lab, putting it structurally behind Azure and Google Cloud in the AI era."
+  ],
+  "technologies": [
+    "Azure (Microsoft Cloud)",
+    "AWS (Amazon Web Services)",
+    "Google Cloud / GCP",
+    "ChatGPT",
+    "GPT-4",
+    "GPT-4o",
+    "GPT-5",
+    "Claude (Anthropic)",
+    "Gemini (Google)",
+    "Llama 3 (Meta)",
+    "DeepSeek",
+    "GitHub Copilot",
+    "Starlink",
+    "Starshield",
+    "H100 GPUs",
+    "Computer Use / Browser Agents",
+    "AI Agents",
+    "Deep Fakes / Digital Doubles",
+    "Federated Learning",
+    "Edge Computing",
+    "Infrastructure as a Service (IaaS)",
+    "Platform as a Service (PaaS)",
+    "Reinforcement Learning (RL)",
+    "ECG Monitoring",
+    "SD-WAN",
+    "LEO Satellites",
+    "Voice Mode (ChatGPT Video/Voice)",
+    "Azure Stack",
+    "Vibe Coding",
+    "Large Language Models (LLMs)",
+    "AI Inference",
+    "Fine-tuning / RL fine-tuning",
+    "Azure AI APIs (tokens as a service)",
+    "S3 / Cloud Object Storage",
+    "BigQuery",
+    "Virtual Machines",
+    "WebGL"
+  ],
+  "_stats": {
+    "word_count": 38563,
+    "estimated_input_tokens": 51288,
+    "input_tokens": 3,
+    "output_tokens": 24685,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 55017,
+    "duration_ms": 427869,
+    "wall_time_s": 429.4,
+    "cost_usd": 0.96560475,
+    "tokens_per_sec": 57.5
+  }
+}

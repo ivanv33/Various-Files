@@ -1,0 +1,597 @@
+{
+  "episode_date": "2025-10-28",
+  "episode_title": "satya-nadella-live-github-universe-microsoft-openai-deal",
+  "companies": [
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Host of GitHub Universe event; announced next phase of partnership with OpenAI including extended IP rights through 2032, 27% stake in OpenAI worth ~$135B, and $250B Azure services contract with OpenAI.",
+      "sentiment": "bullish",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Announced restructuring of Microsoft partnership, conversion to public benefit corporation, $250B Azure services commitment, and ability to release open weight models; also discussed internal chaos around nonprofit corporate structure.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "GitHub",
+      "type": "private",
+      "context": "Hosting GitHub Universe conference; announced Agent HQ and mission control for autonomous coding agents, native Codex integration, and Copilot Pro Plus access to Codex.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor of the show; CEO Eric Glyman cited as example of a decacorn founder navigating AI-driven workforce changes.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Mentioned as a public benefit corporation like OpenAI; models available on Azure platform; Claude for Excel announced; powers enterprise auth for WorkOS customers.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Sponsor of the show; makers of Devin, described as an AI software engineer.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Mentioned as sponsor and example of a company that took years to move upmarket to enterprise.",
+      "sentiment": "neutral",
+      "sector": "Design/Developer Tools"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Cited as doing great work on chip architecture; mentioned in context of token factory efficiency and AI infrastructure.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "AMD",
+      "type": "public",
+      "context": "Mentioned alongside Nvidia and Broadcom as competing in AI chip space; OpenAI has complex relationships with all chip vendors.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Broadcom",
+      "type": "public",
+      "context": "Mentioned as competing in AI chip space alongside Nvidia and AMD.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Qualcomm",
+      "type": "public",
+      "context": "Semi-analysis post mocked Qualcomm's AI 200 chip announcement for lacking benchmark specs, flops data, or pricing while stock rose 15%.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "xAI",
+      "type": "startup",
+      "context": "Launched Grok-pedia, described as pre-baked deep research reports on topics users would want to search; compared to disrupting Wikipedia.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Vercel",
+      "type": "startup",
+      "context": "Jared Palmer's former employer; cited as example of open-source adjacent business model using NextJS; WorkOS customer.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "WorkOS",
+      "type": "startup",
+      "context": "Founder Michael Grinich appeared on show; provides enterprise auth (SSO, user provisioning, security) for AI companies; crossed $30M ARR; customers include OpenAI, Anthropic, Perplexity, Cursor, Sierra.",
+      "sentiment": "bullish",
+      "sector": "Security/Developer Tools"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "Mentioned as WorkOS customer and fast-growing AI business pulled upmarket quickly; cited Windsurf's SWE-bench specialized model.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Perplexity",
+      "type": "startup",
+      "context": "Mentioned as a WorkOS customer; example of fast-growing AI business.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Sierra",
+      "type": "startup",
+      "context": "Mentioned as a WorkOS customer.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Google AI Studio cited as sponsor; Sergei Brin's blimp spotted near event; Jeff Bezos noted as early angel investor in Google.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Referenced in context of Microsoft's 1997 $150M investment; Apple sold corn from Interstellar production discussed tangentially.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "ASML",
+      "type": "public",
+      "context": "Mentioned as example of cross-industry investment deal involving Intel, TSMC, and Samsung to fund lithography machine development.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Intel",
+      "type": "public",
+      "context": "Mentioned as part of ASML investment consortium alongside TSMC and Samsung.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "TSMC",
+      "type": "public",
+      "context": "Mentioned as part of ASML investment consortium alongside Intel and Samsung.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Samsung",
+      "type": "public",
+      "context": "Mentioned as part of ASML investment consortium alongside Intel and TSMC.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Amazon's operating margin announcement cited as the day hyperscale business model was validated; AWS referenced as competitive infrastructure.",
+      "sentiment": "neutral",
+      "sector": "Cloud"
+    },
+    {
+      "name": "Activision",
+      "type": "private",
+      "context": "Mentioned in context of Microsoft gaming strategy post-acquisition; makes Microsoft the largest publisher.",
+      "sentiment": "neutral",
+      "sector": "Gaming"
+    },
+    {
+      "name": "Instacart",
+      "type": "public",
+      "context": "Cited as an early enterprise customer running Codex in automated workflow systems for code maintenance.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/AI"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "Mentioned for releasing SWE-bench specialized research model combining multiple model providers.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Replit",
+      "type": "startup",
+      "context": "Referenced in context of Jason Lemkin vibe coding incident where agent deleted a production database.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Stripe",
+      "type": "startup",
+      "context": "Mentioned as analogy for WorkOS's role in developer infrastructure.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Twilio",
+      "type": "public",
+      "context": "Mentioned as analogy for WorkOS's role in developer infrastructure.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Dropbox",
+      "type": "public",
+      "context": "Cited as example of a company that took years to move upmarket to enterprise.",
+      "sentiment": "neutral",
+      "sector": "SaaS"
+    },
+    {
+      "name": "Carta",
+      "type": "startup",
+      "context": "Mentioned as a WorkOS customer from the early cloud SaaS era.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Plaid",
+      "type": "startup",
+      "context": "Mentioned as a WorkOS customer from the early cloud SaaS era.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Thrive Capital",
+      "type": "fund",
+      "context": "Josh at Thrive cited as having incredible conviction deploying capital into OpenAI's for-profit subsidiary despite structural uncertainty.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Microsoft Research",
+      "type": "private",
+      "context": "Cited as having 30+ years of history in science, programming language research, compilers, and security; collaborates closely with Core AI team.",
+      "sentiment": "bullish",
+      "sector": "AI/ML Research"
+    },
+    {
+      "name": "Steam",
+      "type": "private",
+      "context": "Mentioned as having built a massive marketplace on top of Windows gaming; cited as successfully executing on Microsoft's platform.",
+      "sentiment": "neutral",
+      "sector": "Gaming"
+    },
+    {
+      "name": "1Password",
+      "type": "private",
+      "context": "CEO cited as example of someone thinking about agent security and authentication at the consumer and enterprise level.",
+      "sentiment": "neutral",
+      "sector": "Security"
+    },
+    {
+      "name": "Privy",
+      "type": "startup",
+      "context": "Sponsor; described as wallet infrastructure for banks and crypto rail integration.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Crypto"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor; described as automating compliance, managing risk, and replacing manual security work with continuous automation.",
+      "sentiment": "neutral",
+      "sector": "Security"
+    },
+    {
+      "name": "Julius",
+      "type": "startup",
+      "context": "Sponsor; described as a data analysis chat tool for expert-level insights.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "TurboPuffer",
+      "type": "startup",
+      "context": "Sponsor; described as serverless vector and full-text search built on object storage.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor; described as multi-asset investing platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Worldcoin",
+      "type": "startup",
+      "context": "Mentioned as Sam Altman company with a token structure, contrasting with cleaner C-Corp structures.",
+      "sentiment": "neutral",
+      "sector": "Crypto/AI"
+    }
+  ],
+  "people": [
+    {
+      "name": "Satya Nadella",
+      "role": "CEO of Microsoft",
+      "context": "Interviewed live at GitHub Universe; discussed the evolution of the Microsoft-OpenAI partnership, AGI definitions, gaming strategy, spiky intelligence, Jevons Paradox, and Microsoft's platform philosophy."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO of OpenAI",
+      "context": "Discussed in context of the Microsoft partnership deal history; Satya noted knowing him since his first company pre-YC days; Sam did a simultaneous live stream on OpenAI's side of the deal."
+    },
+    {
+      "name": "Alexander Embiricos",
+      "role": "Product Lead, Codex at OpenAI",
+      "context": "Discussed Codex's integration into GitHub, enterprise use cases, 60-hour autonomous task capability, GPU resource constraints, and the feedback loop between social media and product development."
+    },
+    {
+      "name": "Kyle Daigle",
+      "role": "COO of GitHub",
+      "context": "Discussed GitHub's scale (80% of new users adopt Copilot, 36M joined last year), AI adoption in software development, the importance of platform openness, and future of inference location."
+    },
+    {
+      "name": "Jay Parikh",
+      "role": "EVP of Core AI at Microsoft",
+      "context": "Discussed unlocking intelligence through software creation, Microsoft Research collaboration, the Hoover Dam analogy for AI potential, enterprise AI adoption patterns, and the importance of evals."
+    },
+    {
+      "name": "Jared Palmer",
+      "role": "VP of Product Core AI at Microsoft and SVP of GitHub (day 13)",
+      "context": "Former VP of AI at Vercel and creator of V0; discussed developer experience vision, open source business model pitfalls, NextJS/Vercel framework-defined infrastructure, and model switching costs."
+    },
+    {
+      "name": "Michael Grinich",
+      "role": "Founder and CEO of WorkOS",
+      "context": "Discussed WorkOS crossing $30M ARR, enterprise security for AI companies, agent authentication challenges, and the acceleration of AI companies going upmarket."
+    },
+    {
+      "name": "Dario Amodei",
+      "role": "Co-founder of Anthropic (implied)",
+      "context": "Mentioned as co-author of the scaling laws paper alongside Ilya Sutskever that convinced Satya Nadella of the OpenAI opportunity."
+    },
+    {
+      "name": "Ilya Sutskever",
+      "role": "Co-founder of OpenAI",
+      "context": "Mentioned as co-author of the scaling laws paper that helped validate the scaling thesis for Satya Nadella."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "Entrepreneur",
+      "context": "Mentioned as having sent Satya Nadella the original email asking for Azure credits for OpenAI when it was a nonprofit; also noted as eventually walking away from OpenAI."
+    },
+    {
+      "name": "Andrej Karpathy",
+      "role": "AI Researcher",
+      "context": "Referenced for his point that even exceptional model intelligence has jagged/spiky areas where each additional nine of reliability is a linear or sublinear improvement."
+    },
+    {
+      "name": "Bill Gates",
+      "role": "Co-founder of Microsoft",
+      "context": "Mentioned in context of Microsoft Research founding in 1995 and natural language as a core obsession; told Satya the billion dollars might just get burned."
+    },
+    {
+      "name": "Tyler Cowen",
+      "role": "Economist",
+      "context": "Mentioned as having appeared on the show claiming AGI had already been achieved and that goalposts keep moving."
+    },
+    {
+      "name": "Mustafa Suleyman",
+      "role": "CEO of Microsoft AI (implied)",
+      "context": "Satya referenced him as having built a world-class team including Karen, Amar, and Landau working on speech, image, and text models."
+    },
+    {
+      "name": "Jeff Bezos",
+      "role": "Founder of Amazon",
+      "context": "Mentioned as having famously been an angel investor in Google."
+    },
+    {
+      "name": "Nat Friedman",
+      "role": "Former CEO of GitHub",
+      "context": "Mentioned as having joined GitHub in 2018 as part of the Microsoft acquisition."
+    },
+    {
+      "name": "Eric Glyman",
+      "role": "CEO of Ramp",
+      "context": "Cited by Satya Nadella as a great founder doing unbelievable work on AI agents; used as example of a decacorn leader navigating human capital in the AI age."
+    },
+    {
+      "name": "Jason Lemkin",
+      "role": "Founder of SaaStr",
+      "context": "Referenced for vibe coding incident where an agent deleted a production database while he was using Replit."
+    },
+    {
+      "name": "David Senra",
+      "role": "Host of Founders Podcast",
+      "context": "Cited by Michael Grinich as his role model; credited with popularizing the David Ogilvy quote about advertising to a moving parade."
+    },
+    {
+      "name": "David Ogilvy",
+      "role": "Advertising executive",
+      "context": "Author of the quote 'you are not advertising to a standing army, you are advertising to a moving parade,' cited by Michael Grinich."
+    },
+    {
+      "name": "Sergei Brin",
+      "role": "Co-founder of Google",
+      "context": "His personal blimp was spotted flying near GitHub Universe, speculated to be available for Gemini branding."
+    },
+    {
+      "name": "Guillermo Rauch",
+      "role": "CEO of Vercel (implied)",
+      "context": "Referenced by Jared Palmer as having debated with him on when to launch Enterprise for V0, with Palmer suggesting they launched it too early."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Microsoft-OpenAI Partnership Restructuring",
+      "summary": "Microsoft and OpenAI announced the next phase of their partnership including extended IP rights through 2032, AGI declaration via independent expert panel, $250B Azure services contract, OpenAI ability to release open weights, and OpenAI ability to serve government national security customers on any cloud.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AGI Definition and Declaration Process",
+      "summary": "Discussion of how AGI will be defined and verified by an independent expert panel; both Satya Nadella and Sam Altman acknowledged AGI has become a nearly meaningless term due to diverging definitions and moving goalposts.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Spiky Intelligence and AI Capability Gaps",
+      "summary": "The concept that current AI models have exceptional performance in some areas but significant gaps in others; Karpathy cited for noting that each additional nine of reliability is a sublinear improvement problem.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "GitHub Agent HQ and Mission Control",
+      "summary": "GitHub announced a platform allowing multiple autonomous coding agents (Codex, Claude, Grok, others) to work simultaneously across different branches, with VS Code for diff review and unified mission control.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Codex Integration into GitHub",
+      "summary": "OpenAI's Codex announced as natively coming to GitHub; Copilot Pro Plus subscribers get access without needing a separate ChatGPT account; a single Codex agent is accessible across all developer touchpoints.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Vibe Coding and Agentic Software Development",
+      "summary": "Discussion of the evolution from code completion to chat to agent mode to autonomous multi-agent systems; concerns raised about losing control of projects and the importance of steerability and trust-building.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Enterprise AI Adoption Patterns",
+      "summary": "AI companies are being pulled upmarket to enterprise faster than previous SaaS generations; Jay Parikh advised Fortune 500 CEOs to get specific on outcomes, drive internal experimentation, and raise ambition levels.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Open Source Business Model for Developer Tools",
+      "summary": "Jared Palmer argued that successful open source companies (like Vercel/NextJS) don't actually open source their core product but use open source as a complementary satellite; warned against assuming free users convert to paid.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Agent Security and Authentication",
+      "summary": "Michael Grinich discussed the emerging challenge of authenticating and permissioning trillions of AI agents; WorkOS is building solutions for agent identity management as agents access sensitive enterprise data.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Jevons Paradox in AI/Cloud",
+      "summary": "As AI inference becomes cheaper, demand and usage expand dramatically rather than contracting; Satya cited this during the DeepSeek moment; applied to code generation creating more developers and more code.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Pre-training and RL Research Breakthroughs",
+      "summary": "Satya suggested pre-training will have new breakthroughs in addition to continued RL improvements; noted that pre-training is a more efficient form of training because it is parallelizable.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Qualcomm AI 200 Chip Launch",
+      "summary": "Semi-analysis mocked Qualcomm's AI 200 chip announcement for lacking benchmark specs, flops, pricing, and rack configuration data while stock rose 15%; ships in 2026 with AI 250 in 2027.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Grok-pedia Launch",
+      "summary": "xAI launched Grok-pedia with pre-cached deep research reports on popular topics; compared to how deep research has disrupted Wikipedia.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Gaming Strategy at Microsoft Post-Activision",
+      "summary": "Satya discussed Microsoft becoming the largest publisher post-Activision, aiming for games on all platforms; noted gaming's real competition is short-form video, not other games.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Microsoft's Greatest Corporate VC Investment",
+      "summary": "Discussion of the Microsoft-OpenAI deal as potentially the greatest corporate venture investment in history, with Microsoft owning 27% of OpenAI plus strategic cloud advantage.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Human Capital Planning in the Age of AI",
+      "summary": "Discussion of how to scale teams when AI tools are improving rapidly; Satya emphasized unlearning old production functions and learning new ones; noted this is simultaneously a tech, business model, and product development shift.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Inference Location: Local vs Cloud",
+      "summary": "Kyle Daigle discussed the trend toward more local inference with cloud for coordination; raised the 'garbage in garbage out' problem as the real bottleneck rather than inference location itself.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Enterprise Code Pre-training Dynamics",
+      "summary": "Discussion of whether enterprises will share proprietary code to improve model performance; GitHub found that most codebases don't provide enough differentiation except for large legacy COBOL codebases.",
+      "sentiment": "neutral"
+    }
+  ],
+  "key_claims": [
+    "Microsoft owns approximately 27% of OpenAI, valued at roughly $135 billion.",
+    "OpenAI has contracted to purchase $250 billion of Azure services incrementally.",
+    "Microsoft's IP rights to OpenAI models and products are extended through 2032 and now include post-AGI models.",
+    "Microsoft can now independently pursue AGI alone or with third parties using OpenAI's IP subject to compute thresholds.",
+    "The revenue share agreement between Microsoft and OpenAI remains until AGI is declared by an independent expert panel.",
+    "A Codex agent ran autonomously for over 60 hours on a single hard task at GitHub Universe keynote.",
+    "GitHub has 180 million developers with a new developer joining every second.",
+    "80% of new GitHub users adopt Copilot, with 36 million joining in the last year.",
+    "GitHub has over 3,000 full-time employees.",
+    "WorkOS crossed $30 million in annualized revenue as of October 2025.",
+    "WorkOS raised its Series B almost exactly four years before the episode date and has not raised since.",
+    "WorkOS powers enterprise auth for OpenAI, Anthropic, Perplexity, Cursor, and Sierra.",
+    "Microsoft's revenue is approximately $1 billion per business day.",
+    "Tech as a percentage of GDP is around 4-5% and Satya believes it will grow to 10-15% over the next decade.",
+    "Satya invested the full $13.5 billion into OpenAI before ChatGPT launched and before it became conventional wisdom.",
+    "GitHub Copilot launched in 2021, ChatGPT in 2022; the OpenAI governance crisis occurred in November 2023.",
+    "Only 1% or less of all software that could ever be written has been written in history according to Jay Parikh.",
+    "Microsoft invested $1 billion in OpenAI in July 2019 when Azure was named exclusive cloud provider.",
+    "In 2020 Microsoft received an exclusive GPT-3 license for its products and services.",
+    "Microsoft received exclusive IP rights until AGI is declared or 2030, whichever comes first; consumer hardware is now excluded from Microsoft's IP rights.",
+    "OpenAI can now provide API access to US government national security customers regardless of cloud provider.",
+    "Qualcomm AI 200 announced with 768GB memory and 160kW power consumption but no benchmark flops, pricing, or rack configuration disclosed.",
+    "Jared Palmer was on day 13 at Microsoft/GitHub at time of interview, having come from VP of AI at Vercel.",
+    "Satya Nadella knew Sam Altman since before YC, going back to Sam's first company and his WWC presentation in a double polo shirt.",
+    "The original OpenAI deal in 2019 was structured as a partnership with a nonprofit, which deterred many institutional investors who couldn't get past the structure.",
+    "Microsoft had to get board approval for the original $1 billion OpenAI investment.",
+    "Microsoft's investment in Apple in 1997 was $150 million in non-voting stock; they exited by 2003."
+  ],
+  "technologies": [
+    "Large Language Models (LLMs)",
+    "Reinforcement Learning (RL)",
+    "Supervised Fine-Tuning",
+    "Pre-training",
+    "Mid-training",
+    "GitHub Copilot",
+    "GitHub Codex",
+    "VS Code",
+    "GitHub Agent HQ / Mission Control",
+    "Autonomous Coding Agents",
+    "Ghost Text (inline code completion)",
+    "Retrieval-Augmented Generation",
+    "Vector Search",
+    "Azure Cloud",
+    "GPT-3",
+    "GPT-4",
+    "Transformers",
+    "Scaling Laws",
+    "Open Weight Models",
+    "Formal Verification",
+    "Compilers",
+    "COBOL",
+    "NextJS",
+    "V0",
+    "AI SDK",
+    "TurboRepo",
+    "RADIX Design System",
+    "Office.js",
+    "Microsoft 365 Copilot",
+    "Excel Agent Mode",
+    "GitHub Spark",
+    "Single Sign-On (SSO)",
+    "SCIM User Provisioning",
+    "Agent Authentication / Agent Identity",
+    "EUVLithography (ASML)",
+    "Nuclear Energy",
+    "Liquid Cooling for Data Centers",
+    "Local Inference",
+    "Grok-pedia",
+    "Deep Research",
+    "SWE-bench",
+    "Claude for Excel",
+    "Codex CLI"
+  ],
+  "_stats": {
+    "word_count": 26418,
+    "estimated_input_tokens": 35135,
+    "input_tokens": 3,
+    "output_tokens": 5314,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 38109,
+    "duration_ms": 116255,
+    "wall_time_s": 117.6,
+    "cost_usd": 0.3756547499999999,
+    "tokens_per_sec": 45.2
+  }
+}

@@ -1,0 +1,812 @@
+{
+  "episode_date": "2025-12-11",
+  "episode_title": "oracle-slides-disney-openai-spacex-ipo",
+  "companies": [
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Planning IPO at $1.5 trillion valuation raising ~$30 billion; pivoting strategy toward space-based AI data centers using modified Starlink satellites, with moon-based satellite factories and electromagnetic railguns as longer-term vision.",
+      "sentiment": "bullish",
+      "sector": "Space/Aerospace"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Launched GPT 5.2 on its 10-year anniversary, signed $1B Disney licensing deal for SORA, served 800M users; Fidji Simo discussed enterprise roadmap and vision for ChatGPT as a personal superassistance.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Disney",
+      "type": "public",
+      "context": "Invested $1B in OpenAI and signed a 3-year SORA licensing deal (1-year exclusive) for 200+ characters; curated AI-generated content coming to Disney+; simultaneously sent cease and desist to Google for copyright infringement at massive scale.",
+      "sentiment": "bullish",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "Shares tumbled after revenue and operating income fell short of expectations while raising spending forecast; remaining performance obligations of $523B but market cap only ~$68B, with Financial Times framing the OpenAI deal as worth negative $7 billion.",
+      "sentiment": "bearish",
+      "sector": "Cloud/Enterprise Tech"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Invested $20M in SpaceX from a $220M fund in 2008; estimated to own ~10% stake worth ~$150 billion at $1.5T IPO valuation, discussed as potentially the greatest VC investment in history.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Waymo",
+      "type": "startup",
+      "context": "Released 100-million-mile safety dataset showing dramatic improvement over human drivers; positioned as a public health solution for 40,000 annual US traffic deaths; a child was born inside a Waymo vehicle.",
+      "sentiment": "bullish",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Netflix",
+      "type": "public",
+      "context": "In active negotiations to acquire Warner Brothers Discovery, competing with David Ellison/Skydance; deal not finalized despite public announcements per Dylan Byers.",
+      "sentiment": "bullish",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Paramount",
+      "type": "public",
+      "context": "M&A target being pursued by both Netflix and David Ellison/Skydance; Zaslav reportedly playing both sides to drive acquisition price above $30/share.",
+      "sentiment": "neutral",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Warner Brothers Discovery",
+      "type": "public",
+      "context": "Major M&A target; combining with Paramount would give 15% of US watch hours; Netflix plus WBD would yield 14%; deal expected to extend well into 2026.",
+      "sentiment": "neutral",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Skydance",
+      "type": "private",
+      "context": "David Ellison's production company pursuing WBD acquisition as part of a broader Hollywood consolidation strategy; acquisition of UFC mentioned as signal of long-term platform-building ambition.",
+      "sentiment": "bullish",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "K2 Space",
+      "type": "startup",
+      "context": "Raised $250M at $3B valuation from T. Rowe Price, Altimeter, and Lightspeed; building large high-power satellites (20kW first satellite launching in 3 months, 100kW next); TCV grew from $5M to $50M to $500M in successive years.",
+      "sentiment": "bullish",
+      "sector": "Space/Aerospace"
+    },
+    {
+      "name": "WorkTrace AI",
+      "type": "startup",
+      "context": "Came out of stealth with $9M seed round backed by OpenAI Fund, Mira Murati, and Logan Kilpatrick; desktop AI that observes workflows and generates OpenAI Agent Builder JSON for identified automation opportunities.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Outset",
+      "type": "startup",
+      "context": "AI-moderated research platform announced $30M Series B from Radical Ventures; customers include Microsoft, Google, Weight Watchers, and Nestle; can conduct hundreds of in-depth interviews in hours.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Broadcom",
+      "type": "public",
+      "context": "Smashed Q4 earnings with EPS of $1.95 vs $1.72 projected and revenue of $18B vs $17.5B expected; stock up ~3% after hours.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Salesforce",
+      "type": "public",
+      "context": "AgentForce ARR reached $540M, up 4.3x year-over-year; Mark Benioff potentially considering renaming the company to AgentForce.",
+      "sentiment": "bullish",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Disney sent cease and desist for training Gemini on Disney IP without authorization; named Amin Vadat to head $100B/year AI infrastructure buildout reporting to Sundar Pichai; Gemini adoption rose 0.7% per Ramp index.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Discussed as potential consolidation destination for XAI given its proprietary chips and data centers built for full self-driving AI training.",
+      "sentiment": "neutral",
+      "sector": "Automotive/AI"
+    },
+    {
+      "name": "XAI",
+      "type": "startup",
+      "context": "Elon Musk's AI company founded 2023; discussed as a candidate for consolidation into either Tesla or SpaceX as both scale AI capabilities.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Showing smoother growth trajectory in Ramp's AI adoption index, up 0.8% in November; someone at Anthropic reportedly mentioned Dyson sphere in company plans.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor and source of AI adoption index showing flat 45% business adoption in November; economist Ara Karazian published analysis cautioning against overreacting to the slowdown.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Sponsor; launched new workflows product automating marketing research and content generation; customers include MongoDB, DocuSign, Ramp, Figma, Mercury, US Bank, and others.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "T-Mobile",
+      "type": "public",
+      "context": "Mentioned as a ~$217B business threatened by Starlink's expanding satellite internet service.",
+      "sentiment": "bearish",
+      "sector": "Telecom"
+    },
+    {
+      "name": "AT&T",
+      "type": "public",
+      "context": "Mentioned as a ~$172B business threatened by Starlink's expanding satellite internet service.",
+      "sentiment": "bearish",
+      "sector": "Telecom"
+    },
+    {
+      "name": "Verizon",
+      "type": "public",
+      "context": "Mentioned as a ~$170B business threatened by Starlink's expanding satellite internet service.",
+      "sentiment": "bearish",
+      "sector": "Telecom"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Satya Nadella discussed as having passed on Oracle's OpenAI infrastructure deal; framed as showing wisdom given Oracle's subsequent stock decline.",
+      "sentiment": "bullish",
+      "sector": "Cloud/Enterprise Tech"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Mentioned as valuation benchmark: SpaceX at 65x revenue would be twice as expensive as Nvidia at 24x price-to-sales; GPU procurement cited as a key use of SpaceX IPO proceeds for space data centers.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors/AI"
+    },
+    {
+      "name": "Puck News",
+      "type": "startup",
+      "context": "Media outlet where Dylan Byers covers the media industry; co-owners include Bill Cohen and Matt Bellamy who have been reporting on the WBD deal negotiations.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Applied Intuition",
+      "type": "startup",
+      "context": "CEO Kayser Yunus joined X for the first time after 16 years, writing a blog post explaining his reversal on social media; company operates in the autonomous vehicle software space.",
+      "sentiment": "neutral",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "ElevenLabs",
+      "type": "startup",
+      "context": "Partnering with Meta to power expressive audio across Instagram, Horizon, and more; founder appeared on the cover of Forbes.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Partnering with ElevenLabs for audio; Disney sent cease and desist for copyright infringement; mentioned as a strong ad platform by founders at a Black Friday stream.",
+      "sentiment": "neutral",
+      "sector": "Social Media/AI"
+    },
+    {
+      "name": "Snap",
+      "type": "public",
+      "context": "Introducing 5GB storage limits to push users toward Snapchat Plus subscription at $250GB; partnered with Perplexity to bring AI features into the app.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Perplexity",
+      "type": "startup",
+      "context": "Has a deal to bring AI search into the Snapchat product.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Hyperbolic Labs",
+      "type": "startup",
+      "context": "Co-founder and CTO Yuchin Jin commented that GPT 5.2 appears to be a freshly pre-trained model based on its August 2025 knowledge cutoff date.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Radical Ventures",
+      "type": "fund",
+      "context": "Led Outset's $30M Series B fundraise.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Thrive Capital",
+      "type": "fund",
+      "context": "Mentioned in context of Disney/OpenAI deal; Bob Iger is co-owner and Thrive made a large OpenAI investment, creating a potential conflict-of-interest connection.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "T. Rowe Price",
+      "type": "fund",
+      "context": "Led K2 Space's $250M funding round at $3B valuation.",
+      "sentiment": "bullish",
+      "sector": "Asset Management"
+    },
+    {
+      "name": "Altimeter Capital",
+      "type": "fund",
+      "context": "Participated in K2 Space's $250M funding round.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Lightspeed Venture Partners",
+      "type": "fund",
+      "context": "Participated in K2 Space's $250M funding round.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Mentioned as sponsor; builds AI software engineer 'Devin' for engineering backlog automation.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "NASA",
+      "type": "gov",
+      "context": "Mentioned as budget comparison: SpaceX's $30B IPO raise is on par with NASA's annual budget but SpaceX deploys capital far more efficiently.",
+      "sentiment": "neutral",
+      "sector": "Space/Aerospace"
+    },
+    {
+      "name": "Saudi Aramco",
+      "type": "public",
+      "context": "Mentioned as the current record holder for largest IPO in history, raising $29B in 2019; SpaceX IPO could match or exceed this.",
+      "sentiment": "neutral",
+      "sector": "Energy"
+    },
+    {
+      "name": "Rocket Lab",
+      "type": "public",
+      "context": "Mentioned as one of several launch vehicle providers K2 Space may work with beyond SpaceX.",
+      "sentiment": "neutral",
+      "sector": "Space/Aerospace"
+    },
+    {
+      "name": "Blue Origin",
+      "type": "private",
+      "context": "Mentioned as one of several new launch players coming online that K2 Space may use.",
+      "sentiment": "neutral",
+      "sector": "Space/Aerospace"
+    },
+    {
+      "name": "Firefly Aerospace",
+      "type": "startup",
+      "context": "Mentioned as one of several new launch players coming online.",
+      "sentiment": "neutral",
+      "sector": "Space/Aerospace"
+    },
+    {
+      "name": "Relativity Space",
+      "type": "startup",
+      "context": "Mentioned as one of several new launch players coming online.",
+      "sentiment": "neutral",
+      "sector": "Space/Aerospace"
+    },
+    {
+      "name": "Stoke Space",
+      "type": "startup",
+      "context": "Mentioned briefly as a new launch player with founder Andy referenced.",
+      "sentiment": "neutral",
+      "sector": "Space/Aerospace"
+    },
+    {
+      "name": "Ghost Autonomy",
+      "type": "startup",
+      "context": "Mentioned briefly as an autonomous vehicle company that is not doing well.",
+      "sentiment": "bearish",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Comma AI",
+      "type": "startup",
+      "context": "Mentioned as one of the American autonomous vehicle companies.",
+      "sentiment": "neutral",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "General Agents",
+      "type": "startup",
+      "context": "Founded by Sher Gilles-Ozer; launched product and was quickly acquired by Amazon/Jeff Bezos.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Acquired General Agents, an AI startup, shortly after its product launch.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Lifeforce",
+      "type": "startup",
+      "context": "Health optimization company mentioned as an investment by Jonathan Slotkin; discussed in context of peptide therapy and health-span optimization.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Stargate",
+      "type": "startup",
+      "context": "Mentioned briefly as a separate entity from OpenAI for AI infrastructure buildout.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Airbnb",
+      "type": "public",
+      "context": "Brian Chesky's story about research saving millions of dollars by catching a bad design was cited as an example of valuable customer research.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Mentioned as an early Founders Fund portfolio company alongside SpaceX and Spotify.",
+      "sentiment": "neutral",
+      "sector": "Data/Analytics"
+    },
+    {
+      "name": "Spotify",
+      "type": "public",
+      "context": "Mentioned as an early Founders Fund portfolio company alongside SpaceX and Palantir.",
+      "sentiment": "neutral",
+      "sector": "Media Tech"
+    },
+    {
+      "name": "ESPN",
+      "type": "private",
+      "context": "Mentioned as a legacy media company making calculated decisions about sports rights while competing with Amazon and YouTube for NFL rights.",
+      "sentiment": "bearish",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Ars Technica",
+      "type": "private",
+      "context": "Eric Berger wrote the SpaceX IPO article that Elon Musk publicly confirmed as accurate.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Redbird Capital",
+      "type": "fund",
+      "context": "Jerry Cardinale's fund; part of David Ellison's team negotiating WBD acquisition alongside Gulf sovereign wealth funds and Jared Kushner.",
+      "sentiment": "neutral",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Sponsor; multi-streaming platform used for SpaceX launches and live content distribution.",
+      "sentiment": "neutral",
+      "sector": "Media Tech"
+    },
+    {
+      "name": "Fal",
+      "type": "startup",
+      "context": "Sponsor; generative media platform for developers with serverless GPUs and on-demand clusters.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Graphite",
+      "type": "startup",
+      "context": "Sponsor; AI-powered code review platform for GitHub teams.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "TurboPuffer",
+      "type": "startup",
+      "context": "Sponsor; serverless vector and full-text search built on object storage.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Fin.ai",
+      "type": "startup",
+      "context": "Sponsor; AI agent for customer service automation.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sponsor; automated sales tax and VAT compliance.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Sponsor; modern software development project management from roadmap to release.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Julius AI",
+      "type": "startup",
+      "context": "Sponsor; AI data analyst platform for connecting data and generating insights.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Privy",
+      "type": "startup",
+      "context": "Sponsor; crypto infrastructure API for white-label wallets and on-chain integration.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Web3"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Sponsor; luxury watch marketplace with in-house authentication by experts.",
+      "sentiment": "neutral",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor; AI-powered compliance and security automation platform.",
+      "sentiment": "neutral",
+      "sector": "Security/Compliance"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor; premium vacation home rental platform.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising planning and measurement platform.",
+      "sentiment": "neutral",
+      "sector": "AdTech"
+    },
+    {
+      "name": "8Sleep",
+      "type": "startup",
+      "context": "Sponsor; sleep optimization technology; host mentioned returning to use after a poor sleep in a New York bunk bed.",
+      "sentiment": "neutral",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Figma",
+      "type": "startup",
+      "context": "Sponsor and Profound customer; design and development collaboration platform.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Sponsor; AI-native CRM platform.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor; multi-asset investing platform for serious investors.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    }
+  ],
+  "people": [
+    {
+      "name": "Fidji Simo",
+      "role": "CEO of Applications, OpenAI",
+      "context": "Guest; discussed GPT 5.2 launch, Disney/SORA partnership, enterprise roadmap, and vision for ChatGPT evolving from chatbot to personal superassistance; previously ran Instagram and served on OpenAI board before Sam Altman recruited her."
+    },
+    {
+      "name": "Dylan Byers",
+      "role": "Senior Correspondent, Puck News",
+      "context": "Guest; analyzed Netflix vs Skydance battle for Warner Brothers Discovery, Disney's OpenAI deal implications, and AI disruption of Hollywood's creative community."
+    },
+    {
+      "name": "Angela Jiang",
+      "role": "Co-founder, WorkTrace AI",
+      "context": "Guest; announced WorkTrace AI coming out of stealth with $9M seed; previously at OpenAI for 3 years in product management; building desktop AI that watches workflows and generates agent automation roadmaps."
+    },
+    {
+      "name": "Jonathan Slotkin",
+      "role": "Neurosurgeon, health system leader, multi-time co-founder, Scrub Capital",
+      "context": "Guest; argued autonomous vehicles are a public health urgency that could eliminate 40,000 annual US traffic deaths; cited Waymo's 100M-mile dataset and discussed regulatory barriers and job displacement concerns."
+    },
+    {
+      "name": "Aaron Cannon",
+      "role": "CEO and Co-founder, Outset",
+      "context": "Guest; announced $30M Series B from Radical Ventures; Outset does AI-moderated research for Microsoft, Google, Weight Watchers, Nestle; discussed fraud detection and always-on customer intelligence platform."
+    },
+    {
+      "name": "Karan Kunjur",
+      "role": "Co-founder and CEO, K2 Space",
+      "context": "Guest; announced $250M raise at $3B valuation; building large high-power satellites from 180,000 sq ft factory; first 20kW satellite launches in 3 months; TCV grew from $5M to $500M in three years; company name references Kardashev Type 2 civilization goal."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO of SpaceX, Tesla, XAI; owner of X",
+      "context": "Central figure throughout; SpaceX IPO plans at $1.5T valuation discussed at length; history of aggressive predictions reviewed; plans for space-based AI data centers, lunar satellite factories, and Kardashev Type 2 civilization cited."
+    },
+    {
+      "name": "Larry Ellison",
+      "role": "Co-founder and CTO, Oracle; father of David Ellison",
+      "context": "Addressed Oracle investor anxiety about AI spending at a Wall Street Journal event; also mentioned as marshalling capital alongside David Ellison for WBD acquisition including Gulf sovereign wealth funds."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Recruited Fidji Simo after she served on OpenAI's board; referenced in context of SpaceX/OpenAI valuation competition narrative and pushing hard into enterprise."
+    },
+    {
+      "name": "David Ellison",
+      "role": "CEO, Skydance Media",
+      "context": "Pursuing WBD acquisition as part of broader Hollywood consolidation strategy; bid includes UFC rights acquisition; 20-year Hollywood veteran who views acquisition as essential to competing with Netflix at scale."
+    },
+    {
+      "name": "David Zaslav",
+      "role": "CEO, Warner Brothers Discovery",
+      "context": "Playing Netflix and Skydance against each other in WBD sale negotiations to drive price above $30/share; described as someone who knows how to work a deal despite controversial tenure."
+    },
+    {
+      "name": "Ted Sarandos",
+      "role": "Co-CEO, Netflix",
+      "context": "Leading Netflix's WBD bid; Dylan Byers noted tension between his theatrical-window lip service and actual streaming-first strategy; discussing deal as if concluded when it is not."
+    },
+    {
+      "name": "Bob Iger",
+      "role": "CEO, Disney",
+      "context": "Overseeing Disney's $1B OpenAI investment and SORA licensing deal; co-owner of Thrive Capital which has large OpenAI stake creating a notable financial alignment; appeared on CNBC to discuss the deal."
+    },
+    {
+      "name": "Luke Nosek",
+      "role": "Partner, Founders Fund",
+      "context": "Led Founders Fund's $20M SpaceX investment in 2008; in 2008 interview discussed investing based on team quality rather than domain expertise; stake now potentially worth ~$150B."
+    },
+    {
+      "name": "Gwynne Shotwell",
+      "role": "President and COO, SpaceX",
+      "context": "Mentioned for coining concept of 'residual capability'\u2014filling unused rocket fairing space with Starlink satellites as a byproduct of primary launches."
+    },
+    {
+      "name": "Amin Vadat",
+      "role": "Incoming head of AI infrastructure, Google",
+      "context": "Named by Sundar Pichai to lead Google's $100 billion per year AI infrastructure buildout; described as having unique depth across academic, technical, operational, and business dimensions."
+    },
+    {
+      "name": "Eric Berger",
+      "role": "Journalist, Ars Technica",
+      "context": "Wrote definitive article on SpaceX IPO plans including data center strategy; Elon Musk publicly confirmed the article's accuracy on X."
+    },
+    {
+      "name": "Mark Benioff",
+      "role": "CEO, Salesforce",
+      "context": "Mentioned in context of AgentForce ARR reaching $540M at 4.3x year-over-year growth; potentially renaming the entire company AgentForce."
+    },
+    {
+      "name": "Reed Albergotti",
+      "role": "Tech editor, Semaphore",
+      "context": "Broke exclusive news about Google naming Amin Vadat to head its $100B/year AI infrastructure buildout."
+    },
+    {
+      "name": "Kayser Yunus",
+      "role": "CEO, Applied Intuition",
+      "context": "Joined X/Twitter for the first time after 16+ years; published blog post explaining reversal on social media, citing that company scale now makes the megaphone worth the distraction costs."
+    },
+    {
+      "name": "Ara Karazian",
+      "role": "Economist, Ramp",
+      "context": "Published Ramp AI adoption index showing flat 45% business adoption in November; cautioned against overreacting to OpenAI's slight decline while Anthropic and Google gained."
+    },
+    {
+      "name": "Yuchin Jin",
+      "role": "Co-founder and CTO, Hyperbolic Labs",
+      "context": "Commented publicly that GPT 5.2 appears to be a freshly pre-trained model based on its August 2025 knowledge cutoff."
+    },
+    {
+      "name": "Mira Murati",
+      "role": "Investor (former CTO, OpenAI)",
+      "context": "Mentioned as investor in WorkTrace AI's $9M seed round."
+    },
+    {
+      "name": "Logan Kilpatrick",
+      "role": "Investor",
+      "context": "Mentioned as investor in WorkTrace AI's $9M seed round."
+    },
+    {
+      "name": "Dan Primack",
+      "role": "Journalist",
+      "context": "Shared 2008 PE Week interview with Luke Nosek about Founders Fund's initial SpaceX investment; long-time tech finance journalist."
+    },
+    {
+      "name": "Jerry Cardinale",
+      "role": "Founder, Redbird Capital",
+      "context": "Part of David Ellison's team negotiating WBD acquisition; Dylan Byers cited him as integral to Skydance's deal strategy."
+    },
+    {
+      "name": "Greg Peters",
+      "role": "Co-CEO, Netflix",
+      "context": "Previously said at a Bloomberg event that Netflix doesn't do large M&A; proven wrong as Netflix has been at the WBD table throughout."
+    },
+    {
+      "name": "Abbey Trabathy",
+      "role": "Director of Mission Operations, UC Berkeley Space Sciences Laboratory",
+      "context": "Former SpaceX employee who told Ars Technica that once Musk realized Starlink satellites could become distributed data centers, an IPO became inevitable."
+    },
+    {
+      "name": "Joanna Stern",
+      "role": "Tech journalist, Wall Street Journal",
+      "context": "Made a viral Little Mermaid lyric reference mocking the hype around the Disney/OpenAI deal announcement."
+    }
+  ],
+  "topics": [
+    {
+      "name": "SpaceX IPO",
+      "summary": "SpaceX planning to raise ~$30B at a $1.5 trillion valuation\u2014potentially the largest IPO in history\u2014driven by need to fund AI data centers in space, accelerate Starlink, and deploy capital faster than government competition.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Disney/OpenAI SORA Partnership",
+      "summary": "Disney invested $1B in OpenAI and signed a 3-year licensing deal with 1-year exclusivity allowing SORA to use 200+ characters; curated AI-generated content will stream on Disney+; hosts debated timeline for meaningful viewership impact.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Oracle Earnings Miss and AI Spending Concerns",
+      "summary": "Oracle shares tumbled after revenue fell short while spending rose; $523B in remaining performance obligations but only ~$68B market cap; market questioning whether Oracle was misled about AI economics by OpenAI or Jensen Huang.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "GPT 5.2 Launch",
+      "summary": "OpenAI launched GPT 5.2 on its 10-year anniversary; 90% ARC-AGI score up from 17.6%, representing a 390x efficiency improvement year-over-year; Fidji Simo discussed unlocking spreadsheet/slide generation as key enterprise use case.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Enterprise Adoption Plateau",
+      "summary": "Ramp's AI index showed flat 45% business adoption in November; OpenAI slightly declining while Anthropic and Google gained; debate over whether models need to become more agentic and job-aware rather than just smarter to drive the next adoption wave.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Hollywood M&A: Netflix vs Skydance for WBD",
+      "summary": "Extended negotiation for Warner Brothers Discovery with Netflix and David Ellison/Skydance competing; Zaslav playing both sides to drive price above $30/share; deal expected to extend into 2026; David Ellison needs WBD to execute his full Hollywood consolidation thesis.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Autonomous Vehicles as Public Health Priority",
+      "summary": "Jonathan Slotkin argued Waymo's 100M-mile safety data makes AV deployment a medical urgency for 40,000 annual US traffic deaths; regulatory capture and plaintiff bar are key barriers; insurance pricing differentials will eventually accelerate deployment.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Space-Based AI Data Centers",
+      "summary": "SpaceX planning modified Starlink satellites as foundation for orbital compute; debate over feasibility timelines with 1GW equivalent needing ~10,000 satellites; Elon Musk projects 100 terawatts of AI compute scalability enabling Kardashev Type 2 progress.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Disney vs Google Copyright Infringement",
+      "summary": "Disney sent a cease and desist to Google demanding it stop using Disney IP to train Gemini and distributing infringing images branded with the Gemini logo; Disney appears to be deliberately choosing OpenAI as its AI partner while opposing Google.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Elon Musk Prediction Track Record",
+      "summary": "Review of Musk's history of bold predictions; misses include Mars greenhouse demo, humans on Mars by 2024, tourist moon trips by 2018; hits include reusable orbital rockets and ongoing Starship development; framed as acceptable given unique ambition level.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Broadcom Earnings Beat",
+      "summary": "Broadcom beat Q4 estimates on EPS and revenue, stock up ~3% after hours; framed as continued validation of AI infrastructure spending thesis.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Salesforce AgentForce Growth",
+      "summary": "AgentForce ARR at $540M and up 4.3x year-over-year; Mark Benioff may rename the company to reflect the agent-first strategy.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Peptide Therapy and Health Optimization",
+      "summary": "Jonathan Slotkin discussed growing clinician adoption of peptides and injectables for health-span; 15-20% of surveyed clinicians are personally using more than one injectable; framed as an emerging 'Peptide Nation' trend.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Presidential AI Challenge",
+      "summary": "Melania Trump announced a nationwide student AI challenge across all 50 states offering $10,000 per team member, cloud credits, and presidential certificates; aimed at building AI expertise in American youth.",
+      "sentiment": "neutral"
+    }
+  ],
+  "key_claims": [
+    "SpaceX targeting $1.5 trillion IPO valuation to raise ~$30 billion, which would exceed Saudi Aramco's 2019 record as the largest IPO in history",
+    "Founders Fund owns ~10% of SpaceX; at $1.5T valuation the stake would be worth ~$150 billion, potentially surpassing Masa Son's $20M Alibaba investment as the greatest VC investment of all time",
+    "SpaceX expected to have $22-24 billion in revenue next year, making the IPO price ~65x revenue\u2014approximately twice as expensive as Nvidia at 24x price-to-sales",
+    "GPT 5.2 scored 90% on ARC-AGI vs 17.6% for o3 at $11.64 per task vs $4,500 previously\u2014a 390x compute efficiency improvement in one year",
+    "Ramp AI adoption index: 45% of businesses pay for AI tools, flat in November; OpenAI down 1%, Anthropic up 0.8%, Google Gemini up 0.7%",
+    "Oracle remaining performance obligations at $523 billion but market cap only ~$68 billion; FT Alphaville argued the OpenAI deal is worth negative $7 billion to Oracle",
+    "40,000 people die in US traffic accidents annually; it is the #2 cause of death for children and young adults in the US and #1 worldwide for children",
+    "Disney struck a 3-year SORA licensing deal with $1 billion investment and 1-year exclusivity; curated AI-generated Disney content will stream on Disney+",
+    "Disney sent cease and desist to Google alleging copyright infringement at massive scale in training and distributing Gemini outputs; Google has never received such action from Disney but OpenAI has not",
+    "K2 Space grew total contract value from $5M to $50M to $500M in three successive years",
+    "SpaceX plans to build satellite factories on the moon and use electromagnetic railguns to accelerate AI satellites to lunar escape velocity without rockets",
+    "Elon Musk stated SpaceX's space data center strategy scales to 100 terawatts per year of AI compute, enabling progress toward Kardashev Type 2 civilization",
+    "Google named Amin Vadat to lead a $100 billion per year AI infrastructure buildout reporting directly to Sundar Pichai",
+    "Salesforce AgentForce ARR reached $540 million, up 4.3x year-over-year; Mark Benioff considering renaming the company",
+    "A child was born inside a Waymo autonomous vehicle",
+    "China currently has at least 7 companies pursuing full-stack autonomous vehicles",
+    "ElevenLabs partnering with Meta to power audio across Instagram, Horizon, and more at scale",
+    "OpenAI turns 10 years old on December 11, 2025",
+    "General Agents startup was founded, launched its product, and was acquired by Amazon all within a short window in 2025",
+    "Survey of 135 clinicians active in health-span found 15-20% are personally using more than one injectable including peptides",
+    "To replicate one gigawatt of data center compute in orbit would require approximately 10,000 satellites\u2014comparable to Starlink's current constellation size"
+  ],
+  "technologies": [
+    "GPT 5.2",
+    "SORA",
+    "Starlink",
+    "Starship",
+    "Gemini",
+    "AI agents",
+    "Large language models",
+    "Autonomous vehicles / self-driving",
+    "Space-based data centers",
+    "Electromagnetic railgun / mass driver",
+    "Dyson sphere",
+    "Kardashev scale",
+    "Deep learning",
+    "Serverless GPUs",
+    "Vector search",
+    "Computer vision",
+    "Full self-driving",
+    "Generative video",
+    "Generative audio",
+    "Satellite constellation",
+    "High-power solar arrays",
+    "Bio-wearables",
+    "Peptide therapy",
+    "ARC-AGI benchmark",
+    "Agent Builder"
+  ],
+  "_stats": {
+    "word_count": 35263,
+    "estimated_input_tokens": 46899,
+    "input_tokens": 3,
+    "output_tokens": 21190,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 51653,
+    "duration_ms": 371860,
+    "wall_time_s": 373.1,
+    "cost_usd": 0.85720475,
+    "tokens_per_sec": 56.8
+  }
+}

@@ -1,0 +1,788 @@
+{
+  "episode_date": "2025-02-20",
+  "episode_title": "everything-is-computer",
+  "companies": [
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Apple Intelligence delays and Siri failures discussed extensively, citing John Gruber's Daring Fireball retrospective. Tim Cook criticized for not holding a Steve Jobs-style accountability meeting; Apple stock down ~10% in five days.",
+      "sentiment": "bearish",
+      "sector": "Consumer Tech / AI"
+    },
+    {
+      "name": "Friend (friend.com)",
+      "type": "startup",
+      "context": "Avi Schiffmann's AI companion wearable startup targeting loneliness over task-based utility, connecting via Bluetooth to the user's phone. Targeting World Friendship Day (July 3rd) for next major release.",
+      "sentiment": "bullish",
+      "sector": "Consumer Hardware / AI"
+    },
+    {
+      "name": "Flock Safety",
+      "type": "startup",
+      "context": "Raised $275M at $7.5B valuation led by Andreessen Horowitz; YC 2018 company building license plate recognition and drone-based public safety infrastructure for law enforcement. Recently acquired Aerodome for drone ISR capability.",
+      "sentiment": "bullish",
+      "sector": "GovTech / Defense Tech"
+    },
+    {
+      "name": "Anduril",
+      "type": "startup",
+      "context": "Discussed taking over Microsoft's IVAS HoloLens military AR headset program and building Arsenal manufacturing facility near Columbus, Ohio targeting June-July 2026 for initial production of Fury, Barracuda, and Roadrunner systems.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "TruMed",
+      "type": "startup",
+      "context": "Justin Mares' fintech company enabling tax-free HSA/FSA spending on gym memberships, supplements, and wellness products. Closed $36M round led by Andreessen Horowitz.",
+      "sentiment": "bullish",
+      "sector": "Fintech / Health"
+    },
+    {
+      "name": "Y Combinator",
+      "type": "private",
+      "context": "Hosted Winter 2025 Demo Day with ~200 companies; heavy AI agent presence with prices deemed high by investors. Gary Tan praised for reinvigorating the brand and founder-first culture.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Core Memory",
+      "type": "startup",
+      "context": "Ashley Vance's independent media company on Substack with 15,000 subscribers; launching a tech TV show with plans for 20-30 episodic segments and two full documentary seasons.",
+      "sentiment": "bullish",
+      "sector": "Media"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Led both Flock Safety's $275M round and TruMed's $36M round; mentioned multiple times as lead investor across defense tech, GovTech, and health.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Transitioning IVAS HoloLens military AR headset program to Anduril; praised as the most DoD-friendly big tech company. Azure and Windows described as deeply embedded in the defense enterprise.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Tech / Defense Tech"
+    },
+    {
+      "name": "Humane",
+      "type": "startup",
+      "context": "Mentioned as a failed AI hardware competitor to Friend, now described as being in the 'printing business' after their AI pin failed commercially.",
+      "sentiment": "bearish",
+      "sector": "Consumer Hardware / AI"
+    },
+    {
+      "name": "Rabbit",
+      "type": "startup",
+      "context": "R1 device cited as a failed AI hardware competitor with the wrong form factor; Avi Schiffmann criticized unnecessary components like LTE modules, screens, and scroll wheels.",
+      "sentiment": "bearish",
+      "sector": "Consumer Hardware / AI"
+    },
+    {
+      "name": "Character.AI",
+      "type": "startup",
+      "context": "Mentioned as an AI companionship competitor Avi Schiffmann believes is 'doomed' due to lack of founder-led leadership and poor understanding of the consumer category.",
+      "sentiment": "bearish",
+      "sector": "AI/ML / Consumer"
+    },
+    {
+      "name": "Replika",
+      "type": "startup",
+      "context": "Mentioned alongside Character.AI as part of a group of AI companion companies without founder leadership that Avi considers doomed.",
+      "sentiment": "bearish",
+      "sector": "AI/ML / Consumer"
+    },
+    {
+      "name": "Inflection AI",
+      "type": "startup",
+      "context": "Pi from Inflection mentioned as an AI companion product Avi likes but believes is in trouble; company largely absorbed into Microsoft.",
+      "sentiment": "bearish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Briefly mentioned as an alternative AI provider Apple might need to rely on if it cannot develop competitive features in-house.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "xAI",
+      "type": "startup",
+      "context": "Briefly mentioned alongside OpenAI as an alternative AI provider Apple might need to open its ecosystem to if it fails to build competitive AI.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Polymarket",
+      "type": "startup",
+      "context": "Avi Schiffmann cited Polymarket as one of the only startups he currently finds interesting, praising it as new, culturally relevant, and run by founder Shane.",
+      "sentiment": "bullish",
+      "sector": "Fintech / Prediction Markets"
+    },
+    {
+      "name": "Kettle and Fire",
+      "type": "private",
+      "context": "Justin Mares' bone broth company facing demand exceeding supply; replacing copywriters and designers with AI tools and building a 150,000 sq ft manufacturing facility.",
+      "sentiment": "bullish",
+      "sector": "Consumer Goods / Food"
+    },
+    {
+      "name": "Light Labs",
+      "type": "startup",
+      "context": "Nick Mares' consumer toxin-testing company detecting microplastics and glyphosate in products; described as doing well and invested in by Justin Mares.",
+      "sentiment": "bullish",
+      "sector": "Health Tech / Consumer"
+    },
+    {
+      "name": "Arena Magazine",
+      "type": "startup",
+      "context": "Max Meyer's print publication covering technology and American culture; Issue 003 'Machine World' includes an Anduril poster and articles on manufacturing and factory work.",
+      "sentiment": "bullish",
+      "sector": "Media"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Trey Stevens' venture fund; noted strategy of writing concentrated checks in GovTech only after seeing production usage given the extreme difficulty of government sales.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Solo Brands",
+      "type": "public",
+      "context": "Stock collapsed 63% in a single day to a $22M market cap despite ~$60M EBITDA and $409M combined annual revenue; parent of Solo Stove and Chubbies. Likely driven by tariff concerns.",
+      "sentiment": "bearish",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "Solo Stove",
+      "type": "private",
+      "context": "Smokeless outdoor fire pit brand owned by Solo Brands; generated $297M in 2024 revenue.",
+      "sentiment": "bearish",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "Chubbies",
+      "type": "private",
+      "context": "Men's fashion brand owned by Solo Brands; acquired in 2021 for $130M and generated $112M in 2024 revenue. Now part of a company with a collapsed market cap.",
+      "sentiment": "bearish",
+      "sector": "Consumer / Fashion"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Referenced as a comparison label for Flock Safety's relationship to local government in the 'Palantir of local government' framing.",
+      "sentiment": "neutral",
+      "sector": "Defense Tech / GovTech"
+    },
+    {
+      "name": "Axon",
+      "type": "public",
+      "context": "Cited by Trey Stevens as the benchmark law enforcement tech company for Flock Safety to aspire to; formerly named Taser.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech / GovTech"
+    },
+    {
+      "name": "SpaceX",
+      "type": "startup",
+      "context": "Briefly mentioned in context of billionaire-backed space companies; Starlink cited as operating the most advanced PCB manufacturing facility in the United States.",
+      "sentiment": "bullish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Rocket Lab",
+      "type": "public",
+      "context": "Praised by Ashley Vance as one of only two companies to truly figure out orbital launch at scale alongside SpaceX, remarkably achieving this from New Zealand.",
+      "sentiment": "bullish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Firefly Aerospace",
+      "type": "startup",
+      "context": "Ashley Vance discussed Firefly's under-the-radar status and complex history including Ukrainian investor Max Plyakov being ousted during the Russia-Ukraine conflict.",
+      "sentiment": "neutral",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Figure",
+      "type": "startup",
+      "context": "Ashley Vance visited Figure's humanoid robotics facility and noted significant progress in 18-24 months beyond optimistic expectations, while remaining cautious on timeline.",
+      "sentiment": "neutral",
+      "sector": "Robotics / AI"
+    },
+    {
+      "name": "Boston Dynamics",
+      "type": "private",
+      "context": "Mentioned as context for the long history of humanoid robot development and the recurring cycle of robots that seemed almost ready but weren't.",
+      "sentiment": "neutral",
+      "sector": "Robotics"
+    },
+    {
+      "name": "Crusoe Energy",
+      "type": "startup",
+      "context": "Justin Mares' first-ever angel investment, a Founders Fund company now valued in the billions.",
+      "sentiment": "bullish",
+      "sector": "Energy / AI Infrastructure"
+    },
+    {
+      "name": "Mindbloom",
+      "type": "startup",
+      "context": "Justin Mares' second angel investment, an at-home ketamine therapy company he backed at the seed stage after encouraging founder Dylan to take the leap.",
+      "sentiment": "bullish",
+      "sector": "Health / Biotech"
+    },
+    {
+      "name": "Somewhere.com",
+      "type": "startup",
+      "context": "Sean Puri's offshore hiring platform acquisition; he grew it from 7-figure to 8-figure monthly profit by leveraging his media audience as a distribution engine.",
+      "sentiment": "bullish",
+      "sector": "HR / Talent"
+    },
+    {
+      "name": "Axiom (crypto platform)",
+      "type": "startup",
+      "context": "Crypto trading platform for meme coins and perpetuals announced $10M MRR and $5M monthly net profit shortly after launch.",
+      "sentiment": "bullish",
+      "sector": "Crypto / Fintech"
+    },
+    {
+      "name": "8 Sleep",
+      "type": "startup",
+      "context": "Sponsor; Pod Ultra smart mattress system tracking sleep metrics like breath rate and deep sleep; mentioned as a TruMed-eligible wellness purchase.",
+      "sentiment": "neutral",
+      "sector": "Consumer Health / Hardware"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor; multi-asset investing platform with industry-leading yields trusted by millions of users.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor; vacation home rental platform with hotel-grade amenities, 24-7 concierge service, and a trip giveaway for TBPN listeners.",
+      "sentiment": "neutral",
+      "sector": "Travel / Hospitality"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Sponsor; luxury watch marketplace with 23,500+ watches fully authenticated in-house by an expert team.",
+      "sentiment": "neutral",
+      "sector": "E-commerce / Luxury"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising platform bringing programmatic mechanics and measurement to billboard and OOH buying.",
+      "sentiment": "neutral",
+      "sector": "Adtech / Marketing"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor; corporate card and expense management platform for businesses.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Salesforce",
+      "type": "public",
+      "context": "Mentioned as an early example of consumption-based AI agent pricing, charging per ticket closed rather than per seat license.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Tech / AI"
+    },
+    {
+      "name": "Quantum Systems",
+      "type": "startup",
+      "context": "German defense tech startup cited by Trey Stevens as one of Europe's notable defense companies; parent of Stark Industries.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "Helsing",
+      "type": "startup",
+      "context": "European defense tech company mentioned by Trey Stevens as a notable defense AI startup in Europe.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech / AI"
+    },
+    {
+      "name": "Aerodome",
+      "type": "startup",
+      "context": "Drone operations company acquired by Flock Safety, extending their capability into autonomous drone ISR missions for law enforcement.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech / Drones"
+    },
+    {
+      "name": "TechCrunch",
+      "type": "private",
+      "context": "Discussed as being disrupted by TBPN; owned by AOL/Apollo and jokingly suggested as a candidate for a ski lifestyle magazine pivot.",
+      "sentiment": "bearish",
+      "sector": "Media"
+    },
+    {
+      "name": "Apollo Global Management",
+      "type": "public",
+      "context": "Mentioned as the private equity owner of AOL which in turn owns TechCrunch.",
+      "sentiment": "neutral",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "AOL",
+      "type": "private",
+      "context": "Mentioned as the intermediary owner of TechCrunch between Verizon and current owner Apollo Global Management.",
+      "sentiment": "neutral",
+      "sector": "Media / Tech"
+    },
+    {
+      "name": "Substack",
+      "type": "startup",
+      "context": "Mentioned multiple times as a platform powering independent media; Elon Musk cited as viewing Substack as one of X's genuine competitive threats.",
+      "sentiment": "bullish",
+      "sector": "Media / SaaS"
+    },
+    {
+      "name": "Comma AI",
+      "type": "startup",
+      "context": "George Hotz's autonomous driving company manufacturing devices fully in-house in San Diego including PCB layout and lens tuning.",
+      "sentiment": "bullish",
+      "sector": "Autonomous Vehicles / Hardware"
+    },
+    {
+      "name": "Waymo",
+      "type": "startup",
+      "context": "Mentioned in the context of autonomous vehicle aesthetics, specifically the knobby sensor-laden Jaguar design contrasted with Tesla's Cybercab.",
+      "sentiment": "neutral",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Long Journey Ventures",
+      "type": "fund",
+      "context": "Justin Mares serves as venture partner; he makes approximately 15 angel investments per year through both personal checks and this fund.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "8VC",
+      "type": "fund",
+      "context": "Venture capital firm where Max Meyer works alongside his Arena Magazine project.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Bedrock Capital",
+      "type": "fund",
+      "context": "Participated in Flock Safety's $275M fundraise alongside Andreessen Horowitz and Green Oak Capital.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Green Oak Capital",
+      "type": "fund",
+      "context": "Participated in Flock Safety's $275M fundraise alongside Andreessen Horowitz and Bedrock Capital.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Function Health",
+      "type": "startup",
+      "context": "Mentioned as part of a new wave of health companies offering comprehensive lab testing outside the traditional doctor-patient relationship.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Superpower",
+      "type": "startup",
+      "context": "Mentioned alongside Function Health as a new-model health company operating on the philosophy that health is not found in the doctor's office.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Flick Reels",
+      "type": "startup",
+      "context": "Singapore-based mobile short-drama entertainment app appearing on Apple App Store top free charts, part of a wave of mobile-native content apps originating in Asia.",
+      "sentiment": "bullish",
+      "sector": "Consumer / Entertainment"
+    },
+    {
+      "name": "ReelShort",
+      "type": "startup",
+      "context": "Mobile short-form drama streaming app appearing in top Apple App Store free charts alongside Flick Reels, representing a new wave of mobile-native entertainment.",
+      "sentiment": "bullish",
+      "sector": "Consumer / Entertainment"
+    },
+    {
+      "name": "Quibi",
+      "type": "startup",
+      "context": "Mentioned as the overfunded mobile entertainment failure that was widely written off, contrasted with current success of similar Asian-originated apps.",
+      "sentiment": "bearish",
+      "sector": "Consumer / Entertainment"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Briefly mentioned for smart glasses as part of the AI wearable hardware category that Avi Schiffmann criticized for wrong form factor choices.",
+      "sentiment": "neutral",
+      "sector": "Consumer Hardware / AI"
+    },
+    {
+      "name": "Penguin Random House",
+      "type": "private",
+      "context": "Publishing Ashley Vance's book on OpenAI and AI broadly, with movie rights already sold before publication.",
+      "sentiment": "neutral",
+      "sector": "Publishing"
+    },
+    {
+      "name": "Saab",
+      "type": "public",
+      "context": "Cited as the rare European exception that completely pivoted from automobiles to defense manufacturing.",
+      "sentiment": "bullish",
+      "sector": "Defense"
+    },
+    {
+      "name": "Slow Ventures",
+      "type": "fund",
+      "context": "Mentioned as having a dedicated creator fund, described as early to the trend of investing in creator businesses.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "DoorDash",
+      "type": "public",
+      "context": "Mentioned as an example of a company that broke through the mobile era by being genuinely novel rather than just mobile-first.",
+      "sentiment": "neutral",
+      "sector": "Consumer / Logistics"
+    },
+    {
+      "name": "Uber",
+      "type": "public",
+      "context": "Mentioned alongside DoorDash as an example of a truly novel mobile-era company whose innovation drove breakthrough success.",
+      "sentiment": "neutral",
+      "sector": "Consumer / Transportation"
+    },
+    {
+      "name": "Instacart",
+      "type": "public",
+      "context": "Mentioned alongside DoorDash and Uber as one of the genuinely novel companies from the mobile era.",
+      "sentiment": "neutral",
+      "sector": "Consumer / Logistics"
+    },
+    {
+      "name": "Peloton",
+      "type": "public",
+      "context": "Mentioned as an example of a wellness purchase that TruMed enables users to buy with tax-free HSA/FSA funds if treating or preventing obesity.",
+      "sentiment": "neutral",
+      "sector": "Consumer Health / Hardware"
+    },
+    {
+      "name": "Intel",
+      "type": "public",
+      "context": "Briefly mentioned as an example of a massive national problem that would require a billionaire-caliber operator like Elon Musk to save.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Teach for America",
+      "type": "gov",
+      "context": "Mentioned as a hybrid civil service model that is a step in the right direction but doesn't go far enough in engaging top talent on national priorities.",
+      "sentiment": "neutral",
+      "sector": "Government / Education"
+    },
+    {
+      "name": "Code for America",
+      "type": "gov",
+      "context": "Mentioned as a nonprofit tech civil service program that is better than nothing but less effective than direct government integration.",
+      "sentiment": "neutral",
+      "sector": "Government / Tech"
+    },
+    {
+      "name": "AngelList",
+      "type": "startup",
+      "context": "Mentioned as the platform where Sean Puri may have operated a rolling investment fund.",
+      "sentiment": "neutral",
+      "sector": "Fintech / Venture"
+    },
+    {
+      "name": "Sequoia",
+      "type": "fund",
+      "context": "Mentioned in context of Greg Eisenberg's post on 'vibe revenue,' with Pat Grady from Sequoia amplifying the warning about AI companies monetizing curiosity rather than solving real problems.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Bloomberg",
+      "type": "private",
+      "context": "Ashley Vance's former employer; his Hello World show earned Bloomberg's first-ever Emmy nomination before he left for independent media citing lack of creative flexibility.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Twitch",
+      "type": "private",
+      "context": "Sean Puri worked there post-acquisition and described fighting against organizational gravity to stay at the problem-identification level rather than becoming a task executor.",
+      "sentiment": "neutral",
+      "sector": "Consumer / Entertainment"
+    }
+  ],
+  "people": [
+    {
+      "name": "Avi Schiffmann",
+      "role": "Founder and CEO, Friend (friend.com)",
+      "context": "Discussed his AI companion wearable, arguing companionship is the true consumer AI category and criticizing competitors' form factors. Revealed manufacturing in Canada, dog-fooding the product daily, and targeting World Friendship Day for release."
+    },
+    {
+      "name": "Ashley Vance",
+      "role": "Journalist and Founder, Core Memory",
+      "context": "Discussed launching Core Memory with 15K Substack subscribers, a new tech TV show debuting the next day, two books in progress including one on OpenAI with movie rights already sold, and his views on humanoid robotics."
+    },
+    {
+      "name": "Max Meyer",
+      "role": "Investor at 8VC and Publisher, Arena Magazine",
+      "context": "Discussed Arena Magazine Issue 003 'Machine World' including an Anduril poster insert, explored themes of Midwestern talent, American manufacturing, techno-Luddism, and autonomous vehicle aesthetics."
+    },
+    {
+      "name": "Justin Mares",
+      "role": "Founder, TruMed; Co-founder, Kettle and Fire",
+      "context": "Announced TruMed's $36M raise led by a16z, discussed the MAHA movement, AI displacing marketing hires at Kettle and Fire, environmental toxins, and nutrient decline in the American food supply."
+    },
+    {
+      "name": "Sean Puri",
+      "role": "Co-host, My First Million podcast",
+      "context": "Discussed the creator-as-private-equity model, brand counter-positioning, using Claude to draft his book in one night, the Triangle of Talent framework, and his investment in Somewhere.com."
+    },
+    {
+      "name": "Trey Stevens",
+      "role": "Partner, Founders Fund; Co-founder, Anduril",
+      "context": "Discussed Flock Safety's growth, Anduril's IVAS takeover from Microsoft, the Arsenal manufacturing facility timeline, skepticism on humanoid robotics valuation, and his GoodQuest essay on moral duties of tech operators."
+    },
+    {
+      "name": "Palmer Luckey",
+      "role": "Co-founder and CEO, Anduril",
+      "context": "Referenced for his early view that AR headsets for soldiers weren't technically ready, his recent reversal on the IVAS program, his quote about wanting to kill companies that deserve to die, and jokingly as a potential Apple CEO."
+    },
+    {
+      "name": "Gary Tan",
+      "role": "President, Y Combinator",
+      "context": "Praised for reinvigorating YC's brand and founder-focused culture, drawing ~200 companies to the W25 Demo Day with strong energy."
+    },
+    {
+      "name": "John Gruber",
+      "role": "Blogger, Daring Fireball",
+      "context": "His long retrospective on Apple Intelligence failures was read and discussed at length; argued Tim Cook must hold an accountability meeting like Steve Jobs did with MobileMe or the Apple era of excellence is over."
+    },
+    {
+      "name": "Max Hodak",
+      "role": "Brain-computer interface entrepreneur",
+      "context": "Interviewed by Ashley Vance for Core Memory on brain-computer interface topics."
+    },
+    {
+      "name": "Warren Buffett",
+      "role": "CEO, Berkshire Hathaway",
+      "context": "Discussed for selling Apple stock before Apple Intelligence failures became apparent; jokingly described as having carried the 'soul of Apple' and selling it when he divested."
+    },
+    {
+      "name": "Tim Cook",
+      "role": "CEO, Apple",
+      "context": "Criticized for not holding a Steve Jobs-style accountability meeting over Apple Intelligence delays; referenced humorously for DJing at a music festival."
+    },
+    {
+      "name": "Garrett (Flock Safety founder)",
+      "role": "Founder and CEO, Flock Safety",
+      "context": "Described by Trey Stevens as incredibly hard-charging and talented; credited with cracking the complex government sales motion that most GovTech founders fail to solve."
+    },
+    {
+      "name": "Nick Mares",
+      "role": "Founder, Light Labs; Co-founder, Kettle and Fire",
+      "context": "Justin's brother who left Kettle and Fire to start Light Labs, a consumer toxin-testing company; was a Teal Fellowship alumnus who joined the company at age 19."
+    },
+    {
+      "name": "George Hotz",
+      "role": "Founder, Comma AI",
+      "context": "Mentioned for manufacturing Comma AI devices fully in-house in San Diego including PCB layout and lens tuning."
+    },
+    {
+      "name": "Brad Smith",
+      "role": "President, Microsoft",
+      "context": "Praised for Microsoft's consistent engagement with the defense community, attending the Reagan National Defense Forum for a decade and embracing programs with lethal end uses."
+    },
+    {
+      "name": "Max Plyakov",
+      "role": "Former investor, Firefly Aerospace",
+      "context": "Ukrainian businessman ousted from Firefly Aerospace during the Russia-Ukraine conflict; described by Ashley Vance as one of the most interesting stories in his upcoming book on the space industry."
+    },
+    {
+      "name": "Shane (Polymarket founder)",
+      "role": "Founder, Polymarket",
+      "context": "Mentioned by Avi Schiffmann as one of the very few founders running a startup he finds genuinely interesting and culturally cool."
+    },
+    {
+      "name": "Blake Robbins",
+      "role": "Investor, Ludlow Ventures",
+      "context": "Mentioned as an expert on Apple App Store charts and trends; identified games and short-drama apps generating massive revenue that mainstream tech had overlooked."
+    },
+    {
+      "name": "Donald Trump",
+      "role": "U.S. President",
+      "context": "His viral 'everything is computer' quote upon entering his new Tesla inspired the episode title and was described as a rare bipartisan meme."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO, Tesla/SpaceX/xAI; Head, DOGE",
+      "context": "Referenced as the person Trump was supporting by buying a Tesla; mentioned as a potential savior for Intel; DOGE mentioned briefly in context of anti-tech sentiment."
+    },
+    {
+      "name": "Craig Federighi",
+      "role": "SVP Software Engineering, Apple",
+      "context": "Briefly mentioned as a once-rumored Apple CEO candidate who appears to have underdelivered on software consistency and quality."
+    },
+    {
+      "name": "Patrick O'Shaughnessy",
+      "role": "Investor and podcaster",
+      "context": "Quoted on X connecting Warren Buffett's Apple stock sale to Apple's current cultural decline, noting the timing was 'really something.'"
+    },
+    {
+      "name": "Walt Mossberg",
+      "role": "Former technology journalist, WSJ",
+      "context": "Mentioned in the context of the Steve Jobs MobileMe story; Jobs referenced Mossberg's critical review as evidence that the team had embarrassed Apple."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Apple Intelligence Delays",
+      "summary": "John Gruber's Daring Fireball retrospective dissected Apple's failure to deliver personalized Siri features promised at WWDC 2024, arguing Tim Cook needs a Steve Jobs-style accountability moment or the era of Apple excellence is over. Apple stock fell ~10% in five days.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "AI Companion Hardware",
+      "summary": "Avi Schiffmann argued AI companionship is the true consumer AI category, criticizing Humane and Rabbit for wrong form factors. Friend's wearable prioritizes text output over voice and companionship over assistant utility, with users chatting 60+ consecutive days.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "YC Demo Day W25",
+      "summary": "~200 companies pitched with heavy AI agent presence; investor crowd complained about high prices but hosts argued valuation is irrelevant for transcendent founders. Gary Tan praised for reinvigorating YC's founder-first culture.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Defense Tech Distribution Challenge",
+      "summary": "Trey Stevens emphasized that selling to government is harder than building the product; Flock Safety praised for cracking the law enforcement sales motion at the city council, police chief, and HOA levels before scaling.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Independent Creator Media Model",
+      "summary": "Ashley Vance and Sean Puri discussed leaving legacy media for direct subscription publishing; Sean articulated the model of creators using media distribution to acquire equity stakes in companies rather than just selling sponsorships.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Humanoid Robotics",
+      "summary": "Mixed sentiment; Trey Stevens compared current hype to self-driving car over-investment and warned of 'kamikaze rounds.' Ashley Vance noted significant unexpected progress at Figure and 1X but remained cautious on timelines.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "MAHA and the American Health Crisis",
+      "summary": "Justin Mares discussed the $4.5T healthcare system with 90% spent on chronic disease, environmental toxins like atrazine, 40-70% nutrient decline in food supply, and the massive entrepreneurial opportunity in preventive health and root-cause interventions.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "GoodQuest Concept",
+      "summary": "Trey Stevens discussed his essay arguing that talented tech operators are sidelining themselves into easy enterprise SaaS or passive investing instead of tackling the hardest national problems; framed it as a moral failure of the tech generation.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "European Defense Spending",
+      "summary": "Discussion of Europe increasing defense budgets as a percentage of GDP; challenge is that nationalism means each country will prefer domestic suppliers, fragmenting the market for US defense companies expanding internationally.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Creator Economy as Private Equity",
+      "summary": "Sean Puri described the model of using media audiences as distribution to acquire equity in companies, citing Somewhere.com and Epic Gardening as examples. Argued this is a superior model to ad-revenue-only podcasting.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Consumption-Based AI Pricing",
+      "summary": "Discussion of AI companies shifting from seat licenses to value-based pricing per unit of work output, with Salesforce's agent pricing per ticket closed as the leading enterprise example signaling a broader shift.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "US Manufacturing Reshoring",
+      "summary": "Discussed across multiple segments including Avi building in Canada/US due to tariffs, Anduril's Arsenal facility, George Hotz's Comma AI manufacturing in San Diego, and the open question of whether Trump's tariffs will actually work.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Solo Brands Stock Collapse",
+      "summary": "Solo Brands (ticker: DTC) market cap fell 63% in a single day to $22M despite $60M EBITDA and ~$409M in annual revenue from Solo Stove and Chubbies; likely driven by tariff exposure concerns.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "AI in Content Creation and Writing",
+      "summary": "Sean Puri described generating a full book draft in one night by iterating with Claude, calling it transformative for the creative process while keeping editorial taste and curation as the human role.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Brand Building and Counter-Positioning",
+      "summary": "Sean Puri explained that all positioning is counter-positioning and brands must lean into what is weird about them; applied this framework to TBPN's masculine, suited aesthetic as effective differentiation in podcasting.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Mobile Entertainment Wave from Asia",
+      "summary": "Flick Reels and ReelShort dominating Apple App Store free charts raised the question of why similar apps failed (Quibi) a decade ago; suggested the content format matured rather than the technology changing.",
+      "sentiment": "bullish"
+    }
+  ],
+  "key_claims": [
+    "Apple stock fell approximately 10% in the five days following the Apple Intelligence personalized Siri feature delay announcement.",
+    "Solo Brands (ticker: DTC) market cap collapsed 63% in a single day to $22M despite approximately $60M in annual EBITDA and $409M in combined revenue.",
+    "Axiom crypto trading platform hit $10M MRR and $5M monthly net profit shortly after launch.",
+    "TruMed raised $36M led by Andreessen Horowitz to expand HSA/FSA spending on wellness products like gym memberships and supplements.",
+    "Flock Safety raised $275M at a $7.5B valuation led by Andreessen Horowitz, with participation from Bedrock Capital and Green Oak Capital.",
+    "Avi Schiffmann claims Friend.com users have chatted with AI characters for 60 consecutive days sending thousands of messages daily.",
+    "Atrazine, the third most popular pesticide in the US, is banned in the EU, Canada, and Mexico; exposure causes 4 out of 10 male frogs to change sex according to UC Berkeley research.",
+    "Average American food is 40-70% less nutrient dense than it was 50 years ago due to soil depletion and supply chain delays.",
+    "US healthcare spending is $4.5 trillion per year with 90% going toward chronic conditions.",
+    "Doctors are being culturally discouraged from asking patients about obesity, which Justin Mares called insane.",
+    "Ashley Vance's book on OpenAI has already had its movie rights sold before publication by Penguin Random House.",
+    "Anduril plans to have Arsenal's initial production capability online by June-July 2026 for Fury autonomous jets, Barracuda cruise missiles, and Roadrunner interceptors.",
+    "The most aspirational job for children today is influencer rather than astronaut, the first time since the 1960s (per Trey Stevens).",
+    "Microsoft's IVAS HoloLens military AR headset program is being transitioned to Anduril after Palmer Luckey concluded the technology is now feasible.",
+    "Sean Puri generated a full draft of his book in one night by iterating chapters with Claude, calling it transformative for authors.",
+    "John Gruber argues that if Tim Cook has not already held a Steve Jobs-style accountability meeting about Apple Intelligence, 'that's all she wrote, the ride is over.'",
+    "Spinach loses roughly 70-90% of its nutrient density over a typical 12-day supply chain transit period from farm to consumer (per Justin Mares)."
+  ],
+  "technologies": [
+    "Apple Intelligence / Siri",
+    "Generative AI / LLMs",
+    "AI Companion Wearables",
+    "Bluetooth Audio",
+    "Augmented Reality / Mixed Reality Headsets (IVAS/HoloLens)",
+    "Humanoid Robotics",
+    "Autonomous Vehicles / Self-Driving Cars",
+    "Drone ISR (Intelligence Surveillance Reconnaissance)",
+    "License Plate Recognition",
+    "Starlink / LEO Satellites",
+    "HSA/FSA Fintech",
+    "Full Genome Sequencing",
+    "Brain-Computer Interfaces",
+    "Claude (Anthropic AI)",
+    "Consumption-Based AI Agent Pricing",
+    "Voice AI",
+    "AI Agents",
+    "PCB Manufacturing",
+    "3D Printing",
+    "Solar Off-Grid Power"
+  ],
+  "_stats": {
+    "word_count": 37065,
+    "estimated_input_tokens": 49296,
+    "input_tokens": 3,
+    "output_tokens": 21593,
+    "cache_read_tokens": 6263,
+    "cache_creation_tokens": 54957,
+    "duration_ms": 406442,
+    "wall_time_s": 409.0,
+    "cost_usd": 0.8864527499999999,
+    "tokens_per_sec": 52.8
+  }
+}

@@ -1,0 +1,778 @@
+{
+  "episode_date": "2025-12-12",
+  "episode_title": "disney-openai-1b-deal-gpt52-shipbuilding-prediction-markets",
+  "companies": [
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Disney invested $1B and licensed 200 characters for 3 years with a 1-year exclusive; GPT-5.2 launched with benchmark improvements; pushing enterprise AI as a massive 2026 priority while navigating a self-described 'Code Red.'",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Disney",
+      "type": "public",
+      "context": "Invested $1B in OpenAI and granted a 3-year IP license for 200 characters including Star Wars and Frozen properties, reversing its historically aggressive IP protection stance.",
+      "sentiment": "bullish",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Received a Disney cease and desist for generating Disney characters; Gemini 3 Pro outperformed GPT-5.2 on advanced mathematics benchmarks; ~$900M SpaceX investment potentially worth $111B at $1.5T IPO valuation.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "Delayed OpenAI data center completions to 2028 from 2027 due to labor and material shortages, despite a $300B contract; did not disclose delays on a recent earnings call.",
+      "sentiment": "bearish",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "Broadcom",
+      "type": "public",
+      "context": "Revealed Anthropic as its mystery $10B+ custom chip customer; stock fell 10% despite record $18B in sales due to lower AI business gross margins and flat non-AI revenue forecast.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Identified as Broadcom's $10B+ custom chip customer; Claude Opus 4.5 benchmarked alongside GPT-5.2 and Gemini 3 Pro on ARC-AGI leaderboard.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "H200 chips are now being exported to China, reversing prior export restrictions; CEO Jensen Huang described as visiting China quarterly and lobbying against export controls.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Awarded $448M contract over two years to apply AI to US Navy shipbuilding, modernizing planning at yards and linking 100 key suppliers; Mike Gallagher is head of federal at Palantir.",
+      "sentiment": "bullish",
+      "sector": "Defense/AI"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "A viral satirical post described deploying Copilot to 4,000 employees for $1.4M annually, with only 47 opening it and 12 using it more than once, illustrating enterprise AI adoption challenges.",
+      "sentiment": "bearish",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "Salesforce",
+      "type": "public",
+      "context": "Agentforce discussed as generating high margins on reportedly very low token volumes; described as having the greatest enterprise sales capability in the industry.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Apollo",
+      "type": "fund",
+      "context": "Published a note predicting zero S&P 500 returns over the coming decade based on current forward PE ratios, suggesting investors consider private credit alternatives.",
+      "sentiment": "bearish",
+      "sector": "Private Equity/Finance"
+    },
+    {
+      "name": "Swan Land Company",
+      "type": "private",
+      "context": "Rocky Mountain West ranch brokerage; managing owner Mike Swan discussed 10-20% appreciation over 5-7 years and growing interest from high-net-worth tech individuals relocating to Montana.",
+      "sentiment": "bullish",
+      "sector": "Real Estate"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Potential IPO at $1.5 trillion valuation on $22B revenue discussed; theories include using proceeds for orbital data centers and potentially rolling XAI into SpaceX for the offering.",
+      "sentiment": "bullish",
+      "sector": "Space/Defense"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Discussed as a possible acquirer of XAI, though shareholder pushback expected given XAI's valuation and Tesla's existing AI team; previously acquired SolarCity as a comparable transaction.",
+      "sentiment": "neutral",
+      "sector": "EV/AI"
+    },
+    {
+      "name": "XAI",
+      "type": "startup",
+      "context": "Elon Musk's AI company discussed as potentially being rolled into SpaceX for a public offering; carries Twitter debt on its balance sheet.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Harvey",
+      "type": "startup",
+      "context": "Mentioned as a potential enterprise AI target for OpenAI as it pursues legal industry clients; described as doing well in the law firm enterprise segment.",
+      "sentiment": "bullish",
+      "sector": "AI/Legal"
+    },
+    {
+      "name": "Rivian",
+      "type": "public",
+      "context": "CEO RJ Scaringe announced adding LiDAR as a third sensor to the R2 vehicle; described as a bold move in the company's self-driving sensor strategy.",
+      "sentiment": "neutral",
+      "sector": "EV/Automotive"
+    },
+    {
+      "name": "Wealthfront",
+      "type": "public",
+      "context": "Raised $485 million in an IPO, valuing the company at $2.6 billion.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Chipotle",
+      "type": "public",
+      "context": "Rang the NYSE bell celebrating 4,000 restaurants; faces competitive pressure from Sweetgreen's high-protein menu.",
+      "sentiment": "neutral",
+      "sector": "Food/Restaurant"
+    },
+    {
+      "name": "Sweetgreen",
+      "type": "public",
+      "context": "Mentioned as putting competitive pressure on Chipotle with high-protein menu offerings.",
+      "sentiment": "neutral",
+      "sector": "Food/Restaurant"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Running a persistent ad unit for Ray-Ban glasses that requires users to hit X to dismiss; discussed as a best-in-class ad placement leveraging billions of DAUs for product distribution.",
+      "sentiment": "bullish",
+      "sector": "Social Media/Hardware"
+    },
+    {
+      "name": "Netflix",
+      "type": "public",
+      "context": "Pursuing a deal with Warner Brothers that Paramount is trying to block; Matt Levine noted the deal faces potential antitrust risk that Paramount is betting on.",
+      "sentiment": "neutral",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Warner Brothers Discovery",
+      "type": "public",
+      "context": "Subject of a contested acquisition with both Netflix and Paramount pursuing deals; board appears to favor the Netflix offer.",
+      "sentiment": "neutral",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Paramount",
+      "type": "public",
+      "context": "Launched a tender offer for Warner Brothers at a previously rejected price as a negotiating tactic, signaling willingness to pay more for a friendly deal while betting the Netflix deal fails on antitrust grounds.",
+      "sentiment": "neutral",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Bloomberg",
+      "type": "private",
+      "context": "Matt Levine discussed Bloomberg's ability to retain top talent, citing a great concentrated financial audience, stable profitable business model, and freedom to pursue experimental formats like Money Stuff and Odd Lots.",
+      "sentiment": "bullish",
+      "sector": "Media"
+    },
+    {
+      "name": "Goldman Sachs",
+      "type": "public",
+      "context": "Matt Levine's former employer before he left to join Dealbreaker, a financial gossip blog, which his Goldman boss initially confused with DealBook.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "Polymarket",
+      "type": "startup",
+      "context": "Discussed in context of prediction market growth, insider trading concerns, and a specific $1.3M market allegedly manipulated via an ISW think tank Ukraine battle map.",
+      "sentiment": "neutral",
+      "sector": "Prediction Markets/Fintech"
+    },
+    {
+      "name": "Kalshi",
+      "type": "startup",
+      "context": "Mentioned alongside Polymarket as a prediction market platform; Saagar Enjeti wants to have Kalshi CEO Tarek on Breaking Points to debate prediction market policy.",
+      "sentiment": "neutral",
+      "sector": "Prediction Markets/Fintech"
+    },
+    {
+      "name": "Susquehanna",
+      "type": "fund",
+      "context": "Cited as a prominent high-frequency trading firm with an active sports betting desk, representative of sophisticated Wall Street capital entering sports gambling markets.",
+      "sentiment": "neutral",
+      "sector": "Finance/Trading"
+    },
+    {
+      "name": "Jane Street",
+      "type": "fund",
+      "context": "Mentioned speculatively as the type of elite trading firm that could establish a serious sports betting desk.",
+      "sentiment": "neutral",
+      "sector": "Finance/Trading"
+    },
+    {
+      "name": "Citadel",
+      "type": "fund",
+      "context": "Mentioned alongside Jane Street as a potential entrant into sports betting markets given the personality and analytical overlap with HFT.",
+      "sentiment": "neutral",
+      "sector": "Finance/Trading"
+    },
+    {
+      "name": "HD Hyundai",
+      "type": "public",
+      "context": "Korean shipbuilder representing 17% of global shipping tonnage; Palantir has a longstanding partnership applying AI to their shipbuilding operations, lessons from which are being applied to US yards.",
+      "sentiment": "bullish",
+      "sector": "Defense/Shipbuilding"
+    },
+    {
+      "name": "Hanwa",
+      "type": "public",
+      "context": "Korean shipbuilder that purchased the Philadelphia shipyard; investing in US shipbuilding capacity as part of broader allied industrial base development.",
+      "sentiment": "bullish",
+      "sector": "Defense/Shipbuilding"
+    },
+    {
+      "name": "Huawei",
+      "type": "private",
+      "context": "Mentioned as the primary beneficiary if the US cuts off chip exports to China, as Chinese developers would migrate their software ecosystem to Huawei's Harmony OS stack.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors/Telecom"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Discussed as an example of a US company whose deep China market penetration made it more malleable to Chinese interests rather than advancing US strategic goals.",
+      "sentiment": "neutral",
+      "sector": "Technology"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Jeff Bezos's 14% ownership stake discussed in comparison to other founder-CEOs; cited as the likely 'Amazon of AI'\u2014the inevitable big winner to survive the AI bubble analog to the dot-com boom.",
+      "sentiment": "neutral",
+      "sector": "Technology"
+    },
+    {
+      "name": "Lululemon",
+      "type": "public",
+      "context": "Stock surged over 12% after CEO announced resignation; speculation about whether founder Chip Wilson might return to lead the company.",
+      "sentiment": "bullish",
+      "sector": "Retail/Apparel"
+    },
+    {
+      "name": "LVMH",
+      "type": "public",
+      "context": "Bernard Arnault's quote defending $500M Tiffany flagship renovation\u2014'you cannot dream when you talk numbers; when you create desires, profits are a consequence'\u2014cited as a profound business insight.",
+      "sentiment": "bullish",
+      "sector": "Luxury/Retail"
+    },
+    {
+      "name": "Substack",
+      "type": "startup",
+      "context": "Changed policy requiring readers to use the Substack app to read content beyond a cutoff, frustrating creators; seen as a shift toward becoming a walled-garden algorithmic social network at odds with its brand promise.",
+      "sentiment": "bearish",
+      "sector": "Media/Publishing"
+    },
+    {
+      "name": "Anduril",
+      "type": "startup",
+      "context": "Palmer Luckey's defense tech company building autonomous killer robots and other capabilities; Luckey described as wanting the US to be the world's arms dealer supplying allies like Ukraine.",
+      "sentiment": "bullish",
+      "sector": "Defense"
+    },
+    {
+      "name": "Cloud Kitchens",
+      "type": "startup",
+      "context": "Travis Kalanick's company mentioned in context of his new Picnic delivery service that the show's hosts signed up for.",
+      "sentiment": "neutral",
+      "sector": "Food Tech"
+    },
+    {
+      "name": "Picnic",
+      "type": "startup",
+      "context": "Travis Kalanick's new meal delivery service; hosts received an unboxing on air, noting the distinctive orange bag packaging.",
+      "sentiment": "neutral",
+      "sector": "Food Tech"
+    },
+    {
+      "name": "Klein",
+      "type": "startup",
+      "context": "AI startup whose head of AI was fired after a 'imagine the smell' comment at a hackathon went viral and was perceived as racist; CEO initially defended then reversed course and faced backlash from both sides.",
+      "sentiment": "bearish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "ISW (Institute for the Study of War)",
+      "type": "private",
+      "context": "DC think tank whose employee allegedly manipulated a Ukraine battle map to cause a $1.3M Polymarket market to resolve in their favor; the employee was subsequently fired.",
+      "sentiment": "bearish",
+      "sector": "Defense/Research"
+    },
+    {
+      "name": "Yellowstone Club",
+      "type": "private",
+      "context": "Exclusive billionaire resort in Montana cited as an example of high-end construction in the Rocky Mountain West, with two-bedroom condos priced at $20M commonplace.",
+      "sentiment": "neutral",
+      "sector": "Real Estate/Hospitality"
+    },
+    {
+      "name": "OnlyFans",
+      "type": "private",
+      "context": "Mentioned in context of debanking\u2014banks cut off payment processing for adult content platforms due to legal compliance concerns, which the Trump administration's Operation Choke Point 2.0 report is now challenging.",
+      "sentiment": "neutral",
+      "sector": "Media/Adult Content"
+    },
+    {
+      "name": "Shopify",
+      "type": "public",
+      "context": "Expanding Shop Campaigns with a new ad format allowing merchants to recommend products on other merchants' websites in a post-purchase cross-sell placement; Sean Frank of Ridge noted he is in the beta.",
+      "sentiment": "bullish",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "Figma",
+      "type": "startup",
+      "context": "Sponsor of the show; design and development collaboration platform mentioned alongside Bill Peebles's excitement about the Disney-Sora partnership.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Dealbreaker",
+      "type": "private",
+      "context": "Financial gossip blog where Matt Levine left Goldman Sachs to work, which his Goldman boss initially confused with DealBook before telling him he had to leave immediately.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Show sponsor providing corporate cards, bill payments, and accounting; cited internal data showing 55% of businesses do not pay for AI tools, with adoption flatlining.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Julius AI",
+      "type": "startup",
+      "context": "Sponsor; AI data analyst tool for connecting data, asking questions, and getting insights used by millions.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Graphite",
+      "type": "startup",
+      "context": "Sponsor; code review platform described as built for the age of AI, helping teams on GitHub ship higher quality software faster.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Sponsor; team behind Devin, the AI software engineer, offering a personal AI engineering team to clear development backlogs.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Turbopuffer",
+      "type": "startup",
+      "context": "Sponsor; serverless vector and full-text search engine built from first principles on object storage, described as 10x cheaper than alternatives.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/AI"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Sponsor; multi-streaming platform enabling one live stream to 30+ destinations simultaneously.",
+      "sentiment": "neutral",
+      "sector": "Media/Streaming"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sponsor; handles sales tax and VAT compliance for businesses so founders can focus on growth.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Compliance"
+    },
+    {
+      "name": "Banta",
+      "type": "startup",
+      "context": "Sponsor; AI-powered compliance and security platform covering evidence collection, continuous monitoring, security reviews, and vendor risk.",
+      "sentiment": "neutral",
+      "sector": "AI/Compliance"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Sponsor; AI-native CRM platform for building, scaling, and growing companies.",
+      "sentiment": "neutral",
+      "sector": "AI/CRM"
+    },
+    {
+      "name": "Privy",
+      "type": "startup",
+      "context": "Sponsor; crypto infrastructure for building on-chain applications with embedded wallets and transaction signing through one API.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Web3"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Sponsor; enables brands to get mentioned in ChatGPT and other AI chatbots to reach consumers who use AI for product discovery.",
+      "sentiment": "neutral",
+      "sector": "AI/Marketing"
+    },
+    {
+      "name": "Fal.ai",
+      "type": "startup",
+      "context": "Sponsor; generative media platform for developers with GPU servers, on-demand clusters, and model fine-tuning.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Fin.ai",
+      "type": "startup",
+      "context": "Sponsor; described as the number one AI agent for customer service, automating complex customer queries across channels.",
+      "sentiment": "neutral",
+      "sector": "AI/Customer Service"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor; vacation rental platform offering inspiring properties with concierge service and top-tier cleaning.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Sponsor; smart sleep technology; hosts competed on sleep scores with results of 87 and 90 respectively.",
+      "sentiment": "neutral",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor; multi-asset investing platform for those who take investing seriously, with industry-leading yields.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Bezell",
+      "type": "startup",
+      "context": "Sponsor; authenticated luxury watch marketplace with over 26,000 watches verified in-house by experts.",
+      "sentiment": "neutral",
+      "sector": "Luxury/E-commerce"
+    },
+    {
+      "name": "Adjik",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising platform for planning, buying, and measuring campaigns with precision.",
+      "sentiment": "neutral",
+      "sector": "AdTech"
+    },
+    {
+      "name": "Slack",
+      "type": "private",
+      "context": "Denise Dresser, former Slack CEO, hired as CRO at OpenAI, signaling OpenAI's aggressive enterprise sales push for 2026.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    }
+  ],
+  "people": [
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Posted a Death Star photo 127 days before the Disney deal; hosted a NYC lunch with news leaders declaring enterprise AI a massive 2026 priority; his rumored ~7% ownership stake compared unfavorably to other founder-CEOs at trillion-dollar companies."
+    },
+    {
+      "name": "Bob Iger",
+      "role": "CEO, Disney",
+      "context": "Credited with recognizing that AI-generated Disney content will happen with or without the company's blessing, making the OpenAI deal a smart preemptive strategic move."
+    },
+    {
+      "name": "Bill Peebles",
+      "role": "Sora Lead, OpenAI",
+      "context": "Publicly posted that the Disney-OpenAI partnership is 'pure magic' and a 'dream come true,' pushing back on narratives that Sora is failing."
+    },
+    {
+      "name": "Greg Comrat",
+      "role": "President, ARC Prize",
+      "context": "Posted that GPT-5.2 scores only 12% on ARC-AGI 1 despite a 5-order-of-magnitude scale-up, while reasoning models reach up to 90%; also creates TBPN trading cards."
+    },
+    {
+      "name": "Denise Dresser",
+      "role": "CRO, OpenAI; former CEO, Slack",
+      "context": "Hired as OpenAI's CRO, widely interpreted as a signal of the company's aggressive enterprise sales ambitions for 2026."
+    },
+    {
+      "name": "Greg Brockman",
+      "role": "President, OpenAI",
+      "context": "Publicly confirmed that enterprise AI will be a huge theme for OpenAI in 2026, consistent with Sam Altman's messaging to news leaders."
+    },
+    {
+      "name": "Matt Levine",
+      "role": "Journalist, Bloomberg Money Stuff",
+      "context": "Guest on the show; discussed prediction markets, insider trading, the SpaceX IPO thesis, Warner Brothers M&A dynamics, the Disney-OpenAI deal framing, private credit risks, and Bloomberg's talent retention model."
+    },
+    {
+      "name": "Mike Swan",
+      "role": "Managing Owner, Swan Land Company",
+      "context": "Guest on the show; detailed the Rocky Mountain ranch real estate market, 10-20% appreciation over 5-7 years, growing tech buyer interest in Montana, and the premium commanded by fishing water on properties."
+    },
+    {
+      "name": "Mike Gallagher",
+      "role": "Head of Federal, Palantir; former US Congressman",
+      "context": "Guest on the show; discussed Palantir's $448M Navy shipbuilding AI contract, the geopolitical imperative for a larger US Navy, China-Taiwan tensions, and recent US military operations in Venezuela."
+    },
+    {
+      "name": "Saagar Enjeti",
+      "role": "Co-host, Breaking Points and The Realignment",
+      "context": "Guest on the show; argued strongly against sports betting legalization, criticized AI fear-mongering, opposed H200 chip exports to China on strategic grounds, and raised concerns about the Disney-OpenAI deal deepening children's screen addiction."
+    },
+    {
+      "name": "Tyler Cowan",
+      "role": "Economist",
+      "context": "Mentioned as being obsessed with GPT models, claiming GPT-5.2 knows the best Paul McCartney songs and can write Spanish poetry at the level of the median Pablo Neruda poem."
+    },
+    {
+      "name": "Hock Tan",
+      "role": "CEO, Broadcom",
+      "context": "Revealed Anthropic as Broadcom's mystery $10B+ custom chip customer during an earnings call, triggering a stock selloff on margin concerns."
+    },
+    {
+      "name": "Justine Moore",
+      "role": "Investor/commentator",
+      "context": "Vindicated for her earlier prediction that major IP holders would license characters to AI video generators like Sora, after being criticized by anti-AGI commentators when she made the call."
+    },
+    {
+      "name": "Palmer Luckey",
+      "role": "Founder, Anduril",
+      "context": "Described as wanting the US to be 'the world's arms dealer,' supplying defense tech to allies without requiring US boots on the ground; cited as a leading-edge defense tech entrepreneur."
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO, Nvidia",
+      "context": "Discussed in context of H200 chip exports to China; described as visiting China quarterly and lobbying against export controls to protect Nvidia's Chinese revenue stream."
+    },
+    {
+      "name": "Jonathan Haidt",
+      "role": "Social psychologist/author",
+      "context": "Referenced for research on social media harms to children; his book 'The Anxious Generation' cited as a best-seller informing debate about restricting kids' screen time."
+    },
+    {
+      "name": "Mike DeWine",
+      "role": "Governor, Ohio",
+      "context": "Cited as saying he would never have legalized sports betting knowing what he knows now, representing a broader political backlash against gambling expansion."
+    },
+    {
+      "name": "Nate Silver",
+      "role": "Statistician/analyst",
+      "context": "Mentioned as being limited or effectively banned from major sports betting apps for being too consistently profitable."
+    },
+    {
+      "name": "Alex Cantorowitz",
+      "role": "Journalist, Big Technology",
+      "context": "Reported the scoop that Sam Altman held a lunch with news leaders in New York City declaring enterprise AI a massive OpenAI priority for 2026."
+    },
+    {
+      "name": "Travis Kalanick",
+      "role": "Founder, Cloud Kitchens; co-founder, Uber",
+      "context": "Launched a new meal delivery service called Picnic; the show's hosts signed up for the service and received an on-air unboxing."
+    },
+    {
+      "name": "Sam Bankman-Fried",
+      "role": "Former CEO, FTX",
+      "context": "Referenced by Matt Levine as someone whose fraud was obvious in real time because he didn't actually believe in crypto\u2014contrasted with AI founders who appear to be genuine believers in their technology."
+    },
+    {
+      "name": "Bernard Arnault",
+      "role": "CEO, LVMH",
+      "context": "Quoted defending a $500M Tiffany flagship renovation: 'You cannot dream when you talk numbers. When you create desires, profits are a consequence'\u2014cited as one of the most profound business insights of the year."
+    },
+    {
+      "name": "Xi Jinping",
+      "role": "President, China",
+      "context": "Discussed as having set 2027 as the year the PLA should be ready to invade Taiwan; described as far less sensitive to military casualties than democratic leaders, making the Taiwan scenario uniquely dangerous."
+    },
+    {
+      "name": "RJ Scaringe",
+      "role": "CEO, Rivian",
+      "context": "Announced the addition of LiDAR as a third sensor to the Rivian R2 at what was described as an awkward product reveal moment."
+    },
+    {
+      "name": "Chip Wilson",
+      "role": "Founder, Lululemon",
+      "context": "Speculated to potentially return to Lululemon following the CEO's resignation and subsequent 12%+ stock surge."
+    },
+    {
+      "name": "Hank Phelan",
+      "role": "Secretary of the Navy",
+      "context": "Credited with taking advantage of new congressional appropriations to bring non-traditional bets on AI and autonomy to Navy shipbuilding, enabling the Palantir contract."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Disney-OpenAI $1B IP Licensing Deal",
+      "summary": "Disney invested $1B in OpenAI and granted a 3-year license for 200 characters with a 1-year exclusive; framed as strategically underappreciated by the market given Disney's 140M park visitors and 128M Disney Plus subscribers as a distribution channel for paid ChatGPT.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "GPT-5.2 Release and ARC-AGI Benchmarks",
+      "summary": "OpenAI released GPT-5.2 showing improvements across major benchmarks; despite being a 5-order-of-magnitude scale-up, scores only 12% on ARC-AGI 1, while reasoning/pro models reach up to 90%; Gemini 3 Pro wins on advanced mathematics tiers.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Oracle Data Center Delays",
+      "summary": "Oracle pushed back completion dates for OpenAI data centers to 2028 from 2027 due to labor and material shortages, despite a $300B contract; failure to disclose this on a recent earnings call raised serious credibility concerns.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Broadcom Earnings and AI Margin Concerns",
+      "summary": "Broadcom revealed Anthropic as its mystery $10B+ custom chip customer and reported record $18B in sales, but stock fell 10% due to lower gross margins in the AI segment and flat non-AI revenue guidance.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Prediction Markets, Insider Trading, and Sports Betting",
+      "summary": "Wide-ranging discussion covering market manipulation risks (ISW Ukraine map scandal on a $1.3M Polymarket), Wall Street HFT firms entering sports gambling, regulatory dynamics, Trump's offhand comment about eliminating gambling taxes, and the philosophical tension between insider trading and market accuracy.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "SpaceX IPO Thesis",
+      "summary": "Potential SpaceX IPO at $1.5T valuation on $22B revenue explored; theories include orbital data center funding, rolling XAI into SpaceX, and using the offering to compete with OpenAI/Anthropic for capital market attention.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "US Navy Shipbuilding and AI Modernization",
+      "summary": "Palantir awarded $448M contract to apply AI across US Navy shipbuilding supply chain; US fleet on track to shrink to 279 ships by 2027 vs. a 355-ship target, with the deficit framed as a geopolitical emergency given China's 2027 Taiwan readiness goal.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Land and Ranch Investing",
+      "summary": "Mike Swan discussed 10-20% appreciation over 5-7 years in Rocky Mountain ranch properties, growing tech buyer interest in Montana, fishing water as the premium 'golden thread,' and low agricultural ROI (2-3%) offset by long-term land appreciation.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Enterprise AI Adoption and Copilot Satire",
+      "summary": "Sam Altman told news leaders enterprise AI is a massive 2026 OpenAI priority; a viral satirical post exposing Microsoft Copilot deployed to 4,000 employees with only 47 opening it went viral with 134K likes; Ramp data shows 55% of businesses don't pay for AI.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "H200 Chip Exports to China",
+      "summary": "Nvidia H200 exports to China reversed prior restrictions; debate centered on whether keeping China on the US AI technology stack is strategically advantageous or whether it creates dangerous dependency and makes US firms more malleable to Beijing.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI and Children's Screen Addiction",
+      "summary": "Saagar Enjeti argued the Disney-OpenAI deal will deepen children's phone addiction; hosts debated Australia's social media ban, government vs. parental regulation, and Jonathan Haidt's research; hosts disagreed on degree of content moderation effectiveness.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Warner Brothers M&A: Netflix vs. Paramount",
+      "summary": "Paramount launched a tender at a previously rejected price as a negotiating tactic while Netflix pursues Warner Brothers; Matt Levine noted the deal has been surprisingly quiet and that antitrust risk is Paramount's key leverage point.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Sam Altman Founder Legacy and Ownership",
+      "summary": "Hosts analyzed Sam Altman's rumored ~7% OpenAI ownership against comparables: Gates (13.7%), Bezos (14%), Musk/Tesla (19.7%), Zuckerberg (13.5%), Jensen (3.77%), noting OpenAI's nonprofit origins necessitated unusual dilution.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Debanking and Operation Choke Point 2.0",
+      "summary": "Trump Treasury/OCC report found banks unfairly targeted gun companies, oil and gas, and adult entertainment companies; administration now pressuring banks to serve porn companies, sparking debate about the limits of the debanking narrative.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI Bubble vs. Dot-Com Analogy",
+      "summary": "Matt Levine compared the AI boom to the dot-com bubble, noting clear winners will emerge like 'an Amazon of AI,' distinguishing it from crypto by pointing to tangible consumer utility; the circular token economy of AI companies noted as a potential concern.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Substack App Policy Change",
+      "summary": "Substack now requires readers to open the app to read beyond a cutoff, frustrating creators and readers; widely seen as a move toward becoming an algorithmic walled-garden social network at odds with Substack's foundational promise of direct audience ownership.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Apollo Zero-Return S&P 500 Prediction",
+      "summary": "Apollo published a note predicting zero S&P 500 returns over the coming decade based on elevated forward PE ratios relative to historical return correlations, implicitly steering investors toward private credit.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Utah Rare Earth Mineral Discovery",
+      "summary": "Wall Street Journal called a newly identified Utah deposit the most significant critical mineral reserve in the US, containing a variety of rare earth elements valuable for technology supply chains.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Klein Smellgate Controversy",
+      "summary": "Klein AI startup's head of AI made a 'imagine the smell' hackathon comment perceived as racist; CEO initially defended then reversed and fired the employee within 24 hours, drawing backlash from both those who found the comment offensive and those who saw the firing as capitulating to online pressure.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Sports Betting Regulation and Addiction",
+      "summary": "Saagar Enjeti argued sports betting companies structurally require addicts to be profitable, only 4% of bettors are profitable over 5 years, legalizing states saw credit scores drop ~10 points, and Ohio Governor DeWine regrets legalization; framed as a growing bipartisan concern.",
+      "sentiment": "bearish"
+    }
+  ],
+  "key_claims": [
+    "Disney invested $1B in OpenAI and licensed 200 characters for 3 years, with OpenAI receiving a 1-year exclusive\u2014127 days after Sam Altman posted a cryptic Death Star photo.",
+    "OpenAI has 20-30 million paid users out of 900 million global users; Disney has 140M annual park visitors and 128M Disney Plus paid subscribers.",
+    "Sora was ranked approximately #24 in the App Store before the Disney deal and climbed back to #15 shortly after the announcement.",
+    "Oracle delayed OpenAI data center completions from 2027 to 2028 due to labor and material shortages, without disclosing this on a recent earnings call, despite a $300B contract.",
+    "Anthropic placed an $11B additional order with Broadcom for custom chips in the latest quarter, revealed by CEO Hock Tan after months of speculation.",
+    "Broadcom reported record $18B in quarterly sales but AI gross margins are materially lower than other business lines, triggering a 10%+ stock selloff.",
+    "Apollo predicts zero S&P 500 returns over the next decade based on the historical relationship between current forward PE ratios and subsequent 10-year annualized returns.",
+    "GPT-5.2 scores only 12% on ARC-AGI 1 despite representing a 5-order-of-magnitude scale-up; ARC-AGI reasoning/pro models reach up to 90%.",
+    "OpenAI GPT-5.2 wins most benchmark categories but Gemini 3 Pro wins on advanced mathematics tiers 1-4; OpenAI models were run at maximum reasoning effort while the benchmark caveat was applied only to OpenAI models.",
+    "The US Navy fleet is on track to shrink to 279 ships by 2027\u2014the same year Xi Jinping has targeted for PLA readiness to invade Taiwan\u2014vs. an official 355-ship policy target.",
+    "The Pentagon fails to spend approximately $15B per year in defense appropriations due to congressional budgeting dysfunction, totaling an estimated $125B lost over 10 years.",
+    "Palantir AI reduced planning time at one shipyard from 160 hours per week across four full-time staff to 10 minutes; a 200-hour manufacturing bill-of-materials process was reduced to 12 seconds.",
+    "Only 4% of sports bettors are profitable over a 5-year longitudinal study; sports betting apps limit or ban profitable bettors, including Nate Silver.",
+    "States that legalized sports gambling saw average credit scores drop approximately 10 points.",
+    "A $1.3M Polymarket prediction market on Ukrainian territorial control was allegedly manipulated by an ISW think tank employee who altered a battle map; the employee was fired.",
+    "SpaceX is exploring an IPO at a $1.5 trillion valuation on approximately $22 billion in revenue; Google's ~$900M SpaceX investment could be worth ~$111B at that valuation.",
+    "A satirical viral post (134K likes) described deploying Microsoft Copilot to 4,000 employees at $30/seat/month ($1.4M annually) with only 47 opening it and 12 using it more than once.",
+    "Ramp data shows 55% of businesses do not pay for any AI tools, with business AI adoption flatlining.",
+    "Wealthfront raised $485M in an IPO valuing it at $2.6B.",
+    "Lululemon stock surged over 12% on the day its CEO announced resignation.",
+    "Rocky Mountain ranch properties in western Montana have appreciated 10-20% over 5-7 year periods, with premium fishing water properties commanding significantly higher premiums.",
+    "Bernard Arnault defended spending $500M renovating the Fifth Avenue Tiffany flagship: 'You cannot dream when you talk numbers. When you create desires, profits are a consequence.'",
+    "Trump said in an interview he would 'consider' eliminating taxes on gambling winnings, which commentators noted is structurally perverse given that 96% of sports bettors lose money over time.",
+    "One host asserted that everyday consumers will not pay for LLMs long-term and that ad- and commerce-supported models will ultimately dominate consumer AI monetization."
+  ],
+  "technologies": [
+    "GPT-5.2",
+    "Sora",
+    "Claude Opus 4.5",
+    "Gemini 3 Pro",
+    "ARC-AGI benchmark",
+    "H200 chips",
+    "LiDAR",
+    "CUDA",
+    "Maven Smart System",
+    "Agentforce",
+    "Microsoft Copilot",
+    "Harmony OS",
+    "Autonomous surface vessels",
+    "Autonomous undersea vehicles",
+    "Starlink",
+    "Orbital data centers",
+    "Generative AI video",
+    "Large language models",
+    "Private credit",
+    "Prediction markets",
+    "Vector search",
+    "Embedded crypto wallets"
+  ],
+  "_stats": {
+    "word_count": 35579,
+    "estimated_input_tokens": 47320,
+    "input_tokens": 3,
+    "output_tokens": 23580,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 51288,
+    "duration_ms": 461942,
+    "wall_time_s": 463.1,
+    "cost_usd": 0.9146735,
+    "tokens_per_sec": 50.9
+  }
+}

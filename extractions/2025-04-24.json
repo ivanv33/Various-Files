@@ -1,0 +1,832 @@
+{
+  "episode_date": "2025-04-24",
+  "episode_title": "netflix-q1-earnings-amd-vs-nvidia-hill-valley-maha-us-manufacturing-robotics",
+  "companies": [
+    {
+      "name": "Netflix",
+      "type": "public",
+      "context": "Reported record Q1 2025 profits with $6.61 EPS (up 25%) and $10.5B revenue; leaked internal forecast targets $78B revenue and $1T market cap by 2029 via ad-supported tier, price segmentation, and growing advertising business.",
+      "sentiment": "bullish",
+      "sector": "Media/Streaming"
+    },
+    {
+      "name": "AMD",
+      "type": "public",
+      "context": "Entered 'wartime mode' after Semi Analysis December 2024 article exposed software gaps; Lisa Su met with Dylan Patel, acknowledged issues, launched developer relations, shipped hardware to George Hotz, and overhauled ROCm stack.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Dominant in AI training via CUDA ecosystem; Jensen Huang praised for cultivating developer community through GPU donations to universities; made strategic investment in Freeform.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors/AI"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Down 25% from peak YTD; discussed as exposed to tariff uncertainty through D2C advertising pullback; facing FTC antitrust action with Kevin Systrom cooperating against the company.",
+      "sentiment": "bearish",
+      "sector": "Social Media/AI"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Kevin Wheal (CPO) participating in Hill and Valley AI panel; revenue projected to grow from $13B in 2025 to $125B by 2029; significant talent exodus from founding team noted.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Alphabet",
+      "type": "public",
+      "context": "Reif Peratt (President and CIO) participating in Hill and Valley AI panel; cited for AlphaFold Nobel Prize and giving free TPU access to developers including a high schooler who trained a GPT-2 equivalent model.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Semi Analysis",
+      "type": "private",
+      "context": "Published December 2024 article detailing AMD software gaps that prompted Lisa Su to personally meet with Dylan Patel; credited with catalyzing AMD's cultural transformation toward developer-first approach.",
+      "sentiment": "bullish",
+      "sector": "Technology Research"
+    },
+    {
+      "name": "xAI",
+      "type": "startup",
+      "context": "Cited as example of a team that caught up to the AI frontier rapidly by being realistic about deficits and sprinting; used as model for how AMD should approach catching Nvidia.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Tim Hughes (SVP) participating in Hill and Valley space panel; Freeform CEO Eric Palitsch was early employee who ran Merlin and Raptor programs; Freeform is located a quarter mile away in Hawthorne.",
+      "sentiment": "bullish",
+      "sector": "Aerospace/Defense"
+    },
+    {
+      "name": "Varda Space",
+      "type": "startup",
+      "context": "Delian's company mentioned as one reason he relocated to El Segundo, enabling more in-person meetings with the portfolio.",
+      "sentiment": "neutral",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Delian Asparouhov's VC firm; investor in Freeform; co-organizer of Hill and Valley Forum alongside 137 Ventures and State Department.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "137 Ventures",
+      "type": "fund",
+      "context": "Christian's firm; co-organizer of Hill and Valley Forum alongside Founders Fund.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Sword Health",
+      "type": "startup",
+      "context": "Mutual portfolio company of Founders Fund and Khosla Ventures at ~$4B valuation; described as the largest AI-driven physical therapy provider using sensors and gamification; cited as model for AI improving Medicare efficiency.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Jane Street",
+      "type": "private",
+      "context": "Trading revenue nearly doubled to over $20 billion in 2024; Packy McCormick noted SBF would be very wealthy had he stayed at Jane Street.",
+      "sentiment": "bullish",
+      "sector": "Fintech/Trading"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Discussed as serious candidate to modernize GSA smart card system; praised for ability to root out inefficiencies even at traditional defense contractors and Neo-Primes.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Public",
+      "type": "startup",
+      "context": "Announced sponsorship of Aston Martin F1 team; evolved from fractional shares pioneer to premium multi-asset investing platform; launched Alpha app in European markets for international expansion.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Aston Martin F1 Team",
+      "type": "public",
+      "context": "New F1 sponsorship partner with Public.com starting at Miami race; Lawrence Stroll's team praised for commitment to winning and being on a competitive upswing.",
+      "sentiment": "bullish",
+      "sector": "Sports/Motorsport"
+    },
+    {
+      "name": "Listen Labs",
+      "type": "startup",
+      "context": "AI customer research platform conducting thousands of parallel user interviews; announced $27M total raised in Series A led by Sequoia, Conviction, and Pear; customers include Microsoft, Canva, and Chubbies.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Sequoia",
+      "type": "fund",
+      "context": "Led Listen Labs Series A; Brian Shrier also led first Sequoia investment in Qualtrics, the largest prior outcome in customer feedback software.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Conviction",
+      "type": "fund",
+      "context": "Co-investor in Listen Labs Series A alongside Sequoia and Pear; Mike Vernal cited as key partner.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Pear",
+      "type": "fund",
+      "context": "Co-investor in Listen Labs Series A.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Named as a Listen Labs enterprise customer; also mentioned as a potential Netflix ad exchange backend partner under prior consideration.",
+      "sentiment": "neutral",
+      "sector": "Technology"
+    },
+    {
+      "name": "Canva",
+      "type": "private",
+      "context": "Named as a Listen Labs customer.",
+      "sentiment": "neutral",
+      "sector": "Design/SaaS"
+    },
+    {
+      "name": "Chubbies",
+      "type": "private",
+      "context": "Listen Labs customer that used AI interviews with children to develop a new liner in their shorts; the resulting product grew quickly after launch.",
+      "sentiment": "bullish",
+      "sector": "Consumer/Apparel"
+    },
+    {
+      "name": "Freeform",
+      "type": "startup",
+      "context": "AI-driven metal 3D printing company in Hawthorne; claims fastest highest-volume metal printing platform globally; serves primarily aerospace and defense; backed by Founders Fund, 8VC, Valor, Threshold, Two Sigma, and Nvidia.",
+      "sentiment": "bullish",
+      "sector": "Manufacturing/AI"
+    },
+    {
+      "name": "8VC",
+      "type": "fund",
+      "context": "Investor in Freeform.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Valor",
+      "type": "fund",
+      "context": "Investor in Freeform.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Threshold Ventures",
+      "type": "fund",
+      "context": "Investor in Freeform.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Two Sigma",
+      "type": "fund",
+      "context": "Investor in Freeform.",
+      "sentiment": "neutral",
+      "sector": "Quantitative Finance/VC"
+    },
+    {
+      "name": "Formic",
+      "type": "startup",
+      "context": "Full-service robotic automation company for US factories at $0 capex; has hundreds of robots across 100+ factories primarily in CPG; CEO argues last-mile deployment infrastructure is the real barrier to automation adoption.",
+      "sentiment": "bullish",
+      "sector": "Robotics/Manufacturing"
+    },
+    {
+      "name": "Qualtrics",
+      "type": "private",
+      "context": "Cited as the largest prior outcome in customer feedback software; Brian Shrier at Sequoia led the first investment; founder Brian Smith used proceeds to buy a hockey team.",
+      "sentiment": "neutral",
+      "sector": "Enterprise SaaS"
+    },
+    {
+      "name": "Polymarket",
+      "type": "startup",
+      "context": "Prediction market platform currently showing 64% probability for OpenAI reaching 1 billion ChatGPT users in 2025.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Prediction Markets"
+    },
+    {
+      "name": "Discord",
+      "type": "private",
+      "context": "Jason Citron stepping down as CEO after building the platform; Humam Sakhnini named new CEO; speculation the transition is preparation for a potential IPO.",
+      "sentiment": "neutral",
+      "sector": "Social/Gaming"
+    },
+    {
+      "name": "Flexport",
+      "type": "startup",
+      "context": "CEO Ryan Peterson quoted in Wall Street Journal as leading voice on tariff impacts on global logistics; referred to as 'creating global trade.'",
+      "sentiment": "neutral",
+      "sector": "Logistics"
+    },
+    {
+      "name": "Solo Brands",
+      "type": "public",
+      "context": "NYSE suspended Solo Brands; Sean Frank's analysis blamed COVID-driven growth tapering, negative network effects on products like Solo Stove, and non-adjacent brand acquisitions without cross-sell synergies.",
+      "sentiment": "bearish",
+      "sector": "Consumer/DTC"
+    },
+    {
+      "name": "Erewhon",
+      "type": "private",
+      "context": "Raised at $2B valuation; reportedly generates ~$50M per store across 10 locations by combining high-margin grocery, restaurant, and lifestyle products; hosts discussed wanting a TBPN smoothie collab.",
+      "sentiment": "bullish",
+      "sector": "Consumer/Retail"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising platform making billboard advertising easy and measurable; cited as good fit for Series A brand marketing.",
+      "sentiment": "neutral",
+      "sector": "AdTech"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Watch marketplace sponsor; concierge service for sourcing any watch; discussed as potential candidate for its own F1 sponsorship someday.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Luxury"
+    },
+    {
+      "name": "8 Sleep",
+      "type": "startup",
+      "context": "Sponsor; Pod 4 Ultra smart mattress with 30-night free trial; hosts personally endorse the product.",
+      "sentiment": "neutral",
+      "sector": "Consumer Hardware/Health"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sponsor; sales tax automation platform; host's company Lucy announced as new Numeral customer during the episode.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Tax"
+    },
+    {
+      "name": "TruMed",
+      "type": "startup",
+      "context": "Calley Means and Justin Mares' health company; focused on reforming food and healthcare incentives; Calley is concurrently serving as a special government employee advising the White House on MAHA initiatives.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "FANUC",
+      "type": "public",
+      "context": "Named as one of the largest robot manufacturers in the world, headquartered in Japan.",
+      "sentiment": "neutral",
+      "sector": "Robotics/Manufacturing"
+    },
+    {
+      "name": "KUKA",
+      "type": "private",
+      "context": "Formerly German robot manufacturer acquired by a Chinese company; named as one of the major global robot makers.",
+      "sentiment": "neutral",
+      "sector": "Robotics/Manufacturing"
+    },
+    {
+      "name": "ABB",
+      "type": "public",
+      "context": "Named as one of the largest global industrial robot manufacturers.",
+      "sentiment": "neutral",
+      "sector": "Robotics/Manufacturing"
+    },
+    {
+      "name": "Yaskawa",
+      "type": "public",
+      "context": "Named as one of the largest global robot manufacturers.",
+      "sentiment": "neutral",
+      "sector": "Robotics/Manufacturing"
+    },
+    {
+      "name": "Mitsubishi",
+      "type": "public",
+      "context": "Named alongside FANUC, KUKA, ABB, and Yaskawa as one of the major global robot arm manufacturers.",
+      "sentiment": "neutral",
+      "sector": "Robotics/Manufacturing"
+    },
+    {
+      "name": "Siemens",
+      "type": "public",
+      "context": "Named as a manufacturer of PLCs used in robotic work cells to control peripherals and safety equipment.",
+      "sentiment": "neutral",
+      "sector": "Industrial/Manufacturing"
+    },
+    {
+      "name": "Rockwell Automation",
+      "type": "public",
+      "context": "Named as a manufacturer of PLCs used in robotic work cells.",
+      "sentiment": "neutral",
+      "sector": "Industrial/Manufacturing"
+    },
+    {
+      "name": "Unitree",
+      "type": "startup",
+      "context": "Chinese humanoid robot company cited as having major competitive advantage through vertical integration of custom actuators, lidar, and sensors; contrasted unfavorably with less integrated American robotics startups.",
+      "sentiment": "bullish",
+      "sector": "Robotics"
+    },
+    {
+      "name": "Physical Intelligence",
+      "type": "startup",
+      "context": "Mentioned for promising vision language action models for robot control; Formic is running trials but notes current models are too slow for commercial manufacturing use.",
+      "sentiment": "bullish",
+      "sector": "AI/Robotics"
+    },
+    {
+      "name": "Boston Dynamics",
+      "type": "private",
+      "context": "Latest demo noted for switching to electric motors; cited in discussion of humanoid robot hardware evolution.",
+      "sentiment": "neutral",
+      "sector": "Robotics"
+    },
+    {
+      "name": "Hadrian",
+      "type": "startup",
+      "context": "Mentioned as example of a company deploying six-axis robot arms with light curtain safety systems in manufacturing.",
+      "sentiment": "neutral",
+      "sector": "Manufacturing/Robotics"
+    },
+    {
+      "name": "Kraft",
+      "type": "public",
+      "context": "Mentioned as a food company consolidated by Philip Morris in the 1990s when tobacco companies moved into the food industry.",
+      "sentiment": "neutral",
+      "sector": "Consumer Goods/Food"
+    },
+    {
+      "name": "Philip Morris",
+      "type": "public",
+      "context": "Cited as having controlled 50% of US food supply through consolidation of food companies in the 1990s; accused of deliberately transferring tobacco scientists to food division to engineer hyper-addictive products.",
+      "sentiment": "bearish",
+      "sector": "Consumer Goods/Tobacco"
+    },
+    {
+      "name": "R.J. Reynolds",
+      "type": "private",
+      "context": "Cited alongside Philip Morris as having controlled 50% of US food supply in early 1990s through food company consolidation.",
+      "sentiment": "bearish",
+      "sector": "Consumer Goods/Tobacco"
+    },
+    {
+      "name": "Nabisco",
+      "type": "public",
+      "context": "Named as one of the food companies consolidated by tobacco companies in the 1990s.",
+      "sentiment": "neutral",
+      "sector": "Consumer Goods/Food"
+    },
+    {
+      "name": "Kellogg's",
+      "type": "public",
+      "context": "Cited as making Froot Loops with natural ingredients (carrot juice, watermelon juice) for Canada and Europe while using petroleum-based dyes in the US version of the same product.",
+      "sentiment": "bearish",
+      "sector": "Consumer Goods/Food"
+    },
+    {
+      "name": "Red Bull",
+      "type": "private",
+      "context": "F1 team mentioned as sponsor model example; taurine in Red Bull energy drinks also noted in supplement discussion.",
+      "sentiment": "neutral",
+      "sector": "Sports/Consumer Goods"
+    },
+    {
+      "name": "Haas Automation",
+      "type": "private",
+      "context": "Mentioned alongside Red Bull as example of an F1 team whose sponsor is not a traditional car brand.",
+      "sentiment": "neutral",
+      "sector": "Manufacturing/Sports"
+    },
+    {
+      "name": "General Motors",
+      "type": "public",
+      "context": "Named as one of the biggest buyers of robots in America with large in-house engineering teams; Cadillac F1 team mentioned as new US F1 entry for next year.",
+      "sentiment": "neutral",
+      "sector": "Automotive/Manufacturing"
+    },
+    {
+      "name": "Procter & Gamble",
+      "type": "public",
+      "context": "Named alongside General Motors as one of the biggest buyers of robots in America.",
+      "sentiment": "neutral",
+      "sector": "Consumer Goods/Manufacturing"
+    },
+    {
+      "name": "Ridge Wallet",
+      "type": "startup",
+      "context": "Sean Frank's DTC company cited as example of how tariffs could impair Meta advertising through D2C brand pullback.",
+      "sentiment": "neutral",
+      "sector": "Consumer/DTC"
+    },
+    {
+      "name": "Coinbase",
+      "type": "public",
+      "context": "Mentioned briefly as a company the host could have angel invested in during their YC batch.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Fintech"
+    },
+    {
+      "name": "Greylock",
+      "type": "fund",
+      "context": "Reid Hoffman's fund mentioned as a large Democratic political donor in Silicon Valley over the prior four years.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Khosla Ventures",
+      "type": "fund",
+      "context": "Vinod Khosla's firm; co-investor in Sword Health with Founders Fund; Vinod featured in Hill and Valley fireside chat on AI in healthcare.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Mentioned as having been nearly 50-50 bipartisan in donations driven by crypto-related giving before publicly going 'full MAGA.'",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Nike",
+      "type": "public",
+      "context": "Cited as an example of a large company that tried to automate manufacturing in Latin America and failed miserably despite having competent partners.",
+      "sentiment": "bearish",
+      "sector": "Consumer/Manufacturing"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Humanoid robot mentioned for using linear actuators; cited as one of the companies building its own custom motor technology.",
+      "sentiment": "neutral",
+      "sector": "Automotive/Robotics"
+    },
+    {
+      "name": "Pirate Wires",
+      "type": "startup",
+      "context": "Delian cited writing a piece for Pirate Wires analyzing Silicon Valley political donation data showing a near 50-50 split before Andreessen went public with Trump support.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    }
+  ],
+  "people": [
+    {
+      "name": "Delian Asparouhov",
+      "role": "Partner, Founders Fund; Co-founder, Varda Space",
+      "context": "Discussed Hill and Valley Forum lineup and goals, Silicon Valley-DC relations, defense budget reconciliation outlook, and Ramp as a potential government contractor; recently relocated from SF to El Segundo."
+    },
+    {
+      "name": "Dylan Patel",
+      "role": "Founder, Semi Analysis",
+      "context": "Published December 2024 article detailing AMD software gaps that prompted Lisa Su to personally meet with him; credited with catalyzing AMD's cultural and technical transformation; invited to appear on TBPN in coming weeks."
+    },
+    {
+      "name": "Lisa Su",
+      "role": "CEO, AMD",
+      "context": "Met with Semi Analysis after their critical December 2024 article, publicly acknowledged software shortcomings, and led AMD's shift to 'wartime mode' with a developer-first culture and increased R&D budget."
+    },
+    {
+      "name": "George Hotz",
+      "role": "Hacker; Creator, TinyGrad",
+      "context": "Publicly battled AMD to receive physical MI300X hardware for open source GPU tooling development; AMD eventually relented, passing what Semi Analysis called the 'GeoHotz cultural test' for developer-friendliness."
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO, Nvidia",
+      "context": "Praised for cultivating the developer ecosystem through GPU donations to universities including gold-plated B200 boxes to CMU and Berkeley; will attend Hill and Valley; noted to be Lisa Su's cousin."
+    },
+    {
+      "name": "Ben Thompson",
+      "role": "Analyst, Stratechery",
+      "context": "Analyzed Netflix Q1 2025 results favorably; had long advocated for an ad-supported Netflix tier which he declared a success."
+    },
+    {
+      "name": "Soumith Chintala",
+      "role": "Co-creator, PyTorch",
+      "context": "Tweeted public support for George Hotz receiving AMD hardware, saying he would drive the boxes to Hotz himself; described TinyGrad as 'a beautiful, phenomenal piece of software.'"
+    },
+    {
+      "name": "Kevin Wheal",
+      "role": "Chief Product Officer, OpenAI",
+      "context": "Participating in Hill and Valley AI panel alongside Secretary Burgum and Alphabet's Reif Peratt to discuss US AI competitiveness and energy/data center policy."
+    },
+    {
+      "name": "Reif Peratt",
+      "role": "President and Chief Investment Officer, Alphabet",
+      "context": "Participating in Hill and Valley AI panel; Alphabet cited for AlphaFold Nobel Prize and Google's history of supporting open source AI development via free TPU access."
+    },
+    {
+      "name": "Doug Burgum",
+      "role": "Secretary of the Interior",
+      "context": "Participating in Hill and Valley AI panel; discussed for role in streamlining permitting for energy production and data centers to support US AI competitiveness."
+    },
+    {
+      "name": "Tim Hughes",
+      "role": "SVP of Business, SpaceX",
+      "context": "Participating in Hill and Valley space panel alongside Representative Whitesides and DIU's Major General Buckey on commercial space and NASA strategy."
+    },
+    {
+      "name": "George Whitesides",
+      "role": "U.S. Representative; former CEO, Virgin Galactic",
+      "context": "Now a junior congressman; participating in Hill and Valley space panel discussing commercial space and NASA realignment."
+    },
+    {
+      "name": "Jared Isaacman",
+      "role": "NASA Administrator",
+      "context": "Made congressional hearing comments suggesting SLS is not the long-term solution for space exploration and advocating for reallocation to commercial providers."
+    },
+    {
+      "name": "Vinod Khosla",
+      "role": "Founder, Khosla Ventures",
+      "context": "Featured in Hill and Valley fireside chat on AI integration in Medicare and Medicaid; co-investor with Founders Fund in Sword Health; noted as not a Trump fan but aligned on AI-driven healthcare efficiency goals."
+    },
+    {
+      "name": "Jannick Malling",
+      "role": "Co-CEO, Public",
+      "context": "Announced Aston Martin F1 sponsorship; discussed Public's evolution from fractional shares platform to premium multi-asset investing suite targeting high-net-worth users."
+    },
+    {
+      "name": "Leif Abraham",
+      "role": "Co-CEO, Public",
+      "context": "Co-announced Aston Martin F1 sponsorship; discussed Public's international expansion through the Alpha AI stock research app launched in European markets."
+    },
+    {
+      "name": "Alfred Wahlforss",
+      "role": "Co-founder, Listen Labs",
+      "context": "Announced $27M Series A; described Listen as an AI customer researcher that conducts thousands of parallel interviews and synthesizes signal from the noise across hundreds of conversations."
+    },
+    {
+      "name": "Erik Palitsch",
+      "role": "CEO and Founder, Freeform",
+      "context": "Former SpaceX early employee who ran Merlin engine and Raptor programs for a decade; founded Freeform to commercialize AI-driven metal 3D printing for aerospace and defense at industrial scale."
+    },
+    {
+      "name": "Saman Farid",
+      "role": "CEO, Formic",
+      "context": "Former VC who invested in 50+ robotics companies before founding Formic; argues that the 90% of deployment cost outside robot programming\u2014scoping, management, maintenance, error handling\u2014is the real problem to solve."
+    },
+    {
+      "name": "Calley Means",
+      "role": "Co-founder, TruMed; Special Government Employee, White House",
+      "context": "Discussed food dye phase-out as correction of corrupt tobacco-industry-driven food incentives; argued MAHA policies are bipartisan common sense being undermined by TDS; noted a 12-year strategy is needed to reform healthcare incentives."
+    },
+    {
+      "name": "Justin Mares",
+      "role": "Co-founder, TruMed",
+      "context": "Co-founded TruMed with Calley Means to reform healthcare and food system incentives; mentioned as partner in advocacy work alongside Calley."
+    },
+    {
+      "name": "Robert F. Kennedy Jr.",
+      "role": "Secretary of Health and Human Services",
+      "context": "Announced food dye phase-out policy; releasing a 100-day chronic disease report on May 22nd expected to make unprecedented government statements about environmental toxins and food quality."
+    },
+    {
+      "name": "Lawrence Stroll",
+      "role": "Owner, Aston Martin F1 Team",
+      "context": "Praised for extreme conviction in building a winning F1 team and simultaneously running the Aston Martin car brand; his commitment factored into Public's decision to partner with the team."
+    },
+    {
+      "name": "Kevin Systrom",
+      "role": "Co-founder, Instagram",
+      "context": "Cooperating with FTC in antitrust case against Meta; described as having a 'bone to pick' with Zuckerberg."
+    },
+    {
+      "name": "Brian Shrier",
+      "role": "Partner, Sequoia",
+      "context": "Led Listen Labs Series A; also led Sequoia's first investment in Qualtrics."
+    },
+    {
+      "name": "Mike Vernal",
+      "role": "Partner, Conviction",
+      "context": "Key investor in Listen Labs Series A."
+    },
+    {
+      "name": "Jason Citron",
+      "role": "Outgoing CEO, Discord",
+      "context": "Stepping down after building Discord from a gaming chat tool to a massive platform; transitioning to board member and advisor role."
+    },
+    {
+      "name": "Humam Sakhnini",
+      "role": "Incoming CEO, Discord",
+      "context": "Named as new Discord CEO; transition potentially signals IPO preparation."
+    },
+    {
+      "name": "Ryan Peterson",
+      "role": "CEO, Flexport",
+      "context": "Quoted in Wall Street Journal as a leading voice on tariff impacts on global shipping; jokingly credited as inventor of global trade."
+    },
+    {
+      "name": "Sean Frank",
+      "role": "CEO, Ridge Wallet",
+      "context": "Posted analysis of Solo Brands' failure citing COVID tailwinds reversing, negative product network effects, and non-adjacent acquisitions; will appear on TBPN the following day."
+    },
+    {
+      "name": "Packy McCormick",
+      "role": "Writer/Investor",
+      "context": "Noted that SBF would be extremely wealthy today had he stayed at Jane Street after the firm's trading revenue doubled to over $20B."
+    },
+    {
+      "name": "David Sacks",
+      "role": "White House AI and Crypto Czar",
+      "context": "Mentioned as having vocally supported Trump while most Silicon Valley donation dollars still went heavily to Democrats."
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO, Meta",
+      "context": "Discussed in context of Meta FTC antitrust case; noted for attempts to cozy up to Trump White House while facing bipartisan political opposition."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO, xAI/Tesla/SpaceX",
+      "context": "Referenced for building the Colossus data center rapidly as an example of sprint mentality AMD should emulate; mentioned seeking Nvidia chips directly from Jensen Huang."
+    },
+    {
+      "name": "Marty McCary",
+      "role": "FDA Commissioner",
+      "context": "Mentioned alongside RFK Jr. as discussing potential pharmaceutical advertising reform as part of MAHA health policy agenda."
+    },
+    {
+      "name": "Cory Booker",
+      "role": "U.S. Senator, New Jersey",
+      "context": "Called out by Calley Means for absence at HHS food dye policy announcement despite previously working on similar food and health issues."
+    },
+    {
+      "name": "Chuck Schumer",
+      "role": "Senate Minority Leader",
+      "context": "Gave opening remarks at Hill and Valley last year while his Republican counterparts were visibly dismissive; cited as example of the bipartisan but tense nature of the event."
+    },
+    {
+      "name": "Mark Hyman",
+      "role": "Health Advocate/Author",
+      "context": "Mentioned alongside Justin Mares as having long advocated for common-sense health solutions now gaining mainstream and government traction."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Netflix Q1 2025 Earnings and Growth Strategy",
+      "summary": "Netflix reported record Q1 profits with $6.61 EPS (up 25%) and $10.5B revenue. The company stopped reporting subscriber additions and shifted focus to revenue per user via price segmentation and ad-supported tiers. A leaked internal forecast targets $78B revenue, $9B in ad revenue, 410M subscribers, and a $1T market cap by 2029.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AMD vs Nvidia AI Chip Competition",
+      "summary": "AMD entered wartime mode after Semi Analysis published a December 2024 article detailing software gaps. Lisa Su met with Dylan Patel, launched developer relations, improved Python tooling, and shipped physical hardware to George Hotz. Nvidia's CUDA ecosystem and culture of developer support remain the benchmark AMD is chasing.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Hill and Valley Forum",
+      "summary": "Annual tech-DC bipartisan forum co-organized by Delian happening the following week with Jensen Huang, OpenAI, Alphabet, SpaceX, Interior Secretary Burgum, and Armed Services Committee members discussing AI energy policy, space commercialization, and defense spending reconciliation.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Silicon Valley Politics and DC Relations",
+      "summary": "Discussion of how the tech-government relationship evolved from Obama-era alignment through the Trump-era rift to today's more engaged but still mostly Democratic (by dollar) ecosystem; Hill and Valley positioned as a permanent bipartisan channel irrespective of which party holds power.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "US Defense Budget Reconciliation",
+      "summary": "Congress debating a reconciliation bill with $150-200B in new defense spending toward a ~$1T total; priorities include nuclear modernization, hypersonics, and shipbuilding. Hill and Valley participants from Armed Services Committees expected to negotiate informally at the event.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "MAHA Movement and Food Policy Reform",
+      "summary": "Calley Means discussed the MAHA coalition's step-by-step approach starting with food dye phase-out as a bipartisan no-brainer; argued the US food system was deliberately corrupted by tobacco companies in the 1990s and that a 12-year strategy is needed to reorient healthcare incentives away from disease management.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Food Dye Phase-Out",
+      "summary": "HHS Secretary Kennedy announced the phase-out of petroleum-based food dyes; Calley Means argued this corrects corrupt incentives rather than being nanny-state regulation, noting Kellogg's already makes dye-free versions of the same products for Canada and Europe.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "US Manufacturing and Re-industrialization",
+      "summary": "Freeform and Formic founders discussed the gap between US and Chinese manufacturing automation; China deploys ~400K robots/year vs US ~30K, and typical US factory utilization is under 2,000 hours/year vs 7,500 in China. Tariff environment is driving uptick in domestic manufacturing inquiries.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Factory Robotics Automation",
+      "summary": "Formic CEO argued the biggest barrier to US factory automation is not robot intelligence but last-mile deployment infrastructure including scoping, programming, management, and maintenance. Vision language action models from Physical Intelligence are promising but too slow for commercial use today.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Metal 3D Printing",
+      "summary": "Freeform CEO described AI-driven laser powder bed fusion as transformative for aerospace and defense; claimed fastest high-volume platform globally with superior sensing and compute stack enabling continuous process improvement. Nvidia made a strategic investment.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "F1 Sponsorship as Brand Marketing",
+      "summary": "Public.com announced Aston Martin F1 team sponsorship as a premium brand awareness play targeting high-net-worth investors; discussed F1 as effectively 20 Super Bowl-level events per year with strong demographic fit for financial services brands.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Customer Research",
+      "summary": "Listen Labs raised $27M Series A for a platform that interviews thousands of customers in parallel; founder argued that as AI automates coding, talking to customers becomes increasingly the most important human contribution to product development.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Tariff Impact on Tech and Startups",
+      "summary": "Netflix seen as tariff-immune as pure digital content; Meta exposed via D2C ad pullback; survey of venture-backed companies showed 19% cut staff, 33% plan to hire less, with only 5% planning to hire more amid tariff uncertainty.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "OpenAI Revenue Trajectory",
+      "summary": "Projected revenue path from $1B (2023) to $4B (2024) to $13B (2025) and potentially $125B by 2029 per a Softbank-style unicorn chart; Polymarket showing 64% probability of reaching 1 billion ChatGPT users in 2025.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Humanoid Robots Economics",
+      "summary": "Concerns raised about wear and tear at manufacturing cycle rates (50K cycles/day), physics challenges with high payloads, and depreciation risk; Chinese companies like Unitree have significant advantage through vertical integration of custom motors, lidar, and sensors.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Discord CEO Transition",
+      "summary": "Jason Citron stepping down after building Discord from gaming chat to a major platform; Humam Sakhnini named new CEO; speculation this is preparation for an eventual IPO.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Independent Media and Health Awareness",
+      "summary": "Calley Means argued that decentralized podcasting and social media were a necessary precondition for MAHA health reform, enabling distribution of health information outside pharmaceutical-sponsored legacy media channels.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Pharmaceutical and Food Industry Incentive Reform",
+      "summary": "Discussion of how pharma advertising dominates legacy media budgets creating self-censorship; Calley Means argued every lever of the US healthcare system\u2014pharma, hospitals, insurance\u2014is currently incentivized by sickness rather than health outcomes.",
+      "sentiment": "bearish"
+    }
+  ],
+  "key_claims": [
+    "Netflix internal forecast leaked to WSJ targets $78B revenue and $1T market cap by 2029, with $9B in advertising revenue and 410M subscribers.",
+    "Netflix average user watches approximately 2 hours of content per day.",
+    "AMD made rapid software improvements across many items flagged by Semi Analysis within just 4 months of publication of their December 2024 article.",
+    "Jane Street trading revenue nearly doubled to over $20 billion in 2024.",
+    "77% of military-aged youth in America currently cannot qualify to serve in the military.",
+    "A teenage boy in America today has less testosterone than a 68-year-old man.",
+    "35% of American teenagers are on some form of chronic disease medication.",
+    "38% of American teenagers are pre-diabetic.",
+    "The US spends 5 times more per capita on healthcare than Spain but lives 6 years less.",
+    "Philip Morris and R.J. Reynolds controlled approximately 50% of the US food supply in the early 1990s after consolidating food companies including Kraft and Nabisco.",
+    "90% of US agricultural subsidies go to corn, soy, and meat; only 0.4% go to fruits and vegetables.",
+    "The #1 item purchased on SNAP food stamps is soda; over 60% of SNAP spending goes to ultra-processed food.",
+    "Calley Means estimates roughly $1 trillion in federal subsidies flowed to ultra-processed food over the last 10 years.",
+    "China deployed approximately 400,000 robots in 2024 versus approximately 30,000 in the US.",
+    "Typical US factory utilization is under 2,000 hours per year versus 7,500 hours in China out of 8,700 possible production hours.",
+    "95% of small and medium-sized US factories have no robots deployed.",
+    "Erewhon reportedly generates approximately $50 million in revenue per store across 10 locations.",
+    "OpenAI revenue projected to reach $125B by 2029 per a Softbank-style forecast shared on the show.",
+    "Polymarket currently shows 64% probability of OpenAI reaching 1 billion ChatGPT users in 2025.",
+    "Kellogg's makes Froot Loops with natural ingredients including carrot juice and watermelon juice for Canada and Europe but uses petroleum-based dyes in the US version.",
+    "A high school student trained a GPT-2 equivalent LLM for free using Google's TPU cloud program, demonstrating Nvidia-style open developer access.",
+    "Freeform CEO claims the company has the fastest and highest-volume metal 3D printing platform on the planet, operating near SpaceX in Hawthorne with gen-three machines offering 10-20x higher throughput than current production systems.",
+    "Semi Analysis estimated that AMD shipping physical hardware to George Hotz was 'arguably a bigger reputational coup than a technical one' in signaling a new developer-first ethos."
+  ],
+  "technologies": [
+    "CUDA",
+    "ROCm",
+    "TinyGrad",
+    "PyTorch",
+    "Large Language Models (LLMs)",
+    "Vision Language Action Models (VLAs)",
+    "TPUs (Tensor Processing Units)",
+    "Metal 3D Printing / Laser Powder Bed Fusion",
+    "LIDAR",
+    "Computer Vision",
+    "Six-axis robot arms",
+    "PLCs (Programmable Logic Controllers)",
+    "Linear actuators",
+    "AlphaFold",
+    "GLP-1 / Ozempic",
+    "AI agents",
+    "CMM inspection and 3D scanning metrology",
+    "Continuous Integration / CI pipelines",
+    "Ad-supported streaming",
+    "Prediction markets"
+  ],
+  "_stats": {
+    "word_count": 35170,
+    "estimated_input_tokens": 46776,
+    "input_tokens": 3,
+    "output_tokens": 23601,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 49962,
+    "duration_ms": 408138,
+    "wall_time_s": 409.3,
+    "cost_usd": 0.906911,
+    "tokens_per_sec": 57.7
+  }
+}

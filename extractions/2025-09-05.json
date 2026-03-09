@@ -1,0 +1,828 @@
+{
+  "episode_date": "2025-09-05",
+  "episode_title": "trump-tech-dinner-tesla-pay-package-openai-broadcom-chips-jobs-report",
+  "companies": [
+    {
+      "name": "The Free Press",
+      "type": "startup",
+      "context": "Barry Weiss's media company reportedly being acquired by CBS for $200M; has approximately 1M free subscribers; praised as one of the most impressive media companies built in recent decades.",
+      "sentiment": "bullish",
+      "sector": "Media"
+    },
+    {
+      "name": "CBS",
+      "type": "public",
+      "context": "Reportedly acquiring The Free Press for $200M as part of an $8B broader media merger; discussed as a strategic talent acquisition more than a pure subscriber play.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Crossed $1 billion in annual revenue; CEO Eric Lyman called in to confirm the milestone and said the job is not finished.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "The Browser Company (DIA / Arc)",
+      "type": "startup",
+      "context": "Acquired by Atlassian for $610M; founders say they will continue building DIA for knowledge workers and the AI era; Atlassian CEO signaled enterprise focus rather than consumer.",
+      "sentiment": "bullish",
+      "sector": "Software"
+    },
+    {
+      "name": "Atlassian",
+      "type": "public",
+      "context": "Acquired The Browser Company for $610M; critics called it a vibe acquisition but defenders noted Atlassian has an elite M&A track record including Trello, Loom, and Opsgenie.",
+      "sentiment": "mixed",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Tim Cook pledged $600B in US investment at Trump's White House tech dinner; viral video of Cook thanking Trump approximately 12 times circulated widely.",
+      "sentiment": "neutral",
+      "sector": "Technology"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Zuckerberg pledged $600B in AI infrastructure investment by 2028 at White House dinner; current capex guidance is $70B in 2025 and $100B in 2026, implying spend would need to jump to $200B in 2027 and $300B in 2028.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Board greenlit a ~$975B pay package for Elon Musk targeting $8.5T market cap, 1M robotaxis, 20M vehicles, 1M FSD subscriptions, and 12% company stock; board also proposed investing in XAI.",
+      "sentiment": "bullish",
+      "sector": "Automotive / AI"
+    },
+    {
+      "name": "XAI",
+      "type": "startup",
+      "context": "Elon Musk's AI company; Tesla board proposed an investment; some analysts warn of accelerating cash burn and fundraising struggles with a possible Tesla bailout needed within 12 months.",
+      "sentiment": "mixed",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Previously invested in XAI; Starship program highlighted as a rare case of iterating without customer payload risk, enabling aggressive hardware tests; Block 5 Falcon 9 booster has flown 30 missions.",
+      "sentiment": "bullish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "X (Twitter)",
+      "type": "private",
+      "context": "Elon Musk's social platform; discussed as a potential asset to be rolled into Tesla under Musk's new pay package; described as the everything app users are addicted to.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Neuralink",
+      "type": "startup",
+      "context": "Listed as one of Musk's outside ventures cited in context of concerns about CEO focus across multiple companies.",
+      "sentiment": "neutral",
+      "sector": "Biotech / AI"
+    },
+    {
+      "name": "Boring Company",
+      "type": "startup",
+      "context": "Mentioned as one of Musk's outside ventures; Las Vegas tunnel referenced in the discussion.",
+      "sentiment": "neutral",
+      "sector": "Infrastructure"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Signed $10B deal with Broadcom for custom AI inference chips to be fabricated at TSMC 3nm; also has $30B+/year Oracle data center deal and Stargate construction project; Sam Altman said GPU shortages slowed ChatGPT rollout.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Broadcom",
+      "type": "public",
+      "context": "Revealed as OpenAI's mystery $10B chip customer; stock surged ~16% on the news; specializes in custom XPUs; OpenAI's chip targets inference-only workloads with mass production planned for 2026.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "OpenAI signed a data center deal requiring payments of over $30B per year; CEO Safra Catz attended White House tech dinner.",
+      "sentiment": "bullish",
+      "sector": "Cloud / Infrastructure"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Signed a smaller compute contract with OpenAI; Sergey Brin attended White House tech dinner; described as back in founder mode with Brin re-engaged.",
+      "sentiment": "neutral",
+      "sector": "Technology"
+    },
+    {
+      "name": "TSMC",
+      "type": "public",
+      "context": "Will fabricate OpenAI's custom Broadcom chip on the 3-nanometer node; target mass production in 2026.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Shams Sankar (CFO) attended White House tech dinner; company stated it expects fewer employees in the future despite massive revenue growth, with headcount up only 12% amid rapid expansion.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Scale AI",
+      "type": "startup",
+      "context": "CEO Jason Droege appeared; Meta invested $14B for 49% stake with Alex Wang moving to Meta; has two multi-hundred-million dollar businesses (data and applications/services); 1,100+ employees; growing every month post-deal; holds a $100M US Army contract.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Rivet",
+      "type": "startup",
+      "context": "CEO Dave Marra appeared; won $195M Army contract for next-gen soldier AR headsets; raised $90M total; targeting aerospace, factory, and battlefield workers with AR/AI wearables built for comfort, ruggedization, and compliance.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech / AR"
+    },
+    {
+      "name": "Augment",
+      "type": "startup",
+      "context": "CEO Harish Abbott appeared; raised $85M Series A; building AI logistics agents (Augie) deployed across $35B in freight management; one year old company with signed agreements from major aerospace manufacturers.",
+      "sentiment": "bullish",
+      "sector": "Logistics / AI"
+    },
+    {
+      "name": "Base10 Partners",
+      "type": "startup",
+      "context": "CEO Tuhin Srivastava appeared; raised $150M; provides AI inference infrastructure on top of cloud and neocloud capacity; 104 employees; customers include Open Evidence, Notion, Clay, Descript, Patreon, and others.",
+      "sentiment": "bullish",
+      "sector": "AI/ML Infrastructure"
+    },
+    {
+      "name": "Waymo",
+      "type": "startup",
+      "context": "Compared to Tesla Robotaxi in service area; grew steadily from ~50 to ~750 square miles over seven years versus Robotaxi reaching ~1,000 square miles in months.",
+      "sentiment": "neutral",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Solar City",
+      "type": "private",
+      "context": "Referenced as a prior Musk company merger with Tesla; framed by some as a bailout but Tesla stock ran strongly afterward; structural challenges from Chinese solar dumping discussed.",
+      "sentiment": "neutral",
+      "sector": "Energy"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Agreed to $1.5B copyright settlement with the Authors Guild\u2014the largest publicly reported copyright recovery in history; a hunger strike protest also occurred outside their offices.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Authors Guild",
+      "type": "private",
+      "context": "Settled copyright lawsuit against Anthropic for $1.5B covering training on pirated works (Libgen) up to August 2025; named works list authors receive at least $3,000 per work.",
+      "sentiment": "bullish",
+      "sector": "Media / Legal"
+    },
+    {
+      "name": "New York Times",
+      "type": "public",
+      "context": "Ongoing copyright case against OpenAI continues, represented by the same plaintiff's firm (Sussman Godfrey) as the Anthropic case; may go all the way to the Supreme Court.",
+      "sentiment": "neutral",
+      "sector": "Media / Legal"
+    },
+    {
+      "name": "Helios.dev",
+      "type": "startup",
+      "context": "Mert Mumtaz's company; Mert appeared as a guest to analyze Tempo blockchain launch and Solana scalability debate.",
+      "sentiment": "neutral",
+      "sector": "Blockchain / Crypto"
+    },
+    {
+      "name": "Tempo",
+      "type": "startup",
+      "context": "New L1 blockchain co-founded by Stripe and Paradigm focused on payments and stablecoins; team of 15 led by Paradigm co-founder Matt; initially permissioned, plans to decentralize; compared to Facebook's Libra.",
+      "sentiment": "mixed",
+      "sector": "Blockchain / Fintech"
+    },
+    {
+      "name": "Stripe",
+      "type": "private",
+      "context": "Co-founding the Tempo L1 blockchain focused on payments; its massive merchant distribution seen as a key bootstrap advantage for the network.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Paradigm",
+      "type": "fund",
+      "context": "Crypto-focused VC firm co-founding Tempo L1; traditionally Ethereum-centric but now backing an independent L1, which drew attention.",
+      "sentiment": "neutral",
+      "sector": "Blockchain / VC"
+    },
+    {
+      "name": "Solana",
+      "type": "private",
+      "context": "Existing L1 blockchain cited as already solving payments at scale; Trump coin launch on Solana reportedly caused payroll disruptions, which Tempo used as a justification\u2014a claim Mert Mumtaz disputed.",
+      "sentiment": "neutral",
+      "sector": "Blockchain"
+    },
+    {
+      "name": "Circle",
+      "type": "private",
+      "context": "Mentioned as an existing stablecoin infrastructure player that already addresses the payments use cases Tempo is targeting.",
+      "sentiment": "neutral",
+      "sector": "Fintech / Crypto"
+    },
+    {
+      "name": "Coinbase",
+      "type": "public",
+      "context": "Brian Armstrong raised max leverage on international perpetual futures from 20x to 50x; Coinbase Pay mentioned as potential Tempo integration.",
+      "sentiment": "neutral",
+      "sector": "Crypto"
+    },
+    {
+      "name": "JP Morgan",
+      "type": "public",
+      "context": "Cited as already having a permissioned blockchain to illustrate that permissioned chains are not novel, reinforcing skepticism about Tempo's differentiation.",
+      "sentiment": "neutral",
+      "sector": "Fintech / Banking"
+    },
+    {
+      "name": "Cloudflare",
+      "type": "public",
+      "context": "CEO Matthew Prince proposing a market-based AI scraping compensation system using stablecoins and Cloudflare's DNS position to route payments to content publishers.",
+      "sentiment": "bullish",
+      "sector": "Infrastructure / AI"
+    },
+    {
+      "name": "Hyundai",
+      "type": "public",
+      "context": "Nearly 500 people arrested by immigration authorities at Hyundai's 3,000-acre Georgia EV factory; majority were Korean nationals; South Korea expressed concern and regret.",
+      "sentiment": "bearish",
+      "sector": "Automotive"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "OpenAI has relied heavily on Nvidia off-the-shelf GPUs; Broadcom deal signals OpenAI's move toward custom silicon to reduce dependence on Nvidia.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors / AI"
+    },
+    {
+      "name": "AMD",
+      "type": "public",
+      "context": "CEO Lisa Sue attended Trump's White House tech dinner.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "CEO Dylan Field spotted in the full attendee photo from Trump's White House tech dinner.",
+      "sentiment": "neutral",
+      "sector": "Design Software"
+    },
+    {
+      "name": "Shopify",
+      "type": "public",
+      "context": "Acquired Harish Abbott's previous company Deliver for $2.1B in 2022.",
+      "sentiment": "neutral",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "Deliver",
+      "type": "startup",
+      "context": "Harish Abbott's prior company building a Prime-like fulfillment service for Shopify merchants; sold to Shopify for $2.1B in 2022.",
+      "sentiment": "bullish",
+      "sector": "Logistics"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "TJ Parker claimed to be the youngest VP at Amazon despite personally never purchasing anything on the platform; also context for PillPack acquisition.",
+      "sentiment": "neutral",
+      "sector": "Technology / E-commerce"
+    },
+    {
+      "name": "Instagram",
+      "type": "public",
+      "context": "Cited as historical comparable to Browser Company acquisition; acquired by Facebook for $1B with ~860K DAUs, widely mocked at the time but proved visionary.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Texas Instruments",
+      "type": "public",
+      "context": "Cited in lagging edge chip glut analysis; running down inventories as pricing faces structural headwinds from Chinese state-directed supply.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Hadrian",
+      "type": "startup",
+      "context": "Cited as example of high-automation US manufacturing with few workers running many CNC machines, illustrating how re-industrialization may not create many jobs.",
+      "sentiment": "bullish",
+      "sector": "Advanced Manufacturing"
+    },
+    {
+      "name": "Open Evidence",
+      "type": "startup",
+      "context": "Base10 customer; trains its own models to answer medical queries for doctors and uses Base10 for inference scaling; used by a large number of doctors daily.",
+      "sentiment": "bullish",
+      "sector": "Healthcare / AI"
+    },
+    {
+      "name": "Notion",
+      "type": "startup",
+      "context": "Base10 inference customer; founder Ivan noted gross margins dropped from 90% to 80% due to AI costs\u2014hosts treated this as an acceptable trade-off for capability gains.",
+      "sentiment": "neutral",
+      "sector": "Productivity / AI"
+    },
+    {
+      "name": "Washington Post",
+      "type": "public",
+      "context": "Launched an independent fashion newsletter (Post Runway) on Substack as an experiment to reach new readers and engage with the platform's community.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Substack",
+      "type": "startup",
+      "context": "Washington Post launched a Substack newsletter; highlighted as a growing platform for both legacy and independent media brands.",
+      "sentiment": "bullish",
+      "sector": "Media"
+    },
+    {
+      "name": "Stop AI",
+      "type": "startup",
+      "context": "Co-founded by Guido Reischtatter; he conducted a hunger strike outside Anthropic's offices over AI existential risk concerns; described as having one LinkedIn connection.",
+      "sentiment": "bearish",
+      "sector": "AI Safety / Advocacy"
+    },
+    {
+      "name": "Garage Beer",
+      "type": "startup",
+      "context": "Kelsey Brothers' beer brand received investment from Durational Capital Management at $200M valuation; tracking $65M in revenue in 2025; started with a $500K crowdfunding campaign.",
+      "sentiment": "bullish",
+      "sector": "Consumer / Beverage"
+    },
+    {
+      "name": "AppLovin",
+      "type": "public",
+      "context": "Announced as set to join the S&P 500.",
+      "sentiment": "bullish",
+      "sector": "AdTech / Mobile"
+    },
+    {
+      "name": "Robinhood",
+      "type": "public",
+      "context": "Announced as set to join the S&P 500.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Hello Patient",
+      "type": "startup",
+      "context": "Alex Cohen raised $22.5M Series A led by Scale Venture Partners; founder set to appear on TBPN the following Monday.",
+      "sentiment": "bullish",
+      "sector": "Healthcare / AI"
+    },
+    {
+      "name": "Durational Capital Management",
+      "type": "fund",
+      "context": "Invested in Garage Beer at $200M valuation; previously took Casper mattresses private for $300M in 2021 and owns Bojangles.",
+      "sentiment": "bullish",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "Scale Venture Partners",
+      "type": "fund",
+      "context": "Led Hello Patient's $22.5M Series A.",
+      "sentiment": "bullish",
+      "sector": "VC"
+    },
+    {
+      "name": "No Point Ventures",
+      "type": "fund",
+      "context": "Doug Philippone's fund; investor in Rivet's fundraising round.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech VC"
+    },
+    {
+      "name": "Point72",
+      "type": "fund",
+      "context": "Steve Cohen's fund; participated in Rivet's seed round.",
+      "sentiment": "bullish",
+      "sector": "Hedge Fund / VC"
+    },
+    {
+      "name": "Duquesne Capital",
+      "type": "fund",
+      "context": "Participated in Rivet's funding round alongside Point72 and No Point Ventures.",
+      "sentiment": "bullish",
+      "sector": "Hedge Fund"
+    },
+    {
+      "name": "Morning Brew",
+      "type": "startup",
+      "context": "Austin Reef mentioned in connection with The Free Press deal discussion.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Mentioned as an alumni company of Ramp, part of an emerging Ramp Mafia of successful spinoffs.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Skydance Media",
+      "type": "private",
+      "context": "David Ellison cited as actively doing bold media M&A including a UFC deal, used as context for CBS's acquisition strategy.",
+      "sentiment": "bullish",
+      "sector": "Media"
+    }
+  ],
+  "people": [
+    {
+      "name": "Joe Weisenthal",
+      "role": "Journalist, Bloomberg",
+      "context": "Appeared as guest on jobs day; analyzed the September 2025 report showing a miss vs. expectations, June revised to negative (first since Dec 2020), manufacturing down 78K YTD, and youth unemployment at 10.5% rising at fastest pace in 15 years outside the pandemic."
+    },
+    {
+      "name": "Jason Droege",
+      "role": "CEO, Scale AI",
+      "context": "Appeared as guest; discussed Meta's $14B investment for 49% stake, Scale's two multi-hundred-million dollar businesses, the expert contributor network (15% PhDs), a $100M Army contract, and the gap between AI hype and enterprise deployment reality."
+    },
+    {
+      "name": "Dave Marra",
+      "role": "CEO, Rivet",
+      "context": "Appeared as guest; announced $195M Army contract for next-gen soldier AR headsets and $90M total raised; argued the product could not have been built five years ago due to immature supply chain."
+    },
+    {
+      "name": "Harish Abbott",
+      "role": "CEO, Augment",
+      "context": "Appeared as guest; announced $85M Series A for AI logistics agents deployed across $35B in freight; previously sold Deliver to Shopify for $2.1B in 2022 and cited focus and customer delight as key lessons learned."
+    },
+    {
+      "name": "Tuhin Srivastava",
+      "role": "CEO, Base10 Partners",
+      "context": "Appeared as guest; announced $150M raise for AI inference infrastructure; argued customer-specific fine-tuned models create durable moat; cited Jevons Paradox as reason inference price declines will be offset by volume growth."
+    },
+    {
+      "name": "Mert Mumtaz",
+      "role": "Co-founder, Helios.dev",
+      "context": "Appeared as guest; argued Solana scalability is not a real weakness justifying Tempo's new L1 and that permissioned blockchains are functionally not true blockchains; acknowledged Stripe's distribution advantage."
+    },
+    {
+      "name": "Cecilia Ziniti",
+      "role": "IP attorney",
+      "context": "Appeared as guest to discuss Anthropic's $1.5B copyright settlement with the Authors Guild; explained that training on properly acquired books was ruled permissible while use of pirated works (Libgen) was not; framed it as a Napster-to-iTunes moment for AI data."
+    },
+    {
+      "name": "Eric Lyman",
+      "role": "CEO, Ramp",
+      "context": "Called in to confirm Ramp crossed $1 billion in annual revenue; said the job is not finished."
+    },
+    {
+      "name": "Barry Weiss",
+      "role": "Founder, The Free Press",
+      "context": "Her media company reportedly being acquired by CBS for $200M; praised as one of the most impressive media entrepreneurs of the decade."
+    },
+    {
+      "name": "Tim Cook",
+      "role": "CEO, Apple",
+      "context": "Attended Trump White House tech dinner; pledged $600B in US investment; went viral for thanking Trump approximately 12 times; photographed walking Abbey Road-style on the way to the meeting."
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO, Meta",
+      "context": "Attended White House tech dinner and pledged $600B in AI infrastructure investment by 2028; current capex guidance implies a massive acceleration in 2027 and 2028 to reach that figure."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO, Tesla / XAI / SpaceX",
+      "context": "Tesla board greenlit a ~$975B pay package targeting an $8.5T market cap; board also proposed Tesla investment in XAI; Musk did not attend the White House dinner."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Attended White House dinner, praised Trump's pro-innovation stance; OpenAI signed $10B Broadcom chip deal; previously said GPU shortages slowed GPT-4.5 rollout."
+    },
+    {
+      "name": "Sergey Brin",
+      "role": "Co-founder, Google",
+      "context": "Attended Trump White House tech dinner; Google described as back in founder mode with Brin having a seat at the table again."
+    },
+    {
+      "name": "Dylan Field",
+      "role": "CEO, Figma",
+      "context": "Spotted in the full attendee photo from Trump's White House tech dinner."
+    },
+    {
+      "name": "Jared Isaacman",
+      "role": "NASA Administrator",
+      "context": "Listed as attendee at Trump White House tech dinner."
+    },
+    {
+      "name": "Chamath Palihapitiya",
+      "role": "Investor / VC",
+      "context": "Attended White House tech dinner on his 49th birthday; defended online by Rune who cited his role as VP of Growth at Facebook (scaling from 50M to 1B users) and for inventing People You May Know and the MAU metric."
+    },
+    {
+      "name": "Satya Nadella",
+      "role": "CEO, Microsoft",
+      "context": "Listed as attendee at Trump White House tech dinner."
+    },
+    {
+      "name": "Sundar Pichai",
+      "role": "CEO, Google",
+      "context": "Listed as attendee at Trump White House tech dinner."
+    },
+    {
+      "name": "David Sacks",
+      "role": "White House AI and Crypto Czar",
+      "context": "Attended Trump White House tech dinner; photographed alongside Chamath."
+    },
+    {
+      "name": "Shams Sankar",
+      "role": "CFO, Palantir",
+      "context": "Attended Trump White House tech dinner; previously appeared on TBPN where he stated Palantir expects fewer employees in the future despite massive revenue growth."
+    },
+    {
+      "name": "Lisa Sue",
+      "role": "CEO, AMD",
+      "context": "Attended Trump White House tech dinner."
+    },
+    {
+      "name": "Bill Gates",
+      "role": "Co-founder, Microsoft / philanthropist",
+      "context": "Listed as attendee at Trump White House tech dinner."
+    },
+    {
+      "name": "Safra Catz",
+      "role": "CEO, Oracle",
+      "context": "Attended Trump White House tech dinner; Oracle has a $30B+/year data center deal with OpenAI."
+    },
+    {
+      "name": "Greg Brockman",
+      "role": "Co-founder, OpenAI",
+      "context": "Attended Trump White House tech dinner alongside his wife Anna Brockman."
+    },
+    {
+      "name": "Vivek Ranadive",
+      "role": "Owner, Golden State Warriors / investor",
+      "context": "Attended White House tech dinner; noted as a pioneer of SPACs alongside Chamath."
+    },
+    {
+      "name": "Alex Wang",
+      "role": "Founder, Scale AI (now at Meta)",
+      "context": "Founded Scale AI nine years ago with the insight that data was most important to models; moved to Meta as part of the $14B investment deal for 49% of Scale AI."
+    },
+    {
+      "name": "Andrej Karpathy",
+      "role": "AI researcher (former Tesla)",
+      "context": "Mentioned as a former Tesla AI team member, highlighting Tesla's deep AI pedigree relevant to speculation about XAI merging into Tesla."
+    },
+    {
+      "name": "Hock Tan",
+      "role": "CEO, Broadcom",
+      "context": "Referenced in context of Broadcom's $10B OpenAI chip deal; Broadcom had announced a mystery fourth major AI developer customer on its earnings call."
+    },
+    {
+      "name": "Richard Ho",
+      "role": "Former Google TPU lead, now at OpenAI",
+      "context": "Reported to be leading ~40 engineers at OpenAI working on custom chip development in collaboration with Broadcom."
+    },
+    {
+      "name": "Doug O'Loughlin",
+      "role": "Analyst, Fabricated Knowledge / Semi Analysis",
+      "context": "Published analysis arguing lagging edge semiconductor capacity faces a structural glut from China similar to solar panels, LEDs, and steel; covered implications for Texas Instruments and others."
+    },
+    {
+      "name": "Matthew Prince",
+      "role": "CEO, Cloudflare",
+      "context": "Proposing a market-based solution for AI data scraping using stablecoins and Cloudflare's DNS position to route micropayments to content publishers."
+    },
+    {
+      "name": "Guido Reischtatter",
+      "role": "Co-founder, Stop AI",
+      "context": "Conducted a hunger strike outside Anthropic's offices citing AI existential risk; hosts noted his company has one LinkedIn connection and speculated his frustration may be rate limits or Claude not selling to China."
+    },
+    {
+      "name": "TJ Parker",
+      "role": "Founder, PillPack; investor, Matrix",
+      "context": "Went viral for claiming to have been the youngest VP at Amazon while personally never purchasing anything on Amazon in his life."
+    },
+    {
+      "name": "Giorgio Armani",
+      "role": "Fashion designer and business mogul, Armani",
+      "context": "Died at age 91; founded Armani in 1975 with partner Sergio Galetti; remained sole shareholder of his $2.6B revenue company; built 2,500 retail stores across menswear, womenswear, beauty, interiors, and restaurants while staying independent of conglomerates."
+    },
+    {
+      "name": "Eric Adams",
+      "role": "Mayor, New York City",
+      "context": "Reported to be suspending his mayoral campaign to accept a federal appointment, reportedly as US Ambassador to Saudi Arabia."
+    },
+    {
+      "name": "Ellen DeGeneres",
+      "role": "Comedian / TV host / real estate investor",
+      "context": "WSJ revealed she has bought and sold 34+ homes generating ~$190M in gross profits at an average 37% return since the mid-2000s; relocated to the UK Cotswolds after Trump's 2024 election win."
+    },
+    {
+      "name": "Connor McGregor",
+      "role": "MMA fighter",
+      "context": "Announced he is running for president of Ireland."
+    },
+    {
+      "name": "Alex Cohen",
+      "role": "Founder, Hello Patient",
+      "context": "Raised $22.5M Series A led by Scale Venture Partners; described as a god-tier poster; set to appear on TBPN the following Monday."
+    },
+    {
+      "name": "Christopher Waller",
+      "role": "Governor, US Federal Reserve",
+      "context": "Described as the most dovish Fed governor; has been forceful about softening labor markets justifying rate cuts; his view appears to be prevailing in market expectations."
+    },
+    {
+      "name": "David Ellison",
+      "role": "CEO, Skydance Media",
+      "context": "Cited as an example of bold media M&A including a UFC deal, used as context for why CBS acquiring The Free Press makes strategic sense."
+    },
+    {
+      "name": "Jamie Siminoff",
+      "role": "Founder, Ring (Amazon)",
+      "context": "Listed as attendee at Trump White House tech dinner."
+    },
+    {
+      "name": "David Limp",
+      "role": "Former SVP, Amazon",
+      "context": "Listed as attendee at Trump White House tech dinner."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Trump White House Tech Dinner",
+      "summary": "Trump hosted a dinner with dozens of major tech CEOs including Cook, Zuckerberg, Altman, Brin, Pichai, Nadella, Sacks, Lisa Sue, Bill Gates, and others. Apple pledged $600B in US investment and Meta pledged $600B in AI infrastructure. Jensen Huang and Elon Musk did not attend.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Tesla $975B Pay Package for Elon Musk",
+      "summary": "Tesla board approved a new pay package worth up to ~$975B contingent on hitting milestones including $8.5T market cap, 1M robotaxis, 20M vehicles, and 1M FSD subscriptions. Hosts framed it as a model for CEO compensation aligned with shareholder value, noting a CEO succession plan requirement unlocks the final tranches.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "OpenAI-Broadcom $10B Custom AI Chip Deal",
+      "summary": "OpenAI signed a $10B deal with Broadcom for custom inference chips to be fabricated at TSMC on 3nm; led by ex-Google TPU engineer Richard Ho with ~40 engineers. Deal aims to reduce GPU shortage bottlenecks; Broadcom stock surged ~16% on the news.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "September 2025 Jobs Report",
+      "summary": "Report missed expectations; June revised to negative (first since December 2020); manufacturing down 78K YTD; youth unemployment at 10.5% for 16-24 year-olds rising at fastest pace in 15 years outside pandemic; healthcare the only consistent job creator. Fed now expected to cut rates in September and possibly October.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Atlassian Acquires Browser Company for $610M",
+      "summary": "Atlassian acquired The Browser Company (Arc/DIA) for $610M; CEO signaled enterprise focus; mixed community reaction with some calling it a vibe acquisition and others defending Atlassian's M&A track record and the founders' pedigree (core Chrome team contributor).",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "The Free Press CBS Acquisition",
+      "summary": "Barry Weiss's The Free Press reportedly being acquired by CBS for $200M despite ~1M free subscribers. Hosts debated valuation optics and political implications but concluded it is best understood as an expensive talent acquisition similar to paying top dollar for a star AI researcher.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Ramp $1 Billion ARR Milestone",
+      "summary": "Ramp crossed $1 billion in annual revenue; CEO Eric Lyman called in briefly to confirm and said the job is not finished.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Meta $600B AI Infrastructure Investment Pledge",
+      "summary": "Zuckerberg announced $600B in AI infrastructure spending by 2028 at the White House dinner. Math implies capex would need to jump from $100B in 2026 to $200B in 2027 and $300B in 2028. Hosts noted the number feels reasonable given the fast-takeoff investment discourse.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Anthropic $1.5B Copyright Settlement",
+      "summary": "Anthropic settled with the Authors Guild for $1.5B covering training on pirated works (Libgen) through August 2025\u2014described as the largest publicly reported copyright recovery in history. Training on properly acquired books was ruled permissible; authors on the named works list receive at least $3,000 per work.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Tempo Blockchain (Stripe and Paradigm L1)",
+      "summary": "Stripe and Paradigm announced Tempo, a new payments-focused L1 blockchain. Mert Mumtaz argued scalability is not Solana's real weakness, permissioned chains are not true blockchains, and the real motivation is owning the full stack. Compared to Facebook's Libra.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI, Jobs, and Re-industrialization",
+      "summary": "Weak jobs data sparked debate about whether AI and tariff policies are creating or destroying jobs. Palantir expects fewer employees despite revenue growth; Joe Weisenthal argued that if AI investments pay off they should be labor-market negative by design; manufacturing down 78K YTD.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Lagging Edge Semiconductor Glut",
+      "summary": "Fabricated Knowledge's Doug O'Loughlin argued lagging edge chip capacity faces a structural glut from China's state-directed CAPEX, similar to solar, LEDs, and steel. Companies like Texas Instruments face a permanent pricing headwind from new fabs that cannot profit at Chinese-dumped prices.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "SpaceX Starship Iterative Development",
+      "summary": "Everyday Astronaut post highlighted that Starship is a rare case of testing radical hardware (including intentionally removing heat shield tiles) without customer payload risk, enabling faster learning. Hosts bullish on the rapid manufacturing pace and upcoming Version 3.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Federal Reserve Rate Cut Expectations",
+      "summary": "Following the weak jobs report, Polymarket odds for 3 cuts in 2025 jumped from 18% to 38%; September cut seen as a lock; October cut probability also rising. Christopher Waller's dovish view described as prevailing at the FOMC.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Ellen DeGeneres Real Estate Empire",
+      "summary": "WSJ reported DeGeneres and wife Portia de Rossi have bought and sold 34+ homes generating ~$190M in gross profits at a 37% average return; she may have transacted in 50+ homes per her business manager. Hosts treated it as the ultimate side hustle and celebrity tastemaker premium.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Giorgio Armani Obituary",
+      "summary": "Giorgio Armani died at 91; remained sole shareholder of his $2.6B revenue company; worked until his final days; built 2,500 retail stores while staying independent of conglomerates; set up a trust in 2016 outlining charitable and succession plans.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Hyundai Georgia Factory ICE Raid",
+      "summary": "Nearly 500 people arrested by immigration authorities at Hyundai's 3,000-acre Georgia EV factory; majority were Korean nationals; South Korea's government expressed concern and regret.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Enterprise AI Deployment Reality Gap",
+      "summary": "Jason Droege (Scale AI) and Tuhin Srivastava (Base10) both warned that a trough of disillusionment may be approaching in enterprise AI; companies discover they need senior domain experts for model alignment, not just junior staff; ROI scrutiny expected to intensify in the next year.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Seal Team 6 North Korea Mission (2019)",
+      "summary": "Wired reported a 2019 Trump-authorized clandestine SEAL Team 6 operation to plant a communications interception device in North Korea; the mission failed when commandos mistakenly killed civilian shellfish divers; Trump administration withheld details from Congress, potentially violating federal law.",
+      "sentiment": "bearish"
+    }
+  ],
+  "key_claims": [
+    "Anthropic's $1.5B copyright settlement with the Authors Guild is the largest publicly reported copyright recovery in history.",
+    "Ramp crossed $1 billion in annual revenue.",
+    "Tesla board approved a ~$975B pay package for Elon Musk contingent on hitting $8.5T market cap, 1M robotaxis, 20M vehicles, and 1M FSD subscriptions.",
+    "Meta's $600B AI infrastructure pledge by 2028 would require capex of $200B in 2027 and $300B in 2028, up from $70B in 2025 and $100B in 2026.",
+    "Apple pledged $600B in US investment at Trump's White House tech dinner.",
+    "OpenAI signed a $10B deal with Broadcom for custom inference chips to be fabricated at TSMC 3nm, targeting mass production in 2026.",
+    "Broadcom stock rose approximately 16% after the OpenAI chip deal was revealed; up 74% over the prior six months.",
+    "US lost 78,000 manufacturing jobs year-to-date in 2025 as of September.",
+    "June 2025 payroll was revised to negative\u2014the first negative month since December 2020.",
+    "Youth unemployment (ages 16\u201324) reached 10.5%, rising at the fastest pace in 15 years outside the pandemic.",
+    "15% of Scale AI contributors are PhDs; 25% have master's degrees; Scale has 1,100+ employees post-Meta deal.",
+    "Scale AI has two multi-hundred-million dollar businesses: data and applications/services.",
+    "Rivet won a $195M Army contract for next-gen soldier AR headsets; raised $90M total.",
+    "Palantir stated it expects to have fewer employees in the future despite revenue growing massively, with headcount up only 12%.",
+    "Instagram had approximately 860,000 DAUs when Facebook acquired it for $1B\u2014used to contextualize Browser Company's $610M acquisition.",
+    "Ellen DeGeneres generated approximately $190M in real estate profits across 34+ home transactions at an average 37% return.",
+    "Polymarket probability of 3 Fed rate cuts in 2025 jumped from 18% to 38% after the September jobs report.",
+    "Augment is deployed across $35B in freight management just one year after founding.",
+    "Base10 Partners has 104 employees after growing from approximately 30 a year ago.",
+    "Garage Beer is valued at $200M after Durational Capital investment; tracking $65M in revenue.",
+    "AppLovin, Robinhood, and M-Corps are set to join the S&P 500.",
+    "A permissioned blockchain is functionally not a true blockchain and cannot enforce payments-only use once made permissionless.",
+    "Broadcom had signed a fourth major AI developer as a customer with a one-time $10B order revealed on its earnings call\u2014later confirmed as OpenAI."
+  ],
+  "technologies": [
+    "Custom AI inference chips (XPUs)",
+    "3nm semiconductor fabrication",
+    "Large Language Models (LLMs)",
+    "Reasoning models",
+    "RLHF (Reinforcement Learning from Human Feedback)",
+    "AI agents",
+    "Augmented reality (AR) headsets",
+    "SLAM (Simultaneous Localization and Mapping)",
+    "Robotaxis / autonomous vehicles",
+    "Stablecoins",
+    "L1 and L2 blockchains",
+    "Fine-tuned AI models",
+    "GPU clusters",
+    "Serverless vector and full-text search",
+    "AI inference infrastructure",
+    "Reusable rockets (Starship / Falcon 9)",
+    "Lights-out manufacturing / CNC automation",
+    "Full Self-Driving (FSD)",
+    "Neuralink brain-computer interface",
+    "Miniaturized AR optics and waveguides",
+    "Ballistic and laser eye protection displays"
+  ],
+  "_stats": {
+    "word_count": 36061,
+    "estimated_input_tokens": 47961,
+    "input_tokens": 3,
+    "output_tokens": 28194,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 52452,
+    "duration_ms": 495249,
+    "wall_time_s": 496.8,
+    "cost_usd": 1.0372985,
+    "tokens_per_sec": 56.8
+  }
+}

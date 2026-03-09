@@ -1,0 +1,798 @@
+{
+  "episode_date": "2025-06-05",
+  "episode_title": "ai-day-foundation-model-tier-list-trump-elon-crash-out",
+  "companies": [
+    {
+      "name": "Circle",
+      "type": "public",
+      "context": "Went public on NYSE under ticker Circle; stock priced at $31 but trading around $85 on IPO day; CEO Jeremy joining show next day; reached 30 trillion in lifetime USDC volume.",
+      "sentiment": "bullish",
+      "sector": "Fintech/Crypto"
+    },
+    {
+      "name": "Anduril",
+      "type": "startup",
+      "context": "Closed a $2.5B funding round that more than doubled valuation to $30.5B; 8x oversubscribed; exec chair Trey Stevens announced deal on Bloomberg TV; backed by Founders Fund.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Rated S-tier in foundation model race; Deep Research gained integrations with GitHub, Google Docs, Gmail, and Google Calendar; reached 3M paying business users; rumored Windsurf acquisition; Mark Chen (CRO) appeared on show.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Sued by Reddit for unauthorized data scraping after accessing site 100,000+ times post-agreement; launched Claude Gov for US national security customers; developers favor it over OpenAI; Sholto Douglas appeared on show.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Pays Reddit ~$60M/year for data licensing; Gemini 2.5 Pro released with strong benchmarks; VO3 video model seen as YouTube data moat beneficiary; Deep Research PM Arush Selvan appeared on show; Gemini diffusion model also mentioned.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "In talks with Disney and A24 for exclusive VR content for upcoming premium headset 'Loma' priced $300\u2013$999; partnered with James Cameron's Light Storm Entertainment; Llama rated D-tier; announced nuclear partnership with Constellation.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, VR/AR"
+    },
+    {
+      "name": "Reddit",
+      "type": "public",
+      "context": "Suing Anthropic for unauthorized data use; earns ~$70M/year from OpenAI and ~$60M/year from Google in data licensing; reported $1.3B revenue in 2024, up 60% YoY; $20B market cap.",
+      "sentiment": "bullish",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Stock fell 17% amid Trump-Elon crash out over EV tax credits in the big beautiful bill; Tesla Energy also lobbied to preserve clean energy tax credits; Trump's purchased Tesla remained parked outside White House.",
+      "sentiment": "bearish",
+      "sector": "EV/Energy"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Elon announced decommissioning of Dragon spacecraft following Trump's comments about canceling government contracts; Dragon was the only US vehicle for ISS crew transport and planned ISS de-orbit.",
+      "sentiment": "bearish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Starlink",
+      "type": "private",
+      "context": "Described as having a 10x cost advantage over new transatlantic fiber for moving data; seen as critical AI infrastructure for data movement; reached in 5 years the revenue milestone AWS took 10 years to hit.",
+      "sentiment": "bullish",
+      "sector": "Telecom/Satellite"
+    },
+    {
+      "name": "XAI",
+      "type": "startup",
+      "context": "Rated B-tier in foundation model race; Grok integrated into X but can't find specific tweets reliably; GPU rich and scaling; lacks meaningful revenue; Grok 3 described as good but not yet at 'big model smell.'",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "X (Twitter)",
+      "type": "private",
+      "context": "Platform has grown despite predictions of collapse; Grok integration praised; central to Trump-Elon crash out drama; algorithm shift to anti-Trump speculated.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Sequoia Capital",
+      "type": "fund",
+      "context": "Sean McGuire appeared on show; firm has institutional knowledge from Apple and Google investments; McGuire compared foundation model race to operating system era with OpenAI as Apple equivalent.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Thrive Capital",
+      "type": "fund",
+      "context": "Founded by Josh Kushner ~15 years ago; known for OpenAI, Databricks, Wiz investments; investing $100M through Shield Technology Partners to integrate AI into IT services.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Shield Technology Partners",
+      "type": "startup",
+      "context": "New Thrive Capital/ZBS entity investing $100M to integrate AI into managed IT service providers; acquired Clearfuse Networks, IronOrbit, Delvol Technology Solutions, and OneNet Global; embeds forward-deployed engineers at each portfolio company.",
+      "sentiment": "bullish",
+      "sector": "IT Services/AI"
+    },
+    {
+      "name": "Clearfuse Networks",
+      "type": "private",
+      "context": "IT service company acquired by Shield Technology Partners as part of Thrive Capital's AI-in-IT-services strategy.",
+      "sentiment": "neutral",
+      "sector": "IT Services"
+    },
+    {
+      "name": "IronOrbit",
+      "type": "private",
+      "context": "IT service company acquired by Shield Technology Partners.",
+      "sentiment": "neutral",
+      "sector": "IT Services"
+    },
+    {
+      "name": "Delvol Technology Solutions",
+      "type": "private",
+      "context": "IT service company acquired by Shield Technology Partners.",
+      "sentiment": "neutral",
+      "sector": "IT Services"
+    },
+    {
+      "name": "OneNet Global",
+      "type": "private",
+      "context": "IT service company acquired by Shield Technology Partners.",
+      "sentiment": "neutral",
+      "sector": "IT Services"
+    },
+    {
+      "name": "ZBS",
+      "type": "private",
+      "context": "Co-invested with Thrive Capital in the $100M Shield Technology Partners IT services AI initiative.",
+      "sentiment": "neutral",
+      "sector": "Finance/Investment"
+    },
+    {
+      "name": "Granola",
+      "type": "startup",
+      "context": "AI note-taking app backed by Lightspeed; potentially threatened by OpenAI's Deep Research Gmail/Google Docs integrations; discussed for trust-based user moat and early market penetration.",
+      "sentiment": "neutral",
+      "sector": "Productivity/AI"
+    },
+    {
+      "name": "Odyssey",
+      "type": "startup",
+      "context": "AI lab co-founded by Oliver Cameron; launched interactive video research preview generating real-time video conditioned on user input; 250K unique streams in first week; uses one H200 GPU per user session at ~$2/hour.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Entertainment"
+    },
+    {
+      "name": "Lightspeed",
+      "type": "fund",
+      "context": "Michael Mignano's firm; backed Granola early; Mignano appeared on show to discuss AI lab vs. app-layer tension and context as competitive moat.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Backed Anduril's $2.5B round; Delian Asparouhov associated with the firm and joined live for Trump-Elon reaction segment.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Spark Capital",
+      "type": "fund",
+      "context": "Nabil Hyatt from Spark co-discusses 'war for context' thesis with Michael Mignano; view that context is the new king in AI competition.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "Coding AI tool cited as having achieved escape velocity with strong user adoption; used as example of startup outpacing lab competition through speed to market; high revealed preference usage on coding tasks.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/AI"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "Coding tool rumored to be in acquisition talks with OpenAI; currently uses Anthropic Claude models; discussed alongside Cursor as dominant coding AI tools.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/AI"
+    },
+    {
+      "name": "Cognition (Devin)",
+      "type": "startup",
+      "context": "Dev tools company mentioned as growing 40% last month despite OpenAI and Google launching competing products; used as example of new market not being zero-sum.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/AI"
+    },
+    {
+      "name": "CoreWeave",
+      "type": "public",
+      "context": "AI data center company with ~$80B market cap; originated from Bitcoin mining background; cited as proof of Bitcoin mining's role in developing AI compute infrastructure.",
+      "sentiment": "bullish",
+      "sector": "AI Infrastructure"
+    },
+    {
+      "name": "Crusoe",
+      "type": "startup",
+      "context": "Started as Bitcoin mining company, now powering OpenAI's Stargate data center; cited as prime example of compute infrastructure evolution from mining to AI.",
+      "sentiment": "bullish",
+      "sector": "AI Infrastructure"
+    },
+    {
+      "name": "Genesis Digital",
+      "type": "private",
+      "context": "Described as the biggest Bitcoin mine in the world near Midland, Texas; backed by SBF; operated gigawatt-scale mine three years ago; cited as tip of the spear for frontier power-to-compute conversion.",
+      "sentiment": "neutral",
+      "sector": "Bitcoin Mining"
+    },
+    {
+      "name": "Prime Intellect",
+      "type": "startup",
+      "context": "Mentioned as doing distributed RL training across the world; cited as example of RL's more distributed scalability compared to pre-training.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Decart",
+      "type": "startup",
+      "context": "Made Oasis, a Minecraft world running inside a video model; mentioned in context of Odyssey's interactive video work and negative gaming community reaction.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Gaming"
+    },
+    {
+      "name": "Cruise",
+      "type": "private",
+      "context": "Oliver Cameron's former employer; self-driving car company where he worked for ~8 years and sold his prior company to before leaving in May 2023.",
+      "sentiment": "neutral",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Light Storm Entertainment",
+      "type": "private",
+      "context": "James Cameron's production company; announced VR content partnership with Meta; cited as example of Hollywood IP deals for Meta's Loma headset.",
+      "sentiment": "neutral",
+      "sector": "Entertainment/VR"
+    },
+    {
+      "name": "Constellation",
+      "type": "public",
+      "context": "Nuclear energy company; Meta announced partnership with Constellation to power AI compute needs.",
+      "sentiment": "bullish",
+      "sector": "Energy/Nuclear"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Discussed as more developer-friendly than AI labs; hosting DeepSeek signals open platform commitment; Satya Nadella's 'platform, platform, platform' quote cited; Copilot and Microsoft 365 integrations mentioned.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Cloud"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Rated L-tier in foundation model race with no meaningful AI models shown publicly; Vision Pro praised for normalizing premium hardware pricing; may need to acquire an AI lab; suggested to use Google TPUs or Amazon for training.",
+      "sentiment": "bearish",
+      "sector": "AI/ML, Consumer Tech"
+    },
+    {
+      "name": "Mistral",
+      "type": "startup",
+      "context": "French AI company discussed as potential EU national champion; Le Chat hasn't broken out in capability; regulatory moat via EU cited as possible bear-case bull argument.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "DeepSeek",
+      "type": "private",
+      "context": "Chinese AI company; RL researchers worldwide running experiments on DeepSeek models; had a major cultural moment but unclear if product execution followed.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Alibaba (Qwen)",
+      "type": "public",
+      "context": "Released ~100 models including specialized ones (e.g., one focused on bio); described as underrated in research despite less press than DeepSeek; RL researchers using Qwen for experiments over Meta Llama.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "AWS revenue growth benchmarked against Starlink; mentioned as incumbent cloud provider startups may return to amid lab competition.",
+      "sentiment": "neutral",
+      "sector": "Cloud"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Earnings mentioned with limited guidance on shift from training to inference GPU usage; H200 GPUs used by Odyssey at one per user session.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors/AI"
+    },
+    {
+      "name": "Boeing",
+      "type": "public",
+      "context": "Major contractor behind NASA SLS program; seen as political beneficiary of Elon-Trump fallout and NASA SLS refunding; stock only down ~1% despite expected pop.",
+      "sentiment": "neutral",
+      "sector": "Aerospace/Defense"
+    },
+    {
+      "name": "NASA",
+      "type": "gov",
+      "context": "SLS program budget re-added in Senate reconciliation package; Jared Isaacman no longer on track for NASA admin amid Elon-Trump fallout.",
+      "sentiment": "neutral",
+      "sector": "Aerospace/Government"
+    },
+    {
+      "name": "DOGE (Dept. of Government Efficiency)",
+      "type": "gov",
+      "context": "Elon's government efficiency initiative; Trump credited Elon with hard work there before the crash out; Elon described as having made genuine impact reducing bureaucracy.",
+      "sentiment": "neutral",
+      "sector": "Government"
+    },
+    {
+      "name": "GitHub",
+      "type": "private",
+      "context": "OpenAI Deep Research integration with GitHub announced; GitHub Copilot mentioned as early OG coding model product with sub-1000 Elo on Codeforces at launch.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "ElevenLabs",
+      "type": "startup",
+      "context": "Dropped a new product on the same day; mentioned briefly as an example of a company whose launch got overshadowed by the Trump-Elon drama.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Audio"
+    },
+    {
+      "name": "Databricks",
+      "type": "private",
+      "context": "Mentioned as a Thrive Capital portfolio company alongside OpenAI and Wiz.",
+      "sentiment": "neutral",
+      "sector": "Data/AI"
+    },
+    {
+      "name": "Wiz",
+      "type": "private",
+      "context": "Mentioned as a Thrive Capital portfolio company alongside OpenAI and Databricks.",
+      "sentiment": "neutral",
+      "sector": "Cybersecurity"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "CEO Alex Karp appeared on CNBC discussing a NYT hit piece; mentioned as beneficiary of Trump-Elon split drawing mainstream media attention away.",
+      "sentiment": "neutral",
+      "sector": "Defense Tech/AI"
+    },
+    {
+      "name": "Coinbase",
+      "type": "public",
+      "context": "CEO Brian Armstrong congratulated Circle on its IPO and 30 trillion in lifetime USDC volume via social post.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Crypto"
+    },
+    {
+      "name": "Neuralink",
+      "type": "startup",
+      "context": "Mentioned by Lex Friedman alongside SpaceX, Tesla, and XAI as important work Elon is doing for the world.",
+      "sentiment": "neutral",
+      "sector": "Neurotechnology"
+    },
+    {
+      "name": "Disney",
+      "type": "public",
+      "context": "In talks with Meta for exclusive immersive VR content for the Loma headset.",
+      "sentiment": "neutral",
+      "sector": "Entertainment/VR"
+    },
+    {
+      "name": "A24",
+      "type": "private",
+      "context": "In talks with Meta for exclusive VR content for the Loma headset.",
+      "sentiment": "neutral",
+      "sector": "Entertainment/VR"
+    },
+    {
+      "name": "Conde Nast",
+      "type": "private",
+      "context": "Previously owned Reddit; mentioned as size comparison to Reddit's current and growing revenue.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Fireflies",
+      "type": "startup",
+      "context": "Mentioned as a note-taking app that predated Granola; used as example of prior generation AI note-takers.",
+      "sentiment": "neutral",
+      "sector": "Productivity/AI"
+    },
+    {
+      "name": "Otter",
+      "type": "startup",
+      "context": "Mentioned as a note-taking app that predated Granola.",
+      "sentiment": "neutral",
+      "sector": "Productivity/AI"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Show sponsor; described as backbone of the TBPN brand; design and development collaboration tool.",
+      "sentiment": "neutral",
+      "sector": "Design/Productivity"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Show sponsor; trust management platform that automates security and compliance processes.",
+      "sentiment": "neutral",
+      "sector": "Security/Compliance"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Show sponsor; purpose-built product planning tool for modern software development.",
+      "sentiment": "neutral",
+      "sector": "Productivity/Dev Tools"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Show sponsor; corporate cards, bill payments, and accounting platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Show sponsor; vacation home platform with hotel-level amenities and 24/7 concierge.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Show sponsor; Pod 5 Ultra sleep product humorously suggested as needed by both Trump and Elon during crash out.",
+      "sentiment": "neutral",
+      "sector": "Consumer Health"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Show sponsor; sales tax automation platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Compliance"
+    },
+    {
+      "name": "Public",
+      "type": "startup",
+      "context": "Show sponsor; multi-asset investing platform described as trusted by millions.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Show sponsor; watch marketplace with concierge sourcing service.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Luxury"
+    },
+    {
+      "name": "Truth Social",
+      "type": "public",
+      "context": "Trump's social network; used to post during crash out with Elon; reportedly crashed from traffic; hosts noted all Trump posts are publicly readable without an account.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    }
+  ],
+  "people": [
+    {
+      "name": "Sean McGuire",
+      "role": "Partner, Sequoia Capital",
+      "context": "Discussed AI foundation model race using operating system analogy; argued foundation model companies will have hardware, research, and application-layer moats; discussed Starlink as AI data movement infrastructure, all-of-the-above energy strategy, and Bitcoin mining's role in developing frontier compute."
+    },
+    {
+      "name": "Jack Whitaker",
+      "role": "In-person guest, technology commentator",
+      "context": "Walked through AI foundation model tier list in depth; discussed OpenAI's S-tier dominance, Anthropic's developer focus, Google's distribution gap, XAI's Grok limitations, Meta Llama's D-tier struggles, and Arc-AGI as a held-out benchmark by informal lab agreement."
+    },
+    {
+      "name": "Arush Selvan",
+      "role": "Product Manager, Google Gemini",
+      "context": "Described origin of Google Deep Research on Gemini 1.5 Pro; discussed user willingness to wait 15+ minutes, long context window as key differentiator, reasoning model step-jump, and future directions including long-horizon research, iterative paradigms, and artifact generation beyond reports."
+    },
+    {
+      "name": "Oliver Cameron",
+      "role": "Co-founder, Odyssey",
+      "context": "Introduced Odyssey's interactive video product generating real-time AI video conditioned on WASD inputs; 250K unique streams in first week; one H200 per user at ~$2/hour; sees interactive video as a new entertainment medium distinct from film and games."
+    },
+    {
+      "name": "Michael Mignano",
+      "role": "Partner, Lightspeed",
+      "context": "Discussed AI labs competing with app-layer developers they created; argued context is now king; described Granola's trust-based moat in meeting notes; discussed MCP protocol creating new alliance battle lines; suggested startups may retreat to Google/Amazon as safer cloud partners."
+    },
+    {
+      "name": "Mark Chen",
+      "role": "Chief Research Officer, OpenAI",
+      "context": "Discussed RL scaling as dominant research theme, finite data as new pre-training constraint, reasoning model progress at IOI benchmark, interpretability for chain-of-thought faithfulness, consumer agents via Deep Research and Operator, and OpenAI's 3M paying business users milestone."
+    },
+    {
+      "name": "Sholto Douglas",
+      "role": "Researcher, Anthropic",
+      "context": "Discussed RL scaling still showing linear gains at 10x compute increases; reward hacking as primary obstacle; jagged intelligence in long-horizon tasks; AGI estimate of 2-3 more OOMs before physics drag; ~2028 reaching 20% of US energy under aggressive timelines; debated transformer architecture durability."
+    },
+    {
+      "name": "Delian Asparouhov",
+      "role": "Investor (Founders Fund)",
+      "context": "Joined live to react to Trump-Elon crash out; explained NASA SLS program refunding and Boeing as political beneficiary; broke down SpaceX Dragon decommissioning implications for ISS; noted Starlink revenue approaching the scale of NASA's entire budget."
+    },
+    {
+      "name": "Jeremy (Circle CEO)",
+      "role": "CEO, Circle",
+      "context": "Announced Circle's NYSE IPO via social post; cited 30 trillion in lifetime USDC volume; scheduled to appear on show the following day."
+    },
+    {
+      "name": "Trey Stevens",
+      "role": "Executive Chair, Anduril",
+      "context": "Announced Anduril's $2.5B funding round to Bloomberg TV, noting it more than doubled the company's valuation to $30.5B."
+    },
+    {
+      "name": "Jordan Schneider",
+      "role": "Host, China Talk",
+      "context": "Co-created with Dylan Patel the AI mandate of heaven tier list that structured much of the foundation model discussion throughout the episode."
+    },
+    {
+      "name": "Dylan Patel",
+      "role": "Analyst",
+      "context": "Co-created with Jordan Schneider the AI mandate of heaven tier list; placed OpenAI at S-tier and Meta Llama at D-tier."
+    },
+    {
+      "name": "Josh Kushner",
+      "role": "Founder, Thrive Capital",
+      "context": "Founded Thrive Capital ~15 years ago; known for early OpenAI, Databricks, and Wiz investments; behind Shield Technology Partners initiative to AI-enable managed IT service providers."
+    },
+    {
+      "name": "Brad Lightcap",
+      "role": "COO, OpenAI",
+      "context": "Cited in WSJ for noting OpenAI grew from 2M to 3M paying workplace users between February and recently."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO Tesla/SpaceX/XAI, Owner X",
+      "context": "Central figure in crash out with Trump; posted that Trump is in the Epstein files; announced Dragon spacecraft decommissioning; Tesla stock fell 17% amid the fallout."
+    },
+    {
+      "name": "Donald Trump",
+      "role": "President of the United States",
+      "context": "Publicly feuded with Elon over big beautiful bill and EV subsidies; threatened to cancel SpaceX government contracts; DJT stock fell 7% and Trump coin fell 10% during crash out."
+    },
+    {
+      "name": "Dario Amodei",
+      "role": "CEO, Anthropic",
+      "context": "Cited for claim that interpretability research will contribute to capabilities and give a decisive lead; noted RL training runs were only ~$1M in December 2024 in an earlier essay."
+    },
+    {
+      "name": "Andrew Bosworth",
+      "role": "CTO, Meta",
+      "context": "Meta spokesman referenced Bosworth's earlier comments about the company working on many prototypes not all of which go into production."
+    },
+    {
+      "name": "Bill Gurley",
+      "role": "Venture Capitalist",
+      "context": "Mentioned as unhappy with Circle's large IPO pop from $31 to $85; known advocate against mispriced IPOs."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Mentioned as big winner of Trump-Elon crash out; cited for plans to fix OpenAI's confusing model naming scheme by summer."
+    },
+    {
+      "name": "Jared Isaacman",
+      "role": "Presumed NASA administrator nominee",
+      "context": "Previously expected to be confirmed as NASA admin; no longer on track amid Trump-Elon fallout; had advocated shutting down the SLS program."
+    },
+    {
+      "name": "James Cameron",
+      "role": "Director; Founder, Light Storm Entertainment",
+      "context": "Light Storm Entertainment announced partnership with Meta last year for exclusive VR content for the Loma headset."
+    },
+    {
+      "name": "Naval Ravikant",
+      "role": "Investor/Philosopher",
+      "context": "Live-posted video clip characterizing Elon as a purist who views money as a tool toward Mars; argued Elon genuinely intends to get humanity to the stars, not just use it as rhetoric."
+    },
+    {
+      "name": "Brian Armstrong",
+      "role": "CEO, Coinbase",
+      "context": "Congratulated Circle team on IPO and on reaching 30 trillion in lifetime USDC volume via social post."
+    },
+    {
+      "name": "Noam Brown",
+      "role": "Researcher, OpenAI",
+      "context": "Cited by Jack Whitaker as an example of frontier researchers doing incredible research at OpenAI contributing to its S-tier status."
+    },
+    {
+      "name": "Nabil Hyatt",
+      "role": "Partner, Spark Capital",
+      "context": "Frequently co-discusses with Michael Mignano the thesis that 'the war for context is happening now' as AI labs pursue app-layer companies with proprietary data."
+    },
+    {
+      "name": "Satya Nadella",
+      "role": "CEO, Microsoft",
+      "context": "Cited for 'platform, platform, platform' conviction and Microsoft's commitment to hosting all models including DeepSeek as signal of open developer ecosystem."
+    },
+    {
+      "name": "Yakov (Yaacob)",
+      "role": "Chief Scientist, OpenAI",
+      "context": "Works with Mark Chen to set research vision, hold the research org accountable, and allocate compute across training and inference."
+    },
+    {
+      "name": "Sam Bankman-Fried (SBF)",
+      "role": "Former FTX CEO",
+      "context": "Noted as having backed both Anthropic and Genesis Digital Bitcoin mine; cited as an example of having some good investment bets despite legal troubles."
+    },
+    {
+      "name": "Palmer Luckey",
+      "role": "Founder, Anduril; VR pioneer",
+      "context": "Cited for defending the puck-based VR design: keeping heavy compute off the face is better UX, contrary to conventional Steve Jobs-era wisdom."
+    }
+  ],
+  "topics": [
+    {
+      "name": "AI Foundation Model Tier List",
+      "summary": "Dylan Patel and Jordan Schneider's tier list was discussed at length: OpenAI S-tier, Anthropic/Google/DeepSeek A-tier, XAI B-tier, Meta Llama D-tier, Apple L-tier. Debate centered on benchmarks vs. 'big model smell', developer vs. consumer distribution, open source vs. closed models, and whether data cornered resources like YouTube are durable moats.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Trump-Elon Crash Out",
+      "summary": "Elon Musk and Donald Trump publicly feuded over the big beautiful bill, with Elon opposing EV and solar subsidy cuts while Trump accused him of hypocrisy. Elon posted Trump is in the Epstein files; Trump threatened SpaceX contract cancellation; Elon announced Dragon decommissioning. Tesla fell 17%, DJT down 7%, Bitcoin down 3%. Discussed as potentially the biggest crash out in internet history.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "RL Scaling",
+      "summary": "Both Sholto Douglas (Anthropic) and Mark Chen (OpenAI) identified reinforcement learning scaling as the dominant research theme of 2025. RL is more easily parallelizable than pre-training; still showing linear gains at 10x compute; reward hacking is the primary technical obstacle; longer-horizon real-world tasks are the frontier.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Deep Research Products",
+      "summary": "Google's Arush Selvan described Deep Research origins, the surprise that users willingly wait 15+ minutes, and future directions including overnight research runs, iterative researcher paradigms, and blurring the line between reports and interactive artifacts. OpenAI added GitHub, Google Docs, Gmail, and Google Calendar integrations to its Deep Research.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Labs vs. App Layer Tension",
+      "summary": "Michael Mignano argued AI labs are now directly competing with developer ecosystems they created; context is the new king driving labs to pursue app-layer companies; MCP protocol creates new alliance battle lines; startups may return to Google/Amazon as safer long-term partners; Granola and Windsurf used as case studies.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Interactive Video / World Models",
+      "summary": "Oliver Cameron's Odyssey launched interactive video where a model generates real-time video conditioned on user keyboard inputs with no game engine; 250K unique streams in week one; one H200 per user; ~300px resolution currently; sees this as an entirely new entertainment medium distinct from film and games.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Meta Loma VR Headset",
+      "summary": "Meta in talks with Disney, A24, and Light Storm Entertainment for exclusive VR content; Loma headset priced $300\u2013$999; design similar to Ray-Ban glasses with a belt-clip puck; hosts debated whether exclusive immersive content or home theater replacement is the real value proposition.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Reddit vs. Anthropic Lawsuit",
+      "summary": "Reddit sued Anthropic for accessing site 100,000+ times after claiming to have stopped; Reddit earns $130M/year combined from OpenAI and Google data licensing deals; lawsuit raises broader agentic web browsing and fair use questions not yet resolved by precedent.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Circle IPO",
+      "summary": "Circle went public on NYSE; stock priced at $31 and traded around $85 on day one; Brian Armstrong congratulated team on 30 trillion in lifetime USDC volume; Bill Gurley cited as unhappy with the pop representing mispricing.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Anduril $30.5B Round",
+      "summary": "Defense tech startup Anduril closed a $2.5B round at $30.5B valuation, 8x oversubscribed, backed by Founders Fund; exec chair Trey Stevens announced on Bloomberg TV.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Energy for AI Compute",
+      "summary": "Sean McGuire advocated all-of-the-above energy strategy; solar and nat gas deploy fastest; nuclear is the long-term reinforcement 10\u201315 years out; Meta-Constellation nuclear partnership announced; Sholto estimated ~2028 as when aggressive AI scaling could hit 20% of US energy production.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI Benchmarking in the Post-Saturation Era",
+      "summary": "Human-written benchmarks like AMC are near-saturated (90%+ model scores); shift toward model-based evals (Humanity's Last Exam) and real-world impact metrics; 'big model smell' and revealed preferences discussed as alternatives; informal honor agreement between labs not to RL on ARC-AGI to preserve it as a held-out test.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AGI Timelines",
+      "summary": "Sholto Douglas estimated 2\u20133 more OOMs of compute scaling remain before physics becomes a real drag; ~2028 under aggressive timelines would approach 20% of US energy production; models assisting AI research seen as the self-reinforcing inflection point; general view sufficient compute exists to reach AGI-level research assistance.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "SpaceX Dragon Decommissioning",
+      "summary": "Following Trump's threat to cancel government contracts, Elon announced SpaceX will begin decommissioning Dragon; Dragon was the only US crew vehicle for ISS and was planned for ISS de-orbit; Delian explained this effectively leaves the space station stranded.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "AI in IT Services (Shield Technology Partners)",
+      "summary": "Thrive Capital and ZBS investing $100M through Shield Technology Partners to integrate AI into managed service providers; embedding forward-deployed engineers at each portfolio company to build shared AI solutions; agentic workflows for cloud management cited as key opportunity.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Bitcoin Mining and AI Compute Heritage",
+      "summary": "Sean McGuire argued Bitcoin mining was the tip of the spear for converting frontier power generation to compute; CoreWeave and Crusoe both started as Bitcoin miners; Bitcoin drove the ASIC development curve analogous to CPU-GPU-FPGA-ASIC trajectory now seen in AI silicon.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Context as Competitive Moat",
+      "summary": "Michael Mignano and Nabil Hyatt's 'war for context' thesis: labs pursue app-layer companies precisely because those companies hold unique proprietary context; Granola's meeting note trust, coding tools' codebase access, and Google's search history are all examples of context moats labs want to internalize.",
+      "sentiment": "mixed"
+    }
+  ],
+  "key_claims": [
+    "Circle IPO priced at $31, trading around $85 on day one \u2014 a near 3x pop on its first day on NYSE.",
+    "Anduril's $2.5B funding round was 8x oversubscribed, valuing the company at $30.5B.",
+    "OpenAI reached 3 million paying business users, up from 2 million in February 2025.",
+    "OpenAI pays Reddit approximately $70M/year and Google pays approximately $60M/year for data licensing \u2014 totaling ~$130M/year for Reddit.",
+    "Reddit reported $1.3B in revenue in 2024, up 60% year-over-year, making AI data licensing a significant percentage of total revenue.",
+    "Odyssey served 250,000 unique interactive video streams in its first week post-launch.",
+    "CoreWeave's market cap is approximately $80 billion.",
+    "Starlink reached in 5 years the revenue milestone that took AWS 10 years to achieve.",
+    "Elon Musk posted publicly that Donald Trump is in the Epstein files.",
+    "SpaceX announced it will begin decommissioning its Dragon spacecraft immediately following Trump's statements about canceling government contracts.",
+    "Tesla stock fell approximately 17% on the day, erasing roughly $152B in market cap.",
+    "Sholto Douglas (Anthropic): RL training runs were costing only ~$1M as recently as December 2024 per Dario Amodei's essay.",
+    "Sholto Douglas: We have approximately 2\u20133 more orders of magnitude of compute scaling available before physics becomes a serious drag; under aggressive timelines ~2028 reaches 20% of US energy production.",
+    "Mark Chen (OpenAI): Models scored 90%+ on AMC (America's top high school math competition), effectively saturating that benchmark.",
+    "Mark Chen: OpenAI's reasoning models competed at IOI (International Olympiad in Informatics) and solved problems the team expected them to fail.",
+    "Jack Whitaker: US RL researchers are running experiments primarily on Qwen and DeepSeek rather than Meta Llama, which is a significant signal problem for Meta.",
+    "Meta's Loma premium VR headset will be priced between $300 and $999 and uses a puck design similar to Ray-Ban AI glasses rather than a goggle form factor.",
+    "Odyssey uses one H200 GPU per user session at approximately $2/hour compute cost.",
+    "A California judge ordered OpenAI to retain records of disappearing/incognito user queries.",
+    "Senate reconciliation package re-added NASA SLS program budget, viewed as a counter to the Elon/Isaacman agenda to shut it down.",
+    "Sean McGuire: Foundation model companies will develop three compounding moats \u2014 hardware moats like cloud companies, OS-style research moats, and application-layer profit streams.",
+    "Sean McGuire: There will likely be 10\u2013100x more open-source model deployments than proprietary in 10 years, but open-source won't capture proportional value \u2014 analogous to Linux vs. Microsoft.",
+    "Sholto Douglas: True creativity is at the top of the intelligence spectrum and will be the last capability to be fully replicated by AI models."
+  ],
+  "technologies": [
+    "Reinforcement Learning (RL)",
+    "Large Language Models (LLMs)",
+    "Deep Research",
+    "Transformer Architecture",
+    "Diffusion Models",
+    "TPUs (Tensor Processing Units)",
+    "H200 GPUs",
+    "NVLink / NVL72",
+    "KV Cache",
+    "Chain of Thought",
+    "RLHF (Reinforcement Learning from Human Feedback)",
+    "Interactive Video / World Models",
+    "WebRTC",
+    "Spatial Video",
+    "Virtual Reality (VR)",
+    "Augmented Reality (AR)",
+    "Model Context Protocol (MCP)",
+    "Agentic AI / Autonomous Agents",
+    "AlphaGo / RL in Narrow Games",
+    "Bitcoin Mining ASICs",
+    "Synthetic Data",
+    "Interpretability Research",
+    "Long Context Windows",
+    "Multimodal AI",
+    "USDC / Stablecoin Technology",
+    "Solar Energy",
+    "Nuclear Energy",
+    "Natural Gas / Flaring-to-Compute",
+    "Satellite Internet (Starlink)",
+    "ARC-AGI Benchmark",
+    "Dragon Spacecraft",
+    "SLS (Space Launch System)",
+    "Codex / Code Generation",
+    "Generative Adversarial Networks (GANs)",
+    "AI Video Generation (VO3 / Sora)",
+    "AI Upscaling",
+    "Operator (Computer Use)",
+    "Forward Deployed Engineering"
+  ],
+  "_stats": {
+    "word_count": 36651,
+    "estimated_input_tokens": 48745,
+    "input_tokens": 3,
+    "output_tokens": 22056,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 52256,
+    "duration_ms": 397936,
+    "wall_time_s": 399.6,
+    "cost_usd": 0.8826235,
+    "tokens_per_sec": 55.2
+  }
+}

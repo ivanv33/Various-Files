@@ -1,0 +1,769 @@
+{
+  "episode_date": "2025-07-21",
+  "episode_title": "openai-gemini-imo-gold-colbert-cancelled-mclarens-mansour-collection",
+  "companies": [
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Achieved gold medal level performance on the International Mathematical Olympiad using a general-purpose reasoning LLM with no tools (no Python, Lean, or internet access), thinking for hours using new general-purpose RL techniques for hard-to-verify tasks. Also launched ChatGPT Agent and is allegedly testing an unreleased front-end coding model on LM Arena.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Google DeepMind",
+      "type": "public",
+      "context": "Also achieved IMO gold medal performance (35/42 points, 5/6 problems) with Gemini, confirmed by the IMO president; delayed announcement until Monday out of respect for the IMO board, ceding the narrative to OpenAI who posted at 1am Saturday.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "xAI",
+      "type": "startup",
+      "context": "Grok 4 performed 'especially bad' on the new 2025 IMO questions even with best-of-N selection; accused by some of training on benchmark data. Noted as heavily invested in pre-training and RL but potentially behind DeepMind and OpenAI on the reasoning frontier.",
+      "sentiment": "bearish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Referenced for research showing reasoning models' chain-of-thought traces may not reflect their actual reasoning\u2014a model got a question right after a hint but did not mention the hint in its visible trace.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Scott Wu's company; Scott, an IMO gold medalist himself, predicted months ago that an AI system would surpass IMO performance in 2025.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "Mentioned as an example of a company that faced headwinds from a failed acquisition attempt, similar to Figma's experience with Adobe.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Figma",
+      "type": "startup",
+      "context": "Filed S1 ahead of IPO; growing 49% with 28% free cash flow margins for a Rule of 40 score of ~77%, which would make it the top-performing public software company on that metric. Priced Wednesday, expected to trade Thursday.",
+      "sentiment": "bullish",
+      "sector": "Design/SaaS"
+    },
+    {
+      "name": "Adobe",
+      "type": "public",
+      "context": "Attempted to acquire Figma and failed, paying a ~$1 billion breakup fee. The failed acquisition caused significant customer and hiring headwinds that Figma successfully overcame.",
+      "sentiment": "neutral",
+      "sector": "Software"
+    },
+    {
+      "name": "Polymarket",
+      "type": "startup",
+      "context": "Acquired QCEX for $112 million to gain regulatory approval to enter the US prediction market. Founder Shane built the company in a studio apartment bathroom and previously faced a DOJ investigation.",
+      "sentiment": "bullish",
+      "sector": "Fintech/Prediction Markets"
+    },
+    {
+      "name": "QCEX",
+      "type": "private",
+      "context": "Acquired by Polymarket for $112 million to allow Polymarket to legally operate in the US market.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Mariana Minerals",
+      "type": "startup",
+      "context": "Vertically integrated software-first mining company that raised a $65M Series A from Andreessen Horowitz, Coastal Ventures, and Breakthrough Energy Ventures. Focuses on condensing timelines from mineral discovery to production using software and automation.",
+      "sentiment": "bullish",
+      "sector": "Mining/Materials"
+    },
+    {
+      "name": "Fortuna Health",
+      "type": "startup",
+      "context": "Described as 'TurboTax for Medicaid,' announced Series A led by Andreessen Horowitz. Helps people navigate state Medicaid enrollment via guided software, selling B2B to insurance companies and hospitals.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Led the Series A for Fortuna Health; also backed Mariana Minerals Series A.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Altimeter",
+      "type": "fund",
+      "context": "Jamin Ball is a partner there; analyzed Figma's S1 and tracks a basket of ~80 public software companies. Previously tried and failed to win the Figma Series C at Redpoint.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Redpoint",
+      "type": "fund",
+      "context": "Jamin Ball's former firm; tried and failed alongside Vivek and a partner named Scott to win the Figma Series C, which went to Andrew Reed at Sequoia.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Sequoia",
+      "type": "fund",
+      "context": "Andrew Reed won the Figma Series C by pitching Dylan Field in Sequoia's conference room named after an endowment partner, beating out Altimeter and Redpoint.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "McLaren",
+      "type": "private",
+      "context": "Mansour Ojjeh, one of its most historically influential figures who co-owned the company and helped fund its dominant F1 engine via TAG, passed away at 68. His unique collection of last-off-the-line burnt-orange McLarens is going up for sale.",
+      "sentiment": "neutral",
+      "sector": "Automotive"
+    },
+    {
+      "name": "CBS",
+      "type": "public",
+      "context": "Cancelled The Late Show with Stephen Colbert and retired the entire Late Show brand. The show costs $100M to produce annually while generating only ~$60M in revenue, losing ~$40M/year, and CBS is under pressure from its pending Paramount acquisition.",
+      "sentiment": "bearish",
+      "sector": "Media"
+    },
+    {
+      "name": "Paramount",
+      "type": "public",
+      "context": "CBS's parent company undergoing a pending merger/acquisition that adds pressure to cut loss-making assets like the Late Show.",
+      "sentiment": "bearish",
+      "sector": "Media"
+    },
+    {
+      "name": "MP Materials",
+      "type": "public",
+      "context": "Apple is buying approximately $500 million of rare earth materials from this Las Vegas-based company, seen as a significant supply chain diversification signal away from China.",
+      "sentiment": "bullish",
+      "sector": "Mining/Materials"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Reportedly buying $500M of rare earth materials from MP Materials, viewed as a meaningful signal that major tech companies are taking supply chain security seriously.",
+      "sentiment": "bullish",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "1789 Capital",
+      "type": "fund",
+      "context": "Chris Buskirk's venture fund focused on transformational technology\u2014AI, energy, robotics, space, and defense. Actively investing in rare earth magnet capacity in the US via Vulcan Elements.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Vulcan Elements",
+      "type": "startup",
+      "context": "Rare earth magnet company that 1789 Capital is in the process of investing in as part of the US effort to build domestic rare earth manufacturing capacity.",
+      "sentiment": "bullish",
+      "sector": "Materials/Defense"
+    },
+    {
+      "name": "Breakthrough Energy Ventures",
+      "type": "fund",
+      "context": "Invested in Mariana Minerals' $65M Series A round.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Coastal Ventures",
+      "type": "fund",
+      "context": "Invested in Mariana Minerals' $65M Series A round.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "TAG Group",
+      "type": "private",
+      "context": "Luxembourg-registered holding company founded by Akram Ojjeh in 1977 to broker deals between the Arab world and Europe, including arms and aerospace contracts. Mansour developed it into a major F1 sponsorship vehicle and McLaren co-ownership entity.",
+      "sentiment": "neutral",
+      "sector": "Conglomerate"
+    },
+    {
+      "name": "TAG Heuer",
+      "type": "public",
+      "context": "Watch brand built by the Ojjeh family through the TAG group, sold to LVMH for $740 million in 1999 at a large profit. Now has a partnership with Porsche on the Carrera line.",
+      "sentiment": "neutral",
+      "sector": "Luxury Goods"
+    },
+    {
+      "name": "LVMH",
+      "type": "public",
+      "context": "Acquired TAG Heuer from the Ojjeh family for $740 million in 1999.",
+      "sentiment": "neutral",
+      "sector": "Luxury Goods"
+    },
+    {
+      "name": "FlexJet",
+      "type": "private",
+      "context": "Private aviation company that raised $800 million from Bernard Arnault at a $4 billion valuation.",
+      "sentiment": "bullish",
+      "sector": "Aviation"
+    },
+    {
+      "name": "AST Space Mobile",
+      "type": "public",
+      "context": "Described as a $20 billion space company with zero revenues that SPACed at $4B and has risen ~5x; popular with retail traders as a public satellite internet play competing with Starlink.",
+      "sentiment": "neutral",
+      "sector": "Telecommunications/Space"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Cited as the example of how driving down launch cost per kilogram unlocks entire new industries, analogous to how cheap energy unlocks civilization-level progress.",
+      "sentiment": "bullish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Astronomer",
+      "type": "startup",
+      "context": "CEO Andy Byron and Chief People Officer Kristin Cabot were put on immediate leave following a viral incident; Pete To Joy stepped in as interim CEO. The company provides Apache Airflow data orchestration infrastructure.",
+      "sentiment": "neutral",
+      "sector": "Data/DevOps"
+    },
+    {
+      "name": "Service Titan",
+      "type": "public",
+      "context": "Cited as the last meaningful software IPO before Figma, having gone public in late 2024.",
+      "sentiment": "neutral",
+      "sector": "SaaS"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Harper Carroll worked there for four years building machine learning systems before pivoting to AI education. Also mentioned as announcing new nuclear energy initiatives.",
+      "sentiment": "neutral",
+      "sector": "Social Media/AI"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Acquired Harper Carroll's previous startup, a GPU cloud environment company where she had become head of AI.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Turner Colwell worked at Tesla for nine years, starting on the Gigafactory in Reno and working up to battery cell manufacturing and supply chain, which led him to focus on upstream mining.",
+      "sentiment": "neutral",
+      "sector": "Automotive/EV"
+    },
+    {
+      "name": "Mattel",
+      "type": "public",
+      "context": "Mentioned as partnering with OpenAI on a ChatGPT Barbie product as an example of AI entering children's consumer goods.",
+      "sentiment": "neutral",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "New show sponsor; live streaming infrastructure platform used by TBPN since day one and supporting Fortune 500 companies for live streaming events.",
+      "sentiment": "bullish",
+      "sector": "Media Tech"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor; corporate card and financial operations platform ('time is money, save both').",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor; trust management and compliance automation platform for security and compliance programs.",
+      "sentiment": "neutral",
+      "sector": "Security/Compliance"
+    },
+    {
+      "name": "Graphite.dev",
+      "type": "startup",
+      "context": "Sponsor; code review platform described as 'code review for the age of AI' that helps teams on GitHub ship higher quality software faster.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Sponsor; project management software for modern software development. Noted that OpenAI runs on Linear and that they have an AI agent integration.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sponsor; sales tax compliance automation platform promising less than five minutes per month on sales tax.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Tax"
+    },
+    {
+      "name": "Fin.ai",
+      "type": "startup",
+      "context": "Sponsor; described as the number one AI agent for customer service, ranked #1 on G2 and in competitive bake-offs.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Sponsor; luxury watch sourcing concierge platform able to source any watch on the planet.",
+      "sentiment": "neutral",
+      "sector": "Marketplace/Luxury"
+    },
+    {
+      "name": "8sleep",
+      "type": "startup",
+      "context": "Sponsor; sleep technology Pod 5 Ultra with five-year warranty and 30-night trial. A host cited it as life-saving given poor HRV scores during illness.",
+      "sentiment": "bullish",
+      "sector": "Health Tech/Hardware"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor; multi-asset investing platform with industry-leading yields described as 'investing for those who take it seriously.'",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Sponsor; described as an 'AR and native CRM' for building and scaling companies.",
+      "sentiment": "neutral",
+      "sector": "CRM/SaaS"
+    },
+    {
+      "name": "Adquick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising platform combining technology, expertise, and data for ad buying.",
+      "sentiment": "neutral",
+      "sector": "AdTech"
+    },
+    {
+      "name": "Pirate Wires",
+      "type": "startup",
+      "context": "Emily Jacinski's media outlet; ran the analysis of the Late Show cancellation arguing CBS accidentally stumbled into the death of monoculture media.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Y Combinator",
+      "type": "fund",
+      "context": "Sam Altman served as president before leading OpenAI; mentioned in context of his background.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Nike",
+      "type": "public",
+      "context": "Featured a praised ad with Scottie Scheffler described as 'Nike at its best'\u2014inspirational and cinematic rather than UGC-style D2C.",
+      "sentiment": "bullish",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "Rivian",
+      "type": "public",
+      "context": "Critically described as 'the Austin mesh hat yeti cooler of cars'; succeeded early because Tesla had no truck yet and the F-150 Lightning was expensive, but its brand appeal questioned.",
+      "sentiment": "bearish",
+      "sector": "Automotive/EV"
+    },
+    {
+      "name": "Lamborghini",
+      "type": "private",
+      "context": "The Lanzador EV was discussed; described as looking like a 'lifted Hurac\u00e1n' or Subaru despite being branded an EV SUV.",
+      "sentiment": "neutral",
+      "sector": "Automotive"
+    },
+    {
+      "name": "J. Crew",
+      "type": "private",
+      "context": "Listed as an ongoing creative consulting client for Chris Black, described as a perfect fit for his preppy Southern background with a streetwear edge.",
+      "sentiment": "bullish",
+      "sector": "Retail/Fashion"
+    },
+    {
+      "name": "Banana Republic",
+      "type": "public",
+      "context": "Listed as a former creative consulting client of Chris Black for a couple of years.",
+      "sentiment": "neutral",
+      "sector": "Retail/Fashion"
+    },
+    {
+      "name": "New Balance",
+      "type": "private",
+      "context": "Listed as one of Chris Black's creative consulting clients.",
+      "sentiment": "neutral",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "Simon & Schuster",
+      "type": "private",
+      "context": "Publishing Chris Black's forthcoming essay memoir expected in 2026.",
+      "sentiment": "neutral",
+      "sector": "Publishing"
+    },
+    {
+      "name": "Hugging Face",
+      "type": "startup",
+      "context": "Mentioned in context of Harper Carroll's early fine-tuning guides for open source models that grew her X following.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Kaggle",
+      "type": "private",
+      "context": "Mentioned as the infrastructure constraint for ARC-AGI prize submissions\u2014models must run on Kaggle's single GPU and cannot access massive clusters like Stargate.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Medallion",
+      "type": "startup",
+      "context": "Cited as an analogous company to Fortuna Health\u2014handles doctor licensing across all 50 states, showing how state-by-state regulatory complexity creates startup opportunities.",
+      "sentiment": "neutral",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Porsche",
+      "type": "public",
+      "context": "Mentioned for its obsessive attention to door-closing sound design and the Carrera GT's lack of stability control; also has a watch partnership with TAG.",
+      "sentiment": "bullish",
+      "sector": "Automotive"
+    },
+    {
+      "name": "Veebs",
+      "type": "startup",
+      "context": "Live concert streaming service started by the Madden brothers from Good Charlotte, acquired by Live Nation. Chris Black's How Long Gone podcast uses it for ticketed live show streams.",
+      "sentiment": "neutral",
+      "sector": "Media Tech"
+    },
+    {
+      "name": "Live Nation",
+      "type": "public",
+      "context": "Acquired Veebs, the live concert streaming service used by How Long Gone podcast for ticketed live shows.",
+      "sentiment": "neutral",
+      "sector": "Entertainment"
+    },
+    {
+      "name": "Airbnb",
+      "type": "public",
+      "context": "Brian Chesky mentioned for popularizing 'Founder Mode' and bundling announcements into annual release events, which has influenced how many companies now approach live streaming announcements.",
+      "sentiment": "bullish",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Loopt",
+      "type": "startup",
+      "context": "Sam Altman's startup before Y Combinator and OpenAI, referenced in context of his background as a founder.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Dassault",
+      "type": "public",
+      "context": "French aerospace company briefly mentioned as one of the defense contractors Akram Ojjeh represented in the Middle East, selling Mirage jets.",
+      "sentiment": "neutral",
+      "sector": "Defense/Aerospace"
+    },
+    {
+      "name": "Board Ape Yacht Club",
+      "type": "startup",
+      "context": "Mentioned as an example of the inflating seed round nomenclature\u2014raised what was called a $1 billion seed round in 2021.",
+      "sentiment": "neutral",
+      "sector": "Web3/NFT"
+    }
+  ],
+  "people": [
+    {
+      "name": "Noam Brown",
+      "role": "Researcher, OpenAI",
+      "context": "Posted a detailed thread about the IMO gold medal achievement, explaining the model uses new general-purpose RL techniques for hard-to-verify tasks, thinks for hours, is not IMO-specific, and that progress toward AI contributing to scientific discovery is imminent."
+    },
+    {
+      "name": "Alexander Wei",
+      "role": "Research Scientist, OpenAI",
+      "context": "Member of the OpenAI IMO gold medal team with a stacked resume including Phillips Exeter, Harvard, PhD from UC Berkeley, and internships at Meta, Microsoft, D.E. Shaw, and Google. Ludwig Jietgenstein posted his CV as an example of elite researchers now building AI breakthroughs instead of becoming math professors."
+    },
+    {
+      "name": "Polynomial",
+      "role": "OpenAI Researcher",
+      "context": "Member of the OpenAI IMO gold medal team who also won the 2025 Diplomacy World Championship as a human player."
+    },
+    {
+      "name": "Demis Hassabis",
+      "role": "Co-founder and CEO, Google DeepMind",
+      "context": "Announced that Gemini achieved IMO gold medal performance (35/42 points, 5/6 problems); explained DeepMind delayed its announcement out of respect for the IMO board's request to wait until after the closing ceremony and official results were verified."
+    },
+    {
+      "name": "Gary Marcus",
+      "role": "AI Researcher / Critic",
+      "context": "Initially dismissed the IMO achievement as expensive AI matching top high school students on one narrow task, then conceded 'that's impressive' after confirmation that the model used no tools. Known for prior claims that deep learning is 'hitting a wall.'"
+    },
+    {
+      "name": "Daniel Litt",
+      "role": "Mathematician",
+      "context": "Publicly congratulated OpenAI and noted surprise that the achievement was by an LRM with no tool use (no Python, code interpreter, etc.), facilitating the public exchange with Gary Marcus that led to OpenAI's team confirming the methodology."
+    },
+    {
+      "name": "Terence Tao",
+      "role": "Mathematician",
+      "context": "Provided a nuanced multi-part analysis warning against apples-to-apples comparisons of AI and human IMO performance, enumerating ways format changes (more time, team collaboration, selective submission, silent withdrawal) dramatically inflate apparent success rates."
+    },
+    {
+      "name": "Francois Chollet",
+      "role": "AI Researcher, Creator of ARC-AGI",
+      "context": "Quoted as saying intelligence is the efficiency with which you acquire new skills, not a collection of skills\u2014arguing benchmark scores are misleading about true AI intelligence. Elon Musk agreed with his perspective."
+    },
+    {
+      "name": "Scott Wu",
+      "role": "Co-founder, Cognition",
+      "context": "IMO gold medalist who predicted months earlier on the podcast that an AI system would surpass IMO performance in 2025, a prediction that came true."
+    },
+    {
+      "name": "Dylan Field",
+      "role": "CEO, Figma",
+      "context": "Commented congratulating the 2025 IMO winners including OpenAI; Figma is now filing its S1 for IPO and is praised as a strong founder who led Figma's full recovery from the failed Adobe acquisition."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Posted about the launch of ChatGPT Agent, describing it as combining deep research and operator capabilities with more powerful safety mitigations than any previous OpenAI product."
+    },
+    {
+      "name": "Mansour Ojjeh",
+      "role": "Businessman, Co-owner of McLaren F1 team",
+      "context": "Franco-Saudi businessman who co-owned McLaren, funded its dominant 1984 F1 engine via TAG-Porsche, built TAG Heuer and sold it to LVMH for $740M, and assembled a unique collection of last-off-the-line burnt-orange McLarens. Passed away at 68 from idiopathic pulmonary fibrosis after a double lung transplant."
+    },
+    {
+      "name": "Turner Colwell",
+      "role": "CEO, Mariana Minerals",
+      "context": "Former Tesla employee of nine years starting on the Gigafactory who founded Mariana Minerals to apply software and automation to mining; announced $65M Series A on the show."
+    },
+    {
+      "name": "Jamin Ball",
+      "role": "Partner, Altimeter Capital",
+      "context": "Analyzed Figma's S1 noting it would be the highest Rule of 40 company (~77%) in the public software universe; previously tried and failed to win the Figma Series C at Redpoint. Considers Figma his 'white buffalo.' Stanford alum and college friend of Turner Colwell."
+    },
+    {
+      "name": "Harper Carroll",
+      "role": "AI Educator / ML Engineer",
+      "context": "Former Meta ML engineer with two Stanford CS degrees who now teaches AI full-time. Discussed AI for kids as a major opportunity using audio-first AI companions and cited the Norby robot for speech therapy. Raised concerns about AI psychosis and reasoning model opacity."
+    },
+    {
+      "name": "Nikita Singareddy",
+      "role": "Co-founder and CEO, Fortuna Health",
+      "context": "Announced Fortuna Health's Series A led by Andreessen Horowitz on the show. Described the company as 'TurboTax for Medicaid' navigating 56 state and territory Medicaid programs with different rules."
+    },
+    {
+      "name": "Chris Black",
+      "role": "Creative Consultant, Co-host of How Long Gone podcast",
+      "context": "Discussed his creative consulting work for brands including New Balance, Tom Brown, J. Crew, and Banana Republic. Expressed AI indifference, analyzed the media landscape, and discussed his forthcoming essay memoir from Simon & Schuster."
+    },
+    {
+      "name": "Chris Buskirk",
+      "role": "Co-founder, 1789 Capital",
+      "context": "Discussed optimistic post-January 2025 business climate, energy independence as the key geopolitical variable, rare earth supply chain vulnerabilities, China's premature play of its rare earth card, and 1789 Capital's investments in transformational technology including Vulcan Elements."
+    },
+    {
+      "name": "Emily Jacinski",
+      "role": "Writer, Pirate Wires",
+      "context": "Wrote the analysis of The Late Show cancellation arguing CBS accidentally stumbled into the death of monoculture media and that the Late Show's failure reflects the broader shift from monoculture to microculture institutions."
+    },
+    {
+      "name": "Andrew Reed",
+      "role": "Partner, Sequoia",
+      "context": "Won the Figma Series C over Altimeter and Redpoint by pitching Dylan Field in Sequoia's 'brown conference room' named after an endowment partner."
+    },
+    {
+      "name": "Pete To Joy",
+      "role": "Interim CEO, Astronomer",
+      "context": "Stepped in as Astronomer's interim CEO after Andy Byron and the Chief People Officer were put on immediate leave following a viral incident."
+    },
+    {
+      "name": "Andy Byron",
+      "role": "Former CEO, Astronomer",
+      "context": "Put on immediate leave alongside Chief People Officer Kristin Cabot; Pete To Joy named interim CEO."
+    },
+    {
+      "name": "Bernard Arnault",
+      "role": "Chairman/CEO, LVMH",
+      "context": "Invested $800 million in FlexJet, valuing the private aviation company at $4 billion."
+    },
+    {
+      "name": "Antonio Brown",
+      "role": "Former NFL Player",
+      "context": "Posted a tweet asking 'if he's the CEO then who put him on leave?' about the Astronomer situation, getting 250K likes and illustrating how most people don't understand board governance."
+    },
+    {
+      "name": "Tyler Cowen",
+      "role": "Economist / Writer",
+      "context": "Praised for consistency on AGI\u2014his bar was the Turing test, which he says has been passed, and he refuses to move the goalposts."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO, Tesla / xAI",
+      "context": "Mentioned for crashing his McLaren F1 on Sand Hill Road with Peter Thiel in the car after turning off traction control; also agreed with Francois Chollet's perspective on intelligence vs. benchmark scores."
+    },
+    {
+      "name": "Peter Thiel",
+      "role": "Investor / Entrepreneur",
+      "context": "Was riding in the McLaren F1 with Elon Musk when it crashed on Sand Hill Road, reportedly on the way to a Sequoia pitch meeting."
+    },
+    {
+      "name": "Brian Chesky",
+      "role": "CEO, Airbnb",
+      "context": "Credited with creating 'Founder Mode' and popularizing the annual product event live stream format now adopted by many companies."
+    },
+    {
+      "name": "AJ (SemiAnalysis)",
+      "role": "Analyst, SemiAnalysis",
+      "context": "Noted that the OpenAI IMO model scales RL on non-verifiable rewards via rubrics and LLM-as-judge with hours-long reasoning, suggesting this is what a $20,000/month model will look like."
+    }
+  ],
+  "topics": [
+    {
+      "name": "OpenAI IMO Gold Medal Achievement",
+      "summary": "OpenAI's general-purpose reasoning LLM achieved gold medal level performance on the 2025 International Mathematical Olympiad without any external tools (no Python, Lean, or internet), using only natural language reasoning over several hours. The model uses a new RL technique applicable to hard-to-verify tasks and is not IMO-specific. Google DeepMind also achieved the same milestone but announced it Monday after OpenAI's 1am Saturday post.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AGI Goalposts Debate",
+      "summary": "Widespread debate over whether IMO gold constitutes AGI, with Gary Marcus initially dismissing then conceding the achievement, Terence Tao warning about format-dependent comparisons, Francois Chollet arguing intelligence is skill acquisition efficiency not benchmark performance, and Tyler Cowen praised for consistency in not moving his Turing-test-based goalposts.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "ChatGPT Agent Launch",
+      "summary": "OpenAI launched ChatGPT Agent combining deep research and computer-use capabilities; the agent can navigate websites using internal search, not just scrape pages. Hosts tested it finding studio space and a Porsche GT3RS. Key missing features are asynchronous task scheduling and voice calling for follow-up actions.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "OpenAI Anonymous Model on LM Arena",
+      "summary": "OpenAI allegedly testing an unreleased model as 'Anonymous Chatbot0717' on LM Arena that is 'at a completely different level' of front-end coding versus Sonnet, Gemini 2.5 Pro, and Grok, reportedly one-shotting complex Three.js procedural planet generation.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "ARC-AGI V3 Benchmark",
+      "summary": "New ARC-AGI V3 released as a game format requiring generalization; Tyler attempted it live and took 25 minutes (vs. a 15-minute hard human benchmark). Current AI models score near zero despite simultaneously achieving IMO gold, suggesting a fundamental gap in fluid intelligence versus domain-specific reasoning.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Late Show Cancellation and Monoculture Death",
+      "summary": "CBS cancelled The Late Show with Stephen Colbert and the entire brand after revenue fell from $271M in 2009 to ~$60M while costs stayed at $100M, producing a ~$40M annual loss. Analysis from Pirate Wires argues this reflects the broader collapse of monocultural media institutions into audience-captured microcultures, analogous to the New York Times' subscriber-driven editorial drift.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Polymarket US Market Entry",
+      "summary": "Polymarket acquired QCEX for $112 million to gain regulatory clearance to launch legally in the US prediction market, a major milestone for a founder who built the platform in a studio apartment bathroom and survived a DOJ investigation.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Mansour Ojjeh McLaren Collection Sale",
+      "summary": "Mansour Ojjeh, co-owner of McLaren who bankrolled the 1984 F1 championship engine via TAG-Porsche and built TAG Heuer, passed away at 68. His unique collection of last-off-the-line burnt-orange McLarens\u2014each bearing his personal badge in place of the McLaren logo and each with delivery mileage only\u2014is going up for sale through Tom Hartley Jr.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Figma IPO",
+      "summary": "Figma filed its S1 with 49% revenue growth and 28% FCF margins (Rule of 40 ~77%), which would make it the top-performing public software company on that metric. Jamin Ball framed it as what the software IPO market has been waiting for after near-zero new issuance since Service Titan.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Rare Earth Supply Chain and US Competitiveness",
+      "summary": "Discussed China's dominance in rare earth magnets as a deliberate geopolitical chokepoint built over 20 years. Apple's $500M MP Materials purchase and 1789 Capital's investment in Vulcan Elements are early signals of US domestic capacity building. Chris Buskirk argued China played its rare earth export card too early during tariff negotiations, opening a window for the US to build domestic supply chains.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Energy Independence as Geopolitical Variable",
+      "summary": "Chris Buskirk argued the civilization with the most abundant and cheapest energy wins across all domains\u2014AI, defense, space, and manufacturing. AI compute demand over the next 10 years would exceed total current US power production, making energy the critical bottleneck for maintaining tech leadership.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI for Kids",
+      "summary": "Harper Carroll discussed audio-first AI companions for children as an opportunity to stoke curiosity, assist working or single parents, and democratize education. The Norby robot for speech therapy was cited as a concrete example. Concerns raised about hallucinations, guardrails, and the need for age-appropriate filtered models.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Psychosis Risk",
+      "summary": "Growing concern about users entering psychotic states through deep AI rabbit holes, including beliefs that divine beings are channeling through LLMs. Compared to Ayahuasca but available to everyone at all times. Anthropic research also showed reasoning model traces may not reflect actual reasoning processes, deepening trust concerns.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Venture Capital Seed Stage Evolution",
+      "summary": "Delian's observation that the vibrant seed fund ecosystem has atrophied as top companies skip the seed stage or raise directly at massive valuations (e.g., Mira Murati's billions-dollar 'seed' round, Board Ape Yacht Club's $1B seed). The seed label no longer reliably signals company stage or funding amount.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Tier 1 Cities Power Dynamics",
+      "summary": "Trey Stevens' viral post arguing only four US cities are true power centers: New York (finance), DC (government), San Francisco (tech), and LA (media/entertainment). Debated whether this means ambitious people must relocate, with counterexamples like Warren Buffett in Omaha and Charlie Munger in LA.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "YouTube Dominating TV Viewing",
+      "summary": "Data point that people watch YouTube on TV sets more than on phones or any other device at over 1 billion hours per day, suggesting YouTube has effectively won the living room and that the line between YouTube and traditional TV is dissolving.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Late Night and Podcast Economics",
+      "summary": "Discussion of how podcasts have replaced both late night TV and morning talk shows for cultural influence and book promotion, with TV still driving book sales better than hour-long podcasts (which substitute for the book). Chris Black and hosts discussed the economics of live podcast touring and the guide-to-life format.",
+      "sentiment": "mixed"
+    }
+  ],
+  "key_claims": [
+    "OpenAI's IMO model achieved gold medal level performance on the 2025 IMO with no external tools\u2014no Python, Lean, internet access, or code interpreter\u2014using only natural language reasoning for up to four and a half hours.",
+    "Google DeepMind's Gemini also achieved IMO gold medal performance (35/42 points, 5/6 problems correct), confirmed by the IMO president as 'astonishing' and 'clear, precise, and easy to follow.'",
+    "Grok 4 performed 'especially bad' on the new 2025 IMO questions even with best-of-N selection, while simultaneously dominating pre-training benchmarks\u2014suggesting possible benchmark overfitting elsewhere.",
+    "An allegedly unreleased OpenAI model tested as 'Anonymous Chatbot0717' on LM Arena is 'at a completely different level' of front-end coding vs Sonnet, Gemini 2.5 Pro, and Grok, reportedly one-shotting complex Three.js procedural generation prompts.",
+    "OpenAI's IMO model 'thinks for hours'\u2014compared to O1 thinking for seconds and Deep Research taking about a minute\u2014and uses a new RL technique applicable to hard-to-verify tasks via rubrics and LLM-as-judge reward signals.",
+    "Noam Brown stated the technique is general-purpose and not IMO-specific, and that AI is close to substantially contributing to scientific discovery.",
+    "AI compute demand over the next 10 years would consume more power than the United States currently produces in total.",
+    "The Late Show with Stephen Colbert costs $100M to produce annually, generates ~$60M in revenue (down from $271M in 2009), and is losing ~$40M per year. Stephen Colbert earns $15M personally. The median viewer is over 59 years old.",
+    "Figma is growing 49% with 28% free cash flow margins, giving it the highest Rule of 40 score (~77%) of any public software company among the ~80 tracked by Altimeter.",
+    "Polymarket acquired QCEX for $112 million to legally enter the US prediction market.",
+    "Apple is buying approximately $500 million of rare earth materials from MP Materials as a supply chain diversification move away from China.",
+    "China played the rare earth export restriction card prematurely during tariff negotiations, giving the US a window to build domestic rare earth magnet manufacturing capacity.",
+    "FlexJet raised $800 million from Bernard Arnault at a $4 billion valuation.",
+    "Elon Musk crashed his McLaren F1 on Sand Hill Road with Peter Thiel in the car after turning off traction control, reportedly on the way to a Sequoia meeting.",
+    "Anthropic research showed reasoning models' visible chain-of-thought traces may not reflect their actual internal reasoning\u2014a model answered correctly after a hint but did not mention the hint in its trace.",
+    "ARC-AGI V3 is reportedly near-zero for current AI models despite those same models achieving IMO gold medal performance, illustrating a major gap between domain-specific reasoning and fluid general intelligence.",
+    "The ARC-AGI prize for the public benchmark requires models to run on Kaggle's single-GPU infrastructure, explicitly preventing labs from firing massive clusters like Stargate at the problem."
+  ],
+  "technologies": [
+    "Large Language Models (LLMs)",
+    "Reinforcement Learning (RL)",
+    "General-Purpose RL for Non-Verifiable Rewards",
+    "LLM-as-Judge Reward Modeling",
+    "Reasoning Models / Long Chain-of-Thought",
+    "Test-Time Compute Scaling",
+    "Lean (Formal Math Proof Verifier)",
+    "Browser Automation / Computer Use (AI Agents)",
+    "Deep Research",
+    "ARC-AGI V3",
+    "Three.js (3JS) Procedural Generation",
+    "Apache Airflow",
+    "Voice AI",
+    "Computer Vision",
+    "Fine-Tuning",
+    "Open Source Model Deployment",
+    "Formal Verification",
+    "AI Agents",
+    "GPU Cloud Infrastructure",
+    "Rare Earth Magnet Manufacturing"
+  ],
+  "_stats": {
+    "word_count": 38332,
+    "estimated_input_tokens": 50981,
+    "input_tokens": 3,
+    "output_tokens": 24488,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 54354,
+    "duration_ms": 481749,
+    "wall_time_s": 483.3,
+    "cost_usd": 0.9565359999999999,
+    "tokens_per_sec": 50.7
+  }
+}

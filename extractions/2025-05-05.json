@@ -1,0 +1,975 @@
+{
+  "episode_date": "2025-05-05",
+  "episode_title": "warren-buffett-legacy-american-dynamism-ai-agents",
+  "companies": [
+    {
+      "name": "Berkshire Hathaway",
+      "type": "public",
+      "context": "Warren Buffett announced retirement as CEO at the 60th annual meeting; holds ~$330-350B in cash, stock fell 6.39% on retirement news. Greg Abel named as successor.",
+      "sentiment": "bullish",
+      "sector": "Finance/Conglomerate"
+    },
+    {
+      "name": "Coca-Cola",
+      "type": "public",
+      "context": "Buffett's iconic 1988 investment, still held 40 years later, valued at ~$25B with $770M in dividends paid in 2024 alone.",
+      "sentiment": "bullish",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "BYD",
+      "type": "public",
+      "context": "Munger discovered and invested $230M for 10% stake in 2008, worth nearly $2B within two years; now valued over $100B. Berkshire has been trimming the stake.",
+      "sentiment": "bullish",
+      "sector": "EV/Battery"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Buffett's 2016 investment of ~$36B; Berkshire's most valuable holding. Without it, Berkshire would underperform the S&P 500. Also partnering with Anthropic on an AI coding platform for Xcode.",
+      "sentiment": "bullish",
+      "sector": "Technology"
+    },
+    {
+      "name": "Bank of America",
+      "type": "public",
+      "context": "Buffett injected $5B during 2011 slump for a massive stake; earlier stabilized it during the 2008 financial crisis by writing an op-ed in the Wall Street Journal.",
+      "sentiment": "bullish",
+      "sector": "Finance"
+    },
+    {
+      "name": "Salomon Brothers",
+      "type": "private",
+      "context": "Buffett forced to step in as chairman in 1991 after traders rigged Treasury note auctions; considered one of his notable investment misses.",
+      "sentiment": "bearish",
+      "sector": "Finance"
+    },
+    {
+      "name": "US Air",
+      "type": "private",
+      "context": "Buffett invested $358M in 1989 preferred stock; US Air reported $2.4B in losses 1990-1994 due to deregulation. Became US Airways, then merged with American Airlines.",
+      "sentiment": "bearish",
+      "sector": "Aviation"
+    },
+    {
+      "name": "MidAmerican Energy",
+      "type": "private",
+      "context": "Buffett bought 75% stake in 1999, renamed Berkshire Hathaway Energy; annual operating earnings grew from $122M to nearly $4B. Greg Abel was discovered here.",
+      "sentiment": "bullish",
+      "sector": "Energy"
+    },
+    {
+      "name": "GEICO",
+      "type": "public",
+      "context": "Buffett rescued from collapse in 1976 by buying shares and joining the board; became a core Berkshire insurance holding illustrating the insurance float model.",
+      "sentiment": "bullish",
+      "sector": "Insurance"
+    },
+    {
+      "name": "Burlington Northern Railroad",
+      "type": "public",
+      "context": "Buffett's largest Berkshire acquisition ever in 2009, betting on America's long-term economic growth with a 'they're not making any more railroads' thesis.",
+      "sentiment": "bullish",
+      "sector": "Transportation"
+    },
+    {
+      "name": "See's Candy",
+      "type": "private",
+      "context": "Acquired in 1972; taught Buffett to pay up for great businesses with pricing power, shifting his philosophy away from pure deep-value investing.",
+      "sentiment": "bullish",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "Washington Post",
+      "type": "public",
+      "context": "Buffett invested in 1973, describing it as a world-class media business at a bargain; known for using media appearances to promote his holdings.",
+      "sentiment": "bullish",
+      "sector": "Media"
+    },
+    {
+      "name": "Goldman Sachs",
+      "type": "public",
+      "context": "Buffett backed Goldman during the 2008 crisis stabilizing markets; also mentioned jokingly as the target of a campaign to open an office in Ojai, CA.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "General Electric",
+      "type": "public",
+      "context": "Backed by Buffett during the 2008 financial crisis alongside Goldman Sachs.",
+      "sentiment": "neutral",
+      "sector": "Industrial/Conglomerate"
+    },
+    {
+      "name": "National Indemnity",
+      "type": "private",
+      "context": "Buffett's 1967 insurance acquisition that unlocked the float model funding decades of Berkshire investments.",
+      "sentiment": "bullish",
+      "sector": "Insurance"
+    },
+    {
+      "name": "General Re",
+      "type": "private",
+      "context": "Acquired by Berkshire in 1998, expanded global insurance reach though with early integration challenges.",
+      "sentiment": "neutral",
+      "sector": "Insurance"
+    },
+    {
+      "name": "Dempster Mill Manufacturing",
+      "type": "private",
+      "context": "Early Buffett partnership held 21% of assets in this agriculture equipment maker in Nebraska; example of fishing where no one else was looking.",
+      "sentiment": "neutral",
+      "sector": "Manufacturing"
+    },
+    {
+      "name": "Sanborn Map",
+      "type": "private",
+      "context": "Early Buffett investment where the investment portfolio alone was worth more than the stock price; another example of finding deep value in overlooked companies.",
+      "sentiment": "neutral",
+      "sector": "Cartography"
+    },
+    {
+      "name": "American Airlines",
+      "type": "public",
+      "context": "The eventual successor entity after US Air became US Airways and merged; mentioned as the endpoint of Buffett's airline investment miss.",
+      "sentiment": "neutral",
+      "sector": "Aviation"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Bill Gates mentioned as Buffett's close friend; HoloLens spinout referenced in defense tech context.",
+      "sentiment": "neutral",
+      "sector": "Technology"
+    },
+    {
+      "name": "Disney",
+      "type": "public",
+      "context": "Mentioned as succession case study; Bob Chapek's failed tenure vs. Bob Iger's return compared to Greg Abel's challenge at Berkshire.",
+      "sentiment": "neutral",
+      "sector": "Media/Entertainment"
+    },
+    {
+      "name": "Wells Fargo",
+      "type": "public",
+      "context": "Mark Oman, a retired Wells Fargo executive and close friend of Greg Abel, quoted saying Greg should 'be the best Greg Abel he can be.'",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "Rainmaker",
+      "type": "startup",
+      "context": "Augustus Doricko's cloud seeding company announced $25M Series A led by Lower Carbon. Vertically integrated drones, proprietary radar, and novel chemistry. Revenue doubled since last investor update; 85% domestic, 75% from state governments.",
+      "sentiment": "bullish",
+      "sector": "Climate Tech/Defense"
+    },
+    {
+      "name": "North American Weather Consultants",
+      "type": "private",
+      "context": "Legacy cloud seeding company from Salt Lake City acquired by Rainmaker; all employees retained and Rainmaker's technology was injected to improve yields.",
+      "sentiment": "neutral",
+      "sector": "Climate Tech"
+    },
+    {
+      "name": "Lower Carbon Capital",
+      "type": "fund",
+      "context": "Led Rainmaker's $25M Series A; Ryan Orbook and Clay Dumas from the fund, founded by Chris Sacca. Focused on adaptation tech for severe weather and climate resilience.",
+      "sentiment": "bullish",
+      "sector": "Climate Tech Fund"
+    },
+    {
+      "name": "Lightspeed",
+      "type": "fund",
+      "context": "Bucky Moore's new firm on his first official day; described as a mega-platform with global footprint, dedicated growth team, and strong thesis on early-stage AI companies becoming trillion-dollar businesses.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Kleiner Perkins",
+      "type": "fund",
+      "context": "Bucky Moore's former firm where he worked across growth and venture. Led Windsurf investment via partner Lee Marie. Compared to Ronnie Coleman in bodybuilding analogy.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Katherine Boyle's firm; pioneered American Dynamism investing category. Has a full Washington DC office with bipartisan staff supporting defense tech founders on BD and government affairs.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "South Park Commons",
+      "type": "fund",
+      "context": "Aditya Agarwal's pre-company exploration community and fund. Announced Fund 3 at $275M. Receives 20,000+ applicants for 250 spots annually across SF, NYC, and Bangalore.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Compared to Red Bull Racing in F1 analogy: high conviction, unapologetically bold, driven by generational talent. Peter Thiel compared to Verstappen.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Thrive Capital",
+      "type": "fund",
+      "context": "Josh Kushner's firm compared to McLaren F1 team. Noted for not drawing the 'baby Berkshire Hathaway' comparison and thinking differently.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Sequoia",
+      "type": "fund",
+      "context": "Compared to Mercedes F1 team and Arnold Schwarzenegger; set the industry gold standard early with Apple to Airbnb hit list.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Lux Capital",
+      "type": "fund",
+      "context": "Compared to Jay Cutler in bodybuilding analogy; methodical deep tech grinder that eventually dethroned the champ through steady focus.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Greylock",
+      "type": "fund",
+      "context": "Compared to Williams F1 team: fifth most winning team historically that fell behind after not keeping top talent or scaling properly.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Y Combinator",
+      "type": "private",
+      "context": "Compared to Alpha Tauri F1 team producing best drivers but seeing limited returns. Proposed as potential Alcatraz occupant.",
+      "sentiment": "bullish",
+      "sector": "Venture/Accelerator"
+    },
+    {
+      "name": "SoftBank",
+      "type": "public",
+      "context": "Compared to Aston Martin F1 team: one man behind it all (Masayoshi Son), tons of money in big deals, no significant results.",
+      "sentiment": "bearish",
+      "sector": "Fund/Conglomerate"
+    },
+    {
+      "name": "General Catalyst",
+      "type": "fund",
+      "context": "Mentioned in Coachella/Sahara stage analogy as a large, loud, ambitious fund.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Tiger Global",
+      "type": "fund",
+      "context": "Mentioned briefly in Coachella analogy context as a major platform fund.",
+      "sentiment": "neutral",
+      "sector": "Fund"
+    },
+    {
+      "name": "In-Q-Tel",
+      "type": "fund",
+      "context": "Suggested as better Red Bull F1 analogy than Founders Fund, since Red Bull is not a car company and In-Q-Tel is not a typical VC.",
+      "sentiment": "neutral",
+      "sector": "Fund/Gov"
+    },
+    {
+      "name": "Google Ventures (GV)",
+      "type": "fund",
+      "context": "Mentioned as a corporate VC arm that has performed well though largely spun out now.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Accel",
+      "type": "fund",
+      "context": "Compared to Lou Ferrigno in bodybuilding analogy.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Major American dynamism company; Katherine Boyle received Palantir merch and toured the office during the DC event.",
+      "sentiment": "bullish",
+      "sector": "AI/Defense"
+    },
+    {
+      "name": "Anduril",
+      "type": "startup",
+      "context": "Repeatedly cited as exemplar of American dynamism; had a lobbyist from week one, has made multiple acquisitions, and serves as model for how defense tech startups should operate.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "SpaceX",
+      "type": "startup",
+      "context": "Used as Rainmaker's business model analogy (services provider). Hundreds of SpaceX alumni companies have been formed across defense and hard tech sectors.",
+      "sentiment": "bullish",
+      "sector": "Aerospace/Defense"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Rumored to be acquiring Windsurf; CEO's double polo during podcast interpreted as signal deal is near close. Marked as explicitly competing with Glean by barring investors. Partnering with Apple on Xcode AI platform.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Partnering with Apple on an AI-powered vibe coding platform for Xcode internally, potentially rolling out to third-party developers. Claude models cited as best for programming.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "Rumored OpenAI acquisition at 68% Polymarket probability before August. CEO wore double polo during podcast. Bucky Moore and Kleiner Perkins are investors. Described as going beyond wrapper by training own models.",
+      "sentiment": "bullish",
+      "sector": "AI/Developer Tools"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "AI coding tool compared to Windsurf; now hiring model trainers to reduce dependency on frontier model providers and control cost of inference.",
+      "sentiment": "bullish",
+      "sector": "AI/Developer Tools"
+    },
+    {
+      "name": "Harvey",
+      "type": "startup",
+      "context": "AI legal platform cited as enterprise AI that has grown well beyond the wrapper label; recently published a blog post revealing sophisticated multi-model architecture.",
+      "sentiment": "bullish",
+      "sector": "AI/Legal Tech"
+    },
+    {
+      "name": "Glean",
+      "type": "startup",
+      "context": "Enterprise search product over business data that OpenAI has explicitly flagged as competitive territory, barring its investors from participating in OpenAI rounds.",
+      "sentiment": "bullish",
+      "sector": "AI/Enterprise Search"
+    },
+    {
+      "name": "MoveWorks",
+      "type": "startup",
+      "context": "Acquired by ServiceNow; cited as example of a $10B-level AI app company exit and a sign of more enterprise AI M&A to come.",
+      "sentiment": "bullish",
+      "sector": "AI/Enterprise"
+    },
+    {
+      "name": "ServiceNow",
+      "type": "public",
+      "context": "Announced acquisition of MoveWorks; cited as example of established enterprise software companies acquiring AI-native companies.",
+      "sentiment": "bullish",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "Datadog",
+      "type": "public",
+      "context": "Mentioned as example of enterprise software whose monitoring users are being targeted by AI automation startups.",
+      "sentiment": "neutral",
+      "sector": "DevOps/Monitoring"
+    },
+    {
+      "name": "Flock Safety",
+      "type": "startup",
+      "context": "American dynamism portfolio company that pioneered selling to police departments using a 'second city strategy' of targeting suburbs before major cities.",
+      "sentiment": "bullish",
+      "sector": "Public Safety Tech"
+    },
+    {
+      "name": "Hadrian",
+      "type": "startup",
+      "context": "Manufacturing company in A16Z's American dynamism portfolio; investment predated the trade war but aligned with re-industrialization thesis.",
+      "sentiment": "bullish",
+      "sector": "Defense/Manufacturing"
+    },
+    {
+      "name": "Shield AI",
+      "type": "startup",
+      "context": "Mentioned as one of the early American dynamism portfolio companies in space and defense 1.0.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "Sironic",
+      "type": "startup",
+      "context": "Defense tech company that announced acquisition of Gulfcraft last week; cited as example of the growing defense tech M&A trend alongside Anduril.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "AMCA",
+      "type": "startup",
+      "context": "A16Z defense portfolio company focused on component parts and supply chain for defense, working as a partner to larger defense primes.",
+      "sentiment": "bullish",
+      "sector": "Defense/Manufacturing"
+    },
+    {
+      "name": "Castellan",
+      "type": "startup",
+      "context": "A16Z portfolio company building hypersonic weapons, founded by SpaceX alumni applying manufacturing and production expertise to defense.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "Radiant Nuclear",
+      "type": "startup",
+      "context": "Mentioned as example of SpaceX alumni company founding a nuclear energy startup, illustrating the diverse spinout ecosystem.",
+      "sentiment": "bullish",
+      "sector": "Nuclear Energy"
+    },
+    {
+      "name": "MP Materials",
+      "type": "public",
+      "context": "Mentioned as example of a mining company injecting enough technology to potentially become a venture-scale opportunity.",
+      "sentiment": "bullish",
+      "sector": "Materials/Mining"
+    },
+    {
+      "name": "Waymo",
+      "type": "startup",
+      "context": "Video of Waymo nearly T-boning a cyclist who ran a red light went viral; analysts praised Waymo's performance in stopping. Discussed in context of potential future ban on human driving by 2040.",
+      "sentiment": "bullish",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "TikTok",
+      "type": "private",
+      "context": "Deal reportedly near resolution but concerns it won't fully remove CCP control; Oracle rumored for data management and cloud infrastructure. Described as a key bipartisan issue being mishandled.",
+      "sentiment": "bearish",
+      "sector": "Social Media/Technology"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "Rumored to do data management and cloud infrastructure in the TikTok deal structure.",
+      "sentiment": "neutral",
+      "sector": "Technology/Cloud"
+    },
+    {
+      "name": "Truth Social",
+      "type": "public",
+      "context": "Jokingly suggested as potential TikTok acquirer to gain presidential approval.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Fiverr",
+      "type": "public",
+      "context": "CEO sent company-wide email warning all employees AI is coming for their jobs; identified as a company at structural risk given its lower-skilled services marketplace model.",
+      "sentiment": "bearish",
+      "sector": "Marketplace/Gig Economy"
+    },
+    {
+      "name": "Facebook",
+      "type": "public",
+      "context": "Aditya Agarwal worked there as an early employee, meeting Zuckerberg at age 19 in 2005. Cited as example of high talent density producing great outcomes.",
+      "sentiment": "neutral",
+      "sector": "Social Media/Technology"
+    },
+    {
+      "name": "Dropbox",
+      "type": "public",
+      "context": "Aditya Agarwal was CTO; his startup was Dropbox's first acquisition. He personally recruited Python creator Guido Van Rossum to join the company.",
+      "sentiment": "neutral",
+      "sector": "Technology/SaaS"
+    },
+    {
+      "name": "PayPal",
+      "type": "public",
+      "context": "Mentioned by Aditya as the canonical example of high talent density producing great companies (PayPal Mafia).",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Stripe",
+      "type": "startup",
+      "context": "Mentioned as a company making good balance sheet investments; also cited as producing great founders for the SPC community.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Klarna",
+      "type": "private",
+      "context": "Cited as example of successful Nordic/Scandinavian-founded tech company.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Databricks",
+      "type": "startup",
+      "context": "Cited as example of successful Nordic/Scandinavian-founded tech company.",
+      "sentiment": "neutral",
+      "sector": "Data/AI"
+    },
+    {
+      "name": "Zendesk",
+      "type": "public",
+      "context": "Cited as example of successful Nordic/Scandinavian-founded tech company.",
+      "sentiment": "neutral",
+      "sector": "Enterprise SaaS"
+    },
+    {
+      "name": "Spotify",
+      "type": "public",
+      "context": "Cited as example of successful Nordic/Scandinavian-founded tech company.",
+      "sentiment": "neutral",
+      "sector": "Music Streaming"
+    },
+    {
+      "name": "Unity",
+      "type": "public",
+      "context": "Cited as example of successful Nordic/Scandinavian-founded tech company.",
+      "sentiment": "neutral",
+      "sector": "Gaming/Developer Tools"
+    },
+    {
+      "name": "Zenefits",
+      "type": "startup",
+      "context": "Mentioned as example of David Sacks stepping into chaos at a company; noted it didn't go well unlike Buffett's Salomon intervention.",
+      "sentiment": "bearish",
+      "sector": "HR Tech"
+    },
+    {
+      "name": "Bevel",
+      "type": "startup",
+      "context": "Health data aggregation app co-founded by Aditya Agarwal; pulls data from all wearables and devices into one clean platform. Experiencing strong organic growth.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Okta",
+      "type": "public",
+      "context": "Mentioned briefly as a company doing corporate balance sheet investing.",
+      "sentiment": "neutral",
+      "sector": "Security/SaaS"
+    },
+    {
+      "name": "Aston Martin",
+      "type": "public",
+      "context": "F1 team sponsored by Public.com at the Miami GP; compared to SoftBank in the VC/F1 analogy.",
+      "sentiment": "neutral",
+      "sector": "Automotive/F1"
+    },
+    {
+      "name": "Virgin",
+      "type": "private",
+      "context": "Richard Branson's company; his famous quote about becoming a millionaire by starting as a billionaire and buying an airline referenced for Buffett's US Air miss.",
+      "sentiment": "neutral",
+      "sector": "Conglomerate/Aviation"
+    },
+    {
+      "name": "Drove Reventures",
+      "type": "fund",
+      "context": "Investor in Rainmaker's Series A alongside Lower Carbon and Naval Ravikant.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Episode sponsor; travel booking platform with a new location opening in Ojai soon.",
+      "sentiment": "bullish",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Episode sponsor; multi-asset investing platform. Sponsored Aston Martin F1 at the Miami Grand Prix.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Episode sponsor; corporate cards, bill payments, and accounting automation platform.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Episode sponsor; purpose-built project management for software teams. TBPN uses it internally. Founder Didi cited in Nordic founders discussion.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/SaaS"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Episode sponsor and mentioned as a health data source aggregated by Bevel. Hosts discussed sleep scores live.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Episode sponsor; compliance and trust management automation platform.",
+      "sentiment": "bullish",
+      "sector": "Security/Compliance"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Episode sponsor; sales tax compliance automation platform.",
+      "sentiment": "bullish",
+      "sector": "Fintech/Compliance"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Episode sponsor; out-of-home advertising technology platform.",
+      "sentiment": "bullish",
+      "sector": "AdTech"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Mentioned briefly as a luxury watch buying platform.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Luxury"
+    }
+  ],
+  "people": [
+    {
+      "name": "Warren Buffett",
+      "role": "Chairman/CEO of Berkshire Hathaway (retiring)",
+      "context": "Announced retirement as CEO at the 60th annual meeting; his 60-year investment legacy extensively analyzed including major hits (Coca-Cola, Apple, BYD, GEICO) and misses (Salomon Brothers, US Air, Berkshire Hathaway textiles)."
+    },
+    {
+      "name": "Charlie Munger",
+      "role": "Former Vice Chairman of Berkshire Hathaway (deceased 2023)",
+      "context": "Buffett's decades-long partner who found BYD and formalized as vice chairman in 1978; their deep Aristotelian friendship discussed as a key driver of Berkshire's success."
+    },
+    {
+      "name": "Greg Abel",
+      "role": "Berkshire Hathaway CEO-designate",
+      "context": "Named as Buffett's successor as CEO at age 62; came up through MidAmerican Energy. Advised to 'be the best Greg Abel he can be' rather than imitate Buffett's style."
+    },
+    {
+      "name": "Howard Buffett",
+      "role": "Warren Buffett's son, future non-executive Chairman",
+      "context": "Announced as future non-executive chairman of Berkshire Hathaway without an executive role."
+    },
+    {
+      "name": "Molly O'Shea",
+      "role": "Host of Sorcery Podcast, family office investor",
+      "context": "Discussed her viral F1 teams as VC funds post, advantages of family office investing over institutional VC, and TikTok deal concerns about CCP control remaining."
+    },
+    {
+      "name": "Augustus Doricko",
+      "role": "CEO of Rainmaker",
+      "context": "Announced $25M Series A; walked through Rainmaker's factory showing vertically integrated anti-icing drones, proprietary meteorological radar (Eden), and novel cloud seeding chemistry."
+    },
+    {
+      "name": "Bucky Moore",
+      "role": "Partner at Lightspeed (formerly Kleiner Perkins)",
+      "context": "First official day at Lightspeed; discussed AI wrapper companies becoming 'fatter,' trillion-dollar private company thesis, and applied Buffett's 'too hard pile' concept to venture investing."
+    },
+    {
+      "name": "Katherine Boyle",
+      "role": "General Partner at Andreessen Horowitz, American Dynamism",
+      "context": "Discussed Army Transformation Initiative as the biggest DOD reform event of Trump's first 100 days, defense tech M&A trends including primes eventually having to acquire startups, and the 30-year nature of the American dynamism project."
+    },
+    {
+      "name": "Aditya Agarwal",
+      "role": "Managing Partner at South Park Commons",
+      "context": "Announced Fund 3 at $275M; explained SPC's 'minus-one' philosophy of wandering before committing to an idea, co-founded health aggregation app Bevel, and was early employee at Facebook and CTO of Dropbox."
+    },
+    {
+      "name": "Benjamin Graham",
+      "role": "Pioneer investor, Buffett's mentor",
+      "context": "Buffett discovered Graham's philosophy in 1949 and studied under him as Graham was developing security analysis; foundational to Buffett's value investing approach."
+    },
+    {
+      "name": "David Senra",
+      "role": "Host of Founders Podcast",
+      "context": "Mentioned as someone who has done seven episodes on Buffett; his reading-obsessed ethos compared to Buffett's approach. Hosts want to get him on the show to discuss Buffett's legacy."
+    },
+    {
+      "name": "Peter Thiel",
+      "role": "Co-founder of Founders Fund",
+      "context": "Compared to Max Verstappen in Molly's F1/VC analogy: relentless, unconventional, and power-focused."
+    },
+    {
+      "name": "Josh Kushner",
+      "role": "Founder of Thrive Capital",
+      "context": "Noted for not drawing the 'baby Berkshire Hathaway' comparison unlike others and for building Thrive differently."
+    },
+    {
+      "name": "Bill Gates",
+      "role": "Co-founder of Microsoft",
+      "context": "Quoted saying Warren Buffett is 'so unique' and expressing hope for future leaders like him; described as Buffett's close friend."
+    },
+    {
+      "name": "Richard Branson",
+      "role": "Founder of Virgin Group",
+      "context": "Cited for his famous quote: 'There's really nothing to it. Start as a billionaire and then buy an airline.' Referenced for Buffett's US Air miss."
+    },
+    {
+      "name": "Naval Ravikant",
+      "role": "Angel investor/entrepreneur",
+      "context": "Invested in Rainmaker after a long walk with Augustus Doricko in Manhattan Beach; described as 'sage philosopher king of tech bros everywhere.'"
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO of Meta",
+      "context": "Aditya met him as a 19-year-old in 2005 at Facebook's early house; also discussed for Theo Von podcast appearance where his sister's 'raw dogging reality' caffeine quote went viral."
+    },
+    {
+      "name": "Ariel Zuckerberg",
+      "role": "Mark Zuckerberg's sister",
+      "context": "Confirmed on X that she did tell Mark he was 'raw dogging reality' by avoiding all chemicals including caffeine, creating a viral moment on social media."
+    },
+    {
+      "name": "Theo Von",
+      "role": "Podcast host/comedian",
+      "context": "Interviewed Mark Zuckerberg; the 'raw dogging reality' exchange about Zuckerberg avoiding chemicals went viral."
+    },
+    {
+      "name": "Vitalik Buterin",
+      "role": "Ethereum co-founder",
+      "context": "Mentioned as visiting SPC in 2016-2017, talking about distributed systems ideas when he was not yet well known."
+    },
+    {
+      "name": "Ilya Sutskever",
+      "role": "AI researcher (formerly OpenAI co-founder)",
+      "context": "Mentioned as visiting SPC in 2016-2017 talking about deep learning during what was still considered a 'deep learning winter.'"
+    },
+    {
+      "name": "Guido Van Rossum",
+      "role": "Creator of Python",
+      "context": "Personally recruited by Aditya Agarwal to join Dropbox; described as creator of the most important programming language in modern history, especially for AI."
+    },
+    {
+      "name": "Palmer Luckey",
+      "role": "Founder of Anduril",
+      "context": "Mentioned as Anduril's founder; the company cited as exemplar of American dynamism investing and aggressive defense tech M&A."
+    },
+    {
+      "name": "Brian Schimpf",
+      "role": "CEO of Anduril",
+      "context": "Referenced for podcast discussing why defense primes stopped focusing on R&D and became complacent over decades."
+    },
+    {
+      "name": "Chris Sacca",
+      "role": "Founder of Lower Carbon Capital",
+      "context": "Founded Lower Carbon which led Rainmaker's $25M Series A; fund focused on adaptation tech for climate change."
+    },
+    {
+      "name": "Ryan Orbook",
+      "role": "Partner at Lower Carbon Capital",
+      "context": "Led Rainmaker Series A investment alongside Clay Dumas."
+    },
+    {
+      "name": "Lee Marie",
+      "role": "Partner at Kleiner Perkins",
+      "context": "Led Kleiner Perkins' investment in Windsurf before Bucky Moore departed; called 'amazing' by Bucky and credited with a strong outcome for the firm."
+    },
+    {
+      "name": "General George",
+      "role": "U.S. Army General",
+      "context": "Announced Army Transformation Initiative publicly on Fox and Friends alongside Secretary Driscoll; described by Katherine Boyle as forward-thinking and as a major catalyst for DOD reform."
+    },
+    {
+      "name": "Secretary Driscoll",
+      "role": "U.S. Army Secretary",
+      "context": "Co-announced Army Transformation Initiative; one of the first movers in DOD reform under Trump administration, providing air cover for technology modernization."
+    },
+    {
+      "name": "Morgan Housel",
+      "role": "Author of 'The Psychology of Money'",
+      "context": "A viral thread falsely claimed he was predicting the collapse of America; he denied this emphatically on X. His next book on the art of spending money was mentioned."
+    },
+    {
+      "name": "Tim Cook",
+      "role": "CEO of Apple",
+      "context": "Mentioned as succession case study who successfully filled Steve Jobs' shoes by leveraging supply chain expertise and building the services business."
+    },
+    {
+      "name": "Delian Asparouhov",
+      "role": "Partner at Founders Fund",
+      "context": "Mentioned as still actively posting about US-first China themes following the DC event."
+    },
+    {
+      "name": "Drew Houston",
+      "role": "CEO of Dropbox",
+      "context": "Mentioned as a founder Aditya Agarwal worked for as CTO; described as a 'younger founder' who Aditya enjoyed working under."
+    },
+    {
+      "name": "Gary Tan",
+      "role": "President of Y Combinator",
+      "context": "Referenced for a post about the moment product-market fit hits and for posts related to the Harvard tax-exempt status situation."
+    },
+    {
+      "name": "Ryan Peterson",
+      "role": "CEO of Flexport",
+      "context": "Posted on X questioning why Berkshire's stock drop on Buffett's retirement wasn't already priced in given Buffett is 94 years old."
+    },
+    {
+      "name": "Mark Gurman",
+      "role": "Bloomberg journalist",
+      "context": "Reported Apple is partnering with Anthropic on an AI-powered vibe coding platform for Xcode being rolled out internally with potential third-party developer access."
+    },
+    {
+      "name": "Will Brown",
+      "role": "ML researcher (departing Morgan Stanley)",
+      "context": "Announced departure from Morgan Stanley's ML research team; teasing a new company but not yet announced. Previously appeared on the show saying everything was great at Morgan Stanley."
+    },
+    {
+      "name": "Bob Chapek",
+      "role": "Former CEO of Disney",
+      "context": "Mentioned as cautionary succession tale: took over from Bob Iger, had an uneven tenure cut short by a boardroom coup that resulted in Iger's return."
+    },
+    {
+      "name": "Bob Iger",
+      "role": "CEO of Disney",
+      "context": "Mentioned as the executive who returned to Disney after Bob Chapek's failed tenure, used as a succession case study parallel to Berkshire."
+    },
+    {
+      "name": "Walter Scott",
+      "role": "Berkshire Board member",
+      "context": "Lifelong friend who urged Buffett to buy MidAmerican Energy in 1999; joined the Berkshire board in the late 1980s."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Warren Buffett Legacy and Retirement",
+      "summary": "Buffett announced retirement as CEO at Berkshire's 60th annual meeting. WSJ analysis covered three competitive advantages (person, period, package), major investment hits and misses, core principles including circle of competence and the too-hard pile, and succession questions around Greg Abel. Berkshire stock fell 6.39%.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Coding Tools and the Wrapper Debate",
+      "summary": "Bucky Moore argued top AI coding companies like Cursor and Windsurf are becoming 'fatter' by training their own models and building proprietary retrieval systems, moving well beyond the wrapper label. Enterprise AI applications are more compelling than consumer agents due to ability to go narrow and win on specific tasks.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "American Dynamism and Defense Tech",
+      "summary": "Katherine Boyle called the Army Transformation Initiative the biggest DOD reform event in Trump's first 100 days; DOGE providing air cover for defense procurement reform. Discussion covered defense tech M&A, supply chain gaps (e.g., no US drone motor manufacturers), and the long-term 30-year project of rebuilding America's defense industrial base.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Rainmaker Series A and Cloud Seeding",
+      "summary": "Augustus Doricko announced $25M Series A led by Lower Carbon. Rainmaker has vertically integrated anti-icing drones, proprietary meteorological radar (Eden system with LIDAR, IR, and atmospheric probes), and novel cloud seeding chemistry. Revenue doubled since last investor update; 85% domestic, 75% from state governments.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Bucky Moore Joins Lightspeed",
+      "summary": "Bucky Moore's first official day at Lightspeed after departing Kleiner Perkins. He discussed returning to pure early-stage investing, the trillion-dollar private company thesis for AI companies, and applied Buffett's 'too hard pile' concept to venture decision-making.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "South Park Commons Fund 3 and Minus-One Philosophy",
+      "summary": "Aditya Agarwal announced $275M Fund 3. SPC's core thesis is that founders should explore and wander before committing to ideas rather than latching on to the first idea and raising seed capital. 20,000+ applicants for 250 spots. Bullish on robotics and next-generation foundation model algorithms.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Family Office vs. Institutional VC",
+      "summary": "Molly O'Shea discussed key advantages of family office investing: permanent capital, longer time horizons enabling any-stage entry, no fund deployment pressure or competitive round FOMO, and ability to do SPVs flexibly. Contrasted with institutional VC's rat race of deployment timelines.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "VC Firms as F1 Teams and Bodybuilders",
+      "summary": "Molly O'Shea's viral post mapping VC firms to F1 teams extended and debated: Red Bull=Founders Fund, McLaren=Thrive, Mercedes=Sequoia, Ferrari=Khosla, Williams=Greylock, YC=Alpha Tauri, Aston Martin=SoftBank. Hosts counter-proposed a bodybuilding mapping: Sequoia=Arnold, A16Z=Dorian Yates, Founders Fund=Phil Heath, Kleiner=Ronnie Coleman.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "TikTok Deal and US-China Tech Policy",
+      "summary": "Concern that the TikTok deal being negotiated won't fully remove CCP control; Oracle reportedly handling data management. Described as a key bipartisan issue where the US is likely to miss the mark despite the backdrop of an intense trade war.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Alcatraz Repurposing Debate",
+      "summary": "Multiple guests asked what to do with Alcatraz. Options debated: reopen as prison (Trump's preference), Five-Star resort, Aman hotel with super yacht access, casino, tax haven/crypto safe harbor, EMF array, or YC campus. No consensus reached.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "AI Impact on Jobs",
+      "summary": "Fiverr CEO's internal email warning all employees that AI will come for every job went viral. Hosts skeptical that mass unemployment will materialize given historical precedent of technology creating new job categories, but acknowledged the displacement of 'easy tasks' is real and accelerating.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Apple and Anthropic Xcode Partnership",
+      "summary": "Mark Gurman reported Apple is partnering with Anthropic on an AI-powered vibe coding platform being rolled out internally at Apple, potentially to third-party developers later. Seen as closing a major gap in iOS developer tooling where Xcode has lagged.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "OpenAI Windsurf Acquisition",
+      "summary": "Windsurf CEO wore a Sam Altman-style double polo during podcast appearance, widely interpreted as a signal the OpenAI acquisition is near closing. Polymarket shows 68% probability before August. Bucky Moore and Kleiner Perkins are investors; Lee Marie led the Kleiner investment.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Harvard Tax-Exempt Status",
+      "summary": "Trump announced intent to revoke Harvard's tax-exempt status; multiple venture funds reportedly pausing university LP allocations. Noted primarily to impact new and emerging managers rather than established platform funds with long-standing LP relationships.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Nordic Founders Dominance in Tech",
+      "summary": "Post highlighting that Klarna, Cursor, Databricks, Zendesk, Spotify, Linear, and Public.com were all founded by Scandinavians/Nordics sparked discussion about whether cold weather and cultural factors drive the productivity and discipline needed to build generational companies.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Trillion-Dollar Private Companies",
+      "summary": "Bucky Moore argued that AI companies scaling at unprecedented rates may reach trillion-dollar valuations while still private, fundamentally changing venture economics and favoring mega-platform funds that can participate at growth stages in these companies.",
+      "sentiment": "bullish"
+    }
+  ],
+  "key_claims": [
+    "Buffett conservatively read more than 100,000 financial statements in his 70+ year career.",
+    "Berkshire Hathaway stock fell 6.39% on the day Buffett announced his retirement.",
+    "Buffett compounded returns at exactly 19.9% over his full career from 1965-2024, just 0.1% short of 20%.",
+    "Berkshire Hathaway's overall gain was ~5 million percent vs ~40,000 percent for the S&P 500 over the same period.",
+    "Without Apple, Berkshire Hathaway would have underperformed the S&P 500.",
+    "Nancy Pelosi's 2024 stock portfolio returned 71% vs Buffett's 25% in the same year.",
+    "Berkshire Hathaway currently holds approximately $330-350 billion in cash.",
+    "Rainmaker doubled its realized revenue since the last investor update.",
+    "South Park Commons receives 20,000+ applications for 250 spots annually across SF, NYC, and Bangalore.",
+    "Polymarket shows 68% probability that OpenAI acquires Windsurf before August 2025.",
+    "The US Army's Humvee was declared not useful for modern warfare in 2004 but remained in production through 2025.",
+    "The Army Transformation Initiative announced by Secretary Driscoll and General George is described as the biggest DOD reform in Trump's first 100 days.",
+    "OpenAI has explicitly barred investors in Glean from participating in OpenAI investment rounds, signaling competitive intent in enterprise search.",
+    "A man self-injected 650+ escalating venom doses and allowed 200 snake bites over 18 years; researchers identified resulting antibodies that neutralize toxins from cobras, mambas, and other deadly species.",
+    "Pasadena estimated it would take 400-500 years to put all electrical power lines underground; phase one alone is 100 years.",
+    "Harvard's tax-exempt status is being targeted for revocation by Trump; multiple VC funds have reportedly paused university LP allocations in response.",
+    "AI coding companies like Cursor are now hiring model trainers to reduce dependency on frontier model providers and control inference costs.",
+    "Bucky Moore predicts companies will reach trillion-dollar valuations in private markets, with OpenAI and SpaceX as the most likely candidates.",
+    "Apple is partnering with Anthropic on an AI-powered vibe coding platform rolling out internally, potentially to third-party Xcode developers in the future.",
+    "Buffett's BYD investment of $230M in 2008 for 10% of the company has grown to a ~$11.5B stake (50x) as BYD now exceeds $100B in market cap."
+  ],
+  "technologies": [
+    "Cloud seeding",
+    "Anti-icing drone systems",
+    "Meteorological radar (LIDAR, long-wave infrared, atmospheric probes)",
+    "Large language models (LLMs)",
+    "Reinforcement learning",
+    "Retrieval-augmented generation (RAG)",
+    "Agentic AI",
+    "Vibe coding / AI-assisted coding (Cursor, Windsurf)",
+    "Foundation model training",
+    "Robotics",
+    "Autonomous vehicles",
+    "Python",
+    "Health data aggregation wearables",
+    "HoloLens (AR)",
+    "Hypersonic weapons",
+    "Air-sol dispersion systems",
+    "Meteorological simulation and weather modeling",
+    "Corporate compliance automation",
+    "Sales tax automation"
+  ],
+  "_stats": {
+    "word_count": 38852,
+    "estimated_input_tokens": 51673,
+    "input_tokens": 3,
+    "output_tokens": 23778,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 55700,
+    "duration_ms": 452658,
+    "wall_time_s": 454.5,
+    "cost_usd": 0.9471985,
+    "tokens_per_sec": 52.3
+  }
+}

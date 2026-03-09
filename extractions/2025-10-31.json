@@ -1,0 +1,926 @@
+{
+  "episode_date": "2025-10-31",
+  "episode_title": "mag7-earnings-recap-ai-regulation-space-data-centers",
+  "companies": [
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Beat top and bottom line in Q3 2025; net profit surged 39%, revenue rose 13% to $180B. AWS beat estimates and Trainium chip business grew 150% quarter-on-quarter.",
+      "sentiment": "bullish",
+      "sector": "Cloud/E-commerce"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Beat top and bottom line; stock briefly traded down 3-4% after hours then recovered. Praised for OpenAI deal positioning and Copilot integration across Office suite.",
+      "sentiment": "bullish",
+      "sector": "Enterprise Software/Cloud"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Missed earnings by approximately $14B due to a one-time tax charge tied to the Big Beautiful Bill Act; core business strong with Reels at a $50B revenue run rate, but criticized for MetaVibes launch quality and unclear AI revenue strategy.",
+      "sentiment": "mixed",
+      "sector": "Social Media/AI"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Beat top and bottom line but iPhone revenue missed by $300M; China sales declined year-over-year and iPhone Air showed virtually no sign of traction per third-party analysts.",
+      "sentiment": "neutral",
+      "sector": "Consumer Electronics"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Beat revenue but missed on earnings; stock down ~4% after hours. Discussed as 1-2 years behind Waymo in robotaxi due to pursuing full autonomy without teleoperation fallback; also criticized for lacking a full-size SUV.",
+      "sentiment": "mixed",
+      "sector": "EV/Autonomous Vehicles"
+    },
+    {
+      "name": "NVIDIA",
+      "type": "public",
+      "context": "Earnings not yet reported as of episode date (due November 18); Jensen Huang described as most value-creative founder CEO in history. Core AI factory build-out described as going flawlessly.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors/AI"
+    },
+    {
+      "name": "Alphabet",
+      "type": "public",
+      "context": "Beat earnings; Sundar Pichai highlighted ~150 Google Cloud customers each processing ~1 trillion tokens. SemiAnalysis noted this implies only ~$150M in direct AI revenue (0.3% of GCP revenue), sparking debate about AI monetization.",
+      "sentiment": "bullish",
+      "sector": "Cloud/AI/Advertising"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Reportedly lost $11.5B in the most recent quarter, said to be double previously disclosed figures; hosts framed losses as largely CAPEX investment rather than operational failure. Sam Altman also posted a Tesla Roadster refund joke and a GPT-6/6-7 naming meme.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Elon Musk stated SpaceX will build space-based data centers by scaling up Starlink V3 satellites with high-speed laser links.",
+      "sentiment": "bullish",
+      "sector": "Space/Infrastructure"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Mentioned in context of TPU vs. Trainium chip debate; 39% of Anthropic queries reportedly used for headless agentic coding tasks per Shishir Mehrotra.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Waymo",
+      "type": "startup",
+      "context": "Described as 1-2 years ahead of Tesla's robotaxi fleet due to its teleoperation fallback strategy enabling earlier city-street deployment.",
+      "sentiment": "bullish",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Sued two former employees for allegedly stealing source code and customer workflows to build a rival AI platform called Percepta, backed by General Catalyst. Hosts noted Palantir tracked employees via a Slack self-send of a confidential document.",
+      "sentiment": "neutral",
+      "sector": "Data Analytics/Defense"
+    },
+    {
+      "name": "Coinbase",
+      "type": "public",
+      "context": "Brian Armstrong trolled earnings call prediction markets by deliberately reciting Bitcoin, Ethereum, blockchain, staking, and Web3 at the very end of the Q3 2025 call after not mentioning them organically.",
+      "sentiment": "bullish",
+      "sector": "Crypto/Fintech"
+    },
+    {
+      "name": "BlackRock",
+      "type": "public",
+      "context": "Acquired HPS Investment Partners for $12B in July 2025; within 90 days facing approximately $500M fraud loss from the Karyox Capital fabricated receivables scheme.",
+      "sentiment": "bearish",
+      "sector": "Finance/Asset Management"
+    },
+    {
+      "name": "HPS Investment Partners",
+      "type": "fund",
+      "context": "Led a $552M loan to Karyox Capital based entirely on fabricated telecom receivables; fraud would have been caught with a single phone call to T-Mobile.",
+      "sentiment": "bearish",
+      "sector": "Private Credit"
+    },
+    {
+      "name": "BNP Paribas",
+      "type": "public",
+      "context": "Co-lender in the Karyox Capital fraud case alongside HPS; funded against fabricated telecom receivables.",
+      "sentiment": "bearish",
+      "sector": "Banking/Finance"
+    },
+    {
+      "name": "Intel",
+      "type": "public",
+      "context": "Discussed as recipient of a U.S. government equity investment to support domestic semiconductor manufacturing; execution track record described as shaky but the deal provides a confidence signal to other buyers like OpenAI and Apple.",
+      "sentiment": "mixed",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Relativity Space",
+      "type": "startup",
+      "context": "Eric Schmidt reportedly acquired Relativity Space specifically due to interest in building space-based data centers; company had struggled with its original launch vehicle strategy.",
+      "sentiment": "neutral",
+      "sector": "Space"
+    },
+    {
+      "name": "StarCloud",
+      "type": "startup",
+      "context": "Mentioned as a startup already addressing the space-based data center market but described as identifying the problem rather than having fully solved it.",
+      "sentiment": "neutral",
+      "sector": "Space/Infrastructure"
+    },
+    {
+      "name": "Scale AI",
+      "type": "startup",
+      "context": "Meta's acquisition of Scale AI and related AI hiring spree mentioned; market reacted positively but concerns remain about Meta generating direct revenue from its Gen AI investments.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Percepta",
+      "type": "startup",
+      "context": "Startup built by two former Palantir employees using allegedly stolen source code and customer workflows; backed by General Catalyst and subject to Palantir lawsuit.",
+      "sentiment": "bearish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "AMD",
+      "type": "public",
+      "context": "Mentioned positively as performing well in certain AI inference use cases alongside NVIDIA, with hosts noting tons of positivity about AMD at GTC.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Felicis Ventures",
+      "type": "fund",
+      "context": "Aydin Senkut's firm; has made early investments in 53 unicorns, none led by domain experts at time of investment. Early backer of Shopify, Mercor, Supabase, Marraqi, and n8n.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Sarah Wang (GP) posted about the hosts' Halloween costumes as Marc Andreessen and Ilya Sutskever on social media.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "General Catalyst",
+      "type": "fund",
+      "context": "Backed Percepta, the startup accused by Palantir of being built on stolen intellectual property.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Decibel Ventures",
+      "type": "fund",
+      "context": "Jakob Diepenbrock's fund focused on defense tech and hard tech; held demo day in El Segundo featuring nine companies across energy, aerospace materials, vertical farming, and industrial software.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Mercor",
+      "type": "startup",
+      "context": "AI talent platform that went from $0 to $100M gross revenue in 11 months; Felicis invested in two rounds. Uses AI to interview candidates and generate expertise data.",
+      "sentiment": "bullish",
+      "sector": "AI/HR Tech"
+    },
+    {
+      "name": "Supabase",
+      "type": "startup",
+      "context": "Developer-friendly backend platform built on Postgres; Felicis invested at near-zero ARR and it has since grown 50-80x in a few years. Other VCs passed on price and invested in competitors instead.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/Cloud"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Project management tool for engineering teams; discussed GitHub Copilot agent integration and vision for self-driving SaaS where bugs auto-detect and fix themselves without human intervention.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/Productivity"
+    },
+    {
+      "name": "Grammarly",
+      "type": "private",
+      "context": "Corporate entity rebranded to Superhuman after acquiring the Superhuman email client; Grammarly remains as a product brand within the new four-product suite including the new Superhuman Go AI assistant.",
+      "sentiment": "bullish",
+      "sector": "AI/Productivity"
+    },
+    {
+      "name": "Superhuman",
+      "type": "startup",
+      "context": "Now the corporate parent brand after Grammarly acquired the email client; new brand signals AI-powered human empowerment. Superhuman Go is a new platform product running any agent proactively across ~1 million apps.",
+      "sentiment": "bullish",
+      "sector": "AI/Productivity"
+    },
+    {
+      "name": "Partiful",
+      "type": "startup",
+      "context": "Social events platform; CEO discussed Apple's failed competitive entry, Halloween as their Black Friday with triple on-call engineering, and long-term vision to become big social as major platforms shift to entertainment.",
+      "sentiment": "bullish",
+      "sector": "Social/Consumer"
+    },
+    {
+      "name": "n8n",
+      "type": "startup",
+      "context": "Berlin-based agentic AI automation company described as a Felicis-backed sleeper that VCs have recently woken up to; going viral on Instagram before X.",
+      "sentiment": "bullish",
+      "sector": "AI/Automation"
+    },
+    {
+      "name": "Human Interest",
+      "type": "startup",
+      "context": "401k platform for SMBs raised $100M at a $3B post-money valuation; CEO is a personal acquaintance of a host.",
+      "sentiment": "bullish",
+      "sector": "Fintech/HR"
+    },
+    {
+      "name": "Shopify",
+      "type": "public",
+      "context": "Cited as Felicis's first IPO and a fund-making investment; went public at $2.7B valuation and has since grown approximately 50x. Reached $100M ARR in about six years.",
+      "sentiment": "bullish",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "Canva",
+      "type": "private",
+      "context": "Cited as an example of a high-growth outlier company demonstrating sustained compounding growth from a well-chosen large market.",
+      "sentiment": "bullish",
+      "sector": "Design/SaaS"
+    },
+    {
+      "name": "Karyox Capital",
+      "type": "startup",
+      "context": "New York telecom financing company that committed massive fraud; fabricated $500M+ in receivables from T-Mobile and others using forged contracts and spoofed email domains to secure $552M in loans before filing for bankruptcy.",
+      "sentiment": "bearish",
+      "sector": "Fraud/Fintech"
+    },
+    {
+      "name": "Polymarket",
+      "type": "startup",
+      "context": "Prediction market platform and TBPN partner; tracking which company will be largest at end of 2025 with NVIDIA at approximately 99% probability after leading a horse race with Microsoft and Apple throughout the year.",
+      "sentiment": "bullish",
+      "sector": "Prediction Markets/Crypto"
+    },
+    {
+      "name": "MP Materials",
+      "type": "public",
+      "context": "Cited alongside Intel as an example of the U.S. government taking equity positions in strategically important private companies across the critical mineral supply chain.",
+      "sentiment": "bullish",
+      "sector": "Materials/Defense"
+    },
+    {
+      "name": "Suno",
+      "type": "startup",
+      "context": "AI music generation company; discussed in context of Tennessee's Elvis Act, which regulates AI use of celebrity name, image, and likeness at the state level.",
+      "sentiment": "neutral",
+      "sector": "AI/Music"
+    },
+    {
+      "name": "DeepSeek",
+      "type": "startup",
+      "context": "Chinese AI company discussed in chip export debate; described as preferring to build its own infrastructure and data centers rather than purchasing American cloud compute.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "High Flyer",
+      "type": "fund",
+      "context": "DeepSeek's parent hedge fund mentioned briefly in context of chip export discussions.",
+      "sentiment": "neutral",
+      "sector": "Finance/AI"
+    },
+    {
+      "name": "Anduril",
+      "type": "startup",
+      "context": "Cited as an example of a defense tech company that has already attracted major VC backing, making it harder for new entrants to compete in the same market segment.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "1X",
+      "type": "startup",
+      "context": "Humanoid robot company described as further along than Tesla's humanoid program because it uses a teleoperation fallback strategy similar to Waymo.",
+      "sentiment": "bullish",
+      "sector": "Robotics"
+    },
+    {
+      "name": "Snap",
+      "type": "public",
+      "context": "Snap's IPO was cited as generating approximately $10B in California state tax revenue in roughly one month due to capital gains taxation.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "LVMH",
+      "type": "public",
+      "context": "Bernard Arnault quoted on Apple's long-term relevance: he doesn't know if people will use iPhones in 20 years but is confident they will drink Dom Perignon.",
+      "sentiment": "neutral",
+      "sector": "Luxury"
+    },
+    {
+      "name": "WPP",
+      "type": "public",
+      "context": "Cited as a Google Cloud customer achieving 70% efficiency gains in campaign creation using Gemini AI models.",
+      "sentiment": "bullish",
+      "sector": "Advertising"
+    },
+    {
+      "name": "Swarovski",
+      "type": "private",
+      "context": "Cited as a Google Cloud customer that increased email open rates by 17% using AI and achieved 10x acceleration in campaign localization.",
+      "sentiment": "bullish",
+      "sector": "Retail/Luxury"
+    },
+    {
+      "name": "T-Mobile",
+      "type": "public",
+      "context": "One of the carriers whose identity was forged in the Karyox Capital fraud; confirmed to investigators they had no contracts or invoices with the company.",
+      "sentiment": "neutral",
+      "sector": "Telecom"
+    },
+    {
+      "name": "SemiAnalysis",
+      "type": "private",
+      "context": "Research firm run by Dylan Patel; cited for AWS acceleration thesis vindication and mathematical analysis showing Google's 150-customer token usage implies minimal direct AI revenue.",
+      "sentiment": "bullish",
+      "sector": "Research/Analysis"
+    },
+    {
+      "name": "GitHub",
+      "type": "private",
+      "context": "GitHub Copilot mentioned as integrating with Linear's agent platform so engineers can delegate tasks to AI coding agents in the background.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Shutterstock",
+      "type": "public",
+      "context": "Founder Jon Oringer sold a $57M Hamptons home; discussed as facing existential challenge from generative AI imagery eroding its core stock photo business.",
+      "sentiment": "bearish",
+      "sector": "Media/Stock Photography"
+    },
+    {
+      "name": "Marraqi",
+      "type": "startup",
+      "context": "Felicis's first billion-dollar exit; started as a Wi-Fi project tied to Google and was one of Aydin Senkut's first investments.",
+      "sentiment": "bullish",
+      "sector": "Networking/Wireless"
+    },
+    {
+      "name": "Impulse",
+      "type": "startup",
+      "context": "Stove company run by Sam Jamico, cited as an example of non-defense hardware companies unlocked by the defense-tech and hard-tech VC wave.",
+      "sentiment": "neutral",
+      "sector": "Consumer Hardware"
+    },
+    {
+      "name": "Ineos Grenadier",
+      "type": "private",
+      "context": "Mentioned as making a Quartermaster truck resembling the Japanese K trucks Americans cannot easily import; Palmer Luckey referenced in discussion about bringing such vehicles to the U.S. market.",
+      "sentiment": "neutral",
+      "sector": "Automotive"
+    },
+    {
+      "name": "Petra Power",
+      "type": "startup",
+      "context": "Decibel Ventures demo day company replacing generators with an electrochemical process; has secured $9M in DOD contracts.",
+      "sentiment": "bullish",
+      "sector": "Energy/Defense"
+    },
+    {
+      "name": "Actinide",
+      "type": "startup",
+      "context": "Decibel Ventures demo day company enriching isotopes including Terbium ($2/gram to $36,000/gram) used in cancer medication, with large contracts signed days before demo day.",
+      "sentiment": "bullish",
+      "sector": "Biotech/Materials"
+    },
+    {
+      "name": "Hedgez",
+      "type": "startup",
+      "context": "Decibel Ventures demo day company; a Robinhood-style commodities hedging app for SMB oil and gas distributors who cannot afford a full treasury team.",
+      "sentiment": "bullish",
+      "sector": "Fintech/Energy"
+    },
+    {
+      "name": "Tekzz.pro",
+      "type": "startup",
+      "context": "Decibel Ventures demo day company; a Bloomberg-style marketplace aggregating heavy equipment and mining machinery procurement data with no current central database.",
+      "sentiment": "bullish",
+      "sector": "Industrial/Marketplace"
+    },
+    {
+      "name": "Loris",
+      "type": "startup",
+      "context": "Decibel Ventures demo day company deploying autonomous vertical farms on grocery store rooftops to increase in-store produce profits by 50%, avoiding the real estate cost that sank earlier vertical farming companies.",
+      "sentiment": "bullish",
+      "sector": "AgTech"
+    },
+    {
+      "name": "Blitz Panel",
+      "type": "startup",
+      "context": "Decibel Ventures demo day company manufacturing cheaper electrical panels through an automated production process.",
+      "sentiment": "bullish",
+      "sector": "Energy/Hardware"
+    },
+    {
+      "name": "Arquitas Energy",
+      "type": "startup",
+      "context": "Decibel Ventures demo day company using a rediscovered process from old scientific papers to produce hydrogen cheaply, enabling cheaper crude oil production.",
+      "sentiment": "bullish",
+      "sector": "Energy"
+    },
+    {
+      "name": "Polymarket",
+      "type": "startup",
+      "context": "Prediction market platform and TBPN partner; tracking which company will be largest at end of 2025 with NVIDIA at approximately 99% probability.",
+      "sentiment": "bullish",
+      "sector": "Prediction Markets/Crypto"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor; corporate card and financial operations platform cited as saving companies an average of 5% in spend.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor; trust management and compliance automation platform replacing manual security and compliance work with continuous automation.",
+      "sentiment": "neutral",
+      "sector": "Security/Compliance"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Sponsor; maker of Devin the AI software engineer for crushing engineering backlogs.",
+      "sentiment": "neutral",
+      "sector": "AI/Developer Tools"
+    },
+    {
+      "name": "Fal.ai",
+      "type": "startup",
+      "context": "Generative media platform for developers and TBPN partner; provides image, video, and audio models with serverless GPU and on-demand cluster infrastructure.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Mentioned as sponsor; design and development collaboration platform.",
+      "sentiment": "neutral",
+      "sector": "Design Tools"
+    },
+    {
+      "name": "Privy",
+      "type": "startup",
+      "context": "Sponsor; wallet infrastructure enabling white-label wallets, signed transactions, and on-chain integration via a single API.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Web3"
+    },
+    {
+      "name": "Graphite",
+      "type": "startup",
+      "context": "Sponsor; AI-powered code review platform for engineering teams on GitHub.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Fin.com",
+      "type": "startup",
+      "context": "Sponsor; AI agent for customer service claiming the number one ranking in benchmarks, competitive benchoffs, and G2.",
+      "sentiment": "neutral",
+      "sector": "AI/Customer Service"
+    },
+    {
+      "name": "Adquick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising platform combining technology, expertise, and data for seamless global ad buying.",
+      "sentiment": "neutral",
+      "sector": "Advertising"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Sponsor; luxury watch marketplace offering a concierge service to source any watch on the planet.",
+      "sentiment": "neutral",
+      "sector": "Luxury/Marketplace"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor; multi-asset investing platform with industry-leading yields trusted by millions.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Julius.ai",
+      "type": "startup",
+      "context": "Sponsor; AI-powered data analytics platform offering expert-level insights via chat.",
+      "sentiment": "neutral",
+      "sector": "AI/Analytics"
+    },
+    {
+      "name": "8Sleep",
+      "type": "startup",
+      "context": "Sponsor; smart sleep technology platform; hosts reported scores of 92 and 93 on their Pod devices.",
+      "sentiment": "neutral",
+      "sector": "Consumer Health"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Sponsor; live streaming platform distributing to 30+ destinations simultaneously.",
+      "sentiment": "neutral",
+      "sector": "Media/Streaming"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Sponsor; platform helping brands reach consumers through AI-powered product discovery.",
+      "sentiment": "neutral",
+      "sector": "AI/Marketing"
+    },
+    {
+      "name": "Numeral HQ",
+      "type": "startup",
+      "context": "Sponsor; sales tax compliance automation platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Tax"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Sponsor; AI-native CRM platform.",
+      "sentiment": "neutral",
+      "sector": "AI/CRM"
+    },
+    {
+      "name": "Foundation for American Innovation (FAI)",
+      "type": "private",
+      "context": "Think tank where Dean Ball is a senior fellow focused on AI policy, emerging technology, and government relations.",
+      "sentiment": "neutral",
+      "sector": "Policy/Research"
+    },
+    {
+      "name": "Mercatus Center",
+      "type": "private",
+      "context": "Think tank mentioned as Dean Ball's prior employer; associated with economist Tyler Cowen.",
+      "sentiment": "neutral",
+      "sector": "Policy/Research"
+    },
+    {
+      "name": "Acquired",
+      "type": "startup",
+      "context": "Podcast by Ben Gilbert and David Rosenthal mentioned as peer inspiration; Ben Gilbert appeared in the live stream chat.",
+      "sentiment": "bullish",
+      "sector": "Media/Podcast"
+    },
+    {
+      "name": "Slack",
+      "type": "private",
+      "context": "Used as an example of a product that clearly outclassed incumbents on design but ultimately lost market share to Microsoft Teams once enterprise procurement kicked in.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    }
+  ],
+  "people": [
+    {
+      "name": "Andy Jassy",
+      "role": "CEO, Amazon",
+      "context": "Discussed as returning to the offensive after being on the defensive at prior earnings; Amazon's strong Q3 results vindicated his AWS and Trainium strategy."
+    },
+    {
+      "name": "Satya Nadella",
+      "role": "CEO, Microsoft",
+      "context": "Praised for foresight on the OpenAI deal and proactive AI positioning; had appeared on TBPN the Tuesday prior."
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO, Meta",
+      "context": "Discussed in context of Meta's large earnings miss, AI spending spree, and parallels drawn to Bezos's controversial early AWS bet that was ultimately vindicated."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO, Tesla and SpaceX",
+      "context": "Discussed across Tesla earnings, SpaceX space data center announcement, Tesla Roadster refund joke with Sam Altman, and a new Joe Rogan podcast appearance."
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO, NVIDIA",
+      "context": "Called the most value-creative founder CEO in human history for creating $5T in value while remaining founder CEO throughout; spotted drinking beers in South Korea ahead of November 18 earnings."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Made a GPT-6/6-7 naming joke on social media; posted an old Tesla Roadster refund email thread; OpenAI reported $11.5B in quarterly losses."
+    },
+    {
+      "name": "Ilya Sutskever",
+      "role": "Co-founder, SSI; former Chief Scientist, OpenAI",
+      "context": "Discussed via a Guardian documentary interview about AGI risks, including the possibility AI could cover Earth in solar panels; one host dressed as him for Halloween."
+    },
+    {
+      "name": "Marc Andreessen",
+      "role": "Co-founder, Andreessen Horowitz",
+      "context": "One host dressed as him for Halloween; used throughout as reference archetype for tech investor persona."
+    },
+    {
+      "name": "Sundar Pichai",
+      "role": "CEO, Alphabet and Google",
+      "context": "Quoted stating nearly 150 Google Cloud customers each processed approximately 1 trillion tokens; cited by SemiAnalysis as framing AI scale in token counts rather than revenue."
+    },
+    {
+      "name": "Brian Armstrong",
+      "role": "CEO, Coinbase",
+      "context": "Trolled earnings call prediction markets by deliberately reciting Bitcoin, Ethereum, blockchain, staking, and Web3 at the very end of the Q3 2025 call after not mentioning them organically."
+    },
+    {
+      "name": "Dean Ball",
+      "role": "Senior Fellow, Foundation for American Innovation; former White House AI Policy Advisor",
+      "context": "Discussed AI regulation dynamics between California and federal government, chip export politics, Intel deal implications, the Max Tegmark AGI ban letter, and estimated AI accounts for approximately 40% of current GDP growth."
+    },
+    {
+      "name": "Aydin Senkut",
+      "role": "Founder and GP, Felicis Ventures",
+      "context": "Discussed Felicis's investment philosophy emphasizing consistent deployment across cycles, backing non-expert founders for outlier returns, and highlighted portfolio companies Shopify, Mercor, Supabase, and n8n."
+    },
+    {
+      "name": "Jakob Diepenbrock",
+      "role": "Founder, Decibel Ventures",
+      "context": "Recapped Decibel Ventures demo day featuring nine companies across energy, aerospace materials, vertical farming, industrial software, and autonomous manufacturing in El Segundo."
+    },
+    {
+      "name": "Shishir Mehrotra",
+      "role": "CEO, Superhuman (formerly CEO, Grammarly)",
+      "context": "Announced rebrand of Grammarly corporate entity to Superhuman with four products; introduced Superhuman Go as a new AI assistant platform running proactive embedded agents across one million apps."
+    },
+    {
+      "name": "Karri Saarinen",
+      "role": "Co-founder and CEO, Linear",
+      "context": "Discussed Linear's GitHub Copilot agent integration, evolving project management workflows with AI, and long-term vision for self-driving SaaS where bugs auto-detect and fix themselves."
+    },
+    {
+      "name": "Shreya Murthy",
+      "role": "Co-founder and CEO, Partiful",
+      "context": "Discussed Partiful's Halloween as their Black Friday, Apple's failed competitive entry, brand philosophy around fun versus rage-bait, and long-term vision to become big social as major platforms shift to entertainment."
+    },
+    {
+      "name": "Lulu Meservey",
+      "role": "Communications strategist",
+      "context": "Made a brief cameo appearance; discussed Halloween marketing philosophy and brand moment strategy."
+    },
+    {
+      "name": "Gabby Goldberg",
+      "role": "Investor",
+      "context": "Made a brief cameo appearance alongside Lulu Meservey; showed off a recently purchased AP Royal Oak Offshore watch."
+    },
+    {
+      "name": "Eric Schmidt",
+      "role": "Former CEO, Google",
+      "context": "Reportedly acquired Relativity Space specifically because of interest in building space-based data centers."
+    },
+    {
+      "name": "Jeff Bezos",
+      "role": "Founder, Amazon",
+      "context": "Predicted gigawatt-scale data centers will be built in space within the next 10 to 20 years."
+    },
+    {
+      "name": "Dylan Patel",
+      "role": "Founder, SemiAnalysis",
+      "context": "Framed the TPU vs. Trainium debate; declared the AWS acceleration thesis vindicated; analyzed Google Cloud AI token metrics to argue actual AI revenue is minimal relative to token volumes cited."
+    },
+    {
+      "name": "Bernard Arnault",
+      "role": "Chairman and CEO, LVMH",
+      "context": "Quoted saying he does not know whether people will use iPhones in 20 years but is confident they will still drink Dom Perignon, raising questions about Apple's long-term relevance."
+    },
+    {
+      "name": "Max Tegmark",
+      "role": "AI safety researcher, MIT",
+      "context": "Led a broad coalition calling for a prohibition on superintelligence development until there is scientific consensus it is safe and strong public buy-in; Dean Ball critiqued this as implying an unenforceable global treaty."
+    },
+    {
+      "name": "Sarah Wang",
+      "role": "General Partner, Andreessen Horowitz",
+      "context": "Posted on social media about the hosts' Halloween costumes as Marc Andreessen and Ilya Sutskever, tagging both real individuals."
+    },
+    {
+      "name": "Larry Page",
+      "role": "Co-founder, Google",
+      "context": "Mentioned by Aydin Senkut as an early mentor who demanded 10x thinking at Google, which inspired the machine translation initiative that became Google Translate."
+    },
+    {
+      "name": "Brian Chesky",
+      "role": "CEO, Airbnb",
+      "context": "Referenced for his barbell thesis that AI content feeds and real-world human connection will coexist and both grow."
+    },
+    {
+      "name": "Ben Gilbert",
+      "role": "Co-host, Acquired podcast",
+      "context": "Appeared in the live stream chat and was warmly welcomed by hosts as a peer and inspiration."
+    },
+    {
+      "name": "Paul Graham",
+      "role": "Co-founder, Y Combinator",
+      "context": "Referenced for the observation that successful co-founding teams combine expertise across multiple disciplines rather than deep specialization in one."
+    },
+    {
+      "name": "Bakim BombBot",
+      "role": "Alleged fraudster, Karyox Capital",
+      "context": "Alleged orchestrator of a $552M loan fraud using fabricated telecom receivables, forged contracts, and spoofed email domains; Karyox Capital filed for bankruptcy with up to $1B in liabilities and nearly zero assets."
+    },
+    {
+      "name": "Palmer Luckey",
+      "role": "Founder, Anduril",
+      "context": "Responded on social media to a post about Americans being unable to buy Japanese K trucks, saying he is working on the problem, prompting speculation about whether Anduril would manufacture such vehicles."
+    },
+    {
+      "name": "Tyler Cowen",
+      "role": "Economist, Mercatus Center",
+      "context": "Briefly mentioned as an 'absolute goat' associated with the Mercatus Center, where Dean Ball previously worked."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Mag 7 Earnings Recap",
+      "summary": "Detailed review of Q3 2025 earnings for all major tech companies: Amazon beat across the board with 39% profit surge and Trainium chip growth; Microsoft beat but stock briefly dipped; Meta missed by ~$14B due to a tax charge despite strong core business; Apple slightly missed on iPhone revenue with weak iPhone Air reception; Tesla beat revenue but missed earnings; Google beat with strong cloud but minimal disclosed AI revenue; NVIDIA earnings pending November 18.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Space-Based Data Centers",
+      "summary": "Elon Musk confirmed SpaceX will build data centers in space using scaled Starlink V3 satellites with laser inter-satellite links. Eric Schmidt acquired Relativity Space for similar reasons. Jeff Bezos predicted gigawatt-scale space data centers within 10-20 years. Startup StarCloud is also pursuing this market. Hosts noted SpaceX's heat dissipation expertise as a key advantage.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Regulation: California vs. Federal Government",
+      "summary": "Dean Ball explained California coordinates with the EU to act as a de facto national AI regulator, viewing itself as filling a gap left by the Trump administration's deregulatory stance. Federal preemption through Congress is possible but must happen before the midterm cutoff of approximately June 2026. Key battleground issues include chip exports, superintelligence bans, and state-level restrictions like Illinois banning mental health chatbots.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "US-China Trade and Chip Export Policy",
+      "summary": "Trump and Xi met in South Korea for their first face-to-face in six years; US lowered fentanyl-related tariffs from 20% to 10% and China eased rare earth mineral export controls for one year, reducing average tariff rate from 57% to ~47%. Separately, Dean Ball noted selling Blackwell chips to China would be politically very unpopular on Capitol Hill and could trigger poorly designed legislation.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Private Credit Fraud and Risk",
+      "summary": "Karyox Capital defrauded BlackRock's HPS and BNP Paribas of $552M using fabricated receivables from T-Mobile and other carriers, forged contracts, and spoofed email domains. The entire fraud would have been caught with one phone call. HPS faces ~$500M loss within 90 days of BlackRock's $12B acquisition of the firm. Hosts noted this is the fourth private credit collapse in two months.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "AI as GDP Driver",
+      "summary": "Dean Ball estimated AI accounts for approximately 40% of current U.S. GDP growth, primarily from AI CAPEX, with Q2 GDP around 4%. Hosts debated how to attribute GDP to AI enablement versus traditional enterprise spending and noted it may be years before the true impact is measurable. Dean Ball expects AI's salience as a policy issue to rise significantly in 2026.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "VR and AR Hardware Race",
+      "summary": "Meta Ray-Bans described as the leading publicly available smart glasses but market credit withheld because no user is saying they cannot live without them. Apple working on glasses integrating with iPhone and iMessage. Both companies discussed as having viable long-term paths but neither having achieved consumer product-market fit for wearable AR.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Tesla Robotaxi and Humanoid Robots vs. Waymo and 1X",
+      "summary": "Tesla pursuing full autonomy without teleoperation fallback for both robotaxi and humanoid robots, putting it years behind Waymo and 1X. Bull case is Tesla's structural cost advantages, manufacturing capacity, and data flywheel. Hosts debated whether the full-send approach will ultimately win or permanently lag.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AGI and Superintelligence Ban Letter",
+      "summary": "Max Tegmark led a broad coalition calling for prohibition on superintelligence development until scientific consensus on safety and broad public buy-in exist. Dean Ball critiqued it as requiring an unenforceable global treaty and noted there is no consensus even on what superintelligence means, comparing it to 'defund the police' style populist overreach.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Venture Capital Strategy in the AI Era",
+      "summary": "Aydin Senkut argued VCs must invest consistently across cycles rather than sprinting and pausing; focusing on outlier growth potential makes valuation precision less critical. The AI era is distinct because fully closed-loop processes without humans are now possible, targeting labor markets (40-70% of company budgets) rather than software budgets capped at ~10%.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Prediction Markets and Earnings Calls",
+      "summary": "Brian Armstrong trolled a Coinbase earnings prediction market by deliberately reciting crypto keywords at the very end of his Q3 2025 earnings call. Hosts discussed how prediction markets create engagement and chaos around live corporate events and whether they distort executive behavior.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Luxury Real Estate and Hamptons Market",
+      "summary": "Hamptons luxury home sales above $10M surging to unprecedented levels topping even the COVID boom. Shutterstock founder sold Bridgehampton home for $57M (bought for $40M in 2014). An $85M Hollywood Hills estate with a pleasure suite listed by music producer Alex DeKid. Hosts also discussed a broad land acquisition thesis favoring Alaska as a hedge on climate scenarios.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "SaaS Evolution with AI Agents",
+      "summary": "Karri Saarinen of Linear discussed how AI does not eliminate project management workflows but makes them proactive and self-driving. Vision articulated for bugs auto-detecting and fixing themselves without human intervention; non-technical users like designers already making code fixes via natural language agent delegation.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Social Events Tech and Partiful's Vision",
+      "summary": "Shreya Murthy discussed Partiful's Halloween as their Black Friday with triple on-call engineering support, Apple's failure to compete in event invitations, and long-term vision to become big social as major platforms evolve from social connection into entertainment feeds.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Defense and Hard Tech Venture Ecosystem",
+      "summary": "Decibel Ventures demo day featured nine companies including energy systems, isotope enrichment, commodities hedging, heavy equipment marketplaces, autonomous vertical farming, and electrochemical hydrogen. Hosts noted a healthy maturation: less redundant defense tech, more adjacent industrial and energy companies unlocked by the broader hard tech wave.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Intel and US Government Equity Investments",
+      "summary": "Dean Ball discussed the Intel government equity deal as part of a broader trend of USG taking equity positions in strategically important companies, similar to MP Materials and critical mineral deals. Intel's execution track record described as shaky but the deal provides a confidence signal. Hosts speculated that an OpenAI-Intel partnership is likely gestating.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI Cybersecurity Risk",
+      "summary": "Despite two years of the AI boom, no major AI-specific cyberattack has been publicly attributed to generative AI. Dean Ball predicted an AI-enabled cyber incident is likely within 6-18 months as models become capable enough; biological risk expected to take longer due to physical-world complexity.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Grammarly Rebrand to Superhuman",
+      "summary": "Shishir Mehrotra announced the Grammarly corporate entity is rebranded to Superhuman following the acquisition of the Superhuman email client. The company now has four products and has launched Superhuman Go, an AI assistant platform that proactively embeds any agent across approximately one million web, desktop, and mobile apps.",
+      "sentiment": "bullish"
+    }
+  ],
+  "key_claims": [
+    "Amazon net profit surged 39% and revenue rose 13% to $180B in Q3 2025; Trainium chip business grew 150% quarter-on-quarter.",
+    "Meta missed earnings by approximately $14B due to a one-time paper tax charge related to the Big Beautiful Bill Act; Reels hit a $50B annual revenue run rate.",
+    "Google Cloud had approximately 150 customers each processing approximately 1 trillion tokens; SemiAnalysis calculated this implies only about $150M in direct AI revenue, or 0.3% of GCP annual revenue.",
+    "OpenAI reportedly lost approximately $11.5B in its most recent quarter, said to be double previously disclosed figures.",
+    "Jensen Huang is described as the most value-creative founder CEO in human history, having created approximately $5 trillion in market value while remaining founder CEO throughout.",
+    "BlackRock acquired HPS Investment Partners for $12B in July 2025 and within 90 days faces approximately $500M in fraud losses from a scheme that one phone call to T-Mobile would have uncovered.",
+    "Karyox Capital fabricated $500M+ in telecom receivables using forged contracts and spoofed email addresses to secure $552M in loans; filed for bankruptcy with up to $1B in liabilities and nearly zero assets.",
+    "SpaceX will build space-based data centers by scaling up Starlink V3 satellites with high-speed laser links, per Elon Musk on X.",
+    "Eric Schmidt acquired Relativity Space specifically because of interest in space-based data centers.",
+    "Jeff Bezos predicted gigawatt-scale data centers will be built in space within 10 to 20 years.",
+    "NVIDIA is at approximately 99% probability on Polymarket to be the largest company by market cap at year-end 2025.",
+    "Dean Ball estimates AI accounts for approximately 40% of current U.S. GDP growth, almost entirely from AI CAPEX.",
+    "Mercor went from $0 to $100M in gross revenues in 11 months.",
+    "Felicis Ventures made early investments in 53 unicorns and none were led by domain experts at the time of investment.",
+    "Apple iPhone Air showed virtually no sign of traction per Consumer Intelligence Research Partners third-party analysis.",
+    "Grammarly slash Superhuman processes approximately 100 billion LLM calls per week across 40 million users.",
+    "OpenAI reportedly processes approximately 250 trillion tokens per month on its API.",
+    "Max Tegmark led a broad coalition calling for a prohibition on superintelligence development until scientific consensus on safety exists and there is strong public buy-in; Dean Ball argued this effectively requires an unenforceable global treaty.",
+    "A California SNAP IPO generated approximately $10B in state tax revenue in approximately one month.",
+    "Brian Armstrong deliberately inserted Bitcoin, Ethereum, blockchain, staking, and Web3 at the very end of Coinbase's Q3 2025 earnings call to troll prediction markets betting on which words he would say.",
+    "Illinois banned mental health chatbots, making it illegal for AI to respond supportively to statements like saying you are having a bad day.",
+    "Tennessee's Elvis Act lets celebrities sue AI companies for name, image, and likeness infringement as a state property right separate from federal copyright.",
+    "Supabase has grown 50-80x since Felicis invested at near-zero ARR.",
+    "Human Interest raised $100M at a $3B post-money valuation.",
+    "OpenAI's Codex team reported some agentic coding tasks run for 60 hours continuously."
+  ],
+  "technologies": [
+    "Trainium",
+    "TPU",
+    "Blackwell GPU",
+    "H20 chip",
+    "Grace Hopper chip",
+    "Gemini",
+    "GPT models",
+    "Sora",
+    "Large language models",
+    "Generative AI",
+    "Agentic AI",
+    "Humanoid robots",
+    "Full Self-Driving",
+    "Starlink V3 satellites",
+    "Laser inter-satellite links",
+    "Space-based data centers",
+    "AR smart glasses",
+    "Prediction markets",
+    "Blockchain and Web3",
+    "Serverless GPUs",
+    "Generative video models",
+    "Generative image models",
+    "Generative audio models",
+    "Postgres",
+    "GitHub Copilot",
+    "AI coding agents",
+    "Face swap and prosthetic AI",
+    "Rare earth mineral processing",
+    "Isotope enrichment",
+    "Electrochemical hydrogen production",
+    "Autonomous vertical farming",
+    "Smart electrical panels",
+    "Commodities hedging algorithms",
+    "Sales tax automation",
+    "Compliance automation",
+    "Wallet infrastructure",
+    "On-chain integration",
+    "Out-of-home advertising tech",
+    "AI-native CRM",
+    "Vector search",
+    "Full-text search",
+    "Object storage"
+  ],
+  "_stats": {
+    "word_count": 37187,
+    "estimated_input_tokens": 49458,
+    "input_tokens": 3,
+    "output_tokens": 24924,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 53455,
+    "duration_ms": 486468,
+    "wall_time_s": 488.6,
+    "cost_usd": 0.96181725,
+    "tokens_per_sec": 51.0
+  }
+}

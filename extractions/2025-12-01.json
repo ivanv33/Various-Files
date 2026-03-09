@@ -1,0 +1,857 @@
+{
+  "episode_date": "2025-12-01",
+  "episode_title": "david-sacked-by-nyt-sir-dylan-patel-joins-kushner-sama-are-thriving-ro-khanna-jonathan-swerdlin-cristobal-valenzuela-vincent-weisser-ben-hylak-alby-churven",
+  "companies": [
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor and physical host location described as the 'Fortress of Finance'; provides corporate cards, bill payments, and accounting in one platform.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Finkel",
+      "type": "startup",
+      "context": "App described as 'Duolingo for Life Skills' created by Australian teen Alby Churven; in beta with a waitlist, applied to Y Combinator with a viral 7.8M-view application video.",
+      "sentiment": "bullish",
+      "sector": "EdTech"
+    },
+    {
+      "name": "Y Combinator",
+      "type": "private",
+      "context": "Finkel founder Alby Churven submitted a YC application that went viral; hosts asked viewers to leave recommendations on his behalf.",
+      "sentiment": "neutral",
+      "sector": "VC/Accelerator"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Sponsor enabling multistreaming to 30+ destinations simultaneously.",
+      "sentiment": "neutral",
+      "sector": "Media/Streaming"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Discussed extensively: pushing agentic commerce for the holiday season, reportedly has not completed a full-scale pre-training run since GPT-4o in May 2024, receives ~29% effective partner discount on NVIDIA GPUs via equity arrangement, and announced a strategic equity partnership with Thrive Holdings.",
+      "sentiment": "mixed",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "The New York Times",
+      "type": "public",
+      "context": "Published an investigative piece alleging David Sacks benefited himself and friends as White House AI/Crypto czar; in an ongoing lawsuit with OpenAI, causing ChatGPT to block The Wirecutter content.",
+      "sentiment": "bearish",
+      "sector": "Media"
+    },
+    {
+      "name": "The Wirecutter",
+      "type": "private",
+      "context": "NYT-owned product review site that ChatGPT refuses to scrape due to the NYT-OpenAI lawsuit; Gemini can still access it via Google Search, illustrating an emerging competitive advantage for Google in AI search.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Gemini 3 launched as one of the world's best models, trained on TPUs; now selling TPUs externally to labs including Anthropic; Gemini app downloads and engagement catching up to ChatGPT per SimilarWeb data.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "NVIDIA",
+      "type": "public",
+      "context": "Stock up ~10x since ChatGPT's launch in Nov 2022, reaching $4.36 trillion market cap; Semi-Analysis argues NVIDIA offers equity investments to major labs rather than price cuts to protect gross margins; up 1% on the day despite the TPU competitive threat article.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Previously the world's largest company in November 2022; AI reportedly not a major driver of iPhone sales; mentioned as part of the Mag 7.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Mentioned as part of Mag 7; pays for a portion of Anthropic's GPU deal, contributing to Anthropic's ~44% effective partner discount on NVIDIA hardware.",
+      "sentiment": "neutral",
+      "sector": "Cloud/Enterprise"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Mentioned as part of Mag 7; Trainium AI chips cited alongside Google TPUs as training infrastructure used by top frontier labs.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Discussed as a potential TPU buyer from Google; theory floated that Meta may have leaked TPU interest to extract better NVIDIA deal terms; Llama models ran exclusively on AMD for inference for several months.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Ranked 10th on global market cap at the time of broadcast, above SMCI and Saudi Aramco.",
+      "sentiment": "neutral",
+      "sector": "EV/Robotics"
+    },
+    {
+      "name": "Broadcom",
+      "type": "public",
+      "context": "Key supplier in Google TPU manufacturing, charging high margins; Google is attempting to diversify to MediaTek for TPUV8; Broadcom stock was down nearly 4% on the day of the Semi-Analysis TPU piece despite being a TPU enabler.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Semi-Analysis",
+      "type": "private",
+      "context": "Dylan Patel's research firm published a major piece arguing Google TPUs threaten NVIDIA dominance; also produces the ClusterMax NeoCloud GPU cloud ranking used by enterprises renting GPUs.",
+      "sentiment": "neutral",
+      "sector": "Research/Analysis"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Claude 4.5 Opus named one of the world's two best models, with the majority of training on Google TPUs; receives an effective ~44% partner discount on NVIDIA GPUs, partly funded by Microsoft; purchasing significant future TPU capacity.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "SSI (Safe Superintelligence)",
+      "type": "startup",
+      "context": "Ilya Sutskever's company received another $1 billion investment; hosts debated whether this is misallocation of capital or a high-expected-value science bet on the next paradigm beyond LLMs.",
+      "sentiment": "mixed",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Prime Intellect",
+      "type": "startup",
+      "context": "Released Intellect 3, a 100B-parameter model trained via scaled RL post-training achieving performance previously only seen in 300-600B open-source models; working with enterprises on custom RL environments and ramping toward large-scale pre-training.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Runway",
+      "type": "startup",
+      "context": "Released Gen 4.5 video model, which topped the Video Arena Leaderboard above Google and OpenAI; CEO discussed cinematic quality focus, Hollywood's quiet AI adoption, and efficient inference pricing comparable to prior models.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Makers of Devin AI software engineer; mentioned as sponsor and cited as an example of a company that post-trained its own model using its application as an RL environment.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Function Health",
+      "type": "startup",
+      "context": "Raised $298M Series B at $2.5B valuation; offers comprehensive lab testing at $365/year across 2,200+ Quest Diagnostics locations and recently acquired Ezra to offer AI-enhanced full-body MRI at $499.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Ezra",
+      "type": "startup",
+      "context": "Imaging company acquired by Function Health; uses FDA-cleared AI to dramatically reduce MRI scan time and cost, enabling full-body cancer and aneurysm detection at $499 across ~200 locations.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Quest Diagnostics",
+      "type": "public",
+      "context": "Function Health's lab testing partner with 2,200+ locations across the US used for twice-yearly comprehensive biomarker panels.",
+      "sentiment": "neutral",
+      "sector": "Healthcare"
+    },
+    {
+      "name": "Thrive Capital",
+      "type": "fund",
+      "context": "Josh Kushner's firm announced a strategic partnership where OpenAI becomes an equity holder in Thrive Holdings to deliver frontier AI technology to portfolio companies.",
+      "sentiment": "bullish",
+      "sector": "VC/PE"
+    },
+    {
+      "name": "Rain Drop",
+      "type": "startup",
+      "context": "Ben Hylak's company monitors AI agents in production; raised $15M from Lightspeed; argues agent monitoring becomes more critical\u2014not less\u2014as agents become more capable and access higher-value workflows.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Lightspeed",
+      "type": "fund",
+      "context": "Led Rain Drop's $15M fundraise; deal done by partner referred to as 'Bucky.'",
+      "sentiment": "bullish",
+      "sector": "VC/PE"
+    },
+    {
+      "name": "Replit",
+      "type": "startup",
+      "context": "Cited as example of an agentic coding platform where failures become increasingly consequential as the agent can now build real production applications, not just personal websites.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Cursor (Anysphere)",
+      "type": "startup",
+      "context": "Cited as a canonical example of post-training a model on its own application as an RL environment; reportedly updates its model every two hours via online RL from user interactions with Cursor Tab.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Mentioned as a sponsor and as an example of an established application that could use RL post-training to become more agentic by training on in-product user interactions.",
+      "sentiment": "neutral",
+      "sector": "Design/Dev Tools"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Sponsor described as the AI-native CRM for building, scaling, and growing companies.",
+      "sentiment": "neutral",
+      "sector": "CRM/SaaS"
+    },
+    {
+      "name": "Graphite",
+      "type": "startup",
+      "context": "Sponsor offering AI-assisted code review on GitHub described as 'code review for the age of AI.'",
+      "sentiment": "neutral",
+      "sector": "Dev Tools"
+    },
+    {
+      "name": "Finn.AI",
+      "type": "startup",
+      "context": "Sponsor described as the number one AI agent for customer service.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Sponsor helping brands get mentioned in ChatGPT to reach millions of consumers who use AI for product discovery.",
+      "sentiment": "neutral",
+      "sector": "Marketing Tech"
+    },
+    {
+      "name": "Turbopuffer",
+      "type": "startup",
+      "context": "Sponsor offering serverless vector and full-text search built from first principles on object storage, described as 10x cheaper than alternatives.",
+      "sentiment": "neutral",
+      "sector": "Infrastructure"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor offering AI trust management and compliance automation; SOC2 compliance via Vanta was noted as an actual criterion in ClusterMax NeoCloud tier rankings.",
+      "sentiment": "neutral",
+      "sector": "Security/Compliance"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sponsor handling sales tax and VAT compliance automation so companies can focus on growth.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Compliance"
+    },
+    {
+      "name": "Julius",
+      "type": "startup",
+      "context": "Sponsor offering an AI data analyst platform for connecting data and getting instant insights.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Privy",
+      "type": "startup",
+      "context": "Sponsor making it easy to build on crypto rails with white-label wallets, transaction signing, and on-chain infrastructure via one API.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Web3"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor enabling easy, measurable out-of-home advertising planning, buying, and measurement with precision.",
+      "sentiment": "neutral",
+      "sector": "Marketing Tech"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor offering multi-asset investing described as being 'for those who take it seriously.'",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor offering premium vacation homes with hotel-grade amenities; host suggested it for company team offsites and as a recruiting tactic.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Bezell",
+      "type": "startup",
+      "context": "Sponsor for luxury watch shopping with 26,500+ fully authenticated watches available.",
+      "sentiment": "neutral",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "8Sleep",
+      "type": "startup",
+      "context": "Sponsor offering sleep optimization technology; host shared a 92 sleep score despite a rough night.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Fal.ai",
+      "type": "startup",
+      "context": "Sponsor described as a platform to 'build and deploy AI video and image models' trusted by millions to power generative media at scale.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Pager Duty",
+      "type": "public",
+      "context": "Fallen to $1.1 billion market cap with $500M ARR trading at 2.1x ARR and no growth; cited as a cautionary example of stagnating SaaS in the AI era.",
+      "sentiment": "bearish",
+      "sector": "SaaS/Enterprise"
+    },
+    {
+      "name": "ASML",
+      "type": "public",
+      "context": "Sells fewer than 500 units per year but generates $37 billion in revenue; cited as having one of the widest moats of any company globally; 2024 revenue dipped due to customer delays in Taiwan and China front-running export controls.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Airwallex (Air Wallachs)",
+      "type": "startup",
+      "context": "Crossed $1 billion in ARR; Keith Rabois publicly accused the company of being a 'Chinese backdoor' into sensitive US financial data due to mainland China operations and legal obligations to assist CCP intelligence requests.",
+      "sentiment": "bearish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Rippling",
+      "type": "startup",
+      "context": "Mentioned as a US customer of Airwallex allegedly exposed to CCP data access risks per Keith Rabois's accusations.",
+      "sentiment": "neutral",
+      "sector": "HR Tech/Fintech"
+    },
+    {
+      "name": "Bill.com",
+      "type": "public",
+      "context": "Mentioned as a US customer of Airwallex allegedly exposed to CCP data access risks per Keith Rabois's accusations.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Brex",
+      "type": "startup",
+      "context": "Mentioned as a US customer of Airwallex allegedly exposed to CCP data access risks per Keith Rabois's accusations.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Iris Energy",
+      "type": "public",
+      "context": "NeoCloud discussed in ClusterMax context; technically ranked underperform by the ClusterMax team but viewed as a long by Semi-Analysis's finance team based on the value of its power and data center assets.",
+      "sentiment": "mixed",
+      "sector": "Cloud Infrastructure"
+    },
+    {
+      "name": "Nebius",
+      "type": "public",
+      "context": "Mentioned as a NeoCloud operator deploying GPUs for AI labs in the ClusterMax discussion.",
+      "sentiment": "neutral",
+      "sector": "Cloud Infrastructure"
+    },
+    {
+      "name": "Core Weave",
+      "type": "startup",
+      "context": "Mentioned as a NeoCloud deploying GPU infrastructure for OpenAI in the ClusterMax context.",
+      "sentiment": "neutral",
+      "sector": "Cloud Infrastructure"
+    },
+    {
+      "name": "Waymo",
+      "type": "startup",
+      "context": "Cited in the human-in-the-loop trucking discussion; teleoperator-to-car ratio may currently be higher than 1:1 with the expectation that human involvement decreases over time.",
+      "sentiment": "neutral",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Uber",
+      "type": "public",
+      "context": "Used as a case study in AI job displacement discussion; disrupted the taxi medallion system but created new ride-sharing jobs at lower wages; Ro Khanna acknowledged using Uber regularly while wishing government had done more to compensate medallion owners.",
+      "sentiment": "neutral",
+      "sector": "Transportation"
+    },
+    {
+      "name": "AMD",
+      "type": "public",
+      "context": "Meta ran Llama 4/5B inference exclusively on AMD for several months; mentioned as a meaningful alternative to NVIDIA in the GPU inference market.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "MediaTek",
+      "type": "public",
+      "context": "Google working with MediaTek as an alternative to Broadcom for TPUV8 networking and supply chain, aiming to reduce the margin paid to Broadcom, though MediaTek is considered significantly less capable in networking.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "TSMC",
+      "type": "public",
+      "context": "Mentioned as the foundry manufacturing both NVIDIA and Google TPU chips; NVIDIA pays TSMC directly while Google pays through Broadcom, giving NVIDIA a structural cost advantage.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "DeepSeek",
+      "type": "startup",
+      "context": "Mentioned as an open-source model now on par with closed frontier models; released new updates over the weekend of the episode; noted as open-sourcing significant CUDA-compatible software.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Mistral",
+      "type": "startup",
+      "context": "Described as having pivoted toward a 'forward-deployed European enterprise play,' leaving a gap in the open-source frontier model ecosystem outside China.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Suno",
+      "type": "startup",
+      "context": "Music AI tool mentioned as being widely used by musical artists even if they won't publicly admit it, in the context of Hollywood's broader quiet adoption of generative AI.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "JP Morgan",
+      "type": "public",
+      "context": "Jamie Dimon mentioned as having attempted but ultimately failed to arrange compensation for taxi medallion owners who lost value due to Uber's disruption.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "Synopsys",
+      "type": "public",
+      "context": "NVIDIA announced a $2 billion investment in Synopsys to make its EDA tools GPU-first, capitalizing on a coming boom in chip design activity driven by AI.",
+      "sentiment": "bullish",
+      "sector": "EDA/Semiconductors"
+    },
+    {
+      "name": "PostHog",
+      "type": "startup",
+      "context": "Analytics company cited as a benchmark for tracking product adoption health by measuring percentage of YC companies in each batch using the product.",
+      "sentiment": "neutral",
+      "sector": "Analytics"
+    },
+    {
+      "name": "Sentry",
+      "type": "startup",
+      "context": "Mentioned as a traditional analytics tool that does not cover what happens inside AI agent workflows, creating the gap Rain Drop fills.",
+      "sentiment": "neutral",
+      "sector": "Analytics"
+    },
+    {
+      "name": "All-In Podcast",
+      "type": "private",
+      "context": "David Sacks's co-hosted podcast discussed in context of the NYT piece; Jason Calacanis stated they lost money on events and that political content was a net negative for audience growth, which hosts strongly disputed.",
+      "sentiment": "mixed",
+      "sector": "Media"
+    },
+    {
+      "name": "Claire Locke",
+      "type": "private",
+      "context": "Defamation law firm hired by David Sacks in response to the NYT article; their letter to the NYT was publicly attached to Sacks's rebuttal post.",
+      "sentiment": "neutral",
+      "sector": "Legal"
+    },
+    {
+      "name": "Saudi Aramco",
+      "type": "public",
+      "context": "Mentioned as ranking 8th on global market cap, sandwiched between SMCI and Meta in the global top 10.",
+      "sentiment": "neutral",
+      "sector": "Energy"
+    },
+    {
+      "name": "Super Micro Computer (SMCI)",
+      "type": "public",
+      "context": "Mentioned as ranking 9th on global market cap in the discussion of Broadcom's potential entry into the Mag 7.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors/Hardware"
+    },
+    {
+      "name": "Character.ai",
+      "type": "startup",
+      "context": "Briefly mentioned alongside Anthropic, SSI, and MidJourney as a company that has long used Google TPUs.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Midjourney",
+      "type": "startup",
+      "context": "Briefly mentioned as a company that has long used Google TPUs for AI training alongside Anthropic and Character.ai.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "ByteDance",
+      "type": "private",
+      "context": "Mentioned as a major potential customer for Google TPUs given its sophistication and scale, alongside Meta, in Dylan Patel's discussion of who could realistically adopt TPUs.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "RCI",
+      "type": "startup",
+      "context": "Prime Intellect supported RCI in training a small MoE base model achieving competitive open-source results; ramping toward a much larger pre-training run with 2,000 B300 GPUs going live.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "20VC",
+      "type": "private",
+      "context": "Harry Stebbings's podcast mentioned as having featured Airwallex founder Jack Jang, which is how hosts first became familiar with the company.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Enron",
+      "type": "public",
+      "context": "Mentioned historically: NVIDIA replaced Enron in the S&P 500 on November 29th (2001), which went viral as a symbolic data point about NVIDIA's rise.",
+      "sentiment": "neutral",
+      "sector": "Energy"
+    }
+  ],
+  "people": [
+    {
+      "name": "Alby Churven",
+      "role": "Founder of Finkel, Australian high school student",
+      "context": "Guest on show; created Finkel (Duolingo for Life Skills), applied to YC with a viral 7.8M-view application video, and traveled from Wollongong, Australia to LA to network during his school break."
+    },
+    {
+      "name": "Dylan Patel",
+      "role": "Founder, Semi-Analysis",
+      "context": "Guest on show; discussed TPU vs. GPU competition, NVIDIA's margin protection strategy via equity investments to labs, Google-Broadcom dynamics, ClusterMax NeoCloud rankings, and his living arrangement with Anthropic's Sholto Douglas sparking 'roommate gate' controversy."
+    },
+    {
+      "name": "Ro Khanna",
+      "role": "US Congressman (California)",
+      "context": "Guest on show; discussed AI job displacement policy (advocating for human-in-the-loop requirements), housing affordability as a YIMBY, the Epstein Transparency Act he authored, observations from a China trip including ~20% youth unemployment, and AI regulation at the federal vs. state level."
+    },
+    {
+      "name": "Jonathan Swerdlin",
+      "role": "CEO, Function Health",
+      "context": "Guest on show; discussed Function Health's $365/year comprehensive lab testing platform, the acquisition of Ezra for AI-powered MRI, the $298M Series B at $2.5B valuation, and argued that the standard of care needs to shift to proactive biomarker monitoring."
+    },
+    {
+      "name": "Cristobal Valenzuela",
+      "role": "CEO, Runway",
+      "context": "Guest on show; announced Gen 4.5 video model topping the Video Arena Leaderboard above Google and OpenAI; discussed the importance of model 'personality' reflecting company culture, Hollywood's quiet adoption of AI video, and skepticism about whether traditional NLE software will remain relevant."
+    },
+    {
+      "name": "Vincent Weisser",
+      "role": "Co-founder, Prime Intellect",
+      "context": "Guest on show; discussed Intellect 3's release as a 100B-parameter RL-trained SOTA model, the paradigm of every company becoming AI-native through custom RL environments, online RL retraining cycles, and Prime Intellect's plans for large-scale open-source pre-training."
+    },
+    {
+      "name": "Ben Hylak",
+      "role": "CTO, Rain Drop",
+      "context": "Guest on show; discussed Rain Drop's $15M Lightspeed-led raise, the counterintuitive finding that more capable agents create worse production monitoring gaps, model degradation by providers, and the use of typewritten offer letters as a recruiting differentiator."
+    },
+    {
+      "name": "David Sacks",
+      "role": "White House AI and Crypto Czar",
+      "context": "Subject of NYT investigative piece alleging conflicts of interest; published a detailed rebuttal calling it a 'hoax factory,' hired defamation firm Claire Locke, and was broadly defended by the tech community including Sam Altman and Brian Armstrong."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Publicly defended David Sacks, stating he 'really understands AI and cares about the U.S. leading in innovation.'"
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO, NVIDIA",
+      "context": "Discussed in context of NVIDIA's margin protection strategy; reportedly called Sam Altman to initiate a $10B equity investment deal after seeing reporting about OpenAI testing TPUs; friendship with David Sacks was cited in the NYT piece as a potential conflict."
+    },
+    {
+      "name": "Ilya Sutskever",
+      "role": "Co-founder and CEO, SSI",
+      "context": "Discussed in context of SSI receiving another $1B; debate over whether the venture-scale science bet is misallocation of capital or high expected value; cited alongside Jan LeCun, Rich Sutton, and Andrej Karpathy as saying scaling is over and LLMs are a dead end."
+    },
+    {
+      "name": "Josh Kushner",
+      "role": "Founder, Thrive Capital",
+      "context": "Announced a strategic partnership where OpenAI becomes an equity holder in Thrive Holdings to deliver frontier AI to portfolio companies, framing AI transformation as 'inside out' rather than 'outside in.'"
+    },
+    {
+      "name": "Jan LeCun",
+      "role": "Chief AI Scientist, Meta",
+      "context": "Mentioned as one of several industry legends publicly stating that scaling is over and LLMs are a dead end; reported to be on his way out of Meta."
+    },
+    {
+      "name": "Andrej Karpathy",
+      "role": "AI researcher (formerly OpenAI/Tesla)",
+      "context": "Mentioned alongside Ilya Sutskever and Jan LeCun as an industry legend joining the chorus that scaling is over and LLMs are dead."
+    },
+    {
+      "name": "Keith Rabois",
+      "role": "Investor",
+      "context": "Publicly accused Airwallex of being a 'Chinese backdoor' into sensitive US financial data, alleging the company has legally enforceable obligations to share customer data with Chinese intelligence due to mainland China operations and engineers."
+    },
+    {
+      "name": "Jason Calacanis",
+      "role": "Co-host, All-In Podcast",
+      "context": "Stated the All-In podcast lost money on events and that covering politics was a net negative for audience growth, a claim hosts strongly disputed by arguing politics is a major TAM expander in media."
+    },
+    {
+      "name": "Brian Armstrong",
+      "role": "CEO, Coinbase",
+      "context": "Mentioned as being publicly supportive of David Sacks in response to the NYT article."
+    },
+    {
+      "name": "Dan Primack",
+      "role": "Journalist, Axios",
+      "context": "Provided a detailed breakdown of the David Sacks NYT story, concluding it was 'mostly a nothing burger' for those following the situation but that the headline was 'defensible, albeit pushing an agenda.'"
+    },
+    {
+      "name": "Andrew Bosworth (Boz)",
+      "role": "CTO, Meta",
+      "context": "Posted in defense of David Sacks that 'experts tend to have made money in their area of expertise' and that requiring leaders to have no industry history means leaders won't know anything."
+    },
+    {
+      "name": "Siki Chen",
+      "role": "Executive, Runway",
+      "context": "Mentioned as having put 'an uncomfortable amount of his net worth' into NVIDIA around 2020-2021, generating enormous returns; used as an example of tech insiders who correctly bet on NVIDIA early."
+    },
+    {
+      "name": "Daron Acemoglu",
+      "role": "Nobel Prize-winning economist, MIT",
+      "context": "Cited by Ro Khanna for his concept of 'total factor productivity,' arguing the best technologies\u2014like electricity\u2014enhance workers rather than simply eliminating them, maximizing total economic output."
+    },
+    {
+      "name": "Max Hodak",
+      "role": "Co-founder, Neuralink/Science Corp",
+      "context": "Asked on the timeline why Google doesn't bypass Broadcom entirely and deal directly with TSMC for TPU chip design, prompting Dylan Patel's explanation of Broadcom's networking moat."
+    },
+    {
+      "name": "Zoran Mamdani",
+      "role": "NYC politician (Assembly member)",
+      "context": "Cited by Ro Khanna for his viral video arguing excessive permitting makes it nearly impossible to legally run a halal food cart; praised as an example of bipartisan small business deregulation messaging."
+    },
+    {
+      "name": "Jamie Dimon",
+      "role": "CEO, JP Morgan",
+      "context": "Mentioned as having attempted but ultimately failed to arrange financial compensation for taxi medallion owners whose assets were destroyed by Uber's market entry."
+    },
+    {
+      "name": "Jack Jang",
+      "role": "Founder/CEO, Airwallex",
+      "context": "His company crossed $1B ARR but now faces Keith Rabois's public accusations about Chinese government data access; previously featured on Harry Stebbings's 20VC podcast."
+    },
+    {
+      "name": "Victor Peng",
+      "role": "Former CEO/President, AMD",
+      "context": "Cited by Ro Khanna as an example of a tech leader who thinks about how AI can benefit workers broadly rather than simply maximizing displacement."
+    },
+    {
+      "name": "Will Brown",
+      "role": "Researcher (Prime Intellect or affiliated)",
+      "context": "Previously appeared on TBPN to discuss verifiers and RL training environments, referenced in the Vincent Weisser segment."
+    },
+    {
+      "name": "Sholto Douglas (Shalto)",
+      "role": "Researcher, Anthropic",
+      "context": "Dylan Patel's roommate; his living arrangement with Patel sparked 'roommate gate' on social media questioning Semi-Analysis's independence from Anthropic when analyzing TPUs and ClusterMax rankings."
+    }
+  ],
+  "topics": [
+    {
+      "name": "ChatGPT 3-Year Anniversary and AI Macro Impact",
+      "summary": "Hosts reflected on what has and hasn't changed since ChatGPT's November 2022 launch: Mag 7 value tripled to over $21T, NVIDIA up ~10x, but everyday life (e.g., Thanksgiving cooking) largely unchanged; AI bubble discourse has now reached mainstream family conversations.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Agentic Commerce and Walled Gardens",
+      "summary": "OpenAI and Google are both racing to capture revenue from agentic shopping this holiday season; ChatGPT is blocked from The Wirecutter due to the NYT lawsuit while Gemini can access it via Google Search, illustrating how legal disputes are creating competitive moats in AI-powered search and commerce.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "David Sacks vs. The New York Times",
+      "summary": "NYT published an investigative piece alleging Sacks benefited himself and friends as White House AI/Crypto Czar; Sacks issued a detailed rebuttal calling it a 'hoax factory' and hired defamation firm Claire Locke; tech community broadly rallied behind Sacks while journalists like Dan Primack found the piece mostly factually defensible but thin on smoking guns.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "TPU vs. NVIDIA GPU Competition (Semi-Analysis Article)",
+      "summary": "Semi-Analysis published a major piece arguing Google TPUs are neck-and-neck with NVIDIA GPUs; the two best models in the world (Claude 4.5 Opus and Gemini 3) run on TPUs; OpenAI reportedly saves 29% on GPU costs from TPU competitive pressure alone before deploying a single TPU; NVIDIA stock remained up despite the report.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "OpenAI Pre-Training Stagnation",
+      "summary": "Semi-Analysis reported OpenAI has not completed a successful full-scale pre-training run since GPT-4o in May 2024, with the GPT-4.5 pre-training reportedly mothballed; no public pushback from OpenAI or proxies emerged, lending credibility to the claim.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Gemini 3 vs. ChatGPT App Race",
+      "summary": "Gemini 3 launched as a world-class model with app downloads and engagement metrics catching up to ChatGPT per SimilarWeb; Google's structural advantage includes access to content sources blocked from OpenAI; but ChatGPT app was deemed superior in product quality and user stickiness.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Mag 7 Market Cap Rankings and Broadcom's Potential Entry",
+      "summary": "Current global market cap ranking (highest to lowest in top tier): NVIDIA, Apple, Alphabet, Microsoft, Amazon, Broadcom, Meta, Tesla; debate around whether Broadcom can join the Mag 7 given its lack of a consumer brand and deep supply-chain positioning.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Ilya Sutskever / SSI Funding and Research-Stage Bets",
+      "summary": "SSI received another $1B investment; debate on whether the venture-style bet at growth scale is misallocation of capital or the highest expected-value bet in AI given Ilya's track record; hosts landed cautiously bullish on the expected value framing.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI Regulation and Job Displacement (Ro Khanna)",
+      "summary": "Ro Khanna advocated for human-in-the-loop policies in high-displacement sectors like trucking (10% of US workforce) and 5-year transition windows rather than permanent bans; hosts pushed back citing a lack of actual large-scale job losses so far and difficulty predicting timelines.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI and China: Talent, Youth Unemployment, and Geopolitics",
+      "summary": "Ro Khanna reported ~20% youth unemployment in China partly driven by over-restriction on consumer and cultural apps; argued one-third of global AI talent is in China and that banning Chinese students from the US would be strategically counterproductive.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Preventive Health Tech and Function Health",
+      "summary": "Jonathan Swerdlin argued for a new standard of health including twice-yearly comprehensive lab testing and annual full-body MRI; cited that 45% of first-time heart attack patients did not have high-risk LDL cholesterol, underscoring the failure of the current reactive healthcare model.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Video Models and Runway Gen 4.5",
+      "summary": "Runway's Gen 4.5 topped the Video Arena Leaderboard above Google and OpenAI; CEO discussed how model 'personality' reflects company culture, Hollywood's quiet but widespread AI video adoption, and skepticism that traditional NLE video editing software will survive the transition to real-time generative video.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "RL Post-Training as the Enterprise AI Strategy",
+      "summary": "Vincent Weisser argued every company will need to post-train models using their own application as an RL environment to achieve domain-specific SOTA at far lower cost than foundation model training; Cursor retraining every 2 hours via online RL was cited as the leading example.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Agent Monitoring in Production",
+      "summary": "Ben Hylak argued that as agents become more capable and handle higher-stakes tasks, monitoring their production behavior becomes more\u2014not less\u2014critical; traditional analytics tools don't cover agent workflows, creating the market Rain Drop addresses.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Airwallex China Data Concerns",
+      "summary": "Keith Rabois publicly accused Airwallex (now over $1B ARR) of being a legally enforceable vector for CCP data access due to mainland China operations, engineers touching production systems, and Chinese legal jurisdiction; company moved HQ to Singapore but retains a large China footprint.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Thrive Capital / OpenAI Strategic Partnership",
+      "summary": "Josh Kushner announced OpenAI will become an equity holder in Thrive Holdings to deliver frontier AI to portfolio companies; framed as an 'inside out' industry transformation model contrasting with prior tech waves that disrupted from the outside.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "NVIDIA $2B Investment in Synopsys",
+      "summary": "NVIDIA announced a $2 billion investment in EDA firm Synopsys to make GPU-based chip design workflows first-class, positioning itself to benefit from an expected boom in chip design activity as more companies build custom silicon.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "NeoCloud Market and ClusterMax Rankings",
+      "summary": "Dylan Patel clarified ClusterMax is designed for GPU renters at hundreds to tens-of-thousands of GPU scale, not as a stock rating; Semi-Analysis monetizes via diligence consulting for M&A, large GPU contracts, and NeoCloud investment decisions; ClusterMax has driven measurable quality improvements across the NeoCloud ecosystem.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Housing Affordability",
+      "summary": "Ro Khanna described himself as a YIMBY and abundance advocate; called for zoning reform, transit-oriented dense housing, streamlined permitting near major tech hubs, and preventing private equity from buying single-family homes.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Epstein Files Release",
+      "summary": "Ro Khanna's Epstein Transparency Act passed 427-1 in the House, 100-0 in the Senate, and was signed by President Trump; mandates file release by December 19-20; Khanna expressed confidence more names will emerge but acknowledged full justice may never be achieved.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Scaling Laws Debate",
+      "summary": "Semi-Analysis and guests noted that Gemini 3 and Anthropic's Opus 4.5 demonstrate pre-training still has value, but the efficiency gains from RL post-training are increasingly dominant; Ilya Sutskever, Jan LeCun, Rich Sutton, and Andrej Karpathy are publicly skeptical of further LLM scaling while OpenAI's Sholto Douglas suggested scaling may not be exhausted.",
+      "sentiment": "mixed"
+    }
+  ],
+  "key_claims": [
+    "NVIDIA stock is up approximately 10x since ChatGPT's launch in November 2022, reaching a $4.36 trillion market cap.",
+    "The Mag 7's combined market value roughly tripled from under $8 trillion to over $21 trillion in three years.",
+    "OpenAI has not completed a successful full-scale pre-training run since GPT-4o in May 2024, per Semi-Analysis reporting with no public pushback.",
+    "OpenAI saved 30% on its entire lab-wide NVIDIA GPU fleet before deploying a single TPU, solely from competitive negotiation leverage.",
+    "Anthropic receives an effective ~44% partner discount on NVIDIA GPUs (partially funded by Microsoft); OpenAI receives ~29%.",
+    "Google TPU racks are approximately three times as wide as standard data center racks, meaning some data centers may require structural modifications or new buildings to deploy them.",
+    "45% of people hospitalized for their first heart attack did not have what is considered high-risk LDL cholesterol, per a study cited by Jonathan Swerdlin.",
+    "Function Health raised $298M at a $2.5 billion Series B valuation.",
+    "China has approximately 20% youth unemployment, partly attributed to over-restriction of consumer and cultural app development by the CCP.",
+    "One-third of global AI talent is located in China, per Ro Khanna's reporting from his China trip.",
+    "Cursor retrains and deploys updated models every two hours via online RL from live user interactions with Cursor Tab.",
+    "Runway Gen 4.5 topped the Video Arena Leaderboard, outperforming models from Google and OpenAI in crowdsourced blind voting.",
+    "Prime Intellect's Intellect 3 (100B parameters) achieved performance previously only seen in 300-600B parameter open-source models via scaled RL post-training.",
+    "Airwallex crossed $1 billion in ARR; Keith Rabois alleges the company has legally enforceable obligations to hand US customer financial data to Chinese intelligence on request.",
+    "Pager Duty has fallen to a $1.1 billion market cap, trading at 2.1x ARR on $500M of non-growing revenue.",
+    "ASML sells fewer than 500 units per year but generates $37 billion in revenue, cited as potentially having the widest moat of any company in the world.",
+    "NVIDIA announced a $2 billion investment in Synopsys to make EDA and chip design workflows GPU-first.",
+    "Vox media properties have seen site traffic drop approximately 50%, attributed to the shift to social media consumption and/or AI-powered search.",
+    "Post-training a model via RL for a specific enterprise application can cost as little as hundreds of thousands of dollars, versus billions for frontier pre-training.",
+    "Approximately 40% of open-source CUDA software contributions come from Chinese companies including ByteDance and DeepSeek, which Dylan Patel describes as a significant but underappreciated component of NVIDIA's software moat.",
+    "NVIDIA replaced Enron in the S&P 500 on November 29, 2001.",
+    "Jensen Huang initiated the $10B OpenAI equity investment deal after seeing reporting that OpenAI was testing Google TPUs, according to Semi-Analysis."
+  ],
+  "technologies": [
+    "TPU (Tensor Processing Unit)",
+    "GPU",
+    "Large Language Models (LLMs)",
+    "Reinforcement Learning (RL)",
+    "Online Reinforcement Learning",
+    "Reinforcement Fine-Tuning (RFT)",
+    "CUDA",
+    "JAX",
+    "PyTorch",
+    "vLLM",
+    "Triton",
+    "NVIDIA Blackwell",
+    "NVIDIA Rubin",
+    "Google TPUV7",
+    "Google TPUV8",
+    "AI Video Generation",
+    "FDA-cleared AI for MRI acceleration",
+    "Grail Multi-Cancer Early Detection Test",
+    "Mixture of Experts (MoE)",
+    "Vector Search",
+    "EDA (Electronic Design Automation)",
+    "AI-assisted Chip Design (Kulitho / AlphaChip)",
+    "Liquid Cooling (rack-scale)",
+    "Stablecoins",
+    "Voice AI Models",
+    "Agentic Commerce",
+    "Multi-agent Systems",
+    "Comprehensive Biomarker Lab Testing",
+    "AI Agent Monitoring",
+    "Sparse Attention",
+    "Synthetic Data Generation",
+    "APOB / Lp(a) / Advanced Lipid Biomarkers"
+  ],
+  "_stats": {
+    "word_count": 38715,
+    "estimated_input_tokens": 51490,
+    "input_tokens": 3,
+    "output_tokens": 24267,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 55513,
+    "duration_ms": 482644,
+    "wall_time_s": 483.9,
+    "cost_usd": 0.95825475,
+    "tokens_per_sec": 50.2
+  }
+}

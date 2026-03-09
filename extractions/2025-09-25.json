@@ -1,0 +1,868 @@
+{
+  "episode_date": "2025-09-25",
+  "episode_title": "openai-1t-buildout-trump-xai-alliance",
+  "companies": [
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Planning to bring ads to ChatGPT; Sam Altman wants 250 gigawatts of compute by 2033 and envisions over $1 trillion in infrastructure spending; Abilene TX Stargate site has 8 data centers, 6,000+ workers, and ~900MW capacity; 700M weekly users.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Announced non-binding LOI to invest $100 billion in OpenAI in $10B tranches; Jensen Wong negotiated deal directly with Sam Altman across London, San Francisco, and DC with no investment bankers involved.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "Issued $15B convertible debt offering; partnering with OpenAI and SoftBank for five new U.S. data centers totaling ~7 gigawatts; involved in TikTok acquisition deal alongside Silver Lake.",
+      "sentiment": "bullish",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "CoreWeave",
+      "type": "startup",
+      "context": "Expanded contract with OpenAI to a total contract value of $22.4 billion.",
+      "sentiment": "bullish",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "SoftBank",
+      "type": "public",
+      "context": "Partnering with OpenAI and Oracle on two smaller U.S. data center sites generating 1.5 gigawatts; scaled back broader data center ambitions from earlier projections.",
+      "sentiment": "neutral",
+      "sector": "Conglomerate/VC"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Committed $600 billion in AI infrastructure spending through 2028; launched 'Vibes,' a new short-form AI-generated video feed in the Meta AI app; tapped debt markets with a bond offering.",
+      "sentiment": "bullish",
+      "sector": "Social Media/AI"
+    },
+    {
+      "name": "XAI",
+      "type": "startup",
+      "context": "Signed GSA partnership for GROC4 and GROC4 Fast access by federal agencies for $200M; Elon Musk filed a second lawsuit against OpenAI alleging former XAI employees stole the company's entire codebase.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Received $200M DoD contract alongside other AI labs; Dario discussed the compounding economics of successive AI training runs as an ever-growing money pit.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Referenced as competitor OpenAI raced to beat; launched Bard then Gemini after ChatGPT; received $200M DoD contract; charges government $0.47 for AI access (joke on president #47).",
+      "sentiment": "neutral",
+      "sector": "AI/ML/Cloud"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Still purchasing GPU capacity from OpenAI ecosystem; referenced as an ongoing major OpenAI partner.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Broadcom",
+      "type": "public",
+      "context": "Mentioned as one of OpenAI's chip and infrastructure partners in the growing AI Keiretsu.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "TSMC",
+      "type": "public",
+      "context": "Arizona fab highlighted as a successful transplant of industrial process knowledge, producing 4nm chips at yields on par with Taiwan; cited as the model for re-industrialization by importing foreign expertise.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Flock Safety",
+      "type": "startup",
+      "context": "Garrett Langley (CEO) appeared on show; operating in 6,000+ cities, helping make ~700,000 arrests this year; expanded into autonomous drone-as-a-service for both law enforcement and private sector.",
+      "sentiment": "bullish",
+      "sector": "Public Safety/Defense Tech"
+    },
+    {
+      "name": "Factory",
+      "type": "startup",
+      "context": "Matan Grinberg (CEO) appeared; announced $50M raise; Factory's model-agnostic 'droids' achieved #1, #3, and #5 rankings on Terminal Bench for autonomous software development agents.",
+      "sentiment": "bullish",
+      "sector": "AI/ML/Developer Tools"
+    },
+    {
+      "name": "Invisible Technologies",
+      "type": "startup",
+      "context": "Francis Pedraza appeared; raised $100M this year; scaled to $134M revenue having deployed only $6M in capital; builds custom Gen AI-native enterprise solutions as an alternative to Accenture and Palantir.",
+      "sentiment": "bullish",
+      "sector": "AI Services/Enterprise"
+    },
+    {
+      "name": "Juicebox",
+      "type": "startup",
+      "context": "David Paffenholz (co-founder) appeared; announced $30M Series A and previously unannounced $6M seed; AI recruiting platform using LLMs to surface talent candidates across multiple data sources including GitHub and company data.",
+      "sentiment": "bullish",
+      "sector": "HR Tech/AI"
+    },
+    {
+      "name": "IREN",
+      "type": "public",
+      "context": "Bitcoin mining company pivoting to AI data centers; stock tripled from ~$17-18 to $48 after Andrew Wilkinson's public bull case; Wilkinson now calling for another 7x to $300/share citing 2.9 gigawatts of power capacity.",
+      "sentiment": "bullish",
+      "sector": "Data Centers/Bitcoin Mining"
+    },
+    {
+      "name": "Boom Supersonic",
+      "type": "startup",
+      "context": "Used as extended analogy for LOI strategy; Blake Scholl used a non-binding $2B LOI from Virgin for 10 aircraft at YC Demo Day to raise funding; still building planes and receiving regulatory approvals.",
+      "sentiment": "neutral",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Virgin",
+      "type": "private",
+      "context": "Provided Boom Supersonic with a non-binding LOI for 10 aircraft valued at approximately $2 billion at YC Demo Day.",
+      "sentiment": "neutral",
+      "sector": "Aerospace/Travel"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Referenced as a forward-deployed engineering model Invisible Technologies is compared to; received $200M DoD contract; investor Trey Stevens told Flock Safety not to sell into local law enforcement because Palantir had failed there.",
+      "sentiment": "neutral",
+      "sector": "Defense Tech/AI"
+    },
+    {
+      "name": "Constellation Software",
+      "type": "public",
+      "context": "Mark Leonard stepped down as leader for unspecified health reasons; stock fell on the news.",
+      "sentiment": "bearish",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "TikTok",
+      "type": "private",
+      "context": "Trump signed order approving divestiture; valued at approximately $14 billion in new U.S. entity structure; Oracle and Silver Lake taking majority stake, ByteDance retaining under 20% equity.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "ByteDance",
+      "type": "private",
+      "context": "TikTok parent company agreeing to retain less than 20% equity in new U.S. TikTok entity per divestiture law.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Silver Lake",
+      "type": "fund",
+      "context": "Set to take a majority stake alongside Oracle in the new U.S. TikTok entity as part of the approved divestiture deal.",
+      "sentiment": "bullish",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "Andreessen Horowitz (a16z)",
+      "type": "fund",
+      "context": "Generated $15B in returns in 2021, largely from Coinbase; mentioned as potentially involved in TikTok deal though not confirmed in the announcement.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Sequoia",
+      "type": "fund",
+      "context": "Led Juicebox's Series A; referenced in FTX/SBF context for their now-deleted blog post describing SBF playing League of Legends during diligence.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Delian's firm; portfolio includes Ramp, Sword Health, Varda, OpenAI; strategy is to invest in the core AI index driver and in companies fully decoupled from the AI hype wave.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Benchmark",
+      "type": "fund",
+      "context": "Delian has publicly criticized Benchmark for firing founders for years; mentioned that Manus team may move into Benchmark's San Francisco office; Tecton's public response to Delian was called an unintentional own goal.",
+      "sentiment": "bearish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Cited by Delian as the strongest portfolio example of AI-native transition; training agents on screen recordings of user workflows to automate CFO-suite tasks without requiring net-new AI-first companies to do it.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Sword Health",
+      "type": "startup",
+      "context": "Founders Fund portfolio company; AI-powered physical therapy platform improved PT-to-patient ratio from 1:12 to approximately 1:1,000 by training agents on years of accumulated interaction data.",
+      "sentiment": "bullish",
+      "sector": "Health Tech/AI"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Cited as example of 'earned ARR' and durable revenue; Christina Cordova quoted saying 'fast ARR can be fragile ARR'; purpose-built project management tool used by OpenAI, Merck, Retool, and Ramp.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/SaaS"
+    },
+    {
+      "name": "Unitree",
+      "type": "private",
+      "context": "Chinese humanoid robotics company going public in Hong Kong at ~$7B valuation, which hosts noted as surprisingly low; discussed as potential contract manufacturer for U.S. AI robotics companies in an Apple-Foxconn analogy.",
+      "sentiment": "neutral",
+      "sector": "Robotics"
+    },
+    {
+      "name": "Varda",
+      "type": "startup",
+      "context": "Delian's space company; deeply integrated in government programs, making shutdowns costly for team members who must work without paychecks.",
+      "sentiment": "neutral",
+      "sector": "Space Tech"
+    },
+    {
+      "name": "Andral",
+      "type": "startup",
+      "context": "Cited as an established defense tech company that can weather government shutdowns, unlike newer entrants still building their first government relationships.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "FileVine",
+      "type": "startup",
+      "context": "Legal workflow software company that raised $400M after 10 years building SaaS for law firms; cited as example of adding AI on top of existing data and workflow infrastructure.",
+      "sentiment": "bullish",
+      "sector": "Legal Tech/SaaS"
+    },
+    {
+      "name": "Perplexity",
+      "type": "startup",
+      "context": "Mentioned as a Juicebox customer; hosts noted TikTok's $14B deal price is less than Perplexity's valuation, calling it crazy low.",
+      "sentiment": "bullish",
+      "sector": "AI/Search"
+    },
+    {
+      "name": "Cybernetic Labs",
+      "type": "startup",
+      "context": "Melissa's company cited by Delian as the ideal example of durable, high-margin AI revenue fully decoupled from AI hype cycle, serving traditional businesses like janitorial companies and plumbers.",
+      "sentiment": "bullish",
+      "sector": "AI Services"
+    },
+    {
+      "name": "Accenture",
+      "type": "public",
+      "context": "Cited as incumbent systems integrator Invisible Technologies is disrupting; described as incentivized to bill hours rather than deliver outcomes.",
+      "sentiment": "bearish",
+      "sector": "IT Services/Consulting"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Falcon 9 used as benchmark for deep systems engineering; China has only reached the equivalent of SpaceX's 2013 suborbital Grasshopper tests a decade after SpaceX first landed a Falcon 9.",
+      "sentiment": "bullish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Optimus humanoid robot discussed in valuation context; Xiaomi CEO noted buying three Tesla Model Ys for disassembly and research, effectively reverse-engineering the vehicle.",
+      "sentiment": "neutral",
+      "sector": "EV/Robotics"
+    },
+    {
+      "name": "Xiaomi",
+      "type": "public",
+      "context": "CEO quoted openly saying they bought three Tesla Model Ys for disassembly and research; Bill Gurley posted 'game recognized game' in response.",
+      "sentiment": "neutral",
+      "sector": "Consumer Electronics/EV"
+    },
+    {
+      "name": "Coinbase",
+      "type": "public",
+      "context": "Major a16z position that drove much of their $15B in 2021 returns; distributed near $100B market cap.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Fintech"
+    },
+    {
+      "name": "FTX",
+      "type": "startup",
+      "context": "SBF and FTX collapse discussed; Delian noted SBF's investment portfolio was reportedly on track to make him the world's richest person if FTX had survived another six months.",
+      "sentiment": "bearish",
+      "sector": "Crypto/Fintech"
+    },
+    {
+      "name": "Manus",
+      "type": "startup",
+      "context": "Chinese AI company that relocated to Singapore; cited by Delian as an example of China losing top talent despite recent policy to repatriate overseas scientists.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "WPP",
+      "type": "public",
+      "context": "WPP Media signed Michael Mirafloor as Global EVP.",
+      "sentiment": "neutral",
+      "sector": "Marketing/Media"
+    },
+    {
+      "name": "Boeing",
+      "type": "public",
+      "context": "Mentioned alongside Airbus as continuing to represent 99% of global commercial airliners, a domain China has not displaced.",
+      "sentiment": "neutral",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Airbus",
+      "type": "public",
+      "context": "Mentioned alongside Boeing as proof the West still dominates commercial aerospace despite China's manufacturing rise.",
+      "sentiment": "neutral",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "J.P. Morgan",
+      "type": "public",
+      "context": "Participated as investor in Factory's $50M funding round.",
+      "sentiment": "neutral",
+      "sector": "Financial Services"
+    },
+    {
+      "name": "Lead Edge Capital",
+      "type": "fund",
+      "context": "Mitchell Green's firm; a 2021 quote from Green about GPs distributing capital vs. raising new funds was resurfaced as relevant to the current cycle.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Replit",
+      "type": "startup",
+      "context": "Mentioned as platform democratizing software engineering; CEO Amjad Masad publicly commented comparing ChatGPT Pulse to Google Now.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/AI"
+    },
+    {
+      "name": "Starship Technologies",
+      "type": "startup",
+      "context": "Mentioned as an example of ground-based wheeled robots being deployed commercially.",
+      "sentiment": "neutral",
+      "sector": "Robotics"
+    },
+    {
+      "name": "Tecton",
+      "type": "startup",
+      "context": "Benchmark portfolio company whose public response to Delian's criticism was described by Delian as an own goal proving his point about VCs overcontrolling founders.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Goldman Sachs",
+      "type": "public",
+      "context": "Mentioned as one of the investment banks excluded from the OpenAI-Nvidia $100B deal, which was negotiated directly between the two CEOs.",
+      "sentiment": "neutral",
+      "sector": "Financial Services"
+    },
+    {
+      "name": "Morgan Stanley",
+      "type": "public",
+      "context": "Mentioned alongside Goldman Sachs as an investment bank earning no fees from the OpenAI-Nvidia deal.",
+      "sentiment": "neutral",
+      "sector": "Financial Services"
+    },
+    {
+      "name": "Crusoe",
+      "type": "startup",
+      "context": "Previously held the record for fastest data center buildout alongside OpenAI before xAI's Colossus surpassed it.",
+      "sentiment": "neutral",
+      "sector": "Cloud/Infrastructure"
+    },
+    {
+      "name": "McKinsey",
+      "type": "private",
+      "context": "Invisible Technologies' new CEO Matt Fitzpatrick previously ran McKinsey's Quantum Black Labs before joining.",
+      "sentiment": "neutral",
+      "sector": "Consulting"
+    },
+    {
+      "name": "Truth Social (DJT)",
+      "type": "public",
+      "context": "Referenced briefly at $4.7B valuation, making Trump a unicorn tech founder; mentioned in context of comparing valuations to TikTok's $14B deal.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Ramp.com",
+      "type": "startup",
+      "context": "Show sponsor; corporate card, bill payments, and financial operations platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Show sponsor enabling multi-destination live streaming to 30+ platforms.",
+      "sentiment": "neutral",
+      "sector": "Media Tech"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Show sponsor; compliance automation and trust management platform.",
+      "sentiment": "neutral",
+      "sector": "Compliance/Security"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Show sponsor; design and development collaboration platform.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/Design"
+    },
+    {
+      "name": "Graphite",
+      "type": "startup",
+      "context": "Show sponsor; AI-powered code review platform for GitHub teams.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Show sponsor; platform for getting brands mentioned in AI-generated responses.",
+      "sentiment": "neutral",
+      "sector": "Marketing/AI"
+    },
+    {
+      "name": "TurboPuffer",
+      "type": "startup",
+      "context": "Show sponsor; serverless vector and full-text search built on object storage, used by Linear and Notion.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/AI"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Show sponsor; sales tax compliance automation, Dan McCormick's company Lucy is a customer.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Compliance"
+    },
+    {
+      "name": "Julius AI",
+      "type": "startup",
+      "context": "Show sponsor; AI data analysis platform with over 2 million users, trusted at Princeton, BCG, and Zapier.",
+      "sentiment": "neutral",
+      "sector": "AI/Analytics"
+    },
+    {
+      "name": "Privy",
+      "type": "startup",
+      "context": "Show sponsor; wallet infrastructure for building on crypto rails.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Web3"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Show sponsor; multi-asset investing platform with automated buy features for ETFs, gold, and Bitcoin.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Show sponsor; sleep optimization Pod with temperature control and sleep tracking.",
+      "sentiment": "neutral",
+      "sector": "Consumer Health Tech"
+    },
+    {
+      "name": "Fin.ai",
+      "type": "startup",
+      "context": "Show sponsor; AI agent for customer service, #1 on performance benchmarks and G2.",
+      "sentiment": "neutral",
+      "sector": "AI/Customer Service"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Show sponsor; out-of-home advertising platform combining technology and data for efficient ad buying.",
+      "sentiment": "neutral",
+      "sector": "AdTech"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Show sponsor; AI-native CRM platform.",
+      "sentiment": "neutral",
+      "sector": "CRM/AI"
+    },
+    {
+      "name": "Bezell",
+      "type": "startup",
+      "context": "Show sponsor; watch concierge service for sourcing any watch on the market.",
+      "sentiment": "neutral",
+      "sector": "Luxury/Commerce"
+    },
+    {
+      "name": "Lucy",
+      "type": "startup",
+      "context": "Nicotine product company; a climate-controlled Lucy vending machine arrived at Palantir's office.",
+      "sentiment": "neutral",
+      "sector": "Consumer Goods"
+    },
+    {
+      "name": "Groupon",
+      "type": "public",
+      "context": "Blake Scholl's pre-Boom employer, noted humorously as unconventional background for an aerospace founder.",
+      "sentiment": "neutral",
+      "sector": "E-commerce"
+    }
+  ],
+  "people": [
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Internal employee message revealed goal of 250 gigawatts of compute by 2033 and called Stargate a 'core bet like research and robotics'; said OpenAI hasn't figured out the final form of compute financing; negotiated $100B Nvidia deal directly with Jensen Wong."
+    },
+    {
+      "name": "Jensen Wong",
+      "role": "CEO, Nvidia",
+      "context": "Negotiated the $100B OpenAI investment pact with Sam Altman directly across London, San Francisco, and DC with no investment bankers involved, per reporting."
+    },
+    {
+      "name": "Leopold Aschenbrenner",
+      "role": "AI researcher/forecaster",
+      "context": "Predicted a single 100-gigawatt training cluster by 2030 and a first 10-gigawatt cluster by 2028; his exponential log-scale projections were charted against Altman's 250GW target, with Altman's numbers appearing more conservative."
+    },
+    {
+      "name": "Blake Scholl",
+      "role": "Founder/CEO, Boom Supersonic",
+      "context": "Featured in extended story about LOI strategy; used a non-binding $2B Virgin LOI for 10 planes at YC Demo Day to raise early funding despite having only plans-for-planes; continues pursuing regulatory approvals and building aircraft."
+    },
+    {
+      "name": "Andrew Wilkinson",
+      "role": "Investor",
+      "context": "Previously made a public bull case for IREN around $17-18/share; stock tripled to $48; now calling for another 7x to $300/share based on IREN's 2.9 gigawatt power capacity, while laying out bear case scenarios."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO, XAI/Tesla/SpaceX",
+      "context": "Filed second lawsuit against OpenAI alleging trade secret misappropriation by former XAI employees including Xu Chen Li; secured XAI-Trump administration GSA deal for GROC4 access in federal agencies at $0.42/access."
+    },
+    {
+      "name": "Xu Chen Li",
+      "role": "Former XAI engineer",
+      "context": "Named in OpenAI lawsuit as allegedly admitting to stealing XAI's entire codebase and sharing it with OpenAI after being hired away."
+    },
+    {
+      "name": "Dario Aravind",
+      "role": "CEO, Anthropic",
+      "context": "Discussed compounding economics of successive AI training runs \u2014 each 10x in training spend yields roughly 10x in revenue \u2014 describing an ever-growing capital requirement that acts as a natural slowing force."
+    },
+    {
+      "name": "Delian Asparouhov",
+      "role": "Partner, Founders Fund",
+      "context": "Guest; discussed TSMC Arizona as model for re-industrialization, China's drone/manufacturing strengths vs. deep systems engineering weaknesses, government shutdown implications for defense tech, Unitree IPO, and Founders Fund's bifurcated AI investment strategy of owning the index driver plus fully decoupled companies."
+    },
+    {
+      "name": "Garrett Langley",
+      "role": "CEO, Flock Safety",
+      "context": "Guest; discussed Flock's 6,000-city deployment, expansion into autonomous drones covering 30+ square miles per unit, private sector security use case against $30B+ unarmed guard market, and pothole detection via camera network."
+    },
+    {
+      "name": "Matan Grinberg",
+      "role": "CEO, Factory",
+      "context": "Guest; announced $50M raise and Factory's #1 Terminal Bench ranking; argued model-agnostic droids outperform single-model agents and that enterprise AI adoption fails when only code generation \u2014 not the full SDLC \u2014 is automated."
+    },
+    {
+      "name": "Francis Pedraza",
+      "role": "Founder, Invisible Technologies",
+      "context": "Guest; announced $100M raise this year; highlighted scaling to $134M revenue with only $6M deployed; described Gen AI-native model of custom enterprise AI applications as disrupting both SaaS vendors and systems integrators."
+    },
+    {
+      "name": "David Paffenholz",
+      "role": "Co-founder, Juicebox",
+      "context": "Guest; announced $30M Series A and $6M seed; described Juicebox's LLM-powered talent sourcing platform and argued that AI increases the value of finding the right person because it multiplies individual output."
+    },
+    {
+      "name": "Matt Fitzpatrick",
+      "role": "CEO, Invisible Technologies",
+      "context": "Formerly ran McKinsey's Quantum Black Labs; joined Invisible as CEO to lead the company's pre-IPO motion following its $100M raise."
+    },
+    {
+      "name": "Mark Leonard",
+      "role": "Founder, Constellation Software",
+      "context": "Stepped down from Constellation Software leadership for unspecified health reasons; stock fell on the news; hosts expressed hopes for his recovery."
+    },
+    {
+      "name": "Andrej Karpathy",
+      "role": "AI researcher",
+      "context": "Posted debunking AI-will-replace-radiologists narrative using Jevons paradox, regulatory barriers, and multifaceted job complexity; predicted the number of software engineers will increase in five years, not decrease."
+    },
+    {
+      "name": "Dan Wang",
+      "role": "Author/Analyst",
+      "context": "Wrote 'Breakneck' arguing China is an engineering society versus America's lawyer society; Delian found some of his arguments compelling but pushed back on the framing's limits around deep systems engineering."
+    },
+    {
+      "name": "Jeff Hinton",
+      "role": "AI researcher",
+      "context": "Referenced for his near-decade-old prediction that AI would replace radiologists, cited as an example of naive AI job displacement forecasting that has not played out."
+    },
+    {
+      "name": "Roon",
+      "role": "X/Twitter commentator",
+      "context": "Posted that TSMC Arizona proved America can absorb foreign industrial process knowledge, and argued re-industrialization should prioritize aqua-hiring whole foreign teams at prices unheard of in their home countries."
+    },
+    {
+      "name": "Peter Thiel",
+      "role": "Co-founder, Founders Fund",
+      "context": "Praised by Delian for his ability to soberly analyze macro investment opportunities regardless of personal biases, including deploying into AI even amid broader skepticism."
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO, Meta",
+      "context": "Quoted as saying he would rather waste hundreds of billions of dollars than lose the machine intelligence race; committed $600B in AI infrastructure through 2028."
+    },
+    {
+      "name": "Sam Bankman-Fried",
+      "role": "Former CEO, FTX",
+      "context": "Discussed for his extreme EV-positive worldview on Joe Rogan and Tyler Cowen's show; Delian noted SBF's portfolio could have made him the world's richest person if FTX had survived another six months."
+    },
+    {
+      "name": "Alex Heath",
+      "role": "Tech journalist",
+      "context": "Scooped that OpenAI is planning to bring ads to ChatGPT and that Sam Altman internally announced a goal of 250 gigawatts of compute by 2033."
+    },
+    {
+      "name": "Bill Gurley",
+      "role": "Partner, Benchmark",
+      "context": "Posted about Xiaomi CEO's quote about buying three Tesla Model Ys for disassembly and research, captioning it 'game recognized game.'"
+    },
+    {
+      "name": "Mitchell Green",
+      "role": "Managing Partner, Lead Edge Capital",
+      "context": "2021 quote resurfaced: said that year would be remembered for GPs who distributed capital to LPs vs. those who raised new funds and deployed at the top."
+    },
+    {
+      "name": "Anthony Lewandowski",
+      "role": "Former engineer, Google/Uber",
+      "context": "Referenced as parallel to current XAI-OpenAI trade secret case; was convicted of trade secret theft in the self-driving car wars, then pardoned."
+    },
+    {
+      "name": "Larry Ellison",
+      "role": "Co-founder/CTO, Oracle",
+      "context": "Referenced as committing Oracle's balance sheet to the OpenAI/Stargate buildout; hosts joked he would say 'hold my green juice' in response to $1 trillion spending projections."
+    },
+    {
+      "name": "Christina Cordova",
+      "role": "Executive, Linear",
+      "context": "Quoted Brett Taylor's comments on growth rate benchmarks and added 'fast ARR can be fragile ARR; earned ARR tends to be sticky ARR.'"
+    },
+    {
+      "name": "Amjad Masad",
+      "role": "CEO, Replit",
+      "context": "Commented on social media about ChatGPT Pulse rollout, comparing it to Google Now and asking how to get started."
+    },
+    {
+      "name": "Magnus Carlson",
+      "role": "World chess champion",
+      "context": "Told Joe Rogan that chess has always been a hobby and he prioritizes fun over treating it like work, cited as an example of Magnus-level performance through intrinsic motivation."
+    },
+    {
+      "name": "Elizabeth Holmes",
+      "role": "Former CEO, Theranos (incarcerated)",
+      "context": "Interacted with Meek Mill on X while serving a 137-month federal sentence, offering to collaborate on prison reform legislation."
+    },
+    {
+      "name": "Melissa",
+      "role": "CEO, Cybernetic Labs",
+      "context": "Cited by Delian as the best example of durable, high-quality AI revenue fully decoupled from the AI hype cycle, serving traditional businesses like plumbers and janitorial companies."
+    },
+    {
+      "name": "Trey Stevens",
+      "role": "Investor, Flock Safety",
+      "context": "Told Garrett Langley not to sell to police departments because Palantir had failed there; was proved wrong as Flock found immediate PMF by solving crime directly rather than being too many steps removed."
+    },
+    {
+      "name": "Arvin Srinivas",
+      "role": "CEO, Perplexity",
+      "context": "Mentioned as having considered a TikTok bid; hosts noted TikTok's $14B deal price appears to be less than Perplexity's current valuation."
+    },
+    {
+      "name": "Andrew Curran",
+      "role": "Journalist/commentator",
+      "context": "Shared updates on Elon Musk's second OpenAI lawsuit and the XAI-Trump administration GSA deal on social media."
+    }
+  ],
+  "topics": [
+    {
+      "name": "OpenAI 1-Trillion-Dollar Compute Buildout",
+      "summary": "Sam Altman's internal goal of 250 gigawatts of compute by 2033 was analyzed in depth alongside the Stargate Abilene TX site. The $1T figure now supersedes the original $500B Stargate estimate. Hosts mapped this against Leopold Aschenbrenner's earlier log-scale forecasts and noted 250GW would equal ~half of total 2023 U.S. power consumption if everything else stayed flat.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Infrastructure Spending vs. Dot-Com Bubble",
+      "summary": "Hosts debated whether the AI boom is analogous to 1999 or 1996, noting key structural differences: Big Tech is funding the buildout with cash and equity rather than leverage, and median P/E ratios are far lower than the dot-com era. A NASDAQ chart correlating 1998-2001 patterns to the current market was discussed with skepticism about cherry-picked dates.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Non-Binding LOIs as Deal-Making Tools",
+      "summary": "OpenAI-Nvidia's $100B non-binding LOI was compared to Boom Supersonic's YC Demo Day strategy of using a $2B Virgin LOI to pull forward investor conviction. Hosts argued LOIs serve useful signaling and coordination functions even without legal binding, and that announcing deals before they are signed is becoming a new normal in AI.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Elon Musk vs. OpenAI Trade Secret Lawsuit",
+      "summary": "Elon filed a second lawsuit against OpenAI alleging former XAI employees stole the entire XAI codebase. Historical Musk emails calling OpenAI's chances of beating Google 'certain failure' were also discussed alongside Matthew Berman's pushback and Elon's clarification that he gave OpenAI a 1% chance, not 0%.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Trump Administration AI Partnerships",
+      "summary": "XAI signed a GSA deal for GROC4 access across federal agencies; all four major AI labs each received equal $200M DoD contracts, showing the government is maintaining an oligopoly rather than picking winners regardless of political alignment.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI and Job Displacement \u2014 Karpathy Radiology Post",
+      "summary": "Andrej Karpathy debunked the decade-old prediction that AI would replace radiologists, citing multifaceted job duties, regulatory and liability barriers, and Jevons paradox (cheaper radiology creates more demand for radiology). He predicted software engineer headcount will increase, not decrease, in five years.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "US Re-industrialization and Industrial Process Knowledge",
+      "summary": "TSMC Arizona's success producing 4nm chips at Taiwan-equivalent yields was cited as the model for re-industrialization. Delian and hosts debated China's manufacturing strengths in drones, solar, and batteries versus weaknesses in deep systems engineering. Roon argued aqua-hiring whole foreign teams is the primary re-industrialization lever.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Government Shutdown and Defense Tech Implications",
+      "summary": "The US government was heading toward a shutdown at fiscal year end. Delian noted this primarily hurts new defense tech startups still building their first contracts, while established players like Andral can weather it; friends on government technology teams face working without paychecks.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "TikTok Divestiture Deal",
+      "summary": "Trump signed an order approving TikTok's divestiture into a U.S. entity with Oracle and Silver Lake taking a majority stake and ByteDance retaining under 20%. Valued at approximately $14 billion, which hosts called surprisingly low \u2014 less than Perplexity's valuation. Hosts speculated broader trade and tariff concessions may be implicit.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Flock Safety Drones and Law Enforcement Tech",
+      "summary": "Garrett Langley detailed Flock's autonomous drones covering 30+ square miles per unit at 400 feet altitude, the $30B+ private unarmed guard market as the next disruption target, college campus escort use cases, pothole detection via cameras, and why the economic incentive (crime = revenue for police) drives adoption.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "ARR Quality and the Barnacle Economy",
+      "summary": "Hosts questioned ARR quality for AI companies doing data labeling or GPU reselling, distinguishing 'earned ARR' from inflated service-heavy numbers. Introduced the 'barnacle economy' concept \u2014 companies growing purely because they are attached to OpenAI's growth, whose revenue durability is uncertain.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Humanoid Robots and Unitree IPO",
+      "summary": "Unitree's Hong Kong IPO at ~$7B was seen as surprisingly low given U.S. company valuations in the space. Garrett Langley argued current humanoids are too expensive for retail security. Delian proposed an Apple-Foxconn analogy where a U.S. company uses Unitree as a contract manufacturer, though risks of backdoor access were acknowledged.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "ChatGPT Pulse \u2014 Proactive AI",
+      "summary": "OpenAI launched 'Pulse' for $200/month Pro subscribers: an overnight feature that researches user interests and delivers a personalized morning briefing. Hosts called it a major retention mechanism and a structural shift from reactive to proactive AI, noting the significant per-user compute cost.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Factory Droids and Enterprise AI Coding Agents",
+      "summary": "Factory's model-agnostic droids ranked #1 on Terminal Bench. Matan argued focusing only on code generation creates new bottlenecks in enterprise pipelines; automating the full SDLC (testing, review, documentation) is what drives real adoption and avoids the 95% enterprise AI adoption failure rate cited by MIT.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Services vs. SaaS \u2014 Invisible Technologies Model",
+      "summary": "Invisible's Gen AI-native model of custom enterprise solutions combining a horizontal platform with forward-deployed engineers was compared to Palantir but built for the Gen AI era. Francis argued the SaaS era forced customers to stitch together tools via expensive systems integrators; Invisible displaces both.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "IREN Bitcoin-to-AI Data Center Pivot",
+      "summary": "IREN stock tripled from ~$17-18 to $48 since Andrew Wilkinson's public bull case; Wilkinson calling for another 7x to $300/share based on 2.9 gigawatts of power. Hosts discussed the bear case around data centers not being configured for hyperscalers.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Mark Leonard Stepping Down from Constellation Software",
+      "summary": "Mark Leonard stepped down for unspecified health reasons, sending the stock lower. Hosts expressed well wishes and noted he had been mixed on AI's impact on the business long-term.",
+      "sentiment": "bearish"
+    }
+  ],
+  "key_claims": [
+    "Sam Altman's internal goal is 250 gigawatts of compute for OpenAI by 2033, which would equal roughly half of total 2023 U.S. power consumption (485GW) for AI alone.",
+    "OpenAI is planning to bring ads to ChatGPT (Alex Heath scoop).",
+    "Nvidia's $100 billion OpenAI investment is a non-binding letter of intent, not a signed deal.",
+    "OpenAI's Abilene TX Stargate site is 1,100 acres with 8 data centers, 6,000+ workers on two 10-hour shifts seven days a week, and ~900MW of capacity online.",
+    "Each gigawatt of AI data center capacity costs approximately $50 billion, according to the Wall Street Journal \u2014 implying $5 trillion for 100GW, roughly the GDP of Germany or Japan.",
+    "OpenAI executives said demand may reach 100 gigawatts of computing capacity to meet explosive ChatGPT demand.",
+    "ChatGPT now has 700 million weekly users.",
+    "CoreWeave expanded its OpenAI contract to a total value of $22.4 billion.",
+    "Leopold Aschenbrenner predicted a first 10-gigawatt cluster by 2028 and a 100GW single training run cluster by 2030.",
+    "IREN controls nearly 2.9 gigawatts of power \u2014 more than the Hoover Dam \u2014 and Andrew Wilkinson is calling for $300/share (another 7x from $48).",
+    "Radiology jobs have grown, not declined, despite Jeff Hinton's near-decade-old prediction that AI would replace radiologists.",
+    "Andrej Karpathy predicts there will be MORE software engineers in five years, not fewer, due to the Jevons paradox of AI leverage.",
+    "TikTok valued at approximately $14 billion in the U.S. divestiture deal \u2014 hosts called this less than Perplexity's valuation.",
+    "The U.S. homicide clearance rate is approximately 40%, meaning there is nearly a 50% chance of getting away with murder (Garrett Langley, Flock Safety).",
+    "Over 80% of U.S. police departments are understaffed against their budgets (Garrett Langley).",
+    "Private enterprise spends over $30 billion annually on unarmed guards \u2014 a market Flock Safety drones can displace at lower cost.",
+    "TSMC Arizona is producing 4nm chips at yields on par with Taiwan \u2014 widely believed to be impossible before it happened.",
+    "A16Z generated $15 billion in returns in 2021, their biggest year on record by a wide margin.",
+    "Invisible Technologies scaled to $134M revenue having deployed only $6M in capital.",
+    "Factory's droids achieved #1, #3, and #5 rankings on Terminal Bench for autonomous software development agents.",
+    "All four major AI labs \u2014 OpenAI, Anthropic, Google, and XAI \u2014 each received equal $200M Department of Defense contracts.",
+    "SBF's investment portfolio could have made him the world's richest person if FTX had survived another six months, per a Wall Street bankruptcy professional.",
+    "Maryland only legalized cloud computing for law enforcement in 2023.",
+    "Sword Health's AI agents improved physical therapist-to-patient ratio from 1:12 at founding to approximately 1:1,000 today.",
+    "A ChatGPT deep research query asking for the capital of California in one word triggered 19 separate searches and took 101 seconds to complete, raising questions about AI query caching and Google Trends data validity.",
+    "Meta's Vibes short-form AI video feed appears to use Midjourney-level generative image and video models."
+  ],
+  "technologies": [
+    "GPUs",
+    "Large Language Models (LLMs)",
+    "ChatGPT / GPT-5 Pro",
+    "Deep Research (ChatGPT feature)",
+    "ChatGPT Pulse (proactive overnight AI briefing)",
+    "GROC4 / GROC4 Fast",
+    "Claude (Anthropic)",
+    "Gemini / Bard (Google)",
+    "Autonomous Drones",
+    "License Plate Recognition / ALPR Cameras",
+    "PTZ Cameras (Pan-Tilt-Zoom)",
+    "Drone-as-a-Service",
+    "Terminal Bench (AI agent benchmark)",
+    "Agentic AI / Software Development Agents",
+    "Model-Agnostic Agent Harnesses",
+    "Reinforcement Learning from Human Feedback (RLHF)",
+    "Convolutional Neural Networks (CNNs)",
+    "Humanoid Robots",
+    "Vector Embeddings / Semantic Search",
+    "Generative Video (Meta Vibes)",
+    "NFC Chips (Brick focus device)",
+    "Bitcoin / Crypto Hardware Wallets",
+    "TSMC 4nm Process Node",
+    "Gas Turbines (data center backup power)",
+    "Physical Therapy Wearable Sensors (Sword Health)",
+    "AI-Powered Code Review",
+    "LLM-Powered Talent Sourcing",
+    "Custom Enterprise AI Applications",
+    "GPU-Backed Securities (proposed financial instrument)",
+    "Solar Panels",
+    "Serverless Vector Search"
+  ],
+  "_stats": {
+    "word_count": 35999,
+    "estimated_input_tokens": 47878,
+    "input_tokens": 3,
+    "output_tokens": 25823,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 52119,
+    "duration_ms": 515525,
+    "wall_time_s": 517.2,
+    "cost_usd": 0.97594225,
+    "tokens_per_sec": 49.9
+  }
+}

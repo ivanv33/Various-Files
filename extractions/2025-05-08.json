@@ -1,0 +1,832 @@
+{
+  "episode_date": "2025-05-08",
+  "episode_title": "army-modernization-shopify-earnings-openai-ceo-apps-defense-tech-ai",
+  "companies": [
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Announced Fidji Simo as CEO of Applications; discussed structural complexity, Windsurf acquisition, and for-profit conversion uncertainty. Sam Altman confirmed he stays as overall CEO.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Instacart",
+      "type": "public",
+      "context": "CEO Fidji Simo departing to join OpenAI as CEO of Applications; she will remain as chair of the Instacart board.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Delivery"
+    },
+    {
+      "name": "Shopify",
+      "type": "public",
+      "context": "Reported Q1 2025 revenue up 27% YoY to $2.36B, beating consensus; seventh consecutive quarter of GMV growth above 20%; Shop Pay facilitated $22B GMV up 57% YoY.",
+      "sentiment": "bullish",
+      "sector": "E-commerce/SaaS"
+    },
+    {
+      "name": "Anduril",
+      "type": "startup",
+      "context": "Acquired Klass, a ruggedized computer company; discussed M&A strategy of acquiring companies not actively for sale; head of M&A Adam Porter Price appeared on show.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Traded down on reports of declining search volume in Safari; discussed existential threat from LLMs to its $200B search revenue golden goose.",
+      "sentiment": "bearish",
+      "sector": "AI/ML, Advertising"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Mentioned as one of the early defense tech companies that took a beating to get into DoD; cited as a source of strong engineering talent.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Army visited Microsoft in Seattle as part of modernization tour; also mentioned as owner of VS Code and 49% stakeholder in OpenAI; Goldman used Azure for Marcus.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Cloud"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Mentioned for Llama open-source model contributions; Fidji Simo's prior decade-long tenure leading ads and monetization cited as key credential.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Social Media"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "Acquired by OpenAI for reported $3B; discussed as a signal that application-layer companies can achieve large exits despite 'wrapper' skepticism.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Developer Tools"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "Valued at $9B; mentioned alongside Windsurf as a leading AI coding IDE; OpenAI is an existing investor.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Developer Tools"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Hosts were at Config conference the day prior; new products including Figma Sites, Makes, and Buzz discussed; Shopify's Harley Finkelstein referenced Dylan Field as a founder-mode CEO.",
+      "sentiment": "bullish",
+      "sector": "Design/SaaS"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Mentioned as one of the high-quality large venture funds; Delian Asparouhov is a partner; noted as exceptional manager.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "David Haber discussed the firm's structure across six specialized funds including AI Apps, American Dynamism, and Infrastructure; 600 employees with large operating platform.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Mentioned as a sponsor and as an example of commercial software the government could adopt; Ramp and Stripe announced stablecoin-backed card partnership in Latin America.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Stripe",
+      "type": "private",
+      "context": "Announced partnership with Ramp to issue stablecoin-backed cards in Latin America.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Varda Space",
+      "type": "startup",
+      "context": "Delian Asparouhov referenced Varda as an example of a 'multi-miracle' company taking significant technical risk.",
+      "sentiment": "neutral",
+      "sector": "Defense Tech, Space"
+    },
+    {
+      "name": "Capella Space",
+      "type": "startup",
+      "context": "Cited as a cautionary tale: raised $320M, suffered technical and launch setbacks, sold for roughly its preferred stack to a quantum hedge fund\u2014effectively a 1x outcome.",
+      "sentiment": "bearish",
+      "sector": "Space, Defense Tech"
+    },
+    {
+      "name": "Umbra",
+      "type": "startup",
+      "context": "Cited as a positive counterexample to Capella; more capital-efficient approach giving them a better path to acquisition or self-sustaining revenues.",
+      "sentiment": "bullish",
+      "sector": "Space, Defense Tech"
+    },
+    {
+      "name": "Albedo Space",
+      "type": "startup",
+      "context": "Mentioned as attempting very low Earth orbit imaging with aerodynamic satellite design to reduce deorbit timeline.",
+      "sentiment": "neutral",
+      "sector": "Space"
+    },
+    {
+      "name": "Klass",
+      "type": "startup",
+      "context": "Ruggedized computer company acquired by Anduril; has locations in US and Ireland, sells to US and allied governments; makes the Voyager computer line.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "Prime Intellect",
+      "type": "startup",
+      "context": "Will Brown announced joining Prime Intellect; does decentralized AI model training on blockchain infrastructure.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Crypto"
+    },
+    {
+      "name": "Hallow",
+      "type": "startup",
+      "context": "Catholic prayer and meditation app based in Chicago; experienced one of its biggest-ever download spikes on Pope election day; at Series C stage.",
+      "sentiment": "bullish",
+      "sector": "Consumer/Health"
+    },
+    {
+      "name": "Whoop",
+      "type": "startup",
+      "context": "Launched Whoop 5.0 and Whoop MG with 14-day battery, ECG heart screener, blood pressure monitoring, HealthSpan with Whoop Age feature, and plans for blood testing integration.",
+      "sentiment": "bullish",
+      "sector": "Health Tech/Wearables"
+    },
+    {
+      "name": "VaynerMedia",
+      "type": "private",
+      "context": "Gary Vaynerchuk's agency; he appeared to discuss VFriends IP launch on Topps Chrome and live social shopping strategy.",
+      "sentiment": "bullish",
+      "sector": "Media/Marketing"
+    },
+    {
+      "name": "VFriends",
+      "type": "startup",
+      "context": "Gary Vaynerchuk's NFT-originated intellectual property project; launched on Topps Chrome trading cards; long-term ambition comparable to Pokemon or Marvel.",
+      "sentiment": "bullish",
+      "sector": "Web3/Media/IP"
+    },
+    {
+      "name": "Whatnot",
+      "type": "startup",
+      "context": "Gary Vaynerchuk described as a major live social shopping platform where he sells VFriends collectibles; called out as a significant emerging trend.",
+      "sentiment": "bullish",
+      "sector": "E-commerce/Social Commerce"
+    },
+    {
+      "name": "Topps",
+      "type": "private",
+      "context": "Launched VFriends trading cards on Topps Chrome, placing VFriends alongside Disney, Star Wars, and Marvel as the only other IPs on the platform.",
+      "sentiment": "bullish",
+      "sector": "Media/Collectibles"
+    },
+    {
+      "name": "Perplexity",
+      "type": "startup",
+      "context": "Mentioned as an LLM-based search alternative that users pay ~$200/year for; cited in context of Google search revenue displacement.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Lattice",
+      "type": "startup",
+      "context": "HR software company Jack Altman founded in 2015 and ran until early 2024 before starting his venture fund.",
+      "sentiment": "neutral",
+      "sector": "HR Tech/SaaS"
+    },
+    {
+      "name": "Fillout",
+      "type": "startup",
+      "context": "Jack Altman investment example; 2022-founded form builder in an established category; discussed as example of betting on great teams in mature markets.",
+      "sentiment": "bullish",
+      "sector": "SaaS"
+    },
+    {
+      "name": "Rogo",
+      "type": "startup",
+      "context": "Jack Altman portfolio company; secure AI for finance professionals; recently announced a significant up-round.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Fintech"
+    },
+    {
+      "name": "Salesforce",
+      "type": "public",
+      "context": "US Army's recruiting command migrated to Salesforce out-of-the-box CRM rather than building proprietary software.",
+      "sentiment": "neutral",
+      "sector": "Enterprise SaaS"
+    },
+    {
+      "name": "Klaviyo",
+      "type": "public",
+      "context": "Mentioned as an example of a multi-billion dollar company built on the Shopify ecosystem through email marketing.",
+      "sentiment": "bullish",
+      "sector": "Martech/SaaS"
+    },
+    {
+      "name": "SpaceX",
+      "type": "startup",
+      "context": "Cited as a source of strong engineering talent that produces entrepreneurial founders for defense and hard tech.",
+      "sentiment": "bullish",
+      "sector": "Space, Defense Tech"
+    },
+    {
+      "name": "Thrive Capital",
+      "type": "fund",
+      "context": "Josh at Thrive cited as an example of a brilliant large-fund manager that will not leave venture the way crossover funds did.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Bond Street",
+      "type": "startup",
+      "context": "David Haber's small business lending fintech startup co-founded with Payton Sherwood; sold to Goldman Sachs and merged into Marcus.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Goldman Sachs",
+      "type": "public",
+      "context": "David Haber's former employer; discussed its confederation structure, financial crisis performance, and declining entrepreneurial culture post-IPO.",
+      "sentiment": "neutral",
+      "sector": "Fintech, Banking"
+    },
+    {
+      "name": "Royalty Pharma",
+      "type": "public",
+      "context": "Giant private equity firm mentioned as early career exposure for David Haber through entrepreneur Rory Riggs.",
+      "sentiment": "neutral",
+      "sector": "Biotech/Private Equity"
+    },
+    {
+      "name": "Spark Capital",
+      "type": "fund",
+      "context": "David Haber's first venture firm; seeded Tumblr, invested in Twitter, wrote first check into Oculus, and seeded Plaid.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Plaid",
+      "type": "startup",
+      "context": "Seeded by Spark Capital with David Haber involved; cited as a formative early fintech investment.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Mistral",
+      "type": "startup",
+      "context": "Cited as a leading European open-source AI model company; Andreessen Horowitz is an investor.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Lockheed Martin",
+      "type": "public",
+      "context": "Mentioned as a prime defense contractor likely benefiting from increased fighter jet orders due to India-Pakistan conflict.",
+      "sentiment": "bullish",
+      "sector": "Defense"
+    },
+    {
+      "name": "Raytheon",
+      "type": "public",
+      "context": "Mentioned alongside Lockheed as a prime likely getting bigger orders amid geopolitical conflict.",
+      "sentiment": "bullish",
+      "sector": "Defense"
+    },
+    {
+      "name": "Boeing",
+      "type": "public",
+      "context": "Cited as example of a traditional prime that acquired Liquid Robotics in a deal viewed as bailing out its VC arm; used as cautionary M&A tale.",
+      "sentiment": "bearish",
+      "sector": "Defense, Aerospace"
+    },
+    {
+      "name": "Liquid Robotics",
+      "type": "startup",
+      "context": "Acquired by Boeing for ~$300M, cited by Adam Porter Price as example of a defense acquisition that likely never hit the 10x forward revenue thesis.",
+      "sentiment": "bearish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "Harvey",
+      "type": "startup",
+      "context": "Delian mentioned as an example of an AI application company with rationally high valuation given potential M&A outcomes from legal tech acquirers.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Legal Tech"
+    },
+    {
+      "name": "Planet Labs",
+      "type": "public",
+      "context": "Kevin Weil, formerly Planet Labs CEO, mentioned in context of LEO satellite observation; now CPO at OpenAI.",
+      "sentiment": "neutral",
+      "sector": "Space"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Mentioned as a sponsor; described as sales tax compliance automation \u2014 'AGI for your sales tax.'",
+      "sentiment": "neutral",
+      "sector": "Fintech/Tax"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Mentioned as a sponsor for automated compliance and trust management platform.",
+      "sentiment": "neutral",
+      "sector": "Cybersecurity/Compliance"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Mentioned as a sponsor; described as the tool TBPN uses internally for issue and project tracking.",
+      "sentiment": "bullish",
+      "sector": "Developer Tools/SaaS"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Mentioned as a sponsor; described as multi-asset investing platform trusted by millions.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "8 Sleep",
+      "type": "startup",
+      "context": "Mentioned as a sponsor; hosts track their sleep scores daily; founder Matteo coming on show next week.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Mentioned as a sponsor; out-of-home advertising platform combining technology and data.",
+      "sentiment": "neutral",
+      "sector": "Adtech"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Mentioned as a sponsor; described as growing very fast, adding multiple homes per day to platform; founder John Andrew coming on show.",
+      "sentiment": "bullish",
+      "sector": "Travel/Real Estate"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Mentioned as a sponsor; described as a luxury watch marketplace and concierge service.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Luxury"
+    },
+    {
+      "name": "Withings",
+      "type": "private",
+      "context": "Whoop announced a partnership where Withings smart scale data automatically syncs into the Whoop app.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Y Combinator",
+      "type": "private",
+      "context": "Discussed as functioning like a union for founders, with network effects that penalize VCs who mistreat portfolio companies.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Gymshark",
+      "type": "private",
+      "context": "Cited by Harley Finkelstein as a Shopify merchant that grew from a dorm room to a billion-dollar company; Ben Francis is UK's youngest billionaire.",
+      "sentiment": "bullish",
+      "sector": "E-commerce/DTC"
+    },
+    {
+      "name": "Ember",
+      "type": "startup",
+      "context": "Cited by Harley Finkelstein as a favorite Shopify store; temperature-controlled mug company; hosts are fans.",
+      "sentiment": "bullish",
+      "sector": "E-commerce/DTC"
+    },
+    {
+      "name": "Sacred",
+      "type": "startup",
+      "context": "Beyonce's cosmetic company mentioned as example of an artist with a Shopify store that could benefit from embedded commerce in artist profiles.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/DTC"
+    },
+    {
+      "name": "Feastables",
+      "type": "startup",
+      "context": "Mr. Beast's Shopify store cited as example of creator commerce that benefits from embedded YouTube checkout.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/DTC"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Discussed as the dominant online retailer (~40% US ecom share) that Shopify is second to (~12%); also cited for Halo wearable that copied Whoop design.",
+      "sentiment": "neutral",
+      "sector": "E-commerce, Cloud"
+    },
+    {
+      "name": "Cloudflare",
+      "type": "public",
+      "context": "Stephanie Cohen, David Haber's former Goldman boss, is now at Cloudflare.",
+      "sentiment": "neutral",
+      "sector": "Cloud/Cybersecurity"
+    },
+    {
+      "name": "Sotheby's",
+      "type": "private",
+      "context": "David Haber briefly worked on acquiring a stake in Sotheby's with a hedge fund after leaving Goldman, before joining Andreessen Horowitz.",
+      "sentiment": "neutral",
+      "sector": "Art/Finance"
+    },
+    {
+      "name": "Uber",
+      "type": "public",
+      "context": "Gary Vaynerchuk mentioned previously co-investing with Travis Kalanick; used as example of founder focus during hyper-growth.",
+      "sentiment": "neutral",
+      "sector": "Transportation"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Apple VP of Services testified that Safari search volume declined for the first time, triggering Google stock drop; also referenced for App Store and Sherlock feature.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Moonbug",
+      "type": "private",
+      "context": "Gary Vaynerchuk mentioned a collaboration with Moonbug as part of VFriends' content expansion strategy.",
+      "sentiment": "neutral",
+      "sector": "Media/IP"
+    },
+    {
+      "name": "Fort Jackson",
+      "type": "gov",
+      "context": "US Army training base where Secretary Driscoll visited new recruits learning drone operations within five weeks of joining.",
+      "sentiment": "neutral",
+      "sector": "Defense/Government"
+    },
+    {
+      "name": "Army Futures Command",
+      "type": "gov",
+      "context": "Mentioned as the Army's internal mechanism for adopting next-generation technologies, described as less built-out than Air Force Research Laboratory.",
+      "sentiment": "neutral",
+      "sector": "Defense/Government"
+    },
+    {
+      "name": "Space Force",
+      "type": "gov",
+      "context": "Cited as the most technologically progressive military branch; a major general publicly pushed back on orbital refueling as not yet relevant to the warfighter.",
+      "sentiment": "neutral",
+      "sector": "Defense/Government"
+    },
+    {
+      "name": "Crusoe",
+      "type": "startup",
+      "context": "Chase Lockmiller from Crusoe mentioned as attendee at Sequoia AI Ascent alongside Jensen Huang and Sam Altman.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Cloud"
+    },
+    {
+      "name": "Rune",
+      "type": "startup",
+      "context": "Briefly referenced as a defense-adjacent startup focused on supply chain and logistics management for government.",
+      "sentiment": "neutral",
+      "sector": "Defense Tech, Logistics"
+    },
+    {
+      "name": "Alt Capital",
+      "type": "fund",
+      "context": "Mentioned in the show's guest lineup introduction as a venture fund represented on the episode.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    }
+  ],
+  "people": [
+    {
+      "name": "Fidji Simo",
+      "role": "Incoming CEO of Applications at OpenAI, outgoing CEO of Instacart",
+      "context": "Announced as OpenAI's new CEO of Applications; has decade-plus background at Meta leading ads and monetization, took Instacart public, and serves on Shopify board."
+    },
+    {
+      "name": "Daniel P. Driscoll",
+      "role": "Secretary of the Army",
+      "context": "Discussed Army modernization plan: cutting obsolete systems, funding drones and autonomous systems, fixing right-to-repair issues, and reducing headquarters bloat."
+    },
+    {
+      "name": "General Randy A. George",
+      "role": "Chief of Staff of the Army",
+      "context": "Discussed modernization goals including next-generation command and control, data-centric operations, and getting engineers embedded directly in military formations."
+    },
+    {
+      "name": "Adam Porter Price",
+      "role": "Head of M&A, Anduril",
+      "context": "Announced acquisition of Klass ruggedized computers; explained Anduril's M&A philosophy of never buying companies for sale and preferring to avoid heavily VC-backed targets."
+    },
+    {
+      "name": "Delian Asparouhov",
+      "role": "Partner, Founders Fund",
+      "context": "Discussed defense tech M&A market dynamics, Army modernization as a bull signal, India-Pakistan conflict implications for drone/fighter jet warfare, and the Stripe-Ramp stablecoin announcement."
+    },
+    {
+      "name": "Harley Finkelstein",
+      "role": "President, Shopify",
+      "context": "Broke down Shopify's Q1 2025 earnings beat, Shop Pay growth, AI integration across operations and merchant tools, and the future of AI-powered commerce."
+    },
+    {
+      "name": "Gary Vaynerchuk",
+      "role": "Founder & CEO, VaynerMedia; Creator of VFriends",
+      "context": "Discussed VFriends IP launch on Topps Chrome trading cards and his thesis that intellectual property will be a major value driver in the AI era; bullish on live social shopping."
+    },
+    {
+      "name": "Jack Altman",
+      "role": "Founder & GP, Alt Capital (fund)",
+      "context": "Discussed his $150M generalist early-stage fund, AI application layer opportunity, defense tech talent pools, and lessons from founding and running Lattice for nine years."
+    },
+    {
+      "name": "David Haber",
+      "role": "General Partner, Andreessen Horowitz",
+      "context": "Discussed his path from Goldman Sachs and Bond Street to a16z; explained the firm's fund structure, New York office build-out, and thesis on AI application layer defensibility."
+    },
+    {
+      "name": "Alex (Hallow CEO)",
+      "role": "Co-founder & CEO, Hallow",
+      "context": "Discussed the election of Pope Leo XIV (first American Pope, from Chicago) and how Hallow used the event to drive prayer content and experienced one of its biggest download spikes."
+    },
+    {
+      "name": "Will Ahmed",
+      "role": "Co-founder & CEO, Whoop",
+      "context": "Announced Whoop 5.0 and Whoop MG launches including ECG heart screener, blood pressure monitoring, HealthSpan with Whoop Age, and upcoming blood testing integration."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Confirmed he will continue as overall CEO while Fidji Simo takes CEO of Applications role; discussed assembling a new executive team described as 'V2 Avengers.'"
+    },
+    {
+      "name": "Catherine Boyle",
+      "role": "General Partner, Andreessen Horowitz (American Dynamism)",
+      "context": "Referenced multiple times as a connector; suggested Hallow founder for the show and noted the growing technical sophistication of active-duty soldiers."
+    },
+    {
+      "name": "Kevin Weil",
+      "role": "CPO, OpenAI (formerly CEO, Planet Labs)",
+      "context": "Cited as example of an accomplished founder-CEO joining OpenAI in a non-CEO role; previously discussed by a show guest about LEO satellite observation challenges."
+    },
+    {
+      "name": "Palmer Luckey",
+      "role": "Founder, Anduril",
+      "context": "Referenced in context of Fury autonomous aircraft and Anduril's potential need to go public to win F-35-scale programs; noted his ego would not allow shipping a non-functional product."
+    },
+    {
+      "name": "Toby L\u00fctke",
+      "role": "CEO, Shopify",
+      "context": "His leaked internal email mandating AI-first thinking before adding headcount was discussed; praised as a technical founder-mode CEO operating at elite level."
+    },
+    {
+      "name": "Dylan Field",
+      "role": "CEO, Figma",
+      "context": "Mentioned as a founder-mode CEO operating at elite level; hosts were at Figma Config conference the day prior."
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO, Nvidia",
+      "context": "Spoke at Sequoia AI Ascent about token-generating AI factories as the new industrial infrastructure."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "Head of DOGE",
+      "context": "Secretary Driscoll credited DOGE's first-principles thinking as a valuable lens for identifying bureaucratic inefficiencies in the Army."
+    },
+    {
+      "name": "Jim Fan",
+      "role": "Senior Research Manager, Nvidia",
+      "context": "Spoke at Sequoia AI Ascent about why simulation is key to robots passing the physical Turing test."
+    },
+    {
+      "name": "Alex Rampell",
+      "role": "General Partner, Andreessen Horowitz",
+      "context": "Recruited David Haber to a16z; mentioned as co-lead of the AI Apps fund alongside Haber and Anish."
+    },
+    {
+      "name": "Martin Casado",
+      "role": "General Partner, Andreessen Horowitz",
+      "context": "Leads the Infrastructure fund at a16z alongside Ange, Jennifer, and Zane."
+    },
+    {
+      "name": "Sonya Wang",
+      "role": "Partner, Sequoia Capital",
+      "context": "Coming on TBPN the following day to recap Sequoia's third annual AI Ascent conference."
+    },
+    {
+      "name": "Matt Turk",
+      "role": "Investor/commentator",
+      "context": "Raised the question of why OpenAI needs a CEO of Applications if it promised to stay out of the application layer."
+    },
+    {
+      "name": "Mickey Drexler",
+      "role": "Former CEO, Gap and J.Crew",
+      "context": "Harley Finkelstein cited his interview with Drexler to illustrate how AI tools available to Shopify merchants for $39/month now outperform the 300-person merchandising teams Drexler ran at the Gap."
+    },
+    {
+      "name": "Ben Francis",
+      "role": "Founder, Gymshark",
+      "context": "Cited as example of a Shopify merchant who became UK's youngest billionaire starting from a college dorm room."
+    },
+    {
+      "name": "Payton Sherwood",
+      "role": "Co-founder, Bond Street; formerly engineering lead at Venmo",
+      "context": "Co-founded Bond Street with David Haber; company sold to Goldman Sachs and merged into Marcus."
+    },
+    {
+      "name": "Mike Gallagher",
+      "role": "Former Congressman",
+      "context": "His Wall Street Journal op-ed 'Bring Warriors Back to the U.S. Military' advocating for shifting resources from headquarters to combat units was discussed with General George."
+    },
+    {
+      "name": "Brett Taylor",
+      "role": "Former CTO, Facebook",
+      "context": "Mentioned as having become Facebook CTO at age 29; attended Sequoia AI Ascent."
+    },
+    {
+      "name": "Jeff Dean",
+      "role": "Chief Scientist, Google DeepMind",
+      "context": "Described as one of the most legendary programmers of all time; attended Sequoia AI Ascent."
+    },
+    {
+      "name": "Stephanie Cohen",
+      "role": "Now at Cloudflare; formerly Goldman Sachs",
+      "context": "David Haber's former boss at Goldman who reported to David Solomon; now doing well at Cloudflare."
+    }
+  ],
+  "topics": [
+    {
+      "name": "OpenAI CEO of Applications Appointment",
+      "summary": "Fidji Simo named CEO of Applications at OpenAI while Sam Altman remains overall CEO, creating an unusual dual-CEO structure. Discussed her background monetizing Facebook ads and taking Instacart public as credentials; speculation about whether Instacart could eventually be folded into OpenAI for last-mile delivery of AI actions.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Google Search Decline",
+      "summary": "Apple VP of Services testified that Safari search volume declined for the first time, sending Google stock sharply lower. Discussion covered the revenue gap risk between shrinking search dollars and nascent generative AI monetization, and whether Google's ARPU may hold temporarily as shopping queries remain but knowledge queries migrate to LLMs.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "US Army Modernization",
+      "summary": "Secretary Driscoll and General George outlined a four-bucket reform: cutting obsolete systems, funding drones and autonomous capabilities, reclaiming right-to-repair, and pushing soldiers out of headquarters. Recruiting is up across nearly all categories and retention goals were hit six months early. Silicon Valley explicitly invited to engage.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Defense Tech M&A Market",
+      "summary": "Adam Porter Price explained Anduril's philosophy: never buy companies for sale, avoid heavily VC-backed targets due to preference stack math, and only acquire when a clear 5-10x revenue path exists within three to four years. Capella Space cited as cautionary tale; Umbra as positive counterexample of capital efficiency.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI Application Layer Opportunity",
+      "summary": "Discussion across multiple guests on whether application-layer AI companies can build durable moats. Windsurf's $3B OpenAI acquisition cited as evidence that large exits are achievable. Consensus that moats still derive from owning workflows, network effects, and data\u2014not the underlying model itself.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Shopify Q1 2025 Earnings",
+      "summary": "Revenue rose 27% YoY to $2.36B, beating consensus; free cash flow margin at 15%; GMV up 20%+ for seventh straight quarter; Shop Pay GMV $22B up 57% YoY. Finkelstein noted data through April shows no slowdown despite macro uncertainty.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Live Social Shopping",
+      "summary": "Gary Vaynerchuk called QVCification of social media one of the most significant emerging business trends, specifically on Whatnot and TikTok Shop. Argued that any physical-product seller not using live social shopping is leaving significant opportunity on the table.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Election of Pope Leo XIV",
+      "summary": "First American pope elected from Chicago, a former Augustinian cardinal who served in Peru and the Vatican. Alex from Hallow joined live to discuss the significance, Hallow's massive download spike, and Pope Leo XIV's expected focus on mercy and bringing people to know Jesus personally.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "India-Pakistan Conflict and Drone/Fighter Warfare",
+      "summary": "Delian Asparouhov discussed a reported sortie involving ~100 fighter jets firing missiles across the border, with satellite OSINT images suggesting Indian fighter jet losses. Both nuclear powers are combat-testing current-generation systems at unprecedented scale, with Russia, China, and the US studying outcomes closely.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Open Source AI Models",
+      "summary": "Discussed in context of Andreessen Horowitz's investment in Mistral and Mark Andreessen's board seat at Meta (Llama); open source viewed as a competitive force driving down intelligence costs and benefiting the application layer.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Stablecoin Payments in Latin America",
+      "summary": "Ramp and Stripe announced a partnership to issue stablecoin-backed corporate cards in Latin America. Delian used this to riff on leapfrog dynamics where greenfield markets skip legacy infrastructure and adopt next-generation payment rails faster than mature markets.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "VC Market Structure and Mega-Fund Pressure",
+      "summary": "Jack Altman and David Haber discussed how large crossover funds have been replaced by permanent large-fund managers like Thrive and Founders Fund at late stage, applying downward pressure on early-stage pricing and changing the economics for seed-stage funds.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Wearables and Health Monitoring",
+      "summary": "Whoop launched 5.0 and MG hardware with ECG, blood pressure, HealthSpan/Whoop Age feature developed with Buck Institute, 14-day battery, and plans for integrated blood testing. Will Ahmed positioned Whoop as moving from elite athlete tool to general population health platform.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Founder-Led Companies vs Professional Management",
+      "summary": "Multiple guests praised the current era of technical founder-led companies at scale (Toby L\u00fctke, Dylan Field, Zuckerberg, Patrick Collison) as producing uniquely better outcomes versus prior era of 'adult supervision' professional CEOs.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Vector Database Commoditization as AI Warning",
+      "summary": "Delian used the collapse of standalone vector database companies\u2014when AWS, Google Cloud, and Azure made it a native feature\u2014as a cautionary framework for any AI infrastructure or application layer company that solves a problem obvious enough for hyperscalers to absorb.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Private Market Liquidity and Secondaries",
+      "summary": "David Haber discussed secular trends of companies staying private longer and democratization of alternatives to wealth management channels; noted venture is still a small asset class relative to PE and credit, and liquidity structures for retail investors remain underdeveloped.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI Adoption in Enterprise and Financial Services",
+      "summary": "David Haber noted a significant acceleration in enterprise AI adoption driven by both bottoms-up engineer usage (GitHub Copilot, Cursor) and top-down board pressure; financial services seen as especially ripe given human-capital intensity and legacy back-office Excel workflows.",
+      "sentiment": "bullish"
+    }
+  ],
+  "key_claims": [
+    "Shopify Q1 2025 revenue rose 27% YoY to $2.36B, beating consensus; seventh consecutive quarter of GMV growth above 20%; 38 of 39 merchant cohorts since IPO have outperformed the broader e-commerce market.",
+    "Shop Pay has facilitated $225B in cumulative GMV since its 2017 launch; $22B in Q1 2025 alone, up 57% YoY.",
+    "If Shopify were a single retailer it would be the second-largest online retailer in the US after Amazon, with approximately 12% US e-commerce market share.",
+    "US Army recruiting is up in nearly every category and geography, and the Army hit its 12-month retention goals six months into the fiscal year.",
+    "Anduril's robotic combat vehicle (RCV) costs $3M per copy but can be taken out by an $800 drone\u2014Secretary Driscoll called the math untenable.",
+    "Adam Porter Price stated the ceiling for a 'YOLO' defense tech acquisition by a traditional prime is around $300-400M; above that, board scrutiny and valuation math make irrational deals nearly impossible.",
+    "Capella Space raised $320M over ~13 years and sold for approximately its preferred stack (~$320M), resulting in effectively a 1x outcome for all investors.",
+    "Delian estimated there have likely been more fighter jet losses among the US, India, and Pakistan in the past three months than in the prior two decades combined.",
+    "OpenAI's Windsurf acquisition at a reported $3B is cited as evidence that IDE/application-layer AI companies can achieve multi-billion-dollar exits, potentially triggering a cascade of similar acquisitions by hyperscalers.",
+    "Jack Altman: the margin in the venture ecosystem has directionally shifted from LPs to GPs to founders over the decades and is likely to continue doing so.",
+    "Whoop 5.0 and MG feature 14-day battery life and up to a month of charge with battery pack; new ECG heart screener is FDA-cleared for AFib detection.",
+    "Gary Vaynerchuk called the QVCification of social media one of the most significant micro emerging trends; said any physical-product seller not using live social shopping in spring 2025 is equivalent to a business not using social media in 2008-2009.",
+    "Secretary Driscoll stated he will measure Army modernization success if within two years at least one of the defense primes is no longer in business and the rest have gotten stronger.",
+    "Palmer Luckey reportedly stated Anduril would need to go public to win an F-35-scale program; Delian gives 5-to-1 odds Anduril bids on or architects a human-rated fighter jet system within five years.",
+    "Delian Asparouhov argued that standalone vector database companies were wiped out within 12 months when AWS, Google Cloud, and Azure made vector storage a native cloud feature\u2014warning for AI application companies solving problems obvious enough to be hyperscaler features.",
+    "David Haber: AI is an incredible tool for differentiation but not the source of defensibility; moats still derive from owning workflows, network effects, and becoming a system of record\u2014same as always in software.",
+    "The new Pope Leo XIV is the first American pope in the history of the Catholic Church; he is 69 years old and comes from Chicago, having served as a missionary in Peru for ~20 years."
+  ],
+  "technologies": [
+    "Large Language Models (LLMs)",
+    "Generative AI",
+    "ChatGPT",
+    "GPT-3",
+    "O3",
+    "Sora",
+    "Windsurf (AI IDE)",
+    "Cursor (AI IDE)",
+    "MCP (Model Context Protocol)",
+    "Retrieval-Augmented Generation / Vector Databases",
+    "GitHub Copilot",
+    "Autonomous Drone Systems",
+    "Robotic Combat Vehicles (RCV)",
+    "3D Printing",
+    "Lattice OS (Anduril)",
+    "Ruggedized Computing (Klass/Voyager)",
+    "Synthetic Aperture Radar (SAR) Satellites",
+    "Orbital Refueling",
+    "Next-Generation Command and Control (tablets/apps)",
+    "Salesforce CRM",
+    "ECG Heart Screening",
+    "Blood Pressure Monitoring (wearable)",
+    "VO2 Max Measurement",
+    "HealthSpan Biological Age Scoring",
+    "Stablecoins",
+    "Blockchain / Layer-2 (Base)",
+    "NFTs",
+    "Shop Pay",
+    "OSINT (Open Source Intelligence)",
+    "Simulation for Robotics",
+    "Humanoid Robotics",
+    "AI Agents",
+    "Deep Research (ChatGPT)",
+    "Figma Sites / AI Design Tools",
+    "Open Source AI Models (Llama, Mistral)",
+    "Electromagnetic Warfare / Jamming Systems",
+    "Persistent Systems Radio",
+    "Silvus Radio"
+  ],
+  "_stats": {
+    "word_count": 47253,
+    "estimated_input_tokens": 62846,
+    "input_tokens": 3,
+    "output_tokens": 8241,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 65353,
+    "duration_ms": 188119,
+    "wall_time_s": 189.8,
+    "cost_usd": 0.61910475,
+    "tokens_per_sec": 43.4
+  }
+}

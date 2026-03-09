@@ -1,0 +1,882 @@
+{
+  "episode_date": "2025-04-18",
+  "episode_title": "golden-dome-history-jj-ai-pivot-meta-google-antitrust-lp-sentiment",
+  "companies": [
+    {
+      "name": "NVIDIA",
+      "type": "public",
+      "context": "Jensen Huang made a surprise trip to Beijing following new US H20 chip export restrictions; stock down approximately 3% on the day.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Semiconductors"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "US judge ruled Google illegally monopolized key digital ad markets \u2014 its second antitrust loss in eight months \u2014 opening the door to possible breakup remedies; stock down 1.3%.",
+      "sentiment": "bearish",
+      "sector": "Advertising, Tech"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Stargate project eyeing UK for part of $500B data center build; debuted Flex processing offering cheaper API pricing for non-urgent asynchronous jobs.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "SoftBank",
+      "type": "public",
+      "context": "Co-sponsor of the Stargate project alongside OpenAI, which is expanding internationally to the UK.",
+      "sentiment": "neutral",
+      "sector": "Investment, Tech"
+    },
+    {
+      "name": "Databricks",
+      "type": "startup",
+      "context": "Acquired Fennel, a three-year-old incremental computing engine, to turbocharge real-time feature engineering ahead of a potential IPO.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Data"
+    },
+    {
+      "name": "Fennel",
+      "type": "startup",
+      "context": "Three-year-old incremental computing startup acquired by Databricks to improve real-time ML feature engineering pipelines.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Data"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "iPhone 16E confirmed assembled at Foxconn's S\u00e3o Paulo plant to hedge tariff risk; Apple Vision Air with titanium leaked; dropped to fifth in China at 13.7% smartphone share; facing EU DMA fines.",
+      "sentiment": "mixed",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Foxconn",
+      "type": "public",
+      "context": "Taiwan-headquartered manufacturer producing iPhone 16E at its S\u00e3o Paulo, Brazil plant as Apple hedges tariff exposure.",
+      "sentiment": "neutral",
+      "sector": "Manufacturing"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Reported leading industry team for the US Golden Dome missile defense project; discussed as likely prime integrator leveraging Starlink satellite bus platform.",
+      "sentiment": "bullish",
+      "sector": "Defense, Space"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "Part of reported leading team pitching the Golden Dome missile defense project to the US government alongside SpaceX and Anduril.",
+      "sentiment": "bullish",
+      "sector": "Defense, AI/ML"
+    },
+    {
+      "name": "Anduril",
+      "type": "startup",
+      "context": "Part of reported leading team pitching the Golden Dome missile defense project alongside SpaceX and Palantir.",
+      "sentiment": "bullish",
+      "sector": "Defense"
+    },
+    {
+      "name": "Lockheed Martin",
+      "type": "public",
+      "context": "Among 180+ firms vying for Golden Dome subcontracts at the April industry day.",
+      "sentiment": "neutral",
+      "sector": "Defense"
+    },
+    {
+      "name": "RTX",
+      "type": "public",
+      "context": "Raytheon parent vying for Golden Dome subcontracts; Raytheon also provided US co-production for Israel's Iron Dome.",
+      "sentiment": "neutral",
+      "sector": "Defense"
+    },
+    {
+      "name": "Boeing",
+      "type": "public",
+      "context": "Has heavy satellite experience and is among firms vying for Golden Dome pieces; had Northrop as supplier for LGM-35A Sentinel nuclear missile program.",
+      "sentiment": "neutral",
+      "sector": "Defense, Aerospace"
+    },
+    {
+      "name": "Northrop Grumman",
+      "type": "public",
+      "context": "Suffered a major explosion at its rocket motor plant on April 16, 2025, threatening national security missile defense capacity and its role as Boeing supplier on the Sentinel nuclear triad program.",
+      "sentiment": "bearish",
+      "sector": "Defense"
+    },
+    {
+      "name": "General Atomics",
+      "type": "private",
+      "context": "Laser specialist that responded to the Golden Dome April industry day.",
+      "sentiment": "neutral",
+      "sector": "Defense"
+    },
+    {
+      "name": "L3Harris",
+      "type": "public",
+      "context": "Space radar specialist that responded to the Golden Dome April industry day.",
+      "sentiment": "neutral",
+      "sector": "Defense"
+    },
+    {
+      "name": "Amazon Web Services",
+      "type": "public",
+      "context": "Responded to Golden Dome April industry day, offering data backend capabilities for the missile defense system.",
+      "sentiment": "neutral",
+      "sector": "Cloud"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Azure responded to Golden Dome industry day offering data backend; also facing EU regulatory pressure alongside Apple and Meta.",
+      "sentiment": "neutral",
+      "sector": "Cloud, Tech"
+    },
+    {
+      "name": "Johnson & Johnson",
+      "type": "public",
+      "context": "CIO Jim Swanson announced pivot from approximately 9,000 individual AI use cases to a focused high-value subset, finding only 10-15% of projects drove 80% of value; focusing on drug discovery, supply chain, and a rep copilot.",
+      "sentiment": "neutral",
+      "sector": "Healthcare"
+    },
+    {
+      "name": "Glean",
+      "type": "startup",
+      "context": "Enterprise AI knowledge retrieval company cited as achieving a multi-billion dollar valuation doing internal information search similar to J&J's internal chatbot use case.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Enterprise SaaS"
+    },
+    {
+      "name": "Meta Platforms",
+      "type": "public",
+      "context": "Faces FTC antitrust trial seeking forced divestiture of Instagram and WhatsApp; EU delayed DMA cease-and-desist orders amid US trade negotiations.",
+      "sentiment": "bearish",
+      "sector": "Social Media, Advertising"
+    },
+    {
+      "name": "Rafael Advanced Defense Systems",
+      "type": "private",
+      "context": "Israeli defense company that co-developed Iron Dome with Israel Aerospace Industries; Raytheon provided US co-production.",
+      "sentiment": "neutral",
+      "sector": "Defense"
+    },
+    {
+      "name": "Israel Aerospace Industries",
+      "type": "gov",
+      "context": "State-owned Israeli company that co-built Iron Dome with Rafael; system has logged over 5,000 kills at a claimed 90%+ success rate.",
+      "sentiment": "neutral",
+      "sector": "Defense"
+    },
+    {
+      "name": "Checkr",
+      "type": "startup",
+      "context": "Background screening API company founded 11 years ago; acquired TrueWork to expand into financial underwriting, mortgage, and property management with a claimed $50B+ combined TAM.",
+      "sentiment": "bullish",
+      "sector": "HR Tech, Fintech"
+    },
+    {
+      "name": "TrueWork",
+      "type": "startup",
+      "context": "Eight-year-old employment verification startup acquired by Checkr; serves 8 of 10 largest US mortgage lenders and thousands of customers across property management and fintech.",
+      "sentiment": "bullish",
+      "sector": "Fintech, HR Tech"
+    },
+    {
+      "name": "Goldman Sachs",
+      "type": "public",
+      "context": "Took Dell public and recommended as lead underwriter for the IPO; also authored the original BRICS report referenced in the Brazil manufacturing discussion.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "Dell Technologies",
+      "type": "public",
+      "context": "Featured in David Senra's deep-dive as perhaps the most impressive founder story in 400 episodes: started with $1,000 in 1984, reached Fortune 500 by age 26, executed the largest tech LBO in history, and acquired EMC/VMware for $67B.",
+      "sentiment": "bullish",
+      "sector": "Enterprise Tech"
+    },
+    {
+      "name": "VMware",
+      "type": "public",
+      "context": "Acquired as part of Dell's $67B EMC deal; later spun out and sold to Broadcom for $61B, contributing to one of the most successful acquisitions in tech history.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Tech"
+    },
+    {
+      "name": "EMC",
+      "type": "public",
+      "context": "Acquired by Dell for $67B \u2014 the largest technology acquisition ever at the time \u2014 generating approximately $6-7B in annual cashflow.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Tech"
+    },
+    {
+      "name": "Broadcom",
+      "type": "public",
+      "context": "Acquired VMware for $61B; Broadcom stock has approximately tripled since the acquisition date, generating large gains for Dell on stock received.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors, Enterprise Tech"
+    },
+    {
+      "name": "Silver Lake Partners",
+      "type": "fund",
+      "context": "Partnered with Michael Dell on the $24.4B leveraged buyout to take Dell private in 2013, the largest technology LBO in history.",
+      "sentiment": "neutral",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "Larry Ellison's company discussed extensively; Ellison described as 'tech father' and compared to Michael Jordan in competitiveness; reportedly interested in acquiring TikTok.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Tech"
+    },
+    {
+      "name": "Snap",
+      "type": "public",
+      "context": "Down 30% YTD at $7.88/share vs $83 peak; turned down $4B then $6B Meta acquisition offers; discussed as potential AI distribution acquisition target for foundation model companies.",
+      "sentiment": "bearish",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Instagram",
+      "type": "private",
+      "context": "FTC seeking to force Meta to divest Instagram as part of its antitrust case; deeply integrated with Meta's infrastructure making separation complex.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "WhatsApp",
+      "type": "private",
+      "context": "FTC seeking to force Meta to divest WhatsApp alongside Instagram; similarly deeply integrated with Meta.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Compaq",
+      "type": "public",
+      "context": "Dell's early competitor headquartered in Houston that raised approximately $25M initially; was eventually acquired and no longer exists while Dell thrives.",
+      "sentiment": "bearish",
+      "sector": "Enterprise Tech"
+    },
+    {
+      "name": "Cisco",
+      "type": "public",
+      "context": "Cited by Don Valentine as the gold standard example of a startup that correctly priced its product high and built early positive cashflow, enabling it to compensate for inevitable mistakes.",
+      "sentiment": "bullish",
+      "sector": "Enterprise Tech, Networking"
+    },
+    {
+      "name": "Sequoia Capital",
+      "type": "fund",
+      "context": "Multiple mentions: Don Valentine's pricing philosophy via Cisco oral history; Alfred Lin as TrueWork board member; Andrew Reed and Aaron Harris posts on founder/VC best practices.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Mentioned as a hypothetical acquirer of Snapchat to gain consumer distribution for AI models; Dario Amodei jokingly cited as someone who would reluctantly inherit viral social content.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "xAI",
+      "type": "startup",
+      "context": "Cited as a case study for AI integration in social media, where users can fact-check posts via Grok with a single click on X.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "TikTok",
+      "type": "private",
+      "context": "Mentioned as a competitor Meta tried to exclude from FTC market definition; Larry Ellison reportedly interested in acquiring it.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Expense management startup reportedly being considered for a charge card pilot program by the US General Services Administration.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Flexport",
+      "type": "startup",
+      "context": "CEO Ryan Peterson highlighted ocean freight out of China as effectively dead due to tariffs; hosts recommended consulting Flexport before attempting customs workarounds.",
+      "sentiment": "neutral",
+      "sector": "Logistics"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "Cited as the most prominent recent example of an AI coding startup being acquired by a larger platform, rumored to be OpenAI.",
+      "sentiment": "bullish",
+      "sector": "AI/ML, Developer Tools"
+    },
+    {
+      "name": "Y Combinator",
+      "type": "fund",
+      "context": "Both Checkr and TrueWork are YC alumni; Gary Tan noted as a beneficiary of their merger deal.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Farcaster",
+      "type": "startup",
+      "context": "Founder Dan Romero's Venice, CA compound was featured in Architectural Digest; mentioned briefly in context.",
+      "sentiment": "neutral",
+      "sector": "Social Media, Web3"
+    },
+    {
+      "name": "Xiaomi",
+      "type": "public",
+      "context": "Regained the top smartphone spot in China after nearly a decade, aided by government subsidies boosting demand for sub-$820 devices.",
+      "sentiment": "bullish",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Vivo",
+      "type": "private",
+      "context": "Chinese smartphone maker that beat Apple on annual China shipment volumes.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Huawei",
+      "type": "private",
+      "context": "Chinese tech company that beat Apple on annual China smartphone shipments.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Nokia",
+      "type": "public",
+      "context": "European phone company cited as proof of Europe's failure to build competitive consumer tech; no longer producing competitive smartphones.",
+      "sentiment": "bearish",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Mark Andreessen advised Zuckerberg to buy Snapchat at any price; a16z blog archive cited for the thesis that market is the most important factor in startup success.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "DST Global",
+      "type": "fund",
+      "context": "Presented data showing how AI revenue ramp speed has broken traditional growth-fund underwriting models; all major growth funds reportedly uncertain how to underwrite businesses in the AI era.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Tiger Global",
+      "type": "fund",
+      "context": "Mentioned as having sold Facebook stock very early \u2014 a costly missed opportunity cited as an example of poor exit timing.",
+      "sentiment": "neutral",
+      "sector": "Hedge Fund, Venture Capital"
+    },
+    {
+      "name": "Coinbase",
+      "type": "public",
+      "context": "Mentioned as a Checkr customer relying on Checkr for KYC and identity verification flows.",
+      "sentiment": "neutral",
+      "sector": "Crypto, Fintech"
+    },
+    {
+      "name": "DoorDash",
+      "type": "public",
+      "context": "Listed as a Checkr customer for background screening.",
+      "sentiment": "neutral",
+      "sector": "Marketplace"
+    },
+    {
+      "name": "Instacart",
+      "type": "public",
+      "context": "Listed as a Checkr customer for background screening.",
+      "sentiment": "neutral",
+      "sector": "Marketplace"
+    },
+    {
+      "name": "LexisNexis",
+      "type": "private",
+      "context": "Mentioned as a direct competitor to Checkr in the financial fraud and risk data market.",
+      "sentiment": "neutral",
+      "sector": "Data, Fintech"
+    },
+    {
+      "name": "Khosla Ventures",
+      "type": "fund",
+      "context": "Keith Urboy (likely Keith Rabois) is a TrueWork board member highlighted by Ryan Sandler as especially helpful.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Activant Capital",
+      "type": "fund",
+      "context": "Steve Sarsino from Activant is the third TrueWork board member cited by Ryan Sandler.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Green Oaks Capital",
+      "type": "fund",
+      "context": "Identified as Windsurf's seed and Series A investor in context of the rumored OpenAI acquisition.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Waymo",
+      "type": "startup",
+      "context": "Briefly mentioned as a self-driving rideshare example in context of consumer tech use cases.",
+      "sentiment": "neutral",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "MeWe",
+      "type": "startup",
+      "context": "Alternative social network mentioned in Meta antitrust market definition debate; has approximately 20 million users.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Zapier",
+      "type": "private",
+      "context": "Mike Newp's company; Newp discussed OpenAI's high cost of beating the ArcAGI benchmark requiring thousands of dollars per task.",
+      "sentiment": "neutral",
+      "sector": "Automation, SaaS"
+    },
+    {
+      "name": "McKinsey",
+      "type": "private",
+      "context": "Mentioned as likely the driving force behind J&J's sprawling thousand-use-case AI transformation push.",
+      "sentiment": "neutral",
+      "sector": "Consulting"
+    },
+    {
+      "name": "Antares Nuclear",
+      "type": "startup",
+      "context": "Nuclear energy startup founded by Julia DeWall, wife of Farcaster's Dan Romero and a former SpaceX employee.",
+      "sentiment": "neutral",
+      "sector": "Energy, Nuclear"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "AI coding assistant mentioned as a tool J&J might be using for developer productivity.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Developer Tools"
+    },
+    {
+      "name": "Perplexity",
+      "type": "startup",
+      "context": "Mentioned briefly as a consumer AI product the host uses regularly.",
+      "sentiment": "neutral",
+      "sector": "AI/ML, Search"
+    },
+    {
+      "name": "Turo",
+      "type": "startup",
+      "context": "Car sharing marketplace mentioned as using Checkr-style background checks for drivers.",
+      "sentiment": "neutral",
+      "sector": "Marketplace"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Vacation rental platform advertised on the show; described as being on an absolute tear with dreamy beds and 24/7 concierge service.",
+      "sentiment": "bullish",
+      "sector": "Travel, Proptech"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sales tax compliance platform advertised on the show as a Benchmark Series A company; offers under five minutes per month on compliance.",
+      "sentiment": "neutral",
+      "sector": "Fintech, Tax"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Out-of-home advertising platform advertised on the show combining technology, expertise, and data for seamless ad buying.",
+      "sentiment": "neutral",
+      "sector": "Advertising"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Luxury watch marketplace advertised on the show with a Concierge service to source any watch.",
+      "sentiment": "neutral",
+      "sector": "Marketplace"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Smart mattress brand advertised on the show; hosts discussed and compared their personal sleep scores.",
+      "sentiment": "bullish",
+      "sector": "Consumer Tech, Health"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Multi-asset investing platform advertised on the show as trusted by millions for serious investors.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Polymarket",
+      "type": "startup",
+      "context": "Prediction markets platform recommended for monitoring breaking news over the weekend.",
+      "sentiment": "neutral",
+      "sector": "Fintech, Prediction Markets"
+    }
+  ],
+  "people": [
+    {
+      "name": "Jensen Huang",
+      "role": "CEO, NVIDIA",
+      "context": "Made a surprise trip to Beijing immediately after the US imposed new H20 chip export restrictions, signaling NVIDIA will maximize sales to China within allowed limits."
+    },
+    {
+      "name": "Jim Swanson",
+      "role": "CIO, Johnson & Johnson",
+      "context": "Announced J&J's pivot from approximately 9,000 AI use cases to a focused high-value subset, coining the shift as moving from 'a thousand flowers to a really prioritized focus on gen AI.'"
+    },
+    {
+      "name": "Dwarkesh Patel",
+      "role": "Podcast host",
+      "context": "Released a 3-hour episode arguing AGI is roughly 2050 \u2014 over 30 years away \u2014 contending that reasoning is not intelligence and current transformer scaling has fundamental limits."
+    },
+    {
+      "name": "Tyler Cowen",
+      "role": "Economist, George Mason University",
+      "context": "Mentioned as someone whose more conservative AGI timeline views can coexist with near-term forecasters, illustrating that the debate is largely definitional."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO, SpaceX / Tesla / xAI",
+      "context": "Denied the Reuters report that SpaceX is leading the Golden Dome missile defense pitch; also discussed in context of Starlink command-and-control sovereignty concerns."
+    },
+    {
+      "name": "David Senra",
+      "role": "Host, Founders Podcast",
+      "context": "Guest delivering deep-dive on Michael Dell's history; described Dell as 'uncommon among uncommon people' and the most impressive founder story across 400 episodes."
+    },
+    {
+      "name": "Michael Dell",
+      "role": "Founder & CEO, Dell Technologies",
+      "context": "Subject of Senra's deep-dive: started Dell at 19 with $1,000, reached Fortune 500 by age 26, executed the largest tech LBO in history at $24.4B, and acquired EMC/VMware for $67B while carrying $50B in debt."
+    },
+    {
+      "name": "Larry Ellison",
+      "role": "Founder & CTO, Oracle",
+      "context": "Discussed as a 'tech father' figure with ruthless competitiveness comparable to Michael Jordan; operates as a sprinter rather than grinder; reportedly interested in acquiring TikTok."
+    },
+    {
+      "name": "Bill Gates",
+      "role": "Co-founder, Microsoft",
+      "context": "Contrasted with Ellison as a relentless grinder; famous story cited of Gates removing his car radio to maximize Microsoft thinking time during commutes."
+    },
+    {
+      "name": "Steve Jobs",
+      "role": "Co-founder, Apple",
+      "context": "Contrasted with Dell as more product- and brand-focused; was best friends with Ellison; his 1997 clip about not caring about market share cited as classic Jobs philosophy."
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO, Meta",
+      "context": "Facing FTC antitrust trial over Instagram and WhatsApp acquisitions; email leaked in legal proceedings showed his frustration after Evan Spiegel rejected a $6B acquisition offer."
+    },
+    {
+      "name": "Evan Spiegel",
+      "role": "CEO, Snap",
+      "context": "Turned down Meta's $4B and then $6B acquisition offers to remain independent; Snap is now worth ~$13B vs Facebook up ~900% since the rejected offer."
+    },
+    {
+      "name": "Mark Andreessen",
+      "role": "Co-founder, Andreessen Horowitz",
+      "context": "Advised Zuckerberg to buy Snapchat at any price; also cited for a16z blog thesis that market is the single most important factor in startup success."
+    },
+    {
+      "name": "Adam Mosseri",
+      "role": "Head of Instagram, Meta",
+      "context": "Mentioned as a potential CEO if the FTC forces Meta to spin out Instagram as an independent company."
+    },
+    {
+      "name": "Kevin Systrom",
+      "role": "Co-founder, Instagram",
+      "context": "Mentioned as a potential returning leader if Instagram were spun out from Meta, with hosts noting founder-mode leadership would be essential."
+    },
+    {
+      "name": "Ryan Sandler",
+      "role": "Founder & CEO, TrueWork",
+      "context": "Guest discussing TrueWork's acquisition by Checkr after an eight-year journey; praised his board of Alfred Lin, Keith Urboy, and Steve Sarsino as stacked and critical to the company's success."
+    },
+    {
+      "name": "Daniel Yanisse",
+      "role": "Founder & CEO, Checkr",
+      "context": "Guest discussing Checkr's acquisition of TrueWork; described a $50B+ TAM across employment, financial underwriting, fraud prevention, and consumer verification verticals."
+    },
+    {
+      "name": "Nicole Wischoff",
+      "role": "Founder & GP, Wischoff Ventures",
+      "context": "Guest reporting that 98% of institutional LPs she met across two days are fed up with venture: funds too large, managers don't do portfolio construction math, no liquidity for years, and growth fund underwriting models broken by AI revenue ramp speed."
+    },
+    {
+      "name": "Don Valentine",
+      "role": "Founder, Sequoia Capital",
+      "context": "Quoted from Cisco oral history: argued 25-year-old founders must price products at 60-65% gross margins to compensate for the inevitable capital waste that comes with inexperience."
+    },
+    {
+      "name": "Jamie Dimon",
+      "role": "CEO, JPMorgan Chase",
+      "context": "Accompanied Michael Dell to the EMC acquisition pitch and personally vouched for Dell's ability to finance the $67B deal when a board member questioned whether he had the money."
+    },
+    {
+      "name": "Ryan Peterson",
+      "role": "CEO, Flexport",
+      "context": "Posted about second-order tariff effects: ocean freight out of China is dead, ships canceling voyages rather than sailing empty, paradoxically driving freight costs up despite collapsed demand."
+    },
+    {
+      "name": "Sean Frank",
+      "role": "CEO, Ridge Wallet",
+      "context": "Posted that ocean freight out of China is 'capital DEAD' with ships waiting weeks to fill up, causing freight costs to peak despite the trade collapse."
+    },
+    {
+      "name": "Gary Tan",
+      "role": "President & CEO, Y Combinator",
+      "context": "Mentioned as benefiting from the Checkr/TrueWork deal since both are YC alumni companies."
+    },
+    {
+      "name": "Dan Romero",
+      "role": "Founder, Farcaster",
+      "context": "Home featured in Architectural Digest; he and wife Julia DeWall bought four Venice, CA houses and merged them into a compound on a street the host used to live on."
+    },
+    {
+      "name": "Julia DeWall",
+      "role": "Founder, Antares Nuclear",
+      "context": "Wife of Dan Romero; previously worked at SpaceX and is now founding Antares Nuclear, a startup in the nuclear energy space."
+    },
+    {
+      "name": "Alfred Lin",
+      "role": "Partner, Sequoia Capital",
+      "context": "TrueWork board member highlighted by Ryan Sandler as one of three exceptional board members critical to navigating the company's eight-year journey."
+    },
+    {
+      "name": "Michael Moritz",
+      "role": "Former Partner, Sequoia Capital",
+      "context": "Cited for his book on Don Valentine and for a famous Bill Gates focus anecdote about removing his car radio to eliminate non-Microsoft thinking time."
+    },
+    {
+      "name": "Dario Amodei",
+      "role": "CEO, Anthropic",
+      "context": "Jokingly mentioned as someone who just wanted to work on AI safety but would be dragged into managing viral Snapchat content if Anthropic acquired Snap for distribution."
+    },
+    {
+      "name": "Aaron Harris",
+      "role": "Partner, Y Combinator",
+      "context": "Posted best practices for VCs: honor promised calls and meetings, actually review data rooms and references, proactively pass on deals rather than ghosting founders."
+    },
+    {
+      "name": "Andrew Reed",
+      "role": "Partner, Sequoia Capital",
+      "context": "Shared a post humorously comparing founders saying 'make this more of a conversation' at board meetings to a therapy session."
+    },
+    {
+      "name": "John Carmack",
+      "role": "VR/AR developer",
+      "context": "Cited as having publicly stated that Apple Vision Pro needs to be cheaper and lighter \u2014 exactly what the leaked Apple Vision Air appears to address."
+    },
+    {
+      "name": "Harry Stebbings",
+      "role": "Founder, 20VC",
+      "context": "Mentioned in context of European tech ecosystem, suggested as someone who might figure out how to improve Europe's approach to tech competition vs. regulation."
+    },
+    {
+      "name": "Mike Newp",
+      "role": "CEO, Zapier; co-founder, ArcPrize",
+      "context": "Discussed OpenAI's enormous cost of beating the ArcAGI benchmark, noting the precursor eval required thousands of dollars per task due to heavy reasoning token usage."
+    },
+    {
+      "name": "Nathan Myhrvold",
+      "role": "Former CTO, Microsoft",
+      "context": "Cited as an example of extreme post-wealth founder hobbies: owns more T-Rex skeletons than anyone in the world and funds paleontological expeditions."
+    },
+    {
+      "name": "Zach Dell",
+      "role": "Son of Michael Dell; co-founder, Bass",
+      "context": "Spoke with David Senra about his father before the episode, confirming Michael Dell would never stop working and cares about the company he built bearing his name even beyond his death."
+    }
+  ],
+  "topics": [
+    {
+      "name": "AI Venture Capital Dominance",
+      "summary": "AI startups captured a record 58% of global VC in Q1 2025 totaling $73B \u2014 more than double their year-ago share \u2014 as every founder wraps narratives in AI and investors chase generative AI growth, though investment is outpacing revenue significantly.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "NVIDIA China Chip Export Restrictions",
+      "summary": "The US imposed new H20 chip export curbs; Jensen Huang's surprise Beijing trip signals NVIDIA will maximize sales within allowed limits, including potentially shipping gaming GPUs that remain unrestricted.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Google Digital Advertising Antitrust Ruling",
+      "summary": "A US judge ruled Google illegally monopolized key digital ad markets \u2014 its second antitrust loss in eight months \u2014 opening the door to potential breakup remedies; Google will appeal.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "OpenAI Stargate Global Expansion",
+      "summary": "The $500B Stargate data center project is eyeing UK expansion, likely as a capital raise play offering UK and EU institutions AI narrative exposure, equity, or preferential access in exchange for funding contributions.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "OpenAI Flex Processing API",
+      "summary": "OpenAI launched discounted API pricing for non-urgent asynchronous workloads, trading response speed for significant cost savings \u2014 expected to become a large share of API calls for knowledge work that doesn't need real-time delivery.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Golden Dome Missile Defense History and Plan",
+      "summary": "Deep-dive covering US missile defense from 1960s Nike/Zeus through Reagan's SDI to the newly launched Golden Dome plan: 400-1,000 tracking satellites plus ~200 armed interceptors, with SpaceX/Palantir/Anduril as reported lead team, a potential 30-year cost of $600B, and a SaaS-style annual service fee model.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Johnson & Johnson AI Strategy Pivot",
+      "summary": "J&J cut from ~9,000 AI pilots to a high-value focused subset after finding only 10-15% drove 80% of value; doubling down on drug discovery, supply chain risk, and a rep copilot while shutting down redundant or underdelivering projects.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "EU Delays Apple and Meta DMA Fines",
+      "summary": "EU postponed planned cease-and-desist orders against Apple and Meta under the Digital Markets Act as trade negotiations with the US began, suggesting geopolitical leverage is influencing regulatory timing.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Apple Losing China Smartphone Market Share",
+      "summary": "Apple dropped to fifth place in China with 13.7% smartphone share (from 15.6% a year earlier), dethroned by Xiaomi as government subsidies cover 75% of the market segment on devices under $820 \u2014 a segment Apple cannot cost-compete in.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Meta and Google Antitrust Battles",
+      "summary": "Both face unprecedented legal pressure: Google lost its digital ad monopoly case; the FTC is seeking to force Meta to divest Instagram and WhatsApp in a trial focused on market definition from 13 years ago.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Snapchat History and Acquisition Speculation",
+      "summary": "Detailed history of Meta's rejected $4B and $6B Snap acquisition offers; Snap now down 30% YTD at $7.88 vs $83 peak with Facebook up 900% since the rejection; explored whether a foundation model company like Anthropic might acquire Snap for consumer distribution.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Checkr Acquires TrueWork",
+      "summary": "Background screening API pioneer Checkr acquired employment verification startup TrueWork in a deal 10 months in the making; combines to address a $50B+ TAM spanning HR, financial underwriting, mortgage, property management, and fraud prevention.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Michael Dell Founder Story Deep-Dive",
+      "summary": "David Senra delivered an extensive profile of Michael Dell as arguably the most impressive founder story across 400 episodes: $1,000 to Fortune 500 at age 26, a $24.4B LBO, a $67B acquisition financed with $50B in debt, and VMware later sold for $61B.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Institutional LP Sentiment in Venture Capital",
+      "summary": "Nicole Wischoff reported 98% of institutional LPs she met with across two days are fed up: funds are too large, managers don't do portfolio construction math, there's been no liquidity for three-plus years, and growth fund underwriting models are broken by the AI revenue ramp speed.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "China Ocean Freight Collapse",
+      "summary": "Tariffs have effectively killed ocean freight out of China; ships are canceling voyages rather than sail with sparse cargo, paradoxically driving freight costs up despite collapsed demand \u2014 adding to manufacturers' tariff-driven COGS increases.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Ramp GSA Government Pilot",
+      "summary": "Expense management startup Ramp is reportedly being considered for a charge card pilot by the US General Services Administration, which would bring corporate card spend visibility and AI-powered categorization to government procurement.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AGI Timeline Debate",
+      "summary": "Dwarkesh Patel's new episode argues AGI is ~2050 (not 2027), that reasoning is not intelligence, and that transformers alone are insufficient \u2014 requiring memory, tool use, search, and novel algorithmic breakthroughs to reach true AGI.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Apple Manufacturing Tariff Hedging and Vision Air",
+      "summary": "iPhone 16E confirmed assembled in Brazil by Foxconn; Apple Vision Air headset leaked as lighter titanium device dropping Pro branding \u2014 each representing Apple's iterative responses to tariff pressure and VR market needs.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "AI Identity Verification and Fraud",
+      "summary": "Checkr and TrueWork discussed how AI simultaneously increases fraud risk (synthetic IDs, deepfakes) and enables cheaper automated verification; their strategy focuses on verified government and payroll data sources rather than document photos to remain resilient.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "VC Fund Sizing and Portfolio Construction Math",
+      "summary": "LPs frustrated by managers raising large funds without demonstrating portfolio construction discipline; Nicole Wischoff argues managers must show rigorous math on how they return capital, not just identify potential unicorns or deca-corns.",
+      "sentiment": "bearish"
+    }
+  ],
+  "key_claims": [
+    "AI startups captured 58% of global venture capital in Q1 2025, totaling $73 billion \u2014 more than double their share from a year ago.",
+    "Johnson & Johnson was pursuing nearly 9,000 individual AI use cases; only 10-15% drove approximately 80% of the value.",
+    "Apple dropped to fifth place in China's smartphone market with 13.7% share in Q1 2025, down from 15.6% a year earlier.",
+    "The proposed Golden Dome missile defense system could cost $600 billion over a 30-year lifecycle \u2014 roughly equivalent to three years of the entire US defense budget.",
+    "Golden Dome would include 400-1,000 low-earth-orbit tracking satellites plus approximately 200 armed space-based interceptors capable of destroying missiles 50-150 seconds after boost phase.",
+    "Israel's Iron Dome has logged over 5,000 successful missile kills with a claimed 90%+ success rate since entering service in March 2011.",
+    "US financing for Iron Dome totaled approximately $1.6 billion between 2011 and 2021, plus a $1 billion emergency tranche in 2022.",
+    "Reagan's Strategic Defense Initiative spent roughly $30 billion in current dollars on prototypes before being curtailed in 1993.",
+    "Snapchat rejected Meta's $4B acquisition offer in 2013, then a $6B offer; Facebook stock is up approximately 900% since while Snapchat is up only approximately 123%; Snap now trades at $7.88 vs. an $83 peak.",
+    "Nicole Wischoff reported that 98% of institutional LPs she met with over two days are fed up with venture capital.",
+    "Michael Dell started Dell with $1,000 in a dorm room in 1984, reached the Fortune 500 by age 26, and executed the largest technology LBO in history at $24.4B in 2013.",
+    "Dell acquired EMC and VMware for $67B with approximately $50B in debt; VMware alone was later sold to Broadcom for $61B, with Broadcom stock subsequently tripling.",
+    "Ocean freight out of China is effectively dead due to tariffs, with ships canceling voyages rather than sailing empty, paradoxically driving up freight costs.",
+    "Over 180 firms responded to the Golden Dome April industry day, including Lockheed Martin, RTX, General Atomics, L3Harris, AWS, and Azure.",
+    "DST data shows a company growing only 200% YoY from $2M ARR takes approximately 29.5 years to become a $10B company; at 500% YoY growth it takes approximately 7.5 years \u2014 a model now broken by AI-era revenue ramps.",
+    "Don Valentine argued that 25-year-old founders need 60-65% gross margins to compensate for inevitable capital waste from inexperience; managers mode companies can survive on 35-40% but founders cannot.",
+    "OpenAI beating the ArcAGI precursor benchmark required thousands of dollars per task due to heavy reasoning token usage, illustrating the extreme cost of frontier reasoning models.",
+    "Northrop Grumman suffered a major explosion at its rocket motor plant on April 16, 2025 \u2014 a facility that was a key national security asset and Boeing supplier for the LGM-35A Sentinel nuclear triad program.",
+    "Ramp is reportedly being considered for a US General Services Administration charge card pilot program.",
+    "Databricks acquired Fennel, a three-year-old incremental computing startup, as it prepares for a potential IPO."
+  ],
+  "technologies": [
+    "Generative AI",
+    "Large Language Models (LLMs)",
+    "Transformer / Attention Mechanism",
+    "Stable Diffusion",
+    "Kinetic Kill Vehicles (KKVs)",
+    "Space-Based Megawatt-Class Solid-State Lasers",
+    "Persistent Infrared (PIR) Sensor Satellites",
+    "CubeSat Constellations",
+    "Starlink Low Earth Orbit Satellites",
+    "Starshield (classified Starlink variant)",
+    "Iron Dome Interceptor System",
+    "THAAD (Terminal High Altitude Area Defense)",
+    "Patriot Missile Defense",
+    "Aegis Ballistic Missile Defense",
+    "Ground-Based Midcourse Defense",
+    "Apple Intelligence (on-device LLM inference)",
+    "Gaming GPUs for AI Inference",
+    "Real-Time Feature Engineering / Streaming ML Pipelines",
+    "Background Check and Identity Verification APIs",
+    "Electronic Driver Licenses / Digital Identity Wallets",
+    "Biometric Verification / Iris Scanning (Worldcoin Orb)",
+    "AI Fraud Detection and Synthetic Identity Prevention",
+    "Agentic AI / AI Agents",
+    "AI Coding Assistants (Cursor, Windsurf, GitHub Copilot)",
+    "Enterprise AI Chatbots / Knowledge Retrieval",
+    "Titanium Structural Materials (Apple Vision Air)",
+    "Foldable / Tri-Fold Smartphones",
+    "Payroll Data API Integration",
+    "Computer Use / Browser Automation for Legacy Systems"
+  ],
+  "_stats": {
+    "word_count": 33767,
+    "estimated_input_tokens": 44910,
+    "input_tokens": 3,
+    "output_tokens": 24597,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 48732,
+    "duration_ms": 417720,
+    "wall_time_s": 419.2,
+    "cost_usd": 0.9241235000000001,
+    "tokens_per_sec": 58.7
+  }
+}

@@ -1,0 +1,823 @@
+{
+  "episode_date": "2025-11-21",
+  "episode_title": "ai-barnyard-eli-lilly-1t-em-dash-dupe",
+  "companies": [
+    {
+      "name": "Eli Lilly",
+      "type": "public",
+      "context": "Became the first $1 trillion pharmaceutical company in history driven by GLP-1 weight loss drugs. Expected to generate over $100B in weight loss revenue alone by 2034, more than double its entire current portfolio.",
+      "sentiment": "bullish",
+      "sector": "Pharma/Biotech"
+    },
+    {
+      "name": "Novo Nordisk",
+      "type": "public",
+      "context": "Pioneered the GLP-1 boom with Ozempic/Wegovy but lost Canadian patent protection by failing to pay a nominal maintenance fee, costing billions. Now in a duopoly with Eli Lilly in a $72B market.",
+      "sentiment": "neutral",
+      "sector": "Pharma/Biotech"
+    },
+    {
+      "name": "Hims",
+      "type": "public",
+      "context": "Mentioned as a compounder creating GLP-1 products in their own facilities, contributing to a 3x price drop in the market and margin compression from 80% to ~60%.",
+      "sentiment": "neutral",
+      "sector": "Pharma/Health"
+    },
+    {
+      "name": "Pfizer",
+      "type": "public",
+      "context": "Historical example of accidental drug discovery \u2014 Viagra was originally a heart medication, giving Pfizer a 5-year monopoly before Cialis entered the market.",
+      "sentiment": "neutral",
+      "sector": "Pharma/Biotech"
+    },
+    {
+      "name": "Adobe",
+      "type": "public",
+      "context": "Acquiring Semrush for $1.9B. Works with Fal.ai to integrate frontier AI models. Now integrating NanoBanana Pro into Photoshop, seen as a major workflow unlock.",
+      "sentiment": "bullish",
+      "sector": "Software/AI"
+    },
+    {
+      "name": "Semrush",
+      "type": "public",
+      "context": "Being acquired by Adobe for $1.9B. Founded in 2008, did ~$250M in revenue in 2022. SEO leader with its own early GEO product called AI Visibility.",
+      "sentiment": "bullish",
+      "sector": "Martech/SEO"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Described as the clear leader in the generative engine optimization (GEO) market. Show works with them as a sponsor and partner.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Represented as the pig at the slop trough in the AI barnyard map due to Meta Vibes criticism. Partially redeemed by new Sam 3D model release, praised as serious research work.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Sam Altman warned of temporary economic headwinds from resurgent Google. Secured AMD MI450 chip deal with Oracle. Discussing agentic commerce strategy that could threaten vertical shopping apps.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Represented as the donkey in the barnyard map \u2014 doing the laborious donkey work of coding, API, and enterprise. Also called a scapegoat and ugly duckling by critics like David Sacks.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Represented as the fat cat in the barnyard map \u2014 GPU-rich, releasing best image and text models with Gemini 3 Pro. OpenAI acknowledged headwinds from resurgent Google competition.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "NVIDIA",
+      "type": "public",
+      "context": "Represented as the cash cow \u2014 the only consistent profit-maker in AI. Beat recent earnings but stock sold off. Jensen Huang said inference demand will go up by a billion times.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "AMD",
+      "type": "public",
+      "context": "Lisa Sue profiled from WSJ \u2014 pivoted company to AI in 2022, grew market cap from $90B to $335B. MI450 chip deal with Oracle and OpenAI. Sells 41% of data center CPUs. Sue predicts $1T AI chip market by 2030.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Represented as lipstick on a pig in the barnyard map. Apple Intelligence criticized as shallow AI integration constrained by the company's privacy-first brand, disappointing consumers despite heavy marketing.",
+      "sentiment": "bearish",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Satya Nadella described as getting the lion's share of the OpenAI deal \u2014 equity, IP, chip access, and revenue share. Called an incredible dealmaker.",
+      "sentiment": "bullish",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Represented as the workhorse \u2014 building data centers steadily but not aggressively. Has not done a deal with OpenAI for agentic commerce yet. Accused of not being fast enough.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Perplexity",
+      "type": "startup",
+      "context": "Represented as the headless chicken \u2014 pursuing too many strategies simultaneously including a browser, Bloomberg terminal, TikTok acquisition, Chrome, and a venture fund. Browser getting positive reviews but strategy seen as scattered.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Reddit",
+      "type": "public",
+      "context": "Represented as the sitting duck \u2014 gave data to OpenAI without realizing its full value. Now at roughly the same market cap as CoreWeave. Was originally sold to Cond\u00e9 Nast for $10M.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "CoreWeave",
+      "type": "public",
+      "context": "Mentioned as sitting at roughly the same market cap as Reddit. Discussed in context of the neocloud/golden goose narrative as a potential market that got overheated.",
+      "sentiment": "neutral",
+      "sector": "Cloud Infrastructure"
+    },
+    {
+      "name": "SSI (Safe Superintelligence)",
+      "type": "startup",
+      "context": "Represented as the dark horse in the barnyard map \u2014 mysterious, yet to release anything publicly. Founded by Ilya Sutskever after departing OpenAI.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Thingmachines",
+      "type": "startup",
+      "context": "Mira Murati's company post-OpenAI departure. Raising rounds, has blog posts and a product described as RL fine-tuning.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "xAI / Grok",
+      "type": "startup",
+      "context": "Represented as the bull in the china shop \u2014 Elon moving fast on features including adult content and pushing the frontier model companion space. Grok described as maximally truth-seeking LLM.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Dupe (dupe.com)",
+      "type": "startup",
+      "context": "Shopping app helping users find similar products for less, focused on furniture and fashion. Hit #1 in the App Store on launch day, approaching $100M GMV with 18M total shoppers. Building MCP for LLM distribution partnerships.",
+      "sentiment": "bullish",
+      "sector": "E-commerce/AI"
+    },
+    {
+      "name": "Walmart",
+      "type": "public",
+      "context": "Named as a Dupe partner \u2014 has millions of products that Dupe surfaces to high-intent shoppers at the right moment.",
+      "sentiment": "neutral",
+      "sector": "Retail"
+    },
+    {
+      "name": "Charm Industrial",
+      "type": "startup",
+      "context": "CEO Peter Reinhart went viral with a post about regulatory overreach \u2014 specifically $27M in certification costs for their Revoi device that reduces truck emissions by 90%.",
+      "sentiment": "neutral",
+      "sector": "Climate Tech"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "Agreed to buy tens of thousands of AMD's newest MI450 chips in a marquee deal alongside OpenAI.",
+      "sentiment": "bullish",
+      "sector": "Cloud/Enterprise"
+    },
+    {
+      "name": "Cisco",
+      "type": "public",
+      "context": "AMD announced a partnership with Cisco and a Saudi Arabian AI venture firm to build a large cluster of data centers in Saudi Arabia.",
+      "sentiment": "neutral",
+      "sector": "Networking/Cloud"
+    },
+    {
+      "name": "Thrive Capital",
+      "type": "fund",
+      "context": "Josh Kushner's fund, represented as the early bird that got the worm \u2014 very early OpenAI investor who doubled down many times.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "California Forever",
+      "type": "startup",
+      "context": "Project to build a new privately funded city in Solano County backed by Silicon Valley investors. Facing 12,000-page environmental review and extensive government hurdles. Julia Steinberg wrote about it for Arena Magazine.",
+      "sentiment": "neutral",
+      "sector": "Real Estate/Urban Dev"
+    },
+    {
+      "name": "Arena Magazine",
+      "type": "private",
+      "context": "Julia Steinberg's publication preparing to launch issue 006 'An Ode to Capitalism' on December 1st. Now distributed through Barnes & Noble.",
+      "sentiment": "bullish",
+      "sector": "Media"
+    },
+    {
+      "name": "TBD Labs (Meta AI)",
+      "type": "public",
+      "context": "Internal Meta AI lab. Augustus Odena resigned, calling it an impressive group assembled quickly with a high talent bar.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "4840 Solutions",
+      "type": "private",
+      "context": "Pallet company undergoing debt-to-equity restructuring with private credit lenders KKR, BlackRock, and Carlisle after Summit Partners' $1.75B leveraged buyout. Shedding $1B in liabilities.",
+      "sentiment": "bearish",
+      "sector": "Logistics"
+    },
+    {
+      "name": "KKR",
+      "type": "public",
+      "context": "One of the private credit lenders swapping debt for equity in distressed 4840 Solutions restructuring.",
+      "sentiment": "neutral",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "BlackRock",
+      "type": "public",
+      "context": "One of the private credit lenders involved in the 4840 Solutions debt-to-equity restructuring.",
+      "sentiment": "neutral",
+      "sector": "Asset Management"
+    },
+    {
+      "name": "Carlisle Group",
+      "type": "public",
+      "context": "One of the private credit lenders involved in 4840 Solutions restructuring.",
+      "sentiment": "neutral",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "Blue Owl",
+      "type": "public",
+      "context": "Private credit firm whose co-CEO pushed back at Jamie Dimon's cockroach comments about private credit distress.",
+      "sentiment": "neutral",
+      "sector": "Private Credit"
+    },
+    {
+      "name": "Summit Partners",
+      "type": "fund",
+      "context": "PE firm that acquired 4840 Solutions with $1.75B in private credit debt, now facing restructuring as lenders swap debt for equity.",
+      "sentiment": "bearish",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "Intel",
+      "type": "public",
+      "context": "Mentioned as having self-inflicted wounds that allowed AMD to take CPU market share over the past decade.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Airbnb",
+      "type": "public",
+      "context": "Brian Chesky mentioned in context of whether using Chinese open-source models for back-end automation poses soft power risks.",
+      "sentiment": "neutral",
+      "sector": "Travel/Tech"
+    },
+    {
+      "name": "Snapchat",
+      "type": "public",
+      "context": "Perplexity reportedly gave $400M to Snapchat, cited as an example of Perplexity's headless chicken strategy.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Fal.ai",
+      "type": "startup",
+      "context": "Adobe works with Fal to integrate any AI model for inference. Also an ad sponsor enabling AI video and image model deployment at scale.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Mentioned as a prime example of a company highly legible to capital. Ad sponsor offering corporate cards and financial operations.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Makers of Devin the AI software engineer, cited as an example of a company highly legible to capital. Ad sponsor during the show.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Project management tool for software development, listed as a Turbopuffer customer. Featured in an ad read.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "AI code editor mentioned as a Turbopuffer customer.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/AI"
+    },
+    {
+      "name": "Turbopuffer",
+      "type": "startup",
+      "context": "Serverless vector and full-text search used by Cursor, Linear, and Anthropic. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/AI"
+    },
+    {
+      "name": "Graphite.dev",
+      "type": "startup",
+      "context": "Code review tool for the AI era. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Leading AI trust management and compliance automation platform. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "Security/Compliance"
+    },
+    {
+      "name": "Genentech",
+      "type": "private",
+      "context": "Historical example of a forward-deployed VC (Bob Swanson/Kleiner Perkins) who worked hands-on to help scientists build a biotech business.",
+      "sentiment": "neutral",
+      "sector": "Biotech"
+    },
+    {
+      "name": "Kleiner Perkins",
+      "type": "fund",
+      "context": "Mentioned in historical context as the VC firm behind Genentech's founding \u2014 an example of true forward-deployed VC work.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Oak Investment Partners",
+      "type": "fund",
+      "context": "Bandel Carano's VC firm. He was an investor in Polycom and sold a Silicon Valley estate in Portola Valley for $56M.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "First Round Capital",
+      "type": "fund",
+      "context": "Firm where Phineas (Finn) Barnes is a GP, credited with the chocolate cake problem concept about misaligned stakeholder visions.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Sunday Robotics",
+      "type": "startup",
+      "context": "Maker of cute robots with hats called Memo. John Palmer suggested they pivot to a consumer teleoperation app.",
+      "sentiment": "neutral",
+      "sector": "Robotics"
+    },
+    {
+      "name": "Polycom",
+      "type": "private",
+      "context": "Iconic conference call phone company. Bandel Carano was an early investor, enabling his subsequent real estate wealth.",
+      "sentiment": "neutral",
+      "sector": "Communications Tech"
+    },
+    {
+      "name": "JP Morgan",
+      "type": "public",
+      "context": "Jamie Dimon referenced for the cockroach analogy \u2014 when you see one private credit problem, there are usually more.",
+      "sentiment": "neutral",
+      "sector": "Finance"
+    },
+    {
+      "name": "IBM",
+      "type": "public",
+      "context": "Lisa Sue worked at IBM early in her career, developing a reputation for designing products to customer needs.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Tech"
+    },
+    {
+      "name": "Intel",
+      "type": "public",
+      "context": "Mentioned as having self-inflicted wounds allowing AMD to capture CPU market share, described as AMD's prior major competitor.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Futurum Group",
+      "type": "private",
+      "context": "Research firm led by Daniel Newman, quoted saying AMD is positioned to take meaningful share of the data center market previously dominated by NVIDIA.",
+      "sentiment": "neutral",
+      "sector": "Research/Advisory"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Multistreaming platform allowing one live stream to 30+ destinations. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "Media Tech"
+    },
+    {
+      "name": "Julius AI",
+      "type": "startup",
+      "context": "AI data analyst platform. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Luxury watch marketplace with in-house authentication. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Out-of-home advertising platform. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "Adtech"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sales tax and VAT compliance automation. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Compliance"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "AI-native CRM. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Fin.ai",
+      "type": "startup",
+      "context": "AI agent for customer support, described as the number one AI agent for customer service. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "8Sleep",
+      "type": "startup",
+      "context": "Smart sleep technology. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Vacation home rental platform with hotel-grade service. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "Travel/Real Estate"
+    },
+    {
+      "name": "Privy",
+      "type": "startup",
+      "context": "Crypto infrastructure for white label wallets and on-chain integrations. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "Web3/Crypto"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Multi-asset investing platform. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Design and development collaboration tool. Ad sponsor.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    }
+  ],
+  "people": [
+    {
+      "name": "Dave Ricks",
+      "role": "CEO, Eli Lilly",
+      "context": "Hosts joked he should post a thread on 'how to run a 13-figure business' after Eli Lilly hit $1T market cap."
+    },
+    {
+      "name": "Lisa Sue",
+      "role": "CEO, AMD",
+      "context": "Profiled from WSJ \u2014 pivoted AMD to AI in a 2022 board meeting, grew market cap from $90B to $335B, became a billionaire, now getting celebrity treatment with autograph requests at industry events. Predicts $1T AI chip market by 2030."
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO, NVIDIA",
+      "context": "Called the dominant figure in AI \u2014 NVIDIA is the cash cow. Said inference demand will grow by a billion times. Trump asked him to stand for applause at White House Saudi dinner, overshadowing Lisa Sue."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Acknowledged 'temporary economic headwinds' from resurgent Google. Said ChatGPT is AI to most people. Warned of Gemini's competitive pressure especially on the API side."
+    },
+    {
+      "name": "Satya Nadella",
+      "role": "CEO, Microsoft",
+      "context": "Described as getting the lion's share of the OpenAI deal \u2014 equity, IP, chip access, and 20% revenue. Called an incredible dealmaker."
+    },
+    {
+      "name": "Andrej Karpathy",
+      "role": "AI researcher, former Tesla/OpenAI",
+      "context": "Represented as the black sheep for taking a contrarian stance \u2014 said we are in a decade of agents and AGI may not be imminent, appearing on the Dwarkesh Patel show."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO, xAI/Tesla",
+      "context": "Represented as the bull in the china shop \u2014 disrupting data center timelines and moving fast on frontier model features including adult content, breaking unspoken rules among model companies."
+    },
+    {
+      "name": "Josh Kushner",
+      "role": "Founder, Thrive Capital",
+      "context": "Represented as the early bird that got the worm \u2014 very early OpenAI investor who doubled down many times."
+    },
+    {
+      "name": "Leopold Aschenbrenner",
+      "role": "AI researcher, author of Situational Awareness",
+      "context": "Represented as the bird's eye view in the barnyard map \u2014 has situational awareness of the AI landscape and has been making accurate AI bets."
+    },
+    {
+      "name": "Augustus Odena",
+      "role": "Researcher, formerly TBD Labs/Meta AI",
+      "context": "Announced resignation, calling it an impressive group. Signaled plans for new ambitious projects at the intersection of AI. Expressed interest in coming on the show."
+    },
+    {
+      "name": "Mira Murati",
+      "role": "Founder, Thingmachines; formerly OpenAI",
+      "context": "One of the big departures from OpenAI. Her company Thingmachines is raising rounds and has a product around RL fine-tuning."
+    },
+    {
+      "name": "Ilya Sutskever",
+      "role": "Co-founder, SSI; formerly OpenAI",
+      "context": "Named as one of the big departures from OpenAI alongside Mira Murati. His company SSI is the dark horse \u2014 mysterious and not yet public with products."
+    },
+    {
+      "name": "Greg Brockman",
+      "role": "Co-founder/President, OpenAI",
+      "context": "Bernie Sanders listed his net worth as 'question mark' in a viral post criticizing AI oligarchs attending a Saudi Crown Prince dinner."
+    },
+    {
+      "name": "Alexis Ohanian",
+      "role": "Co-founder, Reddit",
+      "context": "Said Reddit didn't realize how valuable their data was when they did the OpenAI data deal, making them a sitting duck who missed the opportunity to train their own model."
+    },
+    {
+      "name": "Brian Chesky",
+      "role": "CEO, Airbnb",
+      "context": "Mentioned in context of whether using Chinese open-source models for back-end automation poses soft power risks \u2014 hosts argued commodity AI tasks are unlikely to transmit cultural values."
+    },
+    {
+      "name": "Peter Reinhart",
+      "role": "CEO, Charm Industrial",
+      "context": "Went viral with a post about regulatory overreach \u2014 specifically the $27M in certification costs for their Revoi device that reduces truck emissions by 90%."
+    },
+    {
+      "name": "Andy Jassy",
+      "role": "CEO, Amazon",
+      "context": "Briefly mentioned as investors questioning whether he is the right person to lead Amazon's AI strategy."
+    },
+    {
+      "name": "Bill Peebles",
+      "role": "Researcher, Sora (OpenAI)",
+      "context": "Briefly mentioned in barnyard map as an example of someone associated with AI-generated content/slop discussion."
+    },
+    {
+      "name": "Bernie Sanders",
+      "role": "U.S. Senator",
+      "context": "Posted criticizing AI oligarchs attending a private dinner with Saudi Crown Prince MBS. Listed Greg Brockman's net worth as 'question mark.' Hosts noted he is 84 years old."
+    },
+    {
+      "name": "Joel Stein",
+      "role": "Writer, Wall Street Journal",
+      "context": "Wrote a defense of the M-dash, arguing AI has made this human punctuation mark taboo and that professionals should use more of them as a declaration of humanity."
+    },
+    {
+      "name": "Morgan Housel",
+      "role": "Author/investor",
+      "context": "Posted that the majority of societal problems are downstream of housing affordability and the fix is building more homes and addressing local zoning issues."
+    },
+    {
+      "name": "Chris Murphy",
+      "role": "U.S. Senator",
+      "context": "Reported that a PE-owned hockey rink threatened to penalize his child's team if he live-streamed their game, bringing national attention to private equity control of youth sports."
+    },
+    {
+      "name": "Ryan Wedding",
+      "role": "Former Olympic snowboarder / alleged drug kingpin",
+      "context": "Represented Canada at the 2002 Winter Olympics then allegedly became a transnational drug trafficker. On the FBI 10 Most Wanted list. Pam Bondi called him the modern-day Pablo Escobar."
+    },
+    {
+      "name": "Will Minaitis",
+      "role": "Writer/investor",
+      "context": "Published a viral long-form post on 'becoming legible to capital' arguing the greatest superpower for a firm is having capital magnetically attracted to their idea through founder-idea fusion and a clear growth equation."
+    },
+    {
+      "name": "John Palmer",
+      "role": "Entrepreneur, friend of the show",
+      "context": "Suggested Sunday Robotics should pivot to a consumer teleoperation app where people meet up as robots."
+    },
+    {
+      "name": "Julia Steinberg",
+      "role": "Editor/Writer, Arena Magazine",
+      "context": "Guest on the show. Discussed California Forever regulatory hurdles, the college admissions scandal she witnessed firsthand, San Francisco's ongoing homelessness issues, and AI's impact on the legal profession."
+    },
+    {
+      "name": "Bobby Ghoshal",
+      "role": "Founder/CEO, Dupe",
+      "context": "Guest on the show. Discussed Dupe's shopping app hitting #1 in the App Store, approaching $100M GMV with 18M total shoppers, and building MCP integrations to let LLMs share commerce commissions."
+    },
+    {
+      "name": "Nikita Beer",
+      "role": "Entrepreneur",
+      "context": "Helped Dupe negotiate the dupe.com domain and put out a viral tweet that launched the company, described as the best money Dupe ever spent."
+    },
+    {
+      "name": "Bandel Carano",
+      "role": "General Partner, Oak Investment Partners",
+      "context": "Sold his Portola Valley Silicon Valley estate for $56M after listing at $85M. Was an early investor in Polycom."
+    },
+    {
+      "name": "Phineas (Finn) Barnes",
+      "role": "GP, First Round Capital",
+      "context": "Credited with the chocolate cake problem analogy \u2014 firms fail when management, investors, and talent all believe they're building different things."
+    },
+    {
+      "name": "Jamie Dimon",
+      "role": "CEO, JP Morgan",
+      "context": "Referenced for coining the cockroach analogy for private credit distress \u2014 when you see one, there are usually more."
+    },
+    {
+      "name": "Lorraine Powell Jobs",
+      "role": "Investor/philanthropist",
+      "context": "Named as a backer of the California Forever project to build a new city in Solano County, CA."
+    },
+    {
+      "name": "Reid Hoffman",
+      "role": "Co-founder, LinkedIn / Investor",
+      "context": "Named as a backer of the California Forever project."
+    },
+    {
+      "name": "Marc Andreessen",
+      "role": "Co-founder, a16z",
+      "context": "Named as a backer of the California Forever project."
+    },
+    {
+      "name": "Patrick and John Collison",
+      "role": "Co-founders, Stripe",
+      "context": "Named as backers of the California Forever project."
+    },
+    {
+      "name": "Peter Thiel",
+      "role": "Co-founder, PayPal / Investor",
+      "context": "Mentioned as co-teaching a class at Stanford where a student used ChatGPT to summarize Hegel in three bullet points."
+    },
+    {
+      "name": "Bob Swanson",
+      "role": "Venture capitalist, Genentech co-founder",
+      "context": "Historical example of a true forward-deployed VC \u2014 met with Herbert Boyer in 1976 and worked hands-on in the Genentech office every Friday to build the business."
+    }
+  ],
+  "topics": [
+    {
+      "name": "GLP-1 Weight Loss Drug Market",
+      "summary": "Eli Lilly hit $1T market cap driven by GLP-1 drugs. The $72B market is projected to exceed $100B in weight loss revenue alone by 2034. Compounders like Hims created a 3x price drop but demand growth offsets margin compression from 80% to ~60%. Next battle is oral pill formulations. Neither Eli Lilly nor Novo has a monopoly \u2014 it is a duopoly with no winner-take-all outcome.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Barnyard Market Map",
+      "summary": "Hosts created a barnyard-themed AI market map using NanoBanana Pro image generation. Meta=pigs at slop trough, NVIDIA=cash cow, Elon/xAI=bull in china shop, Apple=lipstick on pig, Anthropic=donkey, Google=fat cat, Perplexity=headless chicken, Chinese open source=snake in the grass, SSI=dark horse, Reddit=sitting duck, Amazon=workhorse, Karpathy=black sheep, Josh Kushner=early bird, Leopold=bird's eye view, Satya=lion's share.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Adobe Acquiring Semrush and GEO Market",
+      "summary": "Adobe acquiring Semrush for $1.9B. The generative engine optimization market remains highly competitive \u2014 VCs are pitched GEO companies multiple times per week. Semrush has its own early GEO product and may enter the space more aggressively post-acquisition.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AMD and Lisa Sue Profile",
+      "summary": "WSJ profile of Lisa Sue who pivoted AMD to AI in a 2022 board meeting, growing market cap from $90B to $335B. AMD secured MI450 chip deal with Oracle and OpenAI. Now sells 41% of data center CPUs. Sue predicts $1T AI chip market by 2030 and says underinvesting is more dangerous than overinvesting.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "M-Dash and AI Writing Tells",
+      "summary": "Joel Stein's WSJ piece defended the M-dash against AI-shaming. The M-dash has become shorthand for AI-written content. Hosts argued that antithetical parallelism ('it's not X, it's Y') is an even bigger AI tell \u2014 and it appears across all major models, not just OpenAI, suggesting it was baked in from professional writing training data.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Luxury Real Estate \u2014 Is $200M the New $100M",
+      "summary": "Multiple US properties listed at $200M+ concentrated in South Florida. AI wealth boom expected to drive ultra-luxury prices higher. A Silicon Valley estate in Portola Valley sold for $56M. San Francisco's 94127 zip code now second most expensive at $2.5M median list price.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Private Equity Control of Youth Sports",
+      "summary": "PE firms buying hockey rinks and banning parents from filming games, forcing subscription to proprietary recording services. The issue gained national attention when enforcement targeted U.S. Senator Chris Murphy at his child's hockey game.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Regulatory Overreach and Climate Tech",
+      "summary": "Charm Industrial CEO Peter Reinhart's viral post described $27M in certification costs for their Revoi device that reduces truck emissions by 90%, with $100K per certification across 270 engine families. Cited as a systemic problem stifling clean tech innovation.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Private Credit Distress \u2014 Cockroach Problem",
+      "summary": "4840 Solutions pallet company restructuring as lenders KKR, BlackRock, Carlisle swap $1.75B debt for equity after Summit Partners' buyout. Hosts noted private credit firms increasingly converting debt to equity to prevent outright losses. Jamie Dimon's cockroach analogy referenced.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Legibility to Capital",
+      "summary": "Will Minaitis long-form post argued the single greatest superpower for a firm is being magnetically legible to capital \u2014 where founder and idea are inseparable, growth is a superlinear function of dollars in, and all stakeholders share the exact same vision. Examples cited: Ramp, Cognition, Leopold, Thrive Capital.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "California Forever City Project",
+      "summary": "Julia Steinberg's Arena Magazine piece on the privately funded new city in Solano County backed by Lorraine Powell Jobs, Collison Brothers, Hoffman, and Andreessen. Project is stalled by a 12,000-page environmental review and other government hurdles despite private capital backing.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Chinese Open Source AI Models",
+      "summary": "DeepSeek and Kimi discussed as threats to closed-source model pricing power. Hosts debated whether soft power concerns are overstated for B2B automation use cases, agreeing it is more of a business model threat than a cultural one, though application-layer proliferation globally remains a concern.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "OpenAI Headwinds from Google Gemini",
+      "summary": "Sam Altman publicly acknowledged temporary economic headwinds from resurgent Google. Gemini 3 Pro described as top-tier on reasoning, multimodal, and coding benchmarks. Hosts debated whether stickiness of ChatGPT brand is sufficient to maintain API and consumer dominance.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "College Admissions, Law School, and AI Labor Market",
+      "summary": "Julia Steinberg discussed witnessing the college admissions scandal firsthand. One third of Stanford class of 2025 co-termed. Law school applications rising despite AI automating associate work \u2014 debated whether top 5% of law students can still build strong careers or whether the track is becoming an MLM-like value trap.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "San Francisco Housing and Recovery",
+      "summary": "West Portal zip code now second most expensive in SF at $2.5M median list price. OpenAI secondary market wealth expected to drive real estate prices higher in a 20-mile radius. Julia Steinberg described ongoing homelessness issues in Pacific Heights despite recovery narrative.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Dupe Shopping App and Agentic Commerce",
+      "summary": "Bobby Ghoshal discussed Dupe's approach to finding similar products for less using vectorized product catalogs and brand partnerships. Hit #1 in App Store on launch day. Approaching $100M GMV with 18M total shoppers. Building MCP to let LLMs plug in and split commerce commissions.",
+      "sentiment": "bullish"
+    }
+  ],
+  "key_claims": [
+    "Eli Lilly became the first $1 trillion pharmaceutical company in history",
+    "Eli Lilly projected to generate over $100 billion in weight loss drug revenue alone by 2034, more than double its current entire portfolio",
+    "GLP-1 drug prices have fallen 3x as compounders entered the market, compressing margins from 80% to ~60%",
+    "Novo Nordisk lost Canadian patent protection on Ozempic and Wegovy by failing to pay a nominal maintenance fee, costing them billions",
+    "AMD's market cap grew from $90 billion to over $335 billion after Lisa Sue's 2022 AI pivot board meeting",
+    "AMD now sells an estimated 41% of data center CPUs, up from essentially 0% five years ago",
+    "Lisa Sue predicts the AI and data center computing market will reach $1 trillion per year by 2030",
+    "NVIDIA expected to generate over $200 billion in revenue next fiscal year",
+    "Jensen Huang said demand for inference functions is about to go up by a billion times",
+    "Adobe is acquiring Semrush for $1.9 billion",
+    "Semrush did approximately $250 million in revenue in 2022",
+    "A third of Stanford's class of 2025 co-termed, staying for a fifth-year master's program",
+    "Dupe hit #1 in the App Store on launch day and is approaching $100M in GMV with 18M total shoppers and 1-2M monthly active shoppers",
+    "CoreWeave and Reddit are now sitting at roughly the same market cap",
+    "Reddit was originally sold to Cond\u00e9 Nast for $10 million",
+    "Sam Altman publicly acknowledged temporary economic headwinds from resurgent Google competition for OpenAI",
+    "ChatGPT uses M-dashes at a rate of 11 per thousand words; professional writers use M-dashes 4.4x more than average people, explaining why LLMs trained on professional writing over-index on them",
+    "Charm Industrial faces $27 million in regulatory certification costs for a device that reduces truck emissions by 90%",
+    "AMD's stock jumped nearly 60% in October 2025 then fell approximately 20% in November 2025",
+    "The California Forever city project requires a 12,000-page environmental review",
+    "A $200 million price threshold has emerged in luxury real estate with at least five major US properties listed at that level or above in 2025",
+    "Ryan Wedding, former Canadian Olympic snowboarder, is on the FBI 10 Most Wanted list as an alleged dominant cocaine distributor in Canada"
+  ],
+  "technologies": [
+    "GLP-1 drugs (semaglutide / Ozempic / Wegovy, tirzepatide / Mounjaro / Zepbound)",
+    "Oral GLP-1 pill formulations (in development)",
+    "NanoBanana Pro (AI image generation model)",
+    "Gemini 3 Pro",
+    "GPT-4o",
+    "Grok",
+    "DeepSeek",
+    "Kimi",
+    "NVIDIA GPUs",
+    "AMD MI450",
+    "Google TPUs",
+    "MCP (Model Context Protocol)",
+    "Vector databases",
+    "Computer use / browser agents",
+    "Generative Engine Optimization (GEO)",
+    "RL fine-tuning",
+    "Agentic checkout",
+    "Adderall XR extended-release bead delivery mechanism",
+    "Revoi electric retrofit system for semi-trucks",
+    "Live product catalog scraping and vectorized product matching"
+  ],
+  "_stats": {
+    "word_count": 30165,
+    "estimated_input_tokens": 40119,
+    "input_tokens": 3,
+    "output_tokens": 23204,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 44471,
+    "duration_ms": 441913,
+    "wall_time_s": 443.1,
+    "cost_usd": 0.8626672499999999,
+    "tokens_per_sec": 52.4
+  }
+}

@@ -1,0 +1,810 @@
+{
+  "episode_date": "2025-04-16",
+  "episode_title": "china-semiconductor-history-nvidia-h20-export-controls",
+  "companies": [
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "US government banned Nvidia from selling H20 chips to China indefinitely, triggering a $5.5 billion Q1 charge and ~10% stock decline. Nvidia had designed the H20 as a workaround chip for the Chinese market within export control limits.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors/AI"
+    },
+    {
+      "name": "Huawei",
+      "type": "private",
+      "context": "Discussed as China's semiconductor champion with its HiSilicon/high silicon chip design arm and new Cloud Matrix 384 AI system delivering 300 petaflops but with high power consumption. Has $118B in revenue in 2024.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors/Telecom"
+    },
+    {
+      "name": "SMIC",
+      "type": "public",
+      "context": "China's state-backed foundry modeled on TSMC, founded in 2000, added to US entity list in December 2022. Progressed from 180nm to advanced nodes over decades.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "TSMC",
+      "type": "public",
+      "context": "Referenced as the gold standard foundry that SMIC was modeled after; facilitated production of over 3 million cutting-edge chip dies for Chinese AI efforts, sometimes in violation of US chip rules.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "DeepSeek",
+      "type": "startup",
+      "context": "Chinese AI lab whose supercomputer used to train V3 model is likely in breach of US export control restrictions on supercomputers. Trained state-of-the-art models using legally sold American chips.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Facing FTC antitrust trial over Instagram and WhatsApp acquisitions; offered $450M to settle vs FTC's $30B demand. Zuckerberg testified for four hours.",
+      "sentiment": "bearish",
+      "sector": "Social Media/Tech"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "In talks to acquire coding app Windsurf for ~$3 billion, which would be OpenAI's largest acquisition to date. Discussed in context of AI chip history and coding tool market.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "Coding app formerly known as Codium reportedly being acquired by OpenAI for ~$3 billion. Backed by Green Oaks from seed through Series A.",
+      "sentiment": "bullish",
+      "sector": "AI/Developer Tools"
+    },
+    {
+      "name": "NEO",
+      "type": "fund",
+      "context": "Ali Partovi's mentorship community and VC fund raised $320M in new funds. Focuses on identifying top technical talent in college and has backed companies like Cursor, Kalshi, and Blue Sky.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital/Education"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "Mentioned as a successful NEO portfolio company; CEO Michael Truel was identified by Ali Partovi when he was a rising sophomore in college.",
+      "sentiment": "bullish",
+      "sector": "AI/Developer Tools"
+    },
+    {
+      "name": "Kalshi",
+      "type": "startup",
+      "context": "NEO portfolio company that legalized trading on event outcomes including elections; became the largest sports betting market in the US within months of launch.",
+      "sentiment": "bullish",
+      "sector": "Fintech/Prediction Markets"
+    },
+    {
+      "name": "Blue Sky",
+      "type": "startup",
+      "context": "Mentioned as a successful NEO portfolio company.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Filed its S1, described as a milestone after a long journey including years in stealth and a failed Adobe acquisition attempt.",
+      "sentiment": "bullish",
+      "sector": "Design/SaaS"
+    },
+    {
+      "name": "ASML",
+      "type": "public",
+      "context": "Dutch company that makes EUV lithography machines; restricted from selling to China as part of US-coordinated multilateral export controls.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors/Equipment"
+    },
+    {
+      "name": "Intel",
+      "type": "public",
+      "context": "Expanded into China in mid-2000s, building assembly/testing facilities in Chengdu and a 300mm fab in Dalian; most directly impacted by early chip restrictions.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Qualcomm",
+      "type": "public",
+      "context": "Mentioned as one of the companies most directly affected by US restrictions on chip imports to China during the Made in China 2025 era.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Alibaba",
+      "type": "public",
+      "context": "One of the Chinese cloud giants buying Nvidia chips; mentioned as a buyer of H20 chips in the recently halted $16B+ order. Also has its Tea Head chip initiative.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Baidu",
+      "type": "public",
+      "context": "Mentioned as a Chinese cloud provider that deepened partnerships with Nvidia and continued to purchase AI chips despite restrictions.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Tencent",
+      "type": "public",
+      "context": "One of the Chinese cloud giants purchasing Nvidia H20 chips; reportedly installed H20s in a facility used to train a large model, likely in breach of existing export controls.",
+      "sentiment": "bearish",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "ByteDance",
+      "type": "private",
+      "context": "Named as one of the Chinese tech giants targeted in the H20 chip export order halted by the US government.",
+      "sentiment": "neutral",
+      "sector": "AI/Social Media"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Referenced for TPU chip design and AlphaGo's AI success that accelerated global AI investment awareness. Google Meet was also down during the show.",
+      "sentiment": "neutral",
+      "sector": "AI/Cloud"
+    },
+    {
+      "name": "Andrel",
+      "type": "startup",
+      "context": "Referenced for the Roadrunner drone program, which is cheaper than traditional missiles and can return if it misses a target.",
+      "sentiment": "bullish",
+      "sector": "Defense Tech"
+    },
+    {
+      "name": "Blue Origin",
+      "type": "private",
+      "context": "Bezos's space company conducted a high-profile mission with Katy Perry, Gail King and others; discussed in context of space tourism and marketing.",
+      "sentiment": "bullish",
+      "sector": "Aerospace/Space Tourism"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "CTO Sham Sankar announced as guest for next show; company recently joined the Fortune 500.",
+      "sentiment": "bullish",
+      "sector": "AI/Defense Tech"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor of the show; prominently featured on the host's jacket.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor of the show; provides out-of-home advertising technology.",
+      "sentiment": "neutral",
+      "sector": "Adtech"
+    },
+    {
+      "name": "8 Sleep",
+      "type": "startup",
+      "context": "Sponsor of the show; Pod 4 sleep technology mentioned with one host getting a sleep score of 100.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Sponsor of the show; watch marketplace with concierge service.",
+      "sentiment": "neutral",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sponsor of the show; sales tax compliance and automation platform for 1000+ companies.",
+      "sentiment": "neutral",
+      "sector": "Fintech/SaaS"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor of the show; vacation home rental service.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Public",
+      "type": "startup",
+      "context": "Sponsor of the show; multi-asset investing platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Polymarket",
+      "type": "startup",
+      "context": "Sponsor of the show; hosts suggested creating a market about the cause of the internet outages.",
+      "sentiment": "neutral",
+      "sector": "Prediction Markets"
+    },
+    {
+      "name": "Green Oaks",
+      "type": "fund",
+      "context": "Invested in Windsurf from seed through Series A; stands to make ~$750M on a ~$28M investment if the OpenAI acquisition closes at $3B.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Thrive Capital",
+      "type": "fund",
+      "context": "Josh Kushner's firm; praised for not spreading investments across multiple competing foundation model companies, only backing OpenAI.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Mentioned as being invested in both OpenAI and xAI, which are described as direct competitors.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Mentioned as being invested in multiple foundation model companies including OpenAI.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "General Catalyst",
+      "type": "fund",
+      "context": "Led Windsurf's $150M Series C at $1.25B post-money valuation.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Kleiner Perkins",
+      "type": "fund",
+      "context": "Invested in Windsurf's Series B; Ev Randle mentioned as investor in Captions app.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Wing VC",
+      "type": "fund",
+      "context": "Zach DeWitt from Wing VC noted Windsurf as an incredible outcome in four years.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Captions",
+      "type": "startup",
+      "context": "App launching new features; backed by Kleiner's Ev Randle. Used by one host for adding captions to videos.",
+      "sentiment": "bullish",
+      "sector": "AI/Media"
+    },
+    {
+      "name": "ZTE",
+      "type": "public",
+      "context": "One of the first Chinese tech companies hit by US entity list restrictions; US imposed harsh punishments that forced companies to re-examine reliance on US components.",
+      "sentiment": "bearish",
+      "sector": "Telecom/Semiconductors"
+    },
+    {
+      "name": "Spreadtrum",
+      "type": "private",
+      "context": "Chinese fabless chip design firm that emerged in the early 2000s designing chips for mobile applications; later acquired by Tsinghua Uni Group.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Tsinghua Uni Group",
+      "type": "private",
+      "context": "Chinese conglomerate that acquired domestic chip players like Spreadtrum and RDA Microelectronics in a drive to build integrated chip ecosystems.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "HiSilicon",
+      "type": "private",
+      "context": "Huawei's internal chip design arm formed to supply ASICs for telecom; forced to become ultra self-reliant after Huawei was added to the US entity list.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Sapien",
+      "type": "startup",
+      "context": "NEO portfolio company founded by three dropouts from Harvard, Stanford, and UT Austin; described as one of NEO's best investments of the past year.",
+      "sentiment": "bullish",
+      "sector": "AI/Tech"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Mentioned as a company founded by NEO scholars; Scott Wu referenced as a speaker at NEO's parents weekend event.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Pika",
+      "type": "startup",
+      "context": "Mentioned as a company founded by NEO scholars.",
+      "sentiment": "neutral",
+      "sector": "AI/Media"
+    },
+    {
+      "name": "Chai Discovery",
+      "type": "startup",
+      "context": "Mentioned as a company founded by NEO scholars.",
+      "sentiment": "neutral",
+      "sector": "Biotech/AI"
+    },
+    {
+      "name": "PayPal",
+      "type": "public",
+      "context": "Originally Confinity, founded by Max Levchin; Ali Partovi recalled missing the early investment as a lesson about betting on people over ideas.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Ali Partovi sold Link Exchange to Microsoft at age 26; also mentioned as a buyer of Nvidia chips and developer of quantum-focused chip work.",
+      "sentiment": "neutral",
+      "sector": "Tech"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Mentioned as a company doing its own chip design work.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Scale AI",
+      "type": "startup",
+      "context": "Michael Kratzios worked at Scale AI between his government roles.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Dropbox",
+      "type": "public",
+      "context": "Mentioned as an early angel investment by Ali Partovi.",
+      "sentiment": "neutral",
+      "sector": "SaaS/Cloud"
+    },
+    {
+      "name": "Uber",
+      "type": "public",
+      "context": "Mentioned as an early angel investment by Ali Partovi.",
+      "sentiment": "neutral",
+      "sector": "Mobility/Tech"
+    },
+    {
+      "name": "Zappos",
+      "type": "private",
+      "context": "Mentioned as an early angel investment by Ali Partovi.",
+      "sentiment": "neutral",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "Airbnb",
+      "type": "public",
+      "context": "Ali Partovi missed the seed round after Brian Chesky pitched him at a restaurant; invested in a later round.",
+      "sentiment": "neutral",
+      "sector": "Travel/Marketplace"
+    },
+    {
+      "name": "Facebook",
+      "type": "public",
+      "context": "Discussed extensively in context of FTC antitrust trial over Instagram and WhatsApp acquisitions; three eras of Facebook defined by Ben Thompson.",
+      "sentiment": "bearish",
+      "sector": "Social Media/Tech"
+    },
+    {
+      "name": "Instagram",
+      "type": "public",
+      "context": "Facebook's $1B acquisition central to FTC antitrust case; FTC alleges it was purchased to neutralize a competitor.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Snapchat",
+      "type": "public",
+      "context": "Referenced as a competitor Facebook successfully competed with by copying Stories feature; named in FTC's narrow market definition alongside MeWe.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "TikTok",
+      "type": "private",
+      "context": "Referenced as a competitor that changed social media into algorithmic vertical video feeds; noted that the US has been unable to force its sale despite national security concerns.",
+      "sentiment": "neutral",
+      "sector": "Social Media/AI"
+    },
+    {
+      "name": "MeWe",
+      "type": "startup",
+      "context": "Obscure social network included in the FTC's market definition as a Meta competitor, which Ben Thompson called absurd.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Icon",
+      "type": "startup",
+      "context": "AI creative/ad platform with a chaotic, conversion-optimized website; founder engaged in viral social media trolling around competitor comparison charts.",
+      "sentiment": "neutral",
+      "sector": "AI/Adtech"
+    },
+    {
+      "name": "Black Flag",
+      "type": "startup",
+      "context": "Newly launched incubator for hard tech companies backed by Harpoon Ventures, ShieldCap VC, and In-Q-Tel.",
+      "sentiment": "bullish",
+      "sector": "Defense/Hard Tech"
+    },
+    {
+      "name": "In-Q-Tel",
+      "type": "fund",
+      "context": "CIA's venture fund; investor in the newly launched Black Flag hard tech incubator.",
+      "sentiment": "neutral",
+      "sector": "Defense/Venture Capital"
+    },
+    {
+      "name": "Harpoon Ventures",
+      "type": "fund",
+      "context": "Main firm behind the Black Flag hard tech incubator.",
+      "sentiment": "neutral",
+      "sector": "Defense/Venture Capital"
+    },
+    {
+      "name": "SpaceX",
+      "type": "startup",
+      "context": "Referenced in context of new NASA administrator who did the first civilian spacewalk on a SpaceX mission.",
+      "sentiment": "bullish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "AT&T Bell Labs",
+      "type": "public",
+      "context": "Partnered with China's state-owned semiconductor factory in Wuxi in the 908 project to speed technology transfer despite limitations on core process knowledge.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors/Telecom"
+    },
+    {
+      "name": "Institute for Progress",
+      "type": "gov",
+      "context": "Published a report on Nvidia H20 export control gaps, recommending BIS block H20 shipments; the report was published shortly before the government acted.",
+      "sentiment": "neutral",
+      "sector": "Policy/Research"
+    },
+    {
+      "name": "Foxconn",
+      "type": "public",
+      "context": "Referenced as the final assembly partner in iPhone City in China, noting the broader supplier ecosystem is what makes China's manufacturing powerful.",
+      "sentiment": "neutral",
+      "sector": "Manufacturing/Tech"
+    },
+    {
+      "name": "code.org",
+      "type": "gov",
+      "context": "Nonprofit co-founded by Ali Partovi and his brother Hadi that teaches young kids to code.",
+      "sentiment": "bullish",
+      "sector": "Education/Tech"
+    },
+    {
+      "name": "SSI",
+      "type": "startup",
+      "context": "Ilya Sutskever's new company after leaving OpenAI; mentioned as staying focused on safety research rather than consumer products.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Mistral",
+      "type": "startup",
+      "context": "Mentioned as focused on B2B and government implementation, differentiating from other foundation model companies.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Mentioned as focused on the API side; noted that developers using Cursor tend to use Claude.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "xAI",
+      "type": "startup",
+      "context": "Mentioned as a direct competitor to OpenAI; Andreessen Horowitz is invested in both.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Thinking Machines",
+      "type": "startup",
+      "context": "Mentioned as a foundation model company that may look very different from OpenAI over time.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Zoom",
+      "type": "public",
+      "context": "Zoom went down during the live show, preventing scheduled guest interviews; part of a broader internet outage.",
+      "sentiment": "bearish",
+      "sector": "SaaS/Communications"
+    }
+  ],
+  "people": [
+    {
+      "name": "Ali Partovi",
+      "role": "Co-founder and General Partner, NEO",
+      "context": "Appeared on the show to announce NEO's $320M fund raise; discussed his investing philosophy centered on identifying exceptional talent in college, early Facebook and PayPal misses, and NEO's portfolio companies including Cursor and Kalshi."
+    },
+    {
+      "name": "Tim Fist",
+      "role": "Researcher/Policy Analyst, Institute for Progress",
+      "context": "Discussed the IFP report on Nvidia H20 export control gaps, the scale of GPU smuggling into China, and recommendations for proactive US chip policy."
+    },
+    {
+      "name": "Jensen Wong",
+      "role": "CEO, Nvidia",
+      "context": "Referenced for attending a $1M-per-head Mar-a-Lago dinner with Trump after which the White House reportedly reversed plans to control H20 chips; also discussed for his focus on ISO power and energy efficiency in Blackwell."
+    },
+    {
+      "name": "Dylan Patel",
+      "role": "Founder, Semi Analysis",
+      "context": "Published a deep dive on Huawei's Cloud Matrix 384 and took a more hawkish stance on chip controls than Ben Thompson, arguing the entire supply chain must be controlled for export controls to be effective."
+    },
+    {
+      "name": "Ben Thompson",
+      "role": "Founder, Stratechery",
+      "context": "Wrote analysis on the H20 ban and Meta FTC trial; argued against broad chip controls while supporting equipment export controls, and defined three eras of Facebook's competitive history."
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO, Meta",
+      "context": "Testified in FTC antitrust trial over Instagram and WhatsApp acquisitions; Meta offered $450M to settle vs FTC's $30B demand; cultivated ties with Trump during the process."
+    },
+    {
+      "name": "Lena Khan",
+      "role": "Former FTC Chair",
+      "context": "Called Meta's $450M settlement offer 'delusional' and accused Zuckerberg of trying to buy his way out of law enforcement."
+    },
+    {
+      "name": "Aaron Ginn",
+      "role": "Guest (prior episode)",
+      "context": "Referenced for his segment warning about Huawei flooding global markets with cheaper chips and framing AI data centers as 'cyber nukes.'"
+    },
+    {
+      "name": "Michael Truel",
+      "role": "CEO, Cursor",
+      "context": "Identified by Ali Partovi as a rising sophomore; crushed a coding test in 12 minutes, then gave Partovi a harder one; went on to co-found Cursor after graduating."
+    },
+    {
+      "name": "Max Levchin",
+      "role": "Co-founder, PayPal",
+      "context": "Was the smartest engineer at Partovi's startup Link Exchange before founding Confinity/PayPal; Partovi cited missing this investment as a key lesson in betting on people."
+    },
+    {
+      "name": "Craig Silverstein",
+      "role": "First employee and CTO, Google",
+      "context": "Reached out to Harvard CS peers including Partovi for advice before joining Larry Page and Sergey Brin; Partovi cited missing this as a lesson about betting on talent."
+    },
+    {
+      "name": "Brian Chesky",
+      "role": "CEO, Airbnb",
+      "context": "Accidentally pitched Partovi at a restaurant when Partovi was in a meeting; Partovi didn't follow up and missed the seed round."
+    },
+    {
+      "name": "Sham Sankar",
+      "role": "CTO, Palantir",
+      "context": "Announced as a guest for the next show; has been with Palantir for ~20 years and was present when the company joined the Fortune 500."
+    },
+    {
+      "name": "Michael Kratzios",
+      "role": "US Technology Policy Advisor, Trump Administration",
+      "context": "Posted about 'the golden age of American innovation' being on the horizon, sharing the Trump administration's technology policy agenda."
+    },
+    {
+      "name": "Jeff Bezos",
+      "role": "Founder, Blue Origin/Amazon",
+      "context": "Was present at the Blue Origin capsule landing and fell exiting the vehicle but quickly recovered; mission noted as a high-profile marketing event."
+    },
+    {
+      "name": "Andrew Ferguson",
+      "role": "FTC Chairman",
+      "context": "Found Meta's $450M settlement offer not credible and was not ready to settle for less than $18B plus a consent decree."
+    },
+    {
+      "name": "Scott Wu",
+      "role": "CEO, Cognition",
+      "context": "Mentioned as a speaker at NEO's parents weekend event for scholars' families."
+    },
+    {
+      "name": "Christina Shen",
+      "role": "VC, formerly a16z",
+      "context": "Quoted in Forbes saying NEO is the number one signal she looks to more than any other program or accelerator for identifying future founders."
+    },
+    {
+      "name": "Katy Perry",
+      "role": "Celebrity/Musician",
+      "context": "Was one of the crew members on the Blue Origin space tourism mission, generating significant mainstream media coverage."
+    },
+    {
+      "name": "Gail King",
+      "role": "Co-host, CBS Mornings",
+      "context": "Was one of the crew members on the Blue Origin mission, prompting CBS to give the story wall-to-wall coverage."
+    },
+    {
+      "name": "Greg Brockman",
+      "role": "Co-founder, OpenAI",
+      "context": "Referenced for social media posts about receiving early Nvidia AI servers around 2017 that enabled early GPT model training."
+    },
+    {
+      "name": "Ilya Sutskover",
+      "role": "Co-founder, SSI; Former Chief Scientist, OpenAI",
+      "context": "Mentioned for working on Q* at OpenAI and bringing reasoning model concepts to his new company SSI."
+    },
+    {
+      "name": "Dylan Field",
+      "role": "CEO, Figma",
+      "context": "Mentioned briefly as Figma filed its S1; described as achieving a milestone after a long journey."
+    },
+    {
+      "name": "Josh Kushner",
+      "role": "Founder, Thrive Capital",
+      "context": "Praised for serial monogamy in foundation model investing, only backing OpenAI rather than spreading across competitors."
+    },
+    {
+      "name": "Morris Chang",
+      "role": "Founder, TSMC",
+      "context": "Referenced as the architect of the foundry model that China tried to replicate with SMIC."
+    },
+    {
+      "name": "Jiang Zemin",
+      "role": "Former President of China",
+      "context": "Ordered Project 909 to set up a modern 8-inch wafer fab in Shanghai within two years."
+    },
+    {
+      "name": "Deng Xiaoping",
+      "role": "Former Leader of China",
+      "context": "Referenced for launching economic reforms in 1978 that began China's semiconductor R&D ambitions."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Nvidia H20 Export Ban",
+      "summary": "The US government banned Nvidia from selling H20 chips to China indefinitely, triggering a $5.5B charge and ~10% stock decline. Nvidia had designed the H20 as a compliant workaround chip for the Chinese market, but the government determined it violated supercomputer end-use restrictions.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "China Semiconductor History (1978\u20132025)",
+      "summary": "Deep dive into China's semiconductor ambitions from Deng Xiaoping's 1978 reforms through the 863, 908, and 909 programs, SMIC's founding, Made in China 2025, the Big Fund, and current restrictions. China has been systematically investing in domestic chip production for over 40 years.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "US-China AI Chip Export Controls Debate",
+      "summary": "Ben Thompson and Dylan Patel have differing views: Thompson opposes broad chip controls but supports equipment controls, arguing the Huawei Cloud Matrix 384's TSMC dependency is a useful lever. Patel takes a more hawkish view, arguing the entire supply chain must be controlled.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Huawei Cloud Matrix 384 vs Nvidia NVL72",
+      "summary": "Huawei's new AI system delivers 300 petaflops vs Nvidia's 180 petaflops NVL72, but is significantly more power-hungry and costly. Semi Analysis described it as impressive on raw compute but unattractive outside China due to power efficiency trade-offs.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "GPU Smuggling into China",
+      "summary": "An estimated 100,000+ controlled GPUs were smuggled into China in 2024, with individual cases involving over 20,000 GPUs at once. China has a long history of smuggling controlled goods, and the scale of GPU smuggling is growing significantly.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Meta FTC Antitrust Trial",
+      "summary": "FTC is suing Meta over its Instagram and WhatsApp acquisitions, seeking $30B; Meta offered $450M. Trial kicked off with Zuckerberg on the witness stand. Ben Thompson argues the government's market definition is flawed and doesn't account for TikTok and algorithmic video competition.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "NEO Fund $320M Raise",
+      "summary": "Ali Partovi's NEO announced a $320M fund raise, its fourth fund. NEO positions itself primarily as a mentorship community that identifies top technical college talent and has backed companies like Cursor, Kalshi, and Blue Sky from very early stages.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "OpenAI Acquires Windsurf",
+      "summary": "OpenAI is in talks to acquire coding app Windsurf (formerly Codium) for ~$3B, which would be its largest acquisition ever. Green Oaks backed the company from seed and stands to make a significant return.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Inference vs Training",
+      "summary": "Inference compute is becoming as or more strategically important than training compute, a shift that made H20 chips more valuable than initially anticipated. Analysts forecast inference compute demand could outstrip training by 4x by 2026.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "ISO Power and Energy Efficiency in AI",
+      "summary": "Jensen Wong has emphasized ISO power\u2014maximizing compute within a fixed power envelope\u2014as the key metric for next-gen AI chips. This contrasts with Huawei's approach of sacrificing efficiency for raw compute, an approach only viable where energy is cheap.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Blue Origin Space Tourism Mission",
+      "summary": "Blue Origin conducted a high-profile mission with Katy Perry, Gail King, and Lauren Sanchez, generating massive mainstream media coverage. Discussed as a marketing exercise for Blue Origin rather than technical space achievement.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "Figma S1 Filing",
+      "summary": "Figma filed its S1, marking a major milestone after years in stealth and a failed Adobe acquisition attempt. Hosts noted it as an overnight success story many years in the making.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Internet Outage During Show",
+      "summary": "Zoom, Google Meet, Spotify, and Apple all experienced downtime during the show, preventing scheduled guest interviews. Hosts speculated about a possible cyber attack.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Foundation Model VC Conflicts",
+      "summary": "Several major VC firms are invested in multiple competing foundation model companies. Kyle Harrison published a chart showing this; Thrive Capital's Josh Kushner was praised for only backing OpenAI.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "US Government Technology Policy Agenda",
+      "summary": "Michael Kratzios posted about the Trump administration's technology policy agenda focused on removing regulatory barriers to innovation and rebuilding American industrial capacity.",
+      "sentiment": "bullish"
+    }
+  ],
+  "key_claims": [
+    "Nvidia will take a $5.5 billion charge in Q1 earnings due to the H20 export ban to China",
+    "Over 1.3 million Nvidia H20 chips worth more than $16 billion were on order from Chinese tech giants including ByteDance, Alibaba, and Tencent before the ban",
+    "China's semiconductor state investment is roughly equivalent to the entire US CHIPS Act ($52B) every single year",
+    "An estimated 100,000+ controlled GPUs were smuggled into China in 2024, with individual smuggling operations involving over 20,000 GPUs at once",
+    "Huawei's Cloud Matrix 384 delivers 300 petaflops vs Nvidia NVL72's 180 petaflops, but at significantly higher power consumption",
+    "TSMC facilitated production of over 3 million cutting-edge chip dies for Chinese AI efforts, sometimes in violation of US chip rules",
+    "At least one H20 buyer (Tencent) installed the chips in a facility used to train a large model, likely in breach of existing export controls",
+    "China's domestic semiconductor production met only ~10% of its $40B annual chip consumption in 2004, with a goal of 70% self-sufficiency by 2025 under Made in China 2025",
+    "The H20 chip is already 20% faster than the H100 for AI inference tasks",
+    "Analysts forecast AI inference compute demand could outstrip training demand by a factor of 4 by 2026",
+    "OpenAI is in talks to acquire Windsurf (formerly Codium) for ~$3 billion, its largest acquisition to date",
+    "NEO's portfolio includes Cursor, Kalshi, Blue Sky, Cognition, Pika, Chai Discovery, and Sapien",
+    "OpenAI hired all of its new grad hires through NEO last year",
+    "Jensen Wong attended a $1M-per-head Mar-a-Lago dinner with Trump after which the White House reportedly reversed plans to control H20 chips",
+    "Huawei reportedly stockpiled ~2 million HBM chips worth before new export controls took effect",
+    "Green Oaks invested ~$28M across Windsurf's seed and Series A and stands to receive ~$750M if the $3B acquisition closes",
+    "NEO's partner investment in the new fund is roughly equal to all previous NEO funds combined"
+  ],
+  "technologies": [
+    "H20 GPU",
+    "H100 GPU",
+    "A100 GPU",
+    "A800 GPU",
+    "H800 GPU",
+    "Ascend 910C",
+    "NVLink",
+    "CUDA",
+    "EUV Lithography",
+    "DUV Lithography",
+    "HBM (High Bandwidth Memory)",
+    "ASIC",
+    "TPU",
+    "7nm Process Node",
+    "3nm Process Node",
+    "NVL72",
+    "Cloud Matrix 384",
+    "Large Language Models",
+    "Reinforcement Learning",
+    "Test-Time Compute",
+    "Synthetic Data Generation",
+    "Quantum Computing",
+    "DRAM",
+    "NAND Flash",
+    "Chip Geolocation Technology"
+  ],
+  "_stats": {
+    "word_count": 27510,
+    "estimated_input_tokens": 36588,
+    "input_tokens": 3,
+    "output_tokens": 7162,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 40113,
+    "duration_ms": 148735,
+    "wall_time_s": 150.4,
+    "cost_usd": 0.43437974999999995,
+    "tokens_per_sec": 47.6
+  }
+}

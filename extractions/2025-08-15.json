@@ -1,0 +1,752 @@
+{
+  "episode_date": "2025-08-15",
+  "episode_title": "slop-vs-steel-showdown-gpt5-backlash-trump-intel-stake",
+  "companies": [
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Peter Thiel's venture firm where both Delian Asperuhov and Everett Randall previously worked together; origin of the slop vs. steel investing rivalry and home of the 'competition is for losers' philosophy.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Kleiner Perkins",
+      "type": "fund",
+      "context": "Everett Randall's current firm; part of the 'Holy Trinity' of VC alongside Sequoia and Founders Fund, with portfolio overlap with Founders Fund in Figma, Stripe, Airbnb, and Rippling.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Sequoia Capital",
+      "type": "fund",
+      "context": "Mentioned as one of the 'Holy Trinity' of VC firms that seeded a now-Mag 7 or hyperscaler company.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Pace Capital",
+      "type": "fund",
+      "context": "Chris Pake's VC firm; published a mini-essay questioning whether Cursor has genuine pricing power over its developer users or simply provides a frontend to frontier models.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Benchmark",
+      "type": "fund",
+      "context": "Bill Gurley's firm; Gurley referenced for his public criticism of AI companies selling a dollar for 90 cents and for his '10x Revenue Club' essay on revenue quality.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Greenoaks Capital",
+      "type": "fund",
+      "context": "Neil Mehta's firm; Mehta quoted as the 'godfather' articulating the laws of great businesses around maximizing ROIC, deployable capital, and duration of above-market returns.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Cited as the highest-performing Mag 7 company due to its hardware monopoly particularly via CUDA. Extensively discussed re: H20 chip exports to China and Jensen Huang's personal lobbying of Trump to reverse the export ban.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Discussed extensively around GPT-5's rocky rollout, Sam Altman's acknowledgment of screwing up, API traffic doubling in 48 hours, plans for trillions in data center spending, BCI startup plans, social media ambitions, and Fidji Simo joining to run applications.",
+      "sentiment": "mixed",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Mentioned as having moved to positive and expanding gross margins; Claude Code cited as a monetization breakthrough where users pay roughly one-tenth of a developer's full in-cost annually, described as the clearest current example of labor substitution in AI.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Salesforce",
+      "type": "public",
+      "context": "Used as the canonical SaaS monopoly example with only ~25% CRM market share and ~40% EBITDA margins, illustrating Delian's thesis that limited monopoly power in SaaS burdens terminal margins despite high gross margins.",
+      "sentiment": "neutral",
+      "sector": "Enterprise SaaS"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Mentioned as a Mag 7 hardware company with worse margins than Apple or Nvidia due to genuine competition, used to illustrate that monopoly power determines terminal EBITDA margin.",
+      "sentiment": "neutral",
+      "sector": "Automotive/Energy"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Referenced for bold product decisions removing ports and headphone jacks; Tim Cook praised for managing both Trump and Xi Jinping; deep China supply chain discussed as a potential geopolitical leverage point.",
+      "sentiment": "neutral",
+      "sector": "Consumer Electronics"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Mentioned as a Founders Fund seed-stage investment and as an example of bold algorithmic feed product decisions made despite user pushback.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Alphabet",
+      "type": "public",
+      "context": "Discussed re: Chrome sale possibility, Sam Altman saying he no longer uses Google Search, TPU development as a CUDA alternative, and DeepMind succeeding without CUDA access.",
+      "sentiment": "bearish",
+      "sector": "Consumer Tech/AI"
+    },
+    {
+      "name": "Uber",
+      "type": "public",
+      "context": "Cited as the canonical negative-gross-margin business that successfully scaled into positive unit economics via network investment, used by Delian to support hard-tech investing thesis.",
+      "sentiment": "bullish",
+      "sector": "Logistics/Marketplace"
+    },
+    {
+      "name": "DoorDash",
+      "type": "public",
+      "context": "Used alongside Uber as a local marketplace with early negative gross margins that became a 'massive, fantastic business' built on the power of the American consumer.",
+      "sentiment": "bullish",
+      "sector": "Logistics/Marketplace"
+    },
+    {
+      "name": "Airbnb",
+      "type": "public",
+      "context": "Mentioned as a portfolio overlap between Founders Fund and Kleiner Perkins and as a digital marketplace exemplifying strong network effects.",
+      "sentiment": "bullish",
+      "sector": "Marketplace/Travel"
+    },
+    {
+      "name": "Rippling",
+      "type": "startup",
+      "context": "Highlighted by Delian as a high-conviction 2021 investment that performed well; described as a SaaS company with high initial gross margins but significant ongoing sales and marketing spend.",
+      "sentiment": "bullish",
+      "sector": "HR/SaaS"
+    },
+    {
+      "name": "Hadrian",
+      "type": "startup",
+      "context": "Delian's 2021 high-conviction hard tech investment; started with deeply negative gross margins but now has limited sales spend because only 10-15 major customers matter in precision manufacturing, validating the hard-tech thesis.",
+      "sentiment": "bullish",
+      "sector": "Defense/Manufacturing"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Mentioned as a portfolio overlap between Founders Fund and Kleiner Perkins representing common investment ground between Delian and Everett.",
+      "sentiment": "bullish",
+      "sector": "Design/SaaS"
+    },
+    {
+      "name": "Stripe",
+      "type": "private",
+      "context": "Mentioned as a portfolio overlap between Founders Fund and Kleiner Perkins.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Captions",
+      "type": "startup",
+      "context": "Everett Randall's AI captioning app investment; used by Delian as a prime example of a replicable AI application that two Stanford grads with $100M could clone, illustrating the 'slop' critique of soft-moat AI software.",
+      "sentiment": "mixed",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "Repeatedly cited as the key test case for whether AI application layer companies have genuine pricing power; developers' deep understanding of inference quality and high price sensitivity makes it unclear whether Cursor has true power or just front-ends frontier models.",
+      "sentiment": "mixed",
+      "sector": "Developer Tools/AI"
+    },
+    {
+      "name": "DeepSeek",
+      "type": "startup",
+      "context": "Extensively discussed: R2 model release delayed from May due to CCP pressure to use Huawei chips and Huawei cluster reliability failures; original V3/R1 releases cited as disruptive. New York Times reportedly found Chinese state-owned companies using DeepSeek for disinformation campaigns against Taiwan and the US.",
+      "sentiment": "mixed",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "High Flyer",
+      "type": "private",
+      "context": "The Chinese high-frequency trading firm that founded and funds DeepSeek, having transitioned from HFT to foundation model training.",
+      "sentiment": "neutral",
+      "sector": "Fintech/AI"
+    },
+    {
+      "name": "Huawei",
+      "type": "private",
+      "context": "CCP-backed chip alternative to Nvidia; Ascend 910C discussed as about 80% of H100 on paper specs but significantly behind on software ecosystem and cluster reliability, with only ~200K units annual production capacity vs. millions of Nvidia units.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors/Telecom"
+    },
+    {
+      "name": "Intel",
+      "type": "public",
+      "context": "Trump administration reportedly discussing taking a financial stake after meeting with CEO Lip Bu Tan; Intel has burned ~$40B over three years, received $8B in Chips Act funding, and its 18A process node has failed to attract external foundry customers.",
+      "sentiment": "mixed",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "TSMC",
+      "type": "public",
+      "context": "Cited as the leading chip manufacturer Intel is struggling to compete with; Huawei reportedly obtained 2.9M dies via a shell company. Arizona fab yields discussed as positive indicators for US semiconductor resilience.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "AMD",
+      "type": "public",
+      "context": "Mentioned as having comparable chip specs to Nvidia on paper but less than 5% market share; noted as significantly harder to develop on than CUDA despite technical similarity.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Samsung",
+      "type": "public",
+      "context": "Mentioned alongside TSMC as a non-American, non-Chinese chip manufacturer whose US fabs could contribute to domestic semiconductor resilience.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Alibaba",
+      "type": "public",
+      "context": "Mentioned as a Chinese hyperscaler whose contracts are expected to remain majority Nvidia despite CCP encouragement to use indigenous chips.",
+      "sentiment": "neutral",
+      "sector": "E-commerce/Cloud"
+    },
+    {
+      "name": "Tencent",
+      "type": "public",
+      "context": "Mentioned as a Chinese hyperscaler and AI model developer preferring Nvidia over Huawei chips for training.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech/AI"
+    },
+    {
+      "name": "ByteDance",
+      "type": "private",
+      "context": "Briefly mentioned alongside Alibaba and Tencent as a Chinese hyperscaler wanting Nvidia hardware over indigenous alternatives.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech/AI"
+    },
+    {
+      "name": "Baidu",
+      "type": "public",
+      "context": "Mentioned as a Chinese AI model developer and hyperscaler whose commercial contracts are expected to stay with Nvidia despite government pressure.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Moonshot AI",
+      "type": "startup",
+      "context": "Briefly mentioned as one of China's AI model developers alongside DeepSeek and Baidu.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Zhipu AI (ZAI)",
+      "type": "startup",
+      "context": "Tsinghua University-linked Chinese AI lab producing GLM models; identified as part of China's national AI strategy alongside Huawei as a state-supported champion.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Silicon Flow",
+      "type": "startup",
+      "context": "Mentioned as one of the Chinese platforms where Huawei Ascend clusters are now being used for AI inference following CCP-encouraged partnerships with DeepSeek engineers.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Bitmain",
+      "type": "private",
+      "context": "Mentioned as connected to Softgo, the shell company allegedly used by Huawei to illicitly obtain 2.9M dies from TSMC, circumventing export controls.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors/Crypto"
+    },
+    {
+      "name": "WebAI",
+      "type": "startup",
+      "context": "On-device AI company founded by David Stout; announced knowledge graph mechanism outbenchmarking top models by 7%, uses proprietary EWQ dynamic quantization enabling 30-40% model size reduction with retained accuracy. Partners with Oura Ring for privacy-preserving health AI.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Oura Ring",
+      "type": "startup",
+      "context": "Mentioned as a WebAI partner for on-device health AI where privacy requirements necessitate local inference rather than cloud processing.",
+      "sentiment": "neutral",
+      "sector": "Health Tech/Wearables"
+    },
+    {
+      "name": "Early",
+      "type": "startup",
+      "context": "Cyriac Roeding's cancer treatment startup using injected genetic constructs that activate only in cancer cells, forcing them to produce their own therapy. Raised $44M amid what Roeding called the worst biotech funding environment in 20 years.",
+      "sentiment": "bullish",
+      "sector": "Biotech/Healthcare"
+    },
+    {
+      "name": "Rangeview",
+      "type": "startup",
+      "context": "Cameron Schiller's advanced manufacturing company focused on casting technology; operates from a facility that previously built Space Shuttle engines. Produced a viral patriotic short film by Jason Carman calling for American manufacturing revival.",
+      "sentiment": "bullish",
+      "sector": "Manufacturing/Defense"
+    },
+    {
+      "name": "Varda Space",
+      "type": "startup",
+      "context": "Briefly mentioned by Delian as an analogy illustrating that space manufacturing is far less replicable by competitors than AI software applications like Captions.",
+      "sentiment": "neutral",
+      "sector": "Aerospace/Manufacturing"
+    },
+    {
+      "name": "Perplexity",
+      "type": "startup",
+      "context": "Mentioned as an example of fine-tuning DeepSeek into a more America-friendly model informally called '1776 Seek.'",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Costco",
+      "type": "public",
+      "context": "Cited as a great example of an atoms-based business achieving high ROIC, referenced via the Acquired podcast, to illustrate that great businesses exist in both digital and physical domains.",
+      "sentiment": "bullish",
+      "sector": "Retail"
+    },
+    {
+      "name": "OpenDoor",
+      "type": "public",
+      "context": "CEO Kerry Wheeler announced resignation; stock surged 200% in 30 days driven by retail investors who then apparently pushed for new leadership despite Wheeler stabilizing the company from its 2022 crisis.",
+      "sentiment": "mixed",
+      "sector": "Real Estate/Proptech"
+    },
+    {
+      "name": "New York Stock Exchange",
+      "type": "public",
+      "context": "NYSE president Lynn Martin was photographed wearing TBPN merchandise, humorously described as modeling the 'TBPN spring summer 2025 collection' on the trading floor.",
+      "sentiment": "bullish",
+      "sector": "Financial Services"
+    },
+    {
+      "name": "SK Hynix",
+      "type": "public",
+      "context": "Mentioned by NFM Live guests as a leading South Korean semiconductor company representing the vibrancy of the Korean tech market.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "NFM Live",
+      "type": "startup",
+      "context": "Korean financial media podcast founded by two former VC professionals based in Seoul; appeared as guests explaining their TBPN-inspired show covering Korean and global tech markets, running three times per week.",
+      "sentiment": "bullish",
+      "sector": "Media"
+    },
+    {
+      "name": "TikTok",
+      "type": "private",
+      "context": "Discussed as an unresolved situation: Trump has repeatedly renewed the 90-day extension without forcing a sale or ban, with no functioning NSC process to coordinate an interagency solution.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Truth Social",
+      "type": "public",
+      "context": "Jokingly floated as a potential acquirer of Chrome browser, described as the most politically aligned option with the current administration.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Show sponsor; corporate card and spend management platform offering bill payment and accounting.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Julius",
+      "type": "startup",
+      "context": "Show sponsor; AI data analysis platform with over 2 million users including those from Princeton and BCG.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Show sponsor; trust management and compliance automation platform replacing manual security and compliance work with continuous automation.",
+      "sentiment": "neutral",
+      "sector": "Cybersecurity/Compliance"
+    },
+    {
+      "name": "Fin AI",
+      "type": "startup",
+      "context": "Show sponsor; described as the number one AI customer service agent ranked first on G2.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Show sponsor; out-of-home advertising platform combining technology and data for global ad buying.",
+      "sentiment": "neutral",
+      "sector": "Adtech"
+    },
+    {
+      "name": "Bezel",
+      "type": "startup",
+      "context": "Show sponsor; watch marketplace with concierge service sourcing any watch globally.",
+      "sentiment": "neutral",
+      "sector": "E-commerce"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Show sponsor; premium vacation rental platform with hotel-grade amenities.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Graphite",
+      "type": "startup",
+      "context": "Show sponsor; code review platform for GitHub designed for the AI-assisted development era.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Show sponsor; multi-destination live streaming platform supporting 30+ destinations simultaneously.",
+      "sentiment": "neutral",
+      "sector": "Media/Streaming"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Show sponsor; platform to secure brand mentions from ChatGPT and AI discovery tools.",
+      "sentiment": "neutral",
+      "sector": "Marketing/AI"
+    },
+    {
+      "name": "Numeral HQ",
+      "type": "startup",
+      "context": "Show sponsor; sales tax compliance automation platform promising under five minutes per month of effort.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Compliance"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Show sponsor; project management and issue tracking platform for modern software development teams.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools/SaaS"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Show sponsor; multi-asset investing platform for serious investors with high-yield features.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Show sponsor; smart sleep pod with temperature regulation and five-year warranty.",
+      "sentiment": "neutral",
+      "sector": "Consumer Health"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Show sponsor; AI-native CRM platform described as 'customer relationship magic.'",
+      "sentiment": "neutral",
+      "sector": "Enterprise SaaS/AI"
+    },
+    {
+      "name": "Figma (sponsor)",
+      "type": "private",
+      "context": "Show sponsor; design and development collaboration platform with the tagline 'think bigger, build faster.'",
+      "sentiment": "neutral",
+      "sector": "Design/SaaS"
+    },
+    {
+      "name": "Veja",
+      "type": "private",
+      "context": "French shoe brand founded in 2004 mentioned in a closing chat discussion about brands gaining high market share while 'accumulating zero aura.'",
+      "sentiment": "neutral",
+      "sector": "Consumer Goods"
+    }
+  ],
+  "people": [
+    {
+      "name": "Delian Asperuhov",
+      "role": "Partner, Founders Fund",
+      "context": "Debated the merits of hard tech and re-industrialization investing; argues terminal EBITDA margin is determined by monopoly power and that negative-gross-margin hardware businesses like Hadrian can outperform SaaS companies at scale due to limited competition and captive customers."
+    },
+    {
+      "name": "Everett Randall",
+      "role": "Partner, Kleiner Perkins",
+      "context": "Argued the bull case for software and AI application layer investing, citing that digital products naturally generate more power via network effects and scalability; notably posted in January 2024 about not taking 'the $3 Uber across town era of AI' for granted."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Quoted extensively from an Alex Heath dinner report: admitted screwing up the GPT-5 rollout, confirmed plans for trillions in future data center spending, acknowledged being in an AI bubble, said he no longer uses Google, hinted at social media ambitions, and confirmed plans for a BCI startup to rival Neuralink."
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO, Nvidia",
+      "context": "Described as having personally lobbied President Trump to reverse the H20 chip export ban to China by going directly to the principal level rather than through traditional lobbying channels, effectively shifting D.C. consensus toward a compete-by-selling approach."
+    },
+    {
+      "name": "Bill Bishop",
+      "role": "Author, Sinocism newsletter",
+      "context": "Guest arguing that selling H20s to China helps fill their capability gap and delays US-China AI separation; stressed that the CCP is fundamentally committed to indigenous AI self-reliance regardless of short-term chip access, making the 'addiction' argument naive."
+    },
+    {
+      "name": "Jimmy Goodrich",
+      "role": "Semiconductor policy expert",
+      "context": "Guest explaining that H20 excels at inference on cost-per-token basis with high memory bandwidth; emphasized Nvidia can supply millions of units vs. Huawei's ~200K/year capacity and that CUDA's developer ecosystem creates massive switching costs for Chinese AI labs."
+    },
+    {
+      "name": "Lennart Heim",
+      "role": "AI compute and policy researcher",
+      "context": "Guest noting Huawei's Ascend 910C is roughly 80% of H100 on hardware specs but significantly behind on software ecosystem maturity; argued DeepSeek engineers prefer Nvidia and that Huawei is at the bottom of its learning curve but will improve over time."
+    },
+    {
+      "name": "David Stout",
+      "role": "CEO, WebAI",
+      "context": "Guest announcing a new knowledge graph mechanism outbenchmarking top models by 7% and describing EWQ dynamic quantization technology enabling 30-40% model size reduction while retaining accuracy for on-device inference."
+    },
+    {
+      "name": "Cameron Schiller",
+      "role": "CEO, Rangeview",
+      "context": "Guest arguing America needs a thousand Rangeviews, that manufacturing represents more GDP than all of tech combined, and that casting technology is the next frontier analogous to what CNC was for subtractive manufacturing; called for a cultural revival of maker communities."
+    },
+    {
+      "name": "Cyriac Roeding",
+      "role": "CEO, Early",
+      "context": "Guest describing cancer treatment startup using injected genetic constructs that activate only in cancer cells, forcing them to produce their own therapy; raised $44M while calling for a national commitment to biotech amid the worst funding environment in 20 years."
+    },
+    {
+      "name": "Bill Gurley",
+      "role": "General Partner, Benchmark",
+      "context": "Referenced for publicly criticizing AI companies 'selling a dollar for 90 cents,' for his '10x Revenue Club' essay on revenue quality building blocks, and jokingly called Delian's 'hero and close mentor.'"
+    },
+    {
+      "name": "Chris Pake",
+      "role": "Partner, Pace Capital",
+      "context": "Wrote a mini-essay questioning whether Cursor has genuine pricing power over developer users or simply provides a slick frontend to frontier models given developers' extreme sensitivity to inference quality and price."
+    },
+    {
+      "name": "Leopold Aschenbrenner",
+      "role": "Investor / Author, Situational Awareness",
+      "context": "Mentioned after his fund reportedly rose 21% in five days following renewed interest in his Situational Awareness AI timeline thesis; previously widely ridiculed by critics who now appear wrong."
+    },
+    {
+      "name": "Kerry Wheeler",
+      "role": "Outgoing CEO, OpenDoor",
+      "context": "Announced resignation as OpenDoor CEO after stabilizing the company from its 2022 crisis and achieving an NPS of 80; stock had surged 200% in the preceding 30 days driven by retail investors."
+    },
+    {
+      "name": "Lip Bu Tan",
+      "role": "CEO, Intel",
+      "context": "Met with President Trump to discuss a potential US government financial stake in Intel; Trump reversed his earlier call for Tan's dismissal over alleged China ties, now calling him a success."
+    },
+    {
+      "name": "Lynn Martin",
+      "role": "President, NYSE",
+      "context": "Photographed wearing TBPN merchandise on the NYSE trading floor, humorously described as modeling the 'TBPN spring summer 2025 collection' for tech and finance leaders."
+    },
+    {
+      "name": "Alex Heath",
+      "role": "Reporter, The Verge",
+      "context": "Reported on Sam Altman's dinner with OpenAI executives discussing GPT-5; his coverage was the primary source for multiple key Altman quotes discussed throughout the show."
+    },
+    {
+      "name": "David Sachs",
+      "role": "White House AI and Crypto Czar",
+      "context": "Mentioned as a key advocate for rescinding the Biden AI diffusion rule that limited GPU exports, in favor of a strategy of competing globally by selling into international markets."
+    },
+    {
+      "name": "Fidji Simo",
+      "role": "Incoming Head of Applications, OpenAI",
+      "context": "Mentioned in context of Sam Altman confirming her hire implies OpenAI plans to launch additional standalone apps beyond ChatGPT."
+    },
+    {
+      "name": "Neil Mehta",
+      "role": "Founder/CIO, Greenoaks Capital",
+      "context": "Quoted by Everett as the 'godfather' articulating the laws of great businesses: maximizing ROIC, the amount of deployable capital, and the duration of above-market returns."
+    },
+    {
+      "name": "Sam Gambhir",
+      "role": "Stanford Professor and Cancer Detection Pioneer (deceased)",
+      "context": "Identified as the academic inventor whose early cancer detection research was the genesis of Early; lost his son at 16 and his wife to cancer and later died himself from cancer of unknown origin, motivating the company's mission."
+    },
+    {
+      "name": "Ren Zhengfei",
+      "role": "Founder, Huawei",
+      "context": "Mentioned as having been approached by the Chinese Communist Party in February to partner with major AI labs including DeepSeek to accelerate China's bid to beat America at AI."
+    },
+    {
+      "name": "Xi Jinping",
+      "role": "President, People's Republic of China",
+      "context": "Referenced as explicitly calling for China to build its own indigenous AI stack at an April Politburo study session; set a national technology self-sufficiency target at the 20th Party Congress."
+    },
+    {
+      "name": "Peter Thiel",
+      "role": "Co-founder, Founders Fund",
+      "context": "Mentioned by Delian as reminding the team that delivering returns to LPs is the primary job; his 'competition is for losers' philosophy cited as the investment framework basis."
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO, Meta",
+      "context": "Cited as an example of a CEO channeling Steve Jobs by making bold product decisions like the algorithmic feed switch despite intense user pushback, ultimately vindicated by engagement outcomes."
+    },
+    {
+      "name": "Tim Cook",
+      "role": "CEO, Apple",
+      "context": "Praised for being brilliant at managing both President Trump and Xi Jinping, protecting Apple's Chinese manufacturing relationships despite ongoing US-China tensions."
+    },
+    {
+      "name": "Aaron Ginn",
+      "role": "Tech commentator",
+      "context": "Previous episode guest whose pro-Nvidia export arguments Bill Bishop was responding to; described as someone who speaks the language of Nvidia's interests comparably to Jensen Huang."
+    }
+  ],
+  "topics": [
+    {
+      "name": "Slop vs. Steel: Software vs. Hard Tech Investing Debate",
+      "summary": "Delian Asperuhov and Everett Randall debated whether high-margin software/AI or capex-intensive re-industrialization delivers better venture returns. Delian argued terminal EBITDA margin is determined by monopoly power and that hardware monopolies like Nvidia outperform fragmented SaaS; Everett argued digital products naturally generate more network-effect power and scalability and that ChatGPT is a prime example of application-layer power accruing value.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "GPT-5 Launch and Rollout Backlash",
+      "summary": "OpenAI's GPT-5 rollout faced backlash over personality changes stripping ChatGPT's 'warmth,' with users threatening cancellations until OpenAI rolled back changes. Sam Altman admitted screwing up the rollout but noted API traffic doubled in 48 hours. Hosts analyzed GPT-5 as an MoE router rather than a bigger pre-training run, arguing it's a bull case for superintelligence via freemium monetization funding trillion-dollar clusters.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "H20 Chip Exports to China",
+      "summary": "Extensively debated with Bill Bishop, Jimmy Goodrich, and Lennart Heim. Trump reversed the H20 export ban after Jensen Huang's personal principal-level lobbying. Guests disagreed: Bishop argued exports help China close its AI capability gap and undermine US strategic interest; Goodrich noted H20's inference cost advantage; Heim highlighted Huawei's 200K/year chip production ceiling vs. millions of H20 units being sold.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "US Government Intel Stake",
+      "summary": "Trump administration discussed taking a financial stake in Intel after meeting Lip Bu Tan, reversing Trump's earlier call for Tan's dismissal. Intel has burned ~$40B in cash and received $8B in Chips Act funding but its 18A process node failed to attract external customers. Hosts debated government intervention risks vs. strategic necessity of an American semiconductor champion, drawing a parallel to Geithner's 2008 TARP investments that returned profit.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "DeepSeek R2 Delays and Huawei Chip Reliability",
+      "summary": "Financial Times reported DeepSeek's R2 model is stalled due to CCP pressure to use Huawei chips and Huawei cluster reliability failures on large training runs. Originally planned for May, the release remains delayed. An alternative analysis (TOR Taxis) suggested Huawei may be genuinely behind and the CCP narrative may be Huawei spinning DeepSeek's refusal as uncooperativeness to protect its own interests.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "AI Gross Margins and Revenue Quality",
+      "summary": "Debate around whether AI application layer companies have sustainable economics given inference costs layered on top of traditional sales and marketing spend. Everett argued AI revenue could ultimately exceed SaaS quality if agentic products capture labor budgets, with Claude Code cited as the clearest labor substitution example. Both sides agreed revenue quality varies widely and that multiples being applied to early AI hardware companies are often dangerously high.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Token Cost Trends and Frontier Model Pricing",
+      "summary": "Everett argued frontier model pricing is no longer declining at the historic order-of-magnitude per year rate, though many tasks can be offloaded to cheaper older or open-source models. Key investment questions: does a company have pricing power above marginal token cost, and how much inference truly requires frontier models vs. cheaper alternatives? Host estimated frontier costs declining ~2x per year rather than 10-1000x.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "ChatGPT Unhealthy User Relationships",
+      "summary": "Sam Altman acknowledged users felt they had relationships with ChatGPT and were distressed by personality changes; estimated 'way under 1%' have unhealthy relationships but OpenAI is having many internal meetings on the topic. Referenced Altman's 2017 'The Merge' essay predicting humans and AI would become close friends as a surprisingly accurate prediction.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "AI as Browser Replacement",
+      "summary": "Discussion of OpenAI's leaked 'new tab page' and Sam Altman saying he no longer uses Google Search. Hosts argued ChatGPT with agents already functions as Chrome plus Google Search combined and that the real browser war is being won at the AI interface layer, with generative UI delivering cleaner web experiences than ad-laden websites.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "American Manufacturing Reindustrialization",
+      "summary": "Cameron Schiller argued America needs a thousand Rangeviews, that manufacturing represents more GDP than all tech combined, and that America would be 'cooked' if forced to triple manufacturing output quickly. Casting technology highlighted as a key underexplored frontier. Rangeview's Jason Carman film discussed as a broader cultural call to action beyond defense tech recruiting.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "US-China Tech Relations and Rare Earths Leverage",
+      "summary": "Bill Bishop described China's rare earth export controls as its most effective near-term economic lever, which caused the US to pull back quickly in trade negotiations. US-China relationship described as in a 'lull' with Trump more focused on transactional elements. The Chinese government described as committed to a 100-year plan of self-reliance vs. America's fragmented reactive approach.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "On-Device and Edge AI",
+      "summary": "WebAI's David Stout presented the case for running state-of-the-art AI on laptops and edge devices using EWQ dynamic quantization and distributed device networks, enabling privacy-preserving health AI and near-zero inference costs. Hosts debated whether optimizing RAM and device hardware is wise given uncertainty about whether Transformers are the long-term winning architecture.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Biotech Funding Crisis",
+      "summary": "Cyriac Roeding described biotech as experiencing its worst funding environment in 20 years due to high interest rates, AI consuming VC capital, pharma tariff concerns, and reduced government funding. Called for a US national commitment to biotech comparable to the semiconductor push to prevent dependence on China for life-saving drugs.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "OpenAI Business Model and Path to Trillion-Dollar Cluster",
+      "summary": "Sam Altman's quote that OpenAI 'would be very profitable if we didn't pay for training' analyzed; hosts argued the shift to a freemium monetized model is a bull case for building trillion-dollar training clusters funded by product free cash flow rather than private markets alone, following the logic that pre-training required capitalism to scale from nonprofit to GPT-4.",
+      "sentiment": "mixed"
+    }
+  ],
+  "key_claims": [
+    "Nvidia has the best terminal EBITDA margins of any Mag 7 company due to its hardware monopoly position via CUDA.",
+    "Salesforce holds only ~25% CRM market share, limiting its monopoly power and producing ~40% EBITDA margins despite high gross margins.",
+    "OpenAI's ChatGPT API traffic doubled in 48 hours following the GPT-5 launch despite widespread user backlash.",
+    "Sam Altman estimates 'way under 1%' of ChatGPT users have unhealthy relationships with the product, but acknowledged this likely represents hundreds of thousands of people.",
+    "Sam Altman stated OpenAI 'would be a very profitable company' if not for training costs.",
+    "Claude Code is priced at approximately one-tenth of a developer's full annualized in-cost, representing the clearest current example of AI monetizing against labor budgets.",
+    "H20 is the most cost-competitive chip globally for inference on a cost-per-token basis due to Hopper-level memory bandwidth at a reduced price.",
+    "Huawei can produce only approximately 200,000 Ascend chips per year versus 700,000-1,000,000 H20s Nvidia plans to sell to China in the same period.",
+    "Huawei obtained 2.9 million dies from TSMC through a shell company (Softgo) connected to Bitmain, circumventing export controls.",
+    "DeepSeek R2 was originally targeted for a May 2025 release but remains delayed due to Huawei Ascend cluster reliability failures on large training runs.",
+    "Leopold Aschenbrenner's fund rose 21% in five days following renewed interest in his Situational Awareness AI thesis.",
+    "OpenDoor stock rose approximately 200% in the 30 days preceding CEO Kerry Wheeler's resignation announcement.",
+    "Founders Fund's enterprise value reportedly tripled the night Trump was elected.",
+    "American manufacturing represents more GDP than all of tech combined, yet the US would be 'cooked' if forced to triple manufacturing output quickly.",
+    "GPT-4 may have cost ~$100M to train but generates ~$1B per month in inference revenue; GPT-4.5 may have cost ~$1B to train but is largely mothballed due to insufficient demand relative to inference cost.",
+    "Sam Altman predicted in a 2017 essay titled 'The Merge' that human-AI convergence could take the form of people forming close friendships with chatbots.",
+    "Chinese state-owned companies are using DeepSeek for active disinformation campaigns against Taiwan and the United States, per New York Times reporting.",
+    "Everett Randall posted in January 2024: 'I'm making a real effort to not take for granted the $3 Uber across town era of AI.'",
+    "Sam Altman confirmed OpenAI plans to co-found a brain-computer interface startup called Merge to rival Neuralink.",
+    "Sam Altman stated he cannot remember the last time he did a Google search.",
+    "A trillion-dollar AI training cluster must ultimately be funded by product free cash flow rather than private markets, as private capital markets cannot realistically raise that amount."
+  ],
+  "technologies": [
+    "CUDA",
+    "Large Language Models (LLMs)",
+    "Reinforcement Learning (RL)",
+    "Mixture of Experts (MoE)",
+    "On-device AI inference",
+    "Knowledge graphs",
+    "EWQ (Elastic Weight Quantization)",
+    "TPUs",
+    "Agentic AI",
+    "Brain-computer interfaces (BCI)",
+    "Gene therapy / genetic constructs",
+    "Metal casting",
+    "Transformer architecture",
+    "Diffusion models",
+    "YOLO models",
+    "H100 / H20 / Blackwell chips (Nvidia)",
+    "Ascend 910C / Cloud Matrix 384 (Huawei)",
+    "Trainium (AWS)",
+    "18A / 14A process nodes (Intel)",
+    "High Bandwidth Memory (HBM)",
+    "Generative UI",
+    "Model routing / inference routing",
+    "Open source model distillation",
+    "Pangu Ultra MoE (Huawei)"
+  ],
+  "_stats": {
+    "word_count": 33507,
+    "estimated_input_tokens": 44564,
+    "input_tokens": 3,
+    "output_tokens": 25080,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 46982,
+    "duration_ms": 501894,
+    "wall_time_s": 503.2,
+    "cost_usd": 0.925261,
+    "tokens_per_sec": 49.8
+  }
+}

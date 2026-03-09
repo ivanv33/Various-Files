@@ -1,0 +1,856 @@
+{
+  "episode_date": "2025-05-23",
+  "episode_title": "information-profiles-tbpn-ai-week-nuclear-eo-drug-pricing-biotech",
+  "companies": [
+    {
+      "name": "The Information",
+      "type": "private",
+      "context": "Profiled TBPN hosts John Coogan and Jordy Hayes in a weekend section feature; piece was described as fair and accurate by the author who appeared on the show.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Discussed at length for its AI struggles: head of software engineering didn't believe in AI, head of AI skeptical of LLMs, former CFO refused GPU spend, privacy limits training data, AI team understaffed.",
+      "sentiment": "bearish",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Acquired Jony Ive's IO company for $6.5B; Sam Altman claimed the hardware bet could add $1 trillion in value; also released OpenAI I/O announcements during AI week.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "IO (Jony Ive's company)",
+      "type": "startup",
+      "context": "Acquired by OpenAI for $6.5B; prototype device reportedly slightly larger than the AI Pin with an iPod Shuffle-like form factor; intended to be worn.",
+      "sentiment": "neutral",
+      "sector": "Consumer Hardware"
+    },
+    {
+      "name": "Linear",
+      "type": "startup",
+      "context": "Jory (CEO) discussed Linear's agent integrations, MCP support, AI tooling for project management, and the company's philosophy of calm, purposeful product development.",
+      "sentiment": "bullish",
+      "sector": "Productivity/SaaS"
+    },
+    {
+      "name": "Curie",
+      "type": "startup",
+      "context": "Zach Weinberg's biotech venture fund/company; described as one of the larger biotech seed investors, operating in expected-value-negative territory by design.",
+      "sentiment": "neutral",
+      "sector": "Biotech"
+    },
+    {
+      "name": "Kleiner Perkins",
+      "type": "fund",
+      "context": "Lee Marie Braswell's current firm; portfolio includes Windsurf, Harvey, Ambience, Glean, and Nooks; actively investing in AI application layer companies.",
+      "sentiment": "bullish",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Founders Fund",
+      "type": "fund",
+      "context": "Mentioned as prior employer of Lee Marie Braswell and Jordy Hayes; Delian Asparouhov cited as a guest example; also incubated/invested in Neon.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Windsurf",
+      "type": "startup",
+      "context": "AI-powered developer tooling platform; Lee Marie Braswell is on the board; grew explosively beyond expectations; did not get immediate access to Anthropic's newest models, creating tension.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Cursor",
+      "type": "startup",
+      "context": "Mentioned alongside Windsurf as a leading prosumer AI coding tool; described as having dominated mindshare before Windsurf's rapid growth.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "GitHub Copilot",
+      "type": "public",
+      "context": "Discussed as an early AI coding tool that was overtaken in product experience by Cursor and Windsurf; now supports multiple model providers including Anthropic.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Microsoft Build was one of the major AI announcements of the week; GitHub Copilot partnership with Anthropic noted.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Google",
+      "type": "public",
+      "context": "Google I/O highlighted as the standout of AI week; Gemini 2.5 Pro praised as better than ChatGPT for coding; VO3 video generation drew significant attention; Sam Lessin switched to Gemini mid-week.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "Released Claude 4 during AI week; Dworkesh Patel dropped a major interview with Anthropic researchers on launch day; estimated ~$800M ARR growing fast; did not give Windsurf immediate new model access.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Mentioned for Trainium and Inferentia chips as potential Nvidia competitors; also cited as a hyperscaler driving nuclear energy demand for data centers.",
+      "sentiment": "neutral",
+      "sector": "Cloud/AI"
+    },
+    {
+      "name": "Meta",
+      "type": "public",
+      "context": "Sam Lessin called Meta a 'heads you win tails you win' bet; praised for Llama open-source model strategy and deeply aligned AI/ads use case; Llama Behemoth reportedly delayed.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Nvidia",
+      "type": "public",
+      "context": "Described as having total and utter GPU supremacy; Lambda's entire customer demand is Nvidia-focused; Stephen Balaban sees this continuing for some time.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Lambda Labs",
+      "type": "startup",
+      "context": "AI cloud company founded by Stephen Balaban in 2012; just over $500M top line; deployed ~$1B worth of GPUs; revenue shifting from 80/20 training/inference to more inference-heavy.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Salesforce",
+      "type": "public",
+      "context": "Used as an example of a software company whose moat is distribution and data lock-in, not software quality\u2014suggesting AI-generated software won't displace it.",
+      "sentiment": "neutral",
+      "sector": "Enterprise SaaS"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Sponsor of TBPN; CEO Eric Glyman quoted in The Information piece comparing TBPN to ESPN for tech; hosts repeatedly pitched Abe on switching to Ramp.",
+      "sentiment": "bullish",
+      "sector": "Fintech"
+    },
+    {
+      "name": "X (Twitter)",
+      "type": "private",
+      "context": "Experienced a data center fire Thursday morning at Hillsborough Technology Park in Oregon; DMs were down for much of the day; now operates only two core data centers after Sacramento was shut down in 2022.",
+      "sentiment": "bearish",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Palantir",
+      "type": "public",
+      "context": "CTO Shyam Sankar mentioned as a veteran CNBC guest who said TBPN required no prep\u2014just a Zoom link.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Sequoia",
+      "type": "fund",
+      "context": "Mentioned as one of the major VC firms that has appeared on TBPN; also referenced for a prior 'where is the AI revenue' think piece.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Andreessen Horowitz",
+      "type": "fund",
+      "context": "Sent TBPN to its annual LP investor day summit in Las Vegas; a16z executives discussed news and presentations on the show.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Lux Capital",
+      "type": "fund",
+      "context": "Josh Wolf mentioned as a TBPN guest example in The Information piece.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Replica AI",
+      "type": "startup",
+      "context": "Eugenia Kudya's startup, briefly cited in The Information piece as an example of TBPN's guest range; develops AI companion chatbots.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Rainmaker Technology",
+      "type": "startup",
+      "context": "Augustus Rico's startup pursuing cloud seeding (adding chemicals to atmosphere to increase precipitation); described in The Information as a 'sky high dream.'",
+      "sentiment": "neutral",
+      "sector": "Climate Tech"
+    },
+    {
+      "name": "RA Capital",
+      "type": "fund",
+      "context": "Giant biotech venture fund cited for an analysis showing seed and Series A biotech investing is expected-value negative at current drug prices.",
+      "sentiment": "neutral",
+      "sector": "Biotech/Finance"
+    },
+    {
+      "name": "Beam Therapeutics",
+      "type": "public",
+      "context": "Identified as the company that developed a bespoke CRISPR-based gene editing drug that saved an infant; despite the breakthrough, stock trades below cash raised.",
+      "sentiment": "bearish",
+      "sector": "Biotech"
+    },
+    {
+      "name": "Scale AI",
+      "type": "startup",
+      "context": "Cited as a pioneer in building proprietary training data for AI; mentioned in context of robotics data collection and as an early employer of Lee Marie Braswell.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Waymo",
+      "type": "startup",
+      "context": "Used as an example of a long overnight success\u2014founded 2009, only recently becoming widely recognized; cited to set expectations for robotics timelines.",
+      "sentiment": "neutral",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Klarna",
+      "type": "private",
+      "context": "Referenced as an example of aggressively publicizing AI workforce replacement; called good marketing even if not for everyone.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Neon",
+      "type": "startup",
+      "context": "Database infrastructure startup from Founders Fund portfolio; announced partnership with Databricks; cited as example of a hyperscaler-aligned startup acquisition/partnership.",
+      "sentiment": "bullish",
+      "sector": "Cloud/Data"
+    },
+    {
+      "name": "Databricks",
+      "type": "startup",
+      "context": "Partnering with Neon to give its customers database and memory infrastructure for AI agents.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Glean",
+      "type": "startup",
+      "context": "Enterprise knowledge discovery platform incubated by Kleiner Perkins partner Mamoon; cited as a strong AI-era app investment.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Harvey",
+      "type": "startup",
+      "context": "Legal AI company; Kleiner Perkins led Series B; cited alongside Lagora as a battleground legal AI company.",
+      "sentiment": "bullish",
+      "sector": "Legal AI"
+    },
+    {
+      "name": "Ambience",
+      "type": "startup",
+      "context": "Medical scribe AI company; Kleiner Perkins did seed and Series B; recently in the news.",
+      "sentiment": "bullish",
+      "sector": "Healthcare AI"
+    },
+    {
+      "name": "Nooks",
+      "type": "startup",
+      "context": "Sales AI company in Kleiner Perkins portfolio; started with a power dialer and expanding into broader sales AI assistance.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Flex Capital",
+      "type": "fund",
+      "context": "Auren Hoffman's fund; doing ~20 deals per quarter, ~100 per year; focused on seed stage investing with management-company-side fee structure.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Slow Ventures",
+      "type": "fund",
+      "context": "Sam Lessin's fund; discussed AI strategy, Google's dominance, OnlyFans investment thesis, and emerging manager market dynamics.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Radiant Nuclear",
+      "type": "startup",
+      "context": "Doug Bernhauer's company building one-megawatt road-transportable microreactors; targeting factory-line production of 50/year with 5-year fuel cycles; announced fuel access from DOE.",
+      "sentiment": "bullish",
+      "sector": "Nuclear Energy"
+    },
+    {
+      "name": "Valor Atomics",
+      "type": "startup",
+      "context": "Nuclear company building 25MW commercial reactors; founder says first prototype built in 16 months; announced partnership with Utah governor to go critical by July 4, 2026.",
+      "sentiment": "bullish",
+      "sector": "Nuclear Energy"
+    },
+    {
+      "name": "General Matter",
+      "type": "startup",
+      "context": "Scott Nolan's nuclear fuel enrichment company; appeared in White House video announcing support for domestic nuclear fuel production under the new executive orders.",
+      "sentiment": "bullish",
+      "sector": "Nuclear Energy"
+    },
+    {
+      "name": "Sunflower",
+      "type": "startup",
+      "context": "Bobby Goodlatte's new email client that launched its waitlist today; built on AI but doesn't mention AI in marketing; focused on inbox sanity rather than inbox zero; one year and a half in development.",
+      "sentiment": "bullish",
+      "sector": "Productivity/SaaS"
+    },
+    {
+      "name": "Friend.com",
+      "type": "startup",
+      "context": "Avi Schiffman's AI companion wearable; compared to OpenAI's IO device as a validation of the space, but warned of Pebble-like risk if Apple moves in.",
+      "sentiment": "neutral",
+      "sector": "Consumer Hardware"
+    },
+    {
+      "name": "Pocket",
+      "type": "private",
+      "context": "Read-later app shutting down; prompted a developer to vibe-code an open-source alternative called Keep Yard overnight.",
+      "sentiment": "bearish",
+      "sector": "Consumer Apps"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Sponsor; design and development collaboration platform.",
+      "sentiment": "neutral",
+      "sector": "Design Tools"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Sponsor; trust management and compliance automation platform.",
+      "sentiment": "neutral",
+      "sector": "Cybersecurity"
+    },
+    {
+      "name": "Numeral",
+      "type": "startup",
+      "context": "Sponsor; sales tax compliance automation platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Sponsor; multi-asset investing platform; partnership with Aston Martin mentioned.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Sponsor; vacation home rental platform with hotel-grade amenities.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Sponsor; out-of-home advertising technology platform.",
+      "sentiment": "neutral",
+      "sector": "AdTech"
+    },
+    {
+      "name": "EatSleep",
+      "type": "startup",
+      "context": "Sponsor; sleep tracking app; host scored a 76, co-host scored back-to-back 99s.",
+      "sentiment": "neutral",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Pebble",
+      "type": "private",
+      "context": "Used as cautionary tale for hardware startups\u2014pioneered smartwatches but got displaced when Apple Watch launched; relevant to Friend.com and IO device discussion.",
+      "sentiment": "neutral",
+      "sector": "Consumer Hardware"
+    },
+    {
+      "name": "Oura",
+      "type": "startup",
+      "context": "Mentioned as an example of a hardware company likely to be a really big company in 10 years; cited alongside Whoop as a successful wearable.",
+      "sentiment": "bullish",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Whoop",
+      "type": "startup",
+      "context": "Mentioned as a successful wearable with most users wearing it alongside an Apple Watch rather than replacing it\u2014illustrating the difficulty of changing consumer behavior.",
+      "sentiment": "neutral",
+      "sector": "Health Tech"
+    },
+    {
+      "name": "Midjourney",
+      "type": "startup",
+      "context": "Cited as likely generating hundreds of millions in revenue run rate; used as example of substantial inference-driven AI businesses being built.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Lagora",
+      "type": "startup",
+      "context": "Legal AI company that raised a big Series B this week; described as coming out of nowhere, similar to how Windsurf surprised the market.",
+      "sentiment": "bullish",
+      "sector": "Legal AI"
+    },
+    {
+      "name": "AMD",
+      "type": "public",
+      "context": "Described as far behind Nvidia despite resources and market clarity; Dylan Patel jokingly credited with potentially turning AMD around via another report.",
+      "sentiment": "bearish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Hugging Face",
+      "type": "startup",
+      "context": "Mentioned as the source from which Lambda customers download arbitrary models to run and fine-tune on GPU clusters.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Digital Ocean",
+      "type": "public",
+      "context": "Praised by Sam Lessin for doing a great job with AI services; easy to boot agents on top of a knowledge base; cited Llama availability as a feature.",
+      "sentiment": "bullish",
+      "sector": "Cloud"
+    },
+    {
+      "name": "OnlyFans",
+      "type": "private",
+      "context": "Sam Lessin expressed long-standing desire to acquire it; described as priced at ~8x earnings due to small buyer pool and AI displacement fears; argued AI actually enhances rather than threatens the platform.",
+      "sentiment": "bullish",
+      "sector": "Creator Economy"
+    },
+    {
+      "name": "Reddit",
+      "type": "public",
+      "context": "Cited as an example of how brand amplifies data value\u2014sold data to Google for ~$60M because the Reddit brand is recognized, vs. an unknown source getting far less.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Cerebras",
+      "type": "startup",
+      "context": "Mentioned as a frontier example of wafer-scale computing as an alternative architectural approach to Nvidia GPUs.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Samsung",
+      "type": "public",
+      "context": "Briefly mentioned as likely copying any successful new AI hardware form factor for the Android ecosystem, threatening independent hardware makers.",
+      "sentiment": "neutral",
+      "sector": "Consumer Hardware"
+    },
+    {
+      "name": "Stripe",
+      "type": "startup",
+      "context": "Mentioned briefly\u2014Sam Altman did a Stripe Sessions interview strategically timed before the IO acquisition announcement.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Etched",
+      "type": "startup",
+      "context": "Mentioned as an example of baking the transformer architecture into an ASIC chip; raised question of whether architecture-specific chips lose value as model architectures evolve.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Mercury",
+      "type": "startup",
+      "context": "CEO Ahmad (Immad) cited as having a pragmatic approach to legal fee caps\u2014negotiating them upfront with lawyers to align incentives.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Referenced multiple times by nuclear founders as the model for vertical integration and owning the full operational cadence of a complex technology.",
+      "sentiment": "bullish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Take-Two Interactive",
+      "type": "public",
+      "context": "CEO Strauss Zelnick mentioned as famous for conducting business meetings as workouts\u2014an inspiration for the hosts' sauna/workout meeting habit.",
+      "sentiment": "neutral",
+      "sector": "Gaming"
+    },
+    {
+      "name": "CNBC",
+      "type": "public",
+      "context": "Contrasted with TBPN as traditional financial media; Palantir CTO noted TBPN required no prep unlike CNBC; the information puts CNBC without quotes but TBPN in quotes.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Clubhouse",
+      "type": "startup",
+      "context": "Described by Jordy Hayes as the natural comparison to TBPN\u2014capturing real-time investor/founder conversation energy and turning it into a show format.",
+      "sentiment": "neutral",
+      "sector": "Social Media"
+    },
+    {
+      "name": "Pfizer",
+      "type": "public",
+      "context": "Cited as an example of a company that made significant profits on Viagra, which eventually went generic and became cheap\u2014illustrating the drug pricing lifecycle.",
+      "sentiment": "neutral",
+      "sector": "Pharma"
+    },
+    {
+      "name": "Netflix",
+      "type": "public",
+      "context": "Briefly mentioned for its new billion-dollar New Jersey studio; hosts joked about taking the fight to New Jersey.",
+      "sentiment": "neutral",
+      "sector": "Media"
+    },
+    {
+      "name": "Atrium",
+      "type": "startup",
+      "context": "Justin Kahn's attempt to automate legal work for Series A financings; mentioned as prior effort to reduce startup legal costs.",
+      "sentiment": "neutral",
+      "sector": "Legal Tech"
+    },
+    {
+      "name": "Solana",
+      "type": "public",
+      "context": "Sam Lessin is one of Solana's first investors; attended the Solana 'ship or die' conference in New York; mentioned the Raj Gokal Twitter ban incident.",
+      "sentiment": "neutral",
+      "sector": "Crypto/Blockchain"
+    }
+  ],
+  "people": [
+    {
+      "name": "Jory Liekanen",
+      "role": "CEO/Co-founder of Linear",
+      "context": "Discussed Linear's agent integrations, MCP philosophy, AI coding tool landscape, and Linear's calm product development ethos; noted DeepSeek's thinking mode as his personal LLM light-bulb moment."
+    },
+    {
+      "name": "Zach Weinberg",
+      "role": "Co-founder/investor at Curie (biotech VC)",
+      "context": "Gave an extensive breakdown of why drug pricing is structurally high, why the Most Favored Nation EO will fail legally, the 'better than the Beatles' problem in biotech, and why cutting science funding and immigration is harmful to therapeutics."
+    },
+    {
+      "name": "Leigh Marie Braswell",
+      "role": "Partner at Kleiner Perkins, former Founders Fund",
+      "context": "Discussed AI coding market dynamics, the Windsurf investment thesis, robotics data challenges, hyperscaler competition with startups, VO3 video generation, and M&A trends for AI app companies."
+    },
+    {
+      "name": "Stephen Balaban",
+      "role": "CEO and co-founder of Lambda Labs",
+      "context": "Shared Lambda's $500M+ revenue milestone, training-to-inference mix shift, Nvidia's continued dominance, and a thesis that neural networks will eventually replace all software rather than just generate it."
+    },
+    {
+      "name": "Sam Lessin",
+      "role": "Co-founder and GP at Slow Ventures",
+      "context": "Discussed Google winning AI week, went all-in on Gemini during a week of airplane vibe coding, argued incumbents are winning, gave a thesis on OnlyFans as a great AI-augmented asset, and discussed emerging manager fund dynamics."
+    },
+    {
+      "name": "Bobby Goodlatte",
+      "role": "Founder of Sunflower (email client)",
+      "context": "Announced the public waitlist launch of Sunflower, an AI-powered email client focused on inbox sanity rather than inbox zero; teased a long-term layer to be built on top of email analogous to iMessage on SMS."
+    },
+    {
+      "name": "Auren Hoffman",
+      "role": "Co-founder of Flex Capital, data company operator",
+      "context": "Discussed why the data-as-ingredient market didn't grow as expected, the brand premium on data assets, and wrote a viral post arguing VCs should not make founders pay their legal fees."
+    },
+    {
+      "name": "Doug Bernhauer",
+      "role": "CEO of Radiant Nuclear, former SpaceX engineer",
+      "context": "Broke down the new nuclear executive orders, Radiant's one-megawatt microreactor model, the regulatory barriers being removed, and Radiant's plan to go critical at Idaho National Lab in 2026."
+    },
+    {
+      "name": "Isaiah Taylor",
+      "role": "Founder/CEO of Valor Atomics",
+      "context": "Announced a partnership with the Utah governor to build and go critical with a 25MW reactor by July 4, 2026; compared Valor's vertical integration strategy to SpaceX's model; said first prototype was built in 16 months."
+    },
+    {
+      "name": "Scott Nolan",
+      "role": "CEO of General Matter (nuclear fuel enrichment)",
+      "context": "Appeared in a White House video announcing support for domestic uranium enrichment; former Founders Fund colleague of the hosts."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO of OpenAI",
+      "context": "Quoted in WSJ saying the IO acquisition has potential to add $1 trillion in value to OpenAI; the $6.5B deal framed as ~2% of company for a key executive team."
+    },
+    {
+      "name": "Jony Ive",
+      "role": "Designer, co-founder of IO (acquired by OpenAI)",
+      "context": "His company IO was acquired by OpenAI for $6.5B; device prototype described as slightly larger than AI Pin with iPod Shuffle-like form factor intended to be worn."
+    },
+    {
+      "name": "Avi Schiffman",
+      "role": "Founder of Friend.com",
+      "context": "Praised for pioneering AI companion hardware; jokingly compared to Iron Man building in a cave with scraps; warned of Pebble-like risk from Apple and Samsung copying the form factor."
+    },
+    {
+      "name": "Eric Glyman",
+      "role": "CEO of Ramp",
+      "context": "Quoted in The Information comparing TBPN to ESPN for tech\u2014founders, investors, and dev conferences as players, coaches, and games."
+    },
+    {
+      "name": "Shyam Sankar",
+      "role": "CTO of Palantir",
+      "context": "Quoted in The Information as a veteran of many CNBC hits who appreciated TBPN's informal no-prep format."
+    },
+    {
+      "name": "Eugenia Kudya",
+      "role": "Founder of Replica AI",
+      "context": "Briefly mentioned in The Information piece as an example of the range of TBPN guests."
+    },
+    {
+      "name": "Abe (The Information)",
+      "role": "Writer/reporter at The Information",
+      "context": "Wrote the profile of TBPN for the weekend section; appeared live on the show to discuss the piece; confirmed it was fair and accurate journalism; spent a full day with the hosts including breakfast at Jonathan Club."
+    },
+    {
+      "name": "Ashley Vance",
+      "role": "Elon Musk biographer, former NYT/Bloomberg journalist",
+      "context": "Quoted in The Information piece saying the hosts have an interesting voice few could pull off; intentionally described as a 'journo' rather than journalist as wordplay."
+    },
+    {
+      "name": "David Senra",
+      "role": "Host of Founders Podcast",
+      "context": "Previously advised Coogan on his YouTube channel; encouraged the hosts to go all-in on the podcast concept; suggested they look at Pat McAfee as a model."
+    },
+    {
+      "name": "Delian Asparouhov",
+      "role": "Partner at Founders Fund",
+      "context": "Cited as an example TBPN guest in The Information piece."
+    },
+    {
+      "name": "Augustus Rico",
+      "role": "Founder of Rainmaker Technology",
+      "context": "Featured in The Information piece for his 'sky high dream' of commercializing cloud seeding."
+    },
+    {
+      "name": "Ben Thompson",
+      "role": "Analyst at Stratechery",
+      "context": "Summarized Apple's AI failures in bullet-point form; also argued Google only truly cares about search and winning when directly impactful to search, giving startups room to maneuver."
+    },
+    {
+      "name": "Berber Jin",
+      "role": "Reporter at Wall Street Journal",
+      "context": "Authored the exclusive on Sam Altman's IO acquisition and quoted him saying the deal could add $1 trillion in value to OpenAI."
+    },
+    {
+      "name": "Sundar Pichai",
+      "role": "CEO of Google",
+      "context": "Pulled up a chart at Google I/O showing tokens generated going completely up and to the right, demonstrating inference demand growth."
+    },
+    {
+      "name": "Jensen Huang",
+      "role": "CEO of Nvidia",
+      "context": "Referenced as being in founder mode and aware of the AI compute boom; Nvidia's GPU supremacy described as the default for all cloud AI customers."
+    },
+    {
+      "name": "Yann LeCun",
+      "role": "Chief AI Scientist at Meta",
+      "context": "Mentioned historically\u2014Mark Zuckerberg hired him from NeurIPS in 2013, a moment that seemed like a bubble signal but proved otherwise."
+    },
+    {
+      "name": "Mamoon Hamid",
+      "role": "Partner at Kleiner Perkins",
+      "context": "Incubated Glean, the enterprise knowledge discovery platform now prominent in the AI era."
+    },
+    {
+      "name": "Dylan Patel",
+      "role": "Analyst at SemiAnalysis",
+      "context": "Jokingly credited with potentially turning AMD around with just one more report."
+    },
+    {
+      "name": "Raj Gokal",
+      "role": "Co-founder of Solana",
+      "context": "Sam Lessin recounted the story of accidentally getting Raj banned from Twitter with a joke tweet."
+    },
+    {
+      "name": "Dworkesh Patel",
+      "role": "Podcaster",
+      "context": "Released a notable interview on Claude 4 launch day with Anthropic researchers Trenton Bricken and Chalto Douglas, discussing reinforcement learning scaling and AI safety metaphors."
+    },
+    {
+      "name": "Strauss Zelnick",
+      "role": "CEO of Take-Two Interactive",
+      "context": "Cited as inspiration for the hosts' workout-meeting format; famous for conducting business in workout settings."
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO of Meta",
+      "context": "Sam Lessin said never bet against Mark when he cares about something; praised his competitive drive and Meta's aligned AI/ads flywheel."
+    },
+    {
+      "name": "Patrick O'Shaughnessy",
+      "role": "Host of Invest Like the Best",
+      "context": "Shouted out the Dworkesh Patel Claude 4 interview as a great listen for those interested in AI model progression."
+    }
+  ],
+  "topics": [
+    {
+      "name": "The Information's TBPN Profile",
+      "summary": "Abe from The Information wrote a weekend section feature on John Coogan and Jordy Hayes, characterizing TBPN as a safe refuge from mainstream media with unabashed tech enthusiasm. The piece covered their morning routine, studio setup, guest philosophy, and dream bookings of Magnificent Seven CEOs.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Apple's AI Strategy Failures",
+      "summary": "Ben Thompson summarized Apple's AI problems: engineering leadership didn't believe in AI, AI leadership skeptical of LLMs, former CFO underfunded GPU purchases, privacy policy limited training data, and AI team is understaffed and losing talent. Suggested fixes include opening on-device models as an API and auctioning the Siri button to third-party AI providers.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "OpenAI IO Acquisition and AI Hardware",
+      "summary": "OpenAI's $6.5B acquisition of Jony Ive's IO company frames as ~2% of the company for a key executive team with potential trillion-dollar hardware market. Device prototype described as wearable, iPod Shuffle-sized. Guests were skeptical about whether any new AI device form factor can break through given Apple's dominance across all existing form factors.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "AI Week: Microsoft Build, Google I/O, OpenAI I/O, Claude 4",
+      "summary": "Described as a massive week for AI announcements. Google I/O was widely seen as the standout\u2014Gemini 2.5 Pro, VO3 video generation, and 3,000 tokens per second with diffusion models. Anthropic released Claude 4. Linear announced agents. Sam Lessin switched from ChatGPT to Gemini mid-week after extended vibe coding sessions.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Nuclear Energy Executive Orders",
+      "summary": "Trump signed executive orders targeting 5GW of uprates to existing reactors and 10 new large reactors with complete designs under construction by 2030. Orders also aim to revitalize DOE's reactor testing mission and reform regulatory timelines. Doug Bernhauer and Isaiah Taylor called in; Valor Atomics announced partnership with Utah governor to go critical by July 4, 2026.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Drug Pricing and Most Favored Nation EO",
+      "summary": "Zach Weinberg argued the MFN executive order is legally unenforceable and economically backwards\u2014pharma will raise European prices rather than lower US prices, shrinking the total market. Explained biotech's 'better than the Beatles' problem: as medicine improves, the bar for new drugs rises, making it harder not easier. Seed/Series A biotech investing is expected-value negative at current prices.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "AI Coding Tools Market",
+      "summary": "Discussed the bifurcation between synchronous (assistant-style) and asynchronous (agent-style) coding AI. Windsurf and Cursor dominate prosumer and enterprise. Lee Marie Braswell said the market is much bigger than expected\u2014GitHub Copilot's dominance did not prevent a large and growing challenger market. Model provider tension with app-layer companies is a growing issue.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "GPU and Semiconductor Landscape",
+      "summary": "Nvidia maintains total supremacy in GPU demand with no credible near-term competitor. Google TPUs and Amazon Trainium/Inferentia are the farthest-along alternatives but still far behind. AMD has failed to capture meaningful share despite resources. Architecture shifts (diffusion models, Mamba) may undermine ASIC bets like Etched that are optimized for transformers.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Future of Software and Neural Software",
+      "summary": "Stephen Balaban argued that neural networks will eventually replace software entirely rather than just generating it\u2014users will prompt LLMs to 'behave like a calculator' rather than generating calculator code. Described as more robust than traditional software since there are no bugs, only misunderstandings.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Biotech Investment Landscape",
+      "summary": "Zach Weinberg explained why biotech is expected-value negative at seed/Series A: the 'better than the Beatles' regulatory bar, the disconnect between who pays for drugs and who uses them, and the massive capital required before human trials. Cutting science funding and immigration will worsen the talent shortage and hand the future to China.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Emerging VC Fund Market",
+      "summary": "Auren Hoffman cited Pitchbook data showing emerging managers on track to raise less than $20B this year, down from $60B in 2021. Argued most emerging manager funds are borderline bad businesses\u2014economics only work at certain size ranges, and the wave of 2021 first-time funds will mostly not survive.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "X Data Center Fire",
+      "summary": "A fire broke out at X's leased data center in Hillsborough, Oregon on Thursday morning, causing extended outages including DMs being down. X now operates only two core data centers (Portland and Atlanta) after Musk shut down the Sacramento facility in late 2022 to cut costs.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "OnlyFans as Acquisition Target",
+      "summary": "Sam Lessin made the case that OnlyFans is an undervalued asset trading at ~8x earnings due to small buyer pool and misplaced AI displacement fears. Argued AI actually enhances messaging automation on the platform, and the brand and low take rate (~10-15%) create a durable moat.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Sunflower Email Client Launch",
+      "summary": "Bobby Goodlatte launched the waitlist for Sunflower, an AI-powered email client built over 18 months focused on inbox sanity rather than inbox zero. Teased a long-term vision of building a layer on top of email similar to how iMessage was built on SMS.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Video Generation (VO3)",
+      "summary": "Google's VO3 was highlighted as a major breakthrough moment, though requiring more creative prompting than the viral Ghibli moment. Discussed whether hyperscalers like Google (via YouTube data) and Meta have structural advantages over standalone video generation startups in the prosumer/SMB market.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Radiant Nuclear Microreactors",
+      "summary": "Doug Bernhauer described Radiant's model: one-megawatt road-transportable reactors built factory-line at 50/year, deployed for 5-year cycles then returned for refueling. Company is on track for a critical test in 2026 at Idaho National Lab and just received DOE fuel access designation.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "VC Legal Fee Practices",
+      "summary": "Auren Hoffman's viral post argued VCs should not make founders pay their legal fees; standard practice is a cap of $10K-$300K in term sheets. He argued it's not LP-friendly (hidden cost without transparency), creates lawyer incentives to drag out closings, and is a backdoor management fee.",
+      "sentiment": "bearish"
+    }
+  ],
+  "key_claims": [
+    "Sam Altman stated the $6.5B IO acquisition has the potential to add $1 trillion in value to OpenAI",
+    "Lambda Labs has just over $500M in top-line revenue; historically 80/20 training to inference, now shifting toward inference-dominant",
+    "Biotech seed and Series A investing is expected-value negative as an asset class at current drug prices, per RA Capital analysis",
+    "50% of global pharma revenue comes from the United States",
+    "Americans spend more on cosmetics per year than on medicine (~$1,000/year per person on drugs)",
+    "The Most Favored Nation drug pricing EO is legally unenforceable and will result in pharma raising European prices rather than lowering US prices",
+    "Trump EO targets 5 gigawatts of nuclear uprates and 10 new large reactors under construction by 2030",
+    "Valor Atomics built its first prototype nuclear reactor in 16 months (vs. planned 18 months) and announced July 4, 2026 critical date in Utah",
+    "X (Twitter) now operates only two core data centers after Elon Musk shut down Sacramento in December 2022 to cut costs",
+    "TBPN has ~130,000 followers across X accounts and the show account, and ~7,000 YouTube subscribers as of the profile date",
+    "TBPN claims it could raise $15M in venture capital within an hour but deliberately avoids doing so",
+    "Sam Lessin switched from ChatGPT to Gemini 2.5 Pro mid-week after extended vibe coding, calling it better at certain coding tasks",
+    "Emerging VC managers are on track to raise less than $20B in 2025, down from $60B peak in 2021",
+    "Windsurf did not receive immediate access to Anthropic's newest model releases, highlighting model provider vs. app layer tension",
+    "Google's VO3 can generate video but requires more creative prompting than the viral Ghibli Photoshop moment to achieve consistent quality",
+    "Stephen Balaban predicts that in a couple of years code generation will advance to a function that converts cash directly into software",
+    "Jory of Linear said DeepSeek's thinking mode was his personal LLM inflection/light-bulb moment prompting Linear to heavily invest in AI",
+    "OpenAI's IO acquisition represents approximately 2% of the company, framing it as executive compensation rather than an outrageous standalone number"
+  ],
+  "technologies": [
+    "Large Language Models (LLMs)",
+    "Reinforcement Learning",
+    "MCP (Model Context Protocol)",
+    "CUDA",
+    "Infiniband",
+    "CRISPR / Base Editing",
+    "Gene Therapy",
+    "Nuclear Microreactors",
+    "Helium-cooled Reactor Loop",
+    "Diffusion Models (text and video)",
+    "Transformer Architecture",
+    "Reasoning Models",
+    "ASICs (transformer-specific chips)",
+    "TPUs (Google)",
+    "Trainium / Inferentia (Amazon)",
+    "VO3 (Google video generation)",
+    "AI Agents",
+    "Computer Use / Browser Use",
+    "Quantization and Model Distillation",
+    "Wafer-Scale Computing (Cerebras)",
+    "Enriched Uranium Fuel Cycles",
+    "Epigenetics",
+    "Cloud Seeding",
+    "ConvNets",
+    "Neural Software",
+    "World Models / Simulation for Robotics",
+    "Mamba (linear complexity attention alternative)",
+    "KV Cache",
+    "Vision Chambers / Boron-lined Proportional Counters (reactor monitoring)",
+    "Neutron Fluence Material Testing"
+  ],
+  "_stats": {
+    "word_count": 45132,
+    "estimated_input_tokens": 60025,
+    "input_tokens": 3,
+    "output_tokens": 12792,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 63959,
+    "duration_ms": 277068,
+    "wall_time_s": 278.4,
+    "cost_usd": 0.72416725,
+    "tokens_per_sec": 46.0
+  }
+}

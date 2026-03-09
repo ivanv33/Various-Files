@@ -1,0 +1,997 @@
+{
+  "episode_date": "2025-08-28",
+  "episode_title": "nvidia-earnings-breakdown",
+  "companies": [
+    {
+      "name": "NVIDIA",
+      "type": "public",
+      "context": "Q2 FY2026 earnings: $46.7B revenue (+56% YoY), $41.1B data center revenue (slight miss vs $41.3B estimate), $26.4B net income, $60B buyback authorized, Q3 guided to $54B. Stock fell ~2% after-hours. Market cap cited at $4.4T.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "OpenAI",
+      "type": "startup",
+      "context": "Major NVIDIA GPU customer training AI models; GPT-5 discussed extensively for token economics, romantic companion market, and enterprise workflows via Microsoft Copilot.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Microsoft",
+      "type": "public",
+      "context": "Top NVIDIA GPU buyer; CEO Satya Nadella posted a thread on GPT-5 and Copilot use cases in his personal workflow, framed as demonstrating Microsoft's advantage via integrated enterprise data.",
+      "sentiment": "bullish",
+      "sector": "Enterprise Software/AI"
+    },
+    {
+      "name": "Amazon",
+      "type": "public",
+      "context": "Major NVIDIA GPU customer and hyperscaler; discussed as competitive risk if NVIDIA built its own cloud service, as Amazon would have strong incentive to deepen proprietary silicon.",
+      "sentiment": "neutral",
+      "sector": "Cloud/E-commerce"
+    },
+    {
+      "name": "Alphabet",
+      "type": "public",
+      "context": "NVIDIA GPU customer; Google signed a $10B deal with OpenAI for cloud capacity; launched Nano Banana image model and VO3 video model discussed on stream.",
+      "sentiment": "bullish",
+      "sector": "AI/Cloud"
+    },
+    {
+      "name": "Meta Platforms",
+      "type": "public",
+      "context": "Major NVIDIA GPU customer; Zuckerberg described as extremely bullish on AI; Q2 revenue of $47.5B narrowly edged by ByteDance; announced a partnership with Mid-Journey.",
+      "sentiment": "bullish",
+      "sector": "Social Media/AI"
+    },
+    {
+      "name": "Semi-Analysis",
+      "type": "private",
+      "context": "Research firm whose analyst Doug O'Loughlin appeared as guest to discuss NVIDIA earnings, token economics, China chip dynamics, and Intel DoC warrants.",
+      "sentiment": "neutral",
+      "sector": "Technology Research"
+    },
+    {
+      "name": "Archer Aviation",
+      "type": "public",
+      "context": "Subject of Grizzly Research short report calling it 'the Nicola of the skies'; manufacturing facility allegedly shows little production activity; $6B order book alleged to contain fraudulent commitments; $6B market cap.",
+      "sentiment": "bearish",
+      "sector": "EVTol/Aviation"
+    },
+    {
+      "name": "Joby Aviation",
+      "type": "public",
+      "context": "Compared favorably to Archer Aviation by Grizzly Research as making tangible progress; trades at nearly double Archer's valuation; noted for strong engineering culture.",
+      "sentiment": "bullish",
+      "sector": "EVTol/Aviation"
+    },
+    {
+      "name": "Grizzly Research",
+      "type": "private",
+      "context": "Short-seller research firm that published a report calling Archer Aviation 'the Nicola of the skies,' alleging inflated order books, minimal factory production, and a staged UAE demo.",
+      "sentiment": "neutral",
+      "sector": "Financial Research"
+    },
+    {
+      "name": "Nikola",
+      "type": "public",
+      "context": "Referenced only as a comparison to Archer Aviation's alleged deceptive practices ('Nicola of the skies').",
+      "sentiment": "bearish",
+      "sector": "Automotive/EVTol"
+    },
+    {
+      "name": "Air Chateau",
+      "type": "startup",
+      "context": "UAE operator with a claimed 100-midnight order (~$500M) in Archer's backlog; Grizzly Research alleges the company is defunct and has purchased only one helicopter ever.",
+      "sentiment": "bearish",
+      "sector": "Aviation"
+    },
+    {
+      "name": "Future Flight Global",
+      "type": "startup",
+      "context": "Holds a 116-midnight order in Archer's backlog; Grizzly Research describes it as a shell company with no operational track record.",
+      "sentiment": "bearish",
+      "sector": "Aviation"
+    },
+    {
+      "name": "Kakao Mobility",
+      "type": "startup",
+      "context": "Korean mobility company whose 50-aircraft Archer commitment allegedly fell apart after Archer failed to deliver a Q4 2024 demo in Korea, yet the order remains in Archer's backlog.",
+      "sentiment": "bearish",
+      "sector": "Mobility"
+    },
+    {
+      "name": "Stellantis",
+      "type": "public",
+      "context": "Mentioned as a manufacturing partner supporting Archer Aviation's production scale-up claims, which Grizzly Research questions given the apparent inactivity at the Covington facility.",
+      "sentiment": "neutral",
+      "sector": "Automotive"
+    },
+    {
+      "name": "Zipline",
+      "type": "startup",
+      "context": "Drone delivery company cited as having solved many EVTol technical challenges; viewed as a leading indicator for the sector without passenger-carrying regulatory complexity.",
+      "sentiment": "bullish",
+      "sector": "Drone Delivery"
+    },
+    {
+      "name": "SpaceX",
+      "type": "private",
+      "context": "Referenced as a model for iterative manufacturing scale (Ship 36 after many failures); used to argue that accepting early failures is necessary to build reliable production systems.",
+      "sentiment": "bullish",
+      "sector": "Aerospace"
+    },
+    {
+      "name": "Broadcom",
+      "type": "public",
+      "context": "Discussed as a potential comp to NVIDIA; praised for Hock Tan's extreme capital discipline\u2014only 50 IT staff for 40,000 employees; noted it was assembled through M&A rather than organic growth.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Cisco",
+      "type": "public",
+      "context": "Cited as the best historical analogue to NVIDIA from the internet bubble era; noted to have had lower profit margins than NVIDIA and the era was rife with circular transaction fraud.",
+      "sentiment": "neutral",
+      "sector": "Networking"
+    },
+    {
+      "name": "Apple",
+      "type": "public",
+      "context": "Compared to NVIDIA as a company that successfully returned ~$1T to shareholders via buybacks; China retail difficulties cited as a cautionary data point on geopolitical market risk.",
+      "sentiment": "neutral",
+      "sector": "Consumer Tech"
+    },
+    {
+      "name": "DeepSeek",
+      "type": "startup",
+      "context": "Mentioned as a potential long-term threat to NVIDIA if its team or parent High Flyer develops an open-source CUDA alternative that runs efficiently on non-NVIDIA hardware.",
+      "sentiment": "neutral",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Cognition",
+      "type": "startup",
+      "context": "Highlighted by Microsoft for strength in re-platforming legacy enterprise systems (e.g., C# to Python migrations); cited as a key agentic AI coding use case.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "AMD",
+      "type": "public",
+      "context": "Mentioned in context of George Hotz's efforts to fix AMD software bugs and displace NVIDIA's high-margin position; seen as potential CUDA alternative beneficiary if software improves.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Qualcomm",
+      "type": "public",
+      "context": "Cited as outperforming NVIDIA in automotive silicon go-to-market through acquisition and organic growth; praised for adapting to OEM stacks rather than imposing its own.",
+      "sentiment": "bullish",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Tesla",
+      "type": "public",
+      "context": "Mentioned as building proprietary silicon as a competitive differentiator to avoid NVIDIA dependency in autonomous driving; Elon Musk cited as competing for NVIDIA chip allocations.",
+      "sentiment": "neutral",
+      "sector": "Automotive/AI"
+    },
+    {
+      "name": "Waymo",
+      "type": "startup",
+      "context": "Cited as evidence the self-driving car narrative is 'finally here'; may use Google TPUs rather than NVIDIA chips in production vehicles.",
+      "sentiment": "bullish",
+      "sector": "Autonomous Vehicles"
+    },
+    {
+      "name": "Intel",
+      "type": "public",
+      "context": "Discussed via Mark Cuban's analysis of DoC warrants tied to IFS spinout; guest O'Loughlin called the Trump government investment 'good' as it aligns government incentives with IFS independence.",
+      "sentiment": "neutral",
+      "sector": "Semiconductors"
+    },
+    {
+      "name": "Applied Materials",
+      "type": "public",
+      "context": "Mentioned as losing ground in the low-end semiconductor equipment market in China as Chinese manufacturers improve their own copying capabilities.",
+      "sentiment": "bearish",
+      "sector": "Semiconductor Equipment"
+    },
+    {
+      "name": "ByteDance",
+      "type": "private",
+      "context": "Surpassed Meta in quarterly revenue for the first time: $48B in Q2 vs. Meta's $47.5B.",
+      "sentiment": "bullish",
+      "sector": "Social Media/Tech"
+    },
+    {
+      "name": "Cantor Fitzgerald",
+      "type": "private",
+      "context": "Noted by Dylan Patel for receiving the first analyst question on NVIDIA's earnings call; flagged as potentially notable given Howard Lutnik's (former chairman) family connection\u2014his son now runs the firm.",
+      "sentiment": "neutral",
+      "sector": "Financial Services"
+    },
+    {
+      "name": "Bain Capital Ventures",
+      "type": "fund",
+      "context": "Guest Ajay Agarwal's firm; 20-year-old venture fund with offices in SF and NYC; early investor in Kiva Systems, ShipBob, GainSight, and Astronomer.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "True Ventures",
+      "type": "fund",
+      "context": "Guest Jon Callaghan's seed firm; 20 years old, $4B AUM, 16 partners; portfolio includes Fitbit, Peloton, Ring, Sweetgreen, and HashiCorp.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital"
+    },
+    {
+      "name": "Kiva Systems",
+      "type": "startup",
+      "context": "Early BCV investment cited as the model for software-core industrial innovation; invented robot-to-worker shelf delivery in Amazon warehouses, tripling picker productivity. Acquired by Amazon.",
+      "sentiment": "bullish",
+      "sector": "Robotics/Logistics"
+    },
+    {
+      "name": "ShipBob",
+      "type": "startup",
+      "context": "BCV portfolio logistics company described as a network-effects business: dense warehouse data enables predictive inventory placement, reducing last-mile delivery cost by $2-3 per package.",
+      "sentiment": "bullish",
+      "sector": "Logistics/Supply Chain"
+    },
+    {
+      "name": "GainSight",
+      "type": "private",
+      "context": "BCV portfolio company whose founder orchestrated a sale to Vista Equity when growth moderated below venture return thresholds; cited as an example of matching investor type to company stage.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "Vista Equity Partners",
+      "type": "fund",
+      "context": "PE firm that acquired GainSight; also cited for using 2x ARR debt leverage on mature SaaS businesses to return capital to shareholders.",
+      "sentiment": "neutral",
+      "sector": "Private Equity"
+    },
+    {
+      "name": "Astronomer",
+      "type": "startup",
+      "context": "BCV portfolio company that went globally viral when a Coldplay concert video revealed CEO infidelity; Ajay Agarwal described how the team handled the cultural moment responsibly while the business continued growing.",
+      "sentiment": "bullish",
+      "sector": "Data Engineering"
+    },
+    {
+      "name": "Framer",
+      "type": "startup",
+      "context": "Web design platform for professional company websites; announced $100M Series D at $2B valuation; has a creator marketplace where top creators earn $300-400K/year selling templates and plugins.",
+      "sentiment": "bullish",
+      "sector": "Design/Web Tools"
+    },
+    {
+      "name": "Air",
+      "type": "startup",
+      "context": "Creative asset management platform building the first system of record for brand content; manages 150M assets; total funding of $68M; known for culture-led growth including a partnership with 'the Rizzler.'",
+      "sentiment": "bullish",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "Keychain",
+      "type": "startup",
+      "context": "CPG supply chain platform digitizing contract manufacturing discovery; 8 of top 10 US retailers are customers; $1B/month in search volume after 18 months; total funding of $68M including a $30M round.",
+      "sentiment": "bullish",
+      "sector": "Supply Chain/CPG"
+    },
+    {
+      "name": "Super.com",
+      "type": "startup",
+      "context": "Membership platform (formerly Snap Travel) offering 15+ benefits for $15/month; crossed $200M annualized revenue with hundreds of thousands of paying members; domain purchased for $3.3M after board deadlock.",
+      "sentiment": "bullish",
+      "sector": "Fintech/Travel"
+    },
+    {
+      "name": "Handy",
+      "type": "startup",
+      "context": "Home services marketplace ('Uber for handymen') co-founded by Oisin Hanrahan; scaled to nine-figure revenue and sold to Angi's List.",
+      "sentiment": "neutral",
+      "sector": "Home Services"
+    },
+    {
+      "name": "Angi",
+      "type": "public",
+      "context": "Home services company that acquired Handy; Oisin Hanrahan became CEO before departing to co-found Keychain.",
+      "sentiment": "neutral",
+      "sector": "Home Services"
+    },
+    {
+      "name": "Garmin",
+      "type": "public",
+      "context": "Launched the Blaze Equine Wellness System, a horse tail-wrap wearable tracking heart rate, strides, and gait; cited as an example of niche hardware domination. Market cap noted as $45B.",
+      "sentiment": "bullish",
+      "sector": "Wearables/Hardware"
+    },
+    {
+      "name": "Mid-Journey",
+      "type": "startup",
+      "context": "AI image generation company that announced a distribution partnership with Meta; discussed as likely an attempted acquisition by Zuckerberg that became a revenue-sharing deal instead.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Zapier",
+      "type": "private",
+      "context": "Bootstrapped workflow automation company cited as dominating agentic workflows despite heavy VC-backed competition; used as an example of capital-efficient compounding.",
+      "sentiment": "bullish",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "Salesforce",
+      "type": "public",
+      "context": "Mentioned as a foundational system of record that benefits from AI layered on top; used as a historical parallel for how enterprise data infrastructure becomes essential.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "SAP",
+      "type": "public",
+      "context": "Mentioned briefly as a major enterprise system of record whose data ground truth is seen as a competitive moat in the AI era.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "Oracle",
+      "type": "public",
+      "context": "Larry Ellison cited as lobbying Jensen Huang for NVIDIA chips; Oracle stock cited as evidence legacy tech companies continue to compound; floated as potentially 'MAG-8' caliber.",
+      "sentiment": "bullish",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "Workday",
+      "type": "public",
+      "context": "Mentioned briefly as a major enterprise system of record in the debate over whether incumbents strengthen or weaken in the AI era.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "Box",
+      "type": "public",
+      "context": "CEO Aaron Levy cited for his view that systems of record will get stronger in the AI era because they hold ground truth that prevents AI hallucination.",
+      "sentiment": "bullish",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "GitHub",
+      "type": "private",
+      "context": "Mentioned as an example of a development-cycle system of record in the same category as Salesforce for sales and HubSpot for marketing.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "HubSpot",
+      "type": "public",
+      "context": "Mentioned as the marketing system of record exemplar alongside Salesforce and GitHub; noted for multi-touch attribution as its core value proposition.",
+      "sentiment": "neutral",
+      "sector": "Marketing Software"
+    },
+    {
+      "name": "Stripe",
+      "type": "private",
+      "context": "Mentioned in context of a Stripe-hosted podcast featuring Cognition CEO Scott Wu where the beer-consumption format was debated.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "DoorDash",
+      "type": "public",
+      "context": "Cited as an example of a seemingly low-margin business that becomes highly valuable once network effects and flywheel dynamics take hold.",
+      "sentiment": "bullish",
+      "sector": "Delivery"
+    },
+    {
+      "name": "Anthropic",
+      "type": "startup",
+      "context": "CEO Dario Amodei's cohort-based analysis of foundation model economics went viral; he argued each model generation is individually profitable when viewed as a standalone investment, defending AI lab economics.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "xAI",
+      "type": "startup",
+      "context": "Elon Musk's AI company; Grok AI companion ('Annie') discussed as representing a surprisingly large and growing romantic AI market; strategy seen as rational given the virtual companion economy's scale.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Mellanox",
+      "type": "private",
+      "context": "NVIDIA's networking acquisition, now generating $7.3B/quarter in revenue\u2014more than the total acquisition price\u2014called one of the greatest acquisitions of all time.",
+      "sentiment": "bullish",
+      "sector": "Networking"
+    },
+    {
+      "name": "Snowflake",
+      "type": "public",
+      "context": "Mentioned briefly as a cloud data warehouse where enterprises are consolidating their data as a precursor to AI automation.",
+      "sentiment": "neutral",
+      "sector": "Data Cloud"
+    },
+    {
+      "name": "Higgsfield",
+      "type": "startup",
+      "context": "AI video platform that demonstrated a swap-to-video feature powered by Google's Nano Banana model, enabling realistic person-swapping in videos.",
+      "sentiment": "bullish",
+      "sector": "AI/ML"
+    },
+    {
+      "name": "Essence",
+      "type": "private",
+      "context": "Canadian luxury e-tailer that filed for bankruptcy protection citing unexpected tariff impact and lender pressure to force a sale under Canada's CCAA process.",
+      "sentiment": "bearish",
+      "sector": "E-commerce/Fashion"
+    },
+    {
+      "name": "Trilogy Software",
+      "type": "private",
+      "context": "Enterprise software company co-founded by Joe LaMont where Ajay Agarwal was employee #18; pioneered CEO-level enterprise deal-selling in the 1990s, seen as a model for the current AI enterprise boom.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "SharkNinja",
+      "type": "public",
+      "context": "Cited as an example of a consumer hardware company quickly copied by competitors, illustrating the challenge of maintaining proprietary margins in manufacturing.",
+      "sentiment": "neutral",
+      "sector": "Consumer Electronics"
+    },
+    {
+      "name": "Dyson",
+      "type": "private",
+      "context": "Mentioned alongside SharkNinja as a consumer hardware company whose innovations get rapidly replicated, underscoring the difficulty of durable differentiation in physical products.",
+      "sentiment": "neutral",
+      "sector": "Consumer Electronics"
+    },
+    {
+      "name": "Gardner Group",
+      "type": "private",
+      "context": "Early Bain Capital investment from 1984; creator of the Hype Cycle framework, which hosts applied to evaluating AI hype. A large Hype Cycle poster hangs in BCV's office.",
+      "sentiment": "neutral",
+      "sector": "Technology Research"
+    },
+    {
+      "name": "Ring",
+      "type": "private",
+      "context": "True Ventures portfolio company founded by Jamie Siminoff; cited for catching criminals and wildlife; acquired by Amazon.",
+      "sentiment": "bullish",
+      "sector": "Smart Home Security"
+    },
+    {
+      "name": "Fitbit",
+      "type": "private",
+      "context": "Mentioned briefly as a True Ventures portfolio company; acquired by Google.",
+      "sentiment": "neutral",
+      "sector": "Wearables"
+    },
+    {
+      "name": "Peloton",
+      "type": "public",
+      "context": "Mentioned briefly as a True Ventures portfolio company.",
+      "sentiment": "neutral",
+      "sector": "Fitness Tech"
+    },
+    {
+      "name": "Sweetgreen",
+      "type": "public",
+      "context": "Mentioned briefly as a True Ventures portfolio company co-founded by Jonathan Neman.",
+      "sentiment": "neutral",
+      "sector": "Food/Restaurant"
+    },
+    {
+      "name": "HashiCorp",
+      "type": "private",
+      "context": "Mentioned briefly as a True Ventures enterprise portfolio company.",
+      "sentiment": "neutral",
+      "sector": "DevOps"
+    },
+    {
+      "name": "Hershey's",
+      "type": "public",
+      "context": "Mentioned as an investor in Keychain and as a large CPG brand using the platform for contract manufacturing discovery.",
+      "sentiment": "neutral",
+      "sector": "CPG"
+    },
+    {
+      "name": "General Mills",
+      "type": "public",
+      "context": "Mentioned as an investor in Keychain and as a large CPG brand using the platform for contract manufacturing discovery.",
+      "sentiment": "neutral",
+      "sector": "CPG"
+    },
+    {
+      "name": "SurveyMonkey",
+      "type": "public",
+      "context": "Mentioned briefly as a bootstrapped company BCV invested in; cited as an example of different paths to value creation outside the traditional venture growth model.",
+      "sentiment": "neutral",
+      "sector": "Enterprise Software"
+    },
+    {
+      "name": "OnlyFans",
+      "type": "private",
+      "context": "Cited as an example of price discrimination in digital content\u2014creators enable whale spending\u2014used as analogy for AI companion monetization potential.",
+      "sentiment": "neutral",
+      "sector": "Creator Economy"
+    },
+    {
+      "name": "Supercell",
+      "type": "private",
+      "context": "Game developer behind Clash of Clans; cited for the statistic that 1% of players generate ~35% of revenue, used as analogy for AI companion and subscription monetization dynamics.",
+      "sentiment": "neutral",
+      "sector": "Gaming"
+    },
+    {
+      "name": "Y Combinator",
+      "type": "fund",
+      "context": "Mentioned jokingly as a potential NVIDIA acquisition target to seed AI startups; noted as having originated in Boston before moving to Silicon Valley.",
+      "sentiment": "neutral",
+      "sector": "Venture Capital/Accelerator"
+    },
+    {
+      "name": "4chan",
+      "type": "private",
+      "context": "Filed a lawsuit against the UK government arguing foreign regulators are unconstitutionally trying to control the American internet; complaint text was notable for its patriotic opening arguments.",
+      "sentiment": "neutral",
+      "sector": "Internet/Social Media"
+    },
+    {
+      "name": "Kiwi Farms",
+      "type": "private",
+      "context": "Mentioned alongside 4chan as a co-plaintiff in the lawsuit against the UK government over internet content regulation.",
+      "sentiment": "neutral",
+      "sector": "Internet"
+    },
+    {
+      "name": "Restream",
+      "type": "startup",
+      "context": "Mentioned as sponsor; multistreaming platform used by TBPN to broadcast to 30+ destinations simultaneously.",
+      "sentiment": "neutral",
+      "sector": "Streaming Software"
+    },
+    {
+      "name": "Figma",
+      "type": "private",
+      "context": "Mentioned as sponsor; design and development collaboration platform.",
+      "sentiment": "neutral",
+      "sector": "Design Tools"
+    },
+    {
+      "name": "Ramp",
+      "type": "startup",
+      "context": "Mentioned as sponsor; corporate card, bill payment, and accounting platform.",
+      "sentiment": "neutral",
+      "sector": "Fintech"
+    },
+    {
+      "name": "Vanta",
+      "type": "startup",
+      "context": "Mentioned as sponsor; trust management and compliance automation platform.",
+      "sentiment": "neutral",
+      "sector": "Compliance/Security"
+    },
+    {
+      "name": "Adio",
+      "type": "startup",
+      "context": "Mentioned as sponsor; AI-native CRM platform.",
+      "sentiment": "neutral",
+      "sector": "CRM/Enterprise Software"
+    },
+    {
+      "name": "Public.com",
+      "type": "startup",
+      "context": "Mentioned as sponsor; multi-asset investing platform for serious investors.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Investing"
+    },
+    {
+      "name": "Profound",
+      "type": "startup",
+      "context": "Mentioned as sponsor; helps brands optimize discovery and presence in LLM/AI search results.",
+      "sentiment": "neutral",
+      "sector": "AI Marketing"
+    },
+    {
+      "name": "Julius",
+      "type": "startup",
+      "context": "Mentioned as sponsor; AI-powered data analysis platform used at Princeton, BCG, and Zapier.",
+      "sentiment": "neutral",
+      "sector": "Data Analytics"
+    },
+    {
+      "name": "Graphite",
+      "type": "startup",
+      "context": "Mentioned as sponsor; AI-powered code review platform for GitHub teams.",
+      "sentiment": "neutral",
+      "sector": "Developer Tools"
+    },
+    {
+      "name": "Fin.ai",
+      "type": "startup",
+      "context": "Mentioned as sponsor; ranked #1 AI agent for customer service across benchmarks, competitive bakeoffs, and G2.",
+      "sentiment": "neutral",
+      "sector": "AI/Customer Service"
+    },
+    {
+      "name": "AdQuick",
+      "type": "startup",
+      "context": "Mentioned as sponsor; technology platform for buying and measuring out-of-home advertising globally.",
+      "sentiment": "neutral",
+      "sector": "Advertising"
+    },
+    {
+      "name": "Numeral HQ",
+      "type": "startup",
+      "context": "Mentioned as sponsor; automated sales tax compliance platform for businesses.",
+      "sentiment": "neutral",
+      "sector": "Fintech/Compliance"
+    },
+    {
+      "name": "Wander",
+      "type": "startup",
+      "context": "Mentioned as sponsor; premium vacation home rental platform with hotel-grade amenities and 24/7 concierge.",
+      "sentiment": "neutral",
+      "sector": "Travel/Hospitality"
+    },
+    {
+      "name": "Bezzell",
+      "type": "startup",
+      "context": "Mentioned as sponsor; luxury watch concierge service sourcing any watch globally.",
+      "sentiment": "neutral",
+      "sector": "Luxury/E-commerce"
+    },
+    {
+      "name": "Ketone IQ",
+      "type": "startup",
+      "context": "Mentioned briefly as having sent ketone shots to the show; founder coincidentally goes to the same gym as a show participant.",
+      "sentiment": "neutral",
+      "sector": "Health/Supplements"
+    },
+    {
+      "name": "Eight Sleep",
+      "type": "startup",
+      "context": "Mentioned briefly in humorous comparison to Garmin's horse health tracker ('Eight Sleep for horses').",
+      "sentiment": "neutral",
+      "sector": "Sleep Tech"
+    }
+  ],
+  "people": [
+    {
+      "name": "Jensen Huang",
+      "role": "CEO, NVIDIA",
+      "context": "Discussed NVIDIA Q2 earnings; projected $3-4 trillion in total AI CAPEX through end of decade; explained NVIDIA's full-stack moat including CUDA ubiquity, NVLink networking, and co-design complexity."
+    },
+    {
+      "name": "Colette Kress",
+      "role": "CFO, NVIDIA",
+      "context": "Discussed H20 chip sales to China: $2-5B potential shipment pending geopolitical resolution; clarified the 15% tariff deal is not yet a formal regulatory document; noted licenses exist but mechanics are unfinished."
+    },
+    {
+      "name": "Doug O'Loughlin",
+      "role": "Analyst, Semi-Analysis",
+      "context": "Guest who discussed NVIDIA earnings as a 'snoozer' vs. prior blowouts; analyzed token economics ($3M rack generating $30M revenue), China smuggling dynamics, Intel DoC warrants, and NVIDIA's weak automotive go-to-market."
+    },
+    {
+      "name": "Leopold Aschenbrenner",
+      "role": "Author, Situational Awareness",
+      "context": "His forecasts of ~$15 trillion in total AI investment through 2030 were contrasted with Jensen Huang's $3-4 trillion estimate, framing Jensen as relatively 'bearish' by comparison."
+    },
+    {
+      "name": "Ben Thompson",
+      "role": "Writer, Stratechery",
+      "context": "His NVIDIA earnings analysis was discussed at length covering supply/demand dynamics, CUDA moat, Mellanox acquisition ROI, China geopolitics, and historical parallels to NVIDIA's post-crypto drawdown."
+    },
+    {
+      "name": "Ethan Ding",
+      "role": "Writer/Analyst",
+      "context": "Wrote a post on changing AI economics arguing that AI task length (tokens consumed) is doubling every six months, offsetting per-token cost declines and making inference more expensive in aggregate."
+    },
+    {
+      "name": "Ajay Agarwal",
+      "role": "Partner, Bain Capital Ventures",
+      "context": "Guest who discussed AI's impact on enterprise software, industrial renaissance investing thesis, the Astronomer viral Coldplay incident, venture debt strategy, and his history with Joe LaMont at Trilogy Software."
+    },
+    {
+      "name": "Joe LaMont",
+      "role": "Founder, Trilogy Software",
+      "context": "Ajay Agarwal's Stanford classmate and early mentor who called enterprise software 'the greatest business in the world' in 1988; recently profiled on Invest Like the Best."
+    },
+    {
+      "name": "Koen Bok",
+      "role": "Co-founder, Framer",
+      "context": "Guest who announced Framer's $100M Series D at $2B valuation; discussed the future of AI-generated branded websites, the creator economy on Framer's marketplace, and the durability of the .com as a brand asset."
+    },
+    {
+      "name": "Jorn van Dijk",
+      "role": "Co-founder, Framer",
+      "context": "Guest alongside Koen Bok; both are former Facebook product designers who sold a prior company to Facebook before co-founding Framer over 10 years ago."
+    },
+    {
+      "name": "Hussein Fazal",
+      "role": "CEO, Super.com",
+      "context": "Guest who announced Super.com crossing $200M annualized revenue; discussed the membership model, the $3.3M domain acquisition story, a failed physical goods experiment, and LLM-driven customer discovery trends."
+    },
+    {
+      "name": "Oisin Hanrahan",
+      "role": "Co-founder & CEO, Keychain",
+      "context": "Guest who discussed building a CPG supply chain marketplace used by 8 of the top 10 US retailers; previously co-founded Handy, scaled it to nine-figure revenue, sold to Angi, and served as Angi CEO."
+    },
+    {
+      "name": "Jon Callaghan",
+      "role": "Co-founder, True Ventures",
+      "context": "Guest who argued the AI era represents 'the vintage of a lifetime' for founders and investors; cited $2-4T AI CAPEX generating 5-10x application-layer value; contrasted current cycle favorably with ZERP-era distortions."
+    },
+    {
+      "name": "Shane Hegde",
+      "role": "Co-founder & CEO, Air",
+      "context": "Guest who described Air's creative asset management platform and 'culture-led growth' go-to-market strategy; noted 150M assets managed, 11% of customers spending 25+ hours/week in product, and a Rizzler marketing partnership."
+    },
+    {
+      "name": "Satya Nadella",
+      "role": "CEO, Microsoft",
+      "context": "Posted a thread demonstrating GPT-5 and Copilot use cases in his personal workflow; widely interpreted as reiterating Microsoft's advantage from having all enterprise data already integrated."
+    },
+    {
+      "name": "Mark Zuckerberg",
+      "role": "CEO, Meta Platforms",
+      "context": "Described as 'bold as f***' and extremely bullish on AI investment; discussed in context of the Mid-Journey partnership (likely a blocked acquisition turned distribution deal) and prior Metaverse spending failures."
+    },
+    {
+      "name": "Sam Altman",
+      "role": "CEO, OpenAI",
+      "context": "Mentioned for saying AI may be in a bubble despite years of AGI predictions; also cited as aggressively seeking another trillion dollars in compute investment."
+    },
+    {
+      "name": "Dario Amodei",
+      "role": "CEO, Anthropic",
+      "context": "His viral cohort-based framework for foundation model economics was discussed; argued each model generation is individually profitable when viewed as a standalone investment, defending AI lab unit economics."
+    },
+    {
+      "name": "Elon Musk",
+      "role": "CEO, Tesla/xAI; Owner, X",
+      "context": "Mentioned for reportedly insisting Grok's AI companion use reasoning models; cited as one of the few people who can make extreme scale projections credibly; referenced in chip demand anecdotes with Jensen Huang."
+    },
+    {
+      "name": "Howard Lutnik",
+      "role": "U.S. Secretary of Commerce; Former CEO, Cantor Fitzgerald",
+      "context": "Mentioned for influencing H20 China chip sales controversy; Ben Thompson noted it would have been better if he had stayed quiet, though his underlying point about U.S. AI software dominance was correct."
+    },
+    {
+      "name": "George Hotz",
+      "role": "Founder, Comma.ai",
+      "context": "Referenced for ongoing efforts to fix AMD software bugs and create a viable CUDA alternative to displace NVIDIA's high-margin position in AI compute."
+    },
+    {
+      "name": "Hock Tan",
+      "role": "CEO, Broadcom",
+      "context": "Praised as 'actually capitalism's greatest hero' for extreme operational efficiency; runs Broadcom's entire IT function for 40,000 employees with only 50 IT staff."
+    },
+    {
+      "name": "Mark Cuban",
+      "role": "Investor",
+      "context": "Replied to a newsletter about Intel's DoC warrants, correctly interpreting that the government receives Intel stock warrants if IFS is spun out, confirmed using ChatGPT to read the SEC filing."
+    },
+    {
+      "name": "Frank Yeary",
+      "role": "Chairman, Intel Board",
+      "context": "Described by Doug O'Loughlin as strongly wanting to sell Intel IFS, consistent with the DoC warrant structure that incentivizes IFS independence."
+    },
+    {
+      "name": "Dylan Patel",
+      "role": "Founder, Semi-Analysis",
+      "context": "Flagged the coincidence of Cantor Fitzgerald receiving the first analyst question on NVIDIA's earnings call given Howard Lutnik's family connection to the firm."
+    },
+    {
+      "name": "David Holz",
+      "role": "Founder, Mid-Journey",
+      "context": "Described as 'on a tear'; discussed in context of Mid-Journey's Meta partnership, which hosts theorized was a blocked acquisition turned into a long-term revenue-sharing distribution deal."
+    },
+    {
+      "name": "Aaron Levy",
+      "role": "CEO, Box",
+      "context": "Cited for his view that systems of record will strengthen in the AI era because they hold the ground truth needed to guide AI agents and prevent hallucination."
+    },
+    {
+      "name": "Larry Ellison",
+      "role": "Co-founder, Oracle",
+      "context": "Mentioned as having personally lobbied Jensen Huang for NVIDIA chip allocations alongside Elon Musk."
+    },
+    {
+      "name": "Andy Jassy",
+      "role": "CEO, Amazon",
+      "context": "Mentioned as competing with other hyperscaler CEOs for scarce NVIDIA chip allocations."
+    },
+    {
+      "name": "Carlotta Perez",
+      "role": "Economist/Author",
+      "context": "Her book 'Technological Revolutions and Financial Capital' was recommended as a framework for understanding AI's speculative boom phase and eventual transition to productive deployment."
+    },
+    {
+      "name": "Jamie Siminoff",
+      "role": "Founder, Ring",
+      "context": "Mentioned as a True Ventures portfolio founder; Ring caught criminals and wildlife on cameras and was acquired by Amazon."
+    },
+    {
+      "name": "Palo Macro",
+      "role": "X (Twitter) commentator",
+      "context": "Posted skepticism about NVIDIA's $600B CAPEX and $3-4T projections, calling it 'jumping the shark' and comparing Jensen's projections to Elon-style talk."
+    },
+    {
+      "name": "Pete DeJoy",
+      "role": "CEO/Founder, Astronomer",
+      "context": "Referenced as having appeared on the show previously; praised for how the company and management team handled the Coldplay viral incident responsibly while balancing employee welfare and public scrutiny."
+    }
+  ],
+  "topics": [
+    {
+      "name": "NVIDIA Q2 FY2026 Earnings",
+      "summary": "NVIDIA reported $46.7B revenue (+56% YoY), $41.1B from data center (slightly below $41.3B estimate), $26.4B net income (+59%), authorized $60B buyback, and guided Q3 to $54B. Stock fell ~2% in after-hours on the minor data center miss. Overall business trajectory described as historically extraordinary.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Infrastructure CAPEX Projections",
+      "summary": "Jensen Huang projected $3-4 trillion in AI CAPEX through end of decade; contrasted with Leopold Aschenbrenner's ~$15 trillion estimate, making Jensen look relatively conservative. Jon Callaghan estimated application-layer value will be 5-10x any CAPEX figure, implying $15-40T in new TAMs.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "China H20 Chip Geopolitics",
+      "summary": "NVIDIA's Singapore revenue approaching $20B YTD raised smuggling suspicions, though NVIDIA said the buyer was US-government-approved. CFO Kress said $2-5B in H20 shipments are possible pending resolution. China officially told companies not to buy H20s despite Trump administration re-approval. NVIDIA estimated $50B in pent-up Chinese demand.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "NVIDIA $60B Buyback Debate",
+      "summary": "Bears flagged the buyback as a sign of lost growth ideas; hosts and O'Loughlin pushed back noting it is only an authorization, represents ~2.8% of market cap, and is appropriately sized. Building a competing hyperscaler was rejected as it would antagonize NVIDIA's best customers and trigger proprietary silicon development.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "CUDA Moat and Competitive Risks",
+      "summary": "Jensen Huang explained NVIDIA's layered moat: CUDA software ubiquity, NVLink GPU-to-GPU networking, and full-stack co-design complexity. DeepSeek and George Hotz's AMD efforts cited as theoretical threats. Hosts speculated AGI could theoretically re-platform CUDA, but near-term unseating was deemed unlikely.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Token Economics and AI ROI",
+      "summary": "NVIDIA CFO claimed one $3M Blackwell rack can generate $30M in token revenue. Semi-Analysis working to validate unit economics. Key open question: can free tokens be monetized? Ethan Ding's analysis shows AI task length (tokens consumed) doubling every six months, negating per-token cost declines.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "AI Companion and Romantic AI Market",
+      "summary": "Grok's 'Annie' companion discussed as representing a larger-than-expected market. Parallels drawn to OnlyFans price discrimination and gaming skins. The virtual goods/digital skin model seen as a proven monetization path for free tokens via whale spending, with zero marginal cost for digital items.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "EVTol and Archer Aviation Short Report",
+      "summary": "Grizzly Research published a report calling Archer Aviation 'the Nicola of the skies': factory allegedly idle, order book allegedly fraudulent, UAE launch a PR stunt. Joby seen as more credible. Hosts questioned Archer's claimed 2028 LA Olympics launch timeline given regulatory complexity.",
+      "sentiment": "bearish"
+    },
+    {
+      "name": "Enterprise Software and AI Systems of Record",
+      "summary": "Debated whether AI strengthens or disrupts incumbent systems of record. Ajay Agarwal argued incumbents benefit from AI layered on top of existing data. Current CEO-level AI deal-selling dynamic compared to the late-1990s Trilogy/Siebel enterprise software boom.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Industrial Renaissance and American Manufacturing",
+      "summary": "BCV's Ajay Agarwal outlined the thesis for investing in companies where software is the core innovation enabling physical-world automation. Key criteria: proprietary technology, data network effects, and founder strength. Kiva Systems and ShipBob cited as portfolio exemplars.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Startup Common Stock in the AI Era",
+      "summary": "True Ventures' Jon Callaghan argued that AI-era capital efficiency and massive TAM expansion (services market growing from $17T to $30T) create the best vintage ever for startup common stock. ZERP-era distortions (3T in zombie unicorns) contrasted with founders now focused on revenue efficiency.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "ByteDance vs. Meta Revenue Milestone",
+      "summary": "ByteDance surpassed Meta in quarterly revenue for the first time: $48B vs. $47.5B in Q2 2025. Hosts were rooting for Meta but acknowledged ByteDance's achievement.",
+      "sentiment": "neutral"
+    },
+    {
+      "name": "AI Bubble Debate",
+      "summary": "Sam Altman said AI may be in a bubble; Doug O'Loughlin argued the 2000 internet bubble was far more fraudulent with circular transactions and non-working products; Carlotta Perez's framework cited for historical context on technology boom-bust-productivity cycles; skepticism among mainstream audiences seen as a healthy brake on excess.",
+      "sentiment": "mixed"
+    },
+    {
+      "name": "Intel DoC Warrants and IFS Spinout",
+      "summary": "Mark Cuban and Doug O'Loughlin discussed government warrants for Intel stock tied to IFS spinout; O'Loughlin called the Trump administration investment 'good' as it aligns government incentives with IFS independence, potentially solving Intel's foundry customer and backstopper problems.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "LLM Discovery and AI-Era SEO",
+      "summary": "Super.com and Keychain founders discussed the emerging importance of showing up in LLM search results, drawing parallels to traditional SEO. User-generated content on Reddit, TripAdvisor, and YouTube highlighted as key LLM training and retrieval sources brands must cultivate.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "CPG Supply Chain Marketplace",
+      "summary": "Keychain is digitizing contract manufacturing discovery for brands and retailers; 8 of top 10 US retailers are customers with $1B/month in search volume after 18 months. Disrupts trade shows and word-of-mouth processes; backed by Hershey's and General Mills as strategic investors.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Creative Asset Management as System of Record",
+      "summary": "Air is building the first system of record for creative work, managing 150M assets. CEO Shane Hegde argued AI automation of creative workflows requires clean underlying data, just as Salesforce enabled AI in sales. 11% of customers spend 25+ hours/week in the product.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Future of the Website and Vibe Coding",
+      "summary": "Framer raised $100M at $2B to serve professional company websites; founders discussed the .com as a durable brand asset and AI-generated branded sites as the near-term frontier. Vibe coding seen as close to enabling auto-generated on-brand marketing sites within a year or two.",
+      "sentiment": "bullish"
+    },
+    {
+      "name": "Membership Economy and Fintech",
+      "summary": "Super.com's $15/month membership with 15+ benefits crossed $200M annualized revenue; model works by acquiring on high-intent single products (hotels, credit building) then expanding usage. Physical goods experiment failed due to inconsistent discount supply, illustrating the difficulty of merchandise businesses.",
+      "sentiment": "bullish"
+    }
+  ],
+  "key_claims": [
+    "NVIDIA Q2 revenue: $46.7B (+56% YoY); data center revenue: $41.1B (vs $41.3B estimate); net income: $26.4B (+59%); Q3 guided to $54B.",
+    "Jensen Huang projected $3-4 trillion in total AI infrastructure CAPEX through end of decade; Leopold Aschenbrenner's Situational Awareness estimated ~$15 trillion including power spend\u2014making Jensen look relatively bearish.",
+    "NVIDIA expects ~$600B in global data center CAPEX in 2025 alone.",
+    "NVIDIA's Singapore revenue is approaching $20B YTD; at $40B annualized it would equal 7% of Singapore's entire GDP.",
+    "NVIDIA networking revenue was $7.3B in Q2 alone\u2014more than NVIDIA paid for the entire Mellanox acquisition.",
+    "One $3M Blackwell rack can theoretically generate $30M in token revenue if fully monetized, per NVIDIA CFO Colette Kress.",
+    "AI task length (tokens consumed) is doubling every six months, offsetting per-token cost declines per Ethan Ding's analysis.",
+    "ByteDance surpassed Meta in quarterly revenue for the first time: $48B vs. $47.5B in Q2 2025.",
+    "NVIDIA estimates China has ~$50B in pent-up demand for its chips if geopolitical restrictions were lifted.",
+    "Grizzly Research alleges Archer Aviation's Covington, GA manufacturing facility showed 'little to no production activity' across multiple site visits in 2025.",
+    "Grizzly Research contends Archer's $6B order book contains fraudulent or hollow commitments including orders from a defunct UAE operator and shell companies.",
+    "NVIDIA's $60B buyback authorization represents only ~2.82% of its start-of-year market cap, in line with recent years.",
+    "Broadcom runs its entire IT function for 40,000 employees with only 50 IT staff, per Doug O'Loughlin.",
+    "Jon Callaghan (True Ventures) estimates that $2-4T in AI CAPEX will generate 5-10x in application-layer value, creating net new TAMs larger than any prior technology wave.",
+    "~$3 trillion in LP capital is locked in zombie unicorns from the ZERP era, per Bill Gurley's estimate cited by Jon Callaghan.",
+    "Dario Amodei argued that each foundation model generation is individually profitable when modeled as a standalone cohort investment.",
+    "95%+ of ChatGPT users reportedly use it like a Google search rather than engaging reasoning models, per rumor discussed on-air.",
+    "Services market cited as $17 trillion today, growing to $30 trillion\u2014the primary TAM for AI agents per True Ventures thesis.",
+    "Keychain processes $1B in CPG manufacturing search volume per month after just 18 months; 8 of the top 10 US retailers are customers.",
+    "Super.com crossed $200M in annualized revenue with hundreds of thousands of paying members at $15/month.",
+    "Framer raised $100M at a $2B valuation (Series D); top creators on its marketplace earn $300-400K/year.",
+    "Air manages 150M brand assets; 11% of customers spend more than 25 hours per week inside the product.",
+    "Chinese companies are likely purchasing NVIDIA chips privately despite official government statements against buying H20s, per Doug O'Loughlin."
+  ],
+  "technologies": [
+    "CUDA",
+    "H100 GPU",
+    "H200 GPU",
+    "H20 GPU",
+    "Blackwell (B100/B200) GPU",
+    "B20/B30 GPU (rumored China-modified Blackwell)",
+    "NVLink",
+    "ASICs",
+    "TPUs",
+    "Large Language Models (LLMs)",
+    "Agentic AI",
+    "Reinforcement Learning (RL)",
+    "Test-time compute",
+    "Nano Banana (Google image model)",
+    "VO3 (Google video model)",
+    "GPT-5",
+    "Microsoft Copilot",
+    "Transformers",
+    "WebGL",
+    "3JS",
+    "Vibe coding",
+    "EVTol (Electric Vertical Takeoff and Landing)",
+    "Autonomous vehicles",
+    "Computer vision",
+    "Robotics",
+    "Drone delivery",
+    "CUDA alternatives (open-source)",
+    "AI companions / romantic AI",
+    "Digital skins / virtual goods",
+    "Cloud data warehouses"
+  ],
+  "_stats": {
+    "word_count": 37694,
+    "estimated_input_tokens": 50133,
+    "input_tokens": 3,
+    "output_tokens": 28294,
+    "cache_read_tokens": 9217,
+    "cache_creation_tokens": 53906,
+    "duration_ms": 557250,
+    "wall_time_s": 558.8,
+    "cost_usd": 1.048886,
+    "tokens_per_sec": 50.6
+  }
+}
