@@ -1,0 +1,22 @@
+[project]
+name = "housing-mlp"
+version = "0.1.0"
+description = "PyTorch MLP for California housing price prediction"
+requires-python = ">=3.10"
+dependencies = [
+    "torch",
+    "scikit-learn",
+    "numpy",
+]
+
+[project.scripts]
+housing-mlp = "housing_mlp.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]
