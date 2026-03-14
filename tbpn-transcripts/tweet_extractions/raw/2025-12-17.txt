@@ -1,0 +1,124 @@
+<think>
+We are scanning the transcript for any references to tweets, X/Twitter posts, quote tweets, replies, or threads.
+ Let's go through the transcript step by step.
+
+ Key phrases to look for: "tweet", "X", "Twitter", "on X", "on Twitter", "timeline", "thread", "quote tweet", "reply".
+
+ Let's check:
+
+ 1. "Bology recently went viral, because, there was a clip from an older podcast that was reposted on acts went viral"
+    - This says "reposted on acts" — likely a typo for "X" (since X is the new name for Twitter). But note: "acts" is probably a typo for "X". However, the transcript says "reposted on acts", which might be a mishearing of "X". But we must take the transcript as written. It says "acts", so we cannot assume it's X. However, the context is that it's about a viral clip on a platform, and the host says "reposted on acts", but then says "went viral". We are to extract only if it explicitly says "tweet", "X", "Twitter", etc. This says "acts", which is not a standard reference. So we skip.
+
+ 2. "I'm going to go do a circuit of appearances. A podcast tour." -> This is about podcast appearances, not Twitter.
+
+ 3. "But it's very much counter to your point of like one big campaign, one breakthrough idea." -> Not about Twitter.
+
+ 4. "When you think about when I, you know, I think what does that do for Lowe's partnership, you know? This was actually Google's cloud storytelling team. They published an article." -> This is about a blog post, not a tweet.
+
+ 5. "I would say that the reality distortion field that emerges often results in 100xpe." -> Not about Twitter.
+
+ 6. "There's this thing where, like, if you have a hot take, you don't actually need to own the platform. You can just go do a circuit of appearances. A podcast tour." -> Again, podcast tour, not Twitter.
+
+ 7. "The internet is noisier than ever with thousands of startups competing for Mindshare. When every startup has a great launch video, no one does." -> Not about Twitter.
+
+ 8. "Avi Schiffman's campaign which I call buy every billboard he literally every billboard." -> This is about a billboard campaign, not Twitter.
+
+ 9. "I did not know astronomer before then I do now I will never forget them I thought ramps expenses should do themselves with sayquan that one was this combination of like luck incredible execution and timing and and ultimately it just like having the Eagles got it done" -> This seems to be a mishearing of "Astronomer" (a company) and "Eagles" (a typo for something else? maybe "the Eagles" as in a band? but not Twitter). Not a tweet reference.
+
+ 10. "They're also aren't paying them enough to go do extra stuff." -> Not about Twitter.
+
+ 11. "Last night, I feel like we had dinner with a great storyteller, and he told us his entire life story." -> This is a personal story, not a tweet.
+
+ 12. "I think tech needs to fall in love with advertising again." -> Not about Twitter.
+
+ 13. "I think this gets lost because we're in this era of rapid testing, iterating through a bunch of assets, you know, humor." -> Not about Twitter.
+
+ 14. "ChatGBTGBT has a new image model. They just launched this." -> This is about a product launch, not a tweet.
+
+ 15. "Sam Altman teased it with a photo that at this point, you know, him and a bunch of polos." -> This is about a photo that Sam Altman posted? But note: the transcript says "teased it with a photo", which might be a tweet. However, it doesn't say "on Twitter" or "on X". But note: the host says "teased it with a photo", and then describes the announcement. We are to extract if it's a reference to a tweet. However, the transcript does not explicitly say "on Twitter". But let's see the context: Sam Altman is known for using Twitter (now X). The host says "teased it with a photo", and then describes the model. This might be a reference to a tweet. But the transcript doesn't say "tweet" or "X". However, the context is that Sam Altman would likely post such a thing on X. But the rule says: "Include EVERY mention of a tweet, X/Twitter posts, ...". The transcript doesn't explicitly say "tweet" or "X", so we must be cautious.
+
+    However, note: the host says "Sam Altman teased it with a photo", and then describes the announcement. The word "teased" in the context of tech usually means on social media, especially X. But the transcript doesn't specify the platform. We cannot assume. So we skip.
+
+ 16. "There's a whole bunch of interesting articles or interesting stats in here." -> Not about Twitter.
+
+ 17. "We've had some gray hair." -> Not about Twitter.
+
+ 18. "There is a fantastic article in the Wall Street Journal." -> This is about a WSJ article, not a tweet.
+
+ 19. "I can't think of a more stressful job since 2021." -> Not about Twitter.
+
+ 20. "Do you think that she asked for the storyteller title and she didn't get it so she quit in protest?" -> This is a hypothetical, not a reference to a specific tweet.
+
+ 21. "There's a clip from an older podcast that was reposted on acts went viral" -> We already considered this as a typo for X, but the transcript says "acts", so we skip.
+
+ 22. "I'm going to go do a circuit of appearances. A podcast tour." -> Already noted.
+
+ 23. "OpenAI and the ChatGPT app are definitely sort of embracing this idea that you will need to bring a little bit of idea generation." -> Not about Twitter.
+
+ 24. "Open AI hires an executive from Google to lead M&A." -> Not about Twitter.
+
+ 25. "Open AI hire comms chief, Hannah Wong, is departing the company." -> This is a news item, not a tweet.
+
+ 26. "Do you think that she asked for the storyteller title and she didn't get it so she quit in protest?" -> Already considered.
+
+ 27. "We've got to go through it." -> Referring to the WSJ article, not a tweet.
+
+ 28. "Advertisers start Christmas season early." -> This is a WSJ article title, not a tweet.
+
+ 29. "The National Retail Federation is projecting that holiday sales will surpass $1 trillion." -> Not about Twitter.
+
+ 30. "Bucco Capital is arguing that AI is not a bubble." -> This is a person (Bucco Capital) making an argument, but the transcript doesn't say they did it on Twitter. It says "Bucco Capital is arguing", which could be in an article or report. We don't know.
+
+ 31. "The truth is that the business case for EVs has always rested largely on government subsidies and mandates." -> Not about Twitter.
+
+ 32. "Jared Kushner is exiting from the takeover battle." -> This is a news item, not a tweet.
+
+ 33. "I'm out. I'm out. I'm out. Not enough foghorn leghorn. I said I'm out." -> This is the host making a joke about a fictional character (foghorn leghorn) and not referencing a tweet.
+
+ 34. "Let it rip. Life is short." -> Host's commentary.
+
+ After reviewing, I don't see any explicit reference to a tweet, X post, or Twitter activity.
+
+ However, note: the transcript says "Bology recently went viral, because, there was a clip from an older podcast that was reposted on acts went viral". The word "acts" is likely a mishearing of "X". But the transcript says "acts", so we cannot assume it's X. Therefore, we do not extract.
+
+ Also, note: "on the timeline" — the transcript says "they draw millions of views and create a vortex of talent, capital, and customers" — but that's about the internet, not specifically Twitter.
+
+ Another possible: "if you have a hot take, you don't actually need to own the platform. You can just go do a circuit of appearances. A podcast tour." — This is about podcast tours, not Twitter.
+
+ Therefore, we conclude there are no references to tweets, X/Twitter posts, etc.
+
+ So we return:
+ {
+   "episode_date": "2025-12-17",
+   "tweets": []
+ }
+
+ But note: the transcript says "Bology recently went viral, because, there was a clip from an older podcast that was reposted on acts went viral". The host says "reposted on acts", and then says "went viral". The host might have meant "X", but the transcript says "acts". We must stick to the transcript.
+
+ However, let's check again: the transcript says "reposted on acts". This is a clear typo for "X", but we are not to correct the transcript. We must take it as written. Since it says "acts", not "X", we cannot assume it's Twitter.
+
+ Therefore, no tweet references.
+
+ But wait: the transcript also says "I did not know astronomer before then I do now I will never forget them I thought ramps expenses should do themselves with sayquan that one was this combination of like luck incredible execution and timing and and ultimately it just like having the Eagles got it done and that like was the cherry on top it was a great campaign it was a great you know first Super Bowl commercial for them and then finally Avi Schiffman's campaign which I call buy every billboard he literally every billboard."
+
+ This mentions "Avi Schiffman's campaign", but it doesn't say it was on Twitter. It's a billboard campaign.
+
+ So no tweet references.
+
+ Let's double-check for any other possible mention:
+
+ - "I'm happy to be a leaser." -> This is a quote from Satya (Microsoft CEO) but not a tweet.
+
+ - "the journal piece" -> referring to the Wall Street Journal article.
+
+ - "the internet is noisier than ever" -> general statement.
+
+ - "they draw millions of views" -> general, not tied to Twitter.
+
+ Therefore, we have no tweets to extract.
+
+ Return the JSON with empty tweets array.
+
+</think>
+
+{"episode_date":"2025-12-17","tweets":[]}

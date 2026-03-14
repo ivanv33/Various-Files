@@ -1,0 +1,183 @@
+<think>
+Let me carefully go through the podcast transcript to extract all references to tweets, X/Twitter posts, quote tweets, replies, and threads.
+
+I'll look for phrases like:
+- "tweeted"
+- "X post"
+- "on X"
+- "on Twitter"
+- "timeline"
+- "thread"
+- "quote tweet"
+- "reply"
+
+Going through the transcript:
+
+1. "I'm going to say on the timeline today, this is an interesting trend. Heron resource. H.R. I'm executing on this strategy very well. They say, I notice one employee wearing noise-cancelling headphones, not earbuds. The big cushioned over ear kind that create a tiny personal universe. I asked if everything was all right. He said yes. He's just trying to focus. You do this in the morning. I do. You throw on your big earbuds. I told him we value focus, but isolation can misread as resistance to collaboration. He said he's literally sitting at his desk doing his job. I told him we track human presence, not just output. He asked how presence is measured. I said imperfectly, which is why it's so important. Then I logged, quote, avoiding spontaneous culture building opportunities in his engagement profile, 10 million views. 50,000 likes, and it's an ad for deal."
+
+This describes a tweet/post from "Heron resource" that's being discussed. It's a reference to a tweet, but it's not clear if it's an actual tweet or a reference to a trend. The transcript says "on the timeline today", so it's likely referring to an X/Twitter post.
+
+2. "We also saw, I think Polymarket bought, uh, Raw's alert for $500,000. That was leaked on the timeline today."
+
+This is a reference to something on the timeline (X/Twitter) about Polymarket buying Raw's alert.
+
+3. "And it's so interesting because it feels like it's part of this new trend. Like there's that, there's a European VC guy who's really funny, who I believe is owned or partnered with like a SOC compliance competitor or company out there that does that. like a Vantac competitor, and they, uh, uh, and it's just a very funny positioning of like these like owning these accounts."
+
+This is describing a trend of companies owning accounts, but not referencing a specific tweet.
+
+4. "We also saw, I think Polymarket bought, uh, Raw's alert for $500,000. That was leaked on the timeline today."
+
+This appears to be a second mention of Polymarket buying Raw's alert.
+
+5. "And it's just a funnel to be top of funne to just do lead gen on yeah and so there's all these different ways that that companies are like plugging into like you know social media these days very fascinating yeah well another way to advertise is of course with ad quick.com out of them advertising made easy"
+
+This is about advertising, not specifically about tweets.
+
+6. "Oh, are you back in the house? I'm back. You're back? Okay. I wasn't sure how long the renovation was going to happen. Congratulations. I'm glad us over. Wait, what did you get? 83? 83. Ooh, wow. Came back with some authority. With some authority. Well, we have Kat from AG1 in the Reistraming. Welcome. Former guest. She's back. Thank you so much for taking the time to talk to us. It's such a busy day. Right after Thanksgiving. Welcome to the show. Thanks for having me. Great to see you. Since we last talked, what's new in your world? We've been sort of bucketing brands. Okay, someone's more of a, you know, this is Black Friday. It's the most giftable Game Boy possible. It's going to be under the Christmas tree. And then David Protein, you know, sales are down 20% today, gearing up for January, New Year, New Year. Black Friday's not a huge focus for that."
+
+This mentions a "former guest" but doesn't reference a specific tweet.
+
+7. "I think a big part of that is bring on the gong. It's, you know, what, I shared this on X a little earlier that this is a brave new world for us having multiple products so we can create bundles."
+
+This is a reference to Kat sharing something on X (Twitter) about their new product bundles.
+
+8. "I'll share one strategy and one channel that stood out for us this year. One strategy was shifting the marketing focus from as influencers, and creator forward to more science forward. You know, we invested over 10 million in four double-blind randomized placebo-controlled human trials, and it makes a lot of sense to try to get credit for that and help to stand out in the crowd."
+
+This mentions they "invested over 10 million in four double-blind randomized placebo-controlled human trials", but doesn't reference a specific tweet.
+
+9. "So for the first half of the year, we pulled back marketing investment 40% to focus on executing product launches, executing channel launches, and building the story around the real work of quality, science, and research. So that strategy, that approach, which colored everything we did from the actual marketing where we put up huge billboards, we invested millions in out-of-home advertising that said something like, please enjoy your dumb, your randomized double-blind placebo-controlled daily health drink. You know, with a picture of out-of-home advertising."
+
+This describes their marketing strategy, not a specific tweet.
+
+10. "So, like, you know, I shared this on X a little earlier that this is a brave new world for us having multiple products so we can create bundles."
+
+This is a reference to Kat sharing something on X about their new product bundles. This is a specific tweet.
+
+11. "I've also had a friend who has a is a ad agency where he just buys you know ads for companies um and he set up an an AI based profile like years ago like as soon as as soon as the AI dropped like it was not particularly good just has like an anonymous picture like an AI generated image and he posts just like here are the greatest ads in history every day and so it's just a great ads and people will just they go viral all the time because they're just interesting ads funny ads and then it's just a funnel to be top of funne to just do lead gen on yeah"
+
+This describes a friend who set up an AI-based Twitter profile, but doesn't quote a specific tweet.
+
+12. "I was just going to say, Nish is just the epitome of golden retriever matching. He's an absolute animal."
+
+This is a comment about Nish from Array, not a tweet reference.
+
+13. "We also saw, I think Polymarket bought, uh, Raw's alert for $500,000. That was leaked on the timeline today."
+
+This is a reference to Polymarket buying Raw's alert for $500,000, mentioned as being "leaked on the timeline today".
+
+Let me now identify all the specific tweet references:
+
+1. The "Heron resource" post about employees wearing noise-cancelling headphones - described as a tweet/post on the timeline.
+
+2. The Polymarket buying Raw's alert for $500,000 - mentioned as "leaked on the timeline today".
+
+3. Kat sharing on X about "this is a brave new world for us having multiple products so we can create bundles" - a specific tweet.
+
+Let me check if there are any more:
+
+- "I think a big part of that is bring on the gong. It's, you know, what, I shared this on X a little earlier that this is a brave new world for us having multiple products so we can create bundles." - This is a specific tweet reference.
+
+Now, let's look at the rules for how to format the JSON:
+
+- "author" = the person who wrote the tweet, not the podcast host discussing it
+- "content" = verbatim quote of the tweet as read or described in the transcript
+- "context" = why the hosts brought it up or what they said about it (1-2 sentences max)
+- "type" meanings: original = standalone tweet; quote_tweet = quoting another tweet; reply = replying to someone; thread = multi-tweet thread; reference = vague mention of someone's twitter activity without specific content
+
+For the Heron resource post:
+- Author: "Heron resource" (as described in the transcript)
+- Content: "I notice one employee wearing noise-cancelling headphones, not earbuds. The big cushioned over ear kind that create a tiny personal universe. I asked if everything was all right. He said yes. He's just trying to focus. You do this in the morning. I do. You throw on your big earbuds. I told him we value focus, but isolation can misread as resistance to collaboration. He said he's literally sitting at his desk doing his job. I told him we track human presence, not just output. He asked how presence is measured. I said imperfectly, which is why it's so important. Then I logged, quote, avoiding spontaneous culture building opportunities in his engagement profile, 10 million views. 50,000 likes, and it's an ad for deal."
+- Context: The hosts discuss this as an interesting trend in the workplace, referencing the content of the post.
+- Type: reference (since it's a description of the tweet but not the exact content)
+
+For the Polymarket post:
+- Author: "unknown" (the transcript doesn't name who posted this)
+- Content: "Polymarket bought, uh, Raw's alert for $500,000"
+- Context: The hosts mention this as a specific example of a company buying an alert on X, which was "leaked on the timeline today".
+- Type: reference (vague mention of someone's Twitter activity without specific content)
+
+For Kat's X post:
+- Author: "Kat" (from AG1)
+- Content: "this is a brave new world for us having multiple products so we can create bundles"
+- Context: Kat shared this on X to explain their new product strategy.
+- Type: original (standalone tweet)
+
+Let me double-check the transcript for any other references:
+
+- "I'm going to say on the timeline today, this is an interesting trend." - This is a description of a trend, not a specific tweet.
+- "We also saw, I think Polymarket bought, uh, Raw's alert for $500,000. That was leaked on the timeline today." - This is the second mention of Polymarket.
+
+So I'll include the Polymarket reference once.
+
+Now I'll create the JSON with these references.
+
+I'll use "2023-11-24" as the episode_date since Black Friday 2023 was on November 24.
+
+The JSON should be:
+{
+  "episode_date": "2023-11-24",
+  "tweets": [
+    {
+      "author": "Heron resource",
+      "content": "I notice one employee wearing noise-cancelling headphones, not earbuds. The big cushioned over ear kind that create a tiny personal universe. I asked if everything was all right. He said yes. He's just trying to focus. You do this in the morning. I do. You throw on your big earbuds. I told him we value focus, but isolation can misread as resistance to collaboration. He said he's literally sitting at his desk doing his job. I told him we track human presence, not just output. He asked how presence is measured. I said imperfectly, which is why it's so important. Then I logged, quote, avoiding spontaneous culture building opportunities in his engagement profile, 10 million views. 50,000 likes, and it's an ad for deal.",
+      "context": "Discussed as an example of a workplace trend on social media",
+      "type": "reference"
+    },
+    {
+      "author": "unknown",
+      "content": "Polymarket bought, uh, Raw's alert for $500,000",
+      "context": "Mentioned as a specific business transaction that was leaked on the timeline",
+      "type": "reference"
+    },
+    {
+      "author": "Kat",
+      "content": "this is a brave new world for us having multiple products so we can create bundles",
+      "context": "Kat shared this on X to explain their new product strategy",
+      "type": "original"
+    }
+  ]
+}
+
+Wait, I need to check if "Heron resource" is the actual author or just a description. The transcript says "Heron resource. H.R. I'm executing on this strategy very well." So it seems like "Heron resource" is the author.
+
+Let me recheck the transcript for the Polymarket reference. The transcript says "Polymarket bought, uh, Raw's alert for $500,000. That was leaked on the timeline today." So it's not clear who tweeted this. It's a reference to something that was posted on X/Twitter, but the author isn't named.
+
+For the "Heron resource" reference, it's not clear if "Heron resource" is the author of the tweet or just a description of the post. I'll treat it as the author.
+
+For the Kat reference, it's clear she shared it on X.
+
+Let me double-check if there are any other tweet references.
+
+I don't see any other specific tweets, posts, or X/Twitter references. The other references are just general discussion about social media trends.
+
+So my JSON will include these three tweet references.
+
+Wait, the transcript also says "I think a big part of that is bring on the gong. It's, you know, what, I shared this on X a little earlier that this is a brave new world for us having multiple products so we can create bundles." This is a different reference to the same tweet. But I think it's the same tweet, so I should only include it once.
+
+Let me now create the JSON.
+
+</think>
+
+{
+  "episode_date": "2023-11-24",
+  "tweets": [
+    {
+      "author": "Heron resource",
+      "content": "I notice one employee wearing noise-cancelling headphones, not earbuds. The big cushioned over ear kind that create a tiny personal universe. I asked if everything was all right. He said yes. He's just trying to focus. You do this in the morning. I do. You throw on your big earbuds. I told him we value focus, but isolation can misread as resistance to collaboration. He said he's literally sitting at his desk doing his job. I told him we track human presence, not just output. He asked how presence is measured. I said imperfectly, which is why it's so important. Then I logged, quote, avoiding spontaneous culture building opportunities in his engagement profile, 10 million views. 50,000 likes, and it's an ad for deal.",
+      "context": "Discussed as an example of a workplace trend on social media",
+      "type": "reference"
+    },
+    {
+      "author": "unknown",
+      "content": "Polymarket bought, uh, Raw's alert for $500,000",
+      "context": "Mentioned as a specific business transaction that was leaked on the timeline",
+      "type": "reference"
+    },
+    {
+      "author": "Kat",
+      "content": "this is a brave new world for us having multiple products so we can create bundles",
+      "context": "Kat shared this on X to explain their new product strategy",
+      "type": "original"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+<think>
+Okay, let's tackle this. The user wants me to extract all references to tweets, X posts, quote tweets, replies, and threads from the provided podcast transcript. The output must be a specific JSON format with episode date and an array of tweets.
+
+First, I need to scan through the transcript carefully. The key is to look for mentions of "X", "Twitter", "tweet", "thread", "quote tweet", "reply", or similar terms. Let me go through the transcript line by line.
+
+Starting from the top, I see a part where they mention a "standup comedy bit from Gemini three" but that's a model output, not a tweet. Then there's a reference to "Sundar pitch AI, Jordy posted back in July of 2025." Wait, "Jordy" might be a typo for "Jordy" as a username? The transcript says "Sundar pitch AI, Jordy posted back in July of 2025. Nominative determinism is undefeated." So this seems like a tweet from someone named Jordy about Sundar Pichai. The author would be "Jordy", content is "Nominative determinism is undefeated." Context is the hosts discussing Sundar's previous AI mentions. Type would be "original".
+
+Next, they mention "GPD 5.1" but that's a model, not a tweet. Then there's a part about "Brock, 4.1" but that's a model too. 
+
+Looking further, "I asked uh for the the the the poster benchmark i said write me a post jemini 3 write me a post about technology that will get a thousand likes on x.com and it gave me a few options through its credit uh here's option 3." So Gemini 3 was asked to write a post for X. But this is the model's output, not a real tweet. So this is a reference to what the model generated, but not an actual tweet. So this doesn't count as a real tweet reference. The hosts are describing what the model created, but it's not a real user's tweet.
+
+Another part: "Jordy posted back in July of 2025." Wait, that's the same as before. So that's the only mention of a user's tweet. Wait, let's check if there are others.
+
+They mention "Dario, after intense conversation with other members of Anthropic, has decided to maybe open the relationship to Microsoft and NVIDIA." But this is a press release or news, not a tweet.
+
+Wait, the hosts say: "Anthropic will spend $30 billion on Microsoft Cloud compute. Reminder, OpenAI is going to be spending $250 billion on Microsoft Cloud compute." But that's not a tweet reference.
+
+Looking for "X" or "Twitter" mentions. The transcript says "write me a post about technology that will get a thousand likes on x.com" — but again, this is the model's output, not a real tweet. So not a reference to an actual tweet.
+
+Another part: "I like the idea that it just thinks like well what would I wear if I was in the anthropic office like I'd probably wear a red tie" — this is about the model's output, not a tweet.
+
+Wait, there's a line: "Sundar pitch AI, Jordy posted back in July of 2025." So "Jordy" is the author. The content is "Nominative determinism is undefeated." But the transcript says "Nominative determinism is undefeated. Sundar really did it." So the tweet content is "Nominative determinism is undefeated." The context is that they're talking about Sundar Pichai being mocked for saying "AI" a lot, and now Jordy's tweet is referencing that.
+
+Another possible reference: "The last time we saw capability jump of this magnitude was the release of GPD 4 in March 2023." But that's not a tweet.
+
+Wait, there's a part where they say: "Let me know what you think of the comments." But that's referring to comments on a post, maybe the model's output, not a specific tweet.
+
+Wait, the hosts mention "I asked Gemini 3 to make an interactive web page..." but that's not a tweet.
+
+Let me check again for any other mentions. The transcript says: "It's like the visual understanding, the computer use that you can use. Basically, there's some benchmarks that measure this, like how well can it navigate a website or something like this." Not a tweet.
+
+Another part: "I mean, it's not like yesterday we weren't able to do something with AI. And today, in vanilla Gemini 3, you can just do it." No tweet reference.
+
+Wait, the part where they talk about "Open AI" and "Fiji Simo" — "a profile in the, in Wired of Fiji Simo." That's a Wired article, not a tweet.
+
+Wait, there's a line: "I'd be like, whoever prayed on my downfall, pray harder." But that's the host speaking, not a tweet.
+
+Another possible reference: "We ran out of press releases. We ran out of press releases." This is the host's comment, not a tweet.
+
+Wait, the hosts mention "The press release economy is also over, so as Bucco Capital Bloch." But Bucco Capital Bloch might be a person, but it's a press release, not a tweet. So not a tweet reference.
+
+Looking for "X" mentions: "write me a post about technology that will get a thousand likes on x.com" — again, this is the model's generated post, not an actual tweet. So not a real tweet reference.
+
+So the only real tweet reference is the one about "Jordy posted back in July of 2025" with the content "Nominative determinism is undefeated."
+
+Wait, the transcript says: "Sundar pitch AI, Jordy posted back in July of 2025. Nominative determinism is undefeated." So "Jordy" is the author, content is "Nominative determinism is undefeated." The context is that they're discussing Sundar Pichai's previous AI mentions and how Jordy's tweet is a reference to that.
+
+Another possible mention: "I asked uh for the the the the poster benchmark i said write me a post jemini 3 write me a post about technology that will get a thousand likes on x.com and it gave me a few options through its credit uh here's option 3." But this is the model generating a post, so it's not a real tweet. So it shouldn't be included as a tweet reference. The user's instruction says to extract references to tweets, not model-generated content.
+
+Wait, the instruction says: "extract every reference to tweets, X/Twitter posts, quote tweets, replies, and threads." So if the podcast is talking about a tweet that was posted, not a model's output. The model's output is not a reference to a real tweet. So the only valid reference is Jordy's tweet.
+
+Wait, let me check if there are others. The transcript says: "I actually think that there's two sides to analyzing a model release these days. One is you benchmark it, you use it, you test it, you demo it, and that has been getting less and less interesting." Not a tweet.
+
+Another part: "Let's hear it for our sponsor, Google AI Studio, Gemini, launching Gemini 3." Not a tweet.
+
+Wait, the hosts mention "the actual, what's the actual structure of the cap act?" — no.
+
+Another possible: "They did a super cut of every time he said AI, he said AI a lot." This is about Sundar's speech, not a tweet.
+
+Wait, the part where they say "Jordy posted back in July of 2025." So that's a tweet. The content is "Nominative determinism is undefeated." So the tweet is from Jordy.
+
+So the JSON should have that as the only entry.
+
+Wait, but the transcript says "Sundar pitch AI, Jordy posted back in July of 2025." Maybe "Sundar pitch AI" is a typo for "Sundar Pichai's AI" or something. But the tweet is from Jordy. So author is "Jordy", content is "Nominative determinism is undefeated."
+
+Context: The hosts are discussing how Sundar Pichai was mocked for saying "AI" a lot, and Jordy's tweet is referencing that.
+
+Type: original.
+
+Any other mentions? Let me check again.
+
+"OpenAI is going to be spending $250 billion on Microsoft Cloud compute." Not a tweet.
+
+"Anthropic is now valued at $350 billion after Microsoft Nvidia deal." Not a tweet.
+
+The part where they mention "Dario, after intense conversation with other members of Anthropic, has decided to maybe open the relationship to Microsoft and NVIDIA." This might be a reference to a tweet or a news article, but the transcript doesn't say it's from Twitter. It's presented as news, so not a tweet reference.
+
+"Let me know what you think of the comments." This is the host asking listeners to comment, but not referencing a specific tweet.
+
+So the only valid reference is the one about Jordy's tweet.
+
+Wait, another part: "I asked Gemini 3 to make an interactive web page summarizing 10 breakthroughs in genetics over the past 15 years." Again, model's output, not a tweet.
+
+So the only tweet reference is Jordy's.
+
+Now, checking the episode date: the transcript says "episode date: 2025-11-19", so "2025-11-19".
+
+In the JSON, the "author" should be "Jordy", "content" is "Nominative determinism is undefeated." Wait, the transcript says "Nominative determinism is undefeated. Sundar really did it." But the tweet content is probably just "Nominative determinism is undefeated." The "Sundar really did it" might be the host's commentary. So the content should be the exact words from the tweet, which is "Nominative determinism is undefeated."
+
+So the content field should be "Nominative determinism is undefeated."
+
+Context: The hosts discuss Sundar Pichai's previous AI mentions and how Jordy's tweet references this.
+
+Type: original.
+
+So the JSON would be:
+
+{
+  "episode_date": "2025-11-19",
+  "tweets": [
+    {
+      "author": "Jordy",
+      "content": "Nominative determinism is undefeated.",
+      "context": "Discussing Sundar Pichai's past AI mentions and mocking his 'AI' repetition.",
+      "type": "original"
+    }
+  ]
+}
+
+Wait, the transcript says "Sundar pitch AI, Jordy posted back in July of 2025. Nominative determinism is undefeated." So the tweet content is "Nominative determinism is undefeated." The "Sundar pitch AI" might be a mishearing of "Sundar Pichai's AI", but the tweet is from Jordy.
+
+Another check: Is "Jordy" a username or a person's name? The transcript says "Jordy", so that's the author.
+
+So that's the only entry. Let me make sure there's no other references.
+
+Wait, the part where they say "The press release economy is also over, so as Bucco Capital Bloch." Bucco Capital Bloch might be a person's name, but it's not a tweet. So not relevant.
+
+Another part: "I actually think that there's two sides to analyzing a model release these days." Not a tweet.
+
+Okay, I think that's the only one. So the JSON should include that single tweet entry.
+
+</think>
+
+{"episode_date":"2025-11-19","tweets":[{"author":"Jordy","content":"Nominative determinism is undefeated.","context":"Discussing Sundar Pichai's past AI mentions and mocking his 'AI' repetition.","type":"original"}]}

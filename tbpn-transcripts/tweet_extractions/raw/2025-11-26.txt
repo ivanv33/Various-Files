@@ -1,0 +1,348 @@
+<think>
+We are given a transcript and need to extract every reference to tweets, X/Twitter posts, quote tweets, replies, and threads.
+
+Let's go through the transcript and look for any mentions of "tweet", "X", "Twitter", "timeline" (as in Twitter timeline), or specific mentions of people's Twitter activity.
+
+Key points to note:
+- The transcript is from a podcast episode dated 2025-11-26.
+- We must extract only the references to tweets as described.
+
+Let's scan the transcript:
+
+1. "Timeline was in turmoil over the weekend and yesterday." 
+   - "Timeline" here is likely referring to the Twitter timeline (the feed), but it's not a specific tweet reference. We are to extract references to tweets, not the timeline as a whole. So this is not a tweet reference.
+
+2. "We covered a little bit about the nucleus dust up on the timeline." 
+   - Again, "timeline" refers to the Twitter timeline, not a specific tweet. So skip.
+
+3. "It's very funny. It's a bit of a hot mic moment." 
+   - This is about a podcast recording, not a tweet.
+
+4. "His hot mic moment is like, wow, it's exactly like science fiction." 
+   - Again, not a tweet.
+
+5. "You're listening to it at 5X, right?" 
+   - This is about the podcast speed, not a tweet.
+
+6. "NVIDIA is a generation ahead of the industry. It's the only platform that runs every AI model and does it everywhere." 
+   - This is a quote from the transcript, but it's attributed to NVIDIA (not a tweet). However, note that the transcript says: "NVIDIA is a generation ahead of the industry. It's the only platform that runs every AI model and does it everywhere." and then later: "That is a crazy thing to post." 
+   - So the quote about NVIDIA is being described as something that was posted (on Twitter/X). The transcript says: "That is a crazy thing to post." and then continues. So we have a reference to a tweet by NVIDIA.
+
+   Let's break it down:
+   - The transcript says: "NVIDIA is a generation ahead of the industry. It's the only platform that runs every AI model and does it everywhere. Computing is done. Invita offers greater performance versatility and fungibility than A6, which are designed for specific AI frameworks or functions."
+   - Then: "That is a crazy thing to post."
+
+   So the content of the tweet is the quote above. But note: the transcript says "Invita" which is likely a typo for "NVIDIA" (or maybe a product name, but in context it's NVIDIA's post). However, the transcript has a typo: "Invita" should be "NVIDIA", but we must use the verbatim as in the transcript.
+
+   Actually, the transcript says: "Computing is done. Invita offers greater performance versatility and fungibility than A6, which are designed for specific AI frameworks or functions."
+
+   But note: "Invita" is likely a typo for "NVIDIA" (as in the company). However, the instruction says: "copy the exact words used". So we must use "Invita" as written.
+
+   So the content of the tweet is: "NVIDIA is a generation ahead of the industry. It's the only platform that runs every AI model and does it everywhere. Computing is done. Invita offers greater performance versatility and fungibility than A6, which are designed for specific AI frameworks or functions."
+
+   However, note that the transcript has a typo: it says "Invita" but it's meant to be "NVIDIA". But we must use the transcript as is.
+
+   But wait, the transcript says: "Invita" — that's a mistake in the transcript. We have to use the words as they appear.
+
+   However, the context is that NVIDIA is the company, so it's a typo. But we must copy the transcript.
+
+   So the content is: "NVIDIA is a generation ahead of the industry. It's the only platform that runs every AI model and does it everywhere. Computing is done. Invita offers greater performance versatility and fungibility than A6, which are designed for specific AI frameworks or functions."
+
+   But note: the transcript says "Invita", so we'll use that.
+
+   Author: The tweet is from NVIDIA, so author should be "NVIDIA".
+
+   Type: original (since it's a standalone tweet).
+
+   Context: The hosts discuss that it's a "crazy thing to post" and that it feels like a press release.
+
+7. "Bobby Cosmic in the chat was saying like, oh, the mainstream media is just now picking up on the Gemini three story." 
+   - This is about a person in the chat (Bobby Cosmic) saying something, but it's not a tweet. It's a chat during the podcast. So we don't extract this as a tweet.
+
+8. "NVIDIA says it's not Enron in private memo refuting accounting questions." 
+   - This is a headline or a reference to a memo, not a tweet.
+
+9. "NVIDIA's memo, which includes fonts in the company's trademark green color, begins by addressing a social media post from Michael Burry last week, which criticized the company for stock-based comp, dilution in stock buybacks, Barry's bet against subprime mortgages before the 2008 financial crisis was depicted in the movie The Big Short, of course." 
+   - This mentions a social media post by Michael Burry. So we have a reference to a tweet by Michael Burry.
+
+   The transcript says: "a social media post from Michael Burry last week, which criticized the company for stock-based comp, dilution in stock buybacks"
+
+   We don't have the exact text of the tweet, but the transcript describes it. We must use the description as the content.
+
+   However, note the instruction: "content" = verbatim quote of the tweet as read/described in the transcript.
+
+   The transcript does not give the exact words of the tweet, only a description. So we must use the description: "criticized the company for stock-based comp, dilution in stock buybacks"
+
+   But wait, the transcript says: "a social media post from Michael Burry last week, which criticized the company for stock-based comp, dilution in stock buybacks"
+
+   So we can take the content as: "criticized the company for stock-based comp, dilution in stock buybacks"
+
+   However, note that the transcript does not quote the exact words, so we have to use the description as the content.
+
+   Author: Michael Burry
+
+   Type: original (since it's a standalone post)
+
+   Context: NVIDIA's memo is addressing this post.
+
+10. "Burry told Barron's he disagrees with NVIDIA's response and stands by his analysis. He said he would discuss the topic of the company's stock-based comp and more details." 
+    - This is about Burry's response, but it's not a tweet. It's a statement to Barron's.
+
+11. "Burry is, of course, now over on substack. He's charging $380 a year, and if you are a perma bearer, I can't." 
+    - This is about Burry being on Substack, not Twitter. So skip.
+
+12. "The TPU's equal bad for NVIDIA take is up there with the dumbest, maybe worse than Deepseek, as it completely misses what actually happened in the last six weeks." 
+    - This is a comment by the host, not a reference to a tweet.
+
+13. "and I will remember who is who in the zoo my view one demand for AI is bananas no one can meet demand everyone is spending more Google said just yesterday they have to double capacity every six months to keep up two scaling laws are intact he's referencing Gemini 3 the flywheel is about to speed up somehow the mid-curve crew thinks this is zero-sum competition none of this suggests that if you think the race is hot now wait until you see what comes out of large coherent blackwell clusters all the magic from the quote god machines is pretty much still hopper based lastly a quick gp u tp u less than the cost and performance specs on the box aren't what you get in real life uh and google is going to get a bat margin two double dot what matters is system level effective tokens to watt to dollars and tCO invidia GPUs have higher fm u because they are they're already embedded in workflows slash the ecosystem is massive uh by the way this is a good test if you have an opinion on this topic but you have to look up fmU then perhaps curate better source you what mfU mfU what i said fmU the above effective token watt gap also likely widens with reuben add in that jensen can actually deliver volume in a tight market plus future flexibility multi-cloud capable programmable for paradigm shifts and he'll sell every gp u.p u.s. google will too since everyone wants a second supplier and tp u is a fantastic chip but this is as far from either or as it gets." 
+    - This is a long rant by the host, not a reference to a tweet.
+
+14. "The one benefit of this confusion is that it is likely to give Google a brief stint as the world heavyweight champion, the most valuable company." 
+    - This is the host's opinion.
+
+15. "Put the strap on them? What does that mean? Just like pile in?" 
+    - The host is asking about a phrase, but it's not a tweet.
+
+16. "According to today's Wall Street Journal, AI-related investment accounts for half of GDP growth, a reversal would risk recession." 
+    - This is a Wall Street Journal article, not a tweet.
+
+17. "Trump signs an executive order launching the Genesis mission" 
+    - This is a news story, not a tweet.
+
+18. "Scott Alexander in Astro Codex 10." 
+    - This is a reference to a blog post, not a tweet.
+
+19. "Nucleus is now being sued by genomic prediction." 
+    - This is a news item, not a tweet.
+
+20. "the lawsuit alleges that he turned off all the security cameras on his last." 
+    - This is a news report.
+
+21. "People at Nucleus were emailing the former co-founder at his old email address, evidence of them violating the agreement that they had." 
+    - News item.
+
+22. "Gary Tan posted the footage, panicked enough to delete it minutes later." 
+    - This is a reference to Gary Tan (a person) posting footage on X (Twitter). The transcript says "Gary Tan posted the footage", so this is a tweet.
+
+    Content: The transcript does not give the exact content of the tweet, only that he posted footage of a robbery. We have to describe it as per the transcript.
+
+    The transcript says: "Gary Tan posted the footage, panicked enough to delete it minutes later."
+
+    So the content is described as "the footage" (of the robbery). But we don't have the exact words. However, the instruction says: "verbatim quote of the tweet as read/described in the transcript".
+
+    We can only say: "the footage" — but that's not a quote. We have to use the description.
+
+    Alternatively, note that the transcript says: "Gary Tan posted the footage" — so the content is the footage (which is not text). But we are to extract the text of the tweet? The instruction says "verbatim quote", but if the tweet was a video, we might have to describe it.
+
+    However, the transcript doesn't quote the text of the tweet. It just says he posted the footage. So we'll use a description of the content.
+
+    But the rule says: "copy the exact words used". The transcript doesn't quote the tweet's text, so we can't make it up.
+
+    We'll use: "footage of a robbery" (as that's the description).
+
+    But note: the transcript says "the footage", so we can say the content is "the footage" (but that's not helpful). However, the context is about a robbery, so we can say: "footage of a robbery" (as a description).
+
+    However, the instruction says: "verbatim quote", meaning we must copy the words as they are in the transcript. The transcript doesn't have the quote, so we have to use the description.
+
+    Let's see the instruction: "content: Verbatim quote of the tweet as read/described in the transcript"
+
+    So if the transcript describes the tweet, we use that description.
+
+    So for Gary Tan: the transcript says "Gary Tan posted the footage", so the content we'll put is "footage" (but that's not the quote). Alternatively, we can say the content is the video of the robbery, but we have to be in the words of the transcript.
+
+    The safest is to use: "footage" (as the transcript says he posted the footage).
+
+    But note: the transcript says "posted the footage", so the content of the tweet was the footage. We can't have the actual text, so we'll describe it as "footage of a robbery" (but the transcript doesn't say "of a robbery" — it says "the robbery that took place yesterday"). However, the transcript does say: "the robbery that took place yesterday".
+
+    So we can say the content is "footage of a robbery" (but the transcript doesn't say that phrase, it says "the footage").
+
+    However, the instruction says to copy the exact words used in the transcript for the description. The transcript uses "the footage", so we'll use that.
+
+    But note: the transcript says "Gary Tan posted the footage", so the content is the footage, and we don't have the text. So we'll put "footage" as the content? But that's not a quote.
+
+    Alternatively, we can look for other mentions. But I think we have to do with what's given.
+
+    Let's assume the content is described as "the footage", so we'll put "the footage".
+
+    Author: Gary Tan
+
+    Type: original
+
+    Context: The hosts discuss that Gary Tan posted the footage of a robbery and then deleted it.
+
+23. "Crypto security experts are now saying what everyone thinks, self-custody is great until someone shows up your door with a fake UPS label and a Glock." 
+    - This is a quote from the crypto security experts, but it's not a tweet. It's a general statement.
+
+24. "San Francisco's tech leader about to hard pivot into vault custody, private security, zero public flexing because this heist wasn't random. It was a warning shot." 
+    - This is the host's commentary.
+
+25. "Very chat, TBT, writ. Mario Knopfal." 
+    - This seems to be a typo. "TBT" might mean "Throwback Thursday", and "writ" might be a typo for "write", but it's unclear. It's not a clear reference to a tweet.
+
+    However, note: "TBT" is a common Twitter hashtag for Throwback Thursday. So "Very chat, TBT, writ. Mario Knopfal." might be referring to a tweet by Mario Knopfal that was a TBT (Throwback Thursday) post.
+
+    But the transcript doesn't say what the tweet said. It just says "TBT, writ. Mario Knopfal."
+
+    So we have a reference to a tweet by Mario Knopfal.
+
+    Content: We don't have the exact words, so we'll use the description: "TBT" (Throwback Thursday) and the fact that it was written by Mario Knopfal.
+
+    But note: the transcript says "TBT, writ. Mario Knopfal." — so the content of the tweet is not given. We'll have to use "TBT" as the content? But that's the hashtag, not the content.
+
+    Alternatively, the transcript says "writ" (which might be a typo for "wrote" or "written"), so it's referring to a post.
+
+    We'll have to use: "TBT" (as the only descriptive word we have) or "Throwback Thursday post".
+
+    However, the instruction says: "verbatim quote of the tweet". Since we don't have the quote, we'll have to describe it as per the transcript.
+
+    The transcript says: "Very chat, TBT, writ. Mario Knopfal."
+
+    So we'll take the content as "TBT" (meaning the tweet was a Throwback Thursday post, and the content was likely a throwback image or story, but we don't have the text).
+
+    But note: the transcript says "TBT", so we'll put "TBT" as the content.
+
+    Author: Mario Knopfal
+
+    Type: original
+
+    Context: The hosts mention it in the context of a heist being a warning shot.
+
+Now, let's compile the list:
+
+1. NVIDIA's tweet (with typo "Invita" in the transcript):
+   - author: "NVIDIA"
+   - content: "NVIDIA is a generation ahead of the industry. It's the only platform that runs every AI model and does it everywhere. Computing is done. Invita offers greater performance versatility and fungibility than A6, which are designed for specific AI frameworks or functions."
+   - context: The hosts describe it as a "crazy thing to post" and note it feels like a press release.
+   - type: "original"
+
+2. Michael Burry's tweet (described in the transcript):
+   - author: "Michael Burry"
+   - content: "criticized the company for stock-based comp, dilution in stock buybacks"
+   - context: NVIDIA's memo is addressing this social media post.
+   - type: "original"
+
+3. Gary Tan's tweet:
+   - author: "Gary Tan"
+   - content: "footage" (but note: the transcript says "posted the footage", so we'll use the description as "footage of a robbery" — however, the transcript doesn't say "of a robbery" in the context of the tweet. But the transcript says "the robbery that took place yesterday", so we can infer. But to be safe, we'll use the exact phrase from the transcript: "the footage". However, the instruction says "verbatim", so we'll use "the footage" as the content? But that's not the quote. Alternatively, we can use the description provided: "footage of the robbery".
+
+   However, the transcript does not say "footage of the robbery" — it says "the footage" and then describes the robbery. So we'll use "footage" as the content.
+
+   But note: the transcript says: "Gary Tan posted the footage", so the content was the footage. We'll put "the footage" as the content.
+
+   But that's not standard. However, we have to go by the transcript.
+
+   Let's check the transcript: "Gary Tan posted the footage, panicked enough to delete it minutes later."
+
+   So we'll put content: "the footage"
+
+   But note: the instruction says "verbatim quote", so if the tweet was a video, the text might have been "Check out this footage", but we don't have that. So we have to use what the transcript says.
+
+   We'll put: "the footage"
+
+   However, to be more descriptive as per the context, we can say "footage of a robbery", but the transcript doesn't say that. So we'll stick to "the footage".
+
+   Alternatively, we can look at the surrounding text: "the robbery that took place yesterday", so we can say the content was about the robbery. But we must not add.
+
+   We'll use: "the footage"
+
+   But note: the transcript says "the footage", so we'll copy that.
+
+   So content: "the footage"
+
+4. Mario Knopfal's tweet (with TBT):
+   - author: "Mario Knopfal"
+   - content: "TBT" (since the transcript says "TBT")
+   - context: The hosts mention it in the context of the heist being a warning shot.
+   - type: "original"
+
+Now, let's check if there are any others.
+
+- "Bobby Cosmic in the chat" — not a tweet, it's a chat during the podcast.
+- "Nucleus" and "genomic prediction" — these are companies, not tweets.
+
+So we have four references.
+
+But note: the transcript says "on the timeline" at the beginning, but that's not a specific tweet reference.
+
+Now, we must format as JSON.
+
+Episode date: 2025-11-26
+
+We'll create a JSON array for tweets.
+
+Let's write the JSON:
+
+{
+  "episode_date": "2025-11-26",
+  "tweets": [
+    {
+      "author": "NVIDIA",
+      "content": "NVIDIA is a generation ahead of the industry. It's the only platform that runs every AI model and does it everywhere. Computing is done. Invita offers greater performance versatility and fungibility than A6, which are designed for specific AI frameworks or functions.",
+      "context": "The hosts describe it as a 'crazy thing to post' and note it feels like a press release.",
+      "type": "original"
+    },
+    {
+      "author": "Michael Burry",
+      "content": "criticized the company for stock-based comp, dilution in stock buybacks",
+      "context": "NVIDIA's memo addresses this social media post.",
+      "type": "original"
+    },
+    {
+      "author": "Gary Tan",
+      "content": "the footage",
+      "context": "Gary Tan posted footage of a robbery and deleted it minutes later.",
+      "type": "original"
+    },
+    {
+      "author": "Mario Knopfal",
+      "content": "TBT",
+      "context": "The hosts mention it in the context of a heist being a warning shot.",
+      "type": "original"
+    }
+  ]
+}
+
+But note: for the NVIDIA tweet, the transcript has a typo "Invita", but we must use the transcript as is.
+
+Also, for Michael Burry, we don't have the exact quote, so we use the description.
+
+For Gary Tan, we use "the footage", but note that the transcript says "the footage", so we'll use that.
+
+For Mario Knopfal, we use "TBT".
+
+Now, let's check the context descriptions: they must be 1-2 sentences max.
+
+We have:
+
+- NVIDIA: "The hosts describe it as a 'crazy thing to post' and note it feels like a press release." (1 sentence)
+- Michael Burry: "NVIDIA's memo addresses this social media post." (1 sentence)
+- Gary Tan: "Gary Tan posted footage of a robbery and deleted it minutes later." (1 sentence)
+- Mario Knopfal: "The hosts mention it in the context of a heist being a warning shot." (1 sentence)
+
+All are within 1-2 sentences.
+
+Now, we must return ONLY this JSON.
+
+But note: the transcript says "Bobby Cosmic in the chat" — but that's not a tweet. We didn't include it.
+
+Also, note that the transcript says "the robbery that took place yesterday" for Gary Tan, so we can adjust the context for Gary Tan to be more precise.
+
+But the context field is for why it was discussed, so we can say: "The hosts discuss that Gary Tan posted footage of a robbery and deleted it minutes later."
+
+But we'll keep it as above.
+
+Now, let's write the JSON.
+
+Important: The JSON must be valid and match the schema.
+
+We'll write it without any extra spaces or newlines to be safe.
+
+But note: the transcript has a typo "Invita", so we use that.
+
+Also, note: the transcript says "Invita" but it's a typo for NVIDIA. However, we must use the transcript.
+
+Let's write the JSON.
+
+</think>
+
+{"episode_date":"2025-11-26","tweets":[{"author":"NVIDIA","content":"NVIDIA is a generation ahead of the industry. It's the only platform that runs every AI model and does it everywhere. Computing is done. Invita offers greater performance versatility and fungibility than A6, which are designed for specific AI frameworks or functions.","context":"The hosts describe it as a 'crazy thing to post' and note it feels like a press release.","type":"original"},{"author":"Michael Burry","content":"criticized the company for stock-based comp, dilution in stock buybacks","context":"NVIDIA's memo addresses this social media post.","type":"original"},{"author":"Gary Tan","content":"the footage","context":"Gary Tan posted footage of a robbery and deleted it minutes later.","type":"original"},{"author":"Mario Knopfal","content":"TBT","context":"The hosts mention it in the context of a heist being a warning shot.","type":"original"}]}

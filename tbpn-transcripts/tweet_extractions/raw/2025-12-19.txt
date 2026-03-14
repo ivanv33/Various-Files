@@ -1,0 +1,338 @@
+<think>
+We are given a podcast transcript and need to extract every reference to tweets, X/Twitter posts, quote tweets, replies, and threads.
+ We must return ONLY valid JSON with the specified schema.
+
+ Steps:
+ 1. Read through the transcript and look for any mention of "tweet", "X", "Twitter", "quote tweet", "reply", "thread", or similar.
+ 2. For each such reference, we must create an entry in the "tweets" array with:
+    - "author": the person who tweeted (if named, else "unknown")
+    - "content": the exact words of the tweet as described in the transcript (verbatim quote)
+    - "context": why the hosts discussed it (1-2 sentences max)
+    - "type": one of "original", "quote_tweet", "reply", "thread", "reference"
+
+ 3. We must not include any markdown, commentary, or code fences.
+
+ Let's scan the transcript for any references to Twitter/X activity:
+
+ - "I've seen the metrics around the video. It's got 15,000 likes just on a quote tweet of it." 
+   -> This is a reference to a quote tweet, but note: the content of the quote tweet is not given. We are told it's a quote tweet of a video, but we don't have the actual tweet content.
+
+   However, note: the instruction says "Extract ALL references to tweets, X/Twitter posts, quote tweets, replies, and threads."
+
+   This is a reference to a quote tweet, but the actual content of the quote tweet is not provided in the transcript. We have to describe it as a reference.
+
+   But note: the transcript says "a quote tweet of it", meaning the video. We don't have the quote tweet's content. So we cannot extract the content.
+
+   How to handle?
+   Rule: "content" = verbatim quote of the tweet as read/described in the transcript.
+
+   Since the transcript does not quote the actual tweet content, we cannot make up content. We must note that the transcript only refers to the existence of a quote tweet.
+
+   However, the instruction says: "Extract EVERY mention of a tweet, post, X/Twitter activity, or 'on the timeline'"
+
+   This is a mention of a quote tweet, but without the content. So we have to use "reference" for type and note that the content is not provided.
+
+   But note: the transcript does not say what the quote tweet said. So we cannot put the content.
+
+   We'll have to leave "content" as an empty string? But the schema doesn't allow that.
+
+   Let's re-read: "content": "Verbatim quote of the tweet as read/described in the transcript"
+
+   Since the transcript does not describe the content of the quote tweet (only that it has 15,000 likes), we cannot extract a verbatim quote.
+
+   Therefore, we might not have a valid entry for this? But the rule says "EVERY mention".
+
+   However, the instruction says: "If no tweets are mentioned, return ...". But this is a mention.
+
+   We must decide: if the transcript does not provide the content of the tweet, we cannot make it up. So we have to skip it? But note: the instruction says "every reference", meaning every mention of a tweet, even if we don't have the content.
+
+   But the schema requires a "content" field. We cannot leave it out.
+
+   Let's look for other references that have actual content.
+
+ - "Tay Kim chimes in says public markets are crushing Open AI exposed stocks while private investors with visibility into opening eyes metrics and internal numbers dot, dot, dot. Are piling in essentially."
+
+   This is a reference to a tweet by "Tay Kim". The transcript says "Tay Kim chimes in", meaning he tweeted. The content is described: "public markets are crushing Open AI exposed stocks while private investors with visibility into opening eyes metrics and internal numbers dot, dot, dot. Are piling in essentially."
+
+   However, note: the transcript does not quote the exact tweet, but describes it. We are to use the verbatim quote as read in the transcript.
+
+   So we'll take: "public markets are crushing Open AI exposed stocks while private investors with visibility into opening eyes metrics and internal numbers dot, dot, dot. Are piling in essentially."
+
+   But note: the transcript says "Tay Kim chimes in says", so the content is the quoted text.
+
+   We'll use that.
+
+ - "Matt Levine is back. He says, I've missed Christmas even New Year's and the 4th of July holidays for newsletters a lot smaller than this. This is as good as it gets for newsletter writers."
+
+   This is a reference to a tweet by Matt Levine. The transcript says he says that, so the content is: "I've missed Christmas even New Year's and the 4th of July holidays for newsletters a lot smaller than this. This is as good as it gets for newsletter writers."
+
+   But note: the transcript says "He says", so we take the quote.
+
+ - "Matt says, ah, ha, ha, ha, sure." -> This is a quote from Matt Levine's tweet (or part of it). But note: the transcript says "Matt says", so we take the content.
+
+   However, note: the transcript has a longer quote later: "Matt says, ah, ha, ha, ha, sure." and then continues. We'll take the exact words.
+
+ - "He didn't even let me get to the number. The medical supply company raised $6.3 billion in its stock offering." -> This is not a tweet, it's a news report.
+
+ - "Tyler, just keep the code on, buddy." -> This is a host saying something, not a tweet.
+
+ - "This is the new word you've got to learn. Chew by. People know chopped. The Duchess of Bushwick says, recently invented the word chew by, which is when something is both chops and also spiritually Dubai."
+
+   Here, "The Duchess of Bushwick" is the author. The content is: "recently invented the word chew by, which is when something is both chops and also spiritually Dubai."
+
+   But note: the transcript says "The Duchess of Bushwick says", so we take that as the content.
+
+ - "Chew by. People know chopped. The Duchess of Bushwick says, recently invented the word chew by, which is when something is both chops and also spiritually Dubai."
+
+   This is the same as above.
+
+ - "I also think it's a great take. This doesn't seem so fast takeoff build, more internet billed, which is slow takeoff. The internet has slow take off. Everyone thought it was gonna be, the internet is the super highway, it's gonna be, you know, a thousand X growth, Yahoo's gonna be worth a trillion dollars. Like, you know, and then, you know, kind of settled in, took a while for things to find use cases, find value. But eventually it did transform everything. But this time is different. Exactly, right? because this time we have the internet so it's way faster to do distribution yes i don't want to i don't you weren't even alive tyler i don't even want to don't i was racking servers in a data center while you were in the cradle"
+
+   This is a host talking, not a tweet.
+
+ - "Alpha ton, a ton of alpha. We got a ton of alpha over here at Alpha Ton Capital. We're making a historic $30 million strategic strategic investment in anderal industries, and they tag them, so that we are investing in the future of defense tech and the convergence of decentralized AI with next-gen national security. This is a strategic bet on the companies of the future."
+
+   This is a description of a tweet? Actually, the transcript says: "Alpha ton, a ton of alpha. We got a ton of alpha over here at Alpha Ton Capital." — but note: this is the host describing a tweet that was posted by Alpha Ton Capital.
+
+   However, the host is reading the content of the tweet. So we have:
+
+     Author: Alpha Ton Capital (but note: it's a company, so we'll use the company name as the author? The rule says "Person who tweeted", but companies can tweet too. We'll use "Alpha Ton Capital" as the author.)
+
+     Content: "We're making a historic $30 million strategic strategic investment in anderal industries, and they tag them, so that we are investing in the future of defense tech and the convergence of decentralized AI with next-gen national security. This is a strategic bet on the companies of the future."
+
+   But note: the transcript says "Alpha ton, a ton of alpha. We got a ton of alpha over here at Alpha Ton Capital. We're making a historic $30 million strategic strategic investment in anderal industries, and they tag them, so that we are investing in the future of defense tech and the convergence of decentralized AI with next-gen national security. This is a strategic bet on the companies of the future."
+
+   However, the host is quoting the tweet. So the content of the tweet is that.
+
+   But note: the transcript has a typo: "anderal" -> should be "Anderil" (as in the later correction by Palmer). But we have to use the transcript as given.
+
+   So we'll take the content as described.
+
+ - "Palmer just quote tweets them into the stratosphere by saying alpha ton is lying this is not true public heads up to CEO brittany kaiser slash own your data now the whistleblower who is uh bitcoin alpha ton capital that's the uh i guess that's the owner of this you do not have permission to use my trademarks to defraud your investors."
+
+   This is a reference to a quote tweet by Palmer. The content of the quote tweet is: "alpha ton is lying this is not true public heads up to CEO brittany kaiser slash own your data now the whistleblower who is uh bitcoin alpha ton capital that's the uh i guess that's the owner of this you do not have permission to use my trademarks to defraud your investors."
+
+   But note: the transcript says "Palmer just quote tweets them", meaning Palmer is quoting Alpha Ton Capital's tweet and adding his own comment.
+
+   So the tweet by Palmer (the quote tweet) contains the quoted text.
+
+   However, the transcript doesn't give the exact words of Palmer's quote tweet. It gives a description.
+
+   We'll take the content as: "alpha ton is lying this is not true public heads up to CEO brittany kaiser slash own your data now the whistleblower who is uh bitcoin alpha ton capital that's the uh i guess that's the owner of this you do not have permission to use my trademarks to defraud your investors."
+
+   But note: this is the content of the quote tweet (Palmer's tweet that quotes Alpha Ton Capital).
+
+   However, the transcript says: "Palmer just quote tweets them into the stratosphere by saying ...", so the words after "saying" are the content of his quote tweet.
+
+   So we'll use that.
+
+ - "And Brittany says, hey, Palmer, we signed an agreement to purchase economic exposure to Anderil shares through an SPV and to accumulate more exposure over time and offer access via formal secondaries product. Given our network's demand for your innovative tech, I will issue a clarification."
+
+   This is a reference to a tweet by Brittany (who is the CEO of Alpha Ton Capital? The transcript says "CEO brittany kaiser slash own your data now"). So this is a tweet by Brittany.
+
+   Content: "hey, Palmer, we signed an agreement to purchase economic exposure to Anderil shares through an SPV and to accumulate more exposure over time and offer access via formal secondaries product. Given our network's demand for your innovative tech, I will issue a clarification."
+
+   Note: the transcript says "Brittany says", so we take the quote.
+
+ - "Palmer says, that isn't what you and your company said, though, to be extremely clear, Anderle has to authorize these types of transfers. And I will not authorize it."
+
+   This is a tweet by Palmer (reply to Brittany). So content: "that isn't what you and your company said, though, to be extremely clear, Anderle has to authorize these types of transfers. And I will not authorize it."
+
+ Now, let's list all the references we found:
+
+ 1. "Tay Kim" - tweet about OpenAI and investors.
+    - author: "Tay Kim"
+    - content: "public markets are crushing Open AI exposed stocks while private investors with visibility into opening eyes metrics and internal numbers dot, dot, dot. Are piling in essentially."
+    - context: The host mentions Tay Kim's tweet to support the bullish take on OpenAI.
+    - type: "original"
+
+ 2. "Matt Levine" - tweet about missing holidays for newsletters.
+    - author: "Matt Levine"
+    - content: "I've missed Christmas even New Year's and the 4th of July holidays for newsletters a lot smaller than this. This is as good as it gets for newsletter writers."
+    - context: Matt Levine's tweet is referenced to discuss the workload of newsletter writers.
+    - type: "original"
+
+ 3. "Matt Levine" - tweet (again) about the revocable trust and the Ellison deal.
+    - But note: the transcript has multiple tweets by Matt Levine. We have to extract each.
+
+    The first one: about the holidays (already extracted).
+
+    The second one: "Matt says, ah, ha, ha, ha, sure." 
+        content: "ah, ha, ha, ha, sure."
+
+    But note: the context of this tweet: it's a reaction to the Ellison trust situation.
+
+    However, the transcript says: "Matt says, ah, ha, ha, ha, sure." and then continues with his reasoning.
+
+    So we'll extract this as a separate entry.
+
+    - author: "Matt Levine"
+    - content: "ah, ha, ha, ha, sure."
+    - context: Matt Levine's sarcastic comment on the Ellison trust situation.
+    - type: "original"
+
+ 4. "The Duchess of Bushwick" - tweet about the word "chew by".
+    - author: "The Duchess of Bushwick"
+    - content: "recently invented the word chew by, which is when something is both chops and also spiritually Dubai."
+    - context: The host introduces the term "chew by" as a new word coined by The Duchess of Bushwick.
+    - type: "original"
+
+ 5. "Alpha Ton Capital" - tweet about investment in Anderil.
+    - author: "Alpha Ton Capital"
+    - content: "We're making a historic $30 million strategic strategic investment in anderal industries, and they tag them, so that we are investing in the future of defense tech and the convergence of decentralized AI with next-gen national security. This is a strategic bet on the companies of the future."
+    - context: The host describes Alpha Ton Capital's tweet about their investment.
+    - type: "original"
+
+ 6. "Palmer" - quote tweet of Alpha Ton Capital's tweet (with his own comment).
+    - author: "Palmer"
+    - content: "alpha ton is lying this is not true public heads up to CEO brittany kaiser slash own your data now the whistleblower who is uh bitcoin alpha ton capital that's the uh i guess that's the owner of this you do not have permission to use my trademarks to defraud your investors."
+    - context: Palmer's quote tweet is referenced as a reaction to Alpha Ton Capital's tweet.
+    - type: "quote_tweet"
+
+ 7. "Brittany" (Brittany Kaiser) - tweet in response to Palmer.
+    - author: "Brittany Kaiser"
+    - content: "hey, Palmer, we signed an agreement to purchase economic exposure to Anderil shares through an SPV and to accumulate more exposure over time and offer access via formal secondaries product. Given our network's demand for your innovative tech, I will issue a clarification."
+    - context: Brittany's response to Palmer's quote tweet.
+    - type: "reply"
+
+ 8. "Palmer" - second tweet (reply) to Brittany.
+    - author: "Palmer"
+    - content: "that isn't what you and your company said, though, to be extremely clear, Anderle has to authorize these types of transfers. And I will not authorize it."
+    - context: Palmer's reply to Brittany's tweet.
+    - type: "reply"
+
+ However, note: the transcript also has a reference to "Palmer" quoting a tweet, but that's the same as the quote tweet we already have.
+
+ Now, let's check for any others:
+
+ - "Sam says, sell me this pen. Jensen says, I'll lend you the money to buy it." -> This is a reference to a tweet by Sam and Jensen? But the transcript doesn't say it's from Twitter. It just says "Sam says" and "Jensen says", but it might be a quote from the podcast or a general saying. The context is about a photo of Warner CEO and Netflix CEOs. The transcript says: "Sam says, sell me this pen. Jensen says, I'll lend you the money to buy it." and then describes a photo.
+
+   But note: the transcript says "Sam says", so it's presented as a tweet? However, the context does not specify that it's from Twitter. It might be a joke or a quote from elsewhere.
+
+   The rule: "every reference to tweets, X/Twitter posts, quote tweets, replies, and threads"
+
+   Since it's not explicitly stated as a tweet, we should not include it.
+
+   We'll skip.
+
+ - "I've seen the metrics around the video. It's got 15,000 likes just on a quote tweet of it." -> This is a reference to a quote tweet, but without the content. We cannot extract the content because it's not provided.
+
+   So we cannot create an entry for it. We'll skip.
+
+   Why? Because the content field must be the verbatim quote, and we don't have it.
+
+ - "Matt Levine" we have two tweets: one about holidays and one about the trust.
+
+ Now, let's write the JSON.
+
+ Episode date: "2025-12-19"
+
+ We have 8 tweets.
+
+ But note: the transcript says "Tay Kim" and then later "Tay Kim chimes in", so we have one tweet by Tay Kim.
+
+ Let's structure the JSON:
+
+ {
+   "episode_date": "2025-12-19",
+   "tweets": [
+        { ... }, // Tay Kim
+        { ... }, // Matt Levine (holidays)
+        { ... }, // Matt Levine (ah ha ha)
+        { ... }, // The Duchess of Bushwick
+        { ... }, // Alpha Ton Capital
+        { ... }, // Palmer (quote tweet)
+        { ... }, // Brittany Kaiser
+        { ... }  // Palmer (reply)
+   ]
+ }
+
+ However, note: the transcript says "Brittany Kaiser" but the tweet says "CEO brittany kaiser", so we'll use "Brittany Kaiser" as the author.
+
+ But note: the transcript says "Brittany Kaiser" (with capitalization as in the transcript) so we'll use "Brittany Kaiser".
+
+ Now, let's write each entry.
+
+ Important: We must use the exact words from the transcript for "content".
+
+ For the Matt Levine "ah, ha, ha" tweet, the transcript says: "Matt says, ah, ha, ha, ha, sure." so the content is "ah, ha, ha, ha, sure."
+
+ But note: the transcript has a typo: "ah" (not "a"). So we use "ah, ha, ha, ha, sure."
+
+ Now, let's write the JSON.
+
+ However, note: the transcript has "Tay Kim chimes in says", so the content is the quote that follows.
+
+ We have to be careful to copy the exact words.
+
+ Let's extract each content:
+
+ 1. Tay Kim: 
+      content: "public markets are crushing Open AI exposed stocks while private investors with visibility into opening eyes metrics and internal numbers dot, dot, dot. Are piling in essentially."
+
+ 2. Matt Levine (holidays):
+      content: "I've missed Christmas even New Year's and the 4th of July holidays for newsletters a lot smaller than this. This is as good as it gets for newsletter writers."
+
+ 3. Matt Levine (ah ha):
+      content: "ah, ha, ha, ha, sure."
+
+ 4. The Duchess of Bushwick:
+      content: "recently invented the word chew by, which is when something is both chops and also spiritually Dubai."
+
+ 5. Alpha Ton Capital:
+      content: "We're making a historic $30 million strategic strategic investment in anderal industries, and they tag them, so that we are investing in the future of defense tech and the convergence of decentralized AI with next-gen national security. This is a strategic bet on the companies of the future."
+
+ 6. Palmer (quote tweet):
+      content: "alpha ton is lying this is not true public heads up to CEO brittany kaiser slash own your data now the whistleblower who is uh bitcoin alpha ton capital that's the uh i guess that's the owner of this you do not have permission to use my trademarks to defraud your investors."
+
+ 7. Brittany Kaiser:
+      content: "hey, Palmer, we signed an agreement to purchase economic exposure to Anderil shares through an SPV and to accumulate more exposure over time and offer access via formal secondaries product. Given our network's demand for your innovative tech, I will issue a clarification."
+
+ 8. Palmer (reply):
+      content: "that isn't what you and your company said, though, to be extremely clear, Anderle has to authorize these types of transfers. And I will not authorize it."
+
+ Now, context for each (1-2 sentences):
+
+ 1. Tay Kim: The host mentions Tay Kim's tweet to support the bullish take on OpenAI.
+ 2. Matt Levine (holidays): The host references Matt Levine's tweet about missing holidays for newsletters to discuss the workload of newsletter writers.
+ 3. Matt Levine (ah ha): Matt Levine's sarcastic comment on the Ellison trust situation is discussed.
+ 4. The Duchess of Bushwick: The host introduces the term "chew by" as a new word coined by The Duchess of Bushwick.
+ 5. Alpha Ton Capital: The host describes Alpha Ton Capital's tweet about their investment in Anderil.
+ 6. Palmer: Palmer's quote tweet is referenced as his reaction to Alpha Ton Capital's tweet.
+ 7. Brittany Kaiser: Brittany's tweet is the response to Palmer's quote tweet.
+ 8. Palmer: Palmer's reply tweet is discussed as his counter to Brittany's response.
+
+ Now, type:
+
+ 1. original
+ 2. original
+ 3. original
+ 4. original
+ 5. original
+ 6. quote_tweet (because Palmer is quoting Alpha Ton Capital's tweet and adding his own comment)
+ 7. reply (because it's a reply to Palmer)
+ 8. reply (because it's a reply to Brittany)
+
+ But note: for the quote tweet (Palmer's first tweet), the type is "quote_tweet".
+
+ For Brittany and Palmer's second tweet, they are replies to each other, so "reply".
+
+ However, note: the transcript says for Palmer's first tweet: "Palmer just quote tweets them", meaning he quoted Alpha Ton Capital's tweet. So it's a quote tweet.
+
+ Now, write the JSON.
+
+ Important: The JSON must be valid and without any extra fields.
+
+ Let's format the JSON.
+
+ Note: The transcript has a typo in "anderal" (should be "Anderil"), but we use the transcript as is.
+
+ Also, note: the transcript says "Anderle" in the context of Palmer's reply, but we are taking the content from the transcript.
+
+ We'll use the content exactly as in the transcript.
+
+ Now, we write the JSON.
+
+</think>
+
+{"episode_date":"2025-12-19","tweets":[{"author":"Tay Kim","content":"public markets are crushing Open AI exposed stocks while private investors with visibility into opening eyes metrics and internal numbers dot, dot, dot. Are piling in essentially.","context":"The host mentions Tay Kim's tweet to support a bullish take on OpenAI.","type":"original"},{"author":"Matt Levine","content":"I've missed Christmas even New Year's and the 4th of July holidays for newsletters a lot smaller than this. This is as good as it gets for newsletter writers.","context":"Matt Levine's tweet about newsletter workload is referenced to discuss the demands of newsletter writing.","type":"original"},{"author":"Matt Levine","content":"ah, ha, ha, ha, sure.","context":"Matt Levine's sarcastic comment on the Ellison trust situation is discussed.","type":"original"},{"author":"The Duchess of Bushwick","content":"recently invented the word chew by, which is when something is both chops and also spiritually Dubai.","context":"The host introduces 'chew by' as a new word coined by The Duchess of Bushwick.","type":"original"},{"author":"Alpha Ton Capital","content":"We're making a historic $30 million strategic strategic investment in anderal industries, and they tag them, so that we are investing in the future of defense tech and the convergence of decentralized AI with next-gen national security. This is a strategic bet on the companies of the future.","context":"The host describes Alpha Ton Capital's tweet about their investment in Anderil.","type":"original"},{"author":"Palmer","content":"alpha ton is lying this is not true public heads up to CEO brittany kaiser slash own your data now the whistleblower who is uh bitcoin alpha ton capital that's the uh i guess that's the owner of this you do not have permission to use my trademarks to defraud your investors.","context":"Palmer's quote tweet reacting to Alpha Ton Capital's tweet is referenced.","type":"quote_tweet"},{"author":"Brittany Kaiser","content":"hey, Palmer, we signed an agreement to purchase economic exposure to Anderil shares through an SPV and to accumulate more exposure over time and offer access via formal secondaries product. Given our network's demand for your innovative tech, I will issue a clarification.","context":"Brittany Kaiser's tweet is the response to Palmer's quote tweet.","type":"reply"},{"author":"Palmer","content":"that isn't what you and your company said, though, to be extremely clear, Anderle has to authorize these types of transfers. And I will not authorize it.","context":"Palmer's reply tweet to Brittany Kaiser's response is discussed.","type":"reply"}]}

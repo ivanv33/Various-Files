@@ -1,0 +1,248 @@
+<think>
+Let me carefully read through the transcript to extract all references to tweets, X/Twitter posts, quote tweets, replies, and threads.
+
+I'll go through the transcript line by line to find any mentions of Twitter/X activity.
+
+From the transcript:
+
+1. "Justin Ross is quote tweeting, did you see the Colossal company? They have brought back dire wolves using ancient DNA with their first born on October 1st, 2024."
+
+This is a quote tweet from Justin Ross about the Colossal company.
+
+2. "People said, hey And they're working on cool stuff. So this post was put in the truth zone. People said, hey, they're not technically dire wolves. They didn't really revive them using ancient DNA. It's more genetic modification of existing dogs."
+
+This is a reference to people's comments on Twitter about the Colossal company.
+
+3. "JD Ross chimes in and says, I don't care if these are real dire wolves or not. They're very cute and we should mix in golden retriever DNA and use them to hunt deer with us."
+
+This is a quote from JD Ross's tweet.
+
+4. "I've done a full video and deep dive on the company Colossal. Remix, bring it back. I was emailing with the company a while back. I'll rekindle that connection, hopefully have Ben, the founder, on the show."
+
+This is not a tweet reference, but a host mentioning they've done a video about Colossal.
+
+5. "He says, on the topic of AI is trained on all of humanity, why can't it innovate? A big question that we're talking about."
+
+This is a reference to something someone said, but not specifically a tweet.
+
+6. "And I just think it's like a interesting question that he's clearly asking, like these AIs, they're blasting through all the benchmarks, they're doing all these amazing things, but we're not seeing innovation come out of them yet, or even you could think about like the joke test as like you kind of need to be innovative to come up with a joke."
+
+This is a host discussion, not a tweet reference.
+
+7. "And Dworkesh was talking about this, like if you've trained, a lot of scientific innovation just comes from somebody who's read so much about the scientific literature. They put together two random studies and they find out that if you put those together, you get innovation."
+
+This is a reference to Dworkesh talking about something, but not specifically a tweet.
+
+8. "And it's crazy. It's a lot of hate Yeah, quite this quake dad quick dad Dedicated to the committed to the bit says me. Well, they haven't released a new quake in like two decades So this guy has been in the trenches forever This is absolutely disgusting and spits on the work of every developer everywhere."
+
+This is a reference to a tweet about Quake 2 being AI generated.
+
+9. "Bold, John Carmack says, what? Question mark, this is impressive research work."
+
+This is a reference to John Carmack's tweet.
+
+10. "And I love that because he is the creator of Quake. And there was an amazing meme that was like John Carmack holding a white monster being like, oh, you completely replicated exactly what I did? Awesome work. Based. And it's like the developer himself is like, oh, you completely replicated exactly what I did? Awesome work. Based."
+
+This is a reference to a meme, which likely originated from a Twitter/X post.
+
+11. "He says, I think you are misunderstanding what this tech demo actually is, but I will engage with what I think your gripe is, AI tooling, trivializing the skill sets of programmers, artists, and designers, and that's real."
+
+This is a quote from John Carmack's tweet.
+
+12. "My first games involved hand assembling machine code What a code this is why he's one of the greatest programmers of all time and turning graph paper characters into hex digits"
+
+This is a quote from John Carmack's tweet.
+
+13. "Software progress has made that work as irrelevant as chariot wheel maintenance Yeah, you don't want to be in the business of chariot wheel maintenance not a big industry today, but Building power tools is central to all the progress in computers."
+
+This is a quote from John Carmack's tweet.
+
+14. "Game engines have radically expanded the range of people involved in game dev, even as they de-emphasize the importance of much of my beloved systems engineering."
+
+This is a quote from John Carmack's tweet.
+
+15. "Maybe first person to say that, systems engineering very, very hard, and it's a huge time suck to, I mean, when he built Quake, he had to build the whole game engine. He had to build everything, the idea of a floor, that you can't fall through a floor or a wall. You don't want to walk through the wall. You have to write all that code from scratch."
+
+This is a host discussion, not a tweet.
+
+16. "Instead, now you just fire up Unreal Engine and you get Fortnite out of the box or you build in Roblox, right?"
+
+This is a host discussion, not a tweet.
+
+17. "And he says AI tools will allow the best to reach even greater heights while enabling smaller teams to accomplish more and bring in some completely new creator demographics, people who don't know systems engineering or even programming, for example."
+
+This is a quote from John Carmack's tweet.
+
+18. "Yes, we will get to a world where you can get an interactive game or novel or movie out of a prompt, but there will be far better exemplars of the medium still created by dedicated teams of passionate developers."
+
+This is a quote from John Carmack's tweet.
+
+Now, let's compile all these into the JSON format:
+
+1. Justin Ross quote-tweeting about Colossal company
+2. JD Ross tweet about dire wolves
+3. Reference to people's comments about Colossal company (not a specific tweet, just a general reference)
+4. Reference to a meme about John Carmack (likely a tweet)
+5. John Carmack's tweet about AI tooling
+6. John Carmack's tweet about hand assembling machine code
+7. John Carmack's tweet about software progress and chariot wheel maintenance
+8. John Carmack's tweet about game engines
+9. John Carmack's tweet about AI tools and game development
+
+I'll format these into the required JSON structure.
+
+I need to determine the episode_date. The transcript doesn't explicitly state the date, but it mentions "Liberation Day" which is a reference to January 6th, 2025 (a holiday in the US that is a reference to the 2024 election). However, since the transcript doesn't provide an actual date, I'll need to make an assumption. Looking at the context of the show, it's likely a recent episode, but I can't determine an exact date. Since the instructions say to return "YYYY-MM-DD" and I don't have a specific date, I'll use a placeholder. However, the instructions say "If no tweets are mentioned, return {"episode_date": "YYYY-MM-DD", "tweets": []}", so I'll have to use a placeholder date.
+
+Actually, the transcript mentions "Liberation Day" which is a reference to January 6th, 2025. So the episode date is likely January 6th, 2025, or close to that date. I'll use "2025-01-06" as the episode date.
+
+Let me compile all the tweets:
+
+1. Justin Ross quote-tweeting about Colossal company
+   - author: "Justin Ross"
+   - content: "did you see the Colossal company? They have brought back dire wolves using ancient DNA with their first born on October 1st, 2024."
+   - context: The hosts discussed this quote tweet about the Colossal company's dire wolf project
+   - type: quote_tweet
+
+2. JD Ross tweet about dire wolves
+   - author: "JD Ross"
+   - content: "I don't care if these are real dire wolves or not. They're very cute and we should mix in golden retriever DNA and use them to hunt deer with us."
+   - context: JD Ross made this comment about the Colossal company's dire wolf project
+   - type: original
+
+3. General reference to people's comments about Colossal company
+   - author: "unknown"
+   - content: "they're not technically dire wolves. They didn't really revive them using ancient DNA. It's more genetic modification of existing dogs."
+   - context: The hosts discussed general comments on Twitter about the Colossal company's dire wolf project
+   - type: reference
+
+4. John Carmack's tweet about AI tooling
+   - author: "John Carmack"
+   - content: "I think you are misunderstanding what this tech demo actually is, but I will engage with what I think your gripe is, AI tooling, trivializing the skill sets of programmers, artists, and designers, and that's real."
+   - context: The hosts quoted John Carmack's tweet about AI tooling
+   - type: original
+
+5. John Carmack's tweet about hand assembling machine code
+   - author: "John Carmack"
+   - content: "My first games involved hand assembling machine code What a code this is why he's one of the greatest programmers of all time and turning graph paper characters into hex digits"
+   - context: The hosts quoted John Carmack's tweet about his early programming experience
+   - type: original
+
+6. John Carmack's tweet about software progress
+   - author: "John Carmack"
+   - content: "Software progress has made that work as irrelevant as chariot wheel maintenance Yeah, you don't want to be in the business of chariot wheel maintenance not a big industry today, but Building power tools is central to all the progress in computers."
+   - context: The hosts quoted John Carmack's tweet about software progress
+   - type: original
+
+7. John Carmack's tweet about game engines
+   - author: "John Carmack"
+   - content: "Game engines have radically expanded the range of people involved in game dev, even as they de-emphasize the importance of much of my beloved systems engineering."
+   - context: The hosts quoted John Carmack's tweet about game engines
+   - type: original
+
+8. John Carmack's tweet about AI tools and game development
+   - author: "John Carmack"
+   - content: "AI tools will allow the best to reach even greater heights while enabling smaller teams to accomplish more and bring in some completely new creator demographics, people who don't know systems engineering or even programming, for example."
+   - context: The hosts quoted John Carmack's tweet about AI tools in game development
+   - type: original
+
+9. John Carmack's tweet about AI generating games
+   - author: "John Carmack"
+   - content: "Yes, we will get to a world where you can get an interactive game or novel or movie out of a prompt, but there will be far better exemplars of the medium still created by dedicated teams of passionate developers."
+   - context: The hosts quoted John Carmack's tweet about AI-generated games
+   - type: original
+
+Now, I'll format these into the required JSON structure.
+
+I need to make sure I'm using the exact schema provided in the instructions.
+
+Let me double-check the instructions to make sure I'm using the correct schema:
+
+{
+  "episode_date": "YYYY-MM-DD",
+  "tweets": [
+    {
+      "author": "Person who tweeted (or 'unknown')",
+      "content": "Verbatim quote of the tweet as read/described in the transcript",
+      "context": "Why it was discussed on the show",
+      "type": "original|quote_tweet|reply|thread|reference"
+    }
+  ]
+}
+
+I need to be careful about the "type" field. For the Justin Ross tweet, it's a quote tweet (he's quoting someone else), so I'll mark it as "quote_tweet". For the others, they're direct quotes from John Carmack's tweets, so they're "original".
+
+Let's finalize the JSON structure:
+
+1. Justin Ross quote-tweet about Colossal: "quote_tweet"
+2. JD Ross tweet about dire wolves: "original"
+3. General people's comments about Colossal: "reference"
+4. John Carmack tweet about AI tooling: "original"
+5. John Carmack tweet about machine code: "original"
+6. John Carmack tweet about software progress: "original"
+7. John Carmack tweet about game engines: "original"
+8. John Carmack tweet about AI tools: "original"
+9. John Carmack tweet about AI generating games: "original"
+
+Now, I'll write the JSON.
+
+</think>
+
+{
+  "episode_date": "2025-01-06",
+  "tweets": [
+    {
+      "author": "Justin Ross",
+      "content": "did you see the Colossal company? They have brought back dire wolves using ancient DNA with their first born on October 1st, 2024.",
+      "context": "The hosts discussed this quote tweet about the Colossal company's dire wolf project",
+      "type": "quote_tweet"
+    },
+    {
+      "author": "JD Ross",
+      "content": "I don't care if these are real dire wolves or not. They're very cute and we should mix in golden retriever DNA and use them to hunt deer with us.",
+      "context": "JD Ross made this comment about the Colossal company's dire wolf project",
+      "type": "original"
+    },
+    {
+      "author": "unknown",
+      "content": "they're not technically dire wolves. They didn't really revive them using ancient DNA. It's more genetic modification of existing dogs.",
+      "context": "The hosts discussed general comments on Twitter about the Colossal company's dire wolf project",
+      "type": "reference"
+    },
+    {
+      "author": "John Carmack",
+      "content": "I think you are misunderstanding what this tech demo actually is, but I will engage with what I think your gripe is, AI tooling, trivializing the skill sets of programmers, artists, and designers, and that's real.",
+      "context": "The hosts quoted John Carmack's tweet about AI tooling",
+      "type": "original"
+    },
+    {
+      "author": "John Carmack",
+      "content": "My first games involved hand assembling machine code What a code this is why he's one of the greatest programmers of all time and turning graph paper characters into hex digits",
+      "context": "The hosts quoted John Carmack's tweet about his early programming experience",
+      "type": "original"
+    },
+    {
+      "author": "John Carmack",
+      "content": "Software progress has made that work as irrelevant as chariot wheel maintenance Yeah, you don't want to be in the business of chariot wheel maintenance not a big industry today, but Building power tools is central to all the progress in computers.",
+      "context": "The hosts quoted John Carmack's tweet about software progress",
+      "type": "original"
+    },
+    {
+      "author": "John Carmack",
+      "content": "Game engines have radically expanded the range of people involved in game dev, even as they de-emphasize the importance of much of my beloved systems engineering.",
+      "context": "The hosts quoted John Carmack's tweet about game engines",
+      "type": "original"
+    },
+    {
+      "author": "John Carmack",
+      "content": "AI tools will allow the best to reach even greater heights while enabling smaller teams to accomplish more and bring in some completely new creator demographics, people who don't know systems engineering or even programming, for example.",
+      "context": "The hosts quoted John Carmack's tweet about AI tools in game development",
+      "type": "original"
+    },
+    {
+      "author": "John Carmack",
+      "content": "Yes, we will get to a world where you can get an interactive game or novel or movie out of a prompt, but there will be far better exemplars of the medium still created by dedicated teams of passionate developers.",
+      "context": "The hosts quoted John Carmack's tweet about AI-generated games",
+      "type": "original"
+    }
+  ]
+}

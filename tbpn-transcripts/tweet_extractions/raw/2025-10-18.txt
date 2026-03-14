@@ -1,0 +1,260 @@
+<think>
+We are given a podcast transcript and must extract every reference to tweets, X/Twitter posts, quote tweets, replies, and threads.
+
+Let's go through the transcript and look for any mentions of Twitter/X, tweets, or specific posts.
+
+Scanning the transcript:
+
+1. "The army was like, hey, we want you to prototype something for us, like put a bunch of dots on a map, do something different, like create a new UI, like show us what you can do and then clearly an enemy of Anderrol and Palantir, like, leaked, like, well, they didn't have Oath set up yet."
+
+   - This mentions a leak but not a tweet. It says "leaked", but we are to look for tweets. There's no mention of a tweet here.
+
+2. "Palmer also went on the Joe Rogan experience."
+
+   - This is about a podcast appearance, not a tweet.
+
+3. "We have some images from this." (referring to a fake image) - no tweet.
+
+4. "He's the final boss of salesman." - no tweet.
+
+5. "Andrew Huberman was a writer for Thrasher Mag before becoming a neuroscientist." - This is a fact, not a tweet.
+
+6. "This is just a massive invitation for Jensen Wong from NVIDIA to go on the Huberman Lab podcast." - This is a statement, not a tweet.
+
+7. "Joe Rogan says car design is bad now because car designers stop doing trucks." - This is a quote from Joe Rogan, not a tweet.
+
+8. "Joshua Kushner strolled billionarily across the room." - This is a description of an event, not a tweet.
+
+9. "Colossus is out there saying, like, we are trying, they're not trying to be anyone but Colossus." - This is about a media company (Colossus) and not a specific tweet.
+
+10. "Futurism.com. Yes. Which is a media company, you would assume is excited about the future." - This is a media company, not a tweet.
+
+11. "Dvoris Tesla fan admits that his cyber truck is repulsive to women." - This is a headline from Futurism.com, not a tweet.
+
+12. "Heather donates a quarter million dollars to open sats to strengthen free and open source ecosystems supporting bitcoin and freedom tech" - This is a donation, not a tweet.
+
+13. "jack says why only 250k somebody asked how much did you donate you guys over 21 million" - This says "jack", which likely refers to Jack Dorsey (former Twitter CEO). The transcript says "jack says", so this is a reference to a tweet by Jack Dorsey.
+
+    - We have a reference to a tweet by Jack Dorsey (author: "jack" but we should use the actual name if known, but the transcript says "jack", so we'll use "Jack Dorsey" or as per the transcript? The rule says "author" = the person who wrote the tweet. The transcript says "jack", but we know it's Jack Dorsey. However, the rule says to use the person's name as it appears in the context. The context says "jack", so we'll use "Jack" or "Jack Dorsey"? The transcript says "jack", so we'll use "jack" as the author? But note: the rule says "Person who tweeted (or 'unknown')", so if the transcript says "jack", we can use "Jack" (commonly known).
+
+    However, the transcript says: "jack says why only 250k somebody asked how much did you donate you guys over 21 million"
+
+    So the author is "jack" (meaning Jack Dorsey). We'll write "Jack Dorsey" as the author? But the transcript uses "jack". We should use the name as it is commonly known. Since the context is about Twitter, and Jack Dorsey is the former CEO, we'll use "Jack Dorsey".
+
+    But note: the transcript says "jack", so we'll use "jack" as the author? However, the instruction says: "author" = the person who wrote the tweet. We should use the actual name. Since the transcript says "jack", it's a common abbreviation for Jack Dorsey. We'll write "Jack Dorsey".
+
+    Content: "why only 250k somebody asked how much did you donate you guys over 21 million"
+
+    However, note: the transcript says "jack says why only 250k somebody asked how much did you donate you guys over 21 million". This is a bit messy. The actual tweet content is being quoted as "why only 250k" and then the follow-up. But the transcript is describing a conversation.
+
+    We are to take the verbatim quote as read in the transcript. So the content should be: "why only 250k somebody asked how much did you donate you guys over 21 million"
+
+    But note: the transcript says "jack says ...", so the content is what Jack said (in the tweet). However, the transcript doesn't quote the exact tweet but rather the context. But the rule says: "content" = verbatim quote of the tweet as read/described in the transcript.
+
+    So we take the string: "why only 250k somebody asked how much did you donate you guys over 21 million"
+
+    But note: the transcript has a typo: "you guys over 21 million" — it should be "you guys over 21 million". However, we copy exactly as in the transcript.
+
+    Context: They are discussing a donation by Heather (or someone) to open sats, and then Jack Dorsey's tweet about it.
+
+    Type: original (since it's a standalone tweet by Jack).
+
+14. "Greg Brockman said thanks Jensen for the hand delivery of the DGX Spark best delivery service ever amazing to see so much compute based 16Z says AI bubble ended in the funniest way 2022 AGI soon 2023 AGI soon 2024 AGI soon 25 never mind we give up"
+
+    This is a bit messy. It says "Greg Brockman said" and then a quote. But then it has "16Z" and then the rest. However, note that "Greg Brockman" is a person (CEO of OpenAI), and he is quoting something? Or is he saying the words? The transcript says "Greg Brockman said", so the words following are what he said.
+
+    But then it says "16Z" — which might be a typo for "16Z" (a reference to a Twitter handle?) or perhaps it's "16Z" as a user? Actually, the transcript says: "Greg Brockman said thanks Jensen for the hand delivery of the DGX Spark best delivery service ever amazing to see so much compute based 16Z says AI bubble ended in the funniest way ..."
+
+    It seems that "Greg Brockman said" and then he says "thanks Jensen for the hand delivery ...", and then "16Z says ...". So "16Z" is likely a Twitter handle (or a typo for a handle) and the words after "16Z says" are part of a tweet by 16Z.
+
+    However, the transcript says "16Z says", so we have a reference to a tweet by "16Z" (which is a Twitter user).
+
+    But note: the transcript says "based 16Z says", meaning that "16Z" is the author of the tweet.
+
+    So we have two references:
+
+    a) Greg Brockman's statement (which is a quote of something he said, but note: the transcript says "Greg Brockman said", so it's not a tweet, it's him speaking on the podcast. But the part that is a tweet is "16Z says ...", so that's a tweet by 16Z.
+
+    So the tweet is by "16Z", and the content is "AI bubble ended in the funniest way 2022 AGI soon 2023 AGI soon 2024 AGI soon 25 never mind we give up"
+
+    However, note the transcript: "16Z says AI bubble ended in the funniest way 2022 AGI soon 2023 AGI soon 2024 AGI soon 25 never mind we give up"
+
+    So the content is: "AI bubble ended in the funniest way 2022 AGI soon 2023 AGI soon 2024 AGI soon 25 never mind we give up"
+
+    But wait, the transcript also says "based 16Z" — but that's not part of the tweet. The tweet is "AI bubble ended ...".
+
+    So we have a tweet by 16Z.
+
+    However, the transcript says "16Z says", so the author is "16Z" (which is a Twitter handle, so we'll use "16Z" as the author).
+
+    Context: They are discussing the AI bubble and AGI timeline.
+
+    Type: original.
+
+    But note: the transcript also says "Greg Brockman said ...", but that is not a tweet. We are only to extract tweets. So we ignore the part where Greg Brockman is speaking, because that's the host or the person on the podcast speaking, not a tweet. The only tweet reference here is the one by 16Z.
+
+    However, the transcript says "Greg Brockman said ...", and then the next part is "16Z says ...", so the "16Z" part is a separate tweet.
+
+15. "It's just erotica and ads It's not just erotica and ads And cures for cancer And gambling." - This is a quote from the podcast, not a tweet.
+
+16. "Amazon admits they're losing an AI, says Bucco Capital Bloch. Internal documents obtained by Business Insider." - This is a news report, not a tweet.
+
+17. "DoorDash will use Waymo's robotaxies for delivery in Phoenix." - This is a news item.
+
+18. "Paula says, private robo taxi for my burrito." - This is a person (Paula) speaking on the podcast, not a tweet.
+
+Now, let's list the ones we found:
+
+- Jack Dorsey: 
+   - author: "Jack Dorsey" (we'll use the full name as it's common, but note the transcript says "jack", but we know it's Jack Dorsey)
+   - content: "why only 250k somebody asked how much did you donate you guys over 21 million"
+   - context: The hosts are discussing a donation by Heather to open sats and then referencing Jack Dorsey's tweet about the donation amount.
+   - type: "original"
+
+- 16Z (a Twitter user):
+   - author: "16Z" (as it appears in the transcript)
+   - content: "AI bubble ended in the funniest way 2022 AGI soon 2023 AGI soon 2024 AGI soon 25 never mind we give up"
+   - context: The hosts are quoting a tweet by 16Z about the AI bubble and AGI timeline.
+   - type: "original"
+
+But note: the transcript also says "Greg Brockman said ...", but that is not a tweet. The tweet is by 16Z.
+
+Now, let's check if there are any others.
+
+- The transcript mentions "Futurism.com" and "Colossus", but these are media companies, not tweets.
+
+- The transcript has: "We've got to check out Business Insider." — Business Insider is a news site, not a tweet.
+
+- There is no other mention of a specific tweet.
+
+Wait, let's look again at the transcript for any other references:
+
+- "The European mind cannot comprehend what happened." — This is a quote from the video, not a tweet.
+
+- "We need to put it in the truth zone." — Not a tweet.
+
+- "They pulled up an Ashley Vance video" — This is a video, not a tweet.
+
+- "This is something that someone's working out with?" — Not a tweet.
+
+- "He's the final boss of salesman." — Not a tweet.
+
+- "Andrew Huberman was a writer for Thrasher Mag" — Not a tweet.
+
+- "This is just a massive invitation for Jensen Wong from NVIDIA to go on the Huberman Lab podcast." — Not a tweet.
+
+- "Joe Rogan says car design is bad now because car designers stop doing trucks." — This is a quote from Joe Rogan, not a tweet. The hosts are reporting what Joe Rogan said (presumably on his podcast, but not necessarily on Twitter).
+
+- "Joshua Kushner strolled billionarily across the room." — Not a tweet.
+
+- "Colossus is out there saying, like, we are trying" — Colossus is a media company, so they might have a Twitter, but the transcript doesn't say a specific tweet. It says "Colossus is out there saying", meaning they are making a statement. But it's not a specific tweet. We are to extract only references to specific tweets, not general media statements.
+
+- "Futurism.com" is mentioned, but no specific tweet.
+
+- "Dvoris Tesla fan admits that his cyber truck is repulsive to women." — This is a headline from Futurism.com, not a tweet.
+
+- "Heather donates a quarter million dollars to open sats" — This is a fact, and then Jack Dorsey's tweet is referenced.
+
+- "Heineken the beer company which has been around since 1873 is taking a shot at friend of the show friend founder ri shiff avi shiffman" — This is a news item, not a tweet.
+
+- "Julius is the AI data analyst" — Not a tweet.
+
+- "My boomer dad looking at me after I've made fun of him for the past 10 years for buying gold." — Not a tweet.
+
+- "Aaron says, if you ever think you're a good programmer, just remember this dude wrote Roller Coaster Tycoon by himself and Assembly earning $30 million in royalties." — This is Aaron speaking, not a tweet.
+
+- "Chris in the chat says my favorite part was cleaning up the throw-up in Roller Coaster Tycoon? Is that real? Yes, there might be throw up if there's a mess, if there's a crazy ride, and there's food." — This is a chat message (on the podcast? or on Twitter? The transcript says "Chris in the chat", which might be a live chat on the podcast stream, not a Twitter tweet). We are to extract only tweets/X posts. A live chat on a podcast platform is not Twitter. So we ignore.
+
+- "DoorDash will use Waymo's robotaxies for delivery in Phoenix." — News.
+
+- "Paula says, private robo taxi for my burrito." — Paula is speaking on the podcast, not a tweet.
+
+- "Greg Brockman said ... 16Z says ..." — We already extracted the 16Z tweet.
+
+Now, let's write the JSON.
+
+Episode date: "2025-10-18" (from the transcript: "episode date: 2025-10-18")
+
+Tweets:
+
+1. Jack Dorsey:
+   - author: "Jack Dorsey"
+   - content: "why only 250k somebody asked how much did you donate you guys over 21 million"
+   - context: "The hosts reference Jack Dorsey's tweet about a donation to open sats, following a mention of Heather's donation."
+   - type: "original"
+
+   However, note: the transcript says "jack", but we are using "Jack Dorsey" as the author. The rule says "Person who tweeted", so we use the actual person's name.
+
+2. 16Z:
+   - author: "16Z" (since the transcript uses "16Z", we'll use that as the author name)
+   - content: "AI bubble ended in the funniest way 2022 AGI soon 2023 AGI soon 2024 AGI soon 25 never mind we give up"
+   - context: "The hosts quote a tweet by 16Z discussing the AI bubble and AGI timeline."
+   - type: "original"
+
+But note: the transcript says "16Z" — it's written as "16Z", so we use that.
+
+Now, we must format as JSON.
+
+Important: The episode_date is "2025-10-18", but note the transcript says "episode date: 2025-10-18", so we use that.
+
+Now, let's write the JSON.
+
+We have two tweets.
+
+But note: the transcript says "Greg Brockman said ...", but that is not a tweet. We are only extracting the tweet by 16Z.
+
+Also, the Jack Dorsey reference: the content is a bit garbled, but we copy exactly as in the transcript.
+
+Now, we output only the JSON.
+
+Let's construct:
+
+{
+  "episode_date": "2025-10-18",
+  "tweets": [
+    {
+      "author": "Jack Dorsey",
+      "content": "why only 250k somebody asked how much did you donate you guys over 21 million",
+      "context": "The hosts reference Jack Dorsey's tweet about a donation to open sats, following a mention of Heather's donation.",
+      "type": "original"
+    },
+    {
+      "author": "16Z",
+      "content": "AI bubble ended in the funniest way 2022 AGI soon 2023 AGI soon 2024 AGI soon 25 never mind we give up",
+      "context": "The hosts quote a tweet by 16Z discussing the AI bubble and AGI timeline.",
+      "type": "original"
+    }
+  ]
+}
+
+But note: the context should be 1-2 sentences max.
+
+We'll keep the context short.
+
+Also, note: the transcript says "jack", but we are using "Jack Dorsey" as the author. This is acceptable because it's the common name.
+
+Now, let's check if there are any other mentions.
+
+Wait, the transcript says: "Greg Brockman said thanks Jensen for the hand delivery of the DGX Spark best delivery service ever amazing to see so much compute based 16Z says ..."
+
+So the part "16Z says ..." is the start of the tweet, so the content is the rest.
+
+We have the content as: "AI bubble ended in the funniest way 2022 AGI soon 2023 AGI soon 2024 AGI soon 25 never mind we give up"
+
+This is correct.
+
+Now, we output the JSON.
+
+But note: the rule says "Return ONLY valid JSON". So we must not have any extra text.
+
+Let's write the JSON string.
+
+Important: We must not use any markdown, so we output the raw JSON.
+
+Also, note: the transcript has a typo "25" for 2025? But we copy exactly.
+
+Now, we output.
+
+</think>
+
+{"episode_date":"2025-10-18","tweets":[{"author":"Jack Dorsey","content":"why only 250k somebody asked how much did you donate you guys over 21 million","context":"The hosts reference Jack Dorsey's tweet about Heather's donation to open sats following a mention of the donation amount.","type":"original"},{"author":"16Z","content":"AI bubble ended in the funniest way 2022 AGI soon 2023 AGI soon 2024 AGI soon 25 never mind we give up","context":"The hosts quote a tweet by 16Z discussing the AI bubble and AGI timeline predictions.","type":"original"}]}

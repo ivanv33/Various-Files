@@ -1,0 +1,263 @@
+<think>
+We are extracting every reference to tweets, X/Twitter posts, quote tweets, replies, and threads from the provided podcast transcript.
+
+Let's go through the transcript and look for any mentions of Twitter/X, tweets, posts, threads, etc.
+
+Scanning the transcript:
+
+1. "I saw a TechCrunch tweet six weeks ago that META is trying to ban Pokey."
+   - This is a reference to a specific tweet by TechCrunch (which is a company, but they have a Twitter account). The content is "META is trying to ban Pokey". The context is that the podcast host is mentioning this tweet as something they saw six weeks ago.
+
+2. "He said he directly asked for help on Twitter, got a lot of intros, talked to the European Commission."
+   - This refers to someone (likely the person mentioned earlier about Pokey) having asked for help on Twitter. But note: the transcript doesn't quote the actual tweet, so it's a reference to someone's Twitter activity without the content. We'll have to note it as a reference.
+
+3. "EU officially opened an antitrust investigation today. X is unreal. He really is kind of meta's worst nightmare today."
+   - This is not a reference to a tweet but a statement by the host. However, note that "X" here is referring to the platform (formerly Twitter), so it's not a tweet reference. We are only to extract references to tweets, not mentions of the platform.
+
+4. "I saw a TechCrunch tweet six weeks ago" - already noted.
+
+5. "Jake, Paul, and the team over at Antifund have raised the new fund. 30 million. Almost, I almost said, I almost said 300 million."
+   - This is a statement about a fund raise, but it doesn't mention a tweet. However, note: the next part says "I saw a TechCrunch tweet" which we already have.
+
+6. "I saw a TechCrunch tweet six weeks ago that META is trying to ban Pokey." - This is the key one.
+
+Also, note the part: "He said he directly asked for help on Twitter" - but we don't have the content of the tweet, so we can only note it as a reference.
+
+Let's look for more:
+
+- "Lisa Sue gave her opinion on the Google TPU. She broke her silence. She broke her silence. She responded. She fires back."
+  - This is about Lisa Sue (who is likely a person) and she responded, but it doesn't say she did it on Twitter. The transcript says "She broke her silence" and "She fires back" but doesn't specify the platform. However, the context is that she was responding to something, and the previous part was about a UBS conference. The transcript says: "Lisa Sue gave her opinion on the Google TPU." and then "She broke her silence. She broke her silence. She responded." But note: the next line says "She said the UBS conference, and she says, ...". So it's a quote from her speaking at the UBS conference? Not necessarily on Twitter. We don't have a clear reference to a tweet.
+
+- "One thing that was notable was that I saw a ton of people dunking on it being like just very against ads. And you were talking about this. Who's going to be the first? Eric Suford, Ben Thompson, we're holding up the wall being. Like, we will stand with you, Sam Almond, in Fiji, Simo. And you're all... And Sundar, and Sundar. And Sundar, we are your strongest soldiers. We will support you. Someway, opening eyes should want Gemini to go first."
+  - This is about people on social media (implied to be Twitter) dunking on the ad idea. But it doesn't quote a specific tweet, so we have to consider it as a reference to Twitter activity without specific content.
+
+- "I've seen a bunch of different accounts, including Paulymarket, that we're sharing that Open AIs ready to roll out ads."
+  - This is a reference to accounts on Twitter (Paulymarket). The content is about Open AI rolling out ads. But note: the transcript doesn't quote the tweet, so we have to note it as a reference.
+
+- "I think it's very possible that Google might be like, no, we'll let you do the honors. Exactly. Exactly. I think we were talking about yesterday. One last thing on ads, if I'm Google, I wouldn't run a single ad on Gemini Corps. I'd run it at a pure loss until every competitor is forced to slap ads everywhere just to keep the lights on. It's the bleed-ed-out strategy, but Google had the opportunity to do that with, they could have gotten into a price war on cloud. They could have said, hey, we want to come in, you know, and we're going to take zero margins on this and really try and take market share from AWS and Azure. They've all agreed, no price wars, basically. Let's compete on functionality. Let's compete on branding. Let's compete on integration. They have not had a price work. And Google doesn't have to spend nearly as much time building any ad. They have the ad infrastructure, right? They have AdSense. They have thousands of people out there already that just sell ads that work with. So they have all the customer relationships. There's very few businesses on earth that spend money on advertising and don't spend money with Google."
+  - This is a discussion of the strategy, not a direct reference to a tweet.
+
+- "Sean Frank says that a ChatGBTBT referred session to his site, Ridge.com, converts at 12% and is worth $5 per visitor, the highest I've ever seen."
+  - This is a quote from Sean Frank, but it doesn't say it was on Twitter. The transcript says "Sean Frank says", so it might be from a tweet? But the transcript doesn't specify. However, note: the context is that Sean Frank is a person, and the podcast host is quoting him. But we don't know if it was from a tweet. The instruction says to extract references to tweets, so if it's not specified as a tweet, we shouldn't include it as a tweet. The transcript doesn't say "Sean Frank tweeted" or "on Twitter", so we skip.
+
+- "One of the greatest to ever scoop." (referring to Berber Jin) - This is about a scoop, but not a tweet.
+
+- "I saw a TechCrunch tweet six weeks ago" - already noted.
+
+- "He said he directly asked for help on Twitter" - we'll have to note this as a reference to Twitter activity.
+
+- "EU officially opened an antitrust investigation today. X is unreal." - This is about the platform, not a tweet.
+
+- "I saw a TechCrunch tweet six weeks ago that META is trying to ban Pokey." - This is a specific tweet.
+
+- "Paulymarket" - mentioned as an account that was sharing something about Open AI rolling out ads.
+
+Let's list the explicit references we have:
+
+1. "I saw a TechCrunch tweet six weeks ago that META is trying to ban Pokey."
+   - Author: TechCrunch (as the account that tweeted)
+   - Content: "META is trying to ban Pokey"
+   - Context: The host mentions this as something they saw six weeks ago, likely in the context of discussing Meta's actions.
+   - Type: reference (because it's a reference to the tweet, but we don't have the exact content beyond the quote provided in the transcript? Actually, the transcript says "I saw a TechCrunch tweet six weeks ago that META is trying to ban Pokey." so the content is "META is trying to ban Pokey". But note: it's a quote of the tweet's content as reported.)
+
+2. "He said he directly asked for help on Twitter" (referring to someone, likely the person who was going to the European Commission)
+   - Author: unknown (the person who asked for help)
+   - Content: not provided, so we cannot put the content as a verbatim quote. But the rule says: "content" = verbatim quote of the tweet as read/described in the transcript. However, the transcript doesn't give the content of the tweet, only that he asked for help on Twitter. So we cannot put a content string. But note: the rule says "verbatim quote" meaning if the transcript says the tweet was "xyz", then we put "xyz". Here, the transcript doesn't say the tweet content, so we cannot include it? However, the instruction says "include EVERY mention of a tweet", so we must include it as a reference without the content? But the schema requires "content". Let's look at the rules: "content" = verbatim quote of the tweet as read/described in the transcript. If the transcript doesn't describe the content, then we cannot make it up.
+
+   The transcript says: "He said he directly asked for help on Twitter, got a lot of intros, talked to the European Commission." So the content of the tweet isn't quoted. Therefore, we cannot include it because we don't have the content. We must have the content as described in the transcript.
+
+   However, note: the instruction says "Extract ALL references to tweets, ...". The reference is to the fact that he asked for help on Twitter. But we are required to have the "content" field. Since the content isn't provided, we might have to omit it? But the rule says "every mention", so we have to include it. But the schema requires a string for "content". We have two choices: either leave it out (but the rule says include every mention) or put a placeholder? However, the rules state: "content" = verbatim quote of the tweet as read/described. If it's not described, then we don't have a string. So we must skip it? But the example in the rules doesn't cover this.
+
+   Let's reexamine: the transcript does not say what the tweet said, only that he asked for help on Twitter. So we cannot provide the content. Therefore, we cannot include it as a tweet reference because we don't have the content. We'll skip it.
+
+3. "including Paulymarket, that we're sharing that Open AIs ready to roll out ads."
+   - This is a reference to an account (Paulymarket) that is sharing information about Open AI rolling out ads. The transcript does not quote the tweet, but it says "Paulymarket" (which is likely the Twitter handle) and the context is that they are sharing the news. So we can take the content as "Open AIs ready to roll out ads" (as described in the transcript). But note: the transcript says "Open AIs ready to roll out ads", which is a bit of a typo (should be "OpenAI's"), but we must copy the transcript.
+
+   However, the transcript says: "I saw a bunch of different accounts, including Paulymarket, that we're sharing that Open AIs ready to roll out ads." So the content is "Open AIs ready to roll out ads" (as the content of the account's post).
+
+   So:
+   - Author: Paulymarket
+   - Content: "Open AIs ready to roll out ads"
+   - Context: The host mentions that Paulymarket was sharing this news about OpenAI rolling out ads.
+   - Type: reference (because it's a reference to the account's activity, but we don't have the exact tweet, just the description)
+
+4. "Lisa Sue gave her opinion on the Google TPU. She broke her silence. She broke her silence. She responded. She fires back. She said the UBS conference, and she says, Google has done a good job with the TPU architecture over the years, but it's a more purpose-built design. It lacks the programmability, model flexibility, and balanced training and inference capabilities that GPUs offer."
+   - This is a quote from Lisa Sue at the UBS conference, not a tweet. So we skip.
+
+5. "I've seen a bunch of different accounts, including Paulymarket" - we already have Paulymarket above.
+
+Now, let's check for other explicit mentions:
+
+- "NVIDIA offers greater performance, versatility, and fungibility than ASICs, which are designed for specific AI frameworks or functions." - This is a quote from NVIDIA, but it's not specified as a tweet. The transcript says "NVIDIA said", so it's from a statement, not a tweet.
+
+- "Jensen Huang in 2016, Open AI was just a bunch of people sitting in a room." - This is from the Joe Rogan interview, not a tweet.
+
+- "They are regulated by the CFTC." - Not a tweet.
+
+- "Jake, Paul, and the team over at Antifund have raised the new fund. 30 million." - This is a statement, not a tweet.
+
+- "Pomp is announcing a historic decision at BRR." - This is a statement by Pomp, but it doesn't say it was on Twitter.
+
+So the only clear tweet references are:
+
+1. TechCrunch tweet about "META is trying to ban Pokey"
+2. Paulymarket account about "Open AIs ready to roll out ads"
+
+But note: the transcript says "Paulymarket" (which is likely a Twitter handle) and the content is described as "Open AIs ready to roll out ads". However, the transcript says "Open AIs" (with an apostrophe missing) but we must copy exactly.
+
+Also, note: the transcript says "Open AIs" (with a capital 'A' and missing apostrophe) but it's a typo. We copy the transcript.
+
+Now, let's format as JSON:
+
+episode_date: from the transcript, it's "2025-12-05"
+
+tweets array:
+
+First tweet:
+  author: "TechCrunch"
+  content: "META is trying to ban Pokey"
+  context: "Host mentions seeing this tweet six weeks ago in the context of Meta's actions."
+  type: "reference" (because it's a reference to the tweet without being an original quote of the content, but the transcript does quote the content)
+
+Second tweet:
+  author: "Paulymarket"
+  content: "Open AIs ready to roll out ads"
+  context: "Host mentions Paulymarket as one of the accounts sharing news about OpenAI rolling out ads."
+  type: "reference"
+
+But note: the instruction says "type" can be:
+  original, quote_tweet, reply, thread, reference
+
+We are using "reference" for both because we don't have the actual tweet content (we have a description of the content as reported in the transcript).
+
+However, for TechCrunch, the transcript says "I saw a TechCrunch tweet ... that META is trying to ban Pokey", so the content is provided as "META is trying to ban Pokey". Similarly, for Paulymarket, the transcript says "Paulymarket, that we're sharing that Open AIs ready to roll out ads", so the content is "Open AIs ready to roll out ads".
+
+So we'll use "reference" for both.
+
+But note: the transcript says "Open AIs" (with a capital 'A' and no apostrophe) so we must use that.
+
+Now, let's write the JSON.
+
+Important: The episode_date is "2025-12-05".
+
+We must not include any other tweets.
+
+We have two tweets.
+
+Wait, there's also: "He said he directly asked for help on Twitter" - but we don't have the content, so we skip.
+
+Now, let's check if there are any others:
+
+- "Ilya seems to be at SSI" - not a tweet.
+
+- "Lisa Sue" - not a tweet.
+
+- "The other interesting thing is like, you mentioned open AI, but like there's nothing stopping AMD from doing something that looks like a TPU for a foundation model company." - not a tweet.
+
+So only two.
+
+But note: the transcript says "Paulymarket" (with a capital P and y, and market) so we use "Paulymarket" as the author.
+
+Also, note: the transcript says "Paulymarket" (without a space) so we use that.
+
+Now, write the JSON.
+
+Important: The JSON must be valid and match the schema.
+
+Let's format:
+
+{
+  "episode_date": "2025-12-05",
+  "tweets": [
+    {
+      "author": "TechCrunch",
+      "content": "META is trying to ban Pokey",
+      "context": "Host mentions seeing this tweet six weeks ago in the context of Meta's actions",
+      "type": "reference"
+    },
+    {
+      "author": "Paulymarket",
+      "content": "Open AIs ready to roll out ads",
+      "context": "Host mentions Paulymarket as one of the accounts sharing news about OpenAI rolling out ads",
+      "type": "reference"
+    }
+  ]
+}
+
+But note: the transcript says "Open AIs" (with a capital 'A') and it's a typo, but we must copy exactly.
+
+Also, the context must be 1-2 sentences max.
+
+We have:
+
+For TechCrunch: "Host mentions seeing this tweet six weeks ago in the context of Meta's actions" -> 1 sentence.
+
+For Paulymarket: "Host mentions Paulymarket as one of the accounts sharing news about OpenAI rolling out ads" -> 1 sentence.
+
+We must not include any other fields.
+
+Now, note: the transcript says "Pokey" (which might be a typo for "Pokie" or a specific term, but we copy).
+
+Also, the transcript says "Open AIs" (not "OpenAI's") so we keep the typo.
+
+Let's write the JSON.
+
+Important: The episode_date is "2025-12-05", as given.
+
+We are not including any other tweets.
+
+One more: the transcript says "Paulymarket" and then later "Paulymarket" is mentioned again? But it's the same.
+
+So we have two.
+
+But note: the transcript says "including Paulymarket, that we're sharing that Open AIs ready to roll out ads." - so the content is "Open AIs ready to roll out ads".
+
+However, the transcript also says: "I saw a bunch of different accounts, including Paulymarket, that we're sharing that Open AIs ready to roll out ads." So the content of the account's post is "Open AIs ready to roll out ads".
+
+So we are using that as the content.
+
+Now, output only the JSON.
+
+Note: The rule says "Return ONLY valid JSON. Never include markdown formatting, code fences, or commentary."
+
+So we output exactly:
+
+{"episode_date":"2025-12-05","tweets":[{"author":"TechCrunch","content":"META is trying to ban Pokey","context":"Host mentions seeing this tweet six weeks ago in the context of Meta's actions","type":"reference"},{"author":"Paulymarket","content":"Open AIs ready to roll out ads","context":"Host mentions Paulymarket as one of the accounts sharing news about OpenAI rolling out ads","type":"reference"}]}
+
+But note: the context for the second one: the transcript says "Open AIs" (with capital A) but the context should be about OpenAI, so we say "OpenAI" in the context? But the content is "Open AIs", so we don't change it. The context is a description of why it was mentioned, so we can say "OpenAI" (the company) even though the tweet says "Open AIs". So we write "OpenAI" in the context.
+
+Similarly, for the first, the tweet says "META" (which is the company name) so we say "Meta's actions" (Meta being the company).
+
+So the context for the first: "Host mentions seeing this tweet six weeks ago in the context of Meta's actions" -> we use "Meta's" because the company is Meta.
+
+For the second: "Host mentions Paulymarket as one of the accounts sharing news about OpenAI rolling out ads" -> we use "OpenAI" (the company) in the context.
+
+Now, let's write the JSON without any extra spaces to be minimal.
+
+But note: the JSON must be valid.
+
+We'll write it as a string.
+
+However, the instruction says "raw JSON", so we output the JSON string.
+
+But note: the episode_date is a string in the format YYYY-MM-DD.
+
+We have "2025-12-05".
+
+Now, output only that.
+
+But note: the transcript has a line "I saw a TechCrunch tweet six weeks ago that META is trying to ban Pokey." - so the content is exactly "META is trying to ban Pokey".
+
+And for Paulymarket: the content is "Open AIs ready to roll out ads".
+
+We are not adding any punctuation.
+
+So we output the JSON as above.
+
+Let's check the exact string for the second content: the transcript says "Open AIs ready to roll out ads" (with a space after Open and capital A, and no apostrophe). So we use that.
+
+Now, write the JSON.
+
+</think>
+
+{"episode_date":"2025-12-05","tweets":[{"author":"TechCrunch","content":"META is trying to ban Pokey","context":"Host mentions seeing this tweet six weeks ago in the context of Meta's actions","type":"reference"},{"author":"Paulymarket","content":"Open AIs ready to roll out ads","context":"Host mentions Paulymarket as one of the accounts sharing news about OpenAI rolling out ads","type":"reference"}]}

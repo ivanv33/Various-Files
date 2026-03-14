@@ -1,0 +1,396 @@
+<think>
+We are given a transcript and must extract every reference to tweets, X/Twitter posts, quote tweets, replies, and threads.
+
+Let's go through the transcript and look for any mentions of Twitter/X, tweets, or specific posts.
+
+Key phrases to look for: "tweet", "X", "Twitter", "on the timeline", "quote tweet", "reply", "thread", "on X", etc.
+
+Scanning the transcript:
+
+1. "I'm glad the chat is enjoying the costumes." -> This is about the chat (live chat during the podcast), not a tweet.
+
+2. "Jordi, who are you today? You got to be living under a data center to not know who I'm dressed up as today, none other than Mark and Drieson." -> This is about costumes, not tweets.
+
+3. "If you are watching the recording of this at some point in the future, I recommend whenever I'm talking, put it on 3X speed to get the full mark experience." -> This is about the podcast host's own advice, not a tweet.
+
+4. "Tyler, are you taking Halloween serious? I'm taking Halloween extremely seriously." -> Not about a tweet.
+
+5. "Trump cut China tariffs after he met up with Xi Jinping." -> News, not a tweet.
+
+6. "The U.S. agreed to lower a fentanyl-related tariff on Chinese goods." -> News.
+
+7. "I mean, not the lag seven, but they were the lagging part of the Mag 7." -> This is a reference to a group (Mag 7) but not a tweet.
+
+8. "Alphabet up 247% over the last five years. Amazon is still only up 62% even after the pop this week." -> Financial data, not a tweet.
+
+9. "So the only thing better than Halloween is Halloween AI edition. In case you missed it, tagged Ilya and Mark." -> This is a reference to a tweet? Let's see: "In case you missed it, tagged Ilya and Mark." -> This likely means they are referring to a tweet where they tagged Ilya and Mark (presumably on Twitter/X). But note: it says "tagged Ilya and Mark", meaning they tagged them in a tweet they posted.
+
+   - So we have a reference to a tweet they posted (the podcast hosts) that tagged Ilya and Mark. But note: the hosts are the ones who wrote the tweet? The transcript says "In case you missed it, tagged Ilya and Mark." - meaning they are referring to a tweet they (the podcast hosts) posted.
+
+   - However, the instruction says: "author" = the person who wrote the tweet, not the podcast host discussing it. But in this case, the podcast host is the one who wrote the tweet? Actually, the context is that the hosts are talking about a tweet they posted.
+
+   - But note: the transcript says "In case you missed it, tagged Ilya and Mark." - so the tweet they are referring to was written by the podcast hosts (or at least by the person speaking). However, the host is speaking and says "tagged Ilya and Mark", so the tweet content would be the act of tagging, but we don't have the exact content.
+
+   - The instruction says: "content" = verbatim quote of the tweet as read or described. But here, the transcript doesn't quote the actual tweet content, only says they tagged Ilya and Mark.
+
+   - We must be cautious: if the transcript doesn't provide the exact words of the tweet, we cannot make it up. We only extract what is described.
+
+   - However, note: the transcript says "tagged Ilya and Mark", but we don't have the text of the tweet. So we cannot extract the content. But wait, the instruction says: "verbatim quote of the tweet as read/described". The description is "tagged Ilya and Mark", so we can use that as the content? Actually, the content of the tweet would be the actual text, but we don't have it. The description is that they tagged two people.
+
+   - Let's see the exact words: "So the only thing better than Halloween is Halloween AI edition. In case you missed it, tagged Ilya and Mark."
+
+   - This is the hosts saying that they (the podcast team) tagged Ilya and Mark in a tweet. The tweet itself isn't quoted, but the description of the tweet is "tagged Ilya and Mark". So we can take the content as "tagged Ilya and Mark" but that's not the tweet content. The tweet content would have been something like "Halloween AI edition! @Ilya @Mark" but we don't have that.
+
+   - The instruction says: "verbatim quote of the tweet as read/described". The transcript doesn't provide the actual tweet, so we cannot use a made-up text. The only description we have is "tagged Ilya and Mark", so we'll use that as the content.
+
+   - But note: the context is that they are referring to a tweet they posted, so the author would be the podcast host (or the team). However, the transcript doesn't specify who wrote the tweet (it's the hosts' own post). We'll use "unknown" for author? But actually, the host is speaking and saying "we tagged", so the author is the podcast host (but we don't have a specific name). The rule says: "author" = the person who wrote the tweet. Since the hosts are the ones who wrote it, but the transcript doesn't specify a name, we can use "unknown" or perhaps "Podcast Hosts" but the schema says "Person who tweeted (or 'unknown')". We'll use "unknown" because it's not a specific person named in the tweet.
+
+   - However, note: the hosts are named (Jordi, Elia, Tyler, John, etc.) but the tweet was posted by the team. We'll use "unknown" to be safe.
+
+   - Type: This is a standalone tweet (the hosts posted it), so "original".
+
+   - Context: They are mentioning a tweet they posted to tag two people (Ilya and Mark) in the context of a Halloween AI-themed post.
+
+2. Next, let's look for other mentions:
+
+   "Microsoft. Microsoft. What's your Microsoft tape? Topline beat. Earnings beat." -> This is about Microsoft's earnings, not a tweet.
+
+   "I mean, not the lag seven, but they were the lagging part of the Mag 7." -> Not a tweet.
+
+   "Alphabet up 247% over the last five years. Amazon is still only up 62% even after the pop this week." -> Financial data.
+
+   "So the only thing better than Halloween is Halloween AI edition. In case you missed it, tagged Ilya and Mark." -> We already considered this.
+
+   "Microsoft. Microsoft. What's your Microsoft tape? Topline beat. Earnings beat." -> Not a tweet.
+
+   "If you've been paying any attention to Apple, you know that their China business is slowly going away." -> Not a tweet.
+
+   "Apple beat top line, beat on bottom line." -> Not a tweet.
+
+   "NVIDIA just to finish this little earnings wrap up." -> Not a tweet.
+
+   "John, your take was on top of the world, but is that head that wears the crown heavy core AI factory build out going flawlessly, but unclear why NVIDIA is pushing data centers in space, humanoid's quantum computing, mumbo, jumbo." -> Not a tweet.
+
+   "I said, I don't think Jensen would be just chugging beers on camera in Korea if he was having a rough one." -> Not a tweet.
+
+   "No one's created $5 trillion in any capacity." -> Not a tweet.
+
+   "I'm sorry, but no company generating the cash meta is with the margins it has should ever be raising money." -> Not a tweet.
+
+   "Of course, they announced another bond sale yesterday." -> Not a tweet.
+
+   "morning don't pay every AI scientists like their show hey Otani yeah when I hear that they're setting up a big data center and they're raising debt for that particular deal I don't have like red flags flying off in my mind" -> This seems to be a transcript of a conversation that is not a tweet.
+
+   "AI is not a bubble enterprise AI is very strong nearly 150 enterprises each process one trillion tokens with Gemini models for a wide range of apps" -> Not a tweet.
+
+   "and then they say wait that's less than a million bucks per year per enterprise or 150 million of annual revenue i.e. 0.3% of GCP annual revenue." -> Not a tweet.
+
+   "What percentage of GCP annual revenue is AI, is Gen AI? Sometimes the hyperscalers don't know." -> Not a tweet.
+
+   "Tyler, what you got? A trillion is just like not a lot at all. It's just not a lot of things." -> Not a tweet.
+
+   "Open AI is doing like just on the API like something around like 250 trillion a month." -> Not a tweet.
+
+   "If it's a trillion over the past like year, even if it's 150, I mean that's like, that's pretty bad." -> Not a tweet.
+
+   "This was crazy. I wasn't sure if this was fake news or not. But on the Coinbase earnings call yesterday. Brian Armstrong went. There was a prediction market that people were betting on which words he would say during the earnings call. And he waited until the end. And he just read through and read off every single word that he had missed." -> This is about a prediction market for Coinbase's earnings call, but note: it says "there was a prediction market" meaning a market where people bet on words. However, it doesn't mention a specific tweet. But wait, the next part: "We've had prediction markets created around different interviews we've done." -> This is the podcast hosts saying they have prediction markets for their own interviews. But it's not a tweet.
+
+   - However, note: "We've had prediction markets created around different interviews we've done." -> This is a reference to the podcast hosts having created prediction markets for their own interviews, which might have been on Twitter. But the transcript doesn't say they posted a tweet about it, nor does it describe a specific tweet.
+
+   - So this is a vague reference to having prediction markets, but not a specific tweet. We are to include "reference" for vague mentions without specific content.
+
+   - But note: the instruction says "include EVERY mention of a tweet, X/Twitter post, ...". This is not a mention of a specific tweet, but a mention of a prediction market that was created (which might have been on Twitter, but not stated). However, the transcript says "prediction markets" and then "We've had prediction markets created around different interviews we've done." and then "And it is wildly distracting when I'm looking at the chat and people are like, say this word. Say that word again." -> This is about the live chat (during the podcast) where people were making bets on what the host would say, but it's not a Twitter post.
+
+   - So we cannot extract a tweet from this because it's not about a tweet.
+
+   - Let's check: "We've had prediction markets created around different interviews we've done." -> This is a general statement. The podcast host is saying they have created prediction markets (which might have been on Twitter, but the transcript doesn't specify that the prediction market was on Twitter). The next part: "And it is wildly distracting when I'm looking at the chat and people are like, say this word." -> This is about the live chat (probably on the podcast platform, not Twitter). So we don't have a reference to a tweet.
+
+   - Therefore, we skip.
+
+   - But note: the transcript says "We've had prediction markets created around different interviews we've done." and then "And it is wildly distracting when I'm looking at the chat". The "chat" here is the live chat of the podcast, not a Twitter chat. So no tweet reference.
+
+   - So we don't have a tweet for this.
+
+   "Microsoft seemingly just revealed that Open AI lost $11.5 billion last quarter." -> This is a statement about a revelation, but it doesn't say it was on Twitter. It might be from an earnings report, not a tweet.
+
+   "They have the least profitable business in the world? Who's losing more money than Open AAP?" -> Not a tweet.
+
+   "These are not losses. These are investments." -> Not a tweet.
+
+   "So like if I raise $10 million for my startup and then I'm like, Like, okay, I'm going to buy an office building for $5 million. That's not negative 5 million earnings. That is negative 5 million cash flow." -> Not a tweet.
+
+   "The first half of 2025, they're going to do 3.5 in losses." -> Not a tweet.
+
+   "So this is basically double that." -> Not a tweet.
+
+   "Palantir sues former employees for stealing company secrets." -> Not a tweet.
+
+   "Company alleges pair violated non-competes to create copycat AI firm." -> Not a tweet.
+
+   "The two employees, they're accusing them as stealing confidential data to build a rival company called Percepta, backed by General Catalyst." -> Not a tweet.
+
+   "I would not want to steal from Palantir. Bad idea." -> Not a tweet.
+
+   "Black Rock stung by loans to businesses accused of breathtaking fraud and entrepreneur tap private credit funds to finances, telecom businesses, A.V. in the chat." -> This says "A.V. in the chat", meaning someone named A.V. was in the chat (live chat). But note: the chat is the podcast's live chat, not Twitter. So this is not a tweet.
+
+   "Large-scale fraud is actually a sign of good times." -> Not a tweet.
+
+   "Please, Mr. President, respectfully, let us buy this truck." -> This is a quote from a live chat? The transcript says "in the chat", so it's the podcast's chat, not a tweet.
+
+   "I think this one from Toyota internationally sells for like 10 to 20 grand." -> Not a tweet.
+
+   "If I ran a company, my first act would be to ban hard-boiled eggs in the office." -> Not a tweet.
+
+   "Hard-boiled eggs are really an insane snack." -> Not a tweet.
+
+   "It's not more protein than a steak in a bag." -> Not a tweet.
+
+   "You've got to go Chesky mode." -> This is a reference to Airbnb's CEO (Chesky), but not a tweet.
+
+   "Throw a steak in the bag and take it with you everywhere." -> Not a tweet.
+
+   "Like I wouldn't have a problem with somebody going in if there's like a cigarette smoking area, like a back alley, and you can go into the back alley and scarf, scarves, hard-boiled eggs." -> Not a tweet.
+
+   "That seems reasonable." -> Not a tweet.
+
+   "Am I going to go home and trick or treat with the kids like this?" -> Not a tweet.
+
+   "No, I do not want to traumatize my young children." -> Not a tweet.
+
+   "Yeah. I will be dressing up as something else." -> Not a tweet.
+
+   "But we will see you back here on Monday." -> Not a tweet.
+
+   "We'll talk to you soon." -> Not a tweet.
+
+   "I can't wait." -> Not a tweet.
+
+Now, let's go back to the one we found:
+
+- "So the only thing better than Halloween is Halloween AI edition. In case you missed it, tagged Ilya and Mark."
+
+We'll extract that as:
+
+author: "unknown" (because the transcript doesn't specify a person, and it's the podcast host's own tweet)
+content: "tagged Ilya and Mark"   [because the transcript describes it as "tagged Ilya and Mark", and that's the only description we have]
+context: "The hosts mention a tweet they posted tagging Ilya and Mark for a Halloween AI-themed post."
+type: "original"
+
+But note: the transcript says "In case you missed it, tagged Ilya and Mark." — so the content of the tweet is not described, but the action of tagging is mentioned. However, the instruction says to use the verbatim description. So we'll use "tagged Ilya and Mark" as the content.
+
+Wait, the instruction says: "verbatim quote of the tweet as read/described". The description is that they tagged Ilya and Mark, so we'll use that string.
+
+Now, are there any other mentions?
+
+Let's check again for "tweet" or "X" or "Twitter":
+
+- The transcript says: "We've had prediction markets created around different interviews we've done." -> This is not a tweet, it's a prediction market (which might have been on Twitter, but it's not a tweet reference).
+
+- The transcript says: "A.V. in the chat." — but that's the podcast's chat, not Twitter.
+
+- The transcript says: "the timeline loves the core meta-business" — "timeline" might refer to Twitter's timeline? But note: the transcript says "the timeline loves the core meta-business", meaning the Twitter timeline? Actually, "timeline" is a common term for Twitter's feed. So this is a reference to Twitter's timeline (i.e., the feed on Twitter).
+
+  But note: the instruction says "extract every reference to tweets, X/Twitter posts, quote tweets, replies, and threads". So if they are talking about the timeline (the Twitter feed), that's a reference to Twitter activity.
+
+  However, the reference is: "the timeline loves the core meta-business, but doesn't have a lot of faith in Zuck."
+
+  This is a reference to what is being said on the Twitter timeline (i.e., on Twitter), but not a specific tweet. It's a general statement about the Twitter timeline.
+
+  We are to extract references to tweets, but this is a reference to the timeline (which is the feed of tweets). However, the instruction says "references to tweets", not to the timeline. But note: the timeline is a collection of tweets.
+
+  The rule: "Include EVERY mention of a tweet, X/Twitter post, quote tweet, reply, and thread."
+
+  The word "timeline" in the context of Twitter is a reference to the Twitter feed (which is a stream of tweets). So we should consider this as a reference to Twitter activity.
+
+  But note: the instruction says "reference to tweets", and here it's a reference to the timeline (which is not a specific tweet). However, the transcript says "the timeline", meaning the Twitter timeline.
+
+  How to handle:
+
+  We are to extract references to tweets, so a reference to the timeline (as a medium) might be considered a "reference" (type: "reference").
+
+  But note: the transcript says "the timeline loves the core meta-business", so they are attributing a sentiment to the timeline (which is a way of saying that people on Twitter love it). So it's a vague mention of Twitter activity.
+
+  We'll extract it as a reference.
+
+  author: "unknown" (because it's not a specific person who tweeted, but the timeline as a whole)
+  content: "the timeline loves the core meta-business" -> but wait, the transcript doesn't quote the timeline, it just says "the timeline loves...". So the content of the reference is the statement "the timeline loves the core meta-business", but note: that's not the content of a tweet, it's the hosts' description of what the timeline is doing.
+
+  We'll use the description: "the timeline loves the core meta-business"
+
+  context: "The hosts discuss how the Twitter timeline has positive sentiment towards Meta's core business but skepticism towards Zuckerberg."
+
+  type: "reference"
+
+  However, note: the instruction says "content" = verbatim quote of the tweet. But this is not a tweet, it's a description of the timeline. So we are using the description as the content.
+
+  But the rule says: "verbatim quote of the tweet as read/described". In this case, the description is "the timeline loves the core meta-business", so we'll use that.
+
+  But note: the transcript says: "The timeline loves the core meta-business, but doesn't have a lot of faith in Zuck."
+
+  So we'll use that string as the content.
+
+  However, the instruction says "tweet", but this is not a specific tweet. But the rule says to include "reference" for vague mentions.
+
+  So we'll have two entries:
+
+  1. The Halloween AI tweet (original)
+  2. The reference to the Twitter timeline (reference)
+
+Let's check if there are more.
+
+Another possible one: "On the Coinbase earnings call yesterday. Brian Armstrong went. There was a prediction market that people were betting on which words he would say during the earnings call."
+
+This is about a prediction market, and then the hosts say they've had prediction markets for their own interviews. But note: they don't say it was on Twitter. The prediction market might have been on a platform like PredictIt, not Twitter. So we don't extract a tweet for that.
+
+Also, "We've had prediction markets created around different interviews we've done." — again, not a tweet.
+
+So we have two entries.
+
+Now, let's write the JSON.
+
+First, the episode date: from the transcript, the episode date is "2025-11-01", so "2025-11-01".
+
+Now, the tweets array:
+
+1. For the Halloween AI tweet:
+   - author: "unknown"
+   - content: "tagged Ilya and Mark"
+   - context: "The hosts mention a tweet they posted tagging Ilya and Mark for a Halloween AI-themed post."
+   - type: "original"
+
+2. For the timeline reference:
+   - author: "unknown"
+   - content: "the timeline loves the core meta-business"
+   - context: "The hosts discuss how the Twitter timeline has positive sentiment towards Meta's core business but skepticism towards Zuckerberg."
+   - type: "reference"
+
+But note: the timeline reference is actually a quote from the transcript: "the timeline loves the core meta-business", so we use that.
+
+However, the transcript says: "The timeline loves the core meta-business, but doesn't have a lot of faith in Zuck." — so we should use the full phrase? But the instruction says "verbatim", so we'll use the exact phrase as it appears in the context.
+
+But note: the context is a bit more than just "the timeline loves the core meta-business", but we are to use the description. The description of the reference is the phrase they used.
+
+So we'll use: "the timeline loves the core meta-business, but doesn't have a lot of faith in Zuck."
+
+But to be safe, let's use the exact words as they appear in the transcript for the reference: "the timeline loves the core meta-business, but doesn't have a lot of faith in Zuck."
+
+But note: the instruction says "verbatim quote of the tweet", but this isn't a tweet. However, for a "reference", we are to use the description. The description is that the hosts said "the timeline loves the core meta-business, but doesn't have a lot of faith in Zuck." So we'll use that as the content.
+
+Now, let's format.
+
+Important: The JSON must be valid.
+
+We have two tweets.
+
+But note: the transcript says "the timeline" meaning Twitter's timeline, so we are safe.
+
+Now, let's write the JSON.
+
+Note: The schema requires "episode_date" as a string in YYYY-MM-DD.
+
+We'll have:
+
+{
+  "episode_date": "2025-11-01",
+  "tweets": [
+    {
+      "author": "unknown",
+      "content": "tagged Ilya and Mark",
+      "context": "The hosts mention a tweet they posted tagging Ilya and Mark for a Halloween AI-themed post.",
+      "type": "original"
+    },
+    {
+      "author": "unknown",
+      "content": "the timeline loves the core meta-business, but doesn't have a lot of faith in Zuck.",
+      "context": "The hosts discuss how the Twitter timeline has positive sentiment towards Meta's core business but skepticism towards Zuckerberg.",
+      "type": "reference"
+    }
+  ]
+}
+
+But note: the context for the second one should be 1-2 sentences. We have "The hosts discuss how the Twitter timeline has positive sentiment towards Meta's core business but skepticism towards Zuckerberg." — that's one sentence.
+
+Now, check if there are more.
+
+Wait, the transcript says: "People thought Bezos, who had a similar level of control over Amazon, was crazy to spend like he did building AWS, and he was ultimately completely vindicated." — this is not a tweet.
+
+Another one: "The timeline loves the core meta-business" — we have that.
+
+Let's check for any other "tweet" mentions.
+
+The transcript says: "We've had prediction markets created around different interviews we've done." — but that's not a tweet.
+
+Also, the transcript says: "in the chat" multiple times, but the chat is the podcast's live chat, not Twitter.
+
+So we have two.
+
+But note: the transcript has "A.V. in the chat" — but that's the podcast's chat, so not a tweet.
+
+Now, write the JSON.
+
+Important: Only the JSON, no extra text.
+
+Let me double-check the transcript for any other mention of Twitter/X:
+
+- "the timeline" (we have that)
+- "tagged Ilya and Mark" (we have that)
+
+No others.
+
+So we'll output the JSON as above.
+
+But note: the content for the timeline reference: the transcript says "the timeline loves the core meta-business, but doesn't have a lot of faith in Zuck." — so we'll use that exact string.
+
+Also, note: the transcript says "Zuck" for Zuckerberg, so we keep it as "Zuck".
+
+Now, let's write the JSON.
+
+Note: The JSON must be valid. We must escape quotes if necessary, but in this case, we have no quotes in the content.
+
+But the content for the second one has a comma and period, which is fine.
+
+We'll write it as a JSON string.
+
+However, note: the instruction says "Return ONLY valid JSON", so we output exactly the JSON.
+
+Let me format the JSON correctly.
+
+We'll use double quotes for the JSON keys and string values.
+
+So:
+
+{
+  "episode_date": "2025-11-01",
+  "tweets": [
+    {
+      "author": "unknown",
+      "content": "tagged Ilya and Mark",
+      "context": "The hosts mention a tweet they posted tagging Ilya and Mark for a Halloween AI-themed post.",
+      "type": "original"
+    },
+    {
+      "author": "unknown",
+      "content": "the timeline loves the core meta-business, but doesn't have a lot of faith in Zuck.",
+      "context": "The hosts discuss how the Twitter timeline has positive sentiment towards Meta's core business but skepticism towards Zuckerberg.",
+      "type": "reference"
+    }
+  ]
+}
+
+But note: the context for the first one: "The hosts mention a tweet they posted" — that's correct.
+
+For the second: "The hosts discuss how the Twitter timeline has positive sentiment towards Meta's core business but skepticism towards Zuckerberg." — note: "Zuck" is short for Zuckerberg, so we use "Zuckerberg" in the context for clarity.
+
+Now, we output this.
+
+But note: the instruction says "Return ONLY valid JSON", so we output exactly that.
+
+Let me check the rules again: "If no tweets are mentioned, return ...", but we have two.
+
+We are confident.
+
+Output the JSON.
+
+</think>
+
+{"episode_date":"2025-11-01","tweets":[{"author":"unknown","content":"tagged Ilya and Mark","context":"The hosts mention a tweet they posted tagging Ilya and Mark for a Halloween AI-themed post.","type":"original"},{"author":"unknown","content":"the timeline loves the core meta-business, but doesn't have a lot of faith in Zuck.","context":"The hosts discuss how the Twitter timeline has positive sentiment towards Meta's core business but skepticism towards Zuckerberg.","type":"reference"}]}

@@ -1,0 +1,206 @@
+<think>
+Okay, let's tackle this query. The user wants me to extract all references to tweets or X posts from a podcast transcript. The response must be in a specific JSON format with no extra text.
+
+First, I need to scan the transcript carefully for any mentions of Twitter/X posts, quote tweets, replies, or threads. The key is to find every single reference, even if it's a vague mention. The rules say to include "every mention," so I can't skip anything.
+
+Looking at the transcript, I'll go through each paragraph. Let's start from the top.
+
+The first part talks about Michael Dell posting about JPMorgan. The transcript says: "Michael Dell just posted this and said congratulations JPMorgan on opening your new headquarters." So this is a reference to a tweet by Michael Dell. The content is the quote he posted. I need to capture that.
+
+Next, there's a mention: "Mobsters ran rigged poker games at Kylie Jenner's Lux, NYC Pad while she still owned it." Wait, that's presented as a statement in the transcript, but is it a tweet? The host says "Mobsters ran..." but it's not clear if it's a tweet or just a news item. The user's instruction says to extract references to tweets, so unless it's explicitly stated as a tweet, I shouldn't include it. Let me check again. The transcript says "Mobsters ran..." but doesn't attribute it to a tweet. So maybe this isn't a tweet reference. I'll skip it unless it's linked to a specific tweet.
+
+Then there's "Snap is in talks to raise..." — again, this is a news item, not a tweet. The user wants tweets, so I'll ignore these unless specified as tweets.
+
+Next: "This is what the trenches look like." Hmm, that's a comment, but no tweet reference.
+
+Then: "Female spies are waging sex warfare..." — again, presented as an article, not a tweet.
+
+Moving on: "Cheddar, it's the TikTok of sports wagering." Cheddar is a company, not a tweet.
+
+"Use Code multiple arrests..." — this is a promotional code, not a tweet.
+
+"Six million views on this post and only 292 likes." Here, the transcript mentions "this post," which is likely a tweet. The context is a quote tweet from "Hero Thousand Faces" that says "societal breakdown gets more likes with 30,000 views." So the content is "societal breakdown gets more likes with 30,000 views." The author is Hero Thousand Faces, but the transcript says "quote tweet that's from Hero Thousand Faces." So it's a quote tweet. The type should be "quote_tweet" because it's quoting another post.
+
+Wait, the transcript says: "Six million views on this post and only 292 likes. It's so funny that just a quote tweet that's from Hero Thousand Faces that just says societal breakdown gets more likes with 30,000 views."
+
+So the tweet in question is the one by Hero Thousand Faces, and the host is quoting a quote tweet. But the reference is to the quote tweet. So the tweet being referenced is the one by Hero Thousand Faces. The content is "societal breakdown gets more likes with 30,000 views." The author is Hero Thousand Faces, and it's a quote tweet (since it's a quote of another post, but the transcript says it's a quote tweet from Hero Thousand Faces). Wait, the transcript says "quote tweet that's from Hero Thousand Faces," so Hero Thousand Faces is the author of the quote tweet. So it's a quote_tweet, type "quote_tweet."
+
+Next: "A16Z-back double speed lets you control thousands of social media accounts with AI..." This is a description of a tweet. The transcript says: "Neer's just saying A16Z back double speed lets you control thousands of social media accounts with AI." So the tweet content is "A16Z back double speed lets you control thousands of social media accounts with AI." The author is A16Z, but the transcript says "A16Z-back double speed," so probably the author is A16Z. But A16Z is a company, so author would be "A16Z." The type is "original" because it's a standalone tweet.
+
+Then: "Edgar is bringing real money engagement..." This seems like a reference to a tweet by Edgar. The transcript says "Edgar is bringing real money engagement into free-to-play sweepstakes..." But is Edgar the author of a tweet? The transcript presents it as a statement. Wait, the user's instruction says to extract references to tweets. If the host says "Edgar is bringing...", it might be referring to a tweet by Edgar. But the transcript doesn't explicitly say "Edgar tweeted," so I need to check. The exact line: "Edgar is bringing real money engagement into free-to-play sweepstakes, America's number one social casino for slot lovers." This seems like a description of Edgar's work, not a tweet. So probably not a tweet reference. I'll skip it.
+
+Next: "Only fans. This is so dark. I can't even. Bet on your bills with covered. Only fans, child support, and last night's Uber." This is a promotional line, not a tweet.
+
+"Six million views on this post..." — already covered.
+
+"stick to the infrastructure, baby, go to TurboPuffer..." This is a mention of a post. The transcript says "stick to the infrastructure, baby, go to TurboPuffer, search every bite..." So it's quoting a tweet. The author might be TurboPuffer, but the transcript says "stick to the infrastructure, baby" as part of the tweet. So the content is "stick to the infrastructure, baby." The author is likely the person who posted that, but the transcript doesn't specify. Wait, the transcript says "stick to the infrastructure, baby, go to TurboPuffer..." so it's probably a quote from a tweet by someone. The host is referencing a tweet. The author would be the one who wrote it. Since it's "go to TurboPuffer," maybe TurboPuffer is the company, but the tweet is from an account. The transcript doesn't name the author, so author should be "unknown." The content is "stick to the infrastructure, baby." Context is that they're promoting TurboPuffer. Type is "original" tweet.
+
+Wait, but the transcript says "stick to the infrastructure, baby, go to TurboPuffer..." so the content is the whole phrase. So "content" should be "stick to the infrastructure, baby, go to TurboPuffer, search every bite, serverless vector in full-tech search, bird from built from first principles on object storage, fast, 10x cheaper, extremely scalable." Wait, the host is quoting the tweet. The exact words from the transcript: "stick to the infrastructure, baby, go to TurboPuffer, search every bite, serverless vector in full-tech search, bird from built from first principles on object storage, fast, 10x cheaper, extremely scalable." So that's the content.
+
+But the user says "verbatim quote of the tweet as read/described in the transcript." So I need to copy exactly what's in the transcript as the content.
+
+Similarly, "The gummy bear company casually dropping revolutionary battery technology for $25 on Amazon..." — this is a statement, not a tweet. The company is Haribo, but it's not presented as a tweet. So skip.
+
+"Oracle just secured a $38 billion debt deal..." — news, not tweet.
+
+"Experia, the..." — not a tweet.
+
+"SoftBank hunts for humanoid robot startups." — news.
+
+"Interaction Company of California has managed to really break through..." — not a tweet.
+
+"Pokey.com itself is a fantastic domain..." — not a tweet.
+
+"Ohio has a new bill..." — news.
+
+"hedge fund assets hit $5 trillion..." — news.
+
+"Bucco Capital, the legend says, I'm always so confused when Tesla goes down on earnings..." — Bucco Capital is a firm, so this might be a quote from a tweet by Bucco Capital. The transcript says "Bucco Capital, the legend says," so it's referencing a tweet by Bucco Capital. The content is "I'm always so confused when Tesla goes down on earnings as the business performance is completely irrelevant to the price. the stock. They put up over 1.4 billion, I think, of free cash flow as a trillion-dollar company." Wait, the transcript has a typo: "the stock. They put up..." So the content is the quote from Bucco Capital's tweet. Author is Bucco Capital, type "original."
+
+"Siegeon-Ping models TikTok as spiritual opium..." — this is a quote from an article, not a tweet. The transcript says "Siegeon-Ping models TikTok as spiritual opium," but it's not attributed to a tweet. So skip.
+
+"Justin Bieber is on Twitch." — not Twitter.
+
+"the post that said, I honestly don't care if I get fired. I was part of the illegal gambling ring with Chauncey Billups and Terry Rose here. My name is Andy Jassy and I work at Amazon." This is a tweet reference. The transcript says "the post that said..." so the content is the quoted text. Author is Andy Jassy, but he's the one who wrote the tweet. Wait, the transcript says "My name is Andy Jassy and I work at Amazon," so the tweet author is Andy Jassy. The content is "I honestly don't care if I get fired. I was part of the illegal gambling ring with Chauncey Billups and Terry Rose here. My name is Andy Jassy and I work at Amazon." But the transcript says "the post that said, I honestly don't care..." so the content is that exact phrase. Author is Andy Jassy. Type "original."
+
+"SORA was dethroned in the app store by Dave's Hot Chicken. Play the Want-Wan. And an eagle sound effect for Dave." This is a reference to a tweet. The transcript says "SORA was dethroned in the app store by Dave's Hot Chicken." So the tweet content is "SORA was dethroned in the app store by Dave's Hot Chicken." Author is likely Dave's Hot Chicken's account. So author "Dave's Hot Chicken," content "SORA was dethroned in the app store by Dave's Hot Chicken." Context: mentioned as a humorous app store event. Type "original."
+
+Now, let's list all the ones I found:
+
+1. Michael Dell's tweet: "congratulations JPMorgan on opening your new headquarters." Wait, the transcript says "Michael Dell just posted this and said congratulations JPMorgan..." So the content is "congratulations JPMorgan on opening your new headquarters." But it's a bit unclear. The exact words: "Michael Dell just posted this and said congratulations JPMorgan on opening your new headquarters." So the content is "congratulations JPMorgan on opening your new headquarters." Author "Michael Dell," type "original."
+
+2. Hero Thousand Faces quote tweet: content "societal breakdown gets more likes with 30,000 views." But the transcript says "quote tweet that's from Hero Thousand Faces that just says societal breakdown gets more likes with 30,000 views." So the content is "societal breakdown gets more likes with 30,000 views." Author "Hero Thousand Faces," type "quote_tweet."
+
+3. A16Z tweet: content "A16Z back double speed lets you control thousands of social media accounts with AI." Author "A16Z," type "original." Wait, the transcript says "A16Z-back double speed," but probably a typo for "A16Z's back double speed" or something. But I'll take the transcript's words: "A16Z back double speed lets you control thousands of social media accounts with AI." So content as written.
+
+4. TurboPuffer reference: content is "stick to the infrastructure, baby, go to TurboPuffer, search every bite, serverless vector in full-tech search, bird from built from first principles on object storage, fast, 10x cheaper, extremely scalable." But the host is quoting a tweet. The author is not specified, so "unknown." Type "original."
+
+5. Bucco Capital: content "I'm always so confused when Tesla goes down on earnings as the business performance is completely irrelevant to the price. the stock. They put up over 1.4 billion, I think, of free cash flow as a trillion-dollar company." Wait, the transcript has a typo: "the stock. They put up..." So the content should be as written. Author "Bucco Capital," type "original."
+
+6. Andy Jassy's tweet: content "I honestly don't care if I get fired. I was part of the illegal gambling ring with Chauncey Billups and Terry Rose here. My name is Andy Jassy and I work at Amazon." Author "Andy Jassy," type "original."
+
+7. Dave's Hot Chicken: content "SORA was dethroned in the app store by Dave's Hot Chicken." Author "Dave's Hot Chicken," type "original."
+
+Now, check if I missed any.
+
+The transcript also says "the post that said, I honestly don't care..." which is the Andy Jassy one.
+
+Also, "Six million views on this post..." refers to the Hero Thousand Faces quote tweet.
+
+I think that's all.
+
+Now, let's verify each entry.
+
+For Michael Dell: the transcript says "Michael Dell just posted this and said congratulations JPMorgan..." So the content is "congratulations JPMorgan on opening your new headquarters." But the transcript says "congratulations JPMorgan on opening your new headquarters," so that's the content. Author "Michael Dell."
+
+For Hero Thousand Faces: "quote tweet that's from Hero Thousand Faces that just says societal breakdown gets more likes with 30,000 views." So content: "societal breakdown gets more likes with 30,000 views." Author "Hero Thousand Faces." Type "quote_tweet" because it's a quote tweet.
+
+Wait, the type "quote_tweet" is for when someone is quoting another tweet. Here, the host is saying it's a quote tweet from Hero Thousand Faces, meaning Hero Thousand Faces quoted someone else. So the type should be "quote_tweet" because it's a quote tweet (they're quoting another post).
+
+For A16Z: the transcript says "A16Z-back double speed lets you control thousands of social media accounts with AI." So content as written. Author "A16Z."
+
+TurboPuffer: the content is the whole phrase from the transcript. Author "unknown" since not specified.
+
+Bucco Capital: the content is the quote from their tweet. Author "Bucco Capital."
+
+Andy Jassy: content as quoted. Author "Andy Jassy."
+
+Dave's Hot Chicken: content "SORA was dethroned in the app store by Dave's Hot Chicken." Author "Dave's Hot Chicken."
+
+Now, check for duplicates or if any are not actually tweets. For example, "Bucco Capital" is a company, so the tweet is from their account. Similarly, "Dave's Hot Chicken" is a company, so their tweet.
+
+The episode date is October 24, 2025, so "2025-10-24".
+
+Now, format as JSON.
+
+The schema requires "episode_date" as "YYYY-MM-DD", so "2025-10-24".
+
+Tweets array with each entry.
+
+Now, write the JSON.
+
+Check if any entries are missing. The transcript also mentions "the post that said..." for Andy Jassy, which I included.
+
+Also, the "six million views" part refers to the Hero Thousand Faces quote tweet, so that's covered.
+
+Now, make sure all content is verbatim as in the transcript.
+
+For example, for Michael Dell, the content should be exactly what the transcript says he posted: "congratulations JPMorgan on opening your new headquarters." Wait, the transcript says "congratulations JPMorgan on opening your new headquarters," but it's a bit grammatically off (should be "your" but it's "your new headquarters" — maybe it's a typo in the transcript, but I have to use what's there.
+
+Similarly, for A16Z: "A16Z back double speed" — I'll keep it as written.
+
+Now, list all:
+
+1. Michael Dell: content "congratulations JPMorgan on opening your new headquarters"
+
+2. Hero Thousand Faces: content "societal breakdown gets more likes with 30,000 views"
+
+3. A16Z: content "A16Z back double speed lets you control thousands of social media accounts with AI"
+
+4. TurboPuffer: content "stick to the infrastructure, baby, go to TurboPuffer, search every bite, serverless vector in full-tech search, bird from built from first principles on object storage, fast, 10x cheaper, extremely scalable"
+
+5. Bucco Capital: content "I'm always so confused when Tesla goes down on earnings as the business performance is completely irrelevant to the price. the stock. They put up over 1.4 billion, I think, of free cash flow as a trillion-dollar company."
+
+6. Andy Jassy: content "I honestly don't care if I get fired. I was part of the illegal gambling ring with Chauncey Billups and Terry Rose here. My name is Andy Jassy and I work at Amazon."
+
+7. Dave's Hot Chicken: content "SORA was dethroned in the app store by Dave's Hot Chicken"
+
+Wait, for Dave's Hot Chicken, the transcript says "SORA was dethroned in the app store by Dave's Hot Chicken." So that's the content.
+
+Now, context for each:
+
+- Michael Dell: "He sold them all the monitors because the monitors are Dell monitors." So context: discussing Michael Dell's tweet about JPMorgan's headquarters.
+
+- Hero Thousand Faces: "Six million views on this post and only 292 likes. It's so funny that just a quote tweet..." so context: the host is pointing out the irony of the low likes on a post with high views.
+
+- A16Z: "A16Z-back double speed lets you control thousands of social media accounts with AI, ensuring they look as human as possible, quote, never pay a human again." So context: the host is describing A16Z's tweet about their product.
+
+- TurboPuffer: "stick to the infrastructure, baby, go to TurboPuffer..." — context: the host is promoting TurboPuffer's service as referenced in a tweet.
+
+- Bucco Capital: "Bucco Capital, the legend says, I'm always so confused when Tesla goes down..." — context: referencing Bucco Capital's tweet about Tesla.
+
+- Andy Jassy: "the post that said, I honestly don't care if I get fired..." — context: the host mentions this deleted tweet as a humorous example.
+
+- Dave's Hot Chicken: "SORA was dethroned in the app store by Dave's Hot Chicken." — context: the host jokes about Dave's Hot Chicken's app surpassing SORA in the app store.
+
+Now, type for each:
+
+- Michael Dell: original
+
+- Hero Thousand Faces: quote_tweet
+
+- A16Z: original
+
+- TurboPuffer: original (author unknown, but it's a standalone tweet)
+
+- Bucco Capital: original
+
+- Andy Jassy: original
+
+- Dave's Hot Chicken: original
+
+Wait, for Hero Thousand Faces, it's a quote tweet, so type "quote_tweet".
+
+For others, they're original tweets.
+
+Now, check if any are replies or threads. The transcript doesn't mention any replies or threads explicitly. For example, the Hero Thousand Faces one is a quote tweet, so type "quote_tweet".
+
+Now, write the JSON.
+
+Ensure no markdown, just JSON.
+
+Episode date: 2025-10-24.
+
+Tweets array with each object.
+
+Check for typos in content.
+
+For example, in Bucco Capital's content, the transcript has "the stock. They put up..." so I'll include the period and "the stock." as part of the content.
+
+Similarly, Andy Jassy's content has "My name is Andy Jassy and I work at Amazon." which is part of the tweet.
+
+Now, compile the JSON.
+
+</think>
+
+{"episode_date":"2025-10-24","tweets":[{"author":"Michael Dell","content":"congratulations JPMorgan on opening your new headquarters","context":"He sold them all the monitors because the monitors are Dell monitors.","type":"original"},{"author":"Hero Thousand Faces","content":"societal breakdown gets more likes with 30,000 views","context":"The host points out the irony of a quote tweet with six million views but only 292 likes.","type":"quote_tweet"},{"author":"A16Z","content":"A16Z back double speed lets you control thousands of social media accounts with AI","context":"The host describes A16Z's tweet about their AI product for social media account management.","type":"original"},{"author":"unknown","content":"stick to the infrastructure, baby, go to TurboPuffer, search every bite, serverless vector in full-tech search, bird from built from first principles on object storage, fast, 10x cheaper, extremely scalable","context":"The host references this tweet promoting TurboPuffer's services.","type":"original"},{"author":"Bucco Capital","content":"I'm always so confused when Tesla goes down on earnings as the business performance is completely irrelevant to the price. the stock. They put up over 1.4 billion, I think, of free cash flow as a trillion-dollar company.","context":"The host reads a tweet from Bucco Capital criticizing Tesla's stock performance.","type":"original"},{"author":"Andy Jassy","content":"I honestly don't care if I get fired. I was part of the illegal gambling ring with Chauncey Billups and Terry Rose here. My name is Andy Jassy and I work at Amazon.","context":"The host mentions this deleted tweet as a humorous example of a fictional scenario.","type":"original"},{"author":"Dave's Hot Chicken","content":"SORA was dethroned in the app store by Dave's Hot Chicken","context":"The host jokes about Dave's Hot Chicken's app surpassing SORA in the app store.","type":"original"}]}

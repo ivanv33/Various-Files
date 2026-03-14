@@ -1,0 +1,271 @@
+<think>
+We are given a podcast transcript and need to extract ALL references to tweets, X/Twitter posts, quote tweets, replies, and threads.
+
+We must return only a JSON object matching the exact schema.
+
+Let's go through the transcript and find every mention of a tweet or X activity:
+
+1. "Schweda says never underestimate the power of one good tweet Rorke's founders were $15,000 in credit card debt been there and sleeping on a friend's mattress when Matt's post went viral 15 minutes later Austin already wired 100k by the end of the day they close 350k 2.8 million dollar seed round led by a 16z"
+
+   - This is a reference to a tweet by Schweda (or a quote from Schweda's tweet) about Rorke's founders. The content is described as "never underestimate the power of one good tweet Rorke's founders were $15,000 in credit card debt been there and sleeping on a friend's mattress when Matt's post went viral 15 minutes later Austin already wired 100k by the end of the day they close 350k 2.8 million dollar seed round led by a 16z"
+
+   - Author: Schweda
+   - Content: "never underestimate the power of one good tweet Rorke's founders were $15,000 in credit card debt been there and sleeping on a friend's mattress when Matt's post went viral 15 minutes later Austin already wired 100k by the end of the day they close 350k 2.8 million dollar seed round led by a 16z"
+   - Context: The hosts are discussing a viral tweet that led to a successful seed round for Rorke.
+   - Type: reference (because it's a vague mention without the exact tweet, but the content is described in the transcript)
+
+   However, note: The transcript says "Schweda says", so the author is Schweda, and the content is the quote they are saying.
+
+2. "Eric Dungan says I swear TVPN has me wearing a nice watch and buying DuPont registry at the airport If I start wearing a suit and they won it's great cracking open the and he's got the wedding ring on You know his family man. You love to see there we go. I can't clock what watch that is, but it looks fantastic"
+
+   - This is a reference to a tweet by Eric Dungan. The content is described as "I swear TVPN has me wearing a nice watch and buying DuPont registry at the airport If I start wearing a suit and they won it's great cracking open the and he's got the wedding ring on You know his family man. You love to see there we go. I can't clock what watch that is, but it looks fantastic"
+
+   - Author: Eric Dungan
+   - Content: "I swear TVPN has me wearing a nice watch and buying DuPont registry at the airport If I start wearing a suit and they won it's great cracking open the and he's got the wedding ring on You know his family man. You love to see there we go. I can't clock what watch that is, but it looks fantastic"
+   - Context: The hosts are discussing Eric Dungan's tweet about wearing a watch and buying DuPont registry.
+   - Type: reference
+
+   Note: The transcript says "Eric Dungan says", so author is Eric Dungan.
+
+3. "Paula over at X AI says who recently joined X. Yeah Congratulations Paula rambles So who's building the app at the intersection of AI and astrology? I actually told Sean the app at the intersection of AI and astrology, I actually told Sean, over at my first million when I went on over a year ago, that this was a prime area for LLMS, because there's something called the Barnum effect. Yes, PT Barnum. So the Barnum effect is essentially, there are a set of phrases that you can say to someone that sound hyper specific, but in fact apply to everyone."
+
+   - This is a reference to a tweet by Paula (over at X AI). The content is described as "who recently joined X. Yeah Congratulations Paula rambles So who's building the app at the intersection of AI and astrology? ..."
+
+   - Author: Paula
+   - Content: "who recently joined X. Yeah Congratulations Paula rambles So who's building the app at the intersection of AI and astrology? ..."
+   - Context: The hosts are discussing Paula's tweet about AI and astrology apps.
+   - Type: reference
+
+   Note: The transcript says "Paula over at X AI says", so author is Paula.
+
+4. "Brian Via, who went ahead and started a list for following everyone that has ever been on TBPN. I thought this was really cool. Working through the TBPN feed slowly to add all the guests they've ever had. He said, give me a few days so you can go follow this list. We'll quote post it. But we were thinking about doing this and he's just doing it for us. So thank you."
+
+   - This is a reference to Brian Via's action (not a tweet content). However, note the instruction: "Include EVERY mention of a tweet, X/Twitter post, quote tweet, replies, and threads". This is a mention of Brian Via starting a list, but it's not a tweet content. The hosts are describing Brian Via's action of creating a list, but they don't quote a specific tweet. So we cannot include this as a tweet.
+
+   - We are not including this because it's not a tweet, but an action (starting a list). The hosts say "Brian Via, who went ahead and started a list", so it's not a tweet they are quoting.
+
+5. "Greg Brockman at the Met Gala, which we talked about. This was a fun one"
+
+   - This is a mention of Greg Brockman being at the Met Gala, but it's not a tweet. It's a reference to a photo or event that might have been tweeted, but the transcript doesn't quote a tweet. So we don't include.
+
+6. "Brex had just launched a podcast with the with the CEO of deal and I feel like they must have recorded this Before all the drama and then they just decided to release it once things that kind of cooled down"
+
+   - This is about a podcast, not a tweet. So we don't include.
+
+7. "He said, give me a few days so you can go follow this list."
+
+   - This is part of the Brian Via description, not a tweet.
+
+8. "Eric Dungan says" - we already captured that.
+
+9. "Schweda says" - already captured.
+
+10. "Paula over at X AI says" - already captured.
+
+11. "Mataurus bull okay I'm a little mark three my yeah business partner is a Taurus how should I communicate how should I backstab him today but yes I think that I think that astrology and AI go hand in hand in the sense that you with him today."
+
+    - This appears to be a quote from a tweet or a conversation, but it's not clear who said it. The transcript says: "What's your astrological sign John Mataurus bull okay I'm a little mark three my yeah business partner is a Taurus how should I communicate how should I backstab him today but yes I think that I think that astrology and AI go hand in hand in the sense that you with him today."
+
+    - This is a bit messy. It seems like the hosts are quoting a tweet or a conversation about astrology. The author is not specified, but it's likely a tweet they are referencing.
+
+    However, note the structure: The hosts are discussing a tweet about astrology and AI. The exact quote they are using is "Mataurus bull okay I'm a little mark three my yeah business partner is a Taurus how should I communicate how should I backstab him today". But this doesn't seem to be a real tweet, it's more like the hosts are making a joke.
+
+    But the instruction says: "verbatim quote of the tweet as read/described in the transcript". So we have to take the exact words as they appear in the transcript.
+
+    - Author: The transcript doesn't say who tweeted this. It says "Mataurus bull" (which might be a typo for "Aries" or something) but it's not clear. The hosts are describing a tweet, so we'll use "unknown" as author.
+
+    - Content: "Mataurus bull okay I'm a little mark three my yeah business partner is a Taurus how should I communicate how should I backstab him today"
+
+    - Context: The hosts are discussing an example of an AI astrology app.
+
+    - Type: reference
+
+    However, note that the transcript says "What's your astrological sign John Mataurus bull okay ...", so it's part of the hosts' dialogue, not a quoted tweet. But the hosts are presenting it as if it's a tweet? Actually, the context is that they are discussing a tweet about astrology. But the exact words they are using to describe the tweet are:
+
+    "Mataurus bull okay I'm a little mark three my yeah business partner is a Taurus how should I communicate how should I backstab him today"
+
+    So we'll include it as a reference to a tweet.
+
+    But note: The instruction says "author" = the person who wrote the tweet. Since it's not specified, we'll use "unknown".
+
+    However, let's see the exact transcript: "What's your astrological sign John Mataurus bull okay I'm a little mark three my yeah business partner is a Taurus how should I communicate how should I backstab him today"
+
+    This seems to be a mishearing or typo of "Mars" or "Aries", but we have to take it as is.
+
+    We'll include it.
+
+12. "Rourke blows bolt out of the water and yes I invested immediately after trying it."
+
+    - This is part of the Schweda tweet description. We already captured Schweda's tweet.
+
+Now, let's list all the tweets we found:
+
+- Schweda: "never underestimate the power of one good tweet Rorke's founders were $15,000 in credit card debt been there and sleeping on a friend's mattress when Matt's post went viral 15 minutes later Austin already wired 100k by the end of the day they close 350k 2.8 million dollar seed round led by a 16z"
+
+- Eric Dungan: "I swear TVPN has me wearing a nice watch and buying DuPont registry at the airport If I start wearing a suit and they won it's great cracking open the and he's got the wedding ring on You know his family man. You love to see there we go. I can't clock what watch that is, but it looks fantastic"
+
+- Paula: "who recently joined X. Yeah Congratulations Paula rambles So who's building the app at the intersection of AI and astrology? ..."
+
+- Unknown: "Mataurus bull okay I'm a little mark three my yeah business partner is a Taurus how should I communicate how should I backstab him today"
+
+But note: The last one (unknown) is actually part of the hosts' discussion and might not be a real tweet. However, the transcript presents it as a quote from a tweet they are discussing. So we include it as a reference.
+
+We must check if the episode date is provided. The transcript doesn't have a date at the top, but the instruction says to return the episode_date. Since the problem doesn't specify, and we are to return "YYYY-MM-DD", we'll have to look for a date in the transcript. The transcript does not have a date, so we cannot make one up.
+
+However, the problem says: "Return ONLY valid JSON matching this exact schema". And the schema requires "episode_date".
+
+But the transcript does not have a date. We are not given a date. So we have to leave it as a placeholder? But the rules say: "If no tweets are mentioned, return ...". But we have tweets.
+
+The problem says: "Extract ALL references to tweets, X/Twitter posts, ... from the podcast transcript above."
+
+But the transcript does not contain a date. So we cannot fill in the episode_date.
+
+However, note that the problem says: "Return ONLY valid JSON matching this exact schema — no markdown, no commentary, no code fences"
+
+And the schema has "episode_date": "YYYY-MM-DD".
+
+Since we don't have a date, we have to make an assumption? But the problem says "Extract", so if the date isn't there, we cannot make it up.
+
+Looking at the instructions: "If no tweets are mentioned, return {"episode_date": "YYYY-MM-DD", "tweets": []}"
+
+But we have tweets. So we must have a date.
+
+But the transcript does not have a date. So we have to use a placeholder? However, the problem does not specify what to do.
+
+But note: The problem says "Extract ALL references to tweets, ... from the podcast transcript above." and the transcript does not have a date. So we cannot fill the date.
+
+But the schema requires a date. So we have to use a fixed string? The problem says "YYYY-MM-DD", so we'll use "0000-00-00" as a placeholder.
+
+However, the problem says: "Return ONLY valid JSON", so we have to return a string in that format.
+
+But the example in the rules says: "If no tweets are mentioned, return {"episode_date": "YYYY-MM-DD", "tweets": []}"
+
+So we'll use "0000-00-00" for the episode_date because we don't have a real date.
+
+Alternatively, we could look for a date in the transcript. Let me check again: the transcript ends with "Bye." and has no date.
+
+So we'll use "0000-00-00".
+
+Now, let's structure the JSON:
+
+{
+  "episode_date": "0000-00-00",
+  "tweets": [
+    {
+      "author": "Schweda",
+      "content": "never underestimate the power of one good tweet Rorke's founders were $15,000 in credit card debt been there and sleeping on a friend's mattress when Matt's post went viral 15 minutes later Austin already wired 100k by the end of the day they close 350k 2.8 million dollar seed round led by a 16z",
+      "context": "The hosts discuss a viral tweet that led to a successful seed round for Rorke.",
+      "type": "reference"
+    },
+    {
+      "author": "Eric Dungan",
+      "content": "I swear TVPN has me wearing a nice watch and buying DuPont registry at the airport If I start wearing a suit and they won it's great cracking open the and he's got the wedding ring on You know his family man. You love to see there we go. I can't clock what watch that is, but it looks fantastic",
+      "context": "The hosts mention Eric Dungan's tweet about wearing a watch and buying DuPont registry.",
+      "type": "reference"
+    },
+    {
+      "author": "Paula",
+      "content": "who recently joined X. Yeah Congratulations Paula rambles So who's building the app at the intersection of AI and astrology? ...",
+      "context": "The hosts discuss Paula's tweet about AI and astrology apps.",
+      "type": "reference"
+    },
+    {
+      "author": "unknown",
+      "content": "Mataurus bull okay I'm a little mark three my yeah business partner is a Taurus how should I communicate how should I backstab him today",
+      "context": "The hosts use this as an example of an AI astrology app's output.",
+      "type": "reference"
+    }
+  ]
+}
+
+But note: The transcript says "Paula over at X AI says", so the author is Paula.
+
+For the unknown one, we are using "unknown" as the author.
+
+Now, let's check the content for the last one: The transcript has "Mataurus bull okay I'm a little mark three my yeah business partner is a Taurus how should I communicate how should I backstab him today"
+
+We have to copy it exactly as in the transcript.
+
+Also, note that the transcript says "Paula over at X AI says", so we are taking the content from the part that follows: "who recently joined X. Yeah Congratulations Paula rambles So who's building the app at the intersection of AI and astrology? ..."
+
+But note: The transcript says "Paula over at X AI says who recently joined X. Yeah Congratulations Paula rambles So who's building the app at the intersection of AI and astrology? ..."
+
+So the content is: "who recently joined X. Yeah Congratulations Paula rambles So who's building the app at the intersection of AI and astrology? ..."
+
+We'll use that.
+
+Now, let's write the JSON.
+
+Important: We must not include any other information.
+
+So the final JSON will be:
+
+{
+  "episode_date": "0000-00-00",
+  "tweets": [
+    {
+      "author": "Schweda",
+      "content": "never underestimate the power of one good tweet Rorke's founders were $15,000 in credit card debt been there and sleeping on a friend's mattress when Matt's post went viral 15 minutes later Austin already wired 100k by the end of the day they close 350k 2.8 million dollar seed round led by a 16z",
+      "context": "The hosts discuss a viral tweet that led to a successful seed round for Rorke.",
+      "type": "reference"
+    },
+    {
+      "author": "Eric Dungan",
+      "content": "I swear TVPN has me wearing a nice watch and buying DuPont registry at the airport If I start wearing a suit and they won it's great cracking open the and he's got the wedding ring on You know his family man. You love to see there we go. I can't clock what watch that is, but it looks fantastic",
+      "context": "The hosts mention Eric Dungan's tweet about wearing a watch and buying DuPont registry.",
+      "type": "reference"
+    },
+    {
+      "author": "Paula",
+      "content": "who recently joined X. Yeah Congratulations Paula rambles So who's building the app at the intersection of AI and astrology? ...",
+      "context": "The hosts discuss Paula's tweet about AI and astrology apps.",
+      "type": "reference"
+    },
+    {
+      "author": "unknown",
+      "content": "Mataurus bull okay I'm a little mark three my yeah business partner is a Taurus how should I communicate how should I backstab him today",
+      "context": "The hosts use this as an example of an AI astrology app's output.",
+      "type": "reference"
+    }
+  ]
+}
+
+Note: The transcript has a typo "Mataurus" which we keep as is.
+
+We are including the ellipsis (...) in Paula's content because it's in the transcript.
+
+But note: The transcript says "So who's building the app at the intersection of AI and astrology? I actually told Sean ...", so the content we are quoting is the part that starts with "who recently joined X. Yeah ...", and we are including the ellipsis as in the transcript.
+
+Now, we output the JSON without any extra text.
+
+</think>
+
+{
+  "episode_date": "0000-00-00",
+  "tweets": [
+    {
+      "author": "Schweda",
+      "content": "never underestimate the power of one good tweet Rorke's founders were $15,000 in credit card debt been there and sleeping on a friend's mattress when Matt's post went viral 15 minutes later Austin already wired 100k by the end of the day they close 350k 2.8 million dollar seed round led by a 16z",
+      "context": "The hosts discuss a viral tweet that led to a successful seed round for Rorke.",
+      "type": "reference"
+    },
+    {
+      "author": "Eric Dungan",
+      "content": "I swear TVPN has me wearing a nice watch and buying DuPont registry at the airport If I start wearing a suit and they won it's great cracking open the and he's got the wedding ring on You know his family man. You love to see there we go. I can't clock what watch that is, but it looks fantastic",
+      "context": "The hosts mention Eric Dungan's tweet about wearing a watch and buying DuPont registry.",
+      "type": "reference"
+    },
+    {
+      "author": "Paula",
+      "content": "who recently joined X. Yeah Congratulations Paula rambles So who's building the app at the intersection of AI and astrology? ...",
+      "context": "The hosts discuss Paula's tweet about AI and astrology apps.",
+      "type": "reference"
+    },
+    {
+      "author": "unknown",
+      "content": "Mataurus bull okay I'm a little mark three my yeah business partner is a Taurus how should I communicate how should I backstab him today",
+      "context": "The hosts use this as an example of an AI astrology app's output.",
+      "type": "reference"
+    }
+  ]
+}

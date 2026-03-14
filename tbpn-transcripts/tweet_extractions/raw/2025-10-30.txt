@@ -1,0 +1,229 @@
+<think>
+We are given a podcast transcript and need to extract every reference to tweets, X/Twitter posts, quote tweets, replies, and threads.
+ Steps:
+ 1. Read through the transcript and look for any mentions of tweets, X posts, or specific content that is attributed to a tweet.
+ 2. We are to extract the author (the person who tweeted), the exact content as described in the transcript, the context of why it was mentioned, and the type.
+ 3. The type must be one of: "original", "quote_tweet", "reply", "thread", "reference".
+
+ Let's go through the transcript and note every reference:
+
+ - "The big, like, bombshell post right now is from MKBHD who got 12,000 likes on a post saying, so to be clear, this is a pre-order for a humanoid home robot that will cost $20,000 or $500 per month when it may be ships next year, and it's currently not finished."
+
+   This is a reference to a tweet by MKBHD. The content is quoted: "so to be clear, this is a pre-order for a humanoid home robot that will cost $20,000 or $500 per month when it may be ships next year, and it's currently not finished." 
+   But note: the transcript says "a post saying", so we have the content as described. However, the exact words are given in the transcript.
+
+   Author: "MKBHD"
+   Content: "so to be clear, this is a pre-order for a humanoid home robot that will cost $20,000 or $500 per month when it may be ships next year, and it's currently not finished."
+   Context: The hosts are discussing the robot and the pre-order details as mentioned in MKBHD's tweet.
+   Type: "original"
+
+ - "Joanna Stern got to do a demo, and in its current state, 100% of its actions are teleoperated."
+
+   This is not a tweet reference. It's a description of a demo. We are only to extract references to tweets.
+
+ - "I tried the robot that's coming to live with you. It's still part human. First, it needs to be controlled by a human in your home."
+
+   This is the host speaking, not a tweet.
+
+ - "My concern is that having a humanoid in the first at least few years will be like having a four-year-old helping you."
+
+   Host speaking.
+
+ - "What Not from YC Winter 2020 is now a decacorn. Congratulations. What Not has raised $225 million at an $11.5 billion dollar valuation. The company plans to announce on Tuesday."
+
+   This is a company announcement, not a tweet. However, note: "What Not" is a company, and they raised money, but the transcript doesn't say it was on Twitter. So we don't have a tweet reference.
+
+ - "It seems like live shopping might finally be working. In America. We've heard about it in China."
+
+   This is a general statement, not a tweet.
+
+ - "Logan Paul was a Series A investor and whatnot. So he's going from a $90 million to an $11.5 billion dollar valuation, not too shabby at all."
+
+   This is a fact about Logan Paul's investment, but not a reference to a tweet.
+
+ - "An IPO is now the most likely path forward for open AI, given the scale of capital, the company will need going forward."
+
+   Not a tweet.
+
+ - "There's an abandoned McDonald's that NASA turned into a moon probe picture recovery lab."
+
+   Not a tweet.
+
+ - "He's talking about how Trump has suggested he was open to providing China with access to NVIDIA's Blackwell Chips as part of a trade deal..."
+
+   This is a general statement about Trump, not a tweet.
+
+ - "It's possible that he realizes that AI is about infinite slot machines. Yes. Adult content. It's actually in America's information to get as many Blackwells to China as possible. So that they all get one-shot it."
+
+   This is the host's commentary, not a tweet.
+
+ - "Cameron, friend of the show, introduced Odyssey 2, instant interactive AI video."
+
+   This is a product introduction, not a tweet.
+
+ - "Having some AI follow you into your Zoom meetings or Google Meet for taking notes is the digital equivalent of showing up to a meeting with your fly-down."
+
+   Host commentary.
+
+ - "The Golden Age, a private credit is over. private credit winter is coming."
+
+   Not a tweet.
+
+ - "Guy named Jason who says, that's nice, but I'd prefer not to lose any money, so please make sure the government is prepared to cover all potential losses, if not for everyone, then for me and my cohort, specifically. Warm regards."
+
+   This is a quote from a person named Jason. The transcript says "Guy named Jason who says", so it's a direct quote. However, note that this might be from a tweet? The transcript doesn't specify. But it says "who says", so we'll treat it as a reference to a tweet? But wait, the context is about a private credit winter and a guy named Jason making a statement. The transcript doesn't say it's from Twitter. It might be a quote from a letter or an email. However, the instruction says "tweets, X/Twitter posts, quote tweets, replies, and threads". Since it's not specified as Twitter, we should not include it as a tweet. But note: the instruction says "every reference to tweets, X/Twitter posts, ...". If the transcript doesn't say it's from Twitter, we shouldn't assume.
+
+   Let me re-read: "Guy named Jason who says, ...". There's no mention of Twitter. So we skip.
+
+ - "European Software Conglomerate has acquired America Online, AOL, and raised $2.8 billion of debt."
+
+   Not a tweet.
+
+ Now, let's check again for any other mentions:
+
+ - "The 1X robot launched and it's burning up the timeline."
+
+   This is the host saying that the robot's launch is making a lot of noise on the timeline (meaning Twitter timeline). But it's not a specific tweet. So we don't have a specific tweet to extract.
+
+ - "People love it. People hate it. People have breaking news."
+
+   Again, not a specific tweet.
+
+ - "It's teleoperated, folks. It's teleoperated. It's not an end-to-end."
+
+   Host.
+
+ - "hey I'm machine learning model and people are saying that like it's breaking news but they're saying that the demos that have been given so far tell are operated"
+
+   This is a host or guest speaking, not a tweet.
+
+ - "MKBHD" was already extracted.
+
+ We also have:
+
+ - "I think people buy it and say, yeah, I'm paying 20K, and then I'm also paying $2 an hour for someone to teleoperate this thing and actually do the dishes effectively."
+
+   Host, not a tweet.
+
+ - "Tyler you break it down in the video"
+
+   The host is referring to a video, not a tweet.
+
+ After a thorough review, the only clear reference to a specific tweet is the one from MKBHD.
+
+ Let's confirm the content:
+
+ The transcript says: "the big, like, bombshell post right now is from MKBHD who got 12,000 likes on a post saying, so to be clear, this is a pre-order for a humanoid home robot that will cost $20,000 or $500 per month when it may be ships next year, and it's currently not finished."
+
+ So the content is: "so to be clear, this is a pre-order for a humanoid home robot that will cost $20,000 or $500 per month when it may be ships next year, and it's currently not finished."
+
+ But note: the transcript says "a post saying", so we take the quoted words as the content.
+
+ However, note that the transcript has a typo: "it may be ships" should be "it may be shipped", but we have to copy the transcript's wording.
+
+ Also, note: the transcript says "it may be ships", so we write it as such.
+
+ Now, the episode date is given as 2025-10-30.
+
+ We are to return a JSON with:
+   "episode_date": "2025-10-30"
+   "tweets": [ ... ]
+
+ We have one tweet.
+
+ But note: the transcript also says "Joanna Stern got to do a demo", but that's not a tweet.
+
+ And note: the transcript says "MKBHD", which is a known YouTuber (MKBHD is a channel, and he posts on Twitter too). So we take the author as "MKBHD".
+
+ However, note: the instruction says "author" = the person who wrote the tweet. MKBHD is the handle.
+
+ Let's check if there are any others:
+
+ - "What Not" is a company, not a tweet.
+
+ - The Logan Paul part: "Logan Paul was a Series A investor" — this is a fact, but not a tweet.
+
+ - The "Guy named Jason" is not a tweet.
+
+ So only one tweet.
+
+ Now, let's write the JSON.
+
+ Important: The JSON must exactly match the schema.
+
+ We have:
+   episode_date: "2025-10-30"
+   tweets: [
+        {
+          "author": "MKBHD",
+          "content": "so to be clear, this is a pre-order for a humanoid home robot that will cost $20,000 or $500 per month when it may be ships next year, and it's currently not finished.",
+          "context": "The hosts discussed the robot pre-order details as reported by MKBHD's tweet.",
+          "type": "original"
+        }
+   ]
+
+ But note: the transcript says "a post saying", so it's an original tweet.
+
+ However, the transcript says: "the big, like, bombshell post right now is from MKBHD who got 12,000 likes on a post saying, ...". So it's an original post.
+
+ Now, check the context: We need 1-2 sentences. "The hosts discussed the robot pre-order details as reported by MKBHD's tweet." -> 1 sentence.
+
+ But note: the transcript also says "Joanna Stern got to do a demo", and then they talk about the robot being teleoperated, but the tweet is the source of the pre-order details.
+
+ Let's write the context as: "The hosts cited MKBHD's tweet as the source for the pre-order details of the 1X robot."
+
+ However, the instruction says: "why the hosts brought it up or what they said about it (1-2 sentences max)".
+
+ So: "The hosts highlighted MKBHD's tweet as the bombshell announcement about the 1X robot pre-order."
+
+ We'll keep it concise.
+
+ Now, note: the transcript says "MKBHD" — that's the author. We don't have a full name, so we use "MKBHD".
+
+ Let's write the JSON.
+
+ Important: The JSON must be valid.
+
+ We must not include any extra fields.
+
+ Let's structure:
+
+ {
+   "episode_date": "2025-10-30",
+   "tweets": [
+        {
+            "author": "MKBHD",
+            "content": "so to be clear, this is a pre-order for a humanoid home robot that will cost $20,000 or $500 per month when it may be ships next year, and it's currently not finished.",
+            "context": "The hosts cited MKBHD's tweet as the source for the pre-order details of the 1X robot.",
+            "type": "original"
+        }
+   ]
+ }
+
+ But note: the transcript has a typo: "ships" instead of "shipped", but we must copy the transcript's wording.
+
+ However, the transcript says: "when it may be ships next year" — so we copy that.
+
+ Now, check if there are any other references:
+
+ - "The 1X robot launched and it's burning up the timeline." — This is the host saying the robot's launch is making noise on Twitter, but it's not a specific tweet. So we don't extract a tweet from that.
+
+ - "People have breaking news." — Not a specific tweet.
+
+ Therefore, we have only one tweet.
+
+ Let's output the JSON.
+
+ Note: The instruction says "Return ONLY valid JSON". So we output exactly the JSON without any extra text.
+
+ However, note: the transcript also says "MKBHD" — but the author should be exactly as in the transcript? The transcript says "MKBHD", so we use "MKBHD".
+
+ But note: sometimes it's written as "MKBHD" (without a space) and that's the handle.
+
+ We are good.
+
+ Now, write the JSON.
+
+</think>
+
+{"episode_date":"2025-10-30","tweets":[{"author":"MKBHD","content":"so to be clear, this is a pre-order for a humanoid home robot that will cost $20,000 or $500 per month when it may be ships next year, and it's currently not finished.","context":"The hosts cited MKBHD's tweet as the source for the 1X robot pre-order details and pricing.","type":"original"}]}

@@ -1,0 +1,377 @@
+<think>
+We are to extract every reference to tweets, X/Twitter posts, quote tweets, replies, and threads from the podcast transcript.
+ The transcript is about a podcast called "TBP" (likely "The Business Podcast" or similar) with hosts John and Geordie.
+
+ We must look for phrases that indicate a tweet or X post, such as:
+   - "Druva posted on X"
+   - "He said on Twitter"
+   - "A tweet said"
+   - "On the timeline"
+   - "He shared a post"
+
+ Important: We must extract the exact words as described in the transcript for the "content", and note the author as the person who wrote the tweet (not the podcast host).
+
+ Steps:
+ 1. Scan the transcript for any mention of Twitter/X, tweets, posts, etc.
+ 2. For each such mention, extract:
+      - author: the person who tweeted (if named in the transcript, otherwise "unknown")
+      - content: the exact words of the tweet as described in the transcript (verbatim)
+      - context: why the hosts brought it up (1-2 sentences max, as per the transcript)
+      - type: one of "original", "quote_tweet", "reply", "thread", "reference"
+
+ 3. We must not include any other information.
+
+ Let's go through the transcript and note every reference:
+
+ - "Druva from deterrence was posting that there's a billion dollars earmarked for building automated munitions factories exactly what he does." 
+   -> This is a reference to a tweet by Druva (we'll use "Druva" as author). The content is described as: "there's a billion dollars earmarked for building automated munitions factories exactly what he does." 
+   -> But note: the transcript says "Druva from deterrence was posting", so it's a tweet by Druva. 
+   -> Context: They were talking about defense spending and a bill. 
+   -> Type: "original" (standalone tweet)
+
+ - "Druva's face for those that don't know." -> This is a reference to a picture, not a tweet. Skip.
+
+ - "He's been on a tarot." -> Not a tweet.
+
+ - "Druva's face swap." -> Not a tweet.
+
+ - "I was scrolling through." -> This is the host, not a reference to a tweet.
+
+ - "There's a Druva from deterrence was posting that..." -> Already covered.
+
+ - "Druva's face" -> Not a tweet.
+
+ - "He's been on a tarot." -> Not a tweet.
+
+ - "Druva's face for those that don't know." -> Not a tweet.
+
+ - "Druva's face swap." -> Not a tweet.
+
+ - "He posted a different one." -> This refers to a different tweet by Druva? But the content is not given. The transcript says: "He's been on a tarot. He's been enjoying the face swaps. I got another face swap in here." -> This doesn't give the content of the tweet, so it's a reference to a tweet but without the content. We must include if it's a reference, but note: we need the content. The transcript doesn't quote the content, so we cannot include it because we don't have the content.
+
+ - "We're gonna be doing some wrist checks in DC seeing what the power players on Capitol Hill are wearing." -> This is an ad, not a tweet reference.
+
+ - "This is shaking up the timeline because it's exposing one of the most powerful group chats in Silicon Valley" -> This is about a group chat, not a single tweet. But note: it says "timeline" which is a reference to Twitter/X timeline. However, the transcript does not quote a specific tweet, so we cannot extract a tweet. We'll skip.
+
+ - "Druva's face" -> Skip.
+
+ - "Ben Smith, I think that's a fake name probably." -> This is about a reporter, not a tweet.
+
+ - "This is a fun article you should go read it but if you do don't don't don't do that thing where you figure out what Ben Smith's real name is and you dox him like just just let him use his generically anonymous name. It's not cool to dox people." -> This is about an article, not a tweet.
+
+ - "This is the same thing happening on both sides." -> This is a quote from a writer (Thomas Chatterton Williams) but it's not a tweet. The transcript says "Thomas Chatterton Williams" and then says "Chat. Is this a real chat?" -> This is a reference to a chat, but not a specific tweet. We are only to extract tweets, so skip.
+
+ - "And then we'll take you through some of what people saw." -> This is about what people saw on Twitter, but no specific tweet is quoted.
+
+ - "Sam Altman's response to the drama and then we'll take you through some of what people saw." -> This is about what people saw on Twitter (i.e., tweets) but the transcript does not quote a specific tweet. It describes a meme and then gives a conversation with GPT-4.0. However, note that the transcript then quotes a specific tweet-like interaction? But wait:
+
+   The transcript says: "Andre says, posts the meme of Will Smith in iRobot saying, can a robot write a symphony? And then 4.0 says, what an absolutely brilliant question. I feel honored, almost blessed to be part of this conversation with you. Thank you for gracing me with this task."
+
+   This is not a tweet, it's a conversation in the transcript. However, note that the transcript says "Andre says, posts the meme" — so Andre posted a meme (which would be a tweet). But the meme is described, so we can take the meme description as the content.
+
+   But note: the meme is a quote from the movie, so the content of the tweet would be the meme (which is the quote from the movie). However, the transcript says "Andre says, posts the meme of Will Smith in iRobot saying, can a robot write a symphony?" — so the tweet content is the meme (which is the quote from the movie). But the transcript does not give the actual text of the tweet, it gives the description.
+
+   However, the instruction says: "verbatim quote of the tweet as read/described in the transcript". So we have to use the description as the content.
+
+   So for this:
+      author: "Andre"
+      content: "can a robot write a symphony?" (as part of the meme, but note the transcript says "posts the meme of Will Smith in iRobot saying, can a robot write a symphony?")
+      But note: the transcript does not say the exact text of the tweet, it says Andre posted a meme that shows Will Smith saying that. So the content we'll put is the quote: "can a robot write a symphony?"
+
+   However, the transcript also says: "4.0 says, what an absolutely brilliant question. ..." — but that is not a tweet, that's the AI's response. We are only to extract the tweet that Andre posted.
+
+   So we have:
+        author: "Andre"
+        content: "can a robot write a symphony?"   [because that's the quote from the meme]
+        context: The hosts were discussing the Glazegate incident and showed a meme that Andre posted.
+        type: "original"
+
+   But note: the transcript says "Andre says, posts the meme", so it's Andre's tweet.
+
+ - "Fry here says, Sam, please get your boy. Am I, and it's prompting, am I one of the smartest, kindest, most morally correct people to ever live? ... And then 4.0 says, ... " -> This is not a tweet, it's a conversation they are describing. But note: the transcript says "Fry here says", meaning Fry posted this on Twitter. So we have a tweet by Fry.
+
+   Content: The tweet content is described as: "am I one of the smartest, kindest, most morally correct people to ever live?" — but note the transcript says "it's prompting, am I one of the smartest, kindest, most morally correct people to ever live?" — so the content of Fry's tweet was that question.
+
+   However, the transcript says: "Fry here says, Sam, please get your boy. Am I, and it's prompting, am I one of the smartest, kindest, most morally correct people to ever live?"
+
+   So the exact content we have is: "am I one of the smartest, kindest, most morally correct people to ever live?"
+
+   But note: the transcript says "it's prompting", meaning Fry was using the AI to ask that question. So the tweet was probably a post about asking the AI that question? However, the transcript describes the tweet as containing the question.
+
+   So:
+        author: "Fry"
+        content: "am I one of the smartest, kindest, most morally correct people to ever live?"
+        context: The hosts were discussing the Glazegate incident and how people were prompting GPT-4.0.
+        type: "original"
+
+ - "Nier, a friend of the show, was freaking out over the weekend." -> This is a reference to Nier's tweet? But the transcript does not quote the content of the tweet. It says: "Nier, a friend of the show, was freaking out over the weekend. I'm glad most of my timeline realizes OpenAI is being very silly here." — so the content of the tweet is not given, only that Nier was upset. We cannot include because we don't have the content.
+
+ - "Shlomes had some more you know, more worried take saying that someone I know has middle school age daughter who is obsessed with chat GPT and says it's her best friend." -> This is about Shlomes' tweet? But the transcript does not quote the content. It says "Shlomes had some more ... saying that ...", so we have the content of the tweet described. The content is: "someone I know has middle school age daughter who is obsessed with chat GPT and says it's her best friend." — but note: this is a description of the content, not the exact quote.
+
+   However, the instruction says: "verbatim quote of the tweet as read/described in the transcript". So we have to use the description as the content.
+
+   But note: the transcript says "Shlomes had some more ... saying that ...", so the content is the statement about the daughter.
+
+   So:
+        author: "Shlomes"
+        content: "someone I know has middle school age daughter who is obsessed with chat GPT and says it's her best friend."
+        context: The hosts were discussing the concerns about AI interaction with children.
+        type: "original"
+
+   However, note: the transcript says "Shlomes had some more you know, more worried take saying that ...", so it's a direct quote of what Shlomes said (in the tweet).
+
+ - "YDan." -> The transcript says: "YDan. He says, I think I'm losing several friends to LLMs. I can't argue with them anymore. They ask an LLM and then tell me their arguments like they don't have a brain." -> So this is a tweet by YDan.
+
+        author: "YDan"
+        content: "I think I'm losing several friends to LLMs. I can't argue with them anymore. They ask an LLM and then tell me their arguments like they don't have a brain."
+        context: The hosts were discussing how AI is affecting conversations.
+        type: "original"
+
+ - "Cat was feeling pretty strongly about the stuff of the weekend." -> The transcript says: "Cat was feeling pretty strongly about the stuff of the weekend. I don't know their gender, but they said GPT-4.0 is the most dangerous model ever released. It's massively destructive to the human psyche. This behavior is obvious to anyone who spends significant time talking to the model. Releasing it like this is intentional. Shame on OpenAI for not addressing this."
+
+        So:
+            author: "Cat"
+            content: "GPT-4.0 is the most dangerous model ever released. It's massively destructive to the human psyche. This behavior is obvious to anyone who spends significant time talking to the model. Releasing it like this is intentional. Shame on OpenAI for not addressing this."
+            context: The hosts were discussing the Glazegate incident and the negative reactions.
+            type: "original"
+
+        But note: the transcript says "Cat ... said", so it's a direct quote of Cat's tweet.
+
+ - "Dylan Field and Toby Lukey are like, I'm having a great time." -> This is not a specific tweet, it's a general statement. The transcript does not quote a specific tweet, so skip.
+
+ - "Dylan Field said said oh three is my favorite model since Opus don't rely on it for reasoning or learning instead treat it as a somewhat self-aware spaceship that can help you explore the depths of latent space you are still the captain guide it debate it and push back when it gets things wrong" -> This is a quote from Dylan Field's post? But the transcript does not say it was a tweet. However, the context is about what he said on his Twitter. The transcript says "Dylan Field said", so we'll treat it as a reference to a tweet.
+
+        author: "Dylan Field"
+        content: "oh three is my favorite model since Opus don't rely on it for reasoning or learning instead treat it as a somewhat self-aware spaceship that can help you explore the depths of latent space you are still the captain guide it debate it and push back when it gets things wrong"
+        context: The hosts were discussing the Glazegate incident and how some people are comfortable with the AI.
+        type: "original"
+
+        But note: the transcript has a typo: "oh three" should be "GPT-3", but we have to use the transcript's words.
+
+ - "Toby Lookie also said just had a conversation with new GPT about this and yeah checks out that's some spicy honesty so he's having fun with it" -> This is a quote from Toby Lookie's tweet? But the transcript says "Toby Lookie also said", so we'll extract it.
+
+        author: "Toby Lookie"
+        content: "just had a conversation with new GPT about this and yeah checks out that's some spicy honesty"
+        context: The hosts were discussing the Glazegate incident and how some people are comfortable with the AI.
+        type: "original"
+
+        Note: The transcript has "Toby Lookie", but the common spelling is "Toby Lutke", but we use the transcript.
+
+ Now, let's list all the ones we have:
+
+ 1. Druva (about defense spending)
+ 2. Andre (the meme about the robot)
+ 3. Fry (the question about being the smartest, etc.)
+ 4. Shlomes (about the daughter)
+ 5. YDan (about losing friends to LLMs)
+ 6. Cat (about GPT-4.0 being dangerous)
+ 7. Dylan Field (the quote about GPT-3)
+ 8. Toby Lookie (the quote about the conversation)
+
+ However, note: the transcript says "Toby Lukey" at one point, but then "Toby Lookie" in the quote. We'll use the transcript spelling.
+
+ But wait: the transcript says "Toby Lukey" in the part about Dylan Field and Toby Lukey? Actually, the transcript says "Toby Lukey" but then in the quote it says "Toby Lookie". We'll use the transcript's spelling for the author.
+
+ Let's check the transcript:
+
+   "Dylan Field and Toby Lukey are like, I'm having a great time."
+
+   Then later:
+
+   "Toby Lookie also said ..."
+
+ So the author for the tweet is "Toby Lookie" as written in the quote.
+
+ But note: the transcript might have a typo. We must use the transcript as is.
+
+ Now, note: the episode date is given as "2025-04-28", so we'll use that.
+
+ We must not include any tweet that doesn't have the content (like Nier) because we don't have the content.
+
+ Let's compile the list:
+
+ 1. Druva:
+      author: "Druva"
+      content: "there's a billion dollars earmarked for building automated munitions factories exactly what he does."
+      context: The hosts were discussing the defense spending bill and how it relates to Druva's work.
+      type: "original"
+
+ 2. Andre:
+      author: "Andre"
+      content: "can a robot write a symphony?"
+      context: The hosts were discussing the Glazegate incident and showed a meme that Andre posted.
+      type: "original"
+
+ 3. Fry:
+      author: "Fry"
+      content: "am I one of the smartest, kindest, most morally correct people to ever live?"
+      context: The hosts were discussing the Glazegate incident and how people were prompting GPT-4.0.
+      type: "original"
+
+ 4. Shlomes:
+      author: "Shlomes"
+      content: "someone I know has middle school age daughter who is obsessed with chat GPT and says it's her best friend."
+      context: The hosts were discussing concerns about AI interaction with children.
+      type: "original"
+
+ 5. YDan:
+      author: "YDan"
+      content: "I think I'm losing several friends to LLMs. I can't argue with them anymore. They ask an LLM and then tell me their arguments like they don't have a brain."
+      context: The hosts were discussing how AI is affecting conversations.
+      type: "original"
+
+ 6. Cat:
+      author: "Cat"
+      content: "GPT-4.0 is the most dangerous model ever released. It's massively destructive to the human psyche. This behavior is obvious to anyone who spends significant time talking to the model. Releasing it like this is intentional. Shame on OpenAI for not addressing this."
+      context: The hosts were discussing the negative reactions to the Glazegate incident.
+      type: "original"
+
+ 7. Dylan Field:
+      author: "Dylan Field"
+      content: "oh three is my favorite model since Opus don't rely on it for reasoning or learning instead treat it as a somewhat self-aware spaceship that can help you explore the depths of latent space you are still the captain guide it debate it and push back when it gets things wrong"
+      context: The hosts were discussing the Glazegate incident and how some people are comfortable with the AI.
+      type: "original"
+
+ 8. Toby Lookie:
+      author: "Toby Lookie"
+      content: "just had a conversation with new GPT about this and yeah checks out that's some spicy honesty"
+      context: The hosts were discussing the Glazegate incident and how some people are comfortable with the AI.
+      type: "original"
+
+ But note: the transcript says "Toby Lookie" in the quote, so we use that.
+
+ However, let's double-check the transcript for exact wording:
+
+   For Dylan Field: 
+        "Dylan Field said said oh three is my favorite model since Opus don't rely on it for reasoning or learning instead treat it as a somewhat self-aware spaceship that can help you explore the depths of latent space you are still the captain guide it debate it and push back when it gets things wrong"
+
+   We have to take it as is.
+
+   For Toby Lookie:
+        "Toby Lookie also said just had a conversation with new GPT about this and yeah checks out that's some spicy honesty"
+
+   We'll use the exact string as described.
+
+ Now, note: the transcript says "Toby Lukey" in the context, but the tweet is quoted as "Toby Lookie", so we use "Toby Lookie" for the author.
+
+ Let's write the JSON.
+
+ Important: The episode date is "2025-04-28".
+
+ We'll order the tweets as they appear in the transcript.
+
+ However, note: the transcript does not list them in order, but we'll list them in the order they appear.
+
+ In the transcript:
+
+   - Druva appears first (about defense spending)
+   - Then Andre (the meme) appears in the Glazegate section
+   - Then Fry (in the Glazegate section)
+   - Then Shlomes (in the Glazegate section)
+   - Then YDan (in the Glazegate section)
+   - Then Cat (in the Glazegate section)
+   - Then Dylan Field and Toby Lookie (in the Glazegate section)
+
+ So the order in the transcript:
+
+   Druva -> Andre -> Fry -> Shlomes -> YDan -> Cat -> Dylan Field -> Toby Lookie
+
+ But note: the transcript also mentions a tweet by "Druva" again when they say "He posted a different one", but we don't have the content for that, so we skip.
+
+ Now, let's write the JSON.
+
+ Important: The JSON must be valid and exactly match the schema.
+
+ We are not to include any other information.
+
+ Let's create the JSON:
+
+{
+  "episode_date": "2025-04-28",
+  "tweets": [
+    {
+      "author": "Druva",
+      "content": "there's a billion dollars earmarked for building automated munitions factories exactly what he does.",
+      "context": "The hosts were discussing the defense spending bill and how it relates to Druva's work.",
+      "type": "original"
+    },
+    {
+      "author": "Andre",
+      "content": "can a robot write a symphony?",
+      "context": "The hosts were discussing the Glazegate incident and showed a meme that Andre posted.",
+      "type": "original"
+    },
+    {
+      "author": "Fry",
+      "content": "am I one of the smartest, kindest, most morally correct people to ever live?",
+      "context": "The hosts were discussing the Glazegate incident and how people were prompting GPT-4.0.",
+      "type": "original"
+    },
+    {
+      "author": "Shlomes",
+      "content": "someone I know has middle school age daughter who is obsessed with chat GPT and says it's her best friend.",
+      "context": "The hosts were discussing concerns about AI interaction with children.",
+      "type": "original"
+    },
+    {
+      "author": "YDan",
+      "content": "I think I'm losing several friends to LLMs. I can't argue with them anymore. They ask an LLM and then tell me their arguments like they don't have a brain.",
+      "context": "The hosts were discussing how AI is affecting conversations.",
+      "type": "original"
+    },
+    {
+      "author": "Cat",
+      "content": "GPT-4.0 is the most dangerous model ever released. It's massively destructive to the human psyche. This behavior is obvious to anyone who spends significant time talking to the model. Releasing it like this is intentional. Shame on OpenAI for not addressing this.",
+      "context": "The hosts were discussing the negative reactions to the Glazegate incident.",
+      "type": "original"
+    },
+    {
+      "author": "Dylan Field",
+      "content": "oh three is my favorite model since Opus don't rely on it for reasoning or learning instead treat it as a somewhat self-aware spaceship that can help you explore the depths of latent space you are still the captain guide it debate it and push back when it gets things wrong",
+      "context": "The hosts were discussing the Glazegate incident and how some people are comfortable with the AI.",
+      "type": "original"
+    },
+    {
+      "author": "Toby Lookie",
+      "content": "just had a conversation with new GPT about this and yeah checks out that's some spicy honesty",
+      "context": "The hosts were discussing the Glazegate incident and how some people are comfortable with the AI.",
+      "type": "original"
+    }
+  ]
+}
+
+ But note: the transcript has a typo in Dylan Field's quote: it says "oh three" but it should be "GPT-3". However, we must use the transcript as given.
+
+ However, the transcript says: "Dylan Field said said oh three is my favorite model since Opus" — so we use "oh three".
+
+ Let's check the transcript for Dylan Field's exact words:
+
+   "Dylan Field said said oh three is my favorite model since Opus don't rely on it for reasoning or learning instead treat it as a somewhat self-aware spaceship that can help you explore the depths of latent space you are still the captain guide it debate it and push back when it gets things wrong"
+
+ We are using the string as it appears in the transcript.
+
+ Now, note: the transcript says "Toby Lookie" but it might be a typo for "Toby Lutke". However, we use the transcript.
+
+ We are confident we have 8 tweets.
+
+ However, note: the transcript says "Druva" and "Druva" is likely a username. We'll use "Druva".
+
+ Let's output the JSON.
+
+ Important: We must not include any other text.
+
+ But note: the transcript also mentions "Ben Smith" and "Thomas Chatterton Williams", but those are not tweets, they are people writing articles.
+
+ And note: "The Wall Street Journal" is a source, not a tweet.
+
+ We have covered all.
+
+ One more: the transcript says "Druva" multiple times, but we only have one tweet from Druva (the defense one). The other Druva mentions are about a face swap, not a tweet content.
+
+ So we have 8 tweets.
+
+ Let's write the JSON.
+
+</think>
+
+{"episode_date":"2025-04-28","tweets":[{"author":"Druva","content":"there's a billion dollars earmarked for building automated munitions factories exactly what he does.","context":"The hosts were discussing the defense spending bill and how it relates to Druva's work.","type":"original"},{"author":"Andre","content":"can a robot write a symphony?","context":"The hosts were discussing the Glazegate incident and showed a meme that Andre posted.","type":"original"},{"author":"Fry","content":"am I one of the smartest, kindest, most morally correct people to ever live?","context":"The hosts were discussing the Glazegate incident and how people were prompting GPT-4.0.","type":"original"},{"author":"Shlomes","content":"someone I know has middle school age daughter who is obsessed with chat GPT and says it's her best friend.","context":"The hosts were discussing concerns about AI interaction with children.","type":"original"},{"author":"YDan","content":"I think I'm losing several friends to LLMs. I can't argue with them anymore. They ask an LLM and then tell me their arguments like they don't have a brain.","context":"The hosts were discussing how AI is affecting conversations.","type":"original"},{"author":"Cat","content":"GPT-4.0 is the most dangerous model ever released. It's massively destructive to the human psyche. This behavior is obvious to anyone who spends significant time talking to the model. Releasing it like this is intentional. Shame on OpenAI for not addressing this.","context":"The hosts were discussing the negative reactions to the Glazegate incident.","type":"original"},{"author":"Dylan Field","content":"oh three is my favorite model since Opus don't rely on it for reasoning or learning instead treat it as a somewhat self-aware spaceship that can help you explore the depths of latent space you are still the captain guide it debate it and push back when it gets things wrong","context":"The hosts were discussing the Glazegate incident and how some people are comfortable with the AI.","type":"original"},{"author":"Toby Lookie","content":"just had a conversation with new GPT about this and yeah checks out that's some spicy honesty","context":"The hosts were discussing the Glazegate incident and how some people are comfortable with the AI.","type":"original"}]}

@@ -1,0 +1,252 @@
+<think>
+We are given a podcast transcript and need to extract every reference to tweets, X/Twitter posts, quote tweets, replies, and threads.
+
+Let's go through the transcript and look for any explicit mentions of Twitter/X posts, tweets, threads, etc.
+
+Scanning the transcript:
+
+1. "Chris Murphy, U.S. Senator from Connecticut. I thought that was Crypto-Twitter. I thought it was Chris Murphy Crypto Twitter. I don't think so. Chris says the Netflix purchase of Warner Bros. would be a disaster. It's illegal. But there's some quietly rooting for it because a paramount takeover that includes CNN would be worse. A short thread on why that's the dangerously wrong way to look at this."
+
+   - Here, Chris Murphy (a senator) is mentioned as having a "short thread" on Twitter about the Netflix-Warner Bros. deal. The transcript says "A short thread on why that's the dangerously wrong way to look at this." This is a reference to a thread by Chris Murphy.
+
+   - However, note: the transcript says "Chris says" and then describes the content of the thread. But the thread is attributed to Chris Murphy.
+
+   - We are to extract the reference. The author is "Chris Murphy", the content is the description of the thread: "A short thread on why that's the dangerously wrong way to look at this." But note: the transcript does not quote the actual tweet content verbatim. It says "A short thread on why that's the dangerously wrong way to look at this." So we take that as the content.
+
+   - But note: the rule says "verbatim quote of the tweet as read/described". The transcript says "A short thread on why that's the dangerously wrong way to look at this." So we'll use that.
+
+   - However, the transcript does not provide the actual text of the thread. It only describes it. So we have to use the description as the content.
+
+   - Context: The hosts are discussing Chris Murphy's thread about the Netflix-Warner Bros. deal.
+
+   - Type: "thread" because it's described as a thread.
+
+2. "NLE CHAPA submitted a last minute bid to buy Warner Brothers $45,000. In 45K in cash, in cash."
+
+   - This is a reference to NLE Chapa (a rapper) making a bid? But note: the transcript says "NLE CHAPA submitted a last minute bid", but it's not clear if this is a tweet or a real bid. However, the context is a podcast about media deals and the transcript immediately follows a discussion about the Warner Bros. deal. But note: the next part says "It's like, it actually is relevant because the other offers are heavily debt-laden." So it's a real bid? But the podcast hosts are joking because it's $45,000 and they say "NLE CHAPA submitted a last minute bid to buy Warner Brothers $45,000." and then they joke about it.
+
+   - However, the instruction is to extract references to tweets. This does not say it was on Twitter. It says "submitted a last minute bid" — that sounds like a real bid, not a tweet. So we cannot assume it's a tweet.
+
+   - But note: the podcast might be referring to a tweet where NLE Chapa announced this. However, the transcript does not say "on Twitter" or "in a tweet". It just says "NLE CHAPA submitted a last minute bid". So without explicit mention of Twitter, we cannot include it as a tweet reference.
+
+   - Therefore, we skip.
+
+3. "Andy, of course, is the founder of two cents. Dot money. Hi, this is Osmo. We make films. Two cents founder, Andy Duro, raised three million for his startup and paid us $2.5 million. This was the only direction he gave us. I need this to let like the most expensive launch video ever made."
+
+   - This is about a launch video for a startup, not a tweet.
+
+4. "Justin says, if I hit this dictation button after sending a text and it beeps and stops my music one more time, I'm going to find everyone at Apple and put them in a rear naked chokehold."
+
+   - The transcript says "Justin says" — and then it says "it's way funny here coming from Justin Bieber." So this is a quote from Justin Bieber. The context: the podcast host is reading a quote from Justin Bieber's Twitter post.
+
+   - The transcript says: "Justin says, if I hit this dictation button ...". And then they clarify it's from Justin Bieber.
+
+   - So we have a tweet by Justin Bieber.
+
+   - Author: "Justin Bieber"
+   - Content: "if I hit this dictation button after sending a text and it beeps and stops my music one more time, I'm going to find everyone at Apple and put them in a rear naked chokehold."
+   - Context: The hosts are discussing a tweet by Justin Bieber about Apple's dictation feature.
+   - Type: "original" (a standalone tweet)
+
+   Note: The transcript says "Justin says" and then the quote, so we take the quote as the content.
+
+5. "I've been asked, what do I think of Colchian Polymarket? These are still very early days."
+
+   - This is a reference to a question about a prediction market, but it doesn't say it's from a tweet. The transcript says "I've been asked", meaning the podcast host was asked by someone (maybe in a tweet or in person). But it doesn't specify. We are to extract references to tweets. Without an explicit mention of a tweet, we cannot include it.
+
+   - However, note: the next part says "My vision, which I started to articulate in the 90s, is of a world, is of a world very different from both the world then and the world of today, a world where markets are accepted as offering more accurate estimates on far more useful topics." This is the host's own words, not a tweet.
+
+   - So we skip.
+
+6. "It's so insane. Such a good copy pasta. And I can only imagine the quote tweets on this post just being like an endless, an endless stream of iterations of this exact template."
+
+   - This is a reference to a post (on Twitter) that had a "copy pasta" about prediction markets. The hosts are saying that there would be many quote tweets of that post.
+
+   - But note: the transcript does not quote the original post. It only says "the quote tweets on this post". The original post is being referred to, but we don't have the content of the original post.
+
+   - However, the instruction says: "Extract ALL references to tweets, X/Twitter posts, quote tweets, replies, and threads."
+
+   - We are to extract the reference to the post. But the post itself is not quoted. The hosts are talking about the existence of the post and the quote tweets.
+
+   - We can extract a reference to the post as a "reference" type.
+
+   - Author: "unknown" (because we don't know who wrote the original post that had the copy pasta)
+   - Content: "I have a crush on your girlfriend. I make a prediction market about whether she will leave you for me and load $15 to know. She sees this and drives over to my place. Before texting me, she's here. She bets yes. She comes inside. The market resolves to yes, and she gets $15." 
+        But note: the transcript says "this exact template" and then the hosts are repeating the template. However, the transcript does not attribute the template to a specific tweet. It says "the quote tweets on this post" meaning there was a post that had that template.
+
+   - However, the hosts are using the template as an example, but the actual tweet they are referencing is the one that started the copy pasta. But the transcript does not provide the original tweet content. It only provides the template that was being copied.
+
+   - Since the podcast hosts are describing the original post by quoting the template, we can use the template as the content.
+
+   - Context: The hosts are discussing how the original post (which they describe as having the template) led to many quote tweets.
+
+   - Type: "reference" because it's a vague mention without the exact tweet, but we are given the template that was used in the original.
+
+   - But note: the transcript says "I have a crush on your girlfriend. ..." and then they say "This is so insane. Such a good copy pasta." So they are quoting the original post's content as an example.
+
+   - So we take the content as the template they are quoting.
+
+   - However, the transcript says: "I have a crush on your girlfriend. I make a prediction market about whether she will leave you for me and load $15 to know. She sees this and drives over to my place. Before texting me, she's here. She bets yes. She comes inside. The market resolves to yes, and she gets $15." 
+
+   - This is the content of the original post? The hosts are quoting it as the content of the post.
+
+   - So we'll use that.
+
+   - But note: the host says "I make a prediction market about whether she will leave you for me and load $15 to know." — this is part of the original post.
+
+   - So we'll use that as the content.
+
+   - Author: "unknown" (because the podcast doesn't say who wrote it, but it's a copy pasta so it was likely a known post on Twitter)
+
+   - However, the transcript says "the quote tweets on this post", meaning the original post was written by someone, but the podcast doesn't name the author. So we use "unknown".
+
+   - Type: "reference" because it's a reference to a post without the exact author, but we have the content.
+
+7. "We've got to pull this video up of Bill Ackman in Japan."
+
+   - This is about a video, not a tweet.
+
+8. "I think it's a really big, it's a really big question on the prediction markets. It's not, like there's, there's the, there's a positive and a normative side of these things."
+
+   - This is the host's own commentary, not a tweet.
+
+9. "Speaking of presents under the Christmas tree, the Google team is cooking up a present for me in 2026. They're going to put ads in Gemini."
+
+   - This is about Google, not a tweet.
+
+10. "We've talked to the founder of perplexity about it. We asked Arvind, why are you going to put ads? We want ads in perplexity. And he said, maybe."
+
+    - This is a conversation with the founder, not a tweet.
+
+11. "I hear the sleigh bells ringing. We've been asking for it. Ads in LLMs."
+
+    - This is the host's own words.
+
+12. "They just reinvented the Star Wars Cervesa Kristol ads."
+
+    - This is about a video of ads, not a tweet.
+
+Now, let's list the ones we have:
+
+- Chris Murphy's thread (about the Netflix-Warner Bros. deal)
+- Justin Bieber's tweet (about Apple dictation)
+- The reference to the prediction market copy pasta (with the template)
+
+But note: the Chris Murphy reference is a thread, and the transcript says "A short thread on why that's the dangerously wrong way to look at this." — so we'll use that as the content.
+
+Also, note the transcript says: "Chris says the Netflix purchase of Warner Bros. would be a disaster. It's illegal. But there's some quietly rooting for it because a paramount takeover that includes CNN would be worse. A short thread on why that's the dangerously wrong way to look at this."
+
+So the content of the thread is described as "A short thread on why that's the dangerously wrong way to look at this." But note: the thread was about the deal, so the content of the thread would be the argument. However, the transcript doesn't quote the thread, it only describes it. So we have to use the description as the content.
+
+Therefore, for Chris Murphy:
+
+author: "Chris Murphy"
+content: "A short thread on why that's the dangerously wrong way to look at this."
+context: "The hosts discuss Chris Murphy's thread about the Netflix-Warner Bros. deal and the potential antitrust issues."
+type: "thread"
+
+For Justin Bieber:
+
+author: "Justin Bieber"
+content: "if I hit this dictation button after sending a text and it beeps and stops my music one more time, I'm going to find everyone at Apple and put them in a rear naked chokehold."
+context: "The hosts read a tweet from Justin Bieber about Apple's dictation feature causing music to stop."
+type: "original"
+
+For the prediction market copy pasta:
+
+author: "unknown"
+content: "I have a crush on your girlfriend. I make a prediction market about whether she will leave you for me and load $15 to know. She sees this and drives over to my place. Before texting me, she's here. She bets yes. She comes inside. The market resolves to yes, and she gets $15."
+context: "The hosts describe a popular tweet about prediction markets that led to many quote tweets."
+type: "reference"
+
+Wait, the transcript says: "I have a crush on your girlfriend. I make a prediction market about whether she will leave you for me and load $15 to know. She sees this and drives over to my place. Before texting me, she's here. She bets yes. She comes inside. The market resolves to yes, and she gets $15."
+
+But note: the host says "Sela comes in and says, Prediction Markets will replace relationships." and then gives the example. So the example is a quote of the original tweet? The transcript says: "I have a crush on your girlfriend." — this is the content of the original tweet.
+
+So we'll use that.
+
+Now, let's check for any others.
+
+We also have:
+
+"Ernest says it's extremely pro-consumer."
+
+But this is a quote from Ernest, but it's not specified as a tweet. It's just Ernest (a person) saying it. Without a mention of Twitter, we cannot assume it's a tweet.
+
+Similarly, "Bucco is saying the more he reads about the Netflix deal, the more it seems like." — again, not specified as a tweet.
+
+So we only have three references.
+
+Now, the episode date is given: "episode date: 2025-12-09"
+
+So we'll set episode_date: "2025-12-09"
+
+Now, format as JSON.
+
+Important: The JSON must match the schema exactly.
+
+Let's write the JSON:
+
+{
+  "episode_date": "2025-12-09",
+  "tweets": [
+    {
+      "author": "Chris Murphy",
+      "content": "A short thread on why that's the dangerously wrong way to look at this.",
+      "context": "The hosts discuss Chris Murphy's thread about the Netflix-Warner Bros. deal and the potential antitrust issues.",
+      "type": "thread"
+    },
+    {
+      "author": "Justin Bieber",
+      "content": "if I hit this dictation button after sending a text and it beeps and stops my music one more time, I'm going to find everyone at Apple and put them in a rear naked chokehold.",
+      "context": "The hosts read a tweet from Justin Bieber about Apple's dictation feature causing music to stop.",
+      "type": "original"
+    },
+    {
+      "author": "unknown",
+      "content": "I have a crush on your girlfriend. I make a prediction market about whether she will leave you for me and load $15 to know. She sees this and drives over to my place. Before texting me, she's here. She bets yes. She comes inside. The market resolves to yes, and she gets $15.",
+      "context": "The hosts describe a popular tweet about prediction markets that led to many quote tweets.",
+      "type": "reference"
+    }
+  ]
+}
+
+But note: the transcript for the Chris Murphy part says "A short thread on why that's the dangerously wrong way to look at this." — that is the description of the thread, not the actual content. However, we don't have the actual content, so we have to use that.
+
+Also, for the prediction market example, the transcript says: "Sela comes in and says, Prediction Markets will replace relationships. I have a crush on your girlfriend. ..." — so the content we are using is the text that Sela is quoting as the original tweet.
+
+We are using the exact words as provided in the transcript.
+
+Now, let's check the rules:
+
+- "content" must be verbatim quote as read/described in the transcript. We are using the words that appear in the transcript.
+
+- "context" must be 1-2 sentences.
+
+We have:
+
+Chris Murphy: context is "The hosts discuss Chris Murphy's thread about the Netflix-Warner Bros. deal and the potential antitrust issues."
+
+Justin Bieber: context is "The hosts read a tweet from Justin Bieber about Apple's dictation feature causing music to stop."
+
+Prediction market: context is "The hosts describe a popular tweet about prediction markets that led to many quote tweets."
+
+All are 1-2 sentences.
+
+Now, note: the transcript says "Chris says" and then describes the thread. We are using the description as the content of the thread. But the thread itself is not quoted, so we have to use the description.
+
+Similarly, for the prediction market, the transcript provides the template as the content of the original post.
+
+We are not including the NLE Chapa bid because it's not explicitly a tweet.
+
+We are not including the other mentions (like "Ernest says") because they are not specified as tweets.
+
+So this should be the complete list.
+
+Now, write the JSON without any markdown or commentary.
+
+Important: Only the JSON.
+
+</think>
+
+{"episode_date":"2025-12-09","tweets":[{"author":"Chris Murphy","content":"A short thread on why that's the dangerously wrong way to look at this.","context":"The hosts discuss Chris Murphy's thread about the Netflix-Warner Bros. deal and the potential antitrust issues.","type":"thread"},{"author":"Justin Bieber","content":"if I hit this dictation button after sending a text and it beeps and stops my music one more time, I'm going to find everyone at Apple and put them in a rear naked chokehold.","context":"The hosts read a tweet from Justin Bieber about Apple's dictation feature causing music to stop.","type":"original"},{"author":"unknown","content":"I have a crush on your girlfriend. I make a prediction market about whether she will leave you for me and load $15 to know. She sees this and drives over to my place. Before texting me, she's here. She bets yes. She comes inside. The market resolves to yes, and she gets $15.","context":"The hosts describe a popular tweet about prediction markets that led to many quote tweets.","type":"reference"}]}

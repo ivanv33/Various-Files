@@ -1,0 +1,182 @@
+<think>
+I need to extract all references to tweets, X/Twitter posts, quote tweets, replies, and threads from the provided podcast transcript. Let me carefully go through the transcript and identify every mention of such content.
+
+Let me scan through the transcript for mentions of Twitter/X posts, tweets, threads, quote tweets, or replies.
+
+I'll look for phrases like:
+- "tweeted"
+- "on X"
+- "on Twitter"
+- "thread"
+- "quote tweet"
+- "reply"
+- "post"
+- "timeline" (as in "on the timeline" which refers to Twitter/X posts)
+
+Let me go through the transcript systematically:
+
+1. "Austin, a friend of the show has been giving me a bunch of just, you know, he built the morning brew into a monster has been very helpful on TBPN. He's retired for a minute. I put this in here cause I wanna call him out. Stop it. This is like one of the worst things I've ever seen."
+
+This mentions Austin but doesn't reference a specific tweet.
+
+2. "We got a post from Austin, a friend of the show has been giving me a bunch of just, you know, he built the morning brew into a monster has been very helpful on TBPN. He's retired for a minute."
+
+This is just saying Austin posted something, but doesn't quote the actual tweet content.
+
+3. "It's a great one. Should we go over to Super Dario talking to Arvind Srinivasis? Yeah, I just thought this was funny, because it's been this ongoing sort of thing that we talk about on the show. So Arvind Srinivas from Perplexity says, we're building, explaining why they're building a browser."
+
+This is about what Arvind Srinivas said, but it's not a tweet reference.
+
+4. "We got a tweet from Dan Primack shares, remember when Elon and Zuck said they were gonna fight in a cage and lots of people believed them? I believed them. And Ashley says, I heard somewhere that Italy wanted to charge them $300 million to use the Colosseum. Not sure if it's true, but I think it is, and I think it killed the brawl. What a miss."
+
+Here's a clear tweet reference:
+- Author: Dan Primack
+- Content: "remember when Elon and Zuck said they were gonna fight in a cage and lots of people believed them? I believed them. And Ashley says, I heard somewhere that Italy wanted to charge them $300 million to use the Colosseum. Not sure if it's true, but I think it is, and I think it killed the brawl. What a miss."
+- Context: They're discussing a tweet about Elon and Zuck fighting and the Colosseum being used for it.
+- Type: reference (it's a reference to a tweet without quoting it verbatim)
+
+5. "We got a chart here from Orin Hoffman. He says, insane growth, what an amazing company. And he's showing the flock safety ARR chart from Sakura we got to have the soccer guys on some time oh yeah because they have some of the best insight we got a fact check ad cock came out and said that figure is the number one most in-demand stock in the private markets which I think is categorically incorrect based on my insight into the market."
+
+This mentions Orin Hoffman but doesn't quote a tweet.
+
+6. "We got a post from Will Brown. He says, bro. This is why we do the show. Last night was a deep seek moment. It's funny because like that makes sense and the whole deep seek thing, the whole reason that that phrase makes sense because people were saying deep seek is a Sputnik moment."
+
+This mentions Will Brown but doesn't quote the actual tweet.
+
+7. "We got a post from Dan Primack shares, remember when Elon and Zuck said they were gonna fight in a cage and lots of people believed them? I believed them. And Ashley says, I heard somewhere that Italy wanted to charge them $300 million to use the Colosseum. Not sure if it's true, but I think it is, and I think it killed the brawl. What a miss."
+
+This is a repeat of the earlier tweet reference.
+
+8. "I have to say to 23andMe is thank you. Because the reality is, you're on the shoulders of giants here, right? We're on the shoulders of giants. Old companies do. You go from Blockbuster to Netflix. You go from Blackberry to the iPhone. You go from MySpace to Facebook. And now you're going from 23andMe to nuclear genomics, right? The industry is wide open. The nucleus is years ahead, and we're going to seize the moment. But before I talk about that, thank you to 23andMe. You did a great job building the foundation. And now it's time for something new. That's reality."
+
+This is a quote from a tweet by Kian, but it's not the actual tweet content - it's the host summarizing what he said.
+
+9. "We got a tweet up here. I put up late last night. I think it was around 2 AM Eastern or so, maybe 1, 2 AM Eastern. I saw the announcement."
+
+This mentions a tweet but doesn't quote the content.
+
+10. "We have a surprise guest for you all, folks. Is he ready? I just sent him the link. He's jumping in in just a minute."
+
+This doesn't reference a tweet.
+
+11. "We're going to have to have him on the show, figure out what he bought. Bryce Roberts over at NDVC says, bought two cars today. One dealership wanted me to come down to the lot, get on a bunch of calls, and refuse to send me basic info over text. The other was willing to send me anything I needed and requested over text and email other was willing to send to the car, but we'll have to talk to him about what car he chose."
+
+Here's a clear tweet reference:
+- Author: Bryce Roberts
+- Content: "bought two cars today. One dealership wanted me to come down to the lot, get on a bunch of calls, and refuse to send me basic info over text. The other was willing to send me anything I needed and requested over text and email other was willing to send to the car, but we'll have to talk to him about what car he chose."
+- Context: They're discussing Bryce Roberts' tweet about buying cars.
+- Type: original
+
+12. "I got a tweet here from Dan Primack. Remember when Elon and Zuck said they were gonna fight in a cage and lots of people believed them? I believed them. And Ashley says, I heard somewhere that Italy wanted to charge them $300 million to use the Colosseum. Not sure if it's true, but I think it is, and I think it killed the brawl. What a miss."
+
+This is another reference to the same tweet as before.
+
+13. "We have a post from Orin Hoffman. He says, insane growth, what an amazing company."
+
+This mentions Orin Hoffman but doesn't quote the actual tweet.
+
+14. "We have a post from Will Brown. He says, bro. This is why we do the show."
+
+This mentions Will Brown but doesn't quote the actual tweet.
+
+15. "We got a post from Austin, a friend of the show has been giving me a bunch of just, you know, he built the morning brew into a monster has been very helpful on TBPN. He's retired for a minute."
+
+This mentions Austin but doesn't quote the actual tweet.
+
+16. "We got a post from Dan Primack shares, remember when Elon and Zuck said they were gonna fight in a cage and lots of people believed them? I believed them. And Ashley says, I heard somewhere that Italy wanted to charge them $300 million to use the Colosseum. Not sure if it's true, but I think it is, and I think it killed the brawl. What a miss."
+
+This is the same tweet reference as before.
+
+17. "We got a chart here from Orin Hoffman. He says, insane growth, what an amazing company."
+
+This mentions Orin Hoffman but doesn't quote the actual tweet.
+
+18. "We got a post from Will Brown. He says, bro. This is why we do the show."
+
+This is another reference to Will Brown's post.
+
+19. "I saw this and I was just disgusted. Okay. But it was revolting, honestly but it's it's really really depressing. week American Needs You and I saw this and I was just disgusted. It was revolting honestly but it's it's really really depressing. But okay but clearly he's a marketer he's a media man and he's retiring so that he can unretire come out of the gates."
+
+This mentions Austin but doesn't quote a tweet.
+
+Let's now extract all the valid tweet references:
+
+1. Dan Primack tweet about Elon and Zuck fighting
+2. Bryce Roberts tweet about buying cars
+
+Let me double-check for any others:
+
+- "We got a tweet from Dan Primack shares, remember when Elon and Zuck said they were gonna fight in a cage and lots of people believed them? I believed them. And Ashley says, I heard somewhere that Italy wanted to charge them $300 million to use the Colosseum. Not sure if it's true, but I think it is, and I think it killed the brawl. What a miss."
+  - Author: Dan Primack
+  - Content: "remember when Elon and Zuck said they were gonna fight in a cage and lots of people believed them? I believed them. And Ashley says, I heard somewhere that Italy wanted to charge them $300 million to use the Colosseum. Not sure if it's true, but I think it is, and I think it killed the brawl. What a miss."
+  - Context: They're discussing a tweet about Elon and Zuck fighting and the Colosseum being used for it.
+  - Type: reference
+
+- "Bryce Roberts over at NDVC says, bought two cars today. One dealership wanted me to come down to the lot, get on a bunch of calls, and refuse to send me basic info over text. The other was willing to send me anything I needed and requested over text and email other was willing to send to the car, but we'll have to talk to him about what car he chose."
+  - Author: Bryce Roberts
+  - Content: "bought two cars today. One dealership wanted me to come down to the lot, get on a bunch of calls, and refuse to send me basic info over text. The other was willing to send me anything I needed and requested over text and email other was willing to send to the car, but we'll have to talk to him about what car he chose."
+  - Context: They're discussing Bryce Roberts' tweet about buying cars.
+  - Type: original
+
+I don't see any other explicit tweet references. The mention of "Austin" is just referring to him retiring, not a specific tweet. The other mentions of "Will Brown" and "Orin Hoffman" don't include the actual tweet content.
+
+Now, I need to determine the episode date. The transcript doesn't explicitly state the date. However, in the last part of the transcript, there's a mention of "breaking news" about "nucleus genomics team" and "Kian" (who was talking about 23andMe). This seems to be recent news. But since the date isn't explicitly stated, I'll need to leave it as a placeholder.
+
+The instructions say to return "YYYY-MM-DD", so I'll use a placeholder date since it's not specified in the transcript.
+
+Let me format the JSON correctly based on the schema provided.
+
+The JSON should be:
+{
+  "episode_date": "YYYY-MM-DD",
+  "tweets": [
+    {
+      "author": "Person who tweeted (or 'unknown')",
+      "content": "Verbatim quote of the tweet as read/described in the transcript",
+      "context": "Why it was discussed on the show",
+      "type": "original|quote_tweet|reply|thread|reference"
+    }
+  ]
+}
+
+For the Dan Primack tweet:
+- author: "Dan Primack"
+- content: "remember when Elon and Zuck said they were gonna fight in a cage and lots of people believed them? I believed them. And Ashley says, I heard somewhere that Italy wanted to charge them $300 million to use the Colosseum. Not sure if it's true, but I think it is, and I think it killed the brawl. What a miss."
+- context: "They're discussing a tweet about Elon and Zuck fighting and the Colosseum being used for it."
+- type: "reference"
+
+For the Bryce Roberts tweet:
+- author: "Bryce Roberts"
+- content: "bought two cars today. One dealership wanted me to come down to the lot, get on a bunch of calls, and refuse to send me basic info over text. The other was willing to send me anything I needed and requested over text and email other was willing to send to the car, but we'll have to talk to him about what car he chose."
+- context: "They're discussing Bryce Roberts' tweet about buying cars."
+- type: "original"
+
+Let me verify these content quotes from the transcript:
+
+For Dan Primack: "Dan Primack shares, remember when Elon and Zuck said they were gonna fight in a cage and lots of people believed them? I believed them. And Ashley says, I heard somewhere that Italy wanted to charge them $300 million to use the Colosseum. Not sure if it's true, but I think it is, and I think it killed the brawl. What a miss."
+
+For Bryce Roberts: "Bryce Roberts over at NDVC says, bought two cars today. One dealership wanted me to come down to the lot, get on a bunch of calls, and refuse to send me basic info over text. The other was willing to send me anything I needed and requested over text and email other was willing to send to the car, but we'll have to talk to him about what car he chose."
+
+These are the exact quotes from the transcript.
+
+Now I'll format this as JSON.
+
+</think>
+
+{
+  "episode_date": "YYYY-MM-DD",
+  "tweets": [
+    {
+      "author": "Dan Primack",
+      "content": "remember when Elon and Zuck said they were gonna fight in a cage and lots of people believed them? I believed them. And Ashley says, I heard somewhere that Italy wanted to charge them $300 million to use the Colosseum. Not sure if it's true, but I think it is, and I think it killed the brawl. What a miss.",
+      "context": "They're discussing a tweet about Elon and Zuck fighting and the Colosseum being used for it.",
+      "type": "reference"
+    },
+    {
+      "author": "Bryce Roberts",
+      "content": "bought two cars today. One dealership wanted me to come down to the lot, get on a bunch of calls, and refuse to send me basic info over text. The other was willing to send me anything I needed and requested over text and email other was willing to send to the car, but we'll have to talk to him about what car he chose.",
+      "context": "They're discussing Bryce Roberts' tweet about buying cars.",
+      "type": "original"
+    }
+  ]
+}

@@ -1,0 +1,1337 @@
+<think>
+We are given a podcast transcript and need to extract every reference to tweets, X/Twitter posts, quote tweets, replies, and threads.
+
+Steps:
+1. Read through the transcript and look for any mentions of "tweet", "X", "Twitter", "on X", "on Twitter", "quote tweet", "reply", "thread", or similar.
+2. For each such mention, we will extract:
+   - author: the person who tweeted (if named, else "unknown")
+   - content: the exact words of the tweet as described in the transcript (verbatim)
+   - context: why it was discussed (1-2 sentences max)
+   - type: one of "original", "quote_tweet", "reply", "thread", "reference"
+
+Important: We must not invent any tweets that are not mentioned in the transcript.
+
+Let's go through the transcript and note every reference:
+
+- "Megan Borowski over at the Wall Street Journal has a scoop that META is, in fact, developing a new image and video-focused AI model." 
+  This is a reference to a journalist's scoop, but it's not a tweet. It's a news story. We are only to extract tweets. So skip.
+
+- "I mean, we just started a couple months ago. This has definitely been on like the vision board like one day. And now we're here, so thank you so much for hosting us." 
+  This is not a tweet.
+
+- "We have a partnership with the New York Stock Exchange." 
+  Not a tweet.
+
+- "The timeline" appears multiple times. We need to check if any timeline references are about tweets.
+
+  Looking for "timeline" in the context of social media:
+
+  - "Let's go to the timeline so TikTok owner bite dance is on track for 50 billion in profit in 2025"
+    This is referring to a timeline of news (like a news timeline), not a Twitter timeline.
+
+  - "I remember Bologi texted you super early on and said, great set." 
+    This is a text (SMS), not a tweet. So skip.
+
+  - "Jackson texted one of us the same" -> text, not tweet.
+
+  - "And also thank you to the media that makes the show possible with the fact-finding." 
+    Not a tweet.
+
+  - "I was looking back at some of the original love that we got from uh from different uh people I remember Bologi texted you super early on" -> again, text.
+
+  - "Bloomberg is reporting, an executive said this, it's not a code red if it's code red every day at your company." 
+    This is a news report, not a tweet.
+
+  - "Open AI has declared Mold. Code Red multiple times Bloomberg is reporting" 
+    This is a news report, not a tweet.
+
+  - "In a letter to the White House sent this AM. This was yesterday." 
+    This is a letter, not a tweet.
+
+  - "Charlemagne the God" -> This is a person, but the transcript says "Charlemagne the God" and then talks about his deal. But we don't have a specific tweet.
+
+  - "Jira Tickets was reacting to OpenAI, now aiming to raise $100 billion at an $830 billion valuation, and J.T. says, wow, new number just dropped." 
+    This says "Jira Tickets" but note: it's likely a typo for "Jira Tickets" (a company or person) but in the context, it's written as "Jira Tickets". However, the transcript says "Jira Tickets was reacting to OpenAI", meaning that Jira Tickets (a person or account) tweeted or posted on Twitter. But the content is described as "J.T. says, wow, new number just dropped." So we have:
+
+      author: "Jira Tickets" (but note: the transcript says "Jira Tickets", so we use that as the author)
+      content: "wow, new number just dropped" (but note: the transcript says "J.T. says, wow, new number just dropped", so the content is "wow, new number just dropped")
+      context: They are reacting to OpenAI's valuation news.
+
+    However, note: the transcript says "Jira Tickets was reacting to OpenAI", so it's a reaction on Twitter. The type would be "reply" or "original"? Since it's a reaction to OpenAI (which might be a tweet by OpenAI), it could be a reply. But the transcript doesn't say it's a reply to a specific tweet, so we'll treat it as an original tweet.
+
+    But note: the transcript says "Jira Tickets was reacting to OpenAI", meaning that Jira Tickets tweeted in response to something OpenAI did. So it's a reply to an OpenAI tweet. However, the transcript doesn't quote the OpenAI tweet, so we don't have the context of the original. But the reference we have is to Jira Tickets' tweet.
+
+    We'll record:
+      author: "Jira Tickets"
+      content: "wow, new number just dropped"
+      context: Reacting to OpenAI's valuation news.
+      type: "reply" (because it's a reaction to OpenAI's post, so it's a reply)
+
+    But note: the transcript says "Jira Tickets was reacting to OpenAI", so it's a reply to an OpenAI tweet.
+
+- "Shrek hits the timeline to say some important words, check yourself before you Shrek yourself." 
+  This is a reference to a meme or a tweet by "Shrek", but note: it's not a real tweet. It's a joke by the host. The transcript says "Shrek hits the timeline", meaning they are using the word "timeline" to mean a Twitter timeline, but it's a made-up reference for humor. So we cannot extract this as a real tweet.
+
+  However, note: the host says "Shrek hits the timeline to say some important words", and then they quote "check yourself before you Shrek yourself". This is a joke, not a real tweet. So we skip.
+
+- "I don't know if we're going to make it through the show in this costume." 
+  This is the host speaking, not a tweet.
+
+- "It's Friday, December 19, 2020." 
+  This is a date, not a tweet.
+
+- "Merry Christmas!" 
+  Host saying, not a tweet.
+
+- "We're very thankful this holiday" 
+  Host.
+
+- "We started Christmas on Monday." 
+  Host.
+
+- "We did the exact thing." 
+  Host.
+
+- "We have the numbers. We actually did 225 live streams this year." 
+  Host.
+
+- "Across those 225 live streams, we interviewed 912 unique guests." 
+  Host.
+
+- "We're also doing another five today, I think. So we're still adding to that, but we almost hit 1,000 guests." 
+  Host.
+
+- "Some guests have come. We know the record holder for this year. Delian Asperuhov with 18 guest appearances." 
+  Host.
+
+- "We've done 1219 interviews and 8,554 posts on X." 
+  This is a fact the host states: "8,554 posts on X". But note: this is the show's own posts, not a reference to someone else's tweet. The host is saying "we" (TVPN) have 8,554 posts on X. This is not a reference to a tweet by someone else. So we do not extract this as a tweet reference.
+
+  However, note: the rule says "every reference to tweets, X/Twitter posts, quote tweets, replies, and threads". This is a reference to the show's own activity. But the rule says "extract every reference to tweets" meaning when they are discussing someone else's tweet. The show's own activity is not a reference to a tweet (it's their own). So we skip.
+
+- "I remember Bologi texted you super early on and said, great set." 
+  This is a text message, not a tweet. So skip.
+
+- "Jackson texted one of us the same" 
+  Text, skip.
+
+- "Bloomberg is reporting, an executive said this" 
+  News report, skip.
+
+- "I mean, we just started a couple months ago." 
+  Host.
+
+- "This is a big moment for us." 
+  Host.
+
+- "We'd love for you to hit this gone for us." 
+  Host.
+
+- "Congratulations on Metacinette 2025." 
+  Host.
+
+- "The New York Stock Exchange." 
+  Not a tweet.
+
+- "We're live from GitHub Universe." 
+  Not a tweet.
+
+- "I can't believe he showed up." 
+  Host.
+
+- "The Christmas episode." 
+  Host.
+
+- "The response was like, would you ever spend $250,000 a car and I took that literally?" 
+  This is a reference to a response, but it doesn't say it's a tweet. It says "the response", which might be from a viewer. But without specification, we don't know if it's a tweet. The transcript doesn't say "on Twitter" or "tweet", so we skip.
+
+- "Sam Alman has a good sense of humor." 
+  This is a person, but not a tweet reference.
+
+- "You guys are really important to me." 
+  Host.
+
+- "I also think that you're transforming the way that media is, you know, dispersed each week and, you know, and it's awesome." 
+  Host.
+
+- "you guys on x doing what you do" 
+  This is the host referring to their own activity on X. Not a reference to someone else's tweet.
+
+- "I remember Bologi texted you super early on and said, great set." 
+  Already skipped (text).
+
+- "Jackson texted one of us the same" 
+  Skipped.
+
+- "We have a partnership with the New York Stock Exchange." 
+  Host.
+
+- "We now best." 
+  Host.
+
+- "The locking in that you do today will benefit your great grandchildren." 
+  Host.
+
+- "I agree." 
+  Host.
+
+- "If you do it right." 
+  Host.
+
+- "Yeah." 
+  Host.
+
+- "So do it." 
+  Host.
+
+- "Do it." 
+  Host.
+
+- "Do it, brother." 
+  Host.
+
+- "Like two years." 
+  Host.
+
+- "Today is MetaConnect 2025." 
+  Host.
+
+- "We'd love for you to hit this gone for us." 
+  Host.
+
+- "There we go." 
+  Host.
+
+- "Congratulations on Metacinette 2025." 
+  Host.
+
+- "This is a big moment for us." 
+  Host.
+
+- "I mean, we just started a couple months ago." 
+  Host.
+
+- "This has definitely been on like the vision board like one day." 
+  Host.
+
+- "And now we're here, so thank you so much for hosting us." 
+  Host.
+
+- "You're watching TBPN." 
+  Host.
+
+- "We now best." 
+  Host.
+
+- "And we have some fantastic news." 
+  Host.
+
+- "We have a partnership with the New York Stock Exchange." 
+  Host.
+
+- "You're watching TVPN." 
+  Host.
+
+- "We're live from GitHub Universe." 
+  Host.
+
+- "Let's give it a quick hit for 27%." 
+  Host.
+
+- "Strong hit." 
+  Host.
+
+- "Great hit." 
+  Host.
+
+- "So good to meet you." 
+  Host.
+
+- "How you do it?" 
+  Host.
+
+- "There he is." 
+  Host.
+
+- "Welcome to the man himself." 
+  Host.
+
+- "I can't believe you jump." 
+  Host.
+
+- "I can't believe he showed up." 
+  Host.
+
+- "The Christmas episode." 
+  Host.
+
+- "And the response was like, would you ever spend $250,000 a car and I took that literally?" 
+  This is the only other potential one. But note: it says "the response", and then they say "That's the scoop of the year." It doesn't specify that it's a tweet. It might be a response from a viewer in the chat or a text. So we cannot assume it's a tweet. We skip.
+
+- "Sam Alman has a good sense of humor." 
+  Host.
+
+- "You guys are really important to me." 
+  Host.
+
+- "Good luck to you guys." 
+  Host.
+
+- "Just keep doing what you're doing." 
+  Host.
+
+- "You're just, you're just electric." 
+  Host.
+
+- "What you guys do is great." 
+  Host.
+
+- "I also think that you're transforming the way that media is, you know, dispersed each week and, you know, and it's awesome." 
+  Host.
+
+- "you guys on x doing what you do and elsewhere so thanks so much thank you to everybody that uh has made this possible by uh tuning in enjoying the show and supporting us uh however you have so have a wonderful evening and we will see you tomorrow thank you take care good night" 
+  This is the host saying "you guys on x", which is referring to their own activity. Not a reference to someone else's tweet.
+
+- "having the snow effect for the whole thing is great the snow effect is not baked into to the underlying video that of course will be shared on anyways uh thank you thank you thank you ben and Nick and Scott and Michael for making that you guys you guys are the correction actually shout out to Jackson who made that video no way what legend thank you Jackson legend amazing and Tyler you do you have any news for us yeah contract extended yeah yeah yeah if you're extended He's not going home." 
+  This is about a video made by Jackson, not a tweet.
+
+- "We have to thank everyone that actually watched the show." 
+  Host.
+
+- "Everyone in chat, we appreciate you" 
+  Host.
+
+- "There are so many ways to experience what we do." 
+  Host.
+
+- "That is by design." 
+  Host.
+
+- "We want to let people..." 
+  Host.
+
+- "We want to meet them where they are, obviously, in an RSS feed, in a cut-down, in a diet TBPN product, in a 20-minute version in a new letter in the newsletter in the trading cards the trading cards themselves are a way to experience what we do here and so thank you to everyone who enjoyed any of that no matter how much or how frequently you did we appreciate you let's go to the timeline" 
+  The word "timeline" is used again, but it's in the context of the show's timeline (like a news timeline). Not a Twitter timeline.
+
+- "so TikTok owner bite dance is on track for 50 billion in profit in 2025 big that's so much money so this is from Bloomberg bite dance is on track for profits of roughly 50 billion capping a record year for a Chinese social media leader making major inroads into e-commerce and new markets." 
+  This is a news report from Bloomberg, not a tweet.
+
+- "I mean, it truly is like their hyper-scaler." 
+  Host.
+
+- "They own a ton of different stuff, gaming, social. It's so much more than just TikTok." 
+  Host.
+
+- "The Beijing-based parent company of TikTok is on track to hit that milestone after amassing net income of about $40 billion over the year's first three quarters." 
+  Host (summarizing news).
+
+- "That would take the company's earnings close to that of meta platforms." 
+  Host.
+
+- "So By-Dance is now basically the same size as meta, which is insane." 
+  Host.
+
+- "Meta's, of course, earning about $60 billion this year." 
+  Host.
+
+- "TikTok success has come over under scrutiny after the Biden administration led an effort to ban TikTok." 
+  Host.
+
+- "Biden is now close to finalizing a plan to hive off the video service in the U.S., which will ensure... It's going to be American-made. American-made short-form video." 
+  Host.
+
+- "Debates over exactly how that will happen, but Oracle is potentially in the deal." 
+  Host.
+
+- "Despite Washington's scrutiny, TikTok has expanded globally at a rapid clip, including in the U.S." 
+  Host.
+
+- "It has been pushing aggressively into e-commerce and live-stream shopping." 
+  Host.
+
+- "The live stream shopping thing, it feels like it's so, so big over there." 
+  Host.
+
+- "I wonder if it's somewhat growing here, but it does feel like it still feels like it has not hit a fever pitch in the United States the way it has abroad." 
+  Host.
+
+- "TikTok has signed a deal for the sale of the United States unit." 
+  Host.
+
+- "The deal should close January 22nd." 
+  Host.
+
+- "This is from Sarah Fisher, the media correspondent at Axios." 
+  News source, not a tweet.
+
+- "Oracle, Silver Lake, and MGX will collectively own 45% of the U.S. entity, 30% will be held by affiliates of existing bite dance investors, and 20% will be retained by bite dance." 
+  Host.
+
+- "Bytance, you know, the Chinese entity sort of becomes the minority investor." 
+  Host.
+
+- "It sort of goes into American hands loosely or Western hands." 
+  Host.
+
+- "And then, of course, the rest of the process can be handled." 
+  Host.
+
+- "And you can, and you have more leverage to address, like, where is the data stored? How is the algorithm trained?" 
+  Host.
+
+- "The U.S. venture, the joint venture, is going to be focused on data protection, algorithm, security, content moderation, and software assurance." 
+  Host.
+
+- "So, and retraining the content recommendation algorithm on U.S. user data to ensure the content feed is free from outside manipulation, we'll be interested to see if there's any noticeable effect for TikTok users." 
+  Host.
+
+- "Megan Borowski over at the Wall Street Journal has a scoop that META is, in fact, developing a new image and video-focused AI model." 
+  This is a journalist's scoop, not a tweet.
+
+- "code name Mango. I like it." 
+  Host.
+
+- "Alex Wang and Chris Cox talked the new models, Mango and Avocado, in a Q&A with employees this morning." 
+  Host.
+
+- "One of those employees said, I got to tell the Wall Street Journal about this." 
+  This is a quote from an employee to the Wall Street Journal, not a tweet.
+
+- "It's too good. It's too good. It's too good. It's too good. I got to let them know." 
+  Employee's quote, not a tweet.
+
+- "They said the models are expected to be released in the first half of 2026." 
+  Host.
+
+- "I mean, they have a lot of data." 
+  Host.
+
+- "They should be able to train a great model." 
+  Host.
+
+- "I wonder if it's enough to get to just release a frontier model and really see any usage." 
+  Host.
+
+- "or if this is, again, it's like, it needs to be vended into Instagram, into meta properties." 
+  Host.
+
+- "What do you think, Tyler?" 
+  Host.
+
+- "I mean, I feel like it's very natural to vend this into Instagram." 
+  Tyler.
+
+- "And like this model, like, I would be very surprised if people are surprised by this, right?" 
+  Tyler.
+
+- "Because like the mid journey in vibes, like that was not MSL, that was not Alexander Wang." 
+  Tyler.
+
+- "Yeah, yeah, yeah, yeah." 
+  Host.
+
+- "That's just like the product." 
+  Host.
+
+- "But they've done a lot of work to Marshall Compute, build huge data centers, like they're ready for a big run." 
+  Host.
+
+- "Yeah, like I expect this to be very good." 
+  Host.
+
+- "Yeah, I would expect this to be." 
+  Host.
+
+- "Dana White and the meta board, This is a match made in heaven." 
+  Host.
+
+- "Have you got into AI yet?" 
+  Host.
+
+- "We're dabbling." 
+  Host.
+
+- "Okay." 
+  Host.
+
+- "So meta AI, I got, you know, I'm on the board for meta." 
+  Host.
+
+- "I just got back from the meta board meeting." 
+  Host.
+
+- "So good." 
+  Host.
+
+- "Zuckerberg, who was a brilliant gangster, this guy." 
+  Host.
+
+- "Calling you a gangster." 
+  Host.
+
+- "These people who try to talk about him and everything else." 
+  Host.
+
+- "I'm so blown away and impressed by this guy." 
+  Host.
+
+- "He's an animal." 
+  Host.
+
+- "I agree with that." 
+  Host.
+
+- "He is an animal." 
+  Host.
+
+- "Putting all the chips in on AI." 
+  Host.
+
+- "We just hired like 10 kids." 
+  Host.
+
+- "that are age 22 to 28, the average salary is like $65 million." 
+  Host.
+
+- "These kids are making that a comment on AI." 
+  Host.
+
+- "This is the final leak." 
+  Host.
+
+- "This is where we got the real data." 
+  Host.
+
+- "Everyone's wondering." 
+  Host.
+
+- "There's way more positives about AI the negative." 
+  Host.
+
+- "So you start looking at AI and getting into it and asking AI, how do I build my business? How do I, you know, and it'll start giving you some ideas." 
+  Host.
+
+- "And, uh..." 
+  Host.
+
+- "Hold on. Is he saying $65 million is the average salary per year?" 
+  Host.
+
+- "I think so. I mean, I think of a salary, I think of a salary as a, that's an annual thing." 
+  Host.
+
+- "So 10 times, that's insane." 
+  Host.
+
+- "And no head in the chat says meta engineers with a 600K salary watching this." 
+  Host.
+
+- "So, yeah, yeah, keep playing this." 
+  Host.
+
+- "From here to Tulsa, Oklahoma, you'd have to go on a map and you'd have to lay out, you know, your route and all." 
+  Host.
+
+- "You got to do the same thing for your business." 
+  Host.
+
+- "Map out your route for 26." 
+  Host.
+
+- "When I first saw this, I thought he was saying, like, AI will be able to get. get you directions." 
+  Host.
+
+- "And I was like, Google Maps can do that." 
+  Host.
+
+- "Okay. So when I see this, when I see this, I just, it's actually a great metaphor." 
+  Host.
+
+- "Entrepreneurs can get stuck in a loop of just wanting to meet and talk with people and like get ideas and get strategies and learn." 
+  Host.
+
+- "And AI is really good at that." 
+  Host.
+
+- "You can say, I have an e-commerce company. I want to grow. What should I do? It'll give you a bunch of ideas." 
+  Host.
+
+- "It just shows how worthless a lot of ideas are and how important execution is." 
+  Host.
+
+- "Some ideas are priceless, right? It's like you want to execute on the right ideas, but oftentimes to find the right ideas, you got to try a bunch of stuff." 
+  Host.
+
+- "Yeah. And so AI is at the point where it can give you the perfect strategy, the perfect playbook, even if it's like kind of the average playbook, but in the end, you just still got to go do the work." 
+  Host.
+
+- "That's the hard part." 
+  Host.
+
+- "I think he's actually a pretty good communicator here, because he's using a metaphor that people understand mapping technology, Google Maps for business, for answering other questions, unstructured questions, AI can tell you that." 
+  Host.
+
+- "If you think about before, you know, you'd Google, okay, well, my business. business needs a website. How do I set up a website for my business? Okay, I need to go to the store and get a book, web development for dummies. This was the thing. Back in the 90s, it was like Java for dummies." 
+  Host.
+
+- "And so he's, he's right. He's delivering it in like this sort of funny way." 
+  Host.
+
+- "And he's, and he brings like this crazy, this crazy energy to the performance." 
+  Host.
+
+- "But he is correct in like the pitch in this idea." 
+  Host.
+
+- "He's actually correctly pitching superintelligent, personal super intelligence." 
+  Host.
+
+- "He doesn't really address the fact that like, you know, there's, credible competition from Anthropic and Open AI and Google on this front." 
+  Host.
+
+- "But that's not what he's addressing." 
+  Host.
+
+- "He's addressing just the idea of like, is AI useful?" 
+  Host.
+
+- "Meta has something, I think, three, three and a half to four billion monthly active users." 
+  Host.
+
+- "And so I think in those board meetings, you have to imagine." 
+  Host.
+
+- "They're saying like, yeah, there's a lot of competition." 
+  Host.
+
+- "Yeah, ChatGBTGBT has a big user base." 
+  Host.
+
+- "Yeah, Gemini has a big user base." 
+  Host.
+
+- "But we have four billion people that we can start distributing." 
+  Host.
+
+- "If we build a great model, we can start distributing it through WhatsApp, through Instagram, through Facebook, through the MetaAI app, et cetera." 
+  Host.
+
+- "Yeah, I was listening to Ben Thompson this morning, and he was doing app reviews, like the review of the top paid apps and the top free apps." 
+  Host.
+
+- "So the 2025 top paid apps, and this is wild." 
+  Host.
+
+- "It's like, have you heard? of any of these." 
+  Host.
+
+- "I know." 
+  Host.
+
+- "Hot schedules." 
+  Host.
+
+- "I know." 
+  Host.
+
+- "It seems like... Have you heard of any of these?" 
+  Host.
+
+- "Procreate." 
+  Host.
+
+- "No, because I checked the charts a lot." 
+  Host.
+
+- "Skyview." 
+  Host.
+
+- "I've heard of that." 
+  Host.
+
+- "Tonal energy, auto sleep." 
+  Host.
+
+- "They're all like a couple dollars." 
+  Host.
+
+- "And most people have not really heard of any of these." 
+  Host.
+
+- "If they have, they're like, oh yeah, I use, you know, this for this one little thing, or this is a niche thing." 
+  Host.
+
+- "And then you go to the top free apps and it's like, trillion dollar company, trillion dollar company, trillion dollar company." 
+  Host.
+
+- "It's literally chat GPT threads, Google, TikTok's." 
+  Host.
+
+- "TikToks, WhatsApp, Instagram, YouTube, Google Maps, Gmail, Google Gemini." 
+  Host.
+
+- "And so Ben's point was, if you, like, Chat Chibi-T, yes, they are the number one app, but they should be scared because Google has one, two, three, four, five in the top 11 or something like that." 
+  Host.
+
+- "And so the distribution is just so powerful." 
+  Host.
+
+- "And fortunately, Meta has that distribution, so they're also a contender and they can stay in the game." 
+  Host.
+
+- "So the top, the number 22 free app right now, number 21 is. Instagram." 
+  Host.
+
+- "Number 22 is whatnot. Number 23 is HBO Max." 
+  Host.
+
+- "And on the paid side, currently, 21 is Threma, secure messenger." 
+  Host.
+
+- "Sounds like an even-sus version. Sounds insecure. Yeah, sounds very insecure." 
+  Host.
+
+- "Number two is pocket god, which is a game that includes call of booty. Wait, call of pocket god. Isn't that a nickname for AGI? They've, AGI's been solved. This is just like a mobile game." 
+  Host.
+
+- "And then number 23 is jingle. Real motion shaker instrument." 
+  Host.
+
+- "Casey Neistadt did a project with the MetaQuest 3 where he scanned his studio." 
+  Host.
+
+- "He says it's pretty rad." 
+  Host.
+
+- "You can walk around and look at stuff and get close." 
+  Host.
+
+- "Yeah, it's very inspiring from a production perspective because it's practical, but it also has so much character that it tells you a story." 
+  Host.
+
+- "And so even when he's just filming a little product review and he's making the seventh video of the month or year or whatever, you're you're brought into his world you understand who Casey is every single one of those items tells a story should we give Tyler a challenge to actually get this up and running scan the ultrida I tried for like I don't know maybe two months now you've been able to do a couple experiences on the Metaquest okay but you couldn't record your own yet and I mean I'm not sure if it's actually I guess it is out that you can do it yourself so I'm not saying scan the Ultrudea gigachad elf is so" 
+  This is the host talking about Casey's project, not a tweet.
+
+- "So yeah, I'm not proposing that you, you look so ridiculous." 
+  Host.
+
+- "Do the sad face, do the sad face." 
+  Host.
+
+- "The sad face is the funniest one." 
+  Host.
+
+- "It's so funny." 
+  Host.
+
+- "The jaw line is crazy." 
+  Host.
+
+- "How, oh, there we can't get it." 
+  Host.
+
+- "It looks so real." 
+  Host.
+
+- "It's so good." 
+  Host.
+
+- "I don't like this one." 
+  Host.
+
+- "No." 
+  Host.
+
+- "He really looks so sad." 
+  Host.
+
+- "What's wrong, Tyler?" 
+  Host.
+
+- "Cheer up." 
+  Host.
+
+- "Open AI has declared Mold. Code Red multiple times Bloomberg is reporting, an executive said this, it's not a code red if it's code red every day at your company." 
+  This is a news report.
+
+- "You know what? Nowhere else it's Code Red, right here. Code Red? Code Red. Yeah, we heard it's Code Red. Yeah, it's Code Red." 
+  Host.
+
+- "Everyone can put on Santa outfits." 
+  Host.
+
+- "It's Code Red time. Santa Sack is red, the reindeer, the sleigh, these things are red." 
+  Host.
+
+- "He was just getting in the Christmas spirit, guys." 
+  Host.
+
+- "It was not anything about the business." 
+  Host.
+
+- "It was not anything about the shaky ground." 
+  Host.
+
+- "The real question that Rachel Mets over at Bloomberg will have to get to the bottom of is, okay, so there's been multiple code reds at Open AI. How many Baja Blasts have there been?" 
+  This is a news report.
+
+- "Because we know that after every code red, there is an equal and opposite Baja Blast that gets the company back." 
+  Host.
+
+- "Well, what does success look like for Code Red? It's a Baja Blast." 
+  Host.
+
+- "It's a Baja Blast." 
+  Host.
+
+- "Blasting your way to the top of the charts, the top of the benchmarks, the top of the fundraising cycle." 
+  Host.
+
+- "Sam Altman's decision to declare Code Red at Open AI earlier this month, may have caught the industry's attention, but it wasn't the first time that the artificial intelligence company has done a code red." 
+  Host.
+
+- "The San Francisco-based startup leaderships has made the same decision previously, explicitly instructing employees to drop lower priority tasks and concentrate on a single goal." 
+  Host.
+
+- "I'm telling you, it's entirely a comms issue." 
+  Host.
+
+- "There's a phrase for this that doesn't turn into a negative press cycle." 
+  Host.
+
+- "It's called the lock-in." 
+  Host.
+
+- "You just tell everyone, we're locking in." 
+  Host.
+
+- "It's time for the great lock-in." 
+  Host.
+
+- "It's time for the great lock-in." 
+  Host.
+
+- "And if you say Open AI declares, for the great lock-in." 
+  Host.
+
+- "That's exciting." 
+  Host.
+
+- "Everyone's exciting." 
+  Host.
+
+- "People are gonna rally around them." 
+  Host.
+
+- "Everyone is gonna go through the roof and just be like, this is so bullish." 
+  Host.
+
+- "This is so bullish." 
+  Host.
+
+- "You can be at the top of your game, and if you declare a great lock-in, everyone's just like, oh no, it's gonna be even better." 
+  Host.
+
+- "They're gonna go even harder." 
+  Host.
+
+- "Hot take, maybe 2026 of the year of speed." 
+  Host.
+
+- "Maybe customers cannot tell the difference between 120 IQ chatbot, 130 IQ chatbot, 140 IQ chatbot." 
+  Host.
+
+- "What can they tell the difference?" 
+  Host.
+
+- "Speed." 
+  Host.
+
+- "That's right." 
+  Host.
+
+- "If they have to close the app, come back five minutes later, oh, my deep research report is here." 
+  Host.
+
+- "I think the models plateauing on wowing me with, they're already, AGI is here." 
+  Host.
+
+- "In a letter to the White House sent this AM. This was yesterday." 
+  This is a letter, not a tweet.
+
+- "OpenAI encourages the federal government to invest in our contract with initiatives like OpenAI Stargate to secure compute for public research." 
+  This is the content of the letter, not a tweet.
+
+- "The full thing is leverage public-private partnerships for supercomputing." 
+  Host.
+
+- "We encourage the federal government to co-investor contract with initiatives like OpenA.I. Stargate to secure dedicated compute for priority public research, i.e. health research, national security." 
+  Host.
+
+- "Just as government university partnerships built earlier supercomputers, new models could procure capacity on cutting-edge AI systems for use by federally funded researchers." 
+  Host.
+
+- "For example, a portion of Stargate's compute might be made available to the National Science Foundation or Department of Energy researchers." 
+  Host.
+
+- "tackling grand challenges providing academia access to frontier models without needing to build duplicate infrastructure what what do you think John because obviously people are going to dunk on this super hard but there there's you know people that are just not interested in AI don't think it's important don't think show me the big tech company that doesn't want to work with the government yeah like it's a knockout dragout fight to win Project Maven to win cloud hosting contracts" 
+  This is the host discussing the letter, not a tweet.
+
+- "The government has data right now and the fight between whether that data is stored on AWS, Oracle, Google, Azure, like, that is a somewhat of a bidding war, but there are also all sorts of other lobbying efforts to win those contracts." 
+  Host.
+
+- "It's the game on the field." 
+  Host.
+
+- "I don't know." 
+  Host.
+
+- "I feel like this is not asking for a backstop." 
+  Host.
+
+- "This is also not asking for nationalization, although it is like somewhat predicted in 2027." 
+  Host.
+
+- "It feels more like an advertisement for a sales product." 
+  Host.
+
+- "This feels like an SDR, being like, I'm ready to rock." 
+  Host.
+
+- "Yeah, and I think even for taxpayers, do you want the government spending, like basically taking on the project themselves to build an end-to-end supercomputer and how good would the actual result be versus just saying, like, we need compute for these projects?" 
+  Host.
+
+- "Open AI, and all their messaging says we're compute-constrained and we're compute-constrained." 
+  Host.
+
+- "If we brought on 10 times a compute, we'd use it in a few weeks." 
+  Host.
+
+- "There's all these things that we can't do because we don't have enough compute." 
+  Host.
+
+- "And so to also be messaging the government and saying, hey, we'd like you to invest and effectively buy capacity for government researchers from our data centers, those things are, you can balance them, but it's a little bit hard to." 
+  Host.
+
+- "Open AI sees 2026 as the year of AI in science, the moment when AI begins unlocking breakthroughs and scientific discovery, just as it sped up software development in 2025." 
+  Host.
+
+- "More than seven and 10 Americans believe we need new innovations and solutions to challenges in scientific and medical research." 
+  Host.
+
+- "And they kind of go on kind of setting up, setting up the kind of ask." 
+  Host.
+
+- "It feels like a crucible moment for science in that science was effectively successfully done at a private corporation." 
+  Host.
+
+- "And if that's the trend, then, what is the government's role, what is the university's role." 
+  Host.
+
+- "Maybe it should just be a race between Google and Open AI to actually cure cancer and obviously the other, you know, pharmaceutical companies and all sorts of health companies." 
+  Host.
+
+- "Why are you laughing? I'm laughing because Brandon Jacoby texted me and said, listening to the show while working out, the sheep sound almost made me drop a dumbbell on my head from laughing. It's a goat sound, Brandon. It's a goat sound. Obviously, it's a goat sound." 
+  This is a text message from Brandon Jacoby. Not a tweet.
+
+- "Charlemagne the God" 
+  This is a person, but the transcript doesn't say he tweeted anything. It says "Charlemagne the God" is the person, and they are talking about his deal.
+
+- "Charlemagne signed a five-year deal, $200 million extension with IHeartMedia, locking him in with the company after it struck a deal with Netflix to stream the Breakfast Club." 
+  This is a news item.
+
+- "Interesting. Forbes is writing a story here. IHartMedia is paying Charlemagne 200." 
+  Host.
+
+- "They say, hey, IHard Media, we have a deal with Netflix. We can't lose Charlemagne because the Brexie has already been sold to Netflix. We got to have Charlemagne hosted because he's the talent." 
+  This is a quote from Forbes, not a tweet.
+
+- "The article in how Charlemagne became a media god. I love it, because of course he's Charlemagne the God." 
+  Host.
+
+- "On a chilly night in November radio personality, Charlemagne the God is roaming through the aisles of Midtown Comics in New York City, captivated by the heroes and villains that shaped his childhood escapism at the highest level." 
+  This is a quote from the Forbes article, not a tweet.
+
+- "He says, everybody's here for a purpose." 
+  Host (quoting the Forbes article).
+
+- "Durast at a black peacoat, a white hoodie, black jeans, and tan Timberland boots." 
+  Host.
+
+- "This is Isn't the media vigilante that listeners of the Breakfast Club have come to expect over the past 15 years?" 
+  Host.
+
+- "The 47-year-old comic book nerd leafing through original graphic novels of Batman, Superman, Wolverine." 
+  Host.
+
+- "And one of his favorites, Luke Cage is more subdued and introspective as he considers his public and private personas." 
+  Host.
+
+- "So, congratulations to Charlemagne." 
+  Host.
+
+- "There's a robot that is solving Rubik's cubes in 0.1 seconds." 
+  Host.
+
+- "That is so fast." 
+  Host.
+
+- "Look at this." 
+  Host.
+
+- "Look at this." 
+  Host.
+
+- "You can't even. Oh, it's in the slow-mo cam. Okay, watch this. And it's off. That's so crazy." 
+  Host.
+
+- "That's insane." 
+  Host.
+
+- "Think about that." 
+  Host.
+
+- "Look, this is the super, super, super slow-mo view. Super-slo-mo view. Super, super-duper-slow." 
+  Host.
+
+- "Point-1 seconds." 
+  Host.
+
+- "Wow, it's doing, this is so fast." 
+  Host.
+
+- "Wow, it's really doing it." 
+  Host.
+
+- "I can do a Rubik's cube in around one minute." 
+  Host.
+
+- "Can you do one? How fast can you do it? Let's cut to Tyler." 
+  Host.
+
+- "My best ever, when I was like 12, it was, it was like 20 seconds. 20 seconds." 
+  Tyler.
+
+- "20 seconds." 
+  Tyler.
+
+- "Yeah, you were a speed cube. Wow." 
+  Host.
+
+- "Nerd alert, nerd alert, nerd alert." 
+  Host.
+
+- "The no look." 
+  Host.
+
+- "Is that really?" 
+  Host.
+
+- "Yeah." 
+  Host.
+
+- "Oh, yeah, he's got it." 
+  Host.
+
+- "He's got it." 
+  Host.
+
+- "He's got it." 
+  Host.
+
+- "I used to be much better." 
+  Host.
+
+- "I used to be much better." 
+  Host.
+
+- "Did you want to talk about watches, Jordi?" 
+  Host.
+
+- "I did." 
+  Host.
+
+- "I did not know that Osama bin Laden was a Cassio guy." 
+  Host.
+
+- "A Cassio guy." 
+  Host.
+
+- "Couldn't." 
+  Host.
+
+- "Apparently base." 
+  Host.
+
+- "Couldn't get the RM." 
+  Host.
+
+- "Base has a watch as well." 
+  Host.
+
+- "Watch drop is cool." 
+  Host.
+
+- "I like a watch drop." 
+  Host.
+
+- "We like a watch drop." 
+  Host.
+
+- "Would you like to seize cartel assets as a privateer?" 
+  Host.
+
+- "This is a big opportunity for folks." 
+  Host.
+
+- "I would allow the president to issue you a letter of mark." 
+  Host.
+
+- "Time to take these pirates down." 
+  Host.
+
+- "We did talk about... Did we create this? We did say at the beginning of the year, we were highlighting the reward for Maduro very early before this whole Venezuela saga really kicked off." 
+  Host.
+
+- "It definitely ramped up from the time we talked about the fact that the State Department was interested in bringing him in for questioning." 
+  Host.
+
+- "Did you see this game on record?" 
+  Host.
+
+- "No." 
+  Host.
+
+- "It's a body cam, first person." 
+  Host.
+
+- "Wait a minute." 
+  Host.
+
+- "I believe this is not AI generated video." 
+  Host.
+
+- "This is just incredible Unreal Engine footage." 
+  Host.
+
+- "This looks so real." 
+  Host.
+
+- "I don't believe it's crazy, but I think this is actually real." 
+  Host.
+
+- "Now I believe, I thought this game went into... Beta and I thought people were playing this and I believe that even though it's Remarkably realistic looks so real it's it's like you look at that and you're like all this looks like the best game ever This looks way better than call of duty In fact the modern gamer and really you or me like you don't actually want this level of realism because it makes a game really hard It makes a lot less fun like some people do they want great mechanics and then they're willing to suspend belief and say hey we're you know I'm gonna play something that's little cartoony, as long as the mechanics work." 
+  Host.
+
+- "Jira Tickets was reacting to OpenAI, now aiming to raise $100 billion at an $830 billion valuation, and J.T. says, wow, new number just dropped." 
+  We already identified this one.
+
+- "Congrats on the new number." 
+  Host (responding to Jira Tickets).
+
+- "Looks like it's bigger than the old number." 
+  Host.
+
+- "That's good." 
+  Host.
+
+- "Can't wait to see the next number." 
+  Host.
+
+- "I love the number business." 
+  Host.
+
+- "That's really true." 
+  Host.
+
+- "Good bit." 
+  Host.
+
+- "Reality is life is a number business." 
+  Host.
+
+- "It's all about make it go out forever." 
+  Host.
+
+- "This is a good way to, I would say, wrap the year." 
+  Host.
+
+- "Here, Shrek hits the timeline to say some important words, check yourself before you Shrek yourself." 
+  We decided this is a joke, not a real tweet.
+
+- "You were just laughing about, you were just laughing yourself before the show and I asked you, what were you reading? And you said, well, Shrek said, check yourself before you shrek yourself." 
+  Host is referencing a joke they made, not a real tweet.
+
+- "It's been a fantastic year, everyone." 
+  Host.
+
+- "Thank you so much for all the support." 
+  Host.
+
+- "Thank you for watching TBPN and engaging with us in all different ways." 
+  Host.
+
+- "We really appreciate you and hope you have a fantastic holiday season." 
+  Host.
+
+- "Merry Christmas." 
+  Host.
+
+- "Happy New Year." 
+  Host.
+
+- "We'll see you in 2026." 
+  Host.
+
+- "I can't believe, I can't believe this is, this is the last show of the year." 
+  Host.
+
+- "What a year." 
+  Host.
+
+- "Wow, thank you everyone." 
+  Host.
+
+- "Totally surreal." 
+  Host.
+
+- "Surreal." 
+  Host.
+
+- "And it's an honor, it's an honor to, to build this show with the team and with all of you in the audience." 
+  Host.
+
+- "Gabe says one last gong." 
+  Host.
+
+- "One last gong." 
+  Host.
+
+- "One last gong for 2025." 
+  Host.
+
+- "What a year." 
+  Host.
+
+- "You pull up your pants." 
+  Host.
+
+- "He's got sweats on underneath." 
+  Host.
+
+- "Don't worry." 
+  Host.
+
+- "One last gong." 
+  Host.
+
+- "Thank you very Christmas." 
+  Host.
+
+- "Happy New Year." 
+  Host.
+
+- "And we will see you in 2026." 
+  Host.
+
+- "We love you." 
+  Host.
+
+- "Goodbye." 
+  Host.
+
+- "Have a fantastic New Year and all those holidays." 
+  Host.
+
+After this thorough search, the only actual reference to a tweet we found is:
+
+  "Jira Tickets was reacting to OpenAI, now aiming to raise $100 billion at an $830 billion valuation, and J.T. says, wow, new number just dropped."
+
+We extract:
+
+  author: "Jira Tickets"
+  content: "wow, new number just dropped"
+  context: Reacting to OpenAI's valuation news.
+  type: "reply"  (because it's a reaction to OpenAI's post, so it's a reply)
+
+But note: the transcript says "Jira Tickets was reacting to OpenAI", meaning they are replying to an OpenAI tweet. So type should be "reply".
+
+However, the transcript does not say "reply", but the context implies it's a reply. The rule says: "reply = replying to someone". So we'll use "reply".
+
+Now, are there any others?
+
+We found one more: "I don't know if we're going to make it through the show in this costume." - but this is the host, not a tweet.
+
+So only one tweet reference.
+
+But wait, the transcript also says: "We've done 1219 interviews and 8,554 posts on X."
+
+This is the show's own posts, so we don't extract it as a reference to someone else's tweet.
+
+Therefore, we have one tweet.
+
+Now, the episode date in the transcript is: "Date: December 20, 2025" and the transcript has "episode date: 2025-12-20".
+
+So episode_date: "2025-12-20"
+
+Now, we must return only JSON.
+
+We'll return:
+
+{
+  "episode_date": "2025-12-20",
+  "tweets": [
+    {
+      "author": "Jira Tickets",
+      "content": "wow, new number just dropped",
+      "context": "Reacting to OpenAI's valuation news.",
+      "type": "reply"
+    }
+  ]
+}
+
+But note: the transcript says "J.T. says", so the author is "Jira Tickets" (as written) and the content is "wow, new number just dropped".
+
+We are using "Jira Tickets" as the author.
+
+Is "Jira Tickets" a person? It might be a typo for "Jira Tickets" (a company) or "Jira Tickets" as a handle. We have to go by the transcript.
+
+The transcript says "Jira Tickets", so we use that.
+
+Also, note: the transcript says "Jira Tickets was reacting to OpenAI", so it's a reply to an OpenAI tweet.
+
+Therefore, type: "reply"
+
+Now, let's write the JSON.
+
+Important: The JSON must be valid and match the schema.
+
+We have one tweet.
+
+But note: the schema says "reference" for vague mentions. We are not using "reference" because we have a specific author and content.
+
+We are using "reply" because it's a reply.
+
+So the JSON is as above.
+
+Let's format it without any extra spaces or comments.
+
+Note: The transcript says "J.T. says", but the author is "Jira Tickets", not "J.T.".
+
+So we use "Jira Tickets" as the author.
+
+Final JSON:
+
+</think>
+
+{
+  "episode_date": "2025-12-20",
+  "tweets": [
+    {
+      "author": "Jira Tickets",
+      "content": "wow, new number just dropped",
+      "context": "Reacting to OpenAI's valuation news.",
+      "type": "reply"
+    }
+  ]
+}

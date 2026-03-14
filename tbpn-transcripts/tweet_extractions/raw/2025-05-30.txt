@@ -1,0 +1,334 @@
+<think>
+We are scanning the transcript for any references to tweets, X/Twitter posts, quote tweets, replies, or threads.
+
+Let's go through the transcript and extract every mention:
+
+1. "We got a post from Maddie Pally. I threw this in this morning. In 30 years, I'll probably be up to some boomer stuff, like, no son of mine is marrying an LLM. Marriage is between two humans only. And my kids will be like, OMG, dad, you're so robophobic. 17K. Crazy real, for sure."
+
+   - This is a reference to a post (likely a tweet) from Maddie Pally.
+   - Author: Maddie Pally
+   - Content: "In 30 years, I'll probably be up to some boomer stuff, like, no son of mine is marrying an LLM. Marriage is between two humans only. And my kids will be like, OMG, dad, you're so robophobic."
+   - Context: The host mentions it as a post they threw in that morning and comments on it being "crazy real".
+   - Type: reference (because it's a vague mention of a post without the exact tweet content being quoted in the transcript? But note: the transcript does quote the content verbatim as "In 30 years...". So it's a direct quote of the tweet.)
+
+   However, note: the transcript says "I threw this in this morning" and then quotes the content. So we have the exact content.
+
+2. "We got a post from ad quick then we'll give you an ad read for ad quick ad quick They have a new ad quickick co-pilot."
+
+   - This is not a reference to a tweet. It's a company announcement. The host is talking about an ad from AdQuick, not a tweet.
+
+3. "We got a massive size gong. Yep for Michael Dell One of the greatest ever do it in q1 we received 12.1 billion dollars in AI orders surpassing the total shipments for all of fiscal year 2025 and leaving us with a backlog of $14.4 billion."
+
+   - This is a company announcement (from Dell), not a tweet.
+
+4. "We got a post from Chris How he's Chris Pike Pike Pike Pike He has a new post he dropped the end of software on May 31st 2024 yep, he's got a new post called the dawn of infinite code"
+
+   - This is a reference to a post by Chris Pike (likely a blog post, but the host says "post" and then describes the content as a tweet? However, note the context: the host says "he dropped the end of software" and then describes the content. But the transcript does not say it's a tweet. However, the host also says "he has a new post" and then later says "Chris Pike's post" and then quotes the content. So it's a post on X? The host says "he's the link and he Still does numbers so he has a new article". So it might be a blog post, not a tweet.
+
+   But note: the host says "he has a new post" and then describes the content. We are to extract references to tweets, so if it's not specified as a tweet, we might skip. However, the instruction says: "Extract ALL references to tweets, X/Twitter posts, quote tweets, replies, and threads."
+
+   The host says: "he has a new post" and then describes the content. But the context says "Chris Pike" and then the host says "he's the link" and "he Still does numbers" — this might be referring to his X account.
+
+   However, the host does not explicitly say "on X" or "tweet", but the word "post" in the context of social media might refer to a tweet. But note: the host also says "new article" later. So it's ambiguous.
+
+   But the instruction says: "Include EVERY mention of a tweet, post, X/Twitter activity, or 'on the timeline'".
+
+   The transcript says: "he has a new post" and then the host describes the content. We are to extract it as a reference to a post (if we assume it's a tweet). However, the host says "he has a new article" when describing the content: "he's got a new article the dawn of infinite code".
+
+   So it's likely a blog post, not a tweet. Therefore, we should not include it as a tweet reference.
+
+5. "We have a post from Guillermo Rao, the founder of Versal, who's been on the show. The only durable moat in technology is relentless execution. And we got Molly O'Shea in the comments, or violent execution."
+
+   - This is a reference to a post by Guillermo Rao (likely on X/Twitter).
+   - Author: Guillermo Rao
+   - Content: "The only durable moat in technology is relentless execution."
+   - Context: The host mentions it as a post and then notes a comment by Molly O'Shea (which would be a reply to that post).
+   - Type: original (because it's a standalone post by Guillermo Rao)
+
+   However, note: the host says "we got a post from Guillermo Rao", so it's a direct reference.
+
+   But note: the host also says "we got Molly O'Shea in the comments", meaning that Molly O'Shea made a comment (reply) to that post. But the instruction says to extract references to tweets, so we should extract the original post and then also the reply? However, the instruction says "extract every reference", so we have to extract the original post and the reply.
+
+   But note: the host does not quote the reply. The host says: "And we got Molly O'Shea in the comments, or violent execution." So the content of the reply is "violent execution" (a typo for "relentless execution" but they are making a pun). However, the host does not quote the exact reply, but says it as "violent execution" (which is a comment on the post).
+
+   We are to extract the content as read/described. So for the reply, the content would be "violent execution" (because the host says "Molly O'Shea in the comments, or violent execution").
+
+   However, the host is saying that Molly O'Shea commented with "violent execution", so we can take that as the content.
+
+   But note: the rule says "verbatim quote of the tweet as read/described in the transcript". So for the reply, we take the exact words the host used to describe it.
+
+   So we will extract:
+   - The original post by Guillermo Rao: content "The only durable moat in technology is relentless execution."
+   - The reply by Molly O'Shea: content "violent execution" (but note: the host says "or violent execution", meaning that Molly O'Shea said "violent execution" as a comment).
+
+   However, the transcript does not say "Molly O'Shea wrote: 'violent execution'", it says "we got Molly O'Shea in the comments, or violent execution". So we have to use the description.
+
+   But note: the host says "or violent execution", meaning that Molly O'Shea's comment was "violent execution". So we'll use that.
+
+6. "Mike Solana says we were supposed to have flying cars and his recent calls is just robo callers getting spam. It's like six calls in the span of five minutes. It's so brutal."
+
+   - This says "Mike Solana says", but it doesn't specify that Mike Solana tweeted. It might be a quote from a podcast, interview, or other medium. However, the host says "Mike Solana says", so we have to see if it's a reference to a tweet. The transcript doesn't say "on Twitter" or "tweeted", so it's ambiguous.
+
+   But note: the host says "Mike Solana" and then describes what he said about robo callers. It's possible that Mike Solana posted this on X. However, the transcript does not explicitly say "on X" or "tweeted", so we cannot assume it's a tweet.
+
+   Since the instruction says "extract every reference to tweets, X/Twitter posts, ...", and the transcript does not explicitly state that Mike Solana posted this on Twitter, we should not include it.
+
+   However, note: the host says "Mike Solana says" and then the content is about robo callers. But the context of the show is about tech and social media, so it might be a tweet. But without explicit mention, we'll skip.
+
+7. "Patrick Collison posted just a really quick screenshot of chat. GPT."
+
+   - This is a clear reference to a post by Patrick Collison. The host says "Patrick Collison posted", so it's a tweet (or X post).
+   - Author: Patrick Collison
+   - Content: The host does not quote the content of the post, only says "he posted just a really quick screenshot of chat. GPT." and then the host describes the question and answer. But the content we are to extract is the actual tweet content. However, the transcript does not give the exact words of the tweet.
+
+   The host says: "Patrick Collison posted just a really quick screenshot of chat. GPT. It says AI is getting pretty good. He says, uh, does rent control tend to help or hurt cities? Summarize your answer in one objective, pithy and blunt 280 character assessment."
+
+   So the tweet content is: "AI is getting pretty good. He says, uh, does rent control tend to help or hurt cities? Summarize your answer in one objective, pithy and blunt 280 character assessment."
+
+   But note: the host says "It says AI is getting pretty good." — this is part of the tweet? Or is it the host's description?
+
+   Actually, the host is describing what the tweet contained. The tweet was a screenshot of a chat with GPT, and the prompt was: "does rent control tend to help or hurt cities? Summarize your answer in one objective, pithy and blunt 280 character assessment."
+
+   So the content of the tweet is the prompt that Collison sent to GPT (and then the response was in the chat). But the host is quoting the prompt as part of the tweet.
+
+   However, the host says: "Patrick Collison posted just a really quick screenshot of chat. GPT. It says AI is getting pretty good. He says, uh, does rent control tend to help or hurt cities? Summarize your answer in one objective, pithy and blunt 280 character assessment."
+
+   The phrase "It says AI is getting pretty good." is likely the host's description of the context, but the actual tweet content (the prompt) is the question.
+
+   We are to take the verbatim quote as read in the transcript. The transcript says: "does rent control tend to help or hurt cities? Summarize your answer in one objective, pithy and blunt 280 character assessment."
+
+   So we'll use that as the content.
+
+   But note: the host says "It says AI is getting pretty good." — that might be the beginning of the tweet? But the host is describing the screenshot. The actual tweet content (the prompt) is the question.
+
+   So we'll take the question as the content.
+
+   However, the transcript does not say that the tweet contained the words "AI is getting pretty good." — it says Collison posted a screenshot of a chat where it says "AI is getting pretty good" (which is part of the chat). But the prompt was the question.
+
+   Since the host says "It says AI is getting pretty good. He says, uh, ...", it's ambiguous. But the key part is the question.
+
+   We'll extract the question as the content.
+
+   But note: the rule says "verbatim quote of the tweet as read/described in the transcript". The host describes the content of the tweet as including the question.
+
+   So content: "does rent control tend to help or hurt cities? Summarize your answer in one objective, pithy and blunt 280 character assessment."
+
+   Context: Patrick Collison shared a prompt he used in chat GPT to ask about rent control.
+
+   Type: original
+
+8. "Zoran, Mom Donnie. He's running for mayor of New York. And he's got a bold pitch. Freezing the rent. Price controls. Price controls."
+
+   - This is about a campaign, but not a tweet. The host says "Zoran, Mom Donnie" and then describes a post or ad. But the transcript does not say it's a tweet. It says "this ad went pretty viral from Zoran, Mom Donnie." So it's an ad, not a tweet.
+
+   However, the host also says: "I saw somebody compare this to somebody running for student body president or whatever and they're just like free lunch. Free lunch for everybody." — this is a comment on the ad.
+
+   But there's no mention of a tweet.
+
+   We skip.
+
+9. "Zoran, Mom Donnie. He's running for mayor of New York. And he's got a bold pitch. Freezing the rent. Price controls. Price controls. You love it."
+
+   - Same as above, not a tweet.
+
+10. "He says, as a private pilot, my favorite part of this season of the rehearsal is that while it's an objectively a hilarious show, Nathan Fielder is also pointing out an incredibly critical pilot training issue that seems to be a regular contributing case to crashes, cause to crashes, including the DCA crash and Kristoff asked him what the pilot training issue was and Deleon said first officers not being comfortable with pushing back against a captain they think is making a mistake."
+
+    - This is a reference to a show, not a tweet.
+
+11. "We got a post from Kevin Kwok He says when exactly did the flip happen that all announcements have to be videos that flipped really fast What do you think it was the it was us? Did we do it? Can we take a victory lap? I Mean we've been doing video announcements for four years already"
+
+    - This is a reference to a post by Kevin Kwok. The host says "He says" and then quotes the content.
+    - Author: Kevin Kwok
+    - Content: "when exactly did the flip happen that all announcements have to be videos that flipped really fast What do you think it was the it was us? Did we do it? Can we take a victory lap? I Mean we've been doing video announcements for four years already"
+    - Context: The host discusses the trend of video announcements in the tech industry.
+    - Type: original
+
+    Note: the host says "Kevin Kwok" and then the quote, so we have it.
+
+12. "We have a we have a post from ad quick then we'll give you an ad read for ad quick ad quick They have a new ad quickick co-pilot."
+
+    - This is not a reference to a tweet, but a company announcement.
+
+13. "We have a post from Chris" — we already considered Chris Pike, but we decided it's a blog post, not a tweet.
+
+14. "We have a post from Guillermo Rao" — we already extracted.
+
+15. "Mike Solana says" — we skipped because not explicitly a tweet.
+
+16. "Patrick Collison posted" — we extracted.
+
+17. "Zoran, Mom Donnie" — not a tweet.
+
+18. "Maddie Pally" — we extracted.
+
+19. "Guillermo Rao" — we extracted.
+
+Now, let's list all the tweets we have:
+
+- Maddie Pally: 
+   content: "In 30 years, I'll probably be up to some boomer stuff, like, no son of mine is marrying an LLM. Marriage is between two humans only. And my kids will be like, OMG, dad, you're so robophobic."
+
+- Patrick Collison:
+   content: "does rent control tend to help or hurt cities? Summarize your answer in one objective, pithy and blunt 280 character assessment."
+
+- Guillermo Rao:
+   content: "The only durable moat in technology is relentless execution."
+
+- Molly O'Shea (reply to Guillermo Rao's post):
+   content: "violent execution"
+
+   But note: the host says "we got Molly O'Shea in the comments, or violent execution". So the reply content is "violent execution".
+
+- Kevin Kwok:
+   content: "when exactly did the flip happen that all announcements have to be videos that flipped really fast What do you think it was the it was us? Did we do it? Can we take a victory lap? I Mean we've been doing video announcements for four years already"
+
+However, note: the rule says "If no tweets are mentioned, return {} with an empty array". But we have several.
+
+But wait: the host says "Molly O'Shea in the comments", so that's a reply to Guillermo Rao's post. So we should have:
+
+- Guillermo Rao: original
+- Molly O'Shea: reply
+
+Now, let's format as JSON.
+
+Episode date: 2025-05-30 (from the transcript: "Date: May 30, 2025")
+
+We have to be careful with the content: we must copy exactly as in the transcript, including any typos or odd phrasing.
+
+Let's write the JSON.
+
+Note: The transcript says for Maddie Pally: "In 30 years, I'll probably be up to some boomer stuff, like, no son of mine is marrying an LLM. Marriage is between two humans only. And my kids will be like, OMG, dad, you're so robophobic." — so we use that.
+
+For Patrick Collison: the content is the question as described.
+
+For Guillermo Rao: "The only durable moat in technology is relentless execution."
+
+For Molly O'Shea: the host says "violent execution", so that's the content.
+
+For Kevin Kwok: the exact quote as in the transcript.
+
+But note: the transcript for Kevin Kwok has some missing punctuation and repetition. We must copy exactly as written.
+
+Transcript: "when exactly did the flip happen that all announcements have to be videos that flipped really fast What do you think it was the it was us? Did we do it? Can we take a victory lap? I Mean we've been doing video announcements for four years already"
+
+We'll use that string.
+
+Now, let's write the JSON.
+
+Important: The JSON must be valid. We must not have any extra fields.
+
+We'll have:
+
+{
+  "episode_date": "2025-05-30",
+  "tweets": [
+    {
+      "author": "Maddie Pally",
+      "content": "In 30 years, I'll probably be up to some boomer stuff, like, no son of mine is marrying an LLM. Marriage is between two humans only. And my kids will be like, OMG, dad, you're so robophobic.",
+      "context": "Host mentions it as a post they threw in that morning and comments on it being 'crazy real'.",
+      "type": "original"
+    },
+    {
+      "author": "Patrick Collison",
+      "content": "does rent control tend to help or hurt cities? Summarize your answer in one objective, pithy and blunt 280 character assessment.",
+      "context": "Collison shared a prompt he used in chat GPT to ask about rent control.",
+      "type": "original"
+    },
+    {
+      "author": "Guillermo Rao",
+      "content": "The only durable moat in technology is relentless execution.",
+      "context": "Host discusses the post and notes a comment by Molly O'Shea.",
+      "type": "original"
+    },
+    {
+      "author": "Molly O'Shea",
+      "content": "violent execution",
+      "context": "Host mentions the comment as a play on 'relentless execution'.",
+      "type": "reply"
+    },
+    {
+      "author": "Kevin Kwok",
+      "content": "when exactly did the flip happen that all announcements have to be videos that flipped really fast What do you think it was the it was us? Did we do it? Can we take a victory lap? I Mean we've been doing video announcements for four years already",
+      "context": "Host discusses the trend of video announcements in the tech industry.",
+      "type": "original"
+    }
+  ]
+}
+
+But note: the rule says "never include markdown", so we output only the JSON.
+
+However, note: the context must be 1-2 sentences max.
+
+Let me check the context for each:
+
+- Maddie Pally: "Host mentions it as a post they threw in that morning and comments on it being 'crazy real'." -> 1 sentence.
+
+- Patrick Collison: "Collison shared a prompt he used in chat GPT to ask about rent control." -> 1 sentence.
+
+- Guillermo Rao: "Host discusses the post and notes a comment by Molly O'Shea." -> 1 sentence.
+
+- Molly O'Shea: "Host mentions the comment as a play on 'relentless execution'." -> 1 sentence.
+
+- Kevin Kwok: "Host discusses the trend of video announcements in the tech industry." -> 1 sentence.
+
+Now, note: the transcript says for Patrick Collison: the host describes the prompt. But the content we extracted is the prompt, which is the actual content of the tweet (the prompt he sent to GPT). The tweet was a screenshot of that prompt? But the host says "Patrick Collison posted just a really quick screenshot of chat. GPT." and then the content of the prompt.
+
+We are taking the prompt as the content of the tweet (the text of the prompt).
+
+This is acceptable because the host describes the content of the tweet as including that prompt.
+
+Also, note: the transcript says "It says AI is getting pretty good." — but we are not including that because it's part of the host's description, not the tweet content.
+
+We are only taking the question as the content.
+
+Now, write the JSON.
+
+But note: the host says for Kevin Kwok: "when exactly did the flip happen that all announcements have to be videos that flipped really fast What do you think it was the it was us? Did we do it? Can we take a victory lap? I Mean we've been doing video announcements for four years already"
+
+We must copy exactly, including the capitalization and punctuation as in the transcript.
+
+The transcript has: "What do you think it was the it was us?" — so we keep the repetition.
+
+Now, we output the JSON.
+
+Important: The JSON must be valid. We must escape any double quotes inside the strings, but in this case, we don't have any double quotes in the content (except for the word "LLM" which is an acronym, not a quote).
+
+But note: the content for Maddie Pally has double quotes: "no son of mine is marrying an LLM. Marriage is between two humans only. And my kids will be like, OMG, dad, you're so robophobic."
+
+We have to keep the double quotes as they are.
+
+In JSON, we must escape double quotes. But the instruction says "Return ONLY valid JSON". So we must escape any double quotes inside the content.
+
+However, the rule says "verbatim quote", so we must keep the double quotes, but in JSON they need to be escaped.
+
+So we must change every double quote inside the content to \".
+
+But note: the content for Maddie Pally has double quotes? Actually, the transcript does not have double quotes around the quote; it's written as:
+
+"In 30 years, I'll probably be up to some boomer stuff, like, no son of mine is marrying an LLM. Marriage is between two humans only. And my kids will be like, OMG, dad, you're so robophobic."
+
+This is written without double quotes in the transcript. The host is quoting it, but the actual text does not have double quotes.
+
+So in the content string, we have no double quotes that need escaping.
+
+Similarly, the other content strings do not have double quotes.
+
+So we can output without escaping.
+
+But note: the JSON standard requires that string values be in double quotes, and any double quotes inside must be escaped. However, the content we have does not contain double quotes, so we are safe.
+
+Let's write the JSON.
+
+We'll write it as a string without any extra spaces (to be compact).
+
+But note: the rule says "Return ONLY valid JSON", so we output exactly the JSON.
+
+Now, let's write it.
+
+Note: The episode date is "2025-05-30", but the transcript says "May 30, 2025", so we use "2025-05-30".
+
+We'll now output the JSON.
+
+</think>
+
+{"episode_date":"2025-05-30","tweets":[{"author":"Maddie Pally","content":"In 30 years, I'll probably be up to some boomer stuff, like, no son of mine is marrying an LLM. Marriage is between two humans only. And my kids will be like, OMG, dad, you're so robophobic.","context":"Host mentions it as a post they threw in that morning and comments on it being 'crazy real'.","type":"original"},{"author":"Patrick Collison","content":"does rent control tend to help or hurt cities? Summarize your answer in one objective, pithy and blunt 280 character assessment.","context":"Collison shared a prompt he used in chat GPT to ask about rent control.","type":"original"},{"author":"Guillermo Rao","content":"The only durable moat in technology is relentless execution.","context":"Host discusses the post and notes a comment by Molly O'Shea.","type":"original"},{"author":"Molly O'Shea","content":"violent execution","context":"Host mentions the comment as a play on 'relentless execution'.","type":"reply"},{"author":"Kevin Kwok","content":"when exactly did the flip happen that all announcements have to be videos that flipped really fast What do you think it was the it was us? Did we do it? Can we take a victory lap? I Mean we've been doing video announcements for four years already","context":"Host discusses the trend of video announcements in the tech industry.","type":"original"}]}

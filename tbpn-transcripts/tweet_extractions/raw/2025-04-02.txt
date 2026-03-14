@@ -1,0 +1,231 @@
+<think>
+Let me carefully go through the podcast transcript and extract all references to tweets, X/Twitter posts, quote tweets, replies, and threads.
+
+I'll look for phrases like "tweeted", "posted on X", "X/Twitter", "timeline", "thread", "quote tweet", "reply", etc.
+
+Let's go through the transcript:
+
+1. "Chad Byers was posting about it." - This refers to Chad Byers (co-founder of Robinhood) posting about his new company Aetherflux on Twitter/X.
+
+2. "Baiju co-founded Robinhood and helped scale it to a $40 billion company as of today." - This is background information about Baiju, not a tweet reference.
+
+3. "We did a whole deep dive on the first edition of Colossus Review." - This refers to a magazine, not a Twitter post.
+
+4. "He shares the Michael Jordan meme of, I took that personally." - This is a reference to a meme shared by someone, but it's not clear if it was a tweet.
+
+5. "Ramps on the case, they solved it within 24 hours." - This is about a company (Ramp) solving an issue, not a tweet reference.
+
+6. "Chris Backe's post on." - This refers to Chris Backe's post (likely on Twitter/X).
+
+7. "Patrick O'Shaughnessy. He's launching issue number two of Colossus Review." - This is about a magazine launch, not a tweet.
+
+8. "I heard a take from a crypto investor I was texting with." - This is a text message, not a tweet.
+
+9. "He said, you know, there's no real crazy take here, but it's the first stable coin IPO." - This is a quote from someone, likely in a text or conversation, not a tweet.
+
+10. "We're going to get this market updated because AppLovin is in the race." - This is a general statement about a market, not a tweet reference.
+
+Now, let's identify specific tweet references:
+
+1. "Chad Byers was posting about it." - This indicates Chad Byers posted about his new company Aetherflux on Twitter/X.
+
+2. "Chris Backe's post on." - This indicates Chris Backe posted something on Twitter/X.
+
+Let's check if there are any other tweet references:
+
+- "We did a whole deep dive on the first edition of Colossus Review." - This is about a magazine, not a tweet.
+- "Patrick O'Shaughnessy. He's launching issue number two of Colossus Review." - This is about a magazine, not a tweet.
+- "He shares the Michael Jordan meme of, I took that personally." - This seems to reference a meme, but it's unclear if it was a tweet.
+
+Let's check if there's any other tweet references:
+
+- "Omar who I believes over a dragonfly" - This might be referring to Omar (likely Omar from "a dragonfly", a crypto investor) who posted something about Circle's IPO filing.
+
+Let's look for more:
+
+- "Patrick O'Shaughnessy. He's launching issue number two of Colossus Review." - This is not a tweet, it's about a magazine.
+
+I think I've found all the tweet references:
+
+1. Chad Byers was posting about his new company Aetherflux.
+2. Chris Backe's post.
+3. Omar's post about Circle's IPO filing (though it's described as "a take from a crypto investor", not a direct tweet quote).
+
+Let's verify the exact quotes from the transcript:
+
+1. "Chad Byers was posting about it." - This is the only mention of Chad Byers' tweet.
+
+2. "Chris Backe's post on." - This is the only mention of Chris Backe's post.
+
+3. "Omar who I believes over a dragonfly He says nothing to love in the circle IPO filing" - This seems to be referring to Omar's post about Circle's IPO filing.
+
+For the JSON structure, I need to determine:
+- "author" - For Chad Byers, it would be "Chad Byers". For Chris Backe, it would be "Chris Backe". For Omar, it would be "Omar".
+- "content" - The verbatim quote of the tweet as described in the transcript.
+- "context" - Why it was discussed on the show.
+- "type" - Whether it's an original tweet, quote tweet, reply, thread, or reference.
+
+Let's analyze each one:
+
+1. Chad Byers' tweet:
+   - author: "Chad Byers"
+   - content: The transcript doesn't provide the exact quote of the tweet, just that "Chad Byers was posting about it." So I'll use "Chad Byers was posting about it." as the content.
+   - context: The podcast hosts were discussing Chad Byers' new company Aetherflux.
+   - type: "original" (it's a standalone tweet)
+
+2. Chris Backe's post:
+   - author: "Chris Backe"
+   - content: "Chris Backe's post on." (this is the only description provided)
+   - context: The podcast hosts were discussing Chris Backe's post (likely about something related to their topic)
+   - type: "original" (it's a standalone post)
+
+3. Omar's post about Circle's IPO:
+   - author: "Omar"
+   - content: "nothing to love in the circle IPO filing and no idea how it prices at five billion. Gross margins getting crushed with distribution costs. For those that don't know, Circle pays Coinbase as an example, a lot to effectively distribute the stable coin. Omar says core US market being deregulated and banks and financial institutions about to crash the private party spending over 250 year in compensation, another 140 million in GNA. Core income driver, which is rates already topped and heading lower, 90% chance of two cuts this year. Um, and it were, they're pricing it at 32 times 24 earnings for a business that just lost its mini monopoly and facing several headwinds. And it's expensive when growth is structurally challenged. TLDR feels like a Hail Mary for some liquidity before the squad rolls in."
+   - context: The podcast hosts were discussing Omar's analysis of Circle's IPO filing.
+   - type: "original" (it's a standalone tweet)
+
+Let me double-check if these are all the tweet references. I think these are the only ones mentioned in the transcript.
+
+Now, I need to format this as JSON matching the exact schema provided.
+
+The episode date is not explicitly stated in the transcript, but the podcast is discussing "today" (Wednesday) and the transcript mentions "Trump gave the speech at the Rose Garden for liberation day" and "the result is that the US will impose 10% tariffs on all imports and even higher rates for some nations." Since this is a recent event, I'll assume it's from the date of the podcast recording. However, the episode date isn't provided in the transcript, so I'll leave it as a placeholder.
+
+Let's format the JSON:
+
+{
+  "episode_date": "YYYY-MM-DD",
+  "tweets": [
+    {
+      "author": "Chad Byers",
+      "content": "Chad Byers was posting about it.",
+      "context": "Discussed Chad Byers' new company Aetherflux",
+      "type": "original"
+    },
+    {
+      "author": "Chris Backe",
+      "content": "Chris Backe's post on.",
+      "context": "Mentioned in the context of the podcast discussing Chris Backe's post",
+      "type": "original"
+    },
+    {
+      "author": "Omar",
+      "content": "nothing to love in the circle IPO filing and no idea how it prices at five billion. Gross margins getting crushed with distribution costs. For those that don't know, Circle pays Coinbase as an example, a lot to effectively distribute the stable coin. Omar says core US market being deregulated and banks and financial institutions about to crash the private party spending over 250 year in compensation, another 140 million in GNA. Core income driver, which is rates already topped and heading lower, 90% chance of two cuts this year. Um, and it were, they're pricing it at 32 times 24 earnings for a business that just lost its mini monopoly and facing several headwinds. And it's expensive when growth is structurally challenged. TLDR feels like a Hail Mary for some liquidity before the squad rolls in.",
+      "context": "Discussed Omar's analysis of Circle's IPO filing",
+      "type": "original"
+    }
+  ]
+}
+
+Wait, I need to be more precise. The transcript says "Omar who I believes over a dragonfly He says nothing to love in the circle IPO filing..." so Omar's tweet content is the long quote that follows.
+
+Let me check if there's any other tweet references I might have missed:
+
+- "We did a whole deep dive on the first edition of Colossus Review." - This is about a magazine, not a tweet.
+- "Patrick O'Shaughnessy. He's launching issue number two of Colossus Review." - This is about a magazine, not a tweet.
+- "He shares the Michael Jordan meme of, I took that personally." - This is a meme, but not a specific tweet.
+
+I think I have all the tweet references. Now, let me make sure the JSON is correctly formatted.
+
+Let me check the content for each tweet:
+
+1. Chad Byers' tweet:
+   - The transcript says "Chad Byers was posting about it." So I'll use that as the content.
+
+2. Chris Backe's post:
+   - The transcript says "Chris Backe's post on." So I'll use that as the content.
+
+3. Omar's post:
+   - The transcript provides a long quote: "nothing to love in the circle IPO filing and no idea how it prices at five billion. Gross margins getting crushed with distribution costs. For those that don't know, Circle pays Coinbase as an example, a lot to effectively distribute the stable coin. Omar says core US market being deregulated and banks and financial institutions about to crash the private party spending over 250 year in compensation, another 140 million in GNA. Core income driver, which is rates already topped and heading lower, 90% chance of two cuts this year. Um, and it were, they're pricing it at 32 times 24 earnings for a business that just lost its mini monopoly and facing several headwinds. And it's expensive when growth is structurally challenged. TLDR feels like a Hail Mary for some liquidity before the squad rolls in."
+
+I'll make sure to use the exact content from the transcript, even if it's not a direct quote of a tweet.
+
+Now, I'll format the JSON correctly.
+
+I notice that the transcript says "Omar who I believes over a dragonfly" which might be a typo for "Omar who I believe over a dragonfly" or "Omar from a dragonfly" (referring to a crypto investor who posts on X under the handle "a dragonfly"). So I'll use "Omar" as the author.
+
+Let me create the JSON:
+
+{
+  "episode_date": "YYYY-MM-DD",
+  "tweets": [
+    {
+      "author": "Chad Byers",
+      "content": "Chad Byers was posting about it.",
+      "context": "Discussed Chad Byers' new company Aetherflux",
+      "type": "original"
+    },
+    {
+      "author": "Chris Backe",
+      "content": "Chris Backe's post on.",
+      "context": "Mentioned in the context of the podcast discussing Chris Backe's post",
+      "type": "original"
+    },
+    {
+      "author": "Omar",
+      "content": "nothing to love in the circle IPO filing and no idea how it prices at five billion. Gross margins getting crushed with distribution costs. For those that don't know, Circle pays Coinbase as an example, a lot to effectively distribute the stable coin. Omar says core US market being deregulated and banks and financial institutions about to crash the private party spending over 250 year in compensation, another 140 million in GNA. Core income driver, which is rates already topped and heading lower, 90% chance of two cuts this year. Um, and it were, they're pricing it at 32 times 24 earnings for a business that just lost its mini monopoly and facing several headwinds. And it's expensive when growth is structurally challenged. TLDR feels like a Hail Mary for some liquidity before the squad rolls in.",
+      "context": "Discussed Omar's analysis of Circle's IPO filing",
+      "type": "original"
+    }
+  ]
+}
+
+I'll need to fix the JSON formatting to be valid:
+
+1. The "content" field for Omar should be a string, not a string with line breaks. In JSON, strings can have line breaks if properly escaped, but for simplicity, I'll keep it as a single line.
+
+2. I'll make sure the JSON is correctly formatted.
+
+Let's create the final JSON:
+
+{
+  "episode_date": "YYYY-MM-DD",
+  "tweets": [
+    {
+      "author": "Chad Byers",
+      "content": "Chad Byers was posting about it.",
+      "context": "Discussed Chad Byers' new company Aetherflux",
+      "type": "original"
+    },
+    {
+      "author": "Chris Backe",
+      "content": "Chris Backe's post on.",
+      "context": "Mentioned in the context of the podcast discussing Chris Backe's post",
+      "type": "original"
+    },
+    {
+      "author": "Omar",
+      "content": "nothing to love in the circle IPO filing and no idea how it prices at five billion. Gross margins getting crushed with distribution costs. For those that don't know, Circle pays Coinbase as an example, a lot to effectively distribute the stable coin. Omar says core US market being deregulated and banks and financial institutions about to crash the private party spending over 250 year in compensation, another 140 million in GNA. Core income driver, which is rates already topped and heading lower, 90% chance of two cuts this year. Um, and it were, they're pricing it at 32 times 24 earnings for a business that just lost its mini monopoly and facing several headwinds. And it's expensive when growth is structurally challenged. TLDR feels like a Hail Mary for some liquidity before the squad rolls in.",
+      "context": "Discussed Omar's analysis of Circle's IPO filing",
+      "type": "original"
+    }
+  ]
+}
+
+Now, I'll double-check to ensure I've included all tweet references and that the JSON matches the schema provided.
+
+</think>
+
+{
+  "episode_date": "YYYY-MM-DD",
+  "tweets": [
+    {
+      "author": "Chad Byers",
+      "content": "Chad Byers was posting about it.",
+      "context": "Discussed Chad Byers' new company Aetherflux",
+      "type": "original"
+    },
+    {
+      "author": "Chris Backe",
+      "content": "Chris Backe's post on.",
+      "context": "Mentioned in the context of the podcast discussing Chris Backe's post",
+      "type": "original"
+    },
+    {
+      "author": "Omar",
+      "content": "nothing to love in the circle IPO filing and no idea how it prices at five billion. Gross margins getting crushed with distribution costs. For those that don't know, Circle pays Coinbase as an example, a lot to effectively distribute the stable coin. Omar says core US market being deregulated and banks and financial institutions about to crash the private party spending over 250 year in compensation, another 140 million in GNA. Core income driver, which is rates already topped and heading lower, 90% chance of two cuts this year. Um, and it were, they're pricing it at 32 times 24 earnings for a business that just lost its mini monopoly and facing several headwinds. And it's expensive when growth is structurally challenged. TLDR feels like a Hail Mary for some liquidity before the squad rolls in.",
+      "context": "Discussed Omar's analysis of Circle's IPO filing",
+      "type": "original"
+    }
+  ]
+}
