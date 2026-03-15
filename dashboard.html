@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TBPN Transcript Intelligence Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f8fafc 100%);
+    color: #1e293b;
+    min-height: 100vh;
+  }
+  .container { max-width: 1280px; margin: 0 auto; padding: 24px; }
+  .header {
+    margin-bottom: 32px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .header-icon {
+    width: 48px; height: 48px; background: #4f46e5; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center; color: white; font-size: 22px;
+  }
+  .header h1 { font-size: 26px; font-weight: 700; color: #1e293b; }
+  .header p { font-size: 13px; color: #94a3b8; margin-top: 2px; }
+
+  /* Tabs */
+  .tabs {
+    display: flex; gap: 4px; background: white; border-radius: 14px;
+    padding: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;
+    width: fit-content; margin-bottom: 28px;
+  }
+  .tab {
+    padding: 8px 20px; border-radius: 10px; font-size: 13px; font-weight: 500;
+    cursor: pointer; border: none; background: none; color: #64748b; transition: all 0.2s;
+  }
+  .tab:hover { color: #334155; background: #f8fafc; }
+  .tab.active { background: #4f46e5; color: white; box-shadow: 0 2px 8px rgba(79,70,229,0.3); }
+
+  /* Cards */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .stat-card {
+    background: white; border-radius: 14px; padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04); border: 1px solid #f1f5f9;
+  }
+  .stat-card .label { font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat-card .value { font-size: 28px; font-weight: 700; margin-top: 4px; }
+  .stat-card .sub { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+  .value-indigo { color: #4f46e5; }
+  .value-emerald { color: #059669; }
+  .value-amber { color: #d97706; }
+  .value-rose { color: #e11d48; }
+  .value-purple { color: #7c3aed; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+  @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  .chart-card {
+    background: white; border-radius: 14px; padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04); border: 1px solid #f1f5f9;
+  }
+  .chart-card h3 { font-size: 15px; font-weight: 600; color: #334155; margin-bottom: 4px; }
+  .chart-card .subtitle { font-size: 12px; color: #94a3b8; margin-bottom: 16px; }
+  .chart-card canvas { width: 100% !important; }
+  .full-width { margin-bottom: 24px; }
+
+  /* Sentiment bars */
+  .sentiment-list { display: flex; flex-direction: column; gap: 10px; }
+  .sentiment-row { display: flex; align-items: center; gap: 10px; }
+  .sentiment-row .name { font-size: 12px; font-weight: 500; color: #475569; width: 90px; text-align: right; flex-shrink: 0; }
+  .sentiment-bar-bg { flex: 1; height: 22px; background: #f1f5f9; border-radius: 11px; overflow: hidden; position: relative; }
+  .sentiment-bar { height: 100%; border-radius: 11px; transition: width 0.5s; }
+  .sentiment-score { font-size: 12px; font-weight: 700; width: 45px; text-align: right; flex-shrink: 0; }
+  .score-pos { color: #059669; }
+  .score-neg { color: #e11d48; }
+
+  /* Narrative cards */
+  .narrative-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .narrative-card {
+    border-radius: 14px; padding: 18px; border-left: 4px solid;
+  }
+  .narrative-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .narrative-card p { font-size: 12px; color: #475569; line-height: 1.6; }
+
+  /* Key stats list */
+  .key-stats { list-style: none; }
+  .key-stats li {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid #f8fafc;
+  }
+  .key-stats li:last-child { border-bottom: none; }
+  .key-stats .ks-label { font-size: 12px; color: #64748b; }
+  .key-stats .ks-value { font-size: 13px; font-weight: 600; color: #1e293b; }
+  .key-stats .ks-detail { font-size: 11px; color: #94a3b8; margin-left: 8px; }
+
+  /* Claims table */
+  .claims-table { width: 100%; font-size: 12px; border-collapse: collapse; }
+  .claims-table th { text-align: left; padding: 8px 12px; color: #64748b; font-weight: 600; border-bottom: 2px solid #e2e8f0; }
+  .claims-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .footer {
+    margin-top: 40px; text-align: center; font-size: 12px; color: #94a3b8; padding: 16px 0;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-icon">&#9835;</div>
+    <div>
+      <h1>TBPN Transcript Intelligence</h1>
+      <p>207 episodes analyzed &middot; Feb 13 &ndash; Dec 20, 2025 &middot; 3,363 companies &middot; 2,355 people tracked</p>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('overview')">Overview</button>
+    <button class="tab" onclick="switchTab('companies')">Companies</button>
+    <button class="tab" onclick="switchTab('people')">People & Tech</button>
+    <button class="tab" onclick="switchTab('trends')">Trends</button>
+    <button class="tab" onclick="switchTab('insights')">Deep Insights</button>
+  </div>
+
+  <!-- OVERVIEW TAB -->
+  <div id="tab-overview" class="tab-content active">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="label">Episodes Analyzed</div>
+        <div class="value value-indigo">207</div>
+        <div class="sub">Feb &ndash; Dec 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Companies Tracked</div>
+        <div class="value value-emerald">3,363</div>
+        <div class="sub">1,471 startups identified</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">People Referenced</div>
+        <div class="value value-purple">2,355</div>
+        <div class="sub">CEOs, founders, analysts</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Processing Cost</div>
+        <div class="value value-rose">$147.89</div>
+        <div class="sub">18.6h compute time</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Avg Episode Length</div>
+        <div class="value value-amber">32,522</div>
+        <div class="sub">words per transcript</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="chart-card">
+        <h3>Top 15 Most Mentioned Companies</h3>
+        <div class="subtitle">Aggregated across all episodes</div>
+        <canvas id="topCompaniesChart" height="400"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Discussion by Sector</h3>
+        <div class="subtitle">Mention-weighted sector distribution</div>
+        <canvas id="sectorPieChart" height="400"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-card full-width">
+      <h3>Weekly Topic Volume</h3>
+      <div class="subtitle">Unique topics discussed per week across all episodes</div>
+      <canvas id="weeklyTopicsChart" height="180"></canvas>
+    </div>
+  </div>
+
+  <!-- COMPANIES TAB -->
+  <div id="tab-companies" class="tab-content">
+    <div class="chart-card full-width">
+      <h3>Sentiment Breakdown &mdash; Top 10 Companies</h3>
+      <div class="subtitle">How podcast hosts discuss each company across episodes</div>
+      <canvas id="sentimentStackedChart" height="300"></canvas>
+    </div>
+
+    <div class="grid-2">
+      <div class="chart-card">
+        <h3>Net Sentiment Score</h3>
+        <div class="subtitle">(Bullish - Bearish) / Total &times; 100</div>
+        <div class="sentiment-list">
+          <div class="sentiment-row">
+            <span class="name">OpenAI</span>
+            <div class="sentiment-bar-bg">
+              <div class="sentiment-bar" style="width:58%;background:#059669"></div>
+            </div>
+            <span class="sentiment-score score-pos">+58</span>
+          </div><div class="sentiment-row">
+            <span class="name">Anthropic</span>
+            <div class="sentiment-bar-bg">
+              <div class="sentiment-bar" style="width:57%;background:#059669"></div>
+            </div>
+            <span class="sentiment-score score-pos">+57</span>
+          </div><div class="sentiment-row">
+            <span class="name">Ramp</span>
+            <div class="sentiment-bar-bg">
+              <div class="sentiment-bar" style="width:51%;background:#059669"></div>
+            </div>
+            <span class="sentiment-score score-pos">+51</span>
+          </div><div class="sentiment-row">
+            <span class="name">Figma</span>
+            <div class="sentiment-bar-bg">
+              <div class="sentiment-bar" style="width:45%;background:#059669"></div>
+            </div>
+            <span class="sentiment-score score-pos">+45</span>
+          </div><div class="sentiment-row">
+            <span class="name">Meta</span>
+            <div class="sentiment-bar-bg">
+              <div class="sentiment-bar" style="width:32%;background:#059669"></div>
+            </div>
+            <span class="sentiment-score score-pos">+32</span>
+          </div><div class="sentiment-row">
+            <span class="name">Microsoft</span>
+            <div class="sentiment-bar-bg">
+              <div class="sentiment-bar" style="width:21%;background:#059669"></div>
+            </div>
+            <span class="sentiment-score score-pos">+21</span>
+          </div><div class="sentiment-row">
+            <span class="name">Wander</span>
+            <div class="sentiment-bar-bg">
+              <div class="sentiment-bar" style="width:18%;background:#059669"></div>
+            </div>
+            <span class="sentiment-score score-pos">+18</span>
+          </div><div class="sentiment-row">
+            <span class="name">Google</span>
+            <div class="sentiment-bar-bg">
+              <div class="sentiment-bar" style="width:16%;background:#059669"></div>
+            </div>
+            <span class="sentiment-score score-pos">+16</span>
+          </div><div class="sentiment-row">
+            <span class="name">Public.com</span>
+            <div class="sentiment-bar-bg">
+              <div class="sentiment-bar" style="width:14%;background:#059669"></div>
+            </div>
+            <span class="sentiment-score score-pos">+14</span>
+          </div><div class="sentiment-row">
+            <span class="name">Apple</span>
+            <div class="sentiment-bar-bg">
+              <div class="sentiment-bar" style="width:18%;background:#e11d48"></div>
+            </div>
+            <span class="sentiment-score score-neg">-18</span>
+          </div>
+        </div>
+      </div>
+      <div class="chart-card">
+        <h3>Startups by Sector</h3>
+        <div class="subtitle">1,471 startups tracked across all sectors</div>
+        <canvas id="startupSectorsChart" height="350"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-card full-width">
+      <h3>Top 5 Companies &mdash; Monthly Mention Trends</h3>
+      <div class="subtitle">How coverage of key companies evolved through 2025</div>
+      <canvas id="monthlyTrendsChart" height="220"></canvas>
+    </div>
+
+    <div class="chart-card full-width">
+      <h3>Company Type Distribution</h3>
+      <div class="subtitle">Breakdown of all 3,363 tracked companies by type</div>
+      <canvas id="companyTypesChart" height="200"></canvas>
+    </div>
+  </div>
+
+  <!-- PEOPLE & TECH TAB -->
+  <div id="tab-people" class="tab-content">
+    <div class="grid-2">
+      <div class="chart-card">
+        <h3>Most Referenced People</h3>
+        <div class="subtitle">Top 20 individuals across all episodes</div>
+        <canvas id="topPeopleChart" height="520"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Top Technologies Discussed</h3>
+        <div class="subtitle">Technology mentions across all transcripts</div>
+        <canvas id="topTechChart" height="520"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-card full-width">
+      <h3>Technology Radar</h3>
+      <div class="subtitle">Top 8 technologies by mention volume</div>
+      <canvas id="techRadarChart" height="300"></canvas>
+    </div>
+  </div>
+
+  <!-- TRENDS TAB -->
+  <div id="tab-trends" class="tab-content">
+    <div class="chart-card full-width">
+      <h3>Content Density Over Time</h3>
+      <div class="subtitle">Unique topics per week &mdash; shows increasing coverage depth through H2 2025</div>
+      <canvas id="trendLineChart" height="220"></canvas>
+    </div>
+
+    <div class="chart-card full-width">
+      <h3>Dominant Narrative Arcs</h3>
+      <div class="subtitle">Key themes emerging from 207 episodes of analysis</div>
+      <div class="narrative-grid">
+        <div class="narrative-card" style="border-color:#4f46e5;background:#eef2ff">
+          <h4 style="color:#4338ca">AI Arms Race</h4>
+          <p>OpenAI vs Anthropic vs Google dominates discourse. LLMs mentioned 125+ times, AI Agents 47 times. Models, reasoning, and scaling laws are perennial topics.</p>
+        </div>
+        <div class="narrative-card" style="border-color:#e11d48;background:#fff1f2">
+          <h4 style="color:#be123c">Apple's AI Crisis</h4>
+          <p>Apple discussed with significant bearish sentiment — the most negative of any top company. Apple Intelligence delays and Siri failures are recurring themes throughout 2025.</p>
+        </div>
+        <div class="narrative-card" style="border-color:#059669;background:#ecfdf5">
+          <h4 style="color:#047857">Defense Tech Boom</h4>
+          <p>37+ defense tech startups tracked. Palmer Luckey (63 mentions). Anduril, SpaceX, and reshoring narrative gain momentum through the year.</p>
+        </div>
+        <div class="narrative-card" style="border-color:#7c3aed;background:#f5f3ff">
+          <h4 style="color:#6d28d9">Vibe Coding Revolution</h4>
+          <p>Claude Code (23), MCP (18), and Vibe Coding (19) signal a paradigm shift in software development. Karpathy and Hotz are key voices.</p>
+        </div>
+        <div class="narrative-card" style="border-color:#d97706;background:#fffbeb">
+          <h4 style="color:#b45309">Crypto Renaissance</h4>
+          <p>Stablecoins (41 mentions) lead the crypto narrative. Brian Armstrong and regulatory clarity drive renewed optimism. 22 crypto startups tracked.</p>
+        </div>
+        <div class="narrative-card" style="border-color:#0891b2;background:#ecfeff">
+          <h4 style="color:#0e7490">Humanoid Robots</h4>
+          <p>37 mentions make humanoid robotics a breakout theme. Tesla Optimus, Figure, and new entrants drive discussion on manufacturing and embodied AI.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="chart-card">
+        <h3>Most Discussed Topics (All-Time)</h3>
+        <div class="subtitle">Top 20 topics by total mentions across all weeks</div>
+        <canvas id="topTopicsChart" height="500"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Key Claims Per Month</h3>
+        <div class="subtitle">Volume of notable predictions, stats, and claims extracted</div>
+        <canvas id="claimsChart" height="300"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEEP INSIGHTS TAB -->
+  <div id="tab-insights" class="tab-content">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="label">Most Bullish Company</div>
+        <div class="value value-emerald" style="font-size:22px">OpenAI</div>
+        <div class="sub">+58 net sentiment</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Most Bearish Company</div>
+        <div class="value value-rose" style="font-size:22px">Apple</div>
+        <div class="sub">-18 net sentiment</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Most Mentioned Person</div>
+        <div class="value value-indigo" style="font-size:22px">Sam Altman</div>
+        <div class="sub">120 appearances</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Dominant Sector</div>
+        <div class="value value-purple" style="font-size:22px">AI/ML</div>
+        <div class="sub">1,300 mention-weighted</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="chart-card">
+        <h3>Key Statistics</h3>
+        <ul class="key-stats">
+          <li><span class="ks-label">Top company</span><span><span class="ks-value">OpenAI</span><span class="ks-detail">203 mentions</span></span></li>
+          <li><span class="ks-label">Top technology</span><span><span class="ks-value">Large Language Models (LLMs)</span><span class="ks-detail">125 mentions</span></span></li>
+          <li><span class="ks-label">Busiest week</span><span><span class="ks-value">2025-W41</span><span class="ks-detail">114 topics</span></span></li>
+          <li><span class="ks-label">Total startups</span><span><span class="ks-value">1,471</span><span class="ks-detail">across 15 sectors</span></span></li>
+          <li><span class="ks-label">Total key claims</span><span><span class="ks-value">4,099</span><span class="ks-detail">predictions & stats extracted</span></span></li>
+          <li><span class="ks-label">Top non-CEO voice</span><span><span class="ks-value">Ben Thompson</span><span class="ks-detail">86 mentions</span></span></li>
+          <li><span class="ks-label">Output tokens</span><span><span class="ks-value">3,479,458</span><span class="ks-detail">total LLM output</span></span></li>
+          <li><span class="ks-label">Avg episode</span><span><span class="ks-value">32,522 words</span><span class="ks-detail">~130 pages</span></span></li>
+        </ul>
+      </div>
+      <div class="chart-card">
+        <h3>Sector Concentration</h3>
+        <div class="subtitle">Top sectors by total company mentions</div>
+        <canvas id="sectorBarChart" height="350"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Data extracted from 207 TBPN podcast transcripts &middot; Feb 13 &ndash; Dec 20, 2025 &middot; Generated 2026-03-15 01:47
+  </div>
+</div>
+
+<script>
+// Tab switching
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+  // Trigger resize so charts render properly
+  setTimeout(() => window.dispatchEvent(new Event('resize')), 50);
+}
+
+const COLORS = ['#6366f1','#f59e0b','#10b981','#ef4444','#8b5cf6','#ec4899','#14b8a6','#f97316','#3b82f6','#84cc16','#06b6d4','#e11d48','#a855f7','#22c55e','#eab308','#64748b','#0ea5e9','#d946ef','#fb923c','#4ade80'];
+
+Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = '#94a3b8';
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+
+// ===== OVERVIEW TAB =====
+// Top Companies horizontal bar
+new Chart(document.getElementById('topCompaniesChart'), {
+  type: 'bar',
+  data: {
+    labels: ["OpenAI", "Ramp", "Meta", "Apple", "Microsoft", "Wander", "Anthropic", "Figma", "Google", "Public.com", "Vanta", "AdQuick", "Linear", "Tesla", "SpaceX"],
+    datasets: [{ data: [203, 188, 174, 160, 156, 154, 149, 147, 145, 141, 128, 126, 124, 119, 119], backgroundColor: COLORS.slice(0, 15), borderRadius: 6 }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { x: { grid: { display: false } }, y: { grid: { display: false } } }
+  }
+});
+
+// Sector pie chart
+new Chart(document.getElementById('sectorPieChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ["AI/ML", "Venture Capital", "Fintech", "Developer Tools", "Semiconductors", "Media", "E-commerce", "Technology", "Health Tech", "AI/ML / Social Media", "Finance", "Cloud / Enterprise", "Travel / Hospitality", "Social Media"],
+    datasets: [{ data: [1300, 861, 439, 345, 297, 245, 226, 178, 176, 174, 157, 156, 154, 148], backgroundColor: COLORS.slice(0, 14), borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'right', labels: { font: { size: 10 }, padding: 8 } } }
+  }
+});
+
+// Weekly topics area chart
+new Chart(document.getElementById('weeklyTopicsChart'), {
+  type: 'line',
+  data: {
+    labels: ["2025-W06", "2025-W07", "2025-W08", "2025-W09", "2025-W10", "2025-W11", "2025-W12", "2025-W13", "2025-W14", "2025-W15", "2025-W16", "2025-W17", "2025-W18", "2025-W19", "2025-W20", "2025-W21", "2025-W22", "2025-W23", "2025-W24", "2025-W25", "2025-W26", "2025-W27", "2025-W28", "2025-W29", "2025-W30", "2025-W31", "2025-W32", "2025-W33", "2025-W34", "2025-W35", "2025-W36", "2025-W37", "2025-W38", "2025-W39", "2025-W40", "2025-W41", "2025-W42", "2025-W43", "2025-W44", "2025-W45", "2025-W46", "2025-W47", "2025-W48", "2025-W49", "2025-W50"],
+    datasets: [{
+      label: 'Unique Topics',
+      data: [35, 47, 72, 66, 50, 35, 68, 78, 77, 84, 66, 75, 62, 54, 81, 72, 97, 50, 106, 94, 96, 113, 98, 96, 10, 101, 96, 95, 102, 61, 72, 39, 54, 65, 81, 114, 100, 93, 105, 76, 104, 58, 100, 89, 55],
+      borderColor: '#6366f1', backgroundColor: 'rgba(99,102,241,0.08)',
+      fill: true, tension: 0.3, pointRadius: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { x: { grid: { display: false } }, y: { beginAtZero: true } }
+  }
+});
+
+// ===== COMPANIES TAB =====
+// Sentiment stacked bar
+new Chart(document.getElementById('sentimentStackedChart'), {
+  type: 'bar',
+  data: {
+    labels: ["OpenAI", "Ramp", "Meta", "Apple", "Microsoft", "Wander", "Anthropic", "Figma", "Google", "Public.com"],
+    datasets: [
+      { label: 'Bullish', data: [124, 96, 71, 24, 40, 27, 88, 68, 47, 20], backgroundColor: '#10b981' },
+      { label: 'Neutral', data: [45, 92, 72, 67, 106, 127, 55, 77, 65, 121], backgroundColor: '#94a3b8' },
+      { label: 'Mixed', data: [27, 0, 16, 16, 2, 0, 3, 0, 9, 0], backgroundColor: '#f59e0b' },
+      { label: 'Bearish', data: [7, 0, 15, 53, 8, 0, 3, 2, 24, 0], backgroundColor: '#ef4444' }
+    ]
+  },
+  options: {
+    indexAxis: 'y', responsive: true,
+    scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, grid: { display: false } } },
+    plugins: { legend: { position: 'top' } }
+  }
+});
+
+// Startup sectors bar
+new Chart(document.getElementById('startupSectorsChart'), {
+  type: 'bar',
+  data: {
+    labels: ["AI/ML", "Fintech", "Defense Tech", "Developer Tools", "Health Tech", "Media", "Robotics", "Biotech", "Crypto/Fintech", "Crypto/Web3", "E-commerce", "Consumer Goods", "Cybersecurity", "Aerospace", "Fintech/Crypto"],
+    datasets: [{ data: [199, 43, 37, 22, 17, 17, 16, 12, 11, 11, 9, 9, 9, 8, 8], backgroundColor: COLORS.slice(0, 15), borderRadius: 6 }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { x: { grid: { display: false }, ticks: { maxRotation: 45 } }, y: { beginAtZero: true } }
+  }
+});
+
+// Monthly trends line chart
+new Chart(document.getElementById('monthlyTrendsChart'), {
+  type: 'line',
+  data: {
+    labels: ["Feb 2025", "Mar 2025", "Apr 2025", "May 2025", "Jun 2025", "Jul 2025", "Aug 2025", "Sep 2025", "Oct 2025", "Nov 2025", "Dec 2025"],
+    datasets: [{"label": "OpenAI", "data": [10, 15, 20, 17, 21, 21, 24, 16, 24, 20, 15], "borderColor": "#6366f1", "backgroundColor": "#6366f120", "tension": 0.3, "fill": false}, {"label": "Ramp", "data": [10, 15, 20, 18, 18, 20, 25, 15, 21, 14, 12], "borderColor": "#f59e0b", "backgroundColor": "#f59e0b20", "tension": 0.3, "fill": false}, {"label": "Meta", "data": [7, 11, 13, 15, 19, 21, 24, 14, 19, 18, 13], "borderColor": "#10b981", "backgroundColor": "#10b98120", "tension": 0.3, "fill": false}, {"label": "Apple", "data": [10, 13, 13, 16, 16, 17, 18, 14, 20, 12, 11], "borderColor": "#ef4444", "backgroundColor": "#ef444420", "tension": 0.3, "fill": false}, {"label": "Microsoft", "data": [10, 9, 15, 15, 17, 17, 17, 12, 19, 16, 9], "borderColor": "#8b5cf6", "backgroundColor": "#8b5cf620", "tension": 0.3, "fill": false}]
+  },
+  options: {
+    responsive: true,
+    interaction: { mode: 'index', intersect: false },
+    scales: { x: { grid: { display: false } }, y: { beginAtZero: true } },
+    plugins: { legend: { position: 'top' } }
+  }
+});
+
+// Company types chart
+new Chart(document.getElementById('companyTypesChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ["startup", "public", "private", "fund", "gov", "nonprofit"],
+    datasets: [{ data: [1471, 770, 685, 349, 86, 2], backgroundColor: COLORS, borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'right' } }
+  }
+});
+
+// ===== PEOPLE & TECH TAB =====
+// Top people horizontal bar
+new Chart(document.getElementById('topPeopleChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Sam Altman", "Elon Musk", "Ben Thompson", "Mark Zuckerberg", "Jensen Huang", "Palmer Luckey", "Dylan Patel", "Satya Nadella", "Tim Cook", "Gary Tan", "Dario Amodei", "George Hotz", "Peter Thiel", "Ilya Sutskever", "Brian Armstrong", "Alex Wang", "Andrej Karpathy", "Larry Ellison", "Sundar Pichai", "Tyler Cowen"],
+    datasets: [{ data: [120, 96, 86, 71, 71, 63, 54, 52, 48, 48, 43, 40, 37, 36, 35, 34, 33, 33, 30, 29], backgroundColor: COLORS, borderRadius: 6 }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { x: { grid: { display: false } }, y: { grid: { display: false } } }
+  }
+});
+
+// Top tech horizontal bar
+new Chart(document.getElementById('topTechChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Large Language Models (LLMs)", "AI Agents", "Stablecoins", "Humanoid Robotics", "Generative AI", "Reinforcement Learning (RL)", "Starlink", "Apple Intelligence", "ChatGPT", "Transformer Architecture", "CUDA", "Claude Code", "Large Language Models", "Transformer architecture", "Gemini", "Vibe Coding"],
+    datasets: [{ data: [125, 47, 41, 37, 35, 33, 29, 27, 27, 27, 24, 23, 21, 21, 20, 19], backgroundColor: COLORS, borderRadius: 6 }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { x: { grid: { display: false } }, y: { grid: { display: false } } }
+  }
+});
+
+// Tech radar
+new Chart(document.getElementById('techRadarChart'), {
+  type: 'radar',
+  data: {
+    labels: ["Large Language Models (LLMs)", "AI Agents", "Stablecoins", "Humanoid Robotics", "Generative AI", "Reinforcement Learning (RL)", "Starlink", "Apple Intelligence"],
+    datasets: [{
+      label: 'Mentions',
+      data: [125, 47, 41, 37, 35, 33, 29, 27],
+      borderColor: '#6366f1', backgroundColor: 'rgba(99,102,241,0.15)',
+      pointBackgroundColor: '#6366f1', borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: { r: { beginAtZero: true, ticks: { font: { size: 9 } } } },
+    plugins: { legend: { display: false } }
+  }
+});
+
+// ===== TRENDS TAB =====
+// Trend line
+new Chart(document.getElementById('trendLineChart'), {
+  type: 'line',
+  data: {
+    labels: ["2025-W06", "2025-W07", "2025-W08", "2025-W09", "2025-W10", "2025-W11", "2025-W12", "2025-W13", "2025-W14", "2025-W15", "2025-W16", "2025-W17", "2025-W18", "2025-W19", "2025-W20", "2025-W21", "2025-W22", "2025-W23", "2025-W24", "2025-W25", "2025-W26", "2025-W27", "2025-W28", "2025-W29", "2025-W30", "2025-W31", "2025-W32", "2025-W33", "2025-W34", "2025-W35", "2025-W36", "2025-W37", "2025-W38", "2025-W39", "2025-W40", "2025-W41", "2025-W42", "2025-W43", "2025-W44", "2025-W45", "2025-W46", "2025-W47", "2025-W48", "2025-W49", "2025-W50"],
+    datasets: [{
+      label: 'Unique Topics',
+      data: [35, 47, 72, 66, 50, 35, 68, 78, 77, 84, 66, 75, 62, 54, 81, 72, 97, 50, 106, 94, 96, 113, 98, 96, 10, 101, 96, 95, 102, 61, 72, 39, 54, 65, 81, 114, 100, 93, 105, 76, 104, 58, 100, 89, 55],
+      borderColor: '#6366f1', pointBackgroundColor: '#6366f1',
+      tension: 0.3, pointRadius: 3, borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { x: { grid: { display: false } }, y: { beginAtZero: true } }
+  }
+});
+
+// Top topics bar
+new Chart(document.getElementById('topTopicsChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Humanoid Robotics", "Vibe Revenue Warning", "European Defense Spending", "Apple Intelligence Failure", "Independent Media vs. Legacy Media", "Consumption-Based AI Pricing", "US Manufacturing Reshoring", "AI Companion Hardware", "YC Demo Day 2025", "Apple Intelligence Failures", "AI Talent Wars", "Solo Brands Stock Collapse", "US Manufacturing and Reshoring", "Self-Driving Car Aesthetics", "AI Bubble Debate", "AI Browser Wars", "Figma IPO", "Space Data Centers", "Branding and Counter-Positioning", "Triangle of Talent Framework"],
+    datasets: [{ data: [12, 8, 8, 6, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 3, 3], backgroundColor: COLORS, borderRadius: 6 }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { x: { grid: { display: false } }, y: { grid: { display: false }, ticks: { font: { size: 10 } } } }
+  }
+});
+
+// Claims per month
+new Chart(document.getElementById('claimsChart'), {
+  type: 'bar',
+  data: {
+    labels: ["2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12"],
+    datasets: [{
+      label: 'Key Claims',
+      data: [185, 299, 401, 339, 430, 430, 527, 313, 455, 449, 271],
+      backgroundColor: '#8b5cf6', borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { x: { grid: { display: false } }, y: { beginAtZero: true } }
+  }
+});
+
+// ===== INSIGHTS TAB =====
+// Sector bar chart
+new Chart(document.getElementById('sectorBarChart'), {
+  type: 'bar',
+  data: {
+    labels: ["AI/ML", "Venture Capital", "Fintech", "Developer Tools", "Semiconductors", "Media", "E-commerce", "Technology", "Health Tech", "AI/ML / Social Media", "Finance", "Cloud / Enterprise", "Travel / Hospitality", "Social Media"],
+    datasets: [{ data: [1300, 861, 439, 345, 297, 245, 226, 178, 176, 174, 157, 156, 154, 148], backgroundColor: COLORS.slice(0, 14), borderRadius: 6 }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { x: { grid: { display: false }, ticks: { maxRotation: 45, font: { size: 10 } } }, y: { beginAtZero: true } }
+  }
+});
+</script>
+</body>
+</html>
