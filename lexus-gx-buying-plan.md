@@ -6,7 +6,7 @@
 >
 > | GX 470 (2003-2009) — Under $10K | GX 460 (2010+) — $15-20K Stretch |
 > |:---:|:---:|
-> | ![2006 Lexus GX 470](https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/2006_Lexus_GX_470.JPG/640px-2006_Lexus_GX_470.JPG) | ![2014 Lexus GX 460](https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/2014_Lexus_GX460_Premium%2C_Front_Right%2C_04-05-2021.jpg/640px-2014_Lexus_GX460_Premium%2C_Front_Right%2C_04-05-2021.jpg) |
+> | ![2008 Lexus GX 470](https://upload.wikimedia.org/wikipedia/commons/2/26/2008-2009_Lexus_GX470_--_01-13-2010.jpg) | ![2014 Lexus GX 460](https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/2014_Lexus_GX460_Premium%2C_Front_Right%2C_04-05-2021.jpg/640px-2014_Lexus_GX460_Premium%2C_Front_Right%2C_04-05-2021.jpg) |
 > | *Body-on-frame SUV, 2UZ-FE 4.7L V8, full-time 4WD* | *Updated styling, 1UR-FE 4.6L V8, KDSS suspension* |
 
 - **Target:** Lexus GX 470 (2003-2009) under $10K, or GX 460 (2010+) if stretching to $15-20K
@@ -31,9 +31,9 @@
 - **Best years:** 2007-2009 (most refined). **Avoid:** 2003 (drivetrain defects), 2006 (most complaints)
 - ~45 listings under $10K exist on iSeeCars at any given time
 
-> ![2UZ-FE V8 Engine](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/2UZ-FE_engine.jpg/480px-2UZ-FE_engine.jpg)
+> ![2UZ-FE V8 Engine](https://www.drifted.com/wp-content/uploads/2021/02/2uzfe-thumbnail.jpg)
 >
-> *The Toyota 2UZ-FE 4.7L V8 — shared with the Land Cruiser 100 and Tundra. Iron block, aluminum heads, timing belt driven. Bulletproof if maintained. [More info](https://en.wikipedia.org/wiki/Toyota_UZ_engine#2UZ-FE)*
+> *The Toyota 2UZ-FE 4.7L V8 — shared with the Land Cruiser 100 and Tundra. Iron block, aluminum heads, timing belt driven. Bulletproof if maintained. [Full engine guide](https://www.drifted.com/2uzfe/) | [Wikipedia](https://en.wikipedia.org/wiki/Toyota_UZ_engine#2UZ-FE)*
 
 ### GX 460 (2010-2023) — If Budget Stretches to $15-20K
 
@@ -89,9 +89,9 @@
 
 > **The Salt Belt — States That Destroy Cars**
 >
-> ![US Salt Belt Map](https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Salt_Belt.svg/800px-Salt_Belt.svg.png)
+> ![US Salt Belt Map](http://media.carcomplaints.com/img/resources/salt-belt/salt-belt.png)
 >
-> *The [Salt Belt](https://en.wikipedia.org/wiki/Salt_Belt) covers 28+ states where road salt accelerates underbody rust. Vehicles from AZ, NV, west TX, and SoCal avoid this entirely. Always verify via CARFAX that a car actually lived in a dry state — rust-belt cars get resold in AZ regularly.*
+> *The [Salt Belt](https://en.wikipedia.org/wiki/Salt_Belt) covers 28+ states where road salt accelerates underbody rust. Vehicles from AZ, NV, west TX, and SoCal avoid this entirely. Always verify via CARFAX that a car actually lived in a dry state — rust-belt cars get resold in AZ regularly. Source: [CarComplaints.com](https://m.carcomplaints.com/resources/guides/salt-belt/)*
 >
 > **Interactive tool:** [TheRustMap.com](https://www.therustmap.com/) — crowdsourced county-level rust severity data
 >
@@ -192,7 +192,12 @@ Set up saved searches with email/push alerts on ALL of these:
 > - **Scale rust** — Flaking layers, pitting. Negotiate hard or walk away.
 > - **Penetrating rust** — Holes in metal, structural weakness. **WALK AWAY.**
 >
-> *Reference: [The Drive — When Is a Car Too Rusty?](https://www.thedrive.com/guides-and-gear/when-is-a-car-too-rusty) | [DrivingLine — Rust Busting](https://www.drivingline.com/articles/rust-busting-how-to-revive-a-corroded-frame/)*
+> **GX 470 specific rust examples from owners:**
+> - [IH8MUD: "Bad rust on this GX 470?"](https://forum.ih8mud.com/threads/bad-rust-on-this-gx-470.1141808/) — Clean TX frame vs rusty Northeast frame comparison photos
+> - [IH8MUD: Undercarriage coating photos](https://forum.ih8mud.com/threads/undercarriage-coating-photos.1270379/) — Before/after cleaned & coated GX undercarriage
+> - [IH8MUD: Rust concern on 2007 GX470](https://forum.ih8mud.com/threads/rust-concern-on-a-2007-gx470.899455/) — "Really clean" undercarriage photos for reference
+>
+> *General reference: [The Drive — When Is a Car Too Rusty?](https://www.thedrive.com/guides-and-gear/when-is-a-car-too-rusty) | [CARFAX: Inspecting Rusted Cars](https://www.carfax.com/maintenance/inspecting-rusted-cars) | [DrivingLine — Rust Busting](https://www.drivingline.com/articles/rust-busting-how-to-revive-a-corroded-frame/)*
 
 ### Must Check (Deal-Breakers)
 
