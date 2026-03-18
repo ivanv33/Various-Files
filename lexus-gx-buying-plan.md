@@ -71,13 +71,32 @@
 > ```
 > *Source: [Edmunds](https://www.edmunds.com/car-buying/best-time-to-buy-a-used-car.html), [CarEdge](https://caredge.com/guides/used-car-price-trends-for-2025)*
 
-| Period | Rating | Why |
-|--------|--------|-----|
-| **Oct-Dec** | Best | Dealers clearing annual quotas, holiday slowdown, SUV demand drops |
-| **Jan-Feb** | Good | Winter slowdown before tax refund season |
-| **End of month** | Always better | Salesperson monthly quotas |
-| **Mar-May** | Worst | Tax refund surge + spring buying season |
-| **Jun-Sep** | Average | SUVs hold value in summer (road trips, towing) |
+### Monthly Price Deviation (vs. Annual Average)
+
+*Sources: iSeeCars (40M+ sales), Manheim Used Vehicle Value Index, CPI seasonal factors, CARFAX segment data*
+
+| Month | Est. Price vs. Avg | Deal Availability | Verdict |
+|-------|-------------------|-------------------|---------|
+| **Jan** | **-2% to -3%** | **+55.6%** more deals | **BEST** — winter slowdown, post-holiday |
+| **Feb** | **-1% to -2%** | **+36.2%** more deals | **Great** — before tax refunds hit |
+| **Mar** | **+1% to +2%** | Above avg | **Bad** — spring bounce starts |
+| **Apr** | **+2% to +3%** | -16.8% fewer deals | **Worst** — tax refund + spring peak |
+| **May** | **+2% to +3%** | **-27.8%** fewer deals | **Worst** — peak demand |
+| **Jun** | **+1.5% to +2.5%** | **-30.4%** fewer deals | **Bad** — fewest deals of year |
+| **Jul** | **+1% to +2%** | **-22.5%** fewer deals | **Below avg** |
+| **Aug** | **+0.5% to +1%** | **-8.5%** fewer deals | **Below avg** — softening begins |
+| **Sep** | ~flat | Improving | **Neutral** |
+| **Oct** | **-0.5% to -1.5%** | +16.7% more deals | **Good** — strongest depreciation month |
+| **Nov** | **-1% to -2%** | **+38.4%** more deals | **Great** — year-end clearance |
+| **Dec** | **-1.5% to -2.5%** | **+15.2%** more deals | **Great** — holiday + quota pressure |
+
+> **SUV-Specific Twist for the GX:** Body-on-frame 4WD SUVs partially **buck the general trend**. SUV/truck demand **rises** in winter (Oct-Feb) due to snow/4WD needs, creating a winter premium. For the GX specifically:
+> - **Late spring/summer (May-Aug)** is actually better for buying a 4WD SUV — demand for AWD drops
+> - **Winter (Nov-Feb)** has cheaper general used cars BUT pricier 4WD SUVs
+> - **Net effect:** The general winter discount and SUV winter premium roughly cancel out
+> - **True sweet spot:** Late summer (Aug-Sep) when general prices soften AND SUV premium is low
+>
+> *However, a great deal at any time beats waiting for the "right" month. GX deals sell in 1-3 days.*
 
 **Seasonal swing:** 3-8% ($300-$800 on a $10K car). Worth waiting if you're not in a rush.
 
@@ -316,3 +335,154 @@ Set up saved searches with email/push alerts on ALL of these:
 - NY DMV Sales Tax Info: https://dmv.ny.gov/registration/sales-tax-information
 - Edmunds TMV: https://www.edmunds.com/tmv.html
 - SearchTempest (all Craigslist): https://www.searchtempest.com/
+
+---
+
+## 10. Real Listings Dataset (Scraped March 2026)
+
+> **Data freshness:** Scraped from CarGurus, iSeeCars, Cars.com, AutoTrader, and Facebook Marketplace on March 18, 2026. Listings change daily — use these as market benchmarks, then search the live sites above.
+
+### GX 470 Under $10K — Dealer Listings
+
+| # | Year | Price | Mileage | Location | Dealer | Color | Source |
+|---|------|-------|---------|----------|--------|-------|--------|
+| 1 | 2003 | $999 | 238,916 mi | South Holland, IL | -- | Tan | [iSeeCars](https://www.iseecars.com/used_cars-t5527-used-lexus-gx-470-under-10000) |
+| 2 | 2003 | $5,950 | 242,606 mi | Grove City, OH | -- | Black Onyx | [iSeeCars](https://www.iseecars.com/used_cars-t5527-used-lexus-gx-470-under-10000) |
+| 3 | 2004 | $5,999 | 285,000 mi | Norcross, GA | -- | Blue Meridian Pearl | [iSeeCars](https://www.iseecars.com/used_cars-t5527-used-lexus-gx-470-under-10000) |
+| 4 | 2004 | $6,490 | 215,568 mi | Santa Clarita, CA | Starfire Auto | Blizzard Pearl | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/625974705) |
+| 5 | 2005 | $6,515 | 323,951 mi | Columbus, OH | -- | Ash Blue Mica | [iSeeCars](https://www.iseecars.com/used_cars-t5527-used-lexus-gx-470-under-10000) |
+| 6 | 2007 | $6,700 | 309,788 mi | Longmont, CO | Burgio Motors | Beige | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 7 | 2006 | $6,995 | 248,384 mi | Garden City, MI | US Auto Sales | Black Onyx | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 8 | 2006 | $6,999 | 240,015 mi | Dallas, TX | -- | White | [iSeeCars](https://www.iseecars.com/used_cars-t5527-used-lexus-gx-470-under-10000) |
+| 9 | 2003 | $6,988 | 221,337 mi | Sandy, UT | -- | -- | [iSeeCars](https://www.iseecars.com/used_cars-t5527-used-lexus-gx-470-under-10000) |
+| 10 | 2007 | $6,999 | 191,090 mi | Worth, IL | Premier Auto Works | White | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 11 | 2005 | $6,995 | 294,317 mi | La Marque, TX | TX Discounted Motor | Blue | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/774890021) |
+| 12 | 2005 | $7,795 | 211,611 mi | Bedford, VA | -- | Blue | [iSeeCars](https://www.iseecars.com/used_cars-t5527-used-lexus-gx-470-under-10000) |
+| 13 | 2004 | $7,995 | 190,006 mi | Mooresville, IN | -- | Gray | [iSeeCars](https://www.iseecars.com/used_cars-t5527-used-lexus-gx-470-under-10000) |
+| 14 | 2008 | $7,995 | 186,652 mi | Union, NJ | -- | Salsa Red Pearl | [Cars.com](https://www.cars.com/shopping/lexus-gx_470/price-under-10000/) |
+| 15 | 2007 | $7,999 | 261,961 mi | San Jose, CA | Ronnie Motors LLC | Green | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 16 | 2007 | $8,200 | 222,524 mi | Gainesville, GA | Eddies Auto Sales | Blue | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 17 | 2005 | $8,500 | 230,450 mi | Haslet, TX | David H (Private) | Tan | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/773208775) |
+| 18 | 2006 | $8,500 | 249,889 mi | Taylorsville, IN | Hubler Honda | Black Onyx | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 19 | 2006 | $8,799 | 190,589 mi | Crestwood, IL | Your Choice Autos | White | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 20 | 2004 | $8,995 | 210,894 mi | Pasadena, TX | Auto 4 Less | Black | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/697177319) |
+| 21 | 2006 | $8,995 | 255,036 mi | Lynnwood, WA | Seattle Auto Werx | White | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 22 | 2007 | $8,995 | 194,769 mi | Raynham, MA | J and A Auto Center | Black Onyx | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 23 | 2007 | $8,997 | 172,095 mi | Toledo, OH | Joe's Autos | Black | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 24 | 2006 | $8,999 | 241,500 mi | Austin, TX | Auto City | Green | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 25 | 2006 | $8,999 | 190,827 mi | Brentwood, NH | Aspire Motoring LLC | Cream | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 26 | 2007 | $8,999 | 209,477 mi | Snellville, GA | Luxury Cars of Atlanta | White | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 27 | 2006 | $9,000 | 207,532 mi | Jessup, MD | Easton Auto Traders | Gold | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 28 | 2003 | $9,000 | 258,500 mi | West Covina, CA | Matthew R (Private) | Beige | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/765182104) |
+| 29 | 2008 | $9,098 | 251,422 mi | Austin, TX | Kia of North Austin | Blizzard Pearl | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/774969948) |
+| 30 | 2007 | $9,490 | 188,408 mi | Indianapolis, IN | Dreyer & Reinbold BMW | White | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 31 | 2008 | $9,495 | 198,000 mi | Sussex, WI | Big Wave Auto | Titanium Metallic | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 32 | 2007 | $9,499 | 242,286 mi | Orlando, FL | Freddy Autos | Black | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 33 | 2006 | $9,500 | 201,000 mi | Austin, TX | Townsend Motor Sales | -- | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 34 | 2008 | $9,650 | 214,227 mi | Van Nuys, CA | Brothers Motors LLC | Silver | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/767352529) |
+| 35 | 2006 | $9,995 | 252,204 mi | Argyle, TX | Andover Auto Group | Gray | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/766443841) |
+| 36 | 2008 | $9,995 | 198,000 mi | Willoughby, OH | JE Autoworks LLC | Black Onyx | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 37 | 2007 | $9,795 | 192,837 mi | Arlington Heights, IL | Lexus of Arlington | Ash Blue Mica | [CarGurus](https://www.cargurus.com/Cars/s-Used-Lexus-GX-Under-10000-d2063_spt377) |
+| 38 | 2007 | $11,995 | 215,873 mi | Ontario, CA | -- | -- | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/766765311) |
+
+### GX 470 Under $10K — Facebook Marketplace (Private Sellers)
+
+| # | Year | Price | Mileage | Location | Notes |
+|---|------|-------|---------|----------|-------|
+| 1 | 2009 | $1,200 | 170K mi | San Jose, CA | Likely needs work or scam |
+| 2 | 2006 | $3,000 | 190K mi | Los Angeles, CA | |
+| 3 | 2008 | $3,200 | 167K mi | Oakland, CA | |
+| 4 | 2003 | $3,200 | 153K mi | Woodland Hills, CA | |
+| 5 | 2009 | $3,200 | 182K mi | Atlanta, GA | |
+| 6 | 2003 | $3,700 | 123K mi | Oakland, CA | Low miles for price — check carefully |
+| 7 | 2006 | $4,000 | 163K mi | Naperville, IL | Salt belt — check frame |
+| 8 | 2004 | $4,000 | 228K mi | North Chicago, IL | Salt belt — check frame |
+| 9 | 2003 | $4,000 | 308K mi | Lynnwood, WA | High miles |
+| 10 | 2006 | $4,500 | 230K mi | Marietta, GA | |
+| 11 | 2007 | $4,600 | 190K mi | Carol Stream, IL | Salt belt |
+| 12 | 2007 | $4,700 | 175K mi | Marysville, WA | |
+| 13 | 2004 | $5,500 | -- | Santa Clarita, CA | |
+| 14 | 2008 | $5,300 | 140K mi | Downers Grove, IL | Low miles — salt belt though |
+| 15 | 2006 | $5,700 | 131K mi | Chicago, IL | Low miles — but SALT BELT |
+| 16 | 2004 | $5,800 | 190K mi | Brooklyn, NY | Local — check rust |
+| 17 | 2003 | $6,000 | 265K mi | Phoenix, AZ | Dry climate |
+| 18 | 2004 | $6,200 | 205K mi | Bellevue, WA | |
+| 19 | 2007 | $6,800 | 202K mi | Bayonne, NJ | Salt belt |
+| 20 | 2005 | $6,900 | 195K mi | Newnan, GA | |
+| 21 | 2003 | $6,990 | 167K mi | La Puente, CA | Dry climate |
+| 22 | 2007 | $7,000 | 225K mi | East Orange, NJ | Salt belt |
+| 23 | 2003 | $7,500 | 200K mi | Vallejo, CA | |
+| 24 | 2003 | $7,500 | 265K mi | Phoenix, AZ | Dry climate |
+| 25 | 2008 | $7,800 | 169K mi | Wood Dale, IL | Salt belt |
+| 26 | 2005 | $8,000 | 225K mi | Larkspur, CA | |
+| 27 | 2004 | $8,000 | 220K mi | Culver City, CA | Dry climate |
+| 28 | 2006 | $8,490 | 221K mi | Dallas, GA | |
+| 29 | 2008 | $8,500 | 212K mi | Lancaster, CA | Dry climate |
+| 30 | 2004 | $8,900 | 171K mi | Atlanta, GA | |
+| 31 | 2004 | $8,900 | 168K mi | North Hollywood, CA | Dry climate |
+| 32 | 2007 | $9,500 | 143K mi | North Salem, NY | Low miles — check rust |
+| 33 | 2005 | $9,500 | 207K mi | Flushing, NY | Local |
+| 34 | 2003 | $9,995 | 185K mi | Oak Park, IL | Salt belt |
+
+### GX 460 Under $22K — Dealer Listings
+
+| # | Price | Year | Trim | Mileage | Location | Dealer | Deal Rating | Source |
+|---|-------|------|------|---------|----------|--------|-------------|--------|
+| 1 | $12,500 | 2012 | Base | 213,188 mi | Huntsville, AL | Lexus of Huntsville | Great Deal | [CarGurus](https://www.cargurus.com/details/439008060) |
+| 2 | $12,995 | 2013 | Base | 155,591 mi | Wall Township, NJ | Automotive Avenues | Good Deal | [CarGurus](https://www.cargurus.com/details/439450913) |
+| 3 | $12,998 | 2013 | Base | 216,188 mi | Huntsville, AL | Bentley Buick GMC | Good Deal | [CarGurus](https://www.cargurus.com/details/442048373) |
+| 4 | $13,880 | 2010 | Base | 148,995 mi | Paterson, NJ | -- | Great Price | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/772505233) |
+| 5 | $13,900 | 2011 | Base | 170,129 mi | Westminster, CO | Elite Motors | Great Deal | [CarGurus](https://www.cargurus.com/details/442309395) |
+| 6 | $13,995 | 2013 | Base | 182,207 mi | Elkin, NC | Scotty's Auto Sales | Fair Deal | [CarGurus](https://www.cargurus.com/details/429252151) |
+| 7 | $13,995 | 2012 | Base | 176,672 mi | Boone, NC | High Country Auto Sales | Good Deal | [CarGurus](https://www.cargurus.com/details/441048115) |
+| 8 | $13,999 | 2010 | Base | 139,000 mi | Hueytown, AL | Huey Motors LLC | Great Deal | [CarGurus](https://www.cargurus.com/details/442197631) |
+| 9 | $13,999 | 2011 | Base | 136,121 mi | Brooklyn, NY | Brooklyn Auto Mall | Good Deal | [CarGurus](https://www.cargurus.com/details/437649106) |
+| 10 | $14,900 | 2014 | Premium | 210,955 mi | Chicago, IL | VW of Downtown Chicago | -- | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/772742584) |
+| 11 | $14,988 | 2011 | Base | 159,766 mi | Lenoir, NC | AutoWorld of Lenoir | Good Deal | [CarGurus](https://www.cargurus.com/details/391017383) |
+| 12 | $14,995 | 2010 | Base | 143,861 mi | Canal Fulton, OH | R21 Motorsports | Fair Deal | [CarGurus](https://www.cargurus.com/details/437108960) |
+| 13 | $14,997 | 2015 | Luxury | 193,460 mi | Austin, TX | First Texas Honda | Great Deal | [CarGurus](https://www.cargurus.com/details/437585115) |
+| 14 | $14,999 | 2013 | Base | 128,535 mi | Sanford, NC | JT Auto Group | Great Deal | [CarGurus](https://www.cargurus.com/details/405997743) |
+| 15 | $15,000 | 2010 | Base | 148,995 mi | Ramsey, NJ | -- | Great Price | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/771136696) |
+| 16 | $15,000 | 2011 | Base | 160,083 mi | Jonesboro, AR | Evoke Autos | Great Deal | [CarGurus](https://www.cargurus.com/details/439543090) |
+| 17 | $15,199 | 2013 | Ultra Premium | 130,468 mi | Carrollton, KY | Marshall Chevrolet | Great Deal | [CarGurus](https://www.cargurus.com/details/411243363) |
+| 18 | $15,684 | 2014 | Luxury | 192,335 mi | Blair, NE | Woodhouse Ford | Below KBB | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/767615345) |
+| 19 | $15,995 | 2013 | Base | 137,084 mi | Birmingham, AL | Narrow Path Automotive | Great Deal | [CarGurus](https://www.cargurus.com/details/430844117) |
+| 20 | $16,900 | 2023 | Premium | 23,081 mi | Paterson, NJ | Bidgodrive.com | -- | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/773202726) |
+| 21 | $16,995 | 2013 | Base | 149,335 mi | Coeur d'Alene, ID | Hayden Cars | Good Deal | [CarGurus](https://www.cargurus.com/details/436968167) |
+| 22 | $16,995 | 2013 | Comfort Plus | 154,961 mi | Reno, NV | Corwin Buick GMC | -- | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/771924673) |
+| 23 | $17,395 | 2014 | Premium | 178,210 mi | Dallas, TX | DallasLeaseReturns | -- | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/774559616) |
+| 24 | $17,875 | 2013 | Ultra Premium | 142,290 mi | Portland, OR | Ron Tonkin Chevrolet | Good Deal | [CarGurus](https://www.cargurus.com/details/439412902) |
+| 25 | $17,995 | 2014 | Premium | 160,356 mi | Brooklyn, NY | -- | Great Price | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/771196751) |
+| 26 | $18,595 | 2014 | Premium | 136,890 mi | Des Plaines, IL | Jidd Motors Mitsubishi | -- | [Cars.com](https://www.cars.com/shopping/lexus-gx_460/price-under-20000/) |
+| 27 | $18,686 | 2012 | Premium | 140,375 mi | Arvada, CO | Alfred Automotive | Good Deal | [CarGurus](https://www.cargurus.com/details/440631419) |
+| 28 | $18,899 | 2014 | Base | 165,643 mi | Saint Paul, MN | Audi St. Paul | Good Deal | [CarGurus](https://www.cargurus.com/details/439990875) |
+| 29 | $18,998 | 2014 | Premium | 143,207 mi | Houston, TX | MB of Houston North | -- | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/774874739) |
+| 30 | $18,998 | 2014 | Base | 146,738 mi | Fort Worth, TX | Hertel Auto Group | Good Deal | [CarGurus](https://www.cargurus.com/details/438089693) |
+| 31 | $18,999 | 2016 | Luxury | 182,111 mi | Mishawaka, IN | Jordan Lexus | -- | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/774958407) |
+| 32 | $19,249 | 2015 | Base | 146,355 mi | Highland, MI | Feldman Chevrolet | -- | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/772882408) |
+| 33 | $19,395 | 2014 | Luxury | 140,831 mi | Victoria, TX | Nissan of Victoria | Good Deal | [CarGurus](https://www.cargurus.com/details/438903132) |
+| 34 | $19,991 | 2015 | Premium | 140,951 mi | Jacksonville, FL | AutoNation Ford | -- | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/772534546) |
+| 35 | $20,317 | 2015 | Base | 158,856 mi | Huntersville, NC | Toyota of N. Charlotte | -- | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/774859370) |
+| 36 | $20,336 | 2016 | Base | 151,975 mi | Birmingham, AL | Cadillac of Birmingham | Good Deal | [CarGurus](https://www.cargurus.com/details/441596515) |
+| 37 | $20,933 | 2012 | Premium | 94,900 mi | Kenosha, WI | Intl European Motor | Great Deal | [CarGurus](https://www.cargurus.com/details/396503011) |
+| 38 | $20,995 | 2018 | Base | 150,838 mi | Waycross, GA | Walker Jones Mega | Good Deal | [CarGurus](https://www.cargurus.com/details/435171610) |
+| 39 | $21,297 | 2014 | Premium | 119,573 mi | Manchester, MO | Mungenast Acura | -- | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/774240427) |
+| 40 | $21,995 | 2015 | Navigation | 76,592 mi | Paterson, NJ | -- | Great Price | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/771136651) |
+| 41 | $21,995 | 2017 | Navigation | 91,613 mi | Paterson, NJ | -- | Great Price | [AutoTrader](https://www.autotrader.com/cars-for-sale/vehicle/771136651) |
+
+> **Warning flags in the data:**
+> - Listing #20 ($16,900 for a 2023 GX 460 with 23K mi) is flagged as **SALVAGE TITLE** — "sustained all over damage," sold AS-IS. Avoid unless you know body work.
+> - Listings under $2K (e.g., FB #1 at $1,200) are likely scams, non-running, or bait listings.
+> - Salt belt locations (IL, OH, MI, WI, NJ, NH, MA) require mandatory frame inspection.
+
+### Market Summary (March 2026)
+
+| Metric | GX 470 (<$10K) | GX 460 (<$22K) |
+|--------|---------------|----------------|
+| **Listings found** | 70+ (dealer + private) | 41+ (mostly dealer) |
+| **Price range** | $999 - $11,995 | $12,500 - $21,995 |
+| **Sweet spot** | 2006-2008, 170K-250K mi, $7K-$9.5K | 2013-2014, 130K-160K mi, $14K-$18K |
+| **Best value finds** | 2007 @ $6,700 (CO), 2004 @ $6,490 (CA) | 2010 @ $13,880 (NJ), 2013 @ $12,995 (NJ) |
+| **Dry-climate picks** | TX: $6,999-$9,995, CA: $6,490-$9,650 | TX: $14,997-$18,998, CO: $13,900 |
+| **Avg dealer price** | ~$8,200 | ~$17,100 |
+| **Avg FB Marketplace** | ~$6,100 (includes lowball/scam) | -- |
