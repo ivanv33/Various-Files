@@ -2,6 +2,13 @@
 
 ## Quick Summary
 
+> **Your two targets at a glance:**
+>
+> | GX 470 (2003-2009) — Under $10K | GX 460 (2010+) — $15-20K Stretch |
+> |:---:|:---:|
+> | ![2006 Lexus GX 470](https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/2006_Lexus_GX_470.JPG/640px-2006_Lexus_GX_470.JPG) | ![2014 Lexus GX 460](https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/2014_Lexus_GX460_Premium%2C_Front_Right%2C_04-05-2021.jpg/640px-2014_Lexus_GX460_Premium%2C_Front_Right%2C_04-05-2021.jpg) |
+> | *Body-on-frame SUV, 2UZ-FE 4.7L V8, full-time 4WD* | *Updated styling, 1UR-FE 4.6L V8, KDSS suspension* |
+
 - **Target:** Lexus GX 470 (2003-2009) under $10K, or GX 460 (2010+) if stretching to $15-20K
 - **Strategy:** Search dry-climate states (TX, AZ, SoCal, NV, NM) for rust-free examples
 - **Base:** NYC — fly out, drive back
@@ -24,6 +31,10 @@
 - **Best years:** 2007-2009 (most refined). **Avoid:** 2003 (drivetrain defects), 2006 (most complaints)
 - ~45 listings under $10K exist on iSeeCars at any given time
 
+> ![2UZ-FE V8 Engine](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/2UZ-FE_engine.jpg/480px-2UZ-FE_engine.jpg)
+>
+> *The Toyota 2UZ-FE 4.7L V8 — shared with the Land Cruiser 100 and Tundra. Iron block, aluminum heads, timing belt driven. Bulletproof if maintained. [More info](https://en.wikipedia.org/wiki/Toyota_UZ_engine#2UZ-FE)*
+
 ### GX 460 (2010-2023) — If Budget Stretches to $15-20K
 
 | Budget | Typical Year | Typical Mileage | Notes |
@@ -40,6 +51,26 @@
 
 ## 2. Best Time to Buy
 
+> **Seasonal Used Car Pricing Pattern**
+>
+> ```
+> Price
+>  ▲
+>  │    ██                              ██
+>  │  ████ ██                        ██████
+>  │ █████████                    ████████
+>  │██████████ ██              ██████████████
+>  │█████████████ ██        ██████████████████
+>  │██████████████████  ████████████████████████
+>  │████████████████████████████████████████████
+>  │████████████████████████████████████████████
+>  └──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──┬──►
+>    Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+>          ▲ WORST                      ▲ BEST
+>       (tax refunds)            (year-end clearance)
+> ```
+> *Source: [Edmunds](https://www.edmunds.com/car-buying/best-time-to-buy-a-used-car.html), [CarEdge](https://caredge.com/guides/used-car-price-trends-for-2025)*
+
 | Period | Rating | Why |
 |--------|--------|-----|
 | **Oct-Dec** | Best | Dealers clearing annual quotas, holiday slowdown, SUV demand drops |
@@ -55,6 +86,16 @@
 ---
 
 ## 3. Best States to Target (Ranked for NYC Buyer)
+
+> **The Salt Belt — States That Destroy Cars**
+>
+> ![US Salt Belt Map](https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Salt_Belt.svg/800px-Salt_Belt.svg.png)
+>
+> *The [Salt Belt](https://en.wikipedia.org/wiki/Salt_Belt) covers 28+ states where road salt accelerates underbody rust. Vehicles from AZ, NV, west TX, and SoCal avoid this entirely. Always verify via CARFAX that a car actually lived in a dry state — rust-belt cars get resold in AZ regularly.*
+>
+> **Interactive tool:** [TheRustMap.com](https://www.therustmap.com/) — crowdsourced county-level rust severity data
+>
+> **Deep dive:** [Raybuck — Worst Salt Corrosion & Auto Rust by State](https://raybuck.com/salt-rust-corrosion-by-state/)
 
 ### Tier 1: Desert Southwest (Rust-Free + Volume)
 
@@ -140,6 +181,19 @@ Set up saved searches with email/push alerts on ALL of these:
 
 ## 5. GX 470 Inspection Checklist
 
+> **Frame Rust: Know What to Look For**
+>
+> | Clean Frame (What You Want) | Rusted Frame (Walk Away) |
+> |:---:|:---:|
+> | ![Clean undercarriage](https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Automobile_chassis_%28Autocar_Handbook%2C_13th_ed%2C_1935%29.jpg/640px-Automobile_chassis_%28Autocar_Handbook%2C_13th_ed%2C_1935%29.jpg) | *See examples at [CARFAX: Inspecting Rusted Cars](https://www.carfax.com/maintenance/inspecting-rusted-cars)* |
+>
+> **Rust severity reference:**
+> - **Surface rust** — Orange discoloration, metal still solid. Acceptable if treated.
+> - **Scale rust** — Flaking layers, pitting. Negotiate hard or walk away.
+> - **Penetrating rust** — Holes in metal, structural weakness. **WALK AWAY.**
+>
+> *Reference: [The Drive — When Is a Car Too Rusty?](https://www.thedrive.com/guides-and-gear/when-is-a-car-too-rusty) | [DrivingLine — Rust Busting](https://www.drivingline.com/articles/rust-busting-how-to-revive-a-corroded-frame/)*
+
 ### Must Check (Deal-Breakers)
 
 - [ ] **Frame rust/corrosion** — Crawl under or get undercarriage photos. Any structural rust = walk away
@@ -216,6 +270,31 @@ Set up saved searches with email/push alerts on ALL of these:
 - [ ] End of month = best negotiating leverage
 - [ ] Have flight booking ready, cash/financing pre-approved
 - [ ] Execute: PPI → negotiate → fly out → inspect → buy → drive home
+
+---
+
+## 9. Visual Reference: GX 470 vs GX 460 Comparison
+
+| Feature | GX 470 (2003-2009) | GX 460 (2010-2023) |
+|---------|--------------------|--------------------|
+| **Engine** | 2UZ-FE 4.7L V8 (275 hp) | 1UR-FE 4.6L V8 (301 hp) |
+| **Transmission** | 5-speed auto | 6-speed auto |
+| **4WD System** | Full-time, Torsen center diff | Full-time, Torsen center diff |
+| **Suspension** | Rear air (or coil conversion) | KDSS (Kinetic Dynamic Suspension) |
+| **Towing** | 6,500 lbs | 6,500 lbs |
+| **MPG** | ~14 city / ~18 hwy | ~15 city / ~20 hwy |
+| **Key advantage** | Proven, cheap to buy, easy to work on | More refined, safer, better resale |
+| **Key risk** | Age-related wear, timing belt | Valley plate leak, higher buy-in |
+
+> **Community resources with tons of photos & buyer guides:**
+>
+> | Community | Focus | Link |
+> |-----------|-------|------|
+> | ![IH8MUD](https://www.ih8mud.com/forum/data/assets/logo/ih8mud-mobile-logo-retina.png) | GX/Land Cruiser — largest community | [forum.ih8mud.com](https://forum.ih8mud.com/) |
+> | LexusGXOR | GX-specific overland/off-road | [lexusgxor.com](https://lexusgxor.com/general:purchasing) |
+> | ClubLexus | All Lexus models | [clublexus.com/forums](https://www.clublexus.com/forums/gx-1st-gen-2003-2009/) |
+> | r/LexusGX | Reddit community | [reddit.com/r/LexusGX](https://www.reddit.com/r/LexusGX/) |
+> | r/GXOR | Reddit overland community | [reddit.com/r/GXOR](https://www.reddit.com/r/GXOR/) |
 
 ---
 
