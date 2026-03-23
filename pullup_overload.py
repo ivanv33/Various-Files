@@ -214,16 +214,23 @@ def calculate_workout(sessions, bodyweight, day_type):
     note = ""
 
     if hit_top_twice:
-        # 2-for-2 rule: add weight, reset to bottom of rep range
-        added_weight += WEIGHT_INCREMENT_LBS
-        rep_targets = [config["rep_low"]] * num_sets
-        note = (f"2-for-2 hit! Adding {WEIGHT_INCREMENT_LBS} lbs "
-                f"(now +{added_weight} lbs). Reset to {config['rep_low']} reps.")
+        # 2-for-2 rule: maxed out rep range twice — add a set, reset reps to bottom
+        if num_sets < MAX_SETS:
+            num_sets += 1
+            rep_targets = [config["rep_low"]] * num_sets
+            note = (f"2-for-2 hit! Adding set {num_sets}. "
+                    f"Reset to {config['rep_low']} reps across {num_sets} sets.")
+        else:
+            # Already at max sets — bump rep range targets up, you're getting strong
+            rep_targets = [config["rep_high"]] * num_sets
+            note = (f"2-for-2 hit at max sets ({MAX_SETS})! "
+                    f"Hold {config['rep_high']} reps x {num_sets} sets. "
+                    f"Consider adding weight with a belt to keep progressing.")
     elif all_hit_top:
         # Hit top once — repeat at top, one more session to confirm
         rep_targets = [config["rep_high"]] * num_sets
         note = (f"You hit {config['rep_high']} across all sets last time. "
-                f"Do it again to trigger a weight increase!")
+                f"Do it again to trigger adding a set!")
     elif avg_reps < config["rep_low"]:
         # Below range — keep weight, aim to match or beat last total by 1-2 reps
         rep_targets = [min(r + 1, config["rep_high"]) for r in last_reps]
