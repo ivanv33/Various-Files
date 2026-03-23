@@ -33,7 +33,7 @@ CSV_FIELDS = [
 ]
 
 # Program constants
-START_SETS = 3
+START_SETS = 4
 MAX_SETS = 5
 REP_LOW = 5
 REP_HIGH = 8
