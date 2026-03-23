@@ -186,6 +186,27 @@ def calculate_workout(sessions, bodyweight, day_type):
     avg_reps = sum(last_reps) / len(last_reps)
     all_hit_top = all(r >= config["rep_high"] for r in last_reps)
 
+    # Account for bodyweight changes as effective load changes
+    bw_delta = bodyweight - last["bodyweight_lbs"]
+    last_total_load = last["bodyweight_lbs"] + last["added_weight_lbs"]
+    bw_note = ""
+
+    if abs(bw_delta) >= WEIGHT_INCREMENT_LBS:
+        if bw_delta > 0:
+            # BW went up — treat as implicit load increase, reduce added weight to compensate
+            compensate = min(added_weight, bw_delta)
+            added_weight -= compensate
+            added_weight = round(added_weight / WEIGHT_INCREMENT_LBS) * WEIGHT_INCREMENT_LBS
+            added_weight = max(0, added_weight)
+            new_total = bodyweight + added_weight
+            bw_note = (f"BW up {bw_delta:+.1f} lbs since last {day_type}. "
+                       f"Adjusted belt weight to keep total load ~{new_total:.0f} lbs. ")
+        else:
+            # BW went down — effective load decreased, keep added weight (free progression room)
+            new_total = bodyweight + added_weight
+            bw_note = (f"BW down {bw_delta:+.1f} lbs since last {day_type} "
+                       f"(total load {new_total:.0f} vs {last_total_load:.0f} lbs). ")
+
     # Check if top of range was hit in last TWO sessions of this type (2-for-2 rule)
     same_type_sessions = [s for s in sessions if s["day_type"] == day_type]
     hit_top_twice = False
@@ -199,7 +220,12 @@ def calculate_workout(sessions, bodyweight, day_type):
     num_sets = config["sets"]
     note = ""
 
-    if hit_top_twice:
+    if hit_top_twice and bw_delta >= WEIGHT_INCREMENT_LBS:
+        # 2-for-2 hit but BW already went up — skip adding belt weight
+        rep_targets = [config["rep_low"]] * num_sets
+        note = (f"2-for-2 hit, but BW already increased {bw_delta:+.1f} lbs — "
+                f"no extra belt weight needed. Reset to {config['rep_low']} reps.")
+    elif hit_top_twice:
         # 2-for-2 rule: add weight, reset to bottom of rep range
         added_weight += WEIGHT_INCREMENT_LBS
         rep_targets = [config["rep_low"]] * num_sets
@@ -221,6 +247,9 @@ def calculate_workout(sessions, bodyweight, day_type):
         while len(rep_targets) < num_sets:
             rep_targets.append(config["rep_low"])
         note = f"+1 rep per set vs last time. Last total: {sum(last_reps)}."
+
+    if bw_note:
+        note = bw_note + note
 
     # RIR guidance based on mesocycle position (weeks within block)
     block_week = ((current_week - 1) % DELOAD_EVERY_WEEKS) + 1
@@ -253,10 +282,10 @@ def format_workout(workout, bodyweight, date_str=None):
         lines.append("  *** DELOAD WEEK ***")
     lines.append(f"  {workout['label']}")
     lines.append("=" * 55)
-    lines.append(f"  Bodyweight: {bodyweight} lbs")
+    total_load = bodyweight + workout["added_weight_lbs"]
+    lines.append(f"  Bodyweight: {bodyweight} lbs | Total load: {total_load} lbs")
     if workout["added_weight_lbs"] > 0:
-        total = bodyweight + workout["added_weight_lbs"]
-        lines.append(f"  Added weight: +{workout['added_weight_lbs']} lbs (total: {total} lbs)")
+        lines.append(f"  Added weight: +{workout['added_weight_lbs']} lbs")
     lines.append(f"  Rest: {workout['rest']}s between sets")
     if "rir" in workout:
         lines.append(f"  Effort: {workout['rir']}")
