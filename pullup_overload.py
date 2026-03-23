@@ -186,26 +186,19 @@ def calculate_workout(sessions, bodyweight, day_type):
     avg_reps = sum(last_reps) / len(last_reps)
     all_hit_top = all(r >= config["rep_high"] for r in last_reps)
 
-    # Account for bodyweight changes as effective load changes
+    # Account for bodyweight changes in rep expectations
+    # Every ~5 lbs BW change ≈ 1 rep difference on pull-ups
     bw_delta = bodyweight - last["bodyweight_lbs"]
-    last_total_load = last["bodyweight_lbs"] + last["added_weight_lbs"]
     bw_note = ""
+    bw_rep_adjust = 0
 
     if abs(bw_delta) >= WEIGHT_INCREMENT_LBS:
-        if bw_delta > 0:
-            # BW went up — treat as implicit load increase, reduce added weight to compensate
-            compensate = min(added_weight, bw_delta)
-            added_weight -= compensate
-            added_weight = round(added_weight / WEIGHT_INCREMENT_LBS) * WEIGHT_INCREMENT_LBS
-            added_weight = max(0, added_weight)
-            new_total = bodyweight + added_weight
-            bw_note = (f"BW up {bw_delta:+.1f} lbs since last {day_type}. "
-                       f"Adjusted belt weight to keep total load ~{new_total:.0f} lbs. ")
-        else:
-            # BW went down — effective load decreased, keep added weight (free progression room)
-            new_total = bodyweight + added_weight
-            bw_note = (f"BW down {bw_delta:+.1f} lbs since last {day_type} "
-                       f"(total load {new_total:.0f} vs {last_total_load:.0f} lbs). ")
+        # ~1 rep per 5 lbs of BW change (heavier = fewer reps, lighter = more reps)
+        bw_rep_adjust = -round(bw_delta / 5.0)
+        direction = "heavier" if bw_delta > 0 else "lighter"
+        bw_note = (f"BW {direction} by {abs(bw_delta):.1f} lbs since last {day_type} "
+                   f"({last['bodyweight_lbs']:.0f} → {bodyweight:.0f}). "
+                   f"Rep targets adjusted by {bw_rep_adjust:+d}. ")
 
     # Check if top of range was hit in last TWO sessions of this type (2-for-2 rule)
     same_type_sessions = [s for s in sessions if s["day_type"] == day_type]
@@ -220,12 +213,7 @@ def calculate_workout(sessions, bodyweight, day_type):
     num_sets = config["sets"]
     note = ""
 
-    if hit_top_twice and bw_delta >= WEIGHT_INCREMENT_LBS:
-        # 2-for-2 hit but BW already went up — skip adding belt weight
-        rep_targets = [config["rep_low"]] * num_sets
-        note = (f"2-for-2 hit, but BW already increased {bw_delta:+.1f} lbs — "
-                f"no extra belt weight needed. Reset to {config['rep_low']} reps.")
-    elif hit_top_twice:
+    if hit_top_twice:
         # 2-for-2 rule: add weight, reset to bottom of rep range
         added_weight += WEIGHT_INCREMENT_LBS
         rep_targets = [config["rep_low"]] * num_sets
@@ -247,6 +235,13 @@ def calculate_workout(sessions, bodyweight, day_type):
         while len(rep_targets) < num_sets:
             rep_targets.append(config["rep_low"])
         note = f"+1 rep per set vs last time. Last total: {sum(last_reps)}."
+
+    # Apply bodyweight adjustment to rep targets (heavier = fewer expected, lighter = more)
+    if bw_rep_adjust != 0 and rep_targets is not None:
+        rep_targets = [
+            max(config["rep_low"], min(config["rep_high"], r + bw_rep_adjust))
+            for r in rep_targets
+        ]
 
     if bw_note:
         note = bw_note + note
