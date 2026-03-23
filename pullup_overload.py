@@ -5,21 +5,17 @@ Pull-Up Progressive Overload Calculator
 Agent-operated: Claude runs this script with CLI args, not the user.
 
 Program design based on:
-- Renaissance Periodization (RP) mesocycle volume progression
-- Double progression method (reps first, then load)
-- Daily Undulating Periodization (DUP) across 3 weekly sessions
-- Deload every 4-6 weeks
+- Renaissance Periodization (RP) mesocycle structure
+- r/bodyweightfitness Recommended Routine progression
+- StrongFirst triple progression method
 
-3-day split per week:
-  Day 1 (Heavy)   — weighted pull-ups, 4x 4-6 reps, 3 min rest
-  Day 2 (Volume)  — bodyweight pull-ups, 4x 8-12 reps, 2 min rest
-  Day 3 (Density) — bodyweight pull-ups, 3x 12-15+ reps, 90s rest
-
-Progression rules (double progression):
-  1. Add reps within the target range until hitting top of range for all sets
-  2. When top of range hit across 2 sessions, add weight (2.5-5 lbs) & reset reps
-  3. If plateaued on load+reps, add 1 set (up to weekly max ~20 hard sets)
-  4. Deload week every 4-6 weeks: 50% volume, stay far from failure
+Bodyweight-only pull-ups, 3x/week:
+  - 3 sets, 5-8 rep range, 2-3 min rest
+  - Add 1 total rep per session (to one set, not all)
+  - When all sets hit top of range (8), add a set (up to 5)
+  - When 5x8 is hit, suggest harder variation or adding weight
+  - Deload every 5 weeks: half volume, easy effort
+  - Volume = bodyweight_lbs × total_reps
 
 Data stored in pullup_log.csv
 """
@@ -27,25 +23,25 @@ Data stored in pullup_log.csv
 import csv
 import os
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime
 
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pullup_log.csv")
 CSV_FIELDS = [
-    "date", "week", "day_type", "bodyweight_lbs",
-    "added_weight_lbs", "set1", "set2", "set3", "set4", "set5",
+    "date", "week", "bodyweight_lbs",
+    "set1", "set2", "set3", "set4", "set5",
     "total_reps", "volume_lbs", "notes",
 ]
 
-# Day type configurations: (name, target_sets, rep_low, rep_high, rest_seconds)
-DAY_TYPES = {
-    "heavy":   {"label": "Heavy (Strength-Hypertrophy)", "sets": 4, "rep_low": 4, "rep_high": 6, "rest": 180},
-    "volume":  {"label": "Volume (Hypertrophy)",         "sets": 4, "rep_low": 8, "rep_high": 12, "rest": 120},
-    "density": {"label": "Density (Endurance-Hyper)",    "sets": 3, "rep_low": 12, "rep_high": 15, "rest": 90},
-}
-
+# Program constants
+START_SETS = 3
 MAX_SETS = 5
+REP_LOW = 5
+REP_HIGH = 8
+REST_SECONDS = 150  # 2.5 min
 DELOAD_EVERY_WEEKS = 5
-WEIGHT_INCREMENT_LBS = 2.5
+SESSIONS_PER_WEEK = 3
+BW_ADJUST_THRESHOLD = 2.5  # lbs change before adjusting targets
+BW_LBS_PER_REP = 5.0  # ~1 rep per 5 lbs BW change
 
 
 def load_sessions():
@@ -63,9 +59,7 @@ def load_sessions():
             sessions.append({
                 "date": row["date"],
                 "week": int(row["week"]),
-                "day_type": row["day_type"],
                 "bodyweight_lbs": float(row["bodyweight_lbs"]),
-                "added_weight_lbs": float(row.get("added_weight_lbs", 0) or 0),
                 "reps_per_set": reps,
                 "total_reps": int(row["total_reps"]),
                 "volume_lbs": float(row["volume_lbs"]),
@@ -83,9 +77,7 @@ def save_session(session):
         row = {
             "date": session["date"],
             "week": session["week"],
-            "day_type": session["day_type"],
             "bodyweight_lbs": session["bodyweight_lbs"],
-            "added_weight_lbs": session["added_weight_lbs"],
             "total_reps": session["total_reps"],
             "volume_lbs": session["volume_lbs"],
             "notes": session.get("notes", ""),
@@ -101,171 +93,130 @@ def get_current_week(sessions):
     return sessions[-1]["week"]
 
 
-def get_last_session_of_type(sessions, day_type):
-    for s in reversed(sessions):
-        if s["day_type"] == day_type:
-            return s
-    return None
-
-
-def determine_day_type(sessions):
-    """Figure out which day type is next based on the weekly rotation."""
-    week_order = ["heavy", "volume", "density"]
+def determine_week(sessions):
+    """Figure out which week we're in based on sessions logged."""
     if not sessions:
-        return week_order[0]
-
-    current_week = get_current_week(sessions)
-    this_week_sessions = [s for s in sessions if s["week"] == current_week]
-    done_types = [s["day_type"] for s in this_week_sessions]
-
-    for dt in week_order:
-        if dt not in done_types:
-            return dt
-
-    # All 3 done this week — start new week
-    return week_order[0]
+        return 1
+    current_week = sessions[-1]["week"]
+    week_sessions = [s for s in sessions if s["week"] == current_week]
+    if len(week_sessions) >= SESSIONS_PER_WEEK:
+        return current_week + 1
+    return current_week
 
 
 def is_deload_week(week_num):
     return week_num > 1 and (week_num - 1) % DELOAD_EVERY_WEEKS == 0
 
 
-def calculate_workout(sessions, bodyweight, day_type):
+def add_one_rep(reps, rep_high):
+    """Add 1 rep to the lowest set (distribute evenly). Returns new list."""
+    result = list(reps)
+    # Find the lowest set and add 1 to it
+    min_idx = result.index(min(result))
+    result[min_idx] = min(result[min_idx] + 1, rep_high)
+    return result
+
+
+def calculate_workout(sessions, bodyweight):
     """Calculate today's prescription."""
-    config = DAY_TYPES[day_type]
-    current_week = get_current_week(sessions)
-
-    # Check if we're starting a new week
-    this_week_sessions = [s for s in sessions if s["week"] == current_week]
-    done_types = [s["day_type"] for s in this_week_sessions]
-    if day_type in done_types or (len(done_types) >= 3):
-        current_week += 1
-
+    current_week = determine_week(sessions)
     deload = is_deload_week(current_week)
-    last = get_last_session_of_type(sessions, day_type)
+    last = sessions[-1] if sessions else None
 
     result = {
         "week": current_week,
-        "day_type": day_type,
-        "label": config["label"],
-        "rest": config["rest"],
+        "rest": REST_SECONDS,
         "deload": deload,
     }
 
     if deload:
-        # Deload: 50% volume, use week 1 weights, stay far from failure (4+ RIR)
-        num_sets = max(2, config["sets"] // 2)
-        target_reps = config["rep_low"]
-        added_weight = last["added_weight_lbs"] if last else 0
-        # Use lighter weight on deload
-        added_weight = max(0, added_weight - WEIGHT_INCREMENT_LBS * 2)
-
+        num_sets = max(2, (last and len(last["reps_per_set"]) or START_SETS) // 2)
         result.update({
             "sets": num_sets,
-            "rep_targets": [target_reps] * num_sets,
-            "added_weight_lbs": added_weight,
-            "note": "DELOAD WEEK: 50% volume, stay 4+ reps from failure. Recovery week!",
+            "rep_targets": [REP_LOW] * num_sets,
+            "note": "DELOAD WEEK: half volume, stay 4+ reps from failure. Recovery week!",
         })
         return result
 
     if last is None:
-        # First session of this type: rep test
+        # First ever session: baseline test
         result.update({
-            "sets": config["sets"],
-            "rep_targets": None,  # max effort test
-            "added_weight_lbs": 0,
-            "note": f"FIRST {day_type.upper()} SESSION: Do max clean reps each set, stop 1-2 before failure. "
-                    f"Target range is {config['rep_low']}-{config['rep_high']} reps. Full ROM!",
+            "sets": START_SETS,
+            "rep_targets": None,
+            "note": (f"FIRST SESSION: Do max clean reps each set, stop 1-2 before failure. "
+                     f"Target range is {REP_LOW}-{REP_HIGH} reps. Full ROM!"),
         })
         return result
 
-    # --- Double progression logic ---
+    # --- Progression logic ---
     last_reps = last["reps_per_set"]
-    last_sets = len(last_reps)
-    added_weight = last["added_weight_lbs"]
-    avg_reps = sum(last_reps) / len(last_reps)
-    all_hit_top = all(r >= config["rep_high"] for r in last_reps)
+    num_sets = len(last_reps)
+    all_hit_top = all(r >= REP_HIGH for r in last_reps)
 
-    # Account for bodyweight changes in rep expectations
-    # Every ~5 lbs BW change ≈ 1 rep difference on pull-ups
+    # BW adjustment: heavier = fewer expected reps, lighter = more
     bw_delta = bodyweight - last["bodyweight_lbs"]
-    bw_note = ""
     bw_rep_adjust = 0
-
-    if abs(bw_delta) >= WEIGHT_INCREMENT_LBS:
-        # ~1 rep per 5 lbs of BW change (heavier = fewer reps, lighter = more reps)
-        bw_rep_adjust = -round(bw_delta / 5.0)
+    bw_note = ""
+    if abs(bw_delta) >= BW_ADJUST_THRESHOLD:
+        bw_rep_adjust = -round(bw_delta / BW_LBS_PER_REP)
         direction = "heavier" if bw_delta > 0 else "lighter"
-        bw_note = (f"BW {direction} by {abs(bw_delta):.1f} lbs since last {day_type} "
-                   f"({last['bodyweight_lbs']:.0f} → {bodyweight:.0f}). "
-                   f"Rep targets adjusted by {bw_rep_adjust:+d}. ")
+        bw_note = (f"BW {direction} by {abs(bw_delta):.1f} lbs "
+                   f"({last['bodyweight_lbs']:.0f} -> {bodyweight:.0f}). "
+                   f"Targets adjusted {bw_rep_adjust:+d} rep(s). ")
 
-    # Check if top of range was hit in last TWO sessions of this type (2-for-2 rule)
-    same_type_sessions = [s for s in sessions if s["day_type"] == day_type]
+    # Check 2-for-2 (hit top of range in last 2 sessions)
     hit_top_twice = False
-    if len(same_type_sessions) >= 2:
-        prev_two = same_type_sessions[-2:]
+    if len(sessions) >= 2:
         hit_top_twice = all(
-            all(r >= config["rep_high"] for r in s["reps_per_set"])
-            for s in prev_two
+            all(r >= REP_HIGH for r in s["reps_per_set"])
+            for s in sessions[-2:]
         )
 
-    num_sets = config["sets"]
     note = ""
 
     if hit_top_twice:
-        # 2-for-2 rule: maxed out rep range twice — add a set, reset reps to bottom
+        # Maxed out — add a set, reset reps
         if num_sets < MAX_SETS:
             num_sets += 1
-            rep_targets = [config["rep_low"]] * num_sets
+            rep_targets = [REP_LOW] * num_sets
             note = (f"2-for-2 hit! Adding set {num_sets}. "
-                    f"Reset to {config['rep_low']} reps across {num_sets} sets.")
+                    f"Reset to {REP_LOW} reps x {num_sets} sets.")
         else:
-            # Already at max sets — bump rep range targets up, you're getting strong
-            rep_targets = [config["rep_high"]] * num_sets
-            note = (f"2-for-2 hit at max sets ({MAX_SETS})! "
-                    f"Hold {config['rep_high']} reps x {num_sets} sets. "
-                    f"Consider adding weight with a belt to keep progressing.")
+            rep_targets = [REP_HIGH] * num_sets
+            note = (f"Maxed at {MAX_SETS}x{REP_HIGH}! "
+                    f"Consider harder variation (L-sit, archer, weighted).")
     elif all_hit_top:
-        # Hit top once — repeat at top, one more session to confirm
-        rep_targets = [config["rep_high"]] * num_sets
-        note = (f"You hit {config['rep_high']} across all sets last time. "
-                f"Do it again to trigger adding a set!")
-    elif avg_reps < config["rep_low"]:
-        # Below range — keep weight, aim to match or beat last total by 1-2 reps
-        rep_targets = [min(r + 1, config["rep_high"]) for r in last_reps]
-        note = (f"Building up. Last avg was {avg_reps:.1f} (target: {config['rep_low']}-{config['rep_high']}). "
-                f"Beat last total of {sum(last_reps)} reps.")
+        # Hit top once — confirm it
+        rep_targets = [REP_HIGH] * num_sets
+        note = (f"Hit {REP_HIGH} across all sets last time. "
+                f"Do it again to earn a new set!")
     else:
-        # Normal: +1 rep per set
-        rep_targets = [min(r + 1, config["rep_high"]) for r in last_reps]
-        while len(rep_targets) < num_sets:
-            rep_targets.append(config["rep_low"])
-        note = f"+1 rep per set vs last time. Last total: {sum(last_reps)}."
+        # Normal: +1 total rep (to the lowest set)
+        rep_targets = add_one_rep(last_reps, REP_HIGH)
+        last_total = sum(last_reps)
+        new_total = sum(rep_targets)
+        note = f"+1 rep (total {last_total} -> {new_total})."
 
-    # Apply bodyweight adjustment to rep targets (heavier = fewer expected, lighter = more)
-    if bw_rep_adjust != 0 and rep_targets is not None:
+    # Apply BW adjustment
+    if bw_rep_adjust != 0:
         rep_targets = [
-            max(config["rep_low"], min(config["rep_high"], r + bw_rep_adjust))
+            max(REP_LOW, min(REP_HIGH, r + bw_rep_adjust))
             for r in rep_targets
         ]
-
-    if bw_note:
         note = bw_note + note
 
-    # RIR guidance based on mesocycle position (weeks within block)
+    # RIR guidance based on position in mesocycle
     block_week = ((current_week - 1) % DELOAD_EVERY_WEEKS) + 1
     if block_week <= 2:
-        rir = "3 RIR (start of block — leave gas in the tank)"
+        rir = "3 RIR (early in block)"
     elif block_week <= 3:
-        rir = "2 RIR (mid block — push a bit harder)"
+        rir = "2 RIR (mid block)"
     else:
-        rir = "0-1 RIR (end of block — push close to failure)"
+        rir = "0-1 RIR (end of block — push it)"
 
     result.update({
         "sets": num_sets,
         "rep_targets": rep_targets,
-        "added_weight_lbs": added_weight,
         "note": note,
         "rir": rir,
     })
@@ -282,12 +233,8 @@ def format_workout(workout, bodyweight, date_str=None):
     lines.append(header)
     if workout["deload"]:
         lines.append("  *** DELOAD WEEK ***")
-    lines.append(f"  {workout['label']}")
     lines.append("=" * 55)
-    total_load = bodyweight + workout["added_weight_lbs"]
-    lines.append(f"  Bodyweight: {bodyweight} lbs | Total load: {total_load} lbs")
-    if workout["added_weight_lbs"] > 0:
-        lines.append(f"  Added weight: +{workout['added_weight_lbs']} lbs")
+    lines.append(f"  Bodyweight: {bodyweight} lbs")
     lines.append(f"  Rest: {workout['rest']}s between sets")
     if "rir" in workout:
         lines.append(f"  Effort: {workout['rir']}")
@@ -299,10 +246,9 @@ def format_workout(workout, bodyweight, date_str=None):
     else:
         for i, reps in enumerate(workout["rep_targets"], 1):
             lines.append(f"  Set {i}:  aim for {reps} reps")
-        lines.append(f"  Total rep target: {sum(workout['rep_targets'])}")
-        effective_weight = bodyweight + workout["added_weight_lbs"]
-        vol = effective_weight * sum(workout["rep_targets"])
-        lines.append(f"  Volume target: {vol:.0f} lbs")
+        total_reps = sum(workout["rep_targets"])
+        vol = bodyweight * total_reps
+        lines.append(f"  Total: {total_reps} reps | Volume: {vol:.0f} lbs")
 
     lines.append(f"\n  >> {workout['note']}")
     lines.append("=" * 55)
@@ -314,8 +260,8 @@ def format_log_entry(session):
     lines = []
     reps_str = " / ".join(str(r) for r in session["reps_per_set"])
     lines.append(f"  Date: {session['date']}")
-    lines.append(f"  Week {session['week']} | {session['day_type'].upper()}")
-    lines.append(f"  Bodyweight: {session['bodyweight_lbs']} lbs | Added: +{session['added_weight_lbs']} lbs")
+    lines.append(f"  Week {session['week']}")
+    lines.append(f"  BW: {session['bodyweight_lbs']} lbs")
     lines.append(f"  Reps: [{reps_str}] = {session['total_reps']} total")
     lines.append(f"  Volume: {session['volume_lbs']:.0f} lbs")
     if session.get("notes"):
@@ -330,122 +276,78 @@ def format_history(sessions, last_n=10):
     lines = ["--- HISTORY (last {}) ---".format(min(last_n, len(sessions)))]
     for s in sessions[-last_n:]:
         reps_str = "/".join(str(r) for r in s["reps_per_set"])
-        added = f"+{s['added_weight_lbs']}lb " if s["added_weight_lbs"] > 0 else ""
         lines.append(
-            f"  {s['date']}  W{s['week']} {s['day_type']:7s}  "
-            f"{s['bodyweight_lbs']}lb {added}[{reps_str}]  "
+            f"  {s['date']}  W{s['week']}  "
+            f"{s['bodyweight_lbs']}lb  [{reps_str}]  "
             f"vol:{s['volume_lbs']:.0f}lb"
         )
 
-    # Weekly summary
     if sessions:
         current_week = sessions[-1]["week"]
         week_sessions = [s for s in sessions if s["week"] == current_week]
         week_sets = sum(len(s["reps_per_set"]) for s in week_sessions)
         week_vol = sum(s["volume_lbs"] for s in week_sessions)
-        lines.append(f"\n  This week (W{current_week}): {len(week_sessions)}/3 sessions, "
-                      f"{week_sets} sets, {week_vol:.0f} lbs total volume")
+        lines.append(f"\n  This week (W{current_week}): {len(week_sessions)}/{SESSIONS_PER_WEEK} sessions, "
+                      f"{week_sets} sets, {week_vol:.0f} lbs volume")
     return "\n".join(lines)
 
 
-def parse_common_args(args):
-    """Extract --date and other common flags from args. Returns (remaining_args, date_str)."""
+def parse_args(args):
+    """Extract --date and --notes from args. Returns (remaining_args, date_str, notes)."""
     remaining = []
     date_str = datetime.now().strftime("%Y-%m-%d")
-    i = 0
-    while i < len(args):
-        if args[i] == "--date":
-            date_str = args[i + 1]
-            i += 2
-        else:
-            remaining.append(args[i])
-            i += 1
-    return remaining, date_str
-
-
-def cmd_workout(args):
-    """Get today's workout (pre-workout). Usage: workout <bodyweight_lbs> [day_type] [--date YYYY-MM-DD]"""
-    if len(args) < 1:
-        print("Usage: pullup_overload.py workout <bodyweight_lbs> [heavy|volume|density] [--date YYYY-MM-DD]")
-        sys.exit(1)
-
-    args, date_str = parse_common_args(args)
-    bodyweight = float(args[0])
-    sessions = load_sessions()
-
-    if len(args) >= 2 and args[1] in DAY_TYPES:
-        day_type = args[1]
-    else:
-        day_type = determine_day_type(sessions)
-
-    workout = calculate_workout(sessions, bodyweight, day_type)
-    print(format_workout(workout, bodyweight, date_str))
-
-
-def cmd_log(args):
-    """Log a completed session (post-workout). Usage: log <bodyweight_lbs> <day_type> <rep1> <rep2> ... [--weight X] [--notes "..."] [--date YYYY-MM-DD]"""
-    if len(args) < 3:
-        print("Usage: pullup_overload.py log <bodyweight_lbs> <day_type> <rep1> <rep2> ... [--weight X] [--notes '...'] [--date YYYY-MM-DD]")
-        sys.exit(1)
-
-    # Extract --date first before other parsing
-    date_str = datetime.now().strftime("%Y-%m-%d")
-    filtered_args = []
-    i = 0
-    while i < len(args):
-        if args[i] == "--date":
-            date_str = args[i + 1]
-            i += 2
-        else:
-            filtered_args.append(args[i])
-            i += 1
-    args = filtered_args
-
-    bodyweight = float(args[0])
-    day_type = args[1]
-    if day_type not in DAY_TYPES:
-        print(f"Invalid day type: {day_type}. Must be one of: {', '.join(DAY_TYPES.keys())}")
-        sys.exit(1)
-
-    # Parse reps and optional flags
-    reps = []
-    added_weight = 0.0
     notes = ""
-    i = 2
+    i = 0
     while i < len(args):
-        if args[i] == "--weight":
-            added_weight = float(args[i + 1])
+        if args[i] == "--date":
+            date_str = args[i + 1]
             i += 2
         elif args[i] == "--notes":
             notes = args[i + 1]
             i += 2
         else:
-            reps.append(int(args[i]))
+            remaining.append(args[i])
             i += 1
+    return remaining, date_str, notes
+
+
+def cmd_workout(args):
+    """Pre-workout: show today's prescription."""
+    if len(args) < 1:
+        print("Usage: pullup_overload.py workout <bodyweight_lbs> [--date YYYY-MM-DD]")
+        sys.exit(1)
+
+    args, date_str, _ = parse_args(args)
+    bodyweight = float(args[0])
+    sessions = load_sessions()
+    workout = calculate_workout(sessions, bodyweight)
+    print(format_workout(workout, bodyweight, date_str))
+
+
+def cmd_log(args):
+    """Post-workout: log completed session."""
+    if len(args) < 2:
+        print("Usage: pullup_overload.py log <bodyweight_lbs> <rep1> <rep2> ... [--date YYYY-MM-DD] [--notes '...']")
+        sys.exit(1)
+
+    args, date_str, notes = parse_args(args)
+    bodyweight = float(args[0])
+    reps = [int(r) for r in args[1:]]
 
     if not reps:
         print("Error: provide at least one rep count.")
         sys.exit(1)
 
     sessions = load_sessions()
-    current_week = get_current_week(sessions)
-
-    # Determine if we should bump the week
-    this_week_sessions = [s for s in sessions if s["week"] == current_week]
-    done_types = [s["day_type"] for s in this_week_sessions]
-    if day_type in done_types or len(done_types) >= 3:
-        current_week += 1
+    current_week = determine_week(sessions)
 
     total = sum(reps)
-    effective_weight = bodyweight + added_weight
-    volume = effective_weight * total
+    volume = bodyweight * total
 
     session = {
         "date": date_str,
         "week": current_week,
-        "day_type": day_type,
         "bodyweight_lbs": bodyweight,
-        "added_weight_lbs": added_weight,
         "reps_per_set": reps,
         "total_reps": total,
         "volume_lbs": round(volume, 1),
@@ -456,19 +358,19 @@ def cmd_log(args):
     print("\n  SESSION LOGGED!")
     print(format_log_entry(session))
 
-    # Compare to last session of same type
-    last = get_last_session_of_type(sessions, day_type)
-    if last:
+    # Compare to last session
+    if sessions:
+        last = sessions[-1]
         diff = total - last["total_reps"]
         vol_diff = volume - last["volume_lbs"]
         arrow = "+" if diff >= 0 else ""
-        print(f"\n  vs last {day_type}: {arrow}{diff} reps ({arrow}{vol_diff:.0f} lbs volume)")
+        print(f"\n  vs last: {arrow}{diff} reps ({arrow}{vol_diff:.0f} lbs volume)")
 
     # Weekly check
     sessions.append(session)
     week_sessions = [s for s in sessions if s["week"] == current_week]
     week_sets = sum(len(s["reps_per_set"]) for s in week_sessions)
-    print(f"  Weekly sets: {week_sets} (target: 10-20 for hypertrophy)")
+    print(f"  This week: {len(week_sessions)}/{SESSIONS_PER_WEEK} sessions, {week_sets} total sets")
 
 
 def cmd_history(args):
@@ -486,30 +388,22 @@ def cmd_status(args):
         return
 
     current_week = get_current_week(sessions)
-    total_sessions = len(sessions)
     this_week = [s for s in sessions if s["week"] == current_week]
+    last = sessions[-1]
 
     print(f"\n  Program Status:")
-    print(f"  Total sessions: {total_sessions}")
+    print(f"  Total sessions: {len(sessions)}")
     print(f"  Current week: {current_week}")
-    print(f"  Sessions this week: {len(this_week)}/3")
+    print(f"  Sessions this week: {len(this_week)}/{SESSIONS_PER_WEEK}")
+
+    reps_str = "/".join(str(r) for r in last["reps_per_set"])
+    print(f"  Last session: [{reps_str}] at {last['bodyweight_lbs']} lbs ({last['date']})")
 
     if is_deload_week(current_week):
         print(f"  ** This is a DELOAD week **")
     else:
         next_deload = DELOAD_EVERY_WEEKS - ((current_week - 1) % DELOAD_EVERY_WEEKS)
         print(f"  Next deload in: {next_deload} week(s)")
-
-    # Per day-type progress
-    print(f"\n  Progress by day type:")
-    for dt in ["heavy", "volume", "density"]:
-        last = get_last_session_of_type(sessions, dt)
-        if last:
-            reps_str = "/".join(str(r) for r in last["reps_per_set"])
-            added = f" +{last['added_weight_lbs']}lb" if last["added_weight_lbs"] > 0 else ""
-            print(f"    {dt:8s}: [{reps_str}]{added}  (W{last['week']})")
-        else:
-            print(f"    {dt:8s}: not started")
 
 
 COMMANDS = {
@@ -525,10 +419,10 @@ def main():
         print("\n  Pull-Up Progressive Overload Tracker")
         print("  =====================================")
         print("  Commands:")
-        print("    workout <bodyweight_lbs> [heavy|volume|density] [--date YYYY-MM-DD]  — Pre-workout prescription")
-        print("    log <bodyweight_lbs> <day_type> <r1> <r2> ... [--weight X] [--notes '...'] [--date YYYY-MM-DD]  — Post-workout log")
-        print("    history [N]  — Show last N sessions")
-        print("    status  — Show program status")
+        print("    workout <bodyweight_lbs> [--date YYYY-MM-DD]        — Pre-workout prescription")
+        print("    log <bodyweight_lbs> <r1> <r2> ... [--date] [--notes]  — Post-workout log")
+        print("    history [N]                                         — Show last N sessions")
+        print("    status                                              — Program status")
         sys.exit(0)
 
     cmd = sys.argv[1]
