@@ -241,11 +241,14 @@ def calculate_workout(sessions, bodyweight, day_type):
     return result
 
 
-def format_workout(workout, bodyweight):
+def format_workout(workout, bodyweight, date_str=None):
     """Return a formatted string of the workout prescription."""
     lines = []
     lines.append("=" * 55)
-    lines.append(f"  PULL-UP WORKOUT — Week {workout['week']}")
+    header = f"  PULL-UP WORKOUT — Week {workout['week']}"
+    if date_str:
+        header += f"  ({date_str})"
+    lines.append(header)
     if workout["deload"]:
         lines.append("  *** DELOAD WEEK ***")
     lines.append(f"  {workout['label']}")
@@ -314,12 +317,28 @@ def format_history(sessions, last_n=10):
     return "\n".join(lines)
 
 
+def parse_common_args(args):
+    """Extract --date and other common flags from args. Returns (remaining_args, date_str)."""
+    remaining = []
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    i = 0
+    while i < len(args):
+        if args[i] == "--date":
+            date_str = args[i + 1]
+            i += 2
+        else:
+            remaining.append(args[i])
+            i += 1
+    return remaining, date_str
+
+
 def cmd_workout(args):
-    """Get today's workout. Usage: workout <bodyweight_lbs> [day_type]"""
+    """Get today's workout (pre-workout). Usage: workout <bodyweight_lbs> [day_type] [--date YYYY-MM-DD]"""
     if len(args) < 1:
-        print("Usage: pullup_overload.py workout <bodyweight_lbs> [heavy|volume|density]")
+        print("Usage: pullup_overload.py workout <bodyweight_lbs> [heavy|volume|density] [--date YYYY-MM-DD]")
         sys.exit(1)
 
+    args, date_str = parse_common_args(args)
     bodyweight = float(args[0])
     sessions = load_sessions()
 
@@ -329,14 +348,27 @@ def cmd_workout(args):
         day_type = determine_day_type(sessions)
 
     workout = calculate_workout(sessions, bodyweight, day_type)
-    print(format_workout(workout, bodyweight))
+    print(format_workout(workout, bodyweight, date_str))
 
 
 def cmd_log(args):
-    """Log a completed session. Usage: log <bodyweight_lbs> <day_type> <rep1> <rep2> ... [--weight X] [--notes "..."]"""
+    """Log a completed session (post-workout). Usage: log <bodyweight_lbs> <day_type> <rep1> <rep2> ... [--weight X] [--notes "..."] [--date YYYY-MM-DD]"""
     if len(args) < 3:
-        print("Usage: pullup_overload.py log <bodyweight_lbs> <day_type> <rep1> <rep2> ... [--weight X] [--notes '...']")
+        print("Usage: pullup_overload.py log <bodyweight_lbs> <day_type> <rep1> <rep2> ... [--weight X] [--notes '...'] [--date YYYY-MM-DD]")
         sys.exit(1)
+
+    # Extract --date first before other parsing
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    filtered_args = []
+    i = 0
+    while i < len(args):
+        if args[i] == "--date":
+            date_str = args[i + 1]
+            i += 2
+        else:
+            filtered_args.append(args[i])
+            i += 1
+    args = filtered_args
 
     bodyweight = float(args[0])
     day_type = args[1]
@@ -378,7 +410,7 @@ def cmd_log(args):
     volume = effective_weight * total
 
     session = {
-        "date": datetime.now().strftime("%Y-%m-%d"),
+        "date": date_str,
         "week": current_week,
         "day_type": day_type,
         "bodyweight_lbs": bodyweight,
@@ -462,8 +494,8 @@ def main():
         print("\n  Pull-Up Progressive Overload Tracker")
         print("  =====================================")
         print("  Commands:")
-        print("    workout <bodyweight_lbs> [heavy|volume|density]  — Get today's prescription")
-        print("    log <bodyweight_lbs> <day_type> <r1> <r2> ... [--weight X] [--notes '...']  — Log session")
+        print("    workout <bodyweight_lbs> [heavy|volume|density] [--date YYYY-MM-DD]  — Pre-workout prescription")
+        print("    log <bodyweight_lbs> <day_type> <r1> <r2> ... [--weight X] [--notes '...'] [--date YYYY-MM-DD]  — Post-workout log")
         print("    history [N]  — Show last N sessions")
         print("    status  — Show program status")
         sys.exit(0)
