@@ -13,8 +13,10 @@ Rates as of March 22, 2026. National average savings APY: **0.39%**.
 | 5 | Openbank | **4.09%** | $500 minimum to open |
 | 6 | Vio Bank | **4.03%** | Minimal deposit requirements |
 | 7 | Bask Bank | **3.75%** | No minimum deposit, no monthly fees |
-| 8 | Marcus by Goldman Sachs | **3.65%** | No minimum deposit, no monthly fees |
-| 9 | Ally Bank | **3.20%** | No minimum deposit, no monthly fees |
+| 8 | Barclays | **3.70%** | No minimums/fees; 3.85% on $250K+; $200 bonus available |
+| 9 | Marcus by Goldman Sachs | **3.65%** | No minimum deposit, no monthly fees |
+| 10 | PNC | **3.25–3.30%** | No minimum balance or fees; select states only |
+| 11 | Ally Bank | **3.20%** | No minimum deposit, no monthly fees |
 
 ## Context
 
@@ -28,3 +30,6 @@ Rates as of March 22, 2026. National average savings APY: **0.39%**.
 - [Bankrate — Best High-Yield Savings Accounts](https://www.bankrate.com/banking/savings/best-high-yield-interests-savings-accounts/)
 - [Fortune — Top High-Yield Savings Rates](https://fortune.com/article/best-high-yield-savings-account-rates-3-20-2026/)
 - [The Motley Fool — Top Savings Account Rates](https://www.fool.com/money/banks/articles/top-savings-account-rates-today-march-21-2026/)
+- [FinanceBuzz — Barclays Tiered Savings Review](https://financebuzz.com/barclays-online-savings-review)
+- [NerdWallet — PNC High-Yield Savings](https://www.nerdwallet.com/banking/learn/pnc-high-yield-savings-account-interest-rate)
+- [PNC — High Yield Savings](https://www.pnc.com/en/personal-banking/banking/savings/high-yield-savings.html)
