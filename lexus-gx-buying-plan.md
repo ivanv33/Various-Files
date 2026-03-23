@@ -486,3 +486,145 @@ Set up saved searches with email/push alerts on ALL of these:
 | **Dry-climate picks** | TX: $6,999-$9,995, CA: $6,490-$9,650 | TX: $14,997-$18,998, CO: $13,900 |
 | **Avg dealer price** | ~$8,200 | ~$17,100 |
 | **Avg FB Marketplace** | ~$6,100 (includes lowball/scam) | -- |
+
+---
+
+## 11. Spring/Summer 2026 Buying Strategy
+
+> **Goal:** 2015+ GX 460, under 100K miles, dry-state car, under $20K
+>
+> **Reality check:** This is a unicorn combo right now. Current market shows ZERO listings matching all four criteria. You'll need to either compromise on one criterion or be extremely patient and fast.
+
+### Tier System — Know Your Compromises
+
+| Tier | What You Get | Realistic Price | Compromise |
+|------|-------------|----------------|------------|
+| **A (Dream)** | 2015+, <100K mi, dry state | $22K-$26K | Over budget — need $22-25K |
+| **B (Best realistic)** | 2013-2014, <120K mi, dry state | $15K-$19K | Slightly older, still excellent |
+| **C (Value play)** | 2015+, 120K-160K mi, dry state | $15K-$20K | Higher miles but newer body/tech |
+| **D (Stretch budget)** | 2015+, <100K mi, any state | $19K-$22K | Must inspect for rust, riskier |
+
+**Recommendation:** Tier B or C gives you the best bang for buck. A 2013-2014 GX 460 with 100-130K miles from Texas is mechanically identical to a 2015 — same engine, same platform, same everything.
+
+### Exact Models & Years to Target
+
+**Primary target: 2014 GX 460 Premium or Luxury**
+- 2014 got the mid-cycle refresh (new front end, updated interior)
+- Same 1UR-FE 4.6L V8 as 2015-2023 — no mechanical difference
+- Premium trim = heated/cooled seats, nav, Mark Levinson audio
+- **Target price:** $15K-$18K at 130K-160K miles from TX/AZ/CA
+
+**Secondary target: 2015-2016 GX 460 Base or Premium**
+- If you can stretch to $20-22K, these show up with 140K-160K miles
+- Prices are dropping ~$200/month — by Oct 2026 you may find one at $19K
+
+**Sleeper pick: 2013 GX 460 Ultra Premium**
+- Top trim, all the toys, depreciates more because "2013 sounds old"
+- Currently $15K-$18K with 130K-145K miles
+- Listing #17: 2013 Ultra Premium, 130K mi, $15,199 in KY
+
+**Avoid:**
+- 2010-2012 GX 460 — no real savings vs 2013-2014 but worse resale
+- Any GX 460 without valley plate / timing cover inspection documentation
+- Salvage titles (listing #20 in your data is a trap)
+
+### Month-by-Month Action Plan
+
+#### NOW — March/April 2026 (Setup Phase, DON'T BUY)
+Prices are at seasonal peak (+2-3%). Use this time to prepare, not purchase.
+
+- [ ] **Set up daily alerts** (10 min/day) on ALL of these:
+  - [AutoTempest](https://autotempest.com) — GX 460, 2013+, under $20K, TX/AZ/CA/NV/NM
+  - [CarGurus](https://cargurus.com) — same filters, sort by "best deal first"
+  - [Cars.com](https://cars.com) — GX 460 under $20K
+  - [Facebook Marketplace](https://facebook.com/marketplace) — search Phoenix, Dallas, Houston, Austin, LA, San Diego individually
+  - [iSeeCars](https://iseecars.com) — tracks savings vs market price
+  - [CoPilot PricePulse](https://copilotsearch.com/pricepulse) — get notified when specific listings drop
+- [ ] **Join these forums** and set up notifications:
+  - [IH8MUD.com](https://forum.ih8mud.com/forums/gx-2nd-gen-2010.185/) — THE forum for GX/Land Cruiser. Browse the GX 2nd Gen section. Set alerts for "WTS" and "for sale" threads
+  - [r/LexusGX](https://reddit.com/r/LexusGX) — subscribe, sort by new
+  - [r/GXOR](https://reddit.com/r/GXOR) — overland community, often sells well-maintained examples
+  - [ClubLexus GX Forum](https://clublexus.com/forums/gx-2nd-gen-2010-2023/) — classifieds section
+  - [LexusGXOR.com](https://lexusgxor.com) — classifieds + buying guide
+- [ ] **Get pre-approved** for $20K auto loan (or confirm cash ready)
+- [ ] **Bookmark Edmunds TMV** — use it to validate every listing you see
+
+#### May-July 2026 (Monitoring + Opportunistic Phase)
+Prices softening. SUV demand drops in summer = your window opens.
+
+- [ ] Check alerts daily — good deals sell in 1-3 days
+- [ ] **Track price drops** — use Visor (visor.vin) to see how long listings sit
+- [ ] Listings sitting 30+ days = negotiate hard (offer 10-15% below ask)
+- [ ] **If a dry-state 2013-2014 under $18K with <140K mi appears — ACT FAST:**
+  1. Pull CARFAX same day ($45)
+  2. Confirm dry-state history (lived in TX/AZ/CA/NV its whole life)
+  3. Call Lexus dealer with VIN for service records
+  4. Book remote PPI ($100-$200 via LemonSquad or YourMechanic)
+  5. If PPI passes → book refundable one-way flight ($150-$300)
+
+#### Aug-September 2026 (BEST Window for 4WD SUVs)
+General prices softening + SUV summer demand low = double discount.
+
+- [ ] **Actively pursue listings** — don't just monitor
+- [ ] Expand search slightly if needed (add CO, UT, GA/Carolinas)
+- [ ] Target end-of-month for dealer purchases (quota pressure)
+- [ ] This is when a 2015+ might dip into your range
+
+#### Oct-December 2026 (Prime Season — Pull the Trigger)
+Prices drop 3-8%. Year-end dealer clearance + quota pressure.
+
+- [ ] Maximum negotiating leverage
+- [ ] Dealers clearing inventory for new year
+- [ ] **If you haven't bought yet, this is the time**
+- [ ] End of December = absolute best dealer negotiating power
+
+### Where to Search (Dry States, Ranked)
+
+| State | Why | Search Radius |
+|-------|-----|---------------|
+| **Texas (Austin, Dallas, Houston, San Antonio)** | Massive inventory, $150 doc fee cap, competitive prices, no salt | ~25 hr drive back |
+| **Arizona (Phoenix, Tucson)** | Driest state, zero rust risk | ~35 hr drive back |
+| **Southern California (LA, San Diego, Inland Empire)** | Huge market, many GX owners | ~40 hr drive back |
+| **Nevada (Las Vegas)** | Dry, smaller market but deals hide here | ~37 hr drive back |
+| **New Mexico (Albuquerque)** | Dry, low prices, less competition | ~30 hr drive back |
+| **Colorado (Denver — front range only)** | Mostly dry, some mountain salt — verify CARFAX | ~28 hr drive back |
+
+### Negotiation Playbook
+
+1. **Know the number before you call.** Check Edmunds TMV, CarGurus "instant market value," and KBB for the exact year/trim/miles
+2. **Lead with data:** "CarGurus shows the average 2014 Premium with 140K miles is $17,200 — your ask is $18,500, can you do $16,500?"
+3. **Use time on market:** "I see this has been listed for 45 days — what's your best price to move it this week?"
+4. **End of month:** Dealers have monthly quotas. Last 3 days of any month = best leverage
+5. **Cash offer discount:** If paying cash, ask for $500-$1,000 off (dealers prefer financing but cash closes faster)
+6. **Walk-away power:** Always be willing to walk. Another GX will come along
+
+### Pre-Purchase Inspection: Non-Negotiable Checklist
+
+For ANY GX 460 you're serious about:
+
+1. **Valley plate / timing cover area** — Look for coolant seepage between the engine valley. This is THE expensive GX 460 repair ($3K-$5K at dealer). If leaking, negotiate $3K off or walk
+2. **CARFAX dry-state verification** — Every registration should be in a non-salt state. Cars get resold from rust belt to dry states regularly
+3. **Undercarriage photos** — Frame, control arms, exhaust. Should look clean/dry
+4. **Service records** — Oil changes every 5K-7K miles, transmission fluid changes, coolant flushes
+5. **KDSS system** (if equipped) — Bounce test all four corners, check for leaks at KDSS bars
+6. **All electronics** — Nav screen, backup camera, Mark Levinson speakers, A/C, heated/cooled seats
+
+### Forums to Follow (Daily Reading)
+
+| Forum | What to Watch | Direct Link |
+|-------|--------------|-------------|
+| **IH8MUD — GX 2nd Gen** | For sale threads, buyer advice, known issues | [forum.ih8mud.com/forums/gx-2nd-gen-2010.185/](https://forum.ih8mud.com/forums/gx-2nd-gen-2010.185/) |
+| **r/LexusGX** | Deals posted, owner reviews, what people paid | [reddit.com/r/LexusGX](https://www.reddit.com/r/LexusGX/) |
+| **r/GXOR** | Overland builds for sale, well-maintained trucks | [reddit.com/r/GXOR](https://www.reddit.com/r/GXOR/) |
+| **ClubLexus Classifieds** | Private sales, often below market | [clublexus.com/forums/private-party-vehicle-sales/](https://www.clublexus.com/forums/private-party-vehicle-sales/) |
+| **LexusGXOR Classifieds** | Enthusiast-maintained trucks | [lexusgxor.com](https://lexusgxor.com/) |
+| **Facebook: "Lexus GX 460/470 Buy Sell Trade"** | Private group, active | Search on Facebook Groups |
+| **Facebook: "GXOR"** | Large group, frequent sales | Search on Facebook Groups |
+
+### Bottom Line
+
+> **Most likely outcome:** You find a **2013-2014 GX 460 Premium** from **Texas** with **130-150K miles** for **$15K-$18K** in the **Aug-Dec 2026** window. This is mechanically identical to a 2015+, from a dry state, and in budget.
+>
+> **Unicorn scenario:** A 2015+ with under 100K miles from a dry state drops below $20K due to a motivated seller, price drop, or end-of-year clearance. This WILL happen eventually — the question is whether you're watching when it does. Set up alerts and be ready to move in 24 hours.
+>
+> **Save by waiting:** Buying in Aug-Dec vs now (March) saves you **$600-$1,000 on a $20K car.**
