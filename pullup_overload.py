@@ -34,9 +34,7 @@ CSV_FIELDS = [
 
 # Program constants
 START_SETS = 4
-MAX_SETS = 5
-REP_LOW = 5
-REP_HIGH = 8
+MAX_SETS = 5  # max columns in CSV
 REST_SECONDS = 150  # 2.5 min
 DELOAD_EVERY_WEEKS = 5
 SESSIONS_PER_WEEK = 3
@@ -108,12 +106,11 @@ def is_deload_week(week_num):
     return week_num > 1 and (week_num - 1) % DELOAD_EVERY_WEEKS == 0
 
 
-def add_one_rep(reps, rep_high):
+def add_one_rep(reps):
     """Add 1 rep to the lowest set (distribute evenly). Returns new list."""
     result = list(reps)
-    # Find the lowest set and add 1 to it
     min_idx = result.index(min(result))
-    result[min_idx] = min(result[min_idx] + 1, rep_high)
+    result[min_idx] += 1
     return result
 
 
@@ -130,10 +127,12 @@ def calculate_workout(sessions, bodyweight):
     }
 
     if deload:
-        num_sets = max(2, (last and len(last["reps_per_set"]) or START_SETS) // 2)
+        last_reps = last["reps_per_set"] if last else [5] * START_SETS
+        num_sets = max(2, len(last_reps) // 2)
+        deload_reps = [max(3, r // 2) for r in last_reps[:num_sets]]
         result.update({
             "sets": num_sets,
-            "rep_targets": [REP_LOW] * num_sets,
+            "rep_targets": deload_reps,
             "note": "DELOAD WEEK: half volume, stay 4+ reps from failure. Recovery week!",
         })
         return result
@@ -143,15 +142,13 @@ def calculate_workout(sessions, bodyweight):
         result.update({
             "sets": START_SETS,
             "rep_targets": None,
-            "note": (f"FIRST SESSION: Do max clean reps each set, stop 1-2 before failure. "
-                     f"Target range is {REP_LOW}-{REP_HIGH} reps. Full ROM!"),
+            "note": "FIRST SESSION: Do max clean reps each set, stop 1-2 before failure. Full ROM!",
         })
         return result
 
-    # --- Progression logic ---
+    # --- Progression logic: +1 rep per session, no cap ---
     last_reps = last["reps_per_set"]
     num_sets = len(last_reps)
-    all_hit_top = all(r >= REP_HIGH for r in last_reps)
 
     # BW adjustment: heavier = fewer expected reps, lighter = more
     bw_delta = bodyweight - last["bodyweight_lbs"]
@@ -164,43 +161,16 @@ def calculate_workout(sessions, bodyweight):
                    f"({last['bodyweight_lbs']:.0f} -> {bodyweight:.0f}). "
                    f"Targets adjusted {bw_rep_adjust:+d} rep(s). ")
 
-    # Check 2-for-2 (hit top of range in last 2 sessions)
-    hit_top_twice = False
-    if len(sessions) >= 2:
-        hit_top_twice = all(
-            all(r >= REP_HIGH for r in s["reps_per_set"])
-            for s in sessions[-2:]
-        )
-
-    note = ""
-
-    if hit_top_twice:
-        # Maxed out — add a set, reset reps
-        if num_sets < MAX_SETS:
-            num_sets += 1
-            rep_targets = [REP_LOW] * num_sets
-            note = (f"2-for-2 hit! Adding set {num_sets}. "
-                    f"Reset to {REP_LOW} reps x {num_sets} sets.")
-        else:
-            rep_targets = [REP_HIGH] * num_sets
-            note = (f"Maxed at {MAX_SETS}x{REP_HIGH}! "
-                    f"Consider harder variation (L-sit, archer, weighted).")
-    elif all_hit_top:
-        # Hit top once — confirm it
-        rep_targets = [REP_HIGH] * num_sets
-        note = (f"Hit {REP_HIGH} across all sets last time. "
-                f"Do it again to earn a new set!")
-    else:
-        # Normal: +1 total rep (to the lowest set)
-        rep_targets = add_one_rep(last_reps, REP_HIGH)
-        last_total = sum(last_reps)
-        new_total = sum(rep_targets)
-        note = f"+1 rep (total {last_total} -> {new_total})."
+    # +1 total rep (added to lowest set)
+    rep_targets = add_one_rep(last_reps)
+    last_total = sum(last_reps)
+    new_total = sum(rep_targets)
+    note = f"+1 rep (total {last_total} -> {new_total})."
 
     # Apply BW adjustment
     if bw_rep_adjust != 0:
         rep_targets = [
-            max(REP_LOW, min(REP_HIGH, r + bw_rep_adjust))
+            max(1, r + bw_rep_adjust)
             for r in rep_targets
         ]
         note = bw_note + note
