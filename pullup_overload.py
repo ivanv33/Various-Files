@@ -38,8 +38,6 @@ MAX_SETS = 5  # max columns in CSV
 REST_SECONDS = 150  # 2.5 min
 DELOAD_EVERY_WEEKS = 5
 SESSIONS_PER_WEEK = 3
-BW_ADJUST_THRESHOLD = 2.5  # lbs change before adjusting targets
-BW_LBS_PER_REP = 5.0  # ~1 rep per 5 lbs BW change
 
 
 def load_sessions():
@@ -146,34 +144,34 @@ def calculate_workout(sessions, bodyweight):
         })
         return result
 
-    # --- Progression logic: +1 rep per session, no cap ---
+    # --- Progression logic: constant work increase each session ---
     last_reps = last["reps_per_set"]
     num_sets = len(last_reps)
+    last_volume = last["volume_lbs"]
+    last_bw = last["bodyweight_lbs"]
 
-    # BW adjustment: heavier = fewer expected reps, lighter = more
-    bw_delta = bodyweight - last["bodyweight_lbs"]
-    bw_rep_adjust = 0
-    bw_note = ""
-    if abs(bw_delta) >= BW_ADJUST_THRESHOLD:
-        bw_rep_adjust = -round(bw_delta / BW_LBS_PER_REP)
-        direction = "heavier" if bw_delta > 0 else "lighter"
-        bw_note = (f"BW {direction} by {abs(bw_delta):.1f} lbs "
-                   f"({last['bodyweight_lbs']:.0f} -> {bodyweight:.0f}). "
-                   f"Targets adjusted {bw_rep_adjust:+d} rep(s). ")
-
-    # +1 total rep (added to lowest set)
-    rep_targets = add_one_rep(last_reps)
+    # Target: add ~1 rep worth of work (at last BW) each session
+    target_volume = last_volume + last_bw
+    target_total_reps = round(target_volume / bodyweight)
     last_total = sum(last_reps)
-    new_total = sum(rep_targets)
-    note = f"+1 rep (total {last_total} -> {new_total})."
+    reps_diff = target_total_reps - last_total
 
-    # Apply BW adjustment
-    if bw_rep_adjust != 0:
-        rep_targets = [
-            max(1, r + bw_rep_adjust)
-            for r in rep_targets
-        ]
-        note = bw_note + note
+    # Distribute reps across sets, starting from last session's distribution
+    rep_targets = list(last_reps)
+    remaining = target_total_reps - sum(rep_targets)
+    while remaining > 0:
+        min_idx = rep_targets.index(min(rep_targets))
+        rep_targets[min_idx] += 1
+        remaining -= 1
+    while remaining < 0:
+        max_idx = rep_targets.index(max(rep_targets))
+        rep_targets[max_idx] = max(1, rep_targets[max_idx] - 1)
+        remaining += 1
+
+    actual_volume = bodyweight * target_total_reps
+    note = f"Target work: {actual_volume:.0f} lbs (+{last_bw:.0f} vs last {last_volume:.0f})."
+    if bodyweight != last_bw:
+        note += f" BW {bodyweight:.0f} vs {last_bw:.0f}, reps adjusted to match work."
 
     # RIR guidance based on position in mesocycle
     block_week = ((current_week - 1) % DELOAD_EVERY_WEEKS) + 1
