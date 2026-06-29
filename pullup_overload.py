@@ -38,6 +38,7 @@ MAX_SETS = 5  # max columns in CSV
 REST_SECONDS = 150  # 2.5 min
 DELOAD_EVERY_WEEKS = 5
 SESSIONS_PER_WEEK = 3
+VOLUME_INCREMENT_PCT = 0.015  # 1.5% volume increase per session
 
 
 def load_sessions():
@@ -150,8 +151,8 @@ def calculate_workout(sessions, bodyweight):
     last_volume = last["volume_lbs"]
     last_bw = last["bodyweight_lbs"]
 
-    # Target: add ~1 rep worth of work (at last BW) each session
-    target_volume = last_volume + last_bw
+    # Target: add 1.5% of last session's volume
+    target_volume = last_volume * (1 + VOLUME_INCREMENT_PCT)
     target_total_reps = round(target_volume / bodyweight)
     last_total = sum(last_reps)
     reps_diff = target_total_reps - last_total
@@ -169,9 +170,11 @@ def calculate_workout(sessions, bodyweight):
         remaining += 1
 
     actual_volume = bodyweight * target_total_reps
-    note = f"Target work: {actual_volume:.0f} lbs (+{last_bw:.0f} vs last {last_volume:.0f})."
+    vol_increase = actual_volume - last_volume
+    pct = (vol_increase / last_volume) * 100
+    note = f"Work: {actual_volume:.0f} lbs (+{vol_increase:.0f}, {pct:.1f}%)."
     if bodyweight != last_bw:
-        note += f" BW {bodyweight:.0f} vs {last_bw:.0f}, reps adjusted to match work."
+        note += f" BW {bodyweight:.0f} vs {last_bw:.0f}."
 
     # RIR guidance based on position in mesocycle
     block_week = ((current_week - 1) % DELOAD_EVERY_WEEKS) + 1
