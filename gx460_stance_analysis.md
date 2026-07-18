@@ -38,6 +38,20 @@ Note the two lean estimates straddle zero with opposite signs — classic measur
 - **Still unknown from photos:** shock/damper condition (can be dead with perfect ride height), alignment, KDSS seal seepage that hasn't yet produced a lean.
 - Factory-style **hitch receiver** is visible — ask about towing history.
 
+## Vehicle history — AutoCheck (Experian), run 07/17/2026
+
+VIN JTJBM7FX3K5218253 · in service 11/13/2018 · 1 owner, personal use, CA (Bakersfield) its whole life · clean title brands, **no accidents/damage reported**, no odometer brands, no open recalls, 9 dealer-pattern service records (Hendrick-group store), maintained ~every 6 months through 04/2022.
+
+**Green flags**
+- Sold new and always titled in Bakersfield — matches the dealer plate frame in the photos; coherent one-owner story.
+- "Fuel System Serviced" 04/12/2021 lines up with the Denso fuel-pump recall remedy; report shows no open recalls.
+- The scary-looking 265,181-mile entry (10/25/2021) is a keystroke error: it's exactly **26,518** + a stray digit, which fits perfectly between the 22,048 (04/2021) and 32,194 (04/2022) readings. AutoCheck flags it as clerical itself.
+
+**Items to clear before money changes hands**
+1. **Duplicate title with lien, issued 06/29/2026** — three weeks before the sale. Could be benign (lost title, ordered a duplicate to sell), but with a lien on record: verify the loan is paid off or structure payment through the lender with a payoff/lien release, confirm the seller's ID matches the title name, and make sure you're handed the *new* duplicate title.
+2. **Odometer/documentation gap:** last reported reading is 50,942 on 12/14/2023 — nothing since. ~19k miles in 2.5 years is a plausible rate, but ask for 2024–26 service receipts and check that cabin wear matches ~70k.
+3. Minor asks: "Body Service Performed" 08/2023 (what was it?), the 04/2022 re-lien (refi?), battery is from 04/2022 (due soon), and whether the 60k-mile service was done anywhere.
+
 ## Pre-purchase check — step by step, no crawling under (~25 min)
 
 Bring: tape measure, phone flashlight, tread-depth gauge (or a quarter), paper towel, notepad.
