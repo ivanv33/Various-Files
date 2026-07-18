@@ -1,6 +1,6 @@
 # 2019 Lexus GX 460 — Ride Height & Tilt Analysis (from 4 seller photos)
 
-Analysis date: 2026-07-18 · Vehicle: 2019 GX 460 (2014+ facelift front end), ~70k mi, stock 18" split-spoke wheels, highway all-season tires, factory-style hitch receiver, CA car (Bakersfield-area dealer plate frame).
+Analysis date: 2026-07-18 · Vehicle: 2019 GX 460 **Premium with KDSS** (owner-confirmed), ~70k mi, stock 18" split-spoke wheels, highway all-season tires, factory-style hitch receiver, CA car (Bakersfield-area dealer plate frame). Premium = conventional coil springs at all four corners — no rear air-leveling system to age out.
 
 ## Verdict (TL;DR)
 
@@ -30,19 +30,59 @@ Analysis date: 2026-07-18 · Vehicle: 2019 GX 460 (2014+ facelift front end), ~7
 
 Note the two lean estimates straddle zero with opposite signs — classic measurement noise around a truly level vehicle, not a consistent droop.
 
-## What this rules out / flags for this specific truck
+## What this rules out / flags for this specific truck (Premium + KDSS)
 
-- **Ruled out (at photo resolution):** collapsed rear air spring (Luxury trim), broken coil, worn-out one-side spring, lift/leveling kit, oversized tires (sidewall-to-rim proportions match 265/60R18).
-- **Not determinable from photos:** trim (Premium vs **Luxury — Luxury adds rear auto-leveling air suspension**, a future maintenance item), KDSS presence, shock condition (dampers can be dead with perfect ride height), alignment.
+- **Ruled out (at photo resolution):** broken or badly settled coil, one-side spring sag, lift/leveling kit, oversized tires (sidewall-to-rim proportions match 265/60R18).
+- **KDSS-specific good news:** on a KDSS truck, the signature failure mode (hydraulic leak or a bad post-service "reset") shows up precisely as a *static side lean*, most often driver-side-low. Measured lean here is ~0°, so the KDSS is balanced and holding pressure as of these photos.
+- **Premium trim bonus:** conventional coils all around — none of the Luxury trim's rear air-leveling components to age out.
+- **Still unknown from photos:** shock/damper condition (can be dead with perfect ride height), alignment, KDSS seal seepage that hasn't yet produced a lean.
 - Factory-style **hitch receiver** is visible — ask about towing history.
 
-## 5-minute in-person verification checklist
+## Pre-purchase check — step by step, no crawling under (~25 min)
 
-1. Park on the flattest slab available, fuel level noted (a full 23 gal tank adds ~140 lb on the **driver** side — up to ~0.4 in of driver-side drop there is *normal* on this platform).
-2. Tape-measure **hub center straight up to fender lip** at all four corners. Expect ≈ 19.5–20 in front, 20.5–21 in rear; **left/right should match within ~0.5 in**, rear taller than front by ~0.7–1.2 in.
-3. If it's a **Luxury**: let it sit 30+ min off, measure rear, start it, wait, re-measure — the leveling compressor should restore height quickly and without loud/continuous running. Check rear wheel wells for air bags vs coils to confirm trim.
-4. Bounce-test each corner (2–3 slow oscillations max) and check tire wear evenness — cupping/inner-edge wear reveals dead shocks or alignment issues that ride height hides.
-5. If equipped with KDSS: uneven lean that *appears after* jacking/service is a known KDSS re-set quirk — a dealer can rebalance it; it's not a broken frame.
+Bring: tape measure, phone flashlight, tread-depth gauge (or a quarter), paper towel, notepad.
+
+**A. Setup (2 min)**
+1. Have it parked on the flattest concrete available, engine off, wheels straight. Note the fuel gauge — a full 23-gal tank rides on the **driver** side, so up to ~0.4 in of extra driver-side drop is *normal*.
+
+**B. The tape-measure lean test (5 min) — definitive, beats any eyeball**
+2. At each wheel, measure from the center of the hub straight up to the fender lip. Write down all four. Targets: **front ≈ 19.5–20.0 in, rear ≈ 20.5–21.0 in; left/right within ~0.5 in; rear taller than front by ~0.7–1.2 in.**
+3. Interpret: driver side low >0.5–0.75 in at *both* axles → classic **KDSS lean** — usually cured by the cheap "KDSS reset" (two bleed screws on the valve block); negotiate, don't necessarily walk. One corner low → spring problem. Rear lower than front → tired rear coils or heavy towing history.
+4. Cross-check: ground to running-board tip, left vs right (should match within ~3/8 in).
+
+**C. Eyes-only KDSS leak check (5 min — kneel and use the flashlight, no need to go under)**
+5. Crouch at the driver-side frame rail below the front door and shine the light along it: the KDSS valve/accumulator block lives there. **Dry, dusty metal = good. Wet shine, drips, or oily crust = leak** → ~$1–2k repair territory; walk or discount hard.
+6. From each front wheel well, light toward the sway bar behind the bumper — the hydraulic cylinder and its lines should be dry.
+7. From behind a rear tire, same check on the rear sway-bar cylinder.
+8. Scan the pavement under the mid-frame for fresh drip spots.
+
+**D. Static function tests (5 min)**
+9. Bounce each corner (2–3 firm pushes): one rebound and settle = good; continued bobbing = worn shocks — they can be dead while ride height stays perfect.
+10. All four tires: confirm **265/60R18**, matching brand/model, DOT date codes (>6 years old = budget for tires), tread depth inner/center/outer. Inner-edge wear = alignment; cupping = shocks; one whole side more worn = chronic lean/alignment.
+
+**E. Test drive (15 min) — non-negotiable before buying**
+11. Ideally arrive to a **cold engine** (touch the hood — should be ambient). Listen at startup for rattles/ticks; glance for smoke.
+12. Parking lot: full-lock circles both directions (no groans/clicks), walking-pace figure-8 with windows down (no clunks from the corners), then a slow **diagonal over a driveway lip** — clunks here = sway-bar/KDSS bushings or end links.
+13. Streets: speed bumps and expansion joints should be one settled motion, not floaty aftershakes. Steering wheel centered on a straight road, no pull.
+14. Highway: a sweeping on-ramp taken briskly should feel notably **flat** for a 5,100-lb SUV — that's KDSS working; wallowy body roll = system low. 65–75 mph: no wheel vibration; firm brake from speed: straight, no shudder.
+15. Transmission (6-spd): smooth shifts, no flare or clunk, clean downshifts. Try 4-low in the lot (shift to N, turn the transfer knob) and confirm it engages/disengages.
+16. After the drive: idle a minute, shut down, walk around — sniff for hot oil/coolant, re-check the pavement for fresh drips, re-glance at the KDSS valve block.
+
+**F. Questions to ask the seller**
+- How many owners, and is the title clean and in hand?
+- Where was it serviced? (Bakersfield Lexus dealer frame — with the VIN, that dealer can pull the full service history; ask permission to call.)
+- Any accidents, paint, or bodywork? Any warning lights, ever?
+- What did the hitch tow, and how often?
+- Has the suspension ever been worked on — shocks, springs, alignment, any KDSS service, leak, or "reset"?
+- When were brake fluid / transmission fluid / coolant last done?
+- Recalls completed? (Run the VIN at nhtsa.gov/recalls — free; the Denso fuel-pump recall touched many 2018–19 Toyota/Lexus vehicles.)
+- Both key fobs and books included? Why selling?
+- "Mind if I get a pre-purchase inspection at a shop?" — a *no* to a PPI is itself an answer.
+
+**G. Decision rules**
+- All four tape numbers in spec + dry KDSS parts + flat cornering → the stance story fully checks out (matches this photo analysis).
+- Uniform driver-side lean only → small negotiation item (KDSS reset).
+- Any wet hydraulic component, one low corner, or cupped tires → get a quote first or walk.
 
 ## Spec quick-reference (2019 GX 460)
 
