@@ -137,43 +137,74 @@
       },
       "layout": {
         "mode": "plane",
-        "guides": [
+        "regions": [
           {
-            "from": [
-              -30,
-              -40
+            "label": "PHASE 1 · 5 FACT · 0 DERIVED",
+            "x": [
+              -61.5,
+              -31.5
             ],
-            "to": [
-              -30,
-              40
+            "y": [
+              -40,
+              44
             ],
-            "style": "dashed"
+            "color": "#898781"
           },
           {
-            "from": [
-              0,
-              -40
+            "label": "PHASE 2 · 1 FACT · 1 DERIVED",
+            "x": [
+              -30.5,
+              -0.5
             ],
-            "to": [
-              0,
-              40
+            "y": [
+              -40,
+              44
             ],
-            "style": "dashed"
+            "color": "#898781"
           },
           {
-            "from": [
-              30,
-              -40
+            "label": "PHASE 3 · 2 FACT · 3 DERIVED",
+            "x": [
+              0.5,
+              30.5
             ],
-            "to": [
-              30,
-              40
+            "y": [
+              -40,
+              44
             ],
-            "style": "dashed"
+            "color": "#898781"
+          },
+          {
+            "label": "PHASE 4 · 0 FACT · 4 DERIVED",
+            "x": [
+              31.5,
+              61.5
+            ],
+            "y": [
+              -40,
+              44
+            ],
+            "color": "#898781"
+          }
+        ],
+        "annotations": [
+          {
+            "pos": [
+              15.5,
+              -37
+            ],
+            "text": "The solution steps: all inferred"
+          },
+          {
+            "pos": [
+              46.5,
+              -37
+            ],
+            "text": "Every node here is LLM-derived"
           }
         ],
         "camera": {
-          "distance": 150
+          "distance": 100
         }
       },
       "nodes": [
@@ -184,8 +215,8 @@
           "text": "Phase 1. What is the unknown, what are the data, what is the condition. Polya's rule: you cannot answer a question you do not understand.",
           "provenance": "schema",
           "pos": [
-            -45,
-            32
+            -46.5,
+            34.5
           ],
           "size": 1.25
         },
@@ -196,8 +227,8 @@
           "text": "Phase 2. Find the connection between the data and the unknown, usually by way of a related problem already solved, or an auxiliary element.",
           "provenance": "schema",
           "pos": [
-            -15,
-            32
+            -15.5,
+            34.5
           ],
           "size": 1.25
         },
@@ -208,8 +239,8 @@
           "text": "Phase 3. Execute the steps and check each one as you go. Can you see clearly that the step is correct.",
           "provenance": "schema",
           "pos": [
-            15,
-            32
+            15.5,
+            34.5
           ],
           "size": 1.25
         },
@@ -220,8 +251,8 @@
           "text": "Phase 4. Examine the solution obtained: check the result, check the argument, and ask whether the method can be used for another problem.",
           "provenance": "schema",
           "pos": [
-            45,
-            32
+            46.5,
+            34.5
           ],
           "size": 1.25
         },
@@ -234,8 +265,8 @@
           "source_quote": "Find the diagonal of a rectangular parallelepiped whose length, width and height are known.",
           "source_ref": "sentence 1",
           "pos": [
-            -45,
-            20
+            -46.5,
+            24
           ],
           "size": 1.15
         },
@@ -249,7 +280,7 @@
           "source_ref": "sentences 2-3",
           "pos": [
             -52,
-            8
+            10
           ]
         },
         {
@@ -261,21 +292,21 @@
           "source_quote": "The length, the width and the height of the parallelepiped",
           "source_ref": "sentence 5",
           "pos": [
-            -38,
-            -3
+            -49,
+            -18
           ]
         },
         {
           "id": "cd2",
           "slot": "data",
-          "label": "Figure drawn, edges named a, b, c",
+          "label": "Figure drawn, edges a, b, c",
           "text": "The figure and the notation, which Polya counts as part of understanding the problem: a box is drawn, its three edges are marked a, b and c, and the diagonal is drawn from one corner to the corner furthest from it.",
           "provenance": "fact",
           "source_quote": "The student draws a box, marks the three edges a, b and c",
           "source_ref": "sentence 8",
           "pos": [
-            -54,
-            -14
+            -44,
+            -32
           ]
         },
         {
@@ -287,8 +318,8 @@
           "source_quote": "its length must be determined by the three edges and nothing else",
           "source_ref": "sentence 7",
           "pos": [
-            -45,
-            -26
+            -44,
+            -4
           ]
         },
         {
@@ -303,21 +334,21 @@
           "source_quote": "the diagonal of a rectangle is found from its two sides",
           "source_ref": "sentence 9",
           "pos": [
-            -15,
-            13
+            -15.5,
+            20
           ]
         },
         {
           "id": "cpl1",
           "slot": "plan",
-          "label": "Pythagoras twice, via a face diagonal",
+          "label": "Pythagoras twice, face diagonal",
           "text": "Introduce an auxiliary element, the diagonal of the base rectangle. It splits the solid problem into two plane problems, each of them the related problem: Pythagoras in the base, then Pythagoras in the vertical right triangle standing on it.",
           "provenance": "derived",
           "confidence": 0.9,
           "rationale": "The source states the related problem and states that the student cannot use it: he 'does not yet see how a plane figure helps with a solid' (sentence 10). The bridge between them - draw the base diagonal and the solid becomes two right triangles - is exactly what the dialogue withholds, and it is close to forced once the figure, the notation and the related problem are all on the table.",
           "pos": [
-            -15,
-            -8
+            -15.5,
+            -1
           ]
         },
         {
@@ -329,8 +360,8 @@
           "source_quote": "He guesses that the answer is a plus b plus c",
           "source_ref": "sentence 11",
           "pos": [
-            6,
-            21
+            15.5,
+            24
           ]
         },
         {
@@ -342,8 +373,8 @@
           "source_quote": "the diagonal of a square of side one would then be two",
           "source_ref": "sentence 11",
           "pos": [
-            24,
-            10
+            11.5,
+            9
           ]
         },
         {
@@ -355,8 +386,8 @@
           "confidence": 0.9,
           "rationale": "Forced by the plan together with the notation already in the source: the base is a rectangle of sides a and b, so its diagonal is fixed by the related problem the student himself named. The source never performs the step.",
           "pos": [
-            6,
-            -2
+            15.5,
+            -1
           ]
         },
         {
@@ -368,8 +399,8 @@
           "confidence": 0.88,
           "rationale": "Follows from what a rectangular parallelepiped is, which the problem statement names but never unpacks. The perpendicularity is the permission to apply the related problem a second time, and it is the step that makes the plan work rather than merely sound plausible.",
           "pos": [
-            6,
-            -14
+            15.5,
+            -15
           ]
         },
         {
@@ -381,8 +412,8 @@
           "confidence": 0.92,
           "rationale": "Substitution of the two previous steps, arithmetic once they are granted. It is the answer to the unknown the source poses and never reaches.",
           "pos": [
-            6,
-            -26
+            15.5,
+            -29
           ]
         },
         {
@@ -394,8 +425,8 @@
           "confidence": 0.8,
           "rationale": "Polya's 'can you check the result' applied to the formula the steps produce. The dialogue checks only the rejected guess, so every test of the answer itself is the reader's inference, not the source's.",
           "pos": [
-            45,
-            16
+            46.5,
+            24
           ]
         },
         {
@@ -407,21 +438,21 @@
           "confidence": 0.85,
           "rationale": "Each case is an answer that is known independently and that the formula has to reproduce, and the c = 0 case closes the loop back to the related problem stated in sentence 9. None of it happens in the dialogue.",
           "pos": [
-            45,
-            3
+            46.5,
+            4
           ]
         },
         {
           "id": "cg1",
           "slot": "generalization",
-          "label": "Auxiliary element reduces 3-D to 2-D",
+          "label": "Auxiliary element: 3-D to 2-D",
           "text": "The method rather than the formula is what transfers: when a problem in three dimensions resists, introduce an auxiliary element that reduces it to a problem in two dimensions you have already solved.",
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "Generalises the plan that the steps executed. Polya's fourth phase asks whether the method can be used for another problem; the dialogue ends before that question is put.",
           "pos": [
-            45,
-            -11
+            46.5,
+            -16
           ]
         },
         {
@@ -433,8 +464,8 @@
           "confidence": 0.8,
           "rationale": "The steps never used the fact that there are exactly three edges, only that one edge is perpendicular to the plane of the others, so the argument iterates. The source does not mention the extension.",
           "pos": [
-            45,
-            -25
+            46.5,
+            -28
           ]
         }
       ],
@@ -795,43 +826,74 @@
       "idea_bearing_slot": "generalization",
       "layout": {
         "mode": "plane",
-        "guides": [
+        "regions": [
           {
-            "from": [
-              -30,
-              -40
+            "label": "PHASE 1 · 7 FACT · 0 DERIVED",
+            "x": [
+              -61.5,
+              -31.5
             ],
-            "to": [
-              -30,
-              40
+            "y": [
+              -44,
+              44
             ],
-            "style": "dashed"
+            "color": "#898781"
           },
           {
-            "from": [
-              0,
-              -40
+            "label": "PHASE 2 · 2 FACT · 0 DERIVED",
+            "x": [
+              -30.5,
+              -0.5
             ],
-            "to": [
-              0,
-              40
+            "y": [
+              -44,
+              44
             ],
-            "style": "dashed"
+            "color": "#898781"
           },
           {
-            "from": [
-              30,
-              -40
+            "label": "PHASE 3 · 3 FACT · 3 DERIVED",
+            "x": [
+              0.5,
+              30.5
             ],
-            "to": [
-              30,
-              40
+            "y": [
+              -44,
+              44
             ],
-            "style": "dashed"
+            "color": "#898781"
+          },
+          {
+            "label": "PHASE 4 · 0 FACT · 4 DERIVED",
+            "x": [
+              31.5,
+              61.5
+            ],
+            "y": [
+              -44,
+              44
+            ],
+            "color": "#898781"
+          }
+        ],
+        "annotations": [
+          {
+            "pos": [
+              15.5,
+              -41
+            ],
+            "text": "The plan's three steps, never taken"
+          },
+          {
+            "pos": [
+              46.5,
+              -34
+            ],
+            "text": "Every node here is LLM-derived"
           }
         ],
         "camera": {
-          "distance": 155
+          "distance": 100
         }
       },
       "nodes": [
@@ -842,8 +904,8 @@
           "text": "Phase 1. What is the unknown, what are the data, what is the condition. Polya's rule: you cannot answer a question you do not understand.",
           "provenance": "schema",
           "pos": [
-            -45,
-            34
+            -46.5,
+            34.5
           ],
           "size": 1.25
         },
@@ -854,8 +916,8 @@
           "text": "Phase 2. Find the connection between the data and the unknown, usually by way of a related problem already solved, or an auxiliary element.",
           "provenance": "schema",
           "pos": [
-            -15,
-            34
+            -15.5,
+            34.5
           ],
           "size": 1.25
         },
@@ -866,8 +928,8 @@
           "text": "Phase 3. Execute the steps and check each one as you go. Can you see clearly that the step is correct.",
           "provenance": "schema",
           "pos": [
-            15,
-            34
+            15.5,
+            34.5
           ],
           "size": 1.25
         },
@@ -878,8 +940,8 @@
           "text": "Phase 4. Examine the solution obtained: check the result, check the argument, and ask whether the method can be used for another problem.",
           "provenance": "schema",
           "pos": [
-            45,
-            34
+            46.5,
+            34.5
           ],
           "size": 1.25
         },
@@ -896,8 +958,8 @@
             "AMD"
           ],
           "pos": [
-            -45,
-            22
+            -46.5,
+            24
           ],
           "size": 1.15
         },
@@ -914,8 +976,8 @@
             "AMD MI-450"
           ],
           "pos": [
-            -45,
-            10
+            -46.5,
+            14
           ]
         },
         {
@@ -928,8 +990,8 @@
           "source_ref": "host, L1400-L1402",
           "entities": [],
           "pos": [
-            -45,
-            -2
+            -46.5,
+            4
           ]
         },
         {
@@ -944,28 +1006,28 @@
             "AMD"
           ],
           "pos": [
-            -55,
-            -14
+            -46.5,
+            -6
           ]
         },
         {
           "id": "td2",
           "slot": "data",
-          "label": "About $50B per gigawatt, recalled",
+          "label": "$50B per gigawatt, recalled",
           "text": "A second per-gigawatt price, recalled by the researcher from an analyst: around fifty billion dollars per gigawatt. The attribution is unintelligible in the transcript and the number is never sourced on air.",
           "provenance": "fact",
           "source_quote": "he said it's like around 50 billion per gigawatt",
           "source_ref": "Tyler, L1694",
           "entities": [],
           "pos": [
-            -35,
-            -14
+            -46.5,
+            -16
           ]
         },
         {
           "id": "td3",
           "slot": "data",
-          "label": "1 GW of MI-450 starts H2 next year",
+          "label": "1 GW MI-450 starts H2 next year",
           "text": "The ramp: OpenAI will begin with one gigawatt worth of MI-450 chips in the second half of next year, so the six gigawatts arrives in stages.",
           "provenance": "fact",
           "source_quote": "open AI is going to begin with one gigawatt worth of MI 450 chips starting in the second half of next year to run its AI models.",
@@ -975,8 +1037,8 @@
             "AMD MI-450"
           ],
           "pos": [
-            -55,
-            -28
+            -46.5,
+            -26
           ]
         },
         {
@@ -992,8 +1054,8 @@
             "Lisa Su"
           ],
           "pos": [
-            -35,
-            -28
+            -46.5,
+            -36
           ]
         },
         {
@@ -1008,8 +1070,8 @@
             "AMD MI-450"
           ],
           "pos": [
-            -15,
-            14
+            -15.5,
+            20
           ],
           "size": 1.15
         },
@@ -1029,8 +1091,8 @@
             "Elon Musk"
           ],
           "pos": [
-            -15,
-            -8
+            -15.5,
+            -14
           ]
         },
         {
@@ -1045,8 +1107,8 @@
             "AMD"
           ],
           "pos": [
-            6,
-            22
+            15.5,
+            24
           ]
         },
         {
@@ -1059,8 +1121,8 @@
           "source_ref": "host, L1694-L1696",
           "entities": [],
           "pos": [
-            26,
-            11
+            15.5,
+            15
           ]
         },
         {
@@ -1073,8 +1135,8 @@
           "source_ref": "host, L1696-L1698",
           "entities": [],
           "pos": [
-            26,
-            0
+            15.5,
+            2
           ]
         },
         {
@@ -1086,8 +1148,8 @@
           "confidence": 0.85,
           "rationale": "The plan at L1698-L1712 names this as its first input and nobody supplies it; the semiconductor analyst in the next segment is asked about where the power will come from instead (L2286). Measuring at the rack rather than at the die is forced by the data: six gigawatts is facility power, so the divisor has to be facility power per accelerator.",
           "pos": [
-            6,
-            -10
+            15.5,
+            -13
           ]
         },
         {
@@ -1099,8 +1161,8 @@
           "confidence": 0.85,
           "rationale": "Second step of the stated plan, never carried out in the episode. The quoted plan inverts its own division ('divide that by six gigawatts'), which is another reason the step has to be reconstructed rather than read off.",
           "pos": [
-            6,
-            -22
+            15.5,
+            -23
           ]
         },
         {
@@ -1112,8 +1174,8 @@
           "confidence": 0.82,
           "rationale": "Third step of the stated plan and the one that would answer the question at L1690-L1692. Derived because the multiplication is never performed and no unit price is ever stated by anyone on the show.",
           "pos": [
-            6,
-            -34
+            15.5,
+            -33
           ]
         },
         {
@@ -1125,8 +1187,8 @@
           "confidence": 0.9,
           "rationale": "Both estimates are facts in the source. That they exclude each other, and that fifty billion times six gigawatts is three hundred billion rather than four hundred, is arithmetic the episode never performs. This is Polya's 'examine the result' applied to two results at once.",
           "pos": [
-            45,
-            16
+            43,
+            24
           ]
         },
         {
@@ -1138,22 +1200,22 @@
           "confidence": 0.75,
           "rationale": "Uses the revenue guidance at L1676-L1678 and the phased start at L1600-L1602 as an independent bound on the per-gigawatt number at L1694. The source states all three and never puts them side by side.",
           "pos": [
-            45,
-            3
+            51,
+            8
           ]
         },
         {
           "id": "tg1",
           "slot": "generalization",
-          "label": "Convert the unit before pricing it",
+          "label": "Convert the unit before pricing",
           "text": "The heuristic that transfers: when an order is denominated in a unit you cannot price - gigawatts, tokens, square feet of fab - do not estimate in that unit. Convert it into countable physical things first, price the things, and treat the conversion rate itself as the thing being estimated.",
           "provenance": "derived",
           "confidence": 0.7,
           "rationale": "Generalises the plan the host states and never executes (L1698-L1712) together with the conversion the same episode performs for electricity but not for silicon (L1744). Polya's fourth phase; the episode never reaches it, so all of it is inference.",
           "idea": "AI infrastructure is announced in gigawatts but underwritten in accelerators and dollars, so a per-gigawatt bill of materials - watts, racks, accelerators and price per accelerator generation - is a product that analysts, lenders and reporters on this beat currently rebuild by hand for every announcement.",
           "pos": [
-            45,
-            -11
+            42,
+            -6
           ]
         },
         {
@@ -1166,8 +1228,8 @@
           "rationale": "Reads the contradiction found in tk1 as a market fact rather than a slip. Contestable, since the spread could be ordinary day-one noise; the evidence for the stronger reading is that nobody closes it on air with a semiconductor analyst waiting in the next segment.",
           "idea": "The distance between a hundred-billion and a four-hundred-billion reading of the same announcement is the opportunity: a priced, versioned translation layer from gigawatts to accelerators to dollars would be bought by anyone who has to underwrite, report on or trade these deals within the hour.",
           "pos": [
-            45,
-            -25
+            50,
+            -22
           ]
         }
       ],
