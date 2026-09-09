@@ -84,7 +84,7 @@ Each framework has one slot where, applied to a transcript, the opportunity or t
 node _meta/validate.mjs --all      # schema, provenance rules, quotes verified against the transcripts
 node _meta/build.mjs --all         # re-embed every graph.json into its index.html (engine changes propagate)
 node _meta/build-index.mjs         # regenerate index.html and the tables in this README
-node _meta/status.mjs              # progress table and _meta/state.json
+node _meta/status.mjs              # progress table (--write refreshes _meta/state.json)
 node _meta/snap.mjs <framework-dir> # headless screenshots and legibility metrics (needs `npm install` in _meta once and Chrome, Brave, Chromium or Edge)
 ```
 

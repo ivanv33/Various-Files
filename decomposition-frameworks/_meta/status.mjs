@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Scan every framework folder, print a resume table, write _meta/state.json.
-// Usage: node _meta/status.mjs [--json]
+// Usage: node _meta/status.mjs [--json] [--write]   (--write refreshes _meta/state.json; orchestrator only)
 import fs from 'node:fs';
 import path from 'node:path';
 import url from 'node:url';
@@ -29,7 +29,7 @@ const isMain = process.argv[1] && path.resolve(process.argv[1]) === url.fileURLT
 if (isMain) {
   const rows = collect();
   const summary = { generated_at: new Date().toISOString(), done: rows.filter(r => r.status === 'done').length, total: rows.length, frameworks: rows };
-  fs.writeFileSync(path.join(META, 'state.json'), JSON.stringify(summary, null, 2) + '\n');
+  if (process.argv.includes('--write')) fs.writeFileSync(path.join(META, 'state.json'), JSON.stringify(summary, null, 2) + '\n');
   if (process.argv.includes('--json')) { console.log(JSON.stringify(summary, null, 2)); process.exit(0); }
   const pad = (s, n) => String(s).padEnd(n);
   console.log(pad('slug', 28) + pad('status', 13) + pad('last step', 11) + pad('files', 6) + 'tbpn example');

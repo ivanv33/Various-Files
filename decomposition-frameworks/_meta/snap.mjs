@@ -42,7 +42,7 @@ try {
     const rects = [...document.querySelectorAll('#labels .nlabel')].filter(e => e.style.display !== 'none' && e.offsetParent !== null).map(e => { const r = e.getBoundingClientRect(); return { t: e.textContent.trim(), x: r.left, y: r.top, w: r.width, h: r.height }; });
     let overlaps = 0; const pairs = [];
     for (let i = 0; i < rects.length; i++) for (let j = i + 1; j < rects.length; j++) { const a = rects[i], b = rects[j]; if (a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h) { overlaps++; if (pairs.length < 12) pairs.push([a.t, b.t]); } }
-    const cards = ['legend', 'note', 'panel'].map(id => document.getElementById(id)).filter(e => e && !e.hidden).map(e => e.getBoundingClientRect());
+    const cards = ['legend', 'panel'].map(id => document.getElementById(id)).filter(e => e && !e.hidden).map(e => e.getBoundingClientRect());
     const offscreen = rects.filter(r => r.x < main.left || r.y < main.top || r.x + r.w > main.right || r.y + r.h > main.bottom).length;
     const underCards = rects.filter(r => cards.some(c => r.x < c.right && c.left < r.x + r.w && r.y < c.bottom && c.top < r.y + r.h)).length;
     const stats = document.getElementById('stats')?.textContent || '';

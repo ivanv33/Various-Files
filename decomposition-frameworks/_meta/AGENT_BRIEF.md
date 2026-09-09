@@ -20,7 +20,7 @@ Paths, all absolute:
 
 You produce exactly four files in your folder: graph.json, README.md, index.html, state.json (SPEC sections 2, 4, 6, 9).
 
-Ground rules (SPEC 8.6): write only inside your folder; never edit DF/_meta, DF/SPEC.md or other folders; the only git write you may perform is `bash DF/_meta/commit-framework.sh <your folder> "<subject>" "<body>"`; every fact node quotes the source verbatim (the validator checks); no files beyond the four; scratch work goes to your session scratchpad; use absolute paths in commands. Use the same model as you for children (do not pass a model override).
+Ground rules (SPEC 8.6): write only inside your folder; never edit DF/_meta, DF/SPEC.md or other folders (plain `node DF/_meta/status.mjs` is read-only and fine; never pass --write); the only git write you may perform is `bash DF/_meta/commit-framework.sh <your folder> "<subject>" "<body>"`; every fact node quotes the source verbatim (the validator checks); no files beyond the four; scratch work goes to a per-framework subfolder of your session scratchpad (`<scratchpad>/{{SLUG}}/`, because sibling agents share the scratchpad; tell your children the same); use absolute paths in commands. Do not move or park files to make a commit pure: the commit script stages your whole folder, and a readme commit carrying the viz builder's in-progress files (or the reverse) is expected. Use the same model as you for children (do not pass a model override).
 
 Resume rule: if state.json exists, read it first and continue from the first step not marked done. Every step below is safe to repeat.
 
@@ -86,7 +86,7 @@ Rules:
 - Every example entry must match graph.json exactly: node texts, [fact] / [derived 0.xx] tags, confidences, quotes. Do not edit graph.json. If you find a defect in it, write the README against the data as it is and list the defect under "graph.json issues" in your final message.
 - Links are relative: transcript ../../../tbpn-transcripts/transcripts/<file>; a sibling in the same category ../<slug>/README.md; a framework in another category ../../<category>/<slug>/README.md; the graph ./index.html; the library root ../../README.md.
 - One mermaid diagram of the generic slot structure in "The slots".
-- 1,500 to 3,000 words. Plain, precise GitHub markdown. No marketing tone, no filler.
+- 1,500 to 3,000 words of prose; the per-node decomposition entries, quoted source text, the mermaid diagram and code blocks are mandated content and do not count toward the cap. Plain, precise GitHub markdown. No marketing tone, no filler.
 - "Building a knowledge graph with this framework" is the heart of the page: per slot, when it is extracted and when it must be inferred and why the inference is worth making; the extraction recipe as a prompt skeleton whose output is graph.json-shaped; failure modes with a guard for each. "Where the opportunity shows up" reads the idea-bearing slot's derived nodes as candidate ideas or underserved needs with their confidence.
 
 Final message: five lines at most: word count, sections present, links checked, graph.json issues if any.

@@ -21,7 +21,7 @@ decomposition-frameworks/
     graph-engine.html        Three.js viewer template; each framework's index.html is this template plus embedded data
     build.mjs                node _meta/build.mjs <framework-dir> | --all : embeds graph.json into index.html between markers
     validate.mjs             node _meta/validate.mjs <framework-dir> | --all : schema, provenance rules, quote verification
-    status.mjs               node _meta/status.mjs : scans state.json files, prints resume table, writes _meta/state.json
+    status.mjs               node _meta/status.mjs : scans state.json files, prints the resume table; --write refreshes _meta/state.json (orchestrator only)
     build-index.mjs          node _meta/build-index.mjs : regenerates index.html from the registry and states
     snap.mjs                 node _meta/snap.mjs <framework-dir> : headless screenshots of every example and toggle state + legibility metrics (report.json) into _meta/.snaps/<slug>/ (git-ignored); needs `npm install` in _meta once and a Chromium-based browser (Chrome, Brave, Chromium or Edge in /Applications, or CHROME_PATH)
     package.json             puppeteer-core for snap.mjs; node_modules/ is git-ignored
@@ -47,7 +47,7 @@ Edges follow the same rule. A causal link that the speaker states ("we lost the 
 
 Grounding links: an edge with relation `supported_by` runs from a derived node to a fact node and is always `derived` (the judgment that a fact supports an inference is itself an inference). Every derived node should have at least one `supported_by` edge or a direct edge to a fact node; the validator warns when a derived node is not connected to any fact.
 
-The viewer's "hide LLM-derived" toggle shows what the data alone gives you. What remains visible when derived items are hidden must still be true to the source.
+The viewer's "hide LLM-derived" toggle shows what the data alone gives you: it hides derived nodes, every edge touching them, and derived edges between fact nodes. What remains visible must still be true to the source.
 
 The framework's own slot structure (for example that Toulmin has a Warrant slot) is schema, not provenance. Provenance is about the content of a specific node.
 
@@ -180,7 +180,7 @@ How an LLM misapplies this framework (invented facts, over-confident inferences,
 Two to four sibling frameworks with relative links, one line each on when to prefer which.
 ```
 
-Length 1,500 to 3,000 words. Plain GitHub markdown. No content in the README may contradict graph.json; node texts, provenance and confidences must match exactly.
+Length: 1,500 to 3,000 words of prose. The per-node decomposition entries, the quoted source text, the mermaid diagram and the code blocks are mandated content and do not count toward the cap. Plain GitHub markdown. No content in the README may contradict graph.json; node texts, provenance and confidences must match exactly.
 
 ## 7. Registry
 
@@ -268,7 +268,8 @@ limitations: <engine limits hit, slots that fit badly, anything the reviewer sho
 - Never run `git add -A`, `git commit` or any git write command directly. The only allowed git write is `_meta/commit-framework.sh` on your own folder. Reading git is fine.
 - Every fact must be a verbatim span from the cited source, or a flagged paraphrase within the cap. No invented quotes. When in doubt, mark it derived.
 - Keep node labels to 40 characters; put the substance in `text`.
-- Do not add files beyond the four. Scratch work goes to the session scratchpad, not the repo.
+- Do not add files beyond the four. Scratch work goes to a per-framework subfolder of the session scratchpad (`<scratchpad>/<slug>/`); sibling agents share the scratchpad.
+- Do not move or park files to make a commit "pure". The commit script stages the whole folder; a `readme(...)` commit may carry the viz builder's in-progress files and vice versa. That is expected.
 - Absolute paths in every command. The repo root is passed in the brief.
 
 ## 9. State and resumability
@@ -289,7 +290,7 @@ limitations: <engine limits hit, slots that fit badly, anything the reviewer sho
 }
 ```
 
-`node _meta/status.mjs` scans all 22 folders, prints a table (slug, status, last step, example) and writes `_meta/state.json`. To resume after an interruption: run status, then relaunch a framework agent with `_meta/AGENT_BRIEF.md` for each slug not `done`. The parent's steps are idempotent, so a relaunch continues from the recorded state.
+`node _meta/status.mjs` scans all 22 folders and prints a table (slug, status, last step, example); the orchestrator runs it with `--write` to refresh `_meta/state.json`. To resume after an interruption: run status, then relaunch a framework agent with `_meta/AGENT_BRIEF.md` for each slug not `done`. The parent's steps are idempotent, so a relaunch continues from the recorded state.
 
 ## 10. Git protocol
 

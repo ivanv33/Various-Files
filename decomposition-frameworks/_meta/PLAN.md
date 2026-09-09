@@ -59,7 +59,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 - [ ] **Step 7: Regenerate index and README tables, commit**
 
 ```bash
-node _meta/build-index.mjs && node _meta/status.mjs >/dev/null
+node _meta/build-index.mjs && node _meta/status.mjs --write >/dev/null
 cd .. && git add decomposition-frameworks/index.html decomposition-frameworks/README.md decomposition-frameworks/_meta/state.json && git commit -m "frameworks: index and status after pilot wave
 
 Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
@@ -95,7 +95,7 @@ Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 node _meta/validate.mjs --all          # expect 22 PASS
 node _meta/build.mjs --all             # re-embed with the final engine (extension blocks kept)
 for d in 0*/*/; do node _meta/snap.mjs "$d" | head -3; done   # expect console clean everywhere
-node _meta/status.mjs                  # expect 22/22 done
+node _meta/status.mjs --write          # expect 22/22 done
 node _meta/build-index.mjs
 ```
 
