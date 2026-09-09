@@ -11,25 +11,33 @@
       "id": "problem",
       "label": "Problem",
       "typical_provenance": "fact",
-      "description": "The observed failure, stated concretely enough to be checked: what happened, to whom, how often. Recurrence evidence belongs here too, because a failure that has been cleared before is the strongest sign that earlier answers stopped too high."
+      "description": "The observed failure, stated concretely enough to be checked: what happened, to whom, how often. Recurrence evidence belongs here too, because a failure that has been cleared before is the strongest sign that earlier answers stopped too high.",
+      "color": "#3987e5",
+      "shape": "sphere"
     },
     {
       "id": "why",
       "label": "Why",
       "typical_provenance": "either",
-      "description": "One causal layer, the answer to 'why did the layer above happen?'. Use level 1..n. The upper layers are usually stated by the speakers; the lower ones, where the answer stops being mechanical and becomes a standard or an incentive, usually have to be inferred."
+      "description": "One causal layer, the answer to 'why did the layer above happen?'. Use level 1..n. The upper layers are usually stated by the speakers; the lower ones, where the answer stops being mechanical and becomes a standard or an incentive, usually have to be inferred.",
+      "color": "#d95926",
+      "shape": "sphere"
     },
     {
       "id": "root_cause",
       "label": "Root cause",
       "typical_provenance": "derived",
-      "description": "The systemic cause at the bottom of the chain: a standard, a process, an incentive or a structure whose removal would prevent the whole class of failure, not this instance of it. Almost never stated, because naming it is an admission."
+      "description": "The systemic cause at the bottom of the chain: a standard, a process, an incentive or a structure whose removal would prevent the whole class of failure, not this instance of it. Almost never stated, because naming it is an admission.",
+      "color": "#199e70",
+      "shape": "diamond"
     },
     {
       "id": "countermeasure",
       "label": "Countermeasure",
       "typical_provenance": "either",
-      "description": "What would remove a cause. The fix aimed at a shallow why is usually stated and usually already taken; the countermeasure that reaches the root cause is normally inferred, and it is where the opportunity in the material shows up."
+      "description": "What would remove a cause. The fix aimed at a shallow why is usually stated and usually already taken; the countermeasure that reaches the root cause is normally inferred, and it is where the opportunity in the material shows up.",
+      "color": "#9085e9",
+      "shape": "box"
     }
   ],
   "relations": [
@@ -59,7 +67,142 @@
       "layout": {
         "mode": "tree",
         "root": "p",
-        "direction": "down"
+        "direction": "down",
+        "regions": [
+          {
+            "label": "countermeasures",
+            "x": [
+              22.0,
+              62.0
+            ],
+            "y": [
+              -56.0,
+              42.0
+            ],
+            "color": "#9085e9"
+          }
+        ],
+        "guides": [
+          {
+            "from": [
+              -30.0,
+              36.0
+            ],
+            "to": [
+              -30.0,
+              36.0
+            ],
+            "style": "solid",
+            "label": "why 1"
+          },
+          {
+            "from": [
+              -30.0,
+              24.0
+            ],
+            "to": [
+              -30.0,
+              24.0
+            ],
+            "style": "solid",
+            "label": "why 2"
+          },
+          {
+            "from": [
+              -30.0,
+              12.0
+            ],
+            "to": [
+              -30.0,
+              12.0
+            ],
+            "style": "solid",
+            "label": "why 3"
+          },
+          {
+            "from": [
+              -30.0,
+              0.0
+            ],
+            "to": [
+              -30.0,
+              0.0
+            ],
+            "style": "solid",
+            "label": "why 4"
+          },
+          {
+            "from": [
+              -30.0,
+              -12.0
+            ],
+            "to": [
+              -30.0,
+              -12.0
+            ],
+            "style": "solid",
+            "label": "why 5"
+          },
+          {
+            "from": [
+              -30.0,
+              -24.0
+            ],
+            "to": [
+              -30.0,
+              -24.0
+            ],
+            "style": "solid",
+            "label": "why 6"
+          },
+          {
+            "from": [
+              -30.0,
+              -36.0
+            ],
+            "to": [
+              -30.0,
+              -36.0
+            ],
+            "style": "solid",
+            "label": "why 7"
+          },
+          {
+            "from": [
+              -30.0,
+              -48.0
+            ],
+            "to": [
+              -30.0,
+              -48.0
+            ],
+            "style": "solid",
+            "label": "root cause"
+          },
+          {
+            "from": [
+              -14.0,
+              -30.0
+            ],
+            "to": [
+              20.0,
+              -30.0
+            ],
+            "style": "dashed"
+          },
+          {
+            "from": [
+              -36.0,
+              -30.0
+            ],
+            "to": [
+              -36.0,
+              -30.0
+            ],
+            "style": "solid",
+            "label": "the source stops here"
+          }
+        ]
       },
       "nodes": [
         {
@@ -70,7 +213,12 @@
           "provenance": "fact",
           "level": 0,
           "source_quote": "A machine on the assembly line stopped in the middle of the shift",
-          "source_ref": "narrator, sentence 1"
+          "source_ref": "narrator, sentence 1",
+          "pos": [
+            -2.0,
+            48.0
+          ],
+          "size": 1.3
         },
         {
           "id": "p2",
@@ -80,7 +228,11 @@
           "provenance": "fact",
           "level": 0,
           "source_quote": "the fuse on this machine had been replaced twice in the previous year",
-          "source_ref": "narrator, sentence 15 (the plant records)"
+          "source_ref": "narrator, sentence 15 (the plant records)",
+          "pos": [
+            -44.0,
+            48.0
+          ]
         },
         {
           "id": "w1",
@@ -90,7 +242,11 @@
           "provenance": "fact",
           "level": 1,
           "source_quote": "There was an overload and the fuse blew",
-          "source_ref": "the team, answer to why 1, sentence 4"
+          "source_ref": "the team, answer to why 1, sentence 4",
+          "pos": [
+            -2.0,
+            36.0
+          ]
         },
         {
           "id": "w2",
@@ -100,7 +256,11 @@
           "provenance": "fact",
           "level": 2,
           "source_quote": "The bearing was not sufficiently lubricated",
-          "source_ref": "the team, answer to why 2, sentence 6"
+          "source_ref": "the team, answer to why 2, sentence 6",
+          "pos": [
+            -2.0,
+            24.0
+          ]
         },
         {
           "id": "w3",
@@ -110,7 +270,11 @@
           "provenance": "fact",
           "level": 3,
           "source_quote": "The lubrication pump was not pumping sufficiently",
-          "source_ref": "the team, answer to why 3, sentence 8"
+          "source_ref": "the team, answer to why 3, sentence 8",
+          "pos": [
+            -2.0,
+            12.0
+          ]
         },
         {
           "id": "w4",
@@ -120,7 +284,11 @@
           "provenance": "fact",
           "level": 4,
           "source_quote": "The shaft of the pump was worn and rattling",
-          "source_ref": "the team, answer to why 4, sentence 10"
+          "source_ref": "the team, answer to why 4, sentence 10",
+          "pos": [
+            -2.0,
+            0.0
+          ]
         },
         {
           "id": "w5",
@@ -130,17 +298,25 @@
           "provenance": "fact",
           "level": 5,
           "source_quote": "There was no strainer attached and metal scrap got in",
-          "source_ref": "the team, answer to why 5, sentence 12"
+          "source_ref": "the team, answer to why 5, sentence 12",
+          "pos": [
+            -2.0,
+            -12.0
+          ]
         },
         {
           "id": "w6",
           "slot": "why",
-          "label": "Sheet lists one item, on 5 machines",
+          "label": "One-item sheet, 5 machines",
           "text": "The maintenance sheet for this machine listed a single item, a monthly oil top-up, and the same sheet was in use on the four other machines of this type on the line.",
           "provenance": "fact",
           "level": 6,
           "source_quote": "The maintenance sheet for this machine listed a single item, a monthly oil top-up, and the same sheet was in use on the four other machines of this type on the line",
-          "source_ref": "narrator, sentence 14 (the maintenance sheet)"
+          "source_ref": "narrator, sentence 14 (the maintenance sheet)",
+          "pos": [
+            -2.0,
+            -24.0
+          ]
         },
         {
           "id": "w7",
@@ -150,7 +326,11 @@
           "provenance": "derived",
           "level": 7,
           "confidence": 0.8,
-          "rationale": "The contents of the sheet are stated; that a one-item sheet cannot catch a missing filter, and that the omission was therefore invisible to the routine rather than overlooked by an operator, is the step from the stated condition to its consequence."
+          "rationale": "The contents of the sheet are stated; that a one-item sheet cannot catch a missing filter, and that the omission was therefore invisible to the routine rather than overlooked by an operator, is the step from the stated condition to its consequence.",
+          "pos": [
+            -2.0,
+            -36.0
+          ]
         },
         {
           "id": "rc",
@@ -160,17 +340,26 @@
           "provenance": "derived",
           "level": 8,
           "confidence": 0.75,
-          "rationale": "Follows from three stated facts held together: no strainer was attached, the sheet's only item is an oil top-up, and that sheet covers four more machines. The missing part explains one stoppage; only the standard explains why the omission survived from installation and why the failure is latent elsewhere."
+          "rationale": "Follows from three stated facts held together: no strainer was attached, the sheet's only item is an oil top-up, and that sheet covers four more machines. The missing part explains one stoppage; only the standard explains why the omission survived from installation and why the failure is latent elsewhere.",
+          "pos": [
+            -2.0,
+            -48.0
+          ],
+          "size": 1.5
         },
         {
           "id": "cm0",
           "slot": "countermeasure",
-          "label": "Replace the fuse (the shallow fix)",
+          "label": "Replace the fuse (shallow fix)",
           "text": "Replacing the fuse is the countermeasure you reach by stopping at the first why; the record of two replacements in a year shows it had already been taken twice, clearing the symptom without touching the cause.",
           "provenance": "derived",
-          "level": 9,
+          "level": 1,
           "confidence": 0.7,
-          "rationale": "The scenario states the two replacements but never calls them a countermeasure. Reading the record as two earlier stops at why one is what makes the recurrence meaningful, and it is the inference the framework exists to force."
+          "rationale": "The scenario states the two replacements but never calls them a countermeasure. Reading the record as two earlier stops at why one is what makes the recurrence meaningful, and it is the inference the framework exists to force.",
+          "pos": [
+            44.0,
+            36.0
+          ]
         },
         {
           "id": "cm1",
@@ -178,9 +367,13 @@
           "label": "Fit a strainer to the pump",
           "text": "The team fitted a strainer to the pump inlet and the line restarted.",
           "provenance": "fact",
-          "level": 9,
+          "level": 5,
           "source_quote": "The team fitted a strainer to the pump inlet and the line restarted",
-          "source_ref": "narrator, sentence 13"
+          "source_ref": "narrator, sentence 13",
+          "pos": [
+            44.0,
+            -12.0
+          ]
         },
         {
           "id": "cm2",
@@ -188,9 +381,13 @@
           "label": "Put filtration in the standard",
           "text": "The countermeasure that matches the root cause changes the standard rather than the pump: a filtration item on the maintenance sheet, a strainer check at installation acceptance, and an audit of the four sibling machines running the same sheet.",
           "provenance": "derived",
-          "level": 9,
+          "level": 8,
           "confidence": 0.75,
-          "rationale": "If the cause is the standard then only the standard can be the remedy, and the shared sheet makes the same failure latent on four other machines, so the countermeasure has to reach them. The scenario states the fix on one pump and nothing beyond it."
+          "rationale": "If the cause is the standard then only the standard can be the remedy, and the shared sheet makes the same failure latent on four other machines, so the countermeasure has to reach them. The scenario states the fix on one pump and nothing beyond it.",
+          "pos": [
+            44.0,
+            -48.0
+          ]
         }
       ],
       "edges": [
@@ -360,7 +557,106 @@
       "layout": {
         "mode": "tree",
         "root": "p1",
-        "direction": "down"
+        "direction": "down",
+        "regions": [
+          {
+            "label": "countermeasures",
+            "x": [
+              34.0,
+              78.0
+            ],
+            "y": [
+              -53.0,
+              37.0
+            ],
+            "color": "#9085e9"
+          }
+        ],
+        "guides": [
+          {
+            "from": [
+              -66.0,
+              32.0
+            ],
+            "to": [
+              -66.0,
+              32.0
+            ],
+            "style": "solid",
+            "label": "why 1"
+          },
+          {
+            "from": [
+              -66.0,
+              19.0
+            ],
+            "to": [
+              -66.0,
+              19.0
+            ],
+            "style": "solid",
+            "label": "why 2"
+          },
+          {
+            "from": [
+              -66.0,
+              5.0
+            ],
+            "to": [
+              -66.0,
+              5.0
+            ],
+            "style": "solid",
+            "label": "why 3"
+          },
+          {
+            "from": [
+              -66.0,
+              -15.0
+            ],
+            "to": [
+              -66.0,
+              -15.0
+            ],
+            "style": "solid",
+            "label": "why 4"
+          },
+          {
+            "from": [
+              -66.0,
+              -33.0
+            ],
+            "to": [
+              -66.0,
+              -33.0
+            ],
+            "style": "solid",
+            "label": "root cause"
+          },
+          {
+            "from": [
+              -52.0,
+              -3.0
+            ],
+            "to": [
+              30.0,
+              -3.0
+            ],
+            "style": "dashed"
+          },
+          {
+            "from": [
+              -66.0,
+              -3.0
+            ],
+            "to": [
+              -66.0,
+              -3.0
+            ],
+            "style": "solid",
+            "label": "links inferred below"
+          }
+        ]
       },
       "nodes": [
         {
@@ -375,7 +671,12 @@
           "entities": [
             "Coinbase",
             "Brian Armstrong"
-          ]
+          ],
+          "pos": [
+            -14.0,
+            45.0
+          ],
+          "size": 1.3
         },
         {
           "id": "p2",
@@ -389,6 +690,10 @@
           "entities": [
             "Coinbase",
             "Brian Armstrong"
+          ],
+          "pos": [
+            56.0,
+            45.0
           ]
         },
         {
@@ -403,6 +708,10 @@
           "entities": [
             "Coinbase",
             "Brian Armstrong"
+          ],
+          "pos": [
+            -58.0,
+            45.0
           ]
         },
         {
@@ -417,6 +726,10 @@
           "entities": [
             "Coinbase",
             "Brian Armstrong"
+          ],
+          "pos": [
+            -14.0,
+            32.0
           ]
         },
         {
@@ -431,6 +744,10 @@
           "entities": [
             "Coinbase",
             "Brian Armstrong"
+          ],
+          "pos": [
+            -14.0,
+            19.0
           ]
         },
         {
@@ -445,6 +762,10 @@
           "entities": [
             "Coinbase",
             "Brian Armstrong"
+          ],
+          "pos": [
+            6.0,
+            5.0
           ]
         },
         {
@@ -459,6 +780,10 @@
           "entities": [
             "Coinbase",
             "Brian Armstrong"
+          ],
+          "pos": [
+            2.0,
+            -9.0
           ]
         },
         {
@@ -473,6 +798,10 @@
           "entities": [
             "Coinbase",
             "Brian Armstrong"
+          ],
+          "pos": [
+            8.0,
+            -21.0
           ]
         },
         {
@@ -487,7 +816,11 @@
             "Coinbase",
             "Brian Armstrong"
           ],
-          "rationale": "Armstrong describes agents sharing name and address, not any system being broken into, and says the controls limited the scope of what was reached rather than preventing the reads. Standing task-level access is the only arrangement in which bribery alone yields customer identity data, and it is nowhere stated."
+          "rationale": "Armstrong describes agents sharing name and address, not any system being broken into, and says the controls limited the scope of what was reached rather than preventing the reads. Standing task-level access is the only arrangement in which bribery alone yields customer identity data, and it is nowhere stated.",
+          "pos": [
+            -36.0,
+            5.0
+          ]
         },
         {
           "id": "y7",
@@ -501,6 +834,10 @@
           "entities": [
             "Coinbase",
             "Brian Armstrong"
+          ],
+          "pos": [
+            -38.0,
+            -9.0
           ]
         },
         {
@@ -515,6 +852,10 @@
           "entities": [
             "Coinbase",
             "Brian Armstrong"
+          ],
+          "pos": [
+            -46.0,
+            -21.0
           ]
         },
         {
@@ -529,7 +870,12 @@
             "Coinbase",
             "Brian Armstrong"
           ],
-          "rationale": "Holds together four stated facts that no speaker joins: the 24/7 constraint that keeps support distributed, the bribe-versus-wage economics, the vendor gap, and the admission that scope-limiting controls were not enough. None of them alone is the cause; the arrangement that makes all four true at once is the layer below the last stated why."
+          "rationale": "Holds together four stated facts that no speaker joins: the 24/7 constraint that keeps support distributed, the bribe-versus-wage economics, the vendor gap, and the admission that scope-limiting controls were not enough. None of them alone is the cause; the arrangement that makes all four true at once is the layer below the last stated why.",
+          "pos": [
+            -14.0,
+            -33.0
+          ],
+          "size": 1.5
         },
         {
           "id": "c0",
@@ -537,12 +883,16 @@
           "label": "Host: CX entirely code",
           "text": "A host proposes that a more secure customer-experience function would in future be entirely code, or at least carry AI oversight of every interaction.",
           "provenance": "fact",
-          "level": 6,
+          "level": 2,
           "source_quote": "is there's a world in the future where a more secure CX function would be entirely code",
           "source_ref": "Host, L7630-L7632; the AI-oversight clause at L7640",
           "entities": [
             "Coinbase",
             "Brian Armstrong"
+          ],
+          "pos": [
+            58.0,
+            8.0
           ]
         },
         {
@@ -551,12 +901,16 @@
           "label": "Relocate support operations",
           "text": "Coinbase relocated some of its customer support operations.",
           "provenance": "fact",
-          "level": 6,
+          "level": 3,
           "source_quote": "We did relocate some of our customer support operations",
           "source_ref": "Brian Armstrong, L7678",
           "entities": [
             "Coinbase",
             "Brian Armstrong"
+          ],
+          "pos": [
+            56.0,
+            -1.0
           ]
         },
         {
@@ -565,12 +919,16 @@
           "label": "$20M bounty as deterrent",
           "text": "Coinbase flipped the extortion demand and put out a $20 million bounty for information leading to the attackers' arrest and conviction.",
           "provenance": "fact",
-          "level": 6,
+          "level": 1,
           "source_quote": "we put out a 20 million dollar bounty for any information leading to their arrest",
           "source_ref": "Brian Armstrong, L7550",
           "entities": [
             "Coinbase",
             "Brian Armstrong"
+          ],
+          "pos": [
+            56.0,
+            32.0
           ]
         },
         {
@@ -579,12 +937,16 @@
           "label": "60% of inquiries answered by AI",
           "text": "About 60% of Coinbase's customer support inquiries are now answered by AI.",
           "provenance": "fact",
-          "level": 6,
+          "level": 2,
           "source_quote": "Our customer support, I think maybe 60% of inquiries are being answered by AI now",
           "source_ref": "Brian Armstrong, L7366",
           "entities": [
             "Coinbase",
             "Brian Armstrong"
+          ],
+          "pos": [
+            56.0,
+            19.0
           ]
         },
         {
@@ -593,14 +955,18 @@
           "label": "Take PII out of the human path",
           "text": "The countermeasure that matches the root cause removes identity data from the human path: tickets resolved against tokenised references with per-ticket, time-boxed grants, so an agent, contractor or vendor can act on an account without ever reading name and address, and the bribe buys nothing worth paying for.",
           "provenance": "derived",
-          "level": 6,
+          "level": 5,
           "confidence": 0.6,
           "entities": [
             "Coinbase",
             "Brian Armstrong"
           ],
           "rationale": "Follows from the root cause: if the exposure is standing human access to plaintext identity data, only removing that access removes it. The transcript states the scope-limiting controls and the vendor gap but never names access redesign, which is what the countermeasure slot forces you to write down.",
-          "idea": "Insider-threat tooling for outsourced support: a PII-redacting agent console with per-ticket, time-boxed access grants, sold to fintechs whose BPO vendors are in practice their security perimeter."
+          "idea": "Insider-threat tooling for outsourced support: a PII-redacting agent console with per-ticket, time-boxed access grants, sold to fintechs whose BPO vendors are in practice their security perimeter.",
+          "pos": [
+            56.0,
+            -25.0
+          ]
         },
         {
           "id": "c5",
@@ -608,14 +974,18 @@
           "label": "AI support as a security control",
           "text": "The 60% AI resolution rate is already a security control and not only a margin story: an agent that cannot be bribed removes part of the human surface, and the human-in-the-loop cases that remain carry the whole residual risk.",
           "provenance": "derived",
-          "level": 6,
+          "level": 5,
           "confidence": 0.65,
           "entities": [
             "Coinbase",
             "Brian Armstrong"
           ],
           "rationale": "Armstrong answers a security question with the automation number and the remark that the AI is not going to get bribed, which makes automation rate a control metric. That reframing, and the corollary that the remaining human cases concentrate the risk, is not stated.",
-          "idea": "Sell AI customer support to regulated fintechs as an insider-threat control with an audited automation rate rather than as a cost saving: the buyer is the security owner, not the support budget."
+          "idea": "Sell AI customer support to regulated fintechs as an insider-threat control with an audited automation rate rather than as a cost saving: the buyer is the security owner, not the support budget.",
+          "pos": [
+            56.0,
+            -35.0
+          ]
         },
         {
           "id": "c6",
@@ -623,14 +993,18 @@
           "label": "Continuous vendor attestation",
           "text": "Because a vendor's controls are in practice the company's controls, the countermeasure extends past a contractual bar to continuous evidence: standing proof of which vendor staff can read which customer fields, rather than a point-in-time attestation.",
           "provenance": "derived",
-          "level": 6,
+          "level": 5,
           "confidence": 0.55,
           "entities": [
             "Coinbase",
             "Brian Armstrong"
           ],
           "rationale": "Armstrong states that vendors had to be pushed to a higher bar but not how a bar is kept once pushed. The step from a one-off push to continuous verification is an inference, and a contestable one, since a contractual bar plus an annual audit is the industry's current answer.",
-          "idea": "Continuous vendor-access attestation for support BPOs: live evidence of which vendor staff can read which customer fields, priced as a control that the regulator and the enterprise customer can both see."
+          "idea": "Continuous vendor-access attestation for support BPOs: live evidence of which vendor staff can read which customer fields, priced as a control that the regulator and the enterprise customer can both see.",
+          "pos": [
+            56.0,
+            -45.0
+          ]
         }
       ],
       "edges": [
