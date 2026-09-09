@@ -35,28 +35,27 @@
       "layout": {
         "mode": "plane",
         "regions": [
-          { "label": "Context", "x": [-80, -48], "y": [-58, 38], "color": "#4a7fd4" },
-          { "label": "Action", "x": [-48, -16], "y": [-58, 38], "color": "#199e70" },
-          { "label": "Result", "x": [-16, 16], "y": [-58, 38], "color": "#c98500" },
-          { "label": "Learning", "x": [16, 48], "y": [-58, 38], "color": "#7d5bd6" },
-          { "label": "Systemic rule", "x": [48, 80], "y": [-58, 38], "color": "#d0466f" },
-          { "label": "grounded only", "x": [-80, 80], "y": [-58, -38], "color": "#898781" }
+          { "label": "Context", "x": [-83, -48], "y": [-55, 38], "color": "#4a7fd4" },
+          { "label": "Action", "x": [-48, -16], "y": [-55, 38], "color": "#199e70" },
+          { "label": "Result", "x": [-16, 16], "y": [-55, 38], "color": "#c98500" },
+          { "label": "Learning", "x": [16, 48], "y": [-55, 38], "color": "#7d5bd6" },
+          { "label": "Systemic rule", "x": [48, 83], "y": [-55, 38], "color": "#d0466f" },
+          { "label": "grounded only", "x": [-83, 83], "y": [-55, -37], "color": "#898781" }
         ],
         "guides": [
           { "from": [-48, 44], "to": [-48, 44], "label": "motivates →" },
           { "from": [-16, 44], "to": [-16, 44], "label": "produces →" },
           { "from": [16, 44], "to": [16, 44], "label": "teaches →" },
           { "from": [48, 44], "to": [48, 44], "label": "generalizes to →" },
-          { "from": [-28, -40], "to": [-28, -40], "label": "◌ no chain edge · press g for its facts" },
-          { "from": [0, -72.5], "to": [0, -72.5] },
-          { "from": [0, -86], "to": [0, -86] }
+          { "from": [0, -65.5], "to": [0, -65.5] },
+          { "from": [0, -73.5], "to": [0, -73.5] }
         ]
       },
       "nodes": [
         { "id": "c1", "slot": "context", "label": "Sole RN for sixteen beds", "text": "On a late shift the author was the only registered nurse for sixteen beds, with a healthcare assistant and an agency nurse who did not know the ward.", "provenance": "fact", "source_quote": "I was the only registered nurse covering sixteen beds, working with one healthcare assistant and an agency nurse who had never worked on the ward before", "source_ref": "sentence 1", "pos": [-64, 6] },
         { "id": "c2", "slot": "context", "label": "1 mg IV morphine prescribed", "text": "A patient was prescribed 1 mg of intravenous morphine for breakthrough pain at about nine in the evening.", "provenance": "fact", "source_quote": "a patient was prescribed 1 mg of intravenous morphine for breakthrough pain", "source_ref": "sentence 2", "pos": [-64, 30] },
         { "id": "c3", "slot": "context", "label": "Look-alikes in one drawer", "text": "The 1 mg and 10 mg morphine ampoules are kept in the same drawer in almost identical boxes.", "provenance": "fact", "source_quote": "The two strengths are kept in the same drawer in almost identical boxes", "source_ref": "sentence 5", "pos": [-64, 18] },
-        { "id": "c4", "slot": "context", "label": "Only small print separates 10x", "text": "Nothing but the printed strength on a near-identical box separates a dose from ten times that dose.", "provenance": "derived", "confidence": 0.85, "rationale": "The account states that the two strengths sit in one drawer in almost identical boxes and that the ampoules are 1 mg and 10 mg in the same volume; that the small print is the only discriminator is the inference joining those two statements.", "pos": [-64, -50] },
+        { "id": "c4", "slot": "context", "label": "Only small print separates 10x", "text": "Nothing but the printed strength on a near-identical box separates a dose from ten times that dose.", "provenance": "derived", "confidence": 0.85, "rationale": "The account states that the two strengths sit in one drawer in almost identical boxes and that the ampoules are 1 mg and 10 mg in the same volume; that the small print is the only discriminator is the inference joining those two statements.", "pos": [-64, -47] },
         { "id": "a1", "slot": "action", "label": "Drew up the dose from the tray", "text": "She went to the controlled-drugs cupboard, took an ampoule from the tray and drew up the dose.", "provenance": "fact", "source_quote": "I went to the controlled-drugs cupboard, took an ampoule from the tray, drew up the dose", "source_ref": "sentence 3", "pos": [-32, 24] },
         { "id": "a2", "slot": "action", "label": "Asked for a second check", "text": "She asked the agency nurse to check the drawn-up dose with her before administering it.", "provenance": "fact", "source_quote": "asked the agency nurse to check it with me before I gave it", "source_ref": "sentence 3", "pos": [-32, 0] },
         { "id": "a3", "slot": "action", "label": "Logged it as a near miss", "text": "She recorded the event as a near miss before the end of the shift.", "provenance": "fact", "source_quote": "I recorded the event as a near miss before the end of the shift", "source_ref": "sentence 6", "pos": [-32, -12] },
@@ -64,10 +63,10 @@
         { "id": "r1", "slot": "result", "label": "Caught: 10 mg, not 1 mg", "text": "The agency nurse read the label back and stopped her: the ampoule was 10 mg in 1 ml, not 1 mg in 1 ml.", "provenance": "fact", "source_quote": "She read the label back and stopped me: the ampoule was 10 mg in 1 ml, not 1 mg in 1 ml", "source_ref": "sentence 4", "pos": [0, 6] },
         { "id": "r2", "slot": "result", "label": "No morphine reached the patient", "text": "No morphine reached the patient.", "provenance": "fact", "source_quote": "No morphine reached the patient", "source_ref": "sentence 6", "pos": [0, 18] },
         { "id": "r3", "slot": "result", "label": "Same swap twice before", "text": "The review found that the same two ampoules had been confused twice already that year, by two other nurses.", "provenance": "fact", "source_quote": "the same two ampoules had been confused twice already that year, by two other nurses", "source_ref": "sentence 8", "pos": [0, -30] },
-        { "id": "r4", "slot": "result", "label": "The barrier that held: the check", "text": "The error was stopped by a second person reading the label, not by the care taken in drawing the dose up.", "provenance": "derived", "confidence": 0.8, "rationale": "The same nurse both selected the wrong ampoule and asked for the check; identifying the check rather than her own attention as the barrier that actually worked is a reading of that sequence, not a statement in it.", "pos": [0, -50] },
+        { "id": "r4", "slot": "result", "label": "The barrier that held: the check", "text": "The error was stopped by a second person reading the label, not by the care taken in drawing the dose up.", "provenance": "derived", "confidence": 0.8, "rationale": "The same nurse both selected the wrong ampoule and asked for the check; identifying the check rather than her own attention as the barrier that actually worked is a reading of that sequence, not a statement in it.", "pos": [0, -47] },
         { "id": "l1", "slot": "learning", "label": "Resolved to read labels twice", "text": "Her first lesson was that she had been careless and would slow down and read every label twice.", "provenance": "fact", "source_quote": "I would slow down and read every label twice", "source_ref": "sentence 7", "pos": [32, 12] },
         { "id": "l2", "slot": "learning", "label": "Vigilance was not what failed", "text": "Three different nurses made the same mistake, so the variable that failed is not individual attention but the arrangement that requires it.", "provenance": "derived", "confidence": 0.85, "rationale": "The recurrence across two other nurses is stated; concluding from it that attention is the wrong variable to correct is the move from a single-loop resolution to a double-loop diagnosis, and the account gestures at it without naming it.", "pos": [32, -12] },
-        { "id": "u1", "slot": "rule", "label": "Separate cupboards, 2nd signature", "text": "The ward now stores the two strengths in separate cupboards and releases the 10 mg ampoule only against a second signature in the controlled-drugs register.", "provenance": "fact", "source_quote": "the two strengths are stored in separate cupboards and the 10 mg ampoule is released only against a second signature in the controlled-drugs register", "source_ref": "sentence 9", "pos": [64, -30] },
+        { "id": "u1", "slot": "rule", "label": "Split cupboards, 2nd signature", "text": "The ward now stores the two strengths in separate cupboards and releases the 10 mg ampoule only against a second signature in the controlled-drugs register.", "provenance": "fact", "source_quote": "the two strengths are stored in separate cupboards and the 10 mg ampoule is released only against a second signature in the controlled-drugs register", "source_ref": "sentence 9", "pos": [64, -30] },
         { "id": "u2", "slot": "rule", "label": "Design ambiguity out of storage", "text": "The governing rule moves from asking people to read more carefully to removing the situation in which a misread is possible at all.", "provenance": "derived", "confidence": 0.8, "rationale": "The ward's change and the closing sentence both point at this principle, but the account states the new arrangement rather than the rule behind it; naming the rule is what makes the lesson transfer to every other look-alike pair on the ward.", "pos": [64, -18] }
       ],
       "edges": [
@@ -110,22 +109,20 @@
       "layout": {
         "mode": "plane",
         "regions": [
-          { "label": "Context", "x": [-80, -48], "y": [-58, 38], "color": "#4a7fd4" },
-          { "label": "Action", "x": [-48, -16], "y": [-58, 38], "color": "#199e70" },
-          { "label": "Result", "x": [-16, 16], "y": [-58, 38], "color": "#c98500" },
-          { "label": "Learning", "x": [16, 48], "y": [-58, 38], "color": "#7d5bd6" },
-          { "label": "Systemic rule", "x": [48, 80], "y": [-58, 38], "color": "#d0466f" },
-          { "label": "grounded only", "x": [-80, 80], "y": [-58, -38], "color": "#898781" }
+          { "label": "Context", "x": [-83, -48], "y": [-55, 38], "color": "#4a7fd4" },
+          { "label": "Action", "x": [-48, -16], "y": [-55, 38], "color": "#199e70" },
+          { "label": "Result", "x": [-16, 16], "y": [-55, 38], "color": "#c98500" },
+          { "label": "Learning", "x": [16, 48], "y": [-55, 38], "color": "#7d5bd6" },
+          { "label": "Systemic rule", "x": [48, 83], "y": [-55, 38], "color": "#d0466f" },
+          { "label": "grounded only", "x": [-83, 83], "y": [-55, -37], "color": "#898781" }
         ],
         "guides": [
           { "from": [-48, 44], "to": [-48, 44], "label": "motivates →" },
           { "from": [-16, 44], "to": [-16, 44], "label": "produces →" },
           { "from": [16, 44], "to": [16, 44], "label": "teaches →" },
           { "from": [48, 44], "to": [48, 44], "label": "generalizes to →" },
-          { "from": [-28, -40], "to": [-28, -40], "label": "◌ no chain edge · press g for its facts" },
-          { "from": [60, -40], "to": [60, -40], "label": "◎ ringed rule carries an idea" },
-          { "from": [0, -72.5], "to": [0, -72.5] },
-          { "from": [0, -86], "to": [0, -86] }
+          { "from": [0, -65.5], "to": [0, -65.5] },
+          { "from": [0, -73.5], "to": [0, -73.5] }
         ]
       },
       "nodes": [
@@ -139,7 +136,7 @@
         { "id": "a2", "slot": "action", "label": "Decided to scale on first results", "text": "On the strength of the first profitable restaurants the team decided to start scaling.", "provenance": "fact", "source_quote": "we have kept those great first results with the restaurants, let's start scaling", "source_ref": "Ylan Richard, L5946-L5948", "pos": [-32, 0] },
         { "id": "a3", "slot": "action", "label": "Tried to restructure to break even", "text": "With scaling blocked, the team tried to restructure away from a handful of profitable restaurants carrying a very high HQ cost.", "provenance": "fact", "source_quote": "restructuring the business to go from those hands full of restaurants that were very profitable and a very high HQ cost", "source_ref": "Ylan Richard, L5978-L5982", "pos": [-32, -12] },
         { "id": "a4", "slot": "action", "label": "Asked regulators for a workaround", "text": "The founders went to regulators, the government and any structure around them looking for a workaround.", "provenance": "fact", "source_quote": "we basically tried to talk to the regulators, to the government, to any structure that was around us to try and find a workaround", "source_ref": "Ylan Richard, L6012-L6014", "pos": [-32, -24] },
-        { "id": "a5", "slot": "action", "label": "Kept HQ sized for the big plan", "text": "Through those years the company carried a headquarters sized for the ambitious plan rather than for the five restaurants it operated.", "provenance": "derived", "confidence": 0.7, "rationale": "He describes a very high HQ cost against a handful of restaurants and says they had kept a much more ambitious vision than what was achievable in Europe; that the HQ was sized to the plan rather than to the estate is the inference joining those statements.", "entities": ["Cala"], "pos": [-32, -44] },
+        { "id": "a5", "slot": "action", "label": "Kept HQ sized for the big plan", "text": "Through those years the company carried a headquarters sized for the ambitious plan rather than for the five restaurants it operated.", "provenance": "derived", "confidence": 0.7, "rationale": "He describes a very high HQ cost against a handful of restaurants and says they had kept a much more ambitious vision than what was achievable in Europe; that the HQ was sized to the plan rather than to the estate is the inference joining those statements.", "entities": ["Cala"], "pos": [-32, -45] },
         { "id": "r1", "slot": "result", "label": "Five very profitable restaurants", "text": "The eight years produced five very, very, very profitable restaurants.", "provenance": "fact", "source_quote": "managed to have five very, very, very profitable restaurants", "source_ref": "Ylan Richard, L5932-L5934", "entities": ["Cala"], "pos": [0, 30] },
         { "id": "r2", "slot": "result", "label": "60% retention, 95% satisfaction", "text": "Sixty per cent of customers came back more than once a week and customer satisfaction was ninety-five per cent.", "provenance": "fact", "source_quote": "but like 60% retention, customers coming more than once a week, 95% customer satisfaction", "source_ref": "Ylan Richard, L5938-L5942", "entities": ["Cala"], "pos": [0, 18] },
         { "id": "r3", "slot": "result", "label": "Only payback on the robot install", "text": "Cala was, with the possible exception of Sweetgreen, the only restaurant business to have proven an incrementally positive return on the whole investment including the machines.", "provenance": "fact", "source_quote": "we are the only business that had, and technically Sweetgreen does as well, but had proven, let's say, incrementally positive return investment on the whole investment of a restaurant", "source_ref": "Ylan Richard, L6078-L6082", "entities": ["Cala", "Sweetgreen"], "pos": [0, 6] },
