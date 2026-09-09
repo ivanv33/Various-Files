@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Framework graph</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --plane: #0d0d0d;      /* page plane */
+    --surface: #1a1a19;    /* chart surface (canvas background) */
+    --card: #202020;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --muted: #898781;
+    --hairline: #2c2c2a;
+    --baseline: #383835;
+    --accent: #3987e5;
+    --schema: #898781;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--plane); color: var(--ink-2); font: 14px/1.45 var(--sans); }
+  a { color: var(--ink-2); }
+  a:hover { color: var(--ink); }
+  kbd { font: 11px var(--mono); color: var(--muted); border: 1px solid var(--hairline); border-radius: 3px; padding: 0 4px; margin-left: 4px; }
+  button, .seg button { font: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  body { display: grid; grid-template-rows: auto auto 1fr; height: 100vh; }
+  header.bar { display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--hairline); background: var(--plane); }
+  .title { display: flex; flex-direction: column; min-width: 220px; }
+  .eyebrow { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-size: 17px; font-weight: 600; margin: 2px 0 0; color: var(--ink); letter-spacing: -.01em; }
+  .links { font-size: 12px; margin-top: 2px; display: flex; gap: 12px; }
+  .links a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--hairline); }
+  .links a:hover { color: var(--ink); border-color: var(--muted); }
+  .seg { display: inline-flex; border: 1px solid var(--hairline); border-radius: 6px; overflow: hidden; }
+  .seg button { background: transparent; color: var(--ink-2); border: 0; padding: 6px 12px; cursor: pointer; }
+  .seg button + button { border-left: 1px solid var(--hairline); }
+  .seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
+  .toggles { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; margin-left: auto; font-size: 13px; }
+  .toggles label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; }
+  .toggles input { accent-color: var(--accent); }
+  .toggles button { background: transparent; color: var(--ink-2); border: 1px solid var(--hairline); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+  .toggles button:hover { color: var(--ink); border-color: var(--muted); }
+
+  main { position: relative; overflow: hidden; background: var(--surface); }
+  #stage { position: absolute; inset: 0; }
+  #stage canvas { display: block; width: 100% !important; height: 100% !important; }
+  #labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  #labels * { pointer-events: none; }
+  .nlabel { font: 12px/1.2 var(--sans); color: var(--ink-2); white-space: nowrap; transform: translateY(14px); text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6); }
+  .nlabel.derived { color: var(--ink-2); font-style: italic; }
+  .nlabel.schema { color: var(--muted); font: 11px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .nlabel .g { font-size: 9px; margin-right: 4px; vertical-align: 1px; }
+  .elabel { font: 11px var(--mono); color: var(--muted); background: var(--surface); padding: 0 4px; border-radius: 3px; }
+  .axlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .tick { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+  .rlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .glabel { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+
+  #tooltip { position: absolute; pointer-events: none; display: none; max-width: 300px; background: var(--card); border: 1px solid var(--hairline); border-radius: 6px; padding: 8px 10px; font-size: 12px; color: var(--ink-2); box-shadow: 0 6px 20px rgba(0,0,0,.5); z-index: 5; }
+  #tooltip .t-label { color: var(--ink); font-weight: 600; margin-bottom: 2px; }
+  #tooltip .t-meta { font: 11px var(--mono); color: var(--muted); }
+
+  .card { position: absolute; background: rgba(32,32,32,.94); border: 1px solid var(--hairline); border-radius: 8px; backdrop-filter: blur(6px); }
+  #legend { left: 12px; bottom: 12px; width: 240px; max-height: calc(100% - 24px); overflow: auto; padding: 10px 12px; font-size: 12px; }
+  #legend h2 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 8px 0 6px; }
+  #legend h2:first-child { margin-top: 0; }
+  .slot-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
+  .chip { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .slot-row .n { margin-left: auto; font: 11px var(--mono); color: var(--muted); }
+  .slot-row .tp { font: 10px var(--mono); color: var(--muted); }
+  .key-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; color: var(--ink-2); }
+  .key-row .sym { width: 14px; text-align: center; color: var(--ink); }
+  .stats { font: 11px/1.6 var(--mono); color: var(--muted); border-top: 1px solid var(--hairline); margin-top: 8px; padding-top: 6px; }
+  .stats b { color: var(--ink-2); font-weight: 500; }
+
+  /* example note: a strip under the header, never over the graph */
+  #note { display: grid; grid-template-columns: minmax(160px, 24%) 1fr minmax(160px, 22%); gap: 6px 20px; align-items: baseline; padding: 7px 16px; border-bottom: 1px solid var(--hairline); background: var(--plane); font-size: 12px; }
+  #note h3 { margin: 0; font-size: 13px; color: var(--ink); font-weight: 600; line-height: 1.35; }
+  #note p { margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  #note:hover p, #note:focus-within p { -webkit-line-clamp: unset; }
+  #note .src { font: 11px var(--mono); color: var(--muted); word-break: break-word; text-align: right; }
+
+  #panel { right: 12px; top: 12px; bottom: 12px; width: 340px; padding: 12px 14px; overflow: auto; font-size: 13px; z-index: 4; }
+  #panel[hidden] { display: none; }
+  #panel .p-head { display: flex; align-items: flex-start; gap: 8px; }
+  #panel .p-slot { font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  #panel h3 { margin: 4px 0 6px; font-size: 15px; color: var(--ink); font-weight: 600; line-height: 1.3; }
+  #panel .close { margin-left: auto; background: transparent; border: 1px solid var(--hairline); color: var(--ink-2); border-radius: 6px; width: 28px; height: 28px; cursor: pointer; flex: none; }
+  .badge { display: inline-block; font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; border: 1px solid var(--muted); color: var(--ink); }
+  .badge.fact { background: var(--ink-2); color: var(--plane); border-color: var(--ink-2); }
+  .badge.derived { border-style: dashed; }
+  .badge.schema { color: var(--muted); }
+  #panel p { margin: 8px 0; }
+  #panel blockquote { margin: 8px 0; padding: 6px 10px; border-left: 2px solid var(--muted); color: var(--ink-2); font-style: italic; }
+  #panel .ref, #panel .conf { font: 11px var(--mono); color: var(--muted); }
+  #panel h4 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 12px 0 4px; }
+  #panel ul { margin: 0; padding-left: 16px; }
+  #panel li { margin: 2px 0; }
+  #panel li .rel { font: 11px var(--mono); color: var(--muted); }
+  .confbar { height: 3px; background: var(--hairline); border-radius: 2px; margin: 4px 0 8px; overflow: hidden; }
+  .confbar i { display: block; height: 100%; background: var(--ink-2); }
+
+  #fallback { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--muted); padding: 24px; }
+  #fallback[hidden] { display: none; }
+  #fallback code { font: 12px var(--mono); color: var(--ink-2); }
+
+  @media (max-width: 820px) {
+    #legend { width: min(240px, 60%); max-height: 42%; font-size: 11px; }
+    #note { grid-template-columns: 1fr; }
+    #note .src { text-align: left; }
+    #panel { left: 12px; width: auto; top: auto; max-height: 60%; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<header class="bar">
+  <div class="title">
+    <span class="eyebrow" id="category"></span>
+    <h1 id="name">Framework graph</h1>
+    <div class="links"><a id="readme" href="./README.md">README</a><a id="wiki" href="#" target="_blank" rel="noopener">Wikipedia</a><a id="up" href="../../index.html">All frameworks</a></div>
+  </div>
+  <div class="seg" id="examples" role="group" aria-label="Example"></div>
+  <div class="toggles">
+    <label><input type="checkbox" id="t-derived" checked> LLM-derived<kbd>d</kbd></label>
+    <label><input type="checkbox" id="t-grounding"> grounding links<kbd>g</kbd></label>
+    <label><input type="checkbox" id="t-labels" checked> labels</label>
+    <label><input type="checkbox" id="t-rotate"> auto-rotate</label>
+    <button id="reset" type="button">Reset view<kbd>r</kbd></button>
+  </div>
+</header>
+<div id="note" aria-live="polite" tabindex="0"></div>
+<main>
+  <div id="stage"></div>
+  <div id="labels"></div>
+  <div id="fallback">Loading Three.js from jsDelivr… <br><small>This page needs internet access for <code>three@0.186.0</code>. The data itself is embedded.</small></div>
+  <aside id="legend" class="card" aria-label="Legend"></aside>
+  <aside id="panel" class="card" hidden aria-label="Node details"></aside>
+  <div id="tooltip" role="tooltip"></div>
+</main>
+
+<!--__DATA_START__-->
+<script id="graph-data" type="application/json">{"framework":{"slug":"dialectical-decomposition","name":"Dialectical Decomposition","category":"01-narrative-and-statement","wikipedia":"https://en.wikipedia.org/wiki/Thesis,_antithesis,_synthesis","one_liner":"Sets an orthodoxy against the critique that actually opposes it, isolates the proposition the two really contest once the slogans are stripped away, and derives a higher-order position that keeps what is true in both instead of splitting the difference."},"slots":[{"id":"thesis","label":"Thesis","description":"The orthodoxy or first position, in the words its own proponents use. Steelmanned, never caricatured: a thesis nobody actually holds makes the whole decomposition worthless.","typical_provenance":"fact","color":"#3987e5","shape":"box"},{"id":"antithesis","label":"Antithesis","description":"The opposing position as its holders actually put it, carrying its own reasons. Not the thesis negated, and not a foil invented so that the author's view can win.","typical_provenance":"fact","color":"#e0603a","shape":"box"},{"id":"argument","label":"Argument","description":"A supporting point offered for one of the two sides. The argues_for edge records which side it serves; a side with no arguments in the graph has been strawmanned.","typical_provenance":"fact","color":"#7c8aa0","shape":"sphere"},{"id":"tension","label":"Core tension","description":"The precise proposition the two sides actually contest once the slogans are removed: often an assumption they share without noticing, or the fact that they are answering different questions. Usually inferred, occasionally stated.","typical_provenance":"derived","color":"#d4a017","shape":"diamond"},{"id":"synthesis","label":"Synthesis","description":"A higher-order position that preserves what is true in each side rather than averaging them; Hegel's Aufhebung, which cancels, preserves and lifts at once. Almost always inferred.","typical_provenance":"derived","color":"#2f9e63","shape":"cone"}],"relations":[{"id":"opposes","label":"opposes","description":"the antithesis, or an argument for it, contradicts the thesis"},{"id":"argues_for","label":"argues for","description":"an argument is offered in support of the thesis or the antithesis"},{"id":"isolates","label":"isolates","description":"a core-tension node names what a position is really committed to, once its slogan is removed"},{"id":"resolves","label":"resolves","description":"a synthesis dissolves a core tension by keeping what is true in both sides"}],"examples":[{"id":"classic","kind":"classic","title":"Rationalism against empiricism, and what Kant did with it","summary":"The textbook dialectic of modern philosophy. The passage states both positions in their proponents' own terms and gives each side its two best arguments, then stops in 1770 without a resolution, so the core tension and the synthesis have to be derived.","source":{"type":"text","title":"Where does knowledge come from? The dispute as it stood in 1770","text":"Two schools divided European philosophy for a century and a half over a single question: where does knowledge come from?\n\nThe rationalists - Descartes, Spinoza, Leibniz - hold that the foundations of knowledge are innate, and that reason alone, working from ideas the mind already contains, can reach truths that are certain and universal. Their strongest argument is mathematics: a single proof settles a question for every case at once, and no amount of looking at triangles could ever establish that the angles of every triangle must sum to two right angles. They add that the senses deceive us constantly, so nothing certain can rest on them alone.\n\nThe empiricists - Locke, Berkeley, Hume - deny it. The mind at birth is a blank sheet, and every idea in it is ultimately a copy of an impression received through the senses. Their strongest argument is that no rationalist has ever exhibited an innate idea that an infant possesses before any experience. Hume adds that the necessity claimed for mathematics is only a relation between our own ideas, and that when we hunt for the impression behind an idea such as causal necessity we find nothing but habit.\n\nNeither side ever answered the other's best argument, and by 1770 the dispute had gone quiet without being settled.","attribution":"The rationalist/empiricist dispute as presented in standard histories of modern philosophy; the synthesis is Kant's Critique of Pure Reason (1781). The thesis/antithesis/synthesis vocabulary itself is Fichte's, popularised for Hegel by Chalybaus in 1837."},"layout":{"mode":"plane","regions":[{"label":"Thesis","x":[-60,-22],"y":[10,30],"color":"#3987e5"},{"label":"Antithesis","x":[22,60],"y":[10,30],"color":"#e0603a"},{"label":"Arguments","x":[-60,-32],"y":[-32,6],"color":"#7c8aa0"},{"label":"Arguments","x":[32,60],"y":[-32,6],"color":"#7c8aa0"},{"label":"Core tension","x":[-16,16],"y":[-30,12],"color":"#d4a017"},{"label":"Synthesis","x":[-34,36],"y":[34,54],"color":"#2f9e63"}],"guides":[{"from":[-22,20],"to":[22,20],"style":"solid","label":"opposes"},{"from":[0,12],"to":[0,34],"style":"dashed","label":"resolved by"}]},"nodes":[{"id":"th","slot":"thesis","label":"Knowledge is founded in reason","text":"Rationalism: the foundations of knowledge are innate, and reason alone, working from ideas the mind already contains, reaches truths that are certain and universal.","provenance":"fact","source_quote":"hold that the foundations of knowledge are innate, and that reason alone, working from ideas the mind already contains, can reach truths that are certain and universal","source_ref":"sentence 2","entities":["Descartes","Spinoza","Leibniz"],"pos":[-40,20],"size":1.3},{"id":"an","slot":"antithesis","label":"Every idea is a copy of an impression","text":"Empiricism: the mind at birth is a blank sheet, and every idea in it is ultimately a copy of an impression received through the senses.","provenance":"fact","source_quote":"The mind at birth is a blank sheet, and every idea in it is ultimately a copy of an impression received through the senses.","source_ref":"sentence 6","entities":["Locke","Berkeley","Hume"],"pos":[40,20],"size":1.3},{"id":"a1","slot":"argument","label":"Mathematics settles every case at once","text":"A single proof settles a question for every case at once, and no amount of looking at triangles could establish that every triangle's angles must sum to two right angles.","provenance":"fact","source_quote":"a single proof settles a question for every case at once, and no amount of looking at triangles could ever establish that the angles of every triangle must sum to two right angles","source_ref":"sentence 3","pos":[-48,-2]},{"id":"a2","slot":"argument","label":"The senses deceive us constantly","text":"The senses deceive us constantly, so nothing certain can rest on them alone.","provenance":"fact","source_quote":"the senses deceive us constantly, so nothing certain can rest on them alone","source_ref":"sentence 4","pos":[-48,-20]},{"id":"a3","slot":"argument","label":"No innate idea has ever been shown","text":"No rationalist has ever exhibited an innate idea that an infant possesses before any experience.","provenance":"fact","source_quote":"no rationalist has ever exhibited an innate idea that an infant possesses before any experience","source_ref":"sentence 7","pos":[48,-2]},{"id":"a4","slot":"argument","label":"Necessity is only a relation of ideas","text":"The necessity claimed for mathematics is only a relation between our own ideas, and behind an idea such as causal necessity there is no impression, only habit.","provenance":"fact","source_quote":"the necessity claimed for mathematics is only a relation between our own ideas, and that when we hunt for the impression behind an idea such as causal necessity we find nothing but habit","source_ref":"sentence 8","entities":["Hume"],"pos":[48,-20]},{"id":"t1","slot":"tension","label":"Which single source: reason or sense?","text":"The surface contest: does knowledge originate in reason or in sense experience? Stated this way the question is a straight either/or, and each side's best argument is an attack on the other's candidate source.","provenance":"derived","confidence":0.85,"rationale":"Both stated positions answer the same question named in sentence 1 with a different single source, and each quoted argument attacks the rival source rather than defending its own; the either/or reading is nearly forced by the text.","pos":[0,2]},{"id":"t2","slot":"tension","label":"One source, and a passive mind","text":"The assumption neither side examines: that knowledge has exactly one source and that the mind receives rather than shapes what it knows. Granted that, the argument cannot end, because each side's best case is an objection the other cannot absorb.","provenance":"derived","confidence":0.7,"rationale":"Nothing in the text states this, but it is what makes both quoted arguments valid at once: a1 shows sense experience cannot yield necessity and a3 shows reason cannot exhibit its innate content, which is only a contradiction if a single passive source must supply both.","pos":[0,-18]},{"id":"sy1","slot":"synthesis","label":"Mind supplies form, experience content","text":"Kant's move: experience supplies the content of knowledge and the mind supplies its form, so both sides are right about their half. Thoughts without content are empty; intuitions without concepts are blind.","provenance":"derived","confidence":0.75,"rationale":"This is the standard historical resolution, and it is the position that leaves both quoted best arguments standing: the empiricist is right that no idea arrives with its content already in the mind, the rationalist right that necessity cannot be read off any number of observations.","entities":["Kant"],"pos":[-18,44],"size":1.4},{"id":"sy2","slot":"synthesis","label":"Necessity comes from the form, not luck","text":"The corollary, and the reason this is not a compromise: universal and necessary truths are possible precisely because they describe the form the mind imposes, so Hume's objection is granted in full and answered rather than split with.","provenance":"derived","confidence":0.65,"rationale":"Follows from sy1 applied to a4: if necessity belongs to the form the mind contributes, then Hume is correct that no impression underwrites it and the rationalist is still entitled to it. A split-the-difference answer, some knowledge from each source, would leave a4 unanswered.","entities":["Kant","Hume"],"pos":[20,44]}],"edges":[{"id":"c1","from":"an","to":"th","relation":"opposes","provenance":"fact","source_quote":"The empiricists - Locke, Berkeley, Hume - deny it.","source_ref":"sentence 5"},{"id":"c2","from":"a1","to":"th","relation":"argues_for","provenance":"fact","source_quote":"Their strongest argument is mathematics: a single proof settles a question for every case at once","source_ref":"sentence 3"},{"id":"c3","from":"a2","to":"th","relation":"argues_for","provenance":"fact","source_quote":"They add that the senses deceive us constantly, so nothing certain can rest on them alone.","source_ref":"sentence 4"},{"id":"c4","from":"a3","to":"an","relation":"argues_for","provenance":"fact","source_quote":"Their strongest argument is that no rationalist has ever exhibited an innate idea","source_ref":"sentence 7"},{"id":"c5","from":"a4","to":"an","relation":"argues_for","provenance":"fact","source_quote":"Hume adds that the necessity claimed for mathematics is only a relation between our own ideas","source_ref":"sentence 8"},{"id":"c6","from":"t1","to":"th","relation":"isolates","provenance":"derived","confidence":0.85,"rationale":"The thesis is the 'reason' answer to the question sentence 1 poses."},{"id":"c7","from":"t1","to":"an","relation":"isolates","provenance":"derived","confidence":0.85,"rationale":"The antithesis is the 'sense experience' answer to the same question."},{"id":"c8","from":"t2","to":"t1","relation":"isolates","provenance":"derived","confidence":0.7,"rationale":"The either/or form of the surface contest is what the shared assumption produces; remove the assumption and the question stops being exclusive."},{"id":"c9","from":"t2","to":"a1","relation":"supported_by","provenance":"derived","confidence":0.7},{"id":"c10","from":"t2","to":"a3","relation":"supported_by","provenance":"derived","confidence":0.7},{"id":"c11","from":"t1","to":"a2","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"c12","from":"t1","to":"a4","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"c13","from":"sy1","to":"t1","relation":"resolves","provenance":"derived","confidence":0.75,"rationale":"Answers the either/or by denying that the question has a single-source answer."},{"id":"c14","from":"sy1","to":"t2","relation":"resolves","provenance":"derived","confidence":0.75,"rationale":"Rejects the shared assumption directly: the mind is not passive, it contributes the form."},{"id":"c15","from":"sy1","to":"a1","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"c16","from":"sy1","to":"a3","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"c17","from":"sy2","to":"t2","relation":"resolves","provenance":"derived","confidence":0.65,"rationale":"Shows why the synthesis is not an average of the two positions but a rejection of the assumption under them."},{"id":"c18","from":"sy2","to":"a4","relation":"supported_by","provenance":"derived","confidence":0.65},{"id":"c19","from":"sy2","to":"sy1","relation":"resolves","provenance":"derived","confidence":0.7,"rationale":"The corollary that makes the synthesis do work Hume's objection would otherwise block."}]},{"id":"tbpn","kind":"tbpn","title":"Slop versus Steel: Everett Randle and Delian Asparouhov on where power comes from","summary":"A staged two-person debate between two former Founders Fund colleagues on whether high-margin software or capex-intensive re-industrialisation makes the better business. Both sides are stated by their own holders, each with several arguments, and each rebuts the other by name; no synthesis is reached on air.","source":{"type":"transcript","file":"tbpn-transcripts/transcripts/2025-08-15_slop-vs-steel-showdown-w-delian-everett-gpt-5-backlash-trump-eyes-intel-stake-bill-bishop-jimmy-goodrich-lennart-heim-david-stout-cameron-schiller-cyr.md","date":"2025-08-15","episode_title":"Slop vs Steel Showdown w/ Delian & Everett, GPT-5 Backlash, Trump Eyes Intel Stake"},"why_this_episode":"It is the rare TBPN moment where a single proposition is put to two people who genuinely disagree, each is given the floor to state his own position in his own terms, and each rebuts the other on air, so the thesis and antithesis slots can both be filled with facts rather than with one speaker's characterisation of an absent opponent.","idea_bearing_slot":"synthesis","layout":{"mode":"plane","regions":[{"label":"Thesis: Everett Randle","x":[-62,-20],"y":[12,32],"color":"#3987e5"},{"label":"Antithesis: Delian Asparouhov","x":[20,62],"y":[12,32],"color":"#e0603a"},{"label":"Arguments for the thesis","x":[-64,-24],"y":[-42,10],"color":"#7c8aa0"},{"label":"Arguments for the antithesis","x":[24,64],"y":[-58,10],"color":"#7c8aa0"},{"label":"Core tension","x":[-16,16],"y":[-36,18],"color":"#d4a017"},{"label":"Synthesis","x":[-34,38],"y":[36,56],"color":"#2f9e63"}],"guides":[{"from":[-20,22],"to":[20,22],"style":"solid","label":"opposes"},{"from":[0,18],"to":[0,36],"style":"dashed","label":"resolved by"}]},"nodes":[{"id":"th","slot":"thesis","label":"Digital form factor creates power","text":"Everett Randle's position: a digital product's form factor and the way it is distributed lend themselves to accumulating power, and therefore to earning above-market returns on invested capital for longer, more than most atoms-based businesses do.","provenance":"fact","source_quote":"The advantage that digital businesses have is that in this process of producing above market Roik for a long time is that their product form factor and the way that the distribute their product lends itself more to the process of creating power, I'd argue, than most Adams-based businesses.","source_ref":"Everett Randall, L196-L202","entities":["Everett Randall","Kleiner Perkins"],"pos":[-40,22],"size":1.4},{"id":"an","slot":"antithesis","label":"Gross margin is the wrong metric","text":"Delian Asparouhov's position: gross margin is not the right thing to focus on, especially early. What matters is terminal EBITDA margin, which is why he will fund negative-gross-margin, capex-heavy businesses.","provenance":"fact","source_quote":"I'm not sure that, you know, sort of gross margin is actually like the right thing to focus on in a business, especially either sort of early on. What you want to be thinking about is obviously EBITDA margin, in particular terminal, you know, EBITO margin.","source_ref":"Delian Asperuhov, L76-L84","entities":["Delian Asperuhov","Founders Fund"],"pos":[40,22],"size":1.4},{"id":"at1","slot":"argument","label":"Network effects live in digital markets","text":"The best place to create network effects is a digital marketplace, and digital products scale further than physical ones, so the forms of power an investor wants naturally attach to software.","provenance":"fact","source_quote":"So if you think about like network effects, the best place to create network effects is in a digital marketplace like an Uber and Airbnb or a DoorDash.","source_ref":"Everett Randall, L204-L206","entities":["Uber","Airbnb","DoorDash"],"pos":[-56,4]},{"id":"at2","slot":"argument","label":"Good and bad exist on both sides","text":"There are great and terrible atoms businesses and great and terrible digital ones; on Everett's own account the contest is not atoms versus SaaS but whether a given business accumulates power.","provenance":"fact","source_quote":"There are great Adams-based businesses that do this. There are terrible atom-based businesses that don't do this. There are great digital businesses that do this. There's terrible digital businesses that don't do this. I mean, you want to hear about a great Adams-based business that does this, listen to the acquired pod on Costco. Like, it's certainly not like a Adams versus SaaS thing necessarily.","source_ref":"Everett Randall, L188-L196","entities":["Everett Randall","Costco"],"pos":[-34,4]},{"id":"at3","slot":"argument","label":"ChatGPT is an application, not a model","text":"Most of OpenAI's and Anthropic's reported revenue run rate is ChatGPT, which despite being served by a foundation-model company is a consumer subscription with enormous brand power; swap the model underneath and users would not leave.","provenance":"fact","source_quote":"the majority of all that or at least the plurality of all of that is chat GPT and chat GPT even though it is served by a foundation model company is an application it is a consumer subscription that has an immense amount of power","source_ref":"Everett Randall, L640-L646","entities":["OpenAI","Anthropic"],"pos":[-56,-14]},{"id":"at4","slot":"argument","label":"Two tests: pricing power, frontier share","text":"Whether a software company survives depends on two things: whether it has enough power to price above the marginal token price of the model providers, and how much of its inference genuinely needs to be at the frontier.","provenance":"fact","source_quote":"if you've actually built a company that has enough power where you have pricing power, where you can price above the kind of marginal token price from the actual model providers. And then two, like how much of your inference actually needs to be at the frontier?","source_ref":"Everett Randall, L538-L544","entities":["Everett Randall"],"pos":[-34,-14]},{"id":"at5","slot":"argument","label":"Mom test: tasks left the frontier","text":"A growing subset of economic and knowledge tasks no longer needs frontier intelligence, and off-frontier inference keeps falling off a price cliff through open source and distillation.","provenance":"fact","source_quote":"there's like the mom test of models where like there's a growing subset of tasks like economic or knowledge tasks that the models are tasked to do that no longer need frontier intelligence","source_ref":"Everett Randall, L520-L520","entities":["Everett Randall"],"pos":[-45,-32]},{"id":"aa0","slot":"argument","label":"Terminal EBITDA follows monopoly","text":"Terminal EBITDA margin is mostly determined by how much of a monopoly the company can become in the long run, which is the mechanism the antithesis rests on.","provenance":"fact","source_quote":"terminal EBITDA margin, mostly is determined by ultimately how much of a monopoly your company can be in the long term.","source_ref":"Delian Asperuhov, L90-L92","entities":["Delian Asperuhov"],"pos":[34,4]},{"id":"aa1","slot":"argument","label":"The best EBITDA in mag 7 is hardware","text":"Among the mag 7, the company at the biggest scale with the best EBITDA margins is the most hardware-oriented one, not the most software-oriented one.","provenance":"fact","source_quote":"If you look at the one that is at the biggest scale and has the best EBITO margins, it's the one that is the most, you know, basically hardware oriented.","source_ref":"Delian Asperuhov, L96-L102","entities":["Nvidia"],"pos":[56,4]},{"id":"aa2","slot":"argument","label":"SaaS margins hide sales and marketing","text":"People quote SaaS gross margin without burdening it with cost of sales and marketing, so the headline number flatters businesses that have to keep buying their customers.","provenance":"fact","source_quote":"And so my general characterization of, you know, sort of SaaS is people always, you know, sort of study their original, you sort of gross margin, but weren't burdening in the, you know, sort of cost of sales, marketing, et cetera.","source_ref":"Delian Asperuhov, L116-L120","entities":["Delian Asperuhov"],"pos":[34,-14]},{"id":"aa3","slot":"argument","label":"Two Stanford grads could rebuild it","text":"Handed $100 million, two Stanford graduates could plausibly replicate an AI captioning company: the models are available and distribution can be bought on TikTok.","provenance":"fact","source_quote":"When I think about, you know, handing, you know, sort of two Stanford grads and $100 million to go try and, you know, sort of replicate that, Yeah, it feels like, you know, they could, you know, go do something like that.","source_ref":"Delian Asperuhov, L400-L404","entities":["Captions"],"pos":[56,-14]},{"id":"aa4","slot":"argument","label":"They could not rebuild a space factory","text":"The same two graduates with $200 million could not replicate a manufacturing facility building satellites, reentry vehicles and bioreactors that survive space; and that company has faced no significant competition even though space factories are the hot new thing.","provenance":"fact","source_quote":"Now, you know, if you take, you know, sort of two Stanford grads in $200 million and tell them, hey, I need you to go replicate this manufacturing facility. and go start building a bunch of, you know, sort of satellites, reentry vehicles, you know, bioreactors that can actually survive the environment of space. Most, you know, sort of stand for grads, you know, can't go, you know, as chat, GPT, how to go do that. And yet, yet, yet, hasn't really faced significant competition, irrespective of the fact that, you know, all things space factories are thought to be, you know, sort of the hot new thing.","source_ref":"Delian Asperuhov, L420-L430","entities":["Varda Space"],"pos":[34,-32]},{"id":"aa5","slot":"argument","label":"Revenue went to the frontier, not apps","text":"In practice the companies that captured the most revenue growth and market share are the ones pushing the true frontier, not the application layer the thesis predicts value would accrue to.","provenance":"fact","source_quote":"But in reality, that's not what's played out. The places that have captured the most revenue growth, the most market share have been the ones that are actually pushing the true frontier, you know, of the, you know, so technology forward.","source_ref":"Delian Asperuhov, L616-L620","entities":["OpenAI","Anthropic"],"pos":[56,-32]},{"id":"aa6","slot":"argument","label":"App-layer power may rest on capex","text":"The strongest form of the antithesis, which nobody states: ChatGPT's brand power was bought with the largest compute position in the industry, so the best example of application-layer power is not independent of the capex thesis it is used to refute.","provenance":"derived","confidence":0.55,"rationale":"Neither speaker says this, but it is the reply the antithesis needs to at3, and it is consistent with aa5: the frontier position that captured the revenue is the same position that produced the consumer brand. Contestable because brand and distribution advantages could have been bought more cheaply.","entities":["OpenAI"],"pos":[45,-48]},{"id":"t0","slot":"tension","label":"Stated: software or re-industrialisation","text":"The tension as the show frames it on air: which is the better business, high-margin software or capex-intensive re-industrialisation? This is the question both guests are asked to defend a side of.","provenance":"fact","source_quote":"We're going to settle it today on the stream. The Slop versus Steel debate, which is better high margin software or capex intensive re-industrialization efforts.","source_ref":"Host, L22-L24","pos":[0,10]},{"id":"t1","slot":"tension","label":"Real contest: what makes copying costly","text":"Once the slogans go, the two are contesting what makes a business expensive to copy: Delian prices durability by what a funded imitator would have to rebuild, Everett by what a user would have to give up to switch. Neither is a claim about gross margin.","provenance":"derived","confidence":0.7,"rationale":"Delian's two arguments are the same thought experiment run twice with the capital held constant, and Everett's rebuttal answers with substitutability, not with margins. The contested proposition is therefore the source of replication cost, which is narrower and more testable than the framing in t0.","pos":[0,-8]},{"id":"t2","slot":"tension","label":"False axis: neither side believes it","text":"The atoms-versus-bits axis the debate is staged on is one both sides abandon in argument: Everett says outright that great and terrible businesses exist on both sides, and Delian's test is about replication cost, which cuts across the axis rather than along it.","provenance":"derived","confidence":0.65,"rationale":"Read from at2, where the thesis holder denies the dichotomy in his own words, together with aa3 and aa4, where the antithesis holder separates two businesses by rebuild cost rather than by asset class. Contestable because both men still accept the framing rhetorically.","pos":[0,-26]},{"id":"sy1","slot":"synthesis","label":"Power sits with the scarcest input","text":"Both rules are right about their own layer: durable pricing power belongs to whoever controls the scarcest input at the layer they occupy. Everett's cases are ones where distribution and brand are scarce, Delian's are ones where fabrication capability is scarce, and in 2025 the scarcest input moved to frontier inference and the capital behind it, which is why revenue concentrated at the model layer without refuting either rule.","provenance":"derived","confidence":0.6,"rationale":"Preserves what each side established rather than averaging them: it keeps Delian's replication test and Everett's substitution test intact while explaining aa5, the observation that broke the thesis's prediction, as a change in which input is scarce rather than as a verdict on asset class.","idea":"If margin now leaks to whoever owns the scarce input, the underserved product is inference tiering and routing that lets an application serve its off-frontier work from cheap models and keep the spread, which is exactly the split Everett describes but nobody sells.","entities":["Everett Randall","Delian Asperuhov"],"pos":[-18,46],"size":1.4},{"id":"sy2","slot":"synthesis","label":"Two durability tests, one question","text":"The replication test and the substitution test are two instruments measuring one quantity: how much of the customer's willingness to pay survives a well-funded imitator. A business needs to pass one of them, and day-one gross margin predicts neither, which is why the debate's own metric was never the disagreement.","provenance":"derived","confidence":0.55,"rationale":"Both tests as stated by their authors ask what an imitator with capital cannot take away, one from the supply side and one from the demand side. Contestable because the two tests can disagree about the same company, which the sources never test.","idea":"An underwriting and diligence product that scores a company on rebuild cost and on switching cost instead of day-one gross margin would price exactly the thing two of the sharpest investors in the market argue about with anecdotes.","entities":["Founders Fund","Kleiner Perkins"],"pos":[20,46],"size":1.3}],"edges":[{"id":"e1","from":"an","to":"th","relation":"opposes","provenance":"fact","source_quote":"But my sort of counter to you would be, you've made this argument that it seems to imply, hey, you know, things will accrue to the AI application layer","source_ref":"Delian Asperuhov, L612-L614"},{"id":"e2","from":"at3","to":"an","relation":"opposes","provenance":"fact","source_quote":"I was going to say that, that basically what Delian said was just wrong, because","source_ref":"Everett Randall, L636-L636"},{"id":"e3","from":"aa5","to":"th","relation":"opposes","provenance":"fact","source_quote":"And so far, at least in last 18 months, your thesis is not playing out at all.","source_ref":"Delian Asperuhov, L622-L622"},{"id":"e4","from":"at1","to":"th","relation":"argues_for","provenance":"fact","source_quote":"And so there's a lot of these forms of power that naturally lend themselves to digital products and the scalability of digital products tends to be a lot a lot greater than than physical products","source_ref":"Everett Randall, L208-L212"},{"id":"e5","from":"aa2","to":"an","relation":"argues_for","provenance":"fact","source_quote":"And because you just have much less of monopoly typically in SaaS, that ends up totally, you know, hurting your ebidot, you know, margin profile.","source_ref":"Delian Asperuhov, L122-L124"},{"id":"e6","from":"aa3","to":"an","relation":"argues_for","provenance":"fact","source_quote":"And so, you know, you know, our one line, our founders fund is competition is for losers.","source_ref":"Delian Asperuhov, L412-L412"},{"id":"e7","from":"at2","to":"th","relation":"argues_for","provenance":"derived","confidence":0.7,"rationale":"Everett offers the both-sides observation as the setup for his own claim about form factor in the next breath, so it functions as a premise of the thesis rather than a concession to the antithesis."},{"id":"e8","from":"at4","to":"th","relation":"argues_for","provenance":"derived","confidence":0.75,"rationale":"The two tests are the conditions under which the thesis still holds for a software company; adjacent to the thesis in the same answer but never linked out loud."},{"id":"e9","from":"at5","to":"th","relation":"argues_for","provenance":"derived","confidence":0.7,"rationale":"If most tasks no longer need frontier intelligence, application companies can buy inference cheaply and keep their margin, which is what the thesis requires."},{"id":"e10","from":"aa0","to":"an","relation":"argues_for","provenance":"derived","confidence":0.85,"rationale":"Stated in the same turn as the antithesis as its mechanism, but the sentence is a definition rather than an explicit 'because', so the link is read from adjacency."},{"id":"e11","from":"aa1","to":"an","relation":"argues_for","provenance":"derived","confidence":0.8,"rationale":"The Nvidia observation is offered as evidence that hardware orientation and monopoly, not gross margin, predict terminal EBITDA."},{"id":"e12","from":"aa4","to":"an","relation":"argues_for","provenance":"derived","confidence":0.8,"rationale":"The contrast case exists to show that capex-heavy businesses are the ones competition cannot reach, which is the antithesis's claim about monopoly."},{"id":"e13","from":"aa5","to":"an","relation":"argues_for","provenance":"derived","confidence":0.85,"rationale":"Delian presents the revenue observation as confirmation of his own position immediately after stating his counter."},{"id":"e14","from":"aa6","to":"an","relation":"argues_for","provenance":"derived","confidence":0.55,"rationale":"The steelmanned reply is constructed for the antithesis, not offered by it."},{"id":"e15","from":"t0","to":"th","relation":"isolates","provenance":"derived","confidence":0.85,"rationale":"The host asks Everett for the bull case for software, which assigns him the first half of the framed question."},{"id":"e16","from":"t0","to":"an","relation":"isolates","provenance":"derived","confidence":0.85,"rationale":"The host asks Delian to justify why he likes negative-gross-margin businesses, which assigns him the second half."},{"id":"e17","from":"t1","to":"th","relation":"isolates","provenance":"derived","confidence":0.7,"rationale":"Everett's answer to the rebuttal is that a user would not switch away from ChatGPT, which is a claim about substitution cost, not about margins."},{"id":"e18","from":"t1","to":"an","relation":"isolates","provenance":"derived","confidence":0.75,"rationale":"Delian's two thought experiments hold capital constant and vary only what has to be rebuilt, which is a claim about replication cost."},{"id":"e19","from":"t2","to":"t0","relation":"isolates","provenance":"derived","confidence":0.65,"rationale":"The framed dichotomy is the thing the derived tension says neither side actually defends."},{"id":"e20","from":"t1","to":"t0","relation":"isolates","provenance":"derived","confidence":0.7,"rationale":"Restates the staged question as the narrower proposition the arguments actually address."},{"id":"e21","from":"sy1","to":"t1","relation":"resolves","provenance":"derived","confidence":0.6,"rationale":"Keeps both replication cost and substitution cost as real sources of power and explains when each one binds."},{"id":"e22","from":"sy1","to":"t2","relation":"resolves","provenance":"derived","confidence":0.6,"rationale":"Replaces the atoms/bits axis with scarcity of the controlling input, which is the axis both men actually argue on."},{"id":"e23","from":"sy2","to":"t1","relation":"resolves","provenance":"derived","confidence":0.55,"rationale":"Identifies the two tests as measuring one quantity, so the contest over which test to use dissolves into a question about which side of the market is tight."},{"id":"e24","from":"sy2","to":"t0","relation":"resolves","provenance":"derived","confidence":0.55,"rationale":"Explains why the metric the debate was staged on, gross margin, predicts neither test's result."},{"id":"g1","from":"t1","to":"aa3","relation":"supported_by","provenance":"derived","confidence":0.75},{"id":"g2","from":"t1","to":"aa4","relation":"supported_by","provenance":"derived","confidence":0.75},{"id":"g3","from":"t1","to":"at3","relation":"supported_by","provenance":"derived","confidence":0.7},{"id":"g4","from":"t2","to":"at2","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"g5","from":"t2","to":"aa3","relation":"supported_by","provenance":"derived","confidence":0.65},{"id":"g6","from":"sy1","to":"at4","relation":"supported_by","provenance":"derived","confidence":0.65},{"id":"g7","from":"sy1","to":"at5","relation":"supported_by","provenance":"derived","confidence":0.6},{"id":"g8","from":"sy1","to":"aa5","relation":"supported_by","provenance":"derived","confidence":0.6},{"id":"g9","from":"sy1","to":"aa1","relation":"supported_by","provenance":"derived","confidence":0.6},{"id":"g10","from":"sy2","to":"aa3","relation":"supported_by","provenance":"derived","confidence":0.6},{"id":"g11","from":"sy2","to":"aa4","relation":"supported_by","provenance":"derived","confidence":0.6},{"id":"g12","from":"sy2","to":"at3","relation":"supported_by","provenance":"derived","confidence":0.55},{"id":"g13","from":"sy2","to":"aa2","relation":"supported_by","provenance":"derived","confidence":0.55},{"id":"g14","from":"aa6","to":"at3","relation":"supported_by","provenance":"derived","confidence":0.55},{"id":"g15","from":"aa6","to":"aa5","relation":"supported_by","provenance":"derived","confidence":0.55}]}]}</script>
+<!--__DATA_END__-->
+
+<!--__EXT_START__-->
+<!-- Framework-specific visuals go here. Optional. Define:
+     window.__frameworkExtension = (ctx) => { /* ctx: { THREE, scene, group, graph, example, nodesById, positions, api } */ };
+     It is called after each example is laid out; add objects to ctx.group so they are removed on example switch. -->
+<!--__EXT_END__-->
+
+<script>
+  // Fallback notice if the module (and Three.js) never loads.
+  window.__engineReady = false;
+  setTimeout(() => { if (!window.__engineReady) { const f = document.getElementById('fallback'); f.innerHTML = 'Could not load Three.js from jsDelivr.<br><small>Check the network connection, then reload. The graph data is embedded in this file and is not lost.</small>'; } }, 9000);
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
+// ---------- palette (validated categorical slots, dark surface; see _meta and SPEC.md section 5) ----------
+const SLOT_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
+const SCHEMA_COLOR = '#898781';
+const INK = '#ffffff', INK2 = '#c3c2b7', MUTED = '#898781', HAIRLINE = '#2c2c2a', SURFACE = '#1a1a19';
+const NODE_R = 2.2;
+
+// ---------- data ----------
+const $ = (id) => document.getElementById(id);
+let GRAPH;
+try { GRAPH = JSON.parse($('graph-data').textContent); } catch (e) { fatal('The embedded graph data is not valid JSON: ' + e.message); }
+if (!GRAPH || !GRAPH.framework || !Array.isArray(GRAPH.examples) || GRAPH.examples.length === 0) fatal('No graph data embedded yet. Run: node _meta/build.mjs <framework-dir>');
+
+function fatal(msg) { const f = $('fallback'); f.hidden = false; f.textContent = msg; window.__engineReady = true; throw new Error(msg); }
+
+const fw = GRAPH.framework;
+document.title = `${fw.name} · graph`;
+$('name').textContent = fw.name;
+$('category').textContent = (fw.category || '').replace(/^\d+-/, '').replace(/-/g, ' ');
+if (fw.wikipedia) $('wiki').href = fw.wikipedia; else $('wiki').remove();
+
+// slot colours: fixed order over content slots, never cycled; beyond 8, muted
+const slotStyle = new Map();
+let ci = 0;
+for (const s of GRAPH.slots) {
+  if (s.structural) slotStyle.set(s.id, { color: SCHEMA_COLOR, shape: s.shape || 'box', slot: s });
+  else slotStyle.set(s.id, { color: s.color || (ci < SLOT_COLORS.length ? SLOT_COLORS[ci++] : MUTED), shape: s.shape || 'sphere', slot: s });
+}
+const relLabel = new Map((GRAPH.relations || []).map(r => [r.id, r.label || r.id]));
+relLabel.set('supported_by', 'supported by');
+
+// ---------- renderer / scene ----------
+const stage = $('stage');
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false }); } catch (e) { fatal('WebGL is not available in this browser.'); }
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setClearColor(new THREE.Color(SURFACE), 1);
+stage.appendChild(renderer.domElement);
+const labelRenderer = new CSS2DRenderer({ element: $('labels') });
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 5000);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.08; controls.autoRotateSpeed = 0.6;
+scene.add(new THREE.AmbientLight(0xffffff, 1.4));
+const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(40, 80, 120); scene.add(key);
+const fill = new THREE.DirectionalLight(0xffffff, 0.5); fill.position.set(-60, -20, -80); scene.add(fill);
+
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, true); labelRenderer.setSize(w, h);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+
+// ---------- state ----------
+const state = { exampleIndex: 0, showDerived: true, showGrounding: false, showLabels: true, group: null, nodes: new Map(), edges: [], hit: [], hover: null, selected: null, fit: null };
+
+// ---------- layouts ----------
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+function forceLayout(nodes, edges, pinned, seed, opts = {}) {
+  const rand = mulberry32(seed);
+  const pos = new Map();
+  const R0 = opts.radius || Math.max(18, nodes.length * 2.2);
+  for (const n of nodes) {
+    if (pinned.has(n.id)) pos.set(n.id, pinned.get(n.id).clone());
+    else pos.set(n.id, new THREE.Vector3((rand() - .5) * 2 * R0, (rand() - .5) * 2 * R0, (rand() - .5) * 2 * R0 * (opts.flat ? 0.15 : 1)));
+  }
+  const ids = nodes.map(n => n.id);
+  const L = opts.rest || 16, K = opts.repulse || 420;
+  const f = new Map(ids.map(id => [id, new THREE.Vector3()]));
+  const d = new THREE.Vector3();
+  for (let it = 0; it < 420; it++) {
+    const alpha = 0.9 * (1 - it / 420) + 0.04;
+    for (const id of ids) f.get(id).set(0, 0, 0);
+    for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) {
+      const a = pos.get(ids[i]), b = pos.get(ids[j]);
+      d.subVectors(a, b); let dist = d.length(); if (dist < 0.5) { d.set(rand() - .5, rand() - .5, rand() - .5); dist = 0.5; }
+      const s = K / (dist * dist); d.normalize().multiplyScalar(s);
+      f.get(ids[i]).add(d); f.get(ids[j]).sub(d);
+    }
+    for (const e of edges) {
+      if (!pos.has(e.from) || !pos.has(e.to)) continue;
+      const a = pos.get(e.from), b = pos.get(e.to);
+      d.subVectors(b, a); const dist = Math.max(d.length(), 0.01);
+      const s = (dist - L) * 0.05; d.normalize().multiplyScalar(s);
+      f.get(e.from).add(d); f.get(e.to).sub(d);
+    }
+    for (const id of ids) {
+      if (pinned.has(id)) continue;
+      const p = pos.get(id), ff = f.get(id);
+      ff.addScaledVector(p, -0.012);
+      if (opts.flat) ff.z -= p.z * 0.2;
+      const len = ff.length(); if (len > 6) ff.multiplyScalar(6 / len);
+      p.addScaledVector(ff, alpha);
+    }
+  }
+  return pos;
+}
+
+function treeLayout(ex) {
+  const nodes = ex.nodes, edges = ex.edges.filter(e => e.relation !== 'supported_by');
+  const level = new Map();
+  const explicit = nodes.every(n => Number.isInteger(n.level));
+  if (explicit) nodes.forEach(n => level.set(n.id, n.level));
+  else {
+    const out = new Map(nodes.map(n => [n.id, []])), und = new Map(nodes.map(n => [n.id, []]));
+    for (const e of edges) { out.get(e.from)?.push(e.to); und.get(e.from)?.push(e.to); und.get(e.to)?.push(e.from); }
+    const root = ex.layout.root && level.has(ex.layout.root) === false ? ex.layout.root : nodes[0].id;
+    const q = [root]; level.set(root, 0);
+    while (q.length) { const id = q.shift(); for (const t of out.get(id) || []) if (!level.has(t)) { level.set(t, level.get(id) + 1); q.push(t); } }
+    // unreachable by direction: attach by undirected distance
+    const q2 = [...level.keys()];
+    while (q2.length) { const id = q2.shift(); for (const t of und.get(id) || []) if (!level.has(t)) { level.set(t, level.get(id) + 1); q2.push(t); } }
+    for (const n of nodes) if (!level.has(n.id)) level.set(n.id, 0);
+    for (const n of nodes) if (Number.isInteger(n.level)) level.set(n.id, n.level);
+  }
+  const layers = new Map();
+  for (const n of nodes) { const l = level.get(n.id); if (!layers.has(l)) layers.set(l, []); layers.get(l).push(n); }
+  const order = [...layers.keys()].sort((a, b) => a - b);
+  const pos = new Map();
+  const right = ex.layout.direction === 'right';
+  const GAP_L = right ? 26 : 18, GAP_S = right ? 9 : 14;
+  // barycentre ordering pass to reduce crossings
+  const parents = new Map(nodes.map(n => [n.id, []]));
+  for (const e of edges) if (level.get(e.to) > level.get(e.from)) parents.get(e.to).push(e.from);
+  const xOf = new Map();
+  for (const l of order) {
+    const arr = layers.get(l);
+    if (l !== order[0]) arr.sort((a, b) => {
+      const pa = parents.get(a.id).filter(p => xOf.has(p)), pb = parents.get(b.id).filter(p => xOf.has(p));
+      const ma = pa.length ? pa.reduce((s, p) => s + xOf.get(p), 0) / pa.length : 0;
+      const mb = pb.length ? pb.reduce((s, p) => s + xOf.get(p), 0) / pb.length : 0;
+      return ma - mb;
+    });
+    arr.forEach((n, i) => {
+      const s = (i - (arr.length - 1) / 2) * GAP_S;
+      xOf.set(n.id, s);
+      pos.set(n.id, right ? new THREE.Vector3(l * GAP_L, -s, 0) : new THREE.Vector3(s, -l * GAP_L, 0));
+    });
+  }
+  for (const n of nodes) if (Array.isArray(n.pos)) pos.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  return pos;
+}
+
+function ringLayout(ex) {
+  const nodes = ex.nodes;
+  const onRing = nodes.filter(n => Number.isInteger(n.order) && !Array.isArray(n.pos));
+  const R = Math.max(22, onRing.length * 4.2);
+  const pinned = new Map();
+  onRing.sort((a, b) => a.order - b.order).forEach((n, i) => { const t = Math.PI / 2 - (i / onRing.length) * Math.PI * 2; pinned.set(n.id, new THREE.Vector3(Math.cos(t) * R, Math.sin(t) * R, 0)); });
+  for (const n of nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  if (pinned.size === nodes.length) return pinned;
+  return forceLayout(nodes, ex.edges, pinned, 7, { radius: R * 0.5, flat: true, rest: 12 });
+}
+
+function planeLayout(ex) {
+  const pinned = new Map();
+  for (const n of ex.nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  if (pinned.size === ex.nodes.length) return pinned;
+  return forceLayout(ex.nodes, ex.edges, pinned, 11, { flat: true, rest: 14 });
+}
+
+function computeLayout(ex) {
+  const mode = ex.layout?.mode || 'force';
+  if (mode === 'tree') return treeLayout(ex);
+  if (mode === 'ring') return ringLayout(ex);
+  if (mode === 'plane') return planeLayout(ex);
+  const pinned = new Map();
+  for (const n of ex.nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  return forceLayout(ex.nodes, ex.edges, pinned, 3);
+}
+
+// ---------- geometry helpers ----------
+const GEO = {
+  sphere: (r) => new THREE.SphereGeometry(r, 28, 20),
+  box: (r) => new THREE.BoxGeometry(r * 1.7, r * 1.7, r * 1.7),
+  diamond: (r) => new THREE.OctahedronGeometry(r * 1.25, 0),
+  cone: (r) => new THREE.ConeGeometry(r * 1.1, r * 2.2, 20),
+};
+function label2d(text, cls) { const el = document.createElement('div'); el.className = cls; el.textContent = text; return new CSS2DObject(el); }
+
+function makeNode(n, p) {
+  const st = slotStyle.get(n.slot) || { color: MUTED, shape: 'sphere' };
+  const r = NODE_R * (n.size || 1);
+  const color = new THREE.Color(st.color);
+  const obj = new THREE.Group(); obj.position.copy(p);
+  let mesh, halo = null;
+  if (n.provenance === 'fact') {
+    mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.5, metalness: 0.08 }));
+  } else if (n.provenance === 'derived') {
+    mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.6, metalness: 0.0, transparent: true, opacity: 0.32, depthWrite: false }));
+    halo = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(r * 1.35, 1)), new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.75 }));
+    obj.add(halo);
+  } else {
+    mesh = new THREE.Mesh(GEO[st.shape === 'sphere' ? 'box' : st.shape](r * 0.8), new THREE.MeshStandardMaterial({ color: new THREE.Color(SCHEMA_COLOR), roughness: 0.9, metalness: 0, transparent: true, opacity: 0.85 }));
+  }
+  mesh.userData.nodeId = n.id;
+  obj.add(mesh);
+  const hit = new THREE.Mesh(new THREE.SphereGeometry(r * 1.9, 10, 8), new THREE.MeshBasicMaterial({ visible: false }));
+  hit.userData.nodeId = n.id; obj.add(hit);
+  const glyph = n.provenance === 'fact' ? '●' : n.provenance === 'derived' ? '◌' : '▪';
+  const el = document.createElement('div'); el.className = 'nlabel ' + n.provenance;
+  const g = document.createElement('span'); g.className = 'g'; g.textContent = glyph; g.style.color = n.provenance === 'schema' ? MUTED : st.color;
+  el.appendChild(g); el.appendChild(document.createTextNode(n.label || n.id));
+  const lab = new CSS2DObject(el); lab.position.set(0, -r, 0); obj.add(lab);
+  return { node: n, obj, mesh, halo, hit, label: lab, r, color: st.color, edges: [] };
+}
+
+function makeEdge(e, A, B) {
+  const from = A.obj.position, to = B.obj.position;
+  const dir = new THREE.Vector3().subVectors(to, from); const len = dir.length(); dir.normalize();
+  const a = from.clone().addScaledVector(dir, A.r * 1.05), b = to.clone().addScaledVector(dir, -(B.r * 1.05 + (e.relation === 'supported_by' ? 0 : 1.6)));
+  const geom = new THREE.BufferGeometry().setFromPoints([a, b]);
+  let mat, arrow = null;
+  const grounding = e.relation === 'supported_by';
+  if (grounding) mat = new THREE.LineDashedMaterial({ color: new THREE.Color(MUTED), dashSize: 0.5, gapSize: 0.9, transparent: true, opacity: 0.55 });
+  else if (e.provenance === 'derived') mat = new THREE.LineDashedMaterial({ color: new THREE.Color(INK2), dashSize: 1.4, gapSize: 0.9, transparent: true, opacity: 0.8 });
+  else if (e.provenance === 'schema') mat = new THREE.LineBasicMaterial({ color: new THREE.Color(HAIRLINE), transparent: true, opacity: 0.9 });
+  else mat = new THREE.LineBasicMaterial({ color: new THREE.Color(INK2), transparent: true, opacity: 0.85 });
+  const line = new THREE.Line(geom, mat); line.computeLineDistances();
+  const grp = new THREE.Group(); grp.add(line);
+  if (!grounding && e.provenance !== 'schema') {
+    arrow = new THREE.Mesh(new THREE.ConeGeometry(0.75, 2.0, 10), new THREE.MeshBasicMaterial({ color: e.provenance === 'derived' ? new THREE.Color(INK2) : new THREE.Color(INK2), transparent: true, opacity: e.provenance === 'derived' ? 0.7 : 0.95 }));
+    arrow.position.copy(to).addScaledVector(dir, -(B.r * 1.05 + 1.0));
+    arrow.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+    grp.add(arrow);
+  }
+  let lab = null;
+  if (e.label) { lab = label2d(e.label, 'elabel'); lab.position.copy(a).lerp(b, 0.5); grp.add(lab); }
+  return { edge: e, grp, line, arrow, label: lab, A, B, grounding, len };
+}
+
+function drawDecor(ex, group, bbox) {
+  const L = ex.layout || {};
+  const z = -0.6;
+  const lineMat = new THREE.LineBasicMaterial({ color: new THREE.Color(0x4a4a47) });
+  const dashMat = new THREE.LineDashedMaterial({ color: new THREE.Color(0x4a4a47), dashSize: 1.2, gapSize: 1.0 });
+  for (const r of (L.regions || [])) {
+    const w = Math.abs(r.x[1] - r.x[0]), h = Math.abs(r.y[1] - r.y[0]);
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.07, depthWrite: false }));
+    m.position.set((r.x[0] + r.x[1]) / 2, (r.y[0] + r.y[1]) / 2, z - 0.5); group.add(m);
+    const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(w, h)), new THREE.LineBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.25 }));
+    edge.position.copy(m.position); group.add(edge);
+    const lab = label2d(r.label, 'rlabel'); lab.position.set(Math.min(r.x[0], r.x[1]) + 2, Math.max(r.y[0], r.y[1]) - 2, z); group.add(lab);
+    bbox.expandByPoint(new THREE.Vector3(r.x[0], r.y[0], 0)); bbox.expandByPoint(new THREE.Vector3(r.x[1], r.y[1], 0));
+  }
+  for (const gd of (L.guides || [])) {
+    const a = new THREE.Vector3(gd.from[0], gd.from[1], gd.from[2] || z), b = new THREE.Vector3(gd.to[0], gd.to[1], gd.to[2] || z);
+    const ln = new THREE.Line(new THREE.BufferGeometry().setFromPoints([a, b]), gd.style === 'dashed' ? dashMat : lineMat); ln.computeLineDistances(); group.add(ln);
+    if (gd.label) { const lab = label2d(gd.label, 'glabel'); lab.position.copy(a).lerp(b, 0.5); group.add(lab); }
+    bbox.expandByPoint(a); bbox.expandByPoint(b);
+  }
+  if (L.axes) {
+    const ax = L.axes.x, ay = L.axes.y;
+    const xmin = ax ? ax.min : bbox.min.x, xmax = ax ? ax.max : bbox.max.x, ymin = ay ? ay.min : bbox.min.y, ymax = ay ? ay.max : bbox.max.y;
+    const pad = 6;
+    if (ax) {
+      const y = ymin - pad;
+      group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(xmin, y, z), new THREE.Vector3(xmax, y, z)]), lineMat));
+      const lab = label2d(ax.label, 'axlabel'); lab.position.set((xmin + xmax) / 2, y - 4.5, z); group.add(lab);
+      for (const t of (ax.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(t.value, y - 1, z), new THREE.Vector3(t.value, y + 1, z)]), lineMat)); const tl = label2d(t.label, 'tick'); tl.position.set(t.value, y - 2.2, z); group.add(tl); }
+      bbox.expandByPoint(new THREE.Vector3(xmin, y - 6, 0)); bbox.expandByPoint(new THREE.Vector3(xmax, y, 0));
+    }
+    if (ay) {
+      const x = xmin - pad;
+      group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x, ymin, z), new THREE.Vector3(x, ymax, z)]), lineMat));
+      const lab = label2d(ay.label, 'axlabel'); lab.element.style.transform = 'rotate(-90deg)'; lab.position.set(x - 5, (ymin + ymax) / 2, z); group.add(lab);
+      for (const t of (ay.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x - 1, t.value, z), new THREE.Vector3(x + 1, t.value, z)]), lineMat)); const tl = label2d(t.label, 'tick'); tl.position.set(x - 2.5, t.value, z); tl.element.style.transform = 'translateX(-50%)'; group.add(tl); }
+      bbox.expandByPoint(new THREE.Vector3(x - 8, ymin, 0)); bbox.expandByPoint(new THREE.Vector3(x, ymax, 0));
+    }
+  }
+}
+
+// ---------- build an example ----------
+function clearGroup() {
+  if (!state.group) return;
+  state.group.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) { (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); } if (o.isCSS2DObject && o.element) o.element.remove(); });
+  scene.remove(state.group);
+  $('labels').replaceChildren();
+  state.group = null; state.nodes.clear(); state.edges = []; state.hit = []; state.hover = null; state.selected = null;
+  $('panel').hidden = true;
+}
+
+function buildExample(i) {
+  clearGroup();
+  state.exampleIndex = i;
+  const ex = GRAPH.examples[i];
+  const group = new THREE.Group(); scene.add(group); state.group = group;
+  const positions = computeLayout(ex);
+  // centre
+  const bbox = new THREE.Box3();
+  for (const p of positions.values()) bbox.expandByPoint(p);
+  const centre = bbox.getCenter(new THREE.Vector3());
+  if (ex.layout?.mode !== 'plane') for (const p of positions.values()) p.sub(centre);
+  const bbox2 = new THREE.Box3(); for (const p of positions.values()) bbox2.expandByPoint(p);
+  for (const n of ex.nodes) { const rec = makeNode(n, positions.get(n.id)); state.nodes.set(n.id, rec); group.add(rec.obj); state.hit.push(rec.hit); }
+  for (const e of ex.edges) {
+    const A = state.nodes.get(e.from), B = state.nodes.get(e.to); if (!A || !B) continue;
+    const rec = makeEdge(e, A, B); state.edges.push(rec); group.add(rec.grp); A.edges.push(rec); B.edges.push(rec);
+  }
+  drawDecor(ex, group, bbox2);
+  // camera fit
+  const size = bbox2.getSize(new THREE.Vector3()), c = bbox2.getCenter(new THREE.Vector3());
+  state.fit = { size, centre: c, mode: ex.layout?.mode || 'force', distance: ex.layout?.camera?.distance };
+  renderNote(ex);
+  renderLegend(ex);    // legend first, so the camera fit can measure it
+  resetView();
+  applyVisibility();
+  for (const b of $('examples').children) b.setAttribute('aria-pressed', String(b.dataset.index == i));
+  try { window.__frameworkExtension?.({ THREE, scene, group, graph: GRAPH, example: ex, nodesById: state.nodes, positions, api: { slotStyle, label2d, colors: { INK, INK2, MUTED, HAIRLINE, SURFACE, SLOT_COLORS, SCHEMA_COLOR } } }); } catch (e) { console.error('framework extension failed', e); }
+}
+
+// Fit the graph into the part of the stage not covered by the legend (left) or the open panel (right),
+// so labels are not hidden under the cards at the default view.
+function safeArea(size) {
+  const W = stage.clientWidth, H = stage.clientHeight;
+  const sr = stage.getBoundingClientRect();
+  let left = 0, top = 0, right = 0;
+  const wide = W > 820;
+  const leg = $('legend'); if (wide && leg && leg.offsetParent !== null) { const r = leg.getBoundingClientRect(); left = Math.max(left, r.right - sr.left + 16); }
+  const panel = $('panel'); if (wide && panel && !panel.hidden) { const r = panel.getBoundingClientRect(); right = Math.max(right, sr.right - r.left + 16); }
+  return { W, H, left, top, right, w: Math.max(200, W - left - right), h: Math.max(200, H - top) };
+}
+function resetView() {
+  if (!state.fit) return;
+  const { size, centre, mode } = state.fit;
+  const sa = safeArea(size);
+  const halfFov = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  const bottomPad = 30;                       // px: labels hang below the lowest row of nodes
+  const availH = Math.max(150, sa.h - bottomPad);
+  // distance at which the graph (plus margins) fits the safe area: the vertical FOV spans sa.H pixels
+  const fitH = (size.y / 2 + 8) * sa.H / (halfFov * availH);
+  const sidePad = 110;                       // px: labels are centred under nodes and stick out sideways
+  const fitW = (size.x / 2 + 6) * sa.H / (halfFov * Math.max(200, sa.w - 2 * sidePad));
+  const dist = state.fit.distance || Math.max(50, Math.max(fitH, fitW) * (mode === 'force' ? 1.3 : 1.08) + size.z / 2);
+  // world units per pixel at the target depth; shift the centre so the graph sits in the safe area
+  const wpp = (2 * dist * halfFov) / sa.H;
+  const target = centre.clone().add(new THREE.Vector3(-((sa.left - sa.right) / 2) * wpp, ((sa.top - bottomPad) / 2) * wpp, 0));
+  const camPos = mode === 'force' ? target.clone().add(new THREE.Vector3(dist * 0.3, dist * 0.22, dist * 0.92)) : target.clone().add(new THREE.Vector3(0, 0, dist));
+  camera.position.copy(camPos); controls.target.copy(target);
+  camera.near = 0.1; camera.far = 5000; camera.updateProjectionMatrix(); controls.update();
+}
+
+function applyVisibility() {
+  for (const rec of state.nodes.values()) {
+    const vis = rec.node.provenance !== 'derived' || state.showDerived;
+    rec.obj.visible = vis;
+    rec.label.visible = vis && state.showLabels;
+    rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+  }
+  for (const rec of state.edges) {
+    const endsOk = rec.A.obj.visible && rec.B.obj.visible;
+    // a derived edge is reasoning too: it goes away with the derived nodes, even when both its ends are facts
+    const vis = endsOk && (!rec.grounding || state.showGrounding) && (rec.edge.provenance !== 'derived' || state.showDerived);
+    rec.grp.visible = vis;
+    if (rec.label) rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+  }
+  renderStats();
+}
+
+// ---------- legend / note / stats ----------
+function renderLegend(ex) {
+  const el = $('legend'); el.replaceChildren();
+  const h = (t) => { const x = document.createElement('h2'); x.textContent = t; return x; };
+  el.appendChild(h('Slots'));
+  const counts = new Map(); for (const n of ex.nodes) counts.set(n.slot, (counts.get(n.slot) || 0) + 1);
+  for (const s of GRAPH.slots) {
+    const row = document.createElement('div'); row.className = 'slot-row';
+    const chip = document.createElement('span'); chip.className = 'chip'; chip.style.background = slotStyle.get(s.id).color; if (s.structural) chip.style.borderRadius = '2px';
+    const name = document.createElement('span'); name.textContent = s.label;
+    const tp = document.createElement('span'); tp.className = 'tp'; tp.textContent = s.structural ? 'schema' : (s.typical_provenance || '');
+    const n = document.createElement('span'); n.className = 'n'; n.textContent = String(counts.get(s.id) || 0);
+    row.append(chip, name, tp, n); row.title = s.description || ''; el.appendChild(row);
+  }
+  el.appendChild(h('Provenance'));
+  for (const [sym, txt] of [['●', 'fact: stated in the source (solid)'], ['◌', 'derived: LLM inference (translucent, dashed)'], ['▪', 'schema: framework scaffolding (grey)'], ['→', 'solid edge stated, dashed inferred'], ['⋯', 'grounding link: derived → fact']]) {
+    const row = document.createElement('div'); row.className = 'key-row';
+    const a = document.createElement('span'); a.className = 'sym'; a.textContent = sym; const b = document.createElement('span'); b.textContent = txt; row.append(a, b); el.appendChild(row);
+  }
+  const st = document.createElement('div'); st.className = 'stats'; st.id = 'stats'; el.appendChild(st);
+  renderStats();
+}
+function renderStats() {
+  const st = $('stats'); if (!st) return;
+  const ex = GRAPH.examples[state.exampleIndex];
+  const nf = ex.nodes.filter(n => n.provenance === 'fact').length, nd = ex.nodes.filter(n => n.provenance === 'derived').length, ns = ex.nodes.filter(n => n.provenance === 'schema').length;
+  const ef = ex.edges.filter(e => e.provenance === 'fact').length, ed = ex.edges.filter(e => e.provenance === 'derived' && e.relation !== 'supported_by').length, eg = ex.edges.filter(e => e.relation === 'supported_by').length;
+  const visN = [...state.nodes.values()].filter(r => r.obj.visible).length, visE = state.edges.filter(r => r.grp.visible).length;
+  st.replaceChildren();
+  const line = (html) => { const d = document.createElement('div'); d.append(...html); st.appendChild(d); };
+  const b = (t) => { const x = document.createElement('b'); x.textContent = t; return x; };
+  line(['nodes ', b(String(nf)), ' fact · ', b(String(nd)), ' derived', ns ? ` · ${ns} schema` : '']);
+  line(['edges ', b(String(ef)), ' fact · ', b(String(ed)), ' derived · ', b(String(eg)), ' grounding']);
+  line([`showing ${visN} nodes, ${visE} edges`]);
+}
+function renderNote(ex) {
+  const el = $('note'); el.replaceChildren();
+  const h = document.createElement('h3'); h.textContent = ex.title || ex.id; el.appendChild(h);
+  const p = document.createElement('p'); p.textContent = ex.summary || ''; el.appendChild(p);
+  const s = document.createElement('div'); s.className = 'src';
+  if (ex.source?.type === 'transcript') s.textContent = `TBPN ${ex.source.date} · ${ex.source.episode_title || ''}`;
+  else if (ex.source?.type === 'text') s.textContent = `source: ${ex.source.title || 'scenario text'}`;
+  el.appendChild(s);
+}
+
+// ---------- panel ----------
+function openPanel(rec) {
+  const n = rec.node, ex = GRAPH.examples[state.exampleIndex];
+  const panel = $('panel'); panel.replaceChildren(); panel.hidden = false;
+  const head = document.createElement('div'); head.className = 'p-head';
+  const slotEl = document.createElement('div'); slotEl.className = 'p-slot';
+  const chip = document.createElement('span'); chip.className = 'chip'; chip.style.background = rec.color; slotEl.append(chip, document.createTextNode((slotStyle.get(n.slot)?.slot?.label) || n.slot));
+  const close = document.createElement('button'); close.className = 'close'; close.type = 'button'; close.textContent = '×'; close.setAttribute('aria-label', 'Close'); close.onclick = () => { panel.hidden = true; state.selected = null; };
+  head.append(slotEl, close); panel.appendChild(head);
+  const h3 = document.createElement('h3'); h3.textContent = n.label; panel.appendChild(h3);
+  const badge = document.createElement('span'); badge.className = 'badge ' + n.provenance; badge.textContent = n.provenance; panel.appendChild(badge);
+  const text = document.createElement('p'); text.textContent = n.text; panel.appendChild(text);
+  const h4 = (t) => { const x = document.createElement('h4'); x.textContent = t; panel.appendChild(x); };
+  if (n.provenance === 'fact') {
+    h4(n.paraphrase ? 'Paraphrased from the source' : 'Quoted from the source');
+    const q = document.createElement('blockquote'); q.textContent = n.source_quote || ''; panel.appendChild(q);
+    const r = document.createElement('div'); r.className = 'ref'; r.textContent = n.source_ref || ''; panel.appendChild(r);
+  } else if (n.provenance === 'derived') {
+    h4('Confidence');
+    const c = document.createElement('div'); c.className = 'conf'; c.textContent = `${Math.round((n.confidence || 0) * 100)} / 100`; panel.appendChild(c);
+    const bar = document.createElement('div'); bar.className = 'confbar'; const fillEl = document.createElement('i'); fillEl.style.width = `${Math.round((n.confidence || 0) * 100)}%`; bar.appendChild(fillEl); panel.appendChild(bar);
+    h4('Why the LLM infers this'); const r = document.createElement('p'); r.textContent = n.rationale || ''; panel.appendChild(r);
+    const sup = ex.edges.filter(e => e.relation === 'supported_by' && e.from === n.id).map(e => state.nodes.get(e.to)).filter(Boolean);
+    if (sup.length) { h4('Supported by'); const ul = document.createElement('ul'); for (const s of sup) { const li = document.createElement('li'); li.textContent = s.node.label; const q = document.createElement('div'); q.className = 'ref'; q.textContent = (s.node.source_quote || '').slice(0, 140); li.appendChild(q); ul.appendChild(li); } panel.appendChild(ul); }
+  } else {
+    const r = document.createElement('p'); r.className = 'ref'; r.textContent = 'Framework scaffolding: neither a fact nor an inference.'; panel.appendChild(r);
+  }
+  const rels = rec.edges.filter(e => e.edge.relation !== 'supported_by');
+  if (rels.length) {
+    h4('Edges'); const ul = document.createElement('ul');
+    for (const e of rels) { const li = document.createElement('li'); const out = e.edge.from === n.id; const other = out ? e.B.node : e.A.node; const rl = document.createElement('span'); rl.className = 'rel'; rl.textContent = (out ? '→ ' : '← ') + (relLabel.get(e.edge.relation) || e.edge.relation) + (e.edge.provenance === 'derived' ? ' (inferred)' : '') + ' '; li.append(rl, document.createTextNode(other.label)); ul.appendChild(li); }
+    panel.appendChild(ul);
+  }
+  if (Array.isArray(n.entities) && n.entities.length) { h4('Entities'); const p = document.createElement('p'); p.className = 'ref'; p.textContent = n.entities.join(', '); panel.appendChild(p); }
+}
+
+// ---------- interaction ----------
+const raycaster = new THREE.Raycaster(); const pointer = new THREE.Vector2(); const tooltip = $('tooltip');
+function setHover(rec) {
+  if (state.hover === rec) return;
+  if (state.hover) { const h = state.hover; h.mesh.scale.setScalar(1); if (h.mesh.material.emissive) h.mesh.material.emissive.setHex(0x000000); for (const e of h.edges) { e.line.material.color.set(e.grounding ? MUTED : (e.edge.provenance === 'schema' ? HAIRLINE : INK2)); if (e.arrow) e.arrow.material.color.set(INK2); } }
+  state.hover = rec;
+  if (rec) { rec.mesh.scale.setScalar(1.18); if (rec.mesh.material.emissive) rec.mesh.material.emissive.set(rec.color).multiplyScalar(0.35); for (const e of rec.edges) { if (!e.grp.visible) continue; e.line.material.color.set(INK); if (e.arrow) e.arrow.material.color.set(INK); } }
+  renderer.domElement.style.cursor = rec ? 'pointer' : '';
+}
+renderer.domElement.addEventListener('pointermove', (ev) => {
+  const r = renderer.domElement.getBoundingClientRect();
+  pointer.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
+  raycaster.setFromCamera(pointer, camera);
+  const hits = raycaster.intersectObjects(state.hit.filter(h => h.parent.visible), false);
+  const rec = hits.length ? state.nodes.get(hits[0].object.userData.nodeId) : null;
+  setHover(rec);
+  if (rec) {
+    tooltip.replaceChildren();
+    const a = document.createElement('div'); a.className = 't-label'; a.textContent = rec.node.label;
+    const b = document.createElement('div'); b.className = 't-meta'; b.textContent = `${(slotStyle.get(rec.node.slot)?.slot?.label) || rec.node.slot} · ${rec.node.provenance}${rec.node.provenance === 'derived' ? ' ' + Math.round((rec.node.confidence || 0) * 100) + '%' : ''}`;
+    const c = document.createElement('div'); c.textContent = rec.node.text.length > 160 ? rec.node.text.slice(0, 157) + '…' : rec.node.text;
+    tooltip.append(a, b, c);
+    tooltip.style.display = 'block';
+    const mx = ev.clientX - r.left + 14, my = ev.clientY - r.top + 14;
+    tooltip.style.left = Math.min(mx, r.width - 320) + 'px'; tooltip.style.top = Math.min(my, r.height - 120) + 'px';
+  } else tooltip.style.display = 'none';
+});
+renderer.domElement.addEventListener('pointerleave', () => { setHover(null); tooltip.style.display = 'none'; });
+let downAt = null;
+renderer.domElement.addEventListener('pointerdown', (ev) => { downAt = [ev.clientX, ev.clientY]; });
+renderer.domElement.addEventListener('pointerup', (ev) => {
+  if (!downAt || Math.hypot(ev.clientX - downAt[0], ev.clientY - downAt[1]) > 5) return;
+  if (state.hover) { state.selected = state.hover; openPanel(state.hover); } else { $('panel').hidden = true; state.selected = null; }
+});
+document.addEventListener('keydown', (ev) => {
+  if (ev.target && /input|textarea|select/i.test(ev.target.tagName)) return;
+  if (ev.key === 'd') { $('t-derived').checked = !$('t-derived').checked; $('t-derived').dispatchEvent(new Event('change')); }
+  if (ev.key === 'g') { $('t-grounding').checked = !$('t-grounding').checked; $('t-grounding').dispatchEvent(new Event('change')); }
+  if (ev.key === 'r') resetView();
+  if (ev.key === 'Escape') { $('panel').hidden = true; state.selected = null; }
+});
+$('t-derived').addEventListener('change', (e) => { state.showDerived = e.target.checked; applyVisibility(); });
+$('t-grounding').addEventListener('change', (e) => { state.showGrounding = e.target.checked; applyVisibility(); });
+$('t-labels').addEventListener('change', (e) => { state.showLabels = e.target.checked; applyVisibility(); });
+$('t-rotate').addEventListener('change', (e) => { controls.autoRotate = e.target.checked; });
+$('reset').addEventListener('click', resetView);
+
+// example selector
+const seg = $('examples');
+const kindCount = new Map(); for (const ex of GRAPH.examples) kindCount.set(ex.kind, (kindCount.get(ex.kind) || 0) + 1);
+GRAPH.examples.forEach((ex, i) => { const b = document.createElement('button'); b.type = 'button'; b.dataset.index = i; b.textContent = kindCount.get(ex.kind) > 1 ? (ex.title || ex.id) : ex.kind === 'tbpn' ? 'From TBPN' : ex.kind === 'classic' ? 'Classic' : (ex.title || ex.id); b.title = ex.title || ''; b.setAttribute('aria-pressed', 'false'); b.addEventListener('click', () => buildExample(i)); seg.appendChild(b); });
+
+// ---------- go ----------
+// URL parameters set the initial state (deep links, scripted screenshots): ?example=1&derived=0&grounding=1&labels=0&rotate=1
+const q = new URLSearchParams(location.search);
+const flag = (k, def) => q.has(k) ? !['0', 'false', 'off', 'no'].includes(q.get(k).toLowerCase()) : def;
+state.showDerived = flag('derived', true); $('t-derived').checked = state.showDerived;
+state.showGrounding = flag('grounding', false); $('t-grounding').checked = state.showGrounding;
+state.showLabels = flag('labels', true); $('t-labels').checked = state.showLabels;
+controls.autoRotate = flag('rotate', false); $('t-rotate').checked = controls.autoRotate;
+let startIndex = parseInt(q.get('example') || '0', 10);
+if (!(startIndex >= 0 && startIndex < GRAPH.examples.length)) startIndex = Math.max(0, GRAPH.examples.findIndex(x => x.id === q.get('example')));
+resize();
+buildExample(startIndex);
+$('fallback').hidden = true; window.__engineReady = true;
+function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); labelRenderer.render(scene, camera); }
+loop();
+</script>
+</body>
+</html>

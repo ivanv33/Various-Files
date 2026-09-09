@@ -1,0 +1,1278 @@
+{
+  "framework": {
+    "slug": "dialectical-decomposition",
+    "name": "Dialectical Decomposition",
+    "category": "01-narrative-and-statement",
+    "wikipedia": "https://en.wikipedia.org/wiki/Thesis,_antithesis,_synthesis",
+    "one_liner": "Sets an orthodoxy against the critique that actually opposes it, isolates the proposition the two really contest once the slogans are stripped away, and derives a higher-order position that keeps what is true in both instead of splitting the difference."
+  },
+  "slots": [
+    {
+      "id": "thesis",
+      "label": "Thesis",
+      "description": "The orthodoxy or first position, in the words its own proponents use. Steelmanned, never caricatured: a thesis nobody actually holds makes the whole decomposition worthless.",
+      "typical_provenance": "fact",
+      "color": "#3987e5",
+      "shape": "box"
+    },
+    {
+      "id": "antithesis",
+      "label": "Antithesis",
+      "description": "The opposing position as its holders actually put it, carrying its own reasons. Not the thesis negated, and not a foil invented so that the author's view can win.",
+      "typical_provenance": "fact",
+      "color": "#e0603a",
+      "shape": "box"
+    },
+    {
+      "id": "argument",
+      "label": "Argument",
+      "description": "A supporting point offered for one of the two sides. The argues_for edge records which side it serves; a side with no arguments in the graph has been strawmanned.",
+      "typical_provenance": "fact",
+      "color": "#7c8aa0",
+      "shape": "sphere"
+    },
+    {
+      "id": "tension",
+      "label": "Core tension",
+      "description": "The precise proposition the two sides actually contest once the slogans are removed: often an assumption they share without noticing, or the fact that they are answering different questions. Usually inferred, occasionally stated.",
+      "typical_provenance": "derived",
+      "color": "#d4a017",
+      "shape": "diamond"
+    },
+    {
+      "id": "synthesis",
+      "label": "Synthesis",
+      "description": "A higher-order position that preserves what is true in each side rather than averaging them; Hegel's Aufhebung, which cancels, preserves and lifts at once. Almost always inferred.",
+      "typical_provenance": "derived",
+      "color": "#2f9e63",
+      "shape": "cone"
+    }
+  ],
+  "relations": [
+    {
+      "id": "opposes",
+      "label": "opposes",
+      "description": "the antithesis, or an argument for it, contradicts the thesis"
+    },
+    {
+      "id": "argues_for",
+      "label": "argues for",
+      "description": "an argument is offered in support of the thesis or the antithesis"
+    },
+    {
+      "id": "isolates",
+      "label": "isolates",
+      "description": "a core-tension node names what a position is really committed to, once its slogan is removed"
+    },
+    {
+      "id": "resolves",
+      "label": "resolves",
+      "description": "a synthesis dissolves a core tension by keeping what is true in both sides"
+    }
+  ],
+  "examples": [
+    {
+      "id": "classic",
+      "kind": "classic",
+      "title": "Rationalism against empiricism, and what Kant did with it",
+      "summary": "The textbook dialectic of modern philosophy. The passage states both positions in their proponents' own terms and gives each side its two best arguments, then stops in 1770 without a resolution, so the core tension and the synthesis have to be derived.",
+      "source": {
+        "type": "text",
+        "title": "Where does knowledge come from? The dispute as it stood in 1770",
+        "text": "Two schools divided European philosophy for a century and a half over a single question: where does knowledge come from?\n\nThe rationalists - Descartes, Spinoza, Leibniz - hold that the foundations of knowledge are innate, and that reason alone, working from ideas the mind already contains, can reach truths that are certain and universal. Their strongest argument is mathematics: a single proof settles a question for every case at once, and no amount of looking at triangles could ever establish that the angles of every triangle must sum to two right angles. They add that the senses deceive us constantly, so nothing certain can rest on them alone.\n\nThe empiricists - Locke, Berkeley, Hume - deny it. The mind at birth is a blank sheet, and every idea in it is ultimately a copy of an impression received through the senses. Their strongest argument is that no rationalist has ever exhibited an innate idea that an infant possesses before any experience. Hume adds that the necessity claimed for mathematics is only a relation between our own ideas, and that when we hunt for the impression behind an idea such as causal necessity we find nothing but habit.\n\nNeither side ever answered the other's best argument, and by 1770 the dispute had gone quiet without being settled.",
+        "attribution": "The rationalist/empiricist dispute as presented in standard histories of modern philosophy; the synthesis is Kant's Critique of Pure Reason (1781). The thesis/antithesis/synthesis vocabulary itself is Fichte's, popularised for Hegel by Chalybaus in 1837."
+      },
+      "layout": {
+        "mode": "plane",
+        "regions": [
+          {
+            "label": "Thesis",
+            "x": [
+              -60,
+              -22
+            ],
+            "y": [
+              10,
+              30
+            ],
+            "color": "#3987e5"
+          },
+          {
+            "label": "Antithesis",
+            "x": [
+              22,
+              60
+            ],
+            "y": [
+              10,
+              30
+            ],
+            "color": "#e0603a"
+          },
+          {
+            "label": "Arguments",
+            "x": [
+              -60,
+              -32
+            ],
+            "y": [
+              -32,
+              6
+            ],
+            "color": "#7c8aa0"
+          },
+          {
+            "label": "Arguments",
+            "x": [
+              32,
+              60
+            ],
+            "y": [
+              -32,
+              6
+            ],
+            "color": "#7c8aa0"
+          },
+          {
+            "label": "Core tension",
+            "x": [
+              -16,
+              16
+            ],
+            "y": [
+              -30,
+              12
+            ],
+            "color": "#d4a017"
+          },
+          {
+            "label": "Synthesis",
+            "x": [
+              -34,
+              36
+            ],
+            "y": [
+              34,
+              54
+            ],
+            "color": "#2f9e63"
+          }
+        ],
+        "guides": [
+          {
+            "from": [
+              -22,
+              20
+            ],
+            "to": [
+              22,
+              20
+            ],
+            "style": "solid",
+            "label": "opposes"
+          },
+          {
+            "from": [
+              0,
+              12
+            ],
+            "to": [
+              0,
+              34
+            ],
+            "style": "dashed",
+            "label": "resolved by"
+          }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "th",
+          "slot": "thesis",
+          "label": "Knowledge is founded in reason",
+          "text": "Rationalism: the foundations of knowledge are innate, and reason alone, working from ideas the mind already contains, reaches truths that are certain and universal.",
+          "provenance": "fact",
+          "source_quote": "hold that the foundations of knowledge are innate, and that reason alone, working from ideas the mind already contains, can reach truths that are certain and universal",
+          "source_ref": "sentence 2",
+          "entities": [
+            "Descartes",
+            "Spinoza",
+            "Leibniz"
+          ],
+          "pos": [
+            -40,
+            20
+          ],
+          "size": 1.3
+        },
+        {
+          "id": "an",
+          "slot": "antithesis",
+          "label": "Every idea is a copy of an impression",
+          "text": "Empiricism: the mind at birth is a blank sheet, and every idea in it is ultimately a copy of an impression received through the senses.",
+          "provenance": "fact",
+          "source_quote": "The mind at birth is a blank sheet, and every idea in it is ultimately a copy of an impression received through the senses.",
+          "source_ref": "sentence 6",
+          "entities": [
+            "Locke",
+            "Berkeley",
+            "Hume"
+          ],
+          "pos": [
+            40,
+            20
+          ],
+          "size": 1.3
+        },
+        {
+          "id": "a1",
+          "slot": "argument",
+          "label": "Mathematics settles every case at once",
+          "text": "A single proof settles a question for every case at once, and no amount of looking at triangles could establish that every triangle's angles must sum to two right angles.",
+          "provenance": "fact",
+          "source_quote": "a single proof settles a question for every case at once, and no amount of looking at triangles could ever establish that the angles of every triangle must sum to two right angles",
+          "source_ref": "sentence 3",
+          "pos": [
+            -48,
+            -2
+          ]
+        },
+        {
+          "id": "a2",
+          "slot": "argument",
+          "label": "The senses deceive us constantly",
+          "text": "The senses deceive us constantly, so nothing certain can rest on them alone.",
+          "provenance": "fact",
+          "source_quote": "the senses deceive us constantly, so nothing certain can rest on them alone",
+          "source_ref": "sentence 4",
+          "pos": [
+            -48,
+            -20
+          ]
+        },
+        {
+          "id": "a3",
+          "slot": "argument",
+          "label": "No innate idea has ever been shown",
+          "text": "No rationalist has ever exhibited an innate idea that an infant possesses before any experience.",
+          "provenance": "fact",
+          "source_quote": "no rationalist has ever exhibited an innate idea that an infant possesses before any experience",
+          "source_ref": "sentence 7",
+          "pos": [
+            48,
+            -2
+          ]
+        },
+        {
+          "id": "a4",
+          "slot": "argument",
+          "label": "Necessity is only a relation of ideas",
+          "text": "The necessity claimed for mathematics is only a relation between our own ideas, and behind an idea such as causal necessity there is no impression, only habit.",
+          "provenance": "fact",
+          "source_quote": "the necessity claimed for mathematics is only a relation between our own ideas, and that when we hunt for the impression behind an idea such as causal necessity we find nothing but habit",
+          "source_ref": "sentence 8",
+          "entities": [
+            "Hume"
+          ],
+          "pos": [
+            48,
+            -20
+          ]
+        },
+        {
+          "id": "t1",
+          "slot": "tension",
+          "label": "Which single source: reason or sense?",
+          "text": "The surface contest: does knowledge originate in reason or in sense experience? Stated this way the question is a straight either/or, and each side's best argument is an attack on the other's candidate source.",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Both stated positions answer the same question named in sentence 1 with a different single source, and each quoted argument attacks the rival source rather than defending its own; the either/or reading is nearly forced by the text.",
+          "pos": [
+            0,
+            2
+          ]
+        },
+        {
+          "id": "t2",
+          "slot": "tension",
+          "label": "One source, and a passive mind",
+          "text": "The assumption neither side examines: that knowledge has exactly one source and that the mind receives rather than shapes what it knows. Granted that, the argument cannot end, because each side's best case is an objection the other cannot absorb.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Nothing in the text states this, but it is what makes both quoted arguments valid at once: a1 shows sense experience cannot yield necessity and a3 shows reason cannot exhibit its innate content, which is only a contradiction if a single passive source must supply both.",
+          "pos": [
+            0,
+            -18
+          ]
+        },
+        {
+          "id": "sy1",
+          "slot": "synthesis",
+          "label": "Mind supplies form, experience content",
+          "text": "Kant's move: experience supplies the content of knowledge and the mind supplies its form, so both sides are right about their half. Thoughts without content are empty; intuitions without concepts are blind.",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "This is the standard historical resolution, and it is the position that leaves both quoted best arguments standing: the empiricist is right that no idea arrives with its content already in the mind, the rationalist right that necessity cannot be read off any number of observations.",
+          "entities": [
+            "Kant"
+          ],
+          "pos": [
+            -18,
+            44
+          ],
+          "size": 1.4
+        },
+        {
+          "id": "sy2",
+          "slot": "synthesis",
+          "label": "Necessity comes from the form, not luck",
+          "text": "The corollary, and the reason this is not a compromise: universal and necessary truths are possible precisely because they describe the form the mind imposes, so Hume's objection is granted in full and answered rather than split with.",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "Follows from sy1 applied to a4: if necessity belongs to the form the mind contributes, then Hume is correct that no impression underwrites it and the rationalist is still entitled to it. A split-the-difference answer, some knowledge from each source, would leave a4 unanswered.",
+          "entities": [
+            "Kant",
+            "Hume"
+          ],
+          "pos": [
+            20,
+            44
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "id": "c1",
+          "from": "an",
+          "to": "th",
+          "relation": "opposes",
+          "provenance": "fact",
+          "source_quote": "The empiricists - Locke, Berkeley, Hume - deny it.",
+          "source_ref": "sentence 5"
+        },
+        {
+          "id": "c2",
+          "from": "a1",
+          "to": "th",
+          "relation": "argues_for",
+          "provenance": "fact",
+          "source_quote": "Their strongest argument is mathematics: a single proof settles a question for every case at once",
+          "source_ref": "sentence 3"
+        },
+        {
+          "id": "c3",
+          "from": "a2",
+          "to": "th",
+          "relation": "argues_for",
+          "provenance": "fact",
+          "source_quote": "They add that the senses deceive us constantly, so nothing certain can rest on them alone.",
+          "source_ref": "sentence 4"
+        },
+        {
+          "id": "c4",
+          "from": "a3",
+          "to": "an",
+          "relation": "argues_for",
+          "provenance": "fact",
+          "source_quote": "Their strongest argument is that no rationalist has ever exhibited an innate idea",
+          "source_ref": "sentence 7"
+        },
+        {
+          "id": "c5",
+          "from": "a4",
+          "to": "an",
+          "relation": "argues_for",
+          "provenance": "fact",
+          "source_quote": "Hume adds that the necessity claimed for mathematics is only a relation between our own ideas",
+          "source_ref": "sentence 8"
+        },
+        {
+          "id": "c6",
+          "from": "t1",
+          "to": "th",
+          "relation": "isolates",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The thesis is the 'reason' answer to the question sentence 1 poses."
+        },
+        {
+          "id": "c7",
+          "from": "t1",
+          "to": "an",
+          "relation": "isolates",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The antithesis is the 'sense experience' answer to the same question."
+        },
+        {
+          "id": "c8",
+          "from": "t2",
+          "to": "t1",
+          "relation": "isolates",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The either/or form of the surface contest is what the shared assumption produces; remove the assumption and the question stops being exclusive."
+        },
+        {
+          "id": "c9",
+          "from": "t2",
+          "to": "a1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7
+        },
+        {
+          "id": "c10",
+          "from": "t2",
+          "to": "a3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7
+        },
+        {
+          "id": "c11",
+          "from": "t1",
+          "to": "a2",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8
+        },
+        {
+          "id": "c12",
+          "from": "t1",
+          "to": "a4",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8
+        },
+        {
+          "id": "c13",
+          "from": "sy1",
+          "to": "t1",
+          "relation": "resolves",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Answers the either/or by denying that the question has a single-source answer."
+        },
+        {
+          "id": "c14",
+          "from": "sy1",
+          "to": "t2",
+          "relation": "resolves",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Rejects the shared assumption directly: the mind is not passive, it contributes the form."
+        },
+        {
+          "id": "c15",
+          "from": "sy1",
+          "to": "a1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8
+        },
+        {
+          "id": "c16",
+          "from": "sy1",
+          "to": "a3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8
+        },
+        {
+          "id": "c17",
+          "from": "sy2",
+          "to": "t2",
+          "relation": "resolves",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "Shows why the synthesis is not an average of the two positions but a rejection of the assumption under them."
+        },
+        {
+          "id": "c18",
+          "from": "sy2",
+          "to": "a4",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.65
+        },
+        {
+          "id": "c19",
+          "from": "sy2",
+          "to": "sy1",
+          "relation": "resolves",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The corollary that makes the synthesis do work Hume's objection would otherwise block."
+        }
+      ]
+    },
+    {
+      "id": "tbpn",
+      "kind": "tbpn",
+      "title": "Slop versus Steel: Everett Randle and Delian Asparouhov on where power comes from",
+      "summary": "A staged two-person debate between two former Founders Fund colleagues on whether high-margin software or capex-intensive re-industrialisation makes the better business. Both sides are stated by their own holders, each with several arguments, and each rebuts the other by name; no synthesis is reached on air.",
+      "source": {
+        "type": "transcript",
+        "file": "tbpn-transcripts/transcripts/2025-08-15_slop-vs-steel-showdown-w-delian-everett-gpt-5-backlash-trump-eyes-intel-stake-bill-bishop-jimmy-goodrich-lennart-heim-david-stout-cameron-schiller-cyr.md",
+        "date": "2025-08-15",
+        "episode_title": "Slop vs Steel Showdown w/ Delian & Everett, GPT-5 Backlash, Trump Eyes Intel Stake"
+      },
+      "why_this_episode": "It is the rare TBPN moment where a single proposition is put to two people who genuinely disagree, each is given the floor to state his own position in his own terms, and each rebuts the other on air, so the thesis and antithesis slots can both be filled with facts rather than with one speaker's characterisation of an absent opponent.",
+      "idea_bearing_slot": "synthesis",
+      "layout": {
+        "mode": "plane",
+        "regions": [
+          {
+            "label": "Thesis: Everett Randle",
+            "x": [
+              -62,
+              -20
+            ],
+            "y": [
+              12,
+              32
+            ],
+            "color": "#3987e5"
+          },
+          {
+            "label": "Antithesis: Delian Asparouhov",
+            "x": [
+              20,
+              62
+            ],
+            "y": [
+              12,
+              32
+            ],
+            "color": "#e0603a"
+          },
+          {
+            "label": "Arguments for the thesis",
+            "x": [
+              -64,
+              -24
+            ],
+            "y": [
+              -42,
+              10
+            ],
+            "color": "#7c8aa0"
+          },
+          {
+            "label": "Arguments for the antithesis",
+            "x": [
+              24,
+              64
+            ],
+            "y": [
+              -58,
+              10
+            ],
+            "color": "#7c8aa0"
+          },
+          {
+            "label": "Core tension",
+            "x": [
+              -16,
+              16
+            ],
+            "y": [
+              -36,
+              18
+            ],
+            "color": "#d4a017"
+          },
+          {
+            "label": "Synthesis",
+            "x": [
+              -34,
+              38
+            ],
+            "y": [
+              36,
+              56
+            ],
+            "color": "#2f9e63"
+          }
+        ],
+        "guides": [
+          {
+            "from": [
+              -20,
+              22
+            ],
+            "to": [
+              20,
+              22
+            ],
+            "style": "solid",
+            "label": "opposes"
+          },
+          {
+            "from": [
+              0,
+              18
+            ],
+            "to": [
+              0,
+              36
+            ],
+            "style": "dashed",
+            "label": "resolved by"
+          }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "th",
+          "slot": "thesis",
+          "label": "Digital form factor creates power",
+          "text": "Everett Randle's position: a digital product's form factor and the way it is distributed lend themselves to accumulating power, and therefore to earning above-market returns on invested capital for longer, more than most atoms-based businesses do.",
+          "provenance": "fact",
+          "source_quote": "The advantage that digital businesses have is that in this process of producing above market Roik for a long time is that their product form factor and the way that the distribute their product lends itself more to the process of creating power, I'd argue, than most Adams-based businesses.",
+          "source_ref": "Everett Randall, L196-L202",
+          "entities": [
+            "Everett Randall",
+            "Kleiner Perkins"
+          ],
+          "pos": [
+            -40,
+            22
+          ],
+          "size": 1.4
+        },
+        {
+          "id": "an",
+          "slot": "antithesis",
+          "label": "Gross margin is the wrong metric",
+          "text": "Delian Asparouhov's position: gross margin is not the right thing to focus on, especially early. What matters is terminal EBITDA margin, which is why he will fund negative-gross-margin, capex-heavy businesses.",
+          "provenance": "fact",
+          "source_quote": "I'm not sure that, you know, sort of gross margin is actually like the right thing to focus on in a business, especially either sort of early on. What you want to be thinking about is obviously EBITDA margin, in particular terminal, you know, EBITO margin.",
+          "source_ref": "Delian Asperuhov, L76-L84",
+          "entities": [
+            "Delian Asperuhov",
+            "Founders Fund"
+          ],
+          "pos": [
+            40,
+            22
+          ],
+          "size": 1.4
+        },
+        {
+          "id": "at1",
+          "slot": "argument",
+          "label": "Network effects live in digital markets",
+          "text": "The best place to create network effects is a digital marketplace, and digital products scale further than physical ones, so the forms of power an investor wants naturally attach to software.",
+          "provenance": "fact",
+          "source_quote": "So if you think about like network effects, the best place to create network effects is in a digital marketplace like an Uber and Airbnb or a DoorDash.",
+          "source_ref": "Everett Randall, L204-L206",
+          "entities": [
+            "Uber",
+            "Airbnb",
+            "DoorDash"
+          ],
+          "pos": [
+            -56,
+            4
+          ]
+        },
+        {
+          "id": "at2",
+          "slot": "argument",
+          "label": "Good and bad exist on both sides",
+          "text": "There are great and terrible atoms businesses and great and terrible digital ones; on Everett's own account the contest is not atoms versus SaaS but whether a given business accumulates power.",
+          "provenance": "fact",
+          "source_quote": "There are great Adams-based businesses that do this. There are terrible atom-based businesses that don't do this. There are great digital businesses that do this. There's terrible digital businesses that don't do this. I mean, you want to hear about a great Adams-based business that does this, listen to the acquired pod on Costco. Like, it's certainly not like a Adams versus SaaS thing necessarily.",
+          "source_ref": "Everett Randall, L188-L196",
+          "entities": [
+            "Everett Randall",
+            "Costco"
+          ],
+          "pos": [
+            -34,
+            4
+          ]
+        },
+        {
+          "id": "at3",
+          "slot": "argument",
+          "label": "ChatGPT is an application, not a model",
+          "text": "Most of OpenAI's and Anthropic's reported revenue run rate is ChatGPT, which despite being served by a foundation-model company is a consumer subscription with enormous brand power; swap the model underneath and users would not leave.",
+          "provenance": "fact",
+          "source_quote": "the majority of all that or at least the plurality of all of that is chat GPT and chat GPT even though it is served by a foundation model company is an application it is a consumer subscription that has an immense amount of power",
+          "source_ref": "Everett Randall, L640-L646",
+          "entities": [
+            "OpenAI",
+            "Anthropic"
+          ],
+          "pos": [
+            -56,
+            -14
+          ]
+        },
+        {
+          "id": "at4",
+          "slot": "argument",
+          "label": "Two tests: pricing power, frontier share",
+          "text": "Whether a software company survives depends on two things: whether it has enough power to price above the marginal token price of the model providers, and how much of its inference genuinely needs to be at the frontier.",
+          "provenance": "fact",
+          "source_quote": "if you've actually built a company that has enough power where you have pricing power, where you can price above the kind of marginal token price from the actual model providers. And then two, like how much of your inference actually needs to be at the frontier?",
+          "source_ref": "Everett Randall, L538-L544",
+          "entities": [
+            "Everett Randall"
+          ],
+          "pos": [
+            -34,
+            -14
+          ]
+        },
+        {
+          "id": "at5",
+          "slot": "argument",
+          "label": "Mom test: tasks left the frontier",
+          "text": "A growing subset of economic and knowledge tasks no longer needs frontier intelligence, and off-frontier inference keeps falling off a price cliff through open source and distillation.",
+          "provenance": "fact",
+          "source_quote": "there's like the mom test of models where like there's a growing subset of tasks like economic or knowledge tasks that the models are tasked to do that no longer need frontier intelligence",
+          "source_ref": "Everett Randall, L520-L520",
+          "entities": [
+            "Everett Randall"
+          ],
+          "pos": [
+            -45,
+            -32
+          ]
+        },
+        {
+          "id": "aa0",
+          "slot": "argument",
+          "label": "Terminal EBITDA follows monopoly",
+          "text": "Terminal EBITDA margin is mostly determined by how much of a monopoly the company can become in the long run, which is the mechanism the antithesis rests on.",
+          "provenance": "fact",
+          "source_quote": "terminal EBITDA margin, mostly is determined by ultimately how much of a monopoly your company can be in the long term.",
+          "source_ref": "Delian Asperuhov, L90-L92",
+          "entities": [
+            "Delian Asperuhov"
+          ],
+          "pos": [
+            34,
+            4
+          ]
+        },
+        {
+          "id": "aa1",
+          "slot": "argument",
+          "label": "The best EBITDA in mag 7 is hardware",
+          "text": "Among the mag 7, the company at the biggest scale with the best EBITDA margins is the most hardware-oriented one, not the most software-oriented one.",
+          "provenance": "fact",
+          "source_quote": "If you look at the one that is at the biggest scale and has the best EBITO margins, it's the one that is the most, you know, basically hardware oriented.",
+          "source_ref": "Delian Asperuhov, L96-L102",
+          "entities": [
+            "Nvidia"
+          ],
+          "pos": [
+            56,
+            4
+          ]
+        },
+        {
+          "id": "aa2",
+          "slot": "argument",
+          "label": "SaaS margins hide sales and marketing",
+          "text": "People quote SaaS gross margin without burdening it with cost of sales and marketing, so the headline number flatters businesses that have to keep buying their customers.",
+          "provenance": "fact",
+          "source_quote": "And so my general characterization of, you know, sort of SaaS is people always, you know, sort of study their original, you sort of gross margin, but weren't burdening in the, you know, sort of cost of sales, marketing, et cetera.",
+          "source_ref": "Delian Asperuhov, L116-L120",
+          "entities": [
+            "Delian Asperuhov"
+          ],
+          "pos": [
+            34,
+            -14
+          ]
+        },
+        {
+          "id": "aa3",
+          "slot": "argument",
+          "label": "Two Stanford grads could rebuild it",
+          "text": "Handed $100 million, two Stanford graduates could plausibly replicate an AI captioning company: the models are available and distribution can be bought on TikTok.",
+          "provenance": "fact",
+          "source_quote": "When I think about, you know, handing, you know, sort of two Stanford grads and $100 million to go try and, you know, sort of replicate that, Yeah, it feels like, you know, they could, you know, go do something like that.",
+          "source_ref": "Delian Asperuhov, L400-L404",
+          "entities": [
+            "Captions"
+          ],
+          "pos": [
+            56,
+            -14
+          ]
+        },
+        {
+          "id": "aa4",
+          "slot": "argument",
+          "label": "They could not rebuild a space factory",
+          "text": "The same two graduates with $200 million could not replicate a manufacturing facility building satellites, reentry vehicles and bioreactors that survive space; and that company has faced no significant competition even though space factories are the hot new thing.",
+          "provenance": "fact",
+          "source_quote": "Now, you know, if you take, you know, sort of two Stanford grads in $200 million and tell them, hey, I need you to go replicate this manufacturing facility. and go start building a bunch of, you know, sort of satellites, reentry vehicles, you know, bioreactors that can actually survive the environment of space. Most, you know, sort of stand for grads, you know, can't go, you know, as chat, GPT, how to go do that. And yet, yet, yet, hasn't really faced significant competition, irrespective of the fact that, you know, all things space factories are thought to be, you know, sort of the hot new thing.",
+          "source_ref": "Delian Asperuhov, L420-L430",
+          "entities": [
+            "Varda Space"
+          ],
+          "pos": [
+            34,
+            -32
+          ]
+        },
+        {
+          "id": "aa5",
+          "slot": "argument",
+          "label": "Revenue went to the frontier, not apps",
+          "text": "In practice the companies that captured the most revenue growth and market share are the ones pushing the true frontier, not the application layer the thesis predicts value would accrue to.",
+          "provenance": "fact",
+          "source_quote": "But in reality, that's not what's played out. The places that have captured the most revenue growth, the most market share have been the ones that are actually pushing the true frontier, you know, of the, you know, so technology forward.",
+          "source_ref": "Delian Asperuhov, L616-L620",
+          "entities": [
+            "OpenAI",
+            "Anthropic"
+          ],
+          "pos": [
+            56,
+            -32
+          ]
+        },
+        {
+          "id": "aa6",
+          "slot": "argument",
+          "label": "App-layer power may rest on capex",
+          "text": "The strongest form of the antithesis, which nobody states: ChatGPT's brand power was bought with the largest compute position in the industry, so the best example of application-layer power is not independent of the capex thesis it is used to refute.",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "Neither speaker says this, but it is the reply the antithesis needs to at3, and it is consistent with aa5: the frontier position that captured the revenue is the same position that produced the consumer brand. Contestable because brand and distribution advantages could have been bought more cheaply.",
+          "entities": [
+            "OpenAI"
+          ],
+          "pos": [
+            45,
+            -48
+          ]
+        },
+        {
+          "id": "t0",
+          "slot": "tension",
+          "label": "Stated: software or re-industrialisation",
+          "text": "The tension as the show frames it on air: which is the better business, high-margin software or capex-intensive re-industrialisation? This is the question both guests are asked to defend a side of.",
+          "provenance": "fact",
+          "source_quote": "We're going to settle it today on the stream. The Slop versus Steel debate, which is better high margin software or capex intensive re-industrialization efforts.",
+          "source_ref": "Host, L22-L24",
+          "pos": [
+            0,
+            10
+          ]
+        },
+        {
+          "id": "t1",
+          "slot": "tension",
+          "label": "Real contest: what makes copying costly",
+          "text": "Once the slogans go, the two are contesting what makes a business expensive to copy: Delian prices durability by what a funded imitator would have to rebuild, Everett by what a user would have to give up to switch. Neither is a claim about gross margin.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Delian's two arguments are the same thought experiment run twice with the capital held constant, and Everett's rebuttal answers with substitutability, not with margins. The contested proposition is therefore the source of replication cost, which is narrower and more testable than the framing in t0.",
+          "pos": [
+            0,
+            -8
+          ]
+        },
+        {
+          "id": "t2",
+          "slot": "tension",
+          "label": "False axis: neither side believes it",
+          "text": "The atoms-versus-bits axis the debate is staged on is one both sides abandon in argument: Everett says outright that great and terrible businesses exist on both sides, and Delian's test is about replication cost, which cuts across the axis rather than along it.",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "Read from at2, where the thesis holder denies the dichotomy in his own words, together with aa3 and aa4, where the antithesis holder separates two businesses by rebuild cost rather than by asset class. Contestable because both men still accept the framing rhetorically.",
+          "pos": [
+            0,
+            -26
+          ]
+        },
+        {
+          "id": "sy1",
+          "slot": "synthesis",
+          "label": "Power sits with the scarcest input",
+          "text": "Both rules are right about their own layer: durable pricing power belongs to whoever controls the scarcest input at the layer they occupy. Everett's cases are ones where distribution and brand are scarce, Delian's are ones where fabrication capability is scarce, and in 2025 the scarcest input moved to frontier inference and the capital behind it, which is why revenue concentrated at the model layer without refuting either rule.",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "Preserves what each side established rather than averaging them: it keeps Delian's replication test and Everett's substitution test intact while explaining aa5, the observation that broke the thesis's prediction, as a change in which input is scarce rather than as a verdict on asset class.",
+          "idea": "If margin now leaks to whoever owns the scarce input, the underserved product is inference tiering and routing that lets an application serve its off-frontier work from cheap models and keep the spread, which is exactly the split Everett describes but nobody sells.",
+          "entities": [
+            "Everett Randall",
+            "Delian Asperuhov"
+          ],
+          "pos": [
+            -18,
+            46
+          ],
+          "size": 1.4
+        },
+        {
+          "id": "sy2",
+          "slot": "synthesis",
+          "label": "Two durability tests, one question",
+          "text": "The replication test and the substitution test are two instruments measuring one quantity: how much of the customer's willingness to pay survives a well-funded imitator. A business needs to pass one of them, and day-one gross margin predicts neither, which is why the debate's own metric was never the disagreement.",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "Both tests as stated by their authors ask what an imitator with capital cannot take away, one from the supply side and one from the demand side. Contestable because the two tests can disagree about the same company, which the sources never test.",
+          "idea": "An underwriting and diligence product that scores a company on rebuild cost and on switching cost instead of day-one gross margin would price exactly the thing two of the sharpest investors in the market argue about with anecdotes.",
+          "entities": [
+            "Founders Fund",
+            "Kleiner Perkins"
+          ],
+          "pos": [
+            20,
+            46
+          ],
+          "size": 1.3
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1",
+          "from": "an",
+          "to": "th",
+          "relation": "opposes",
+          "provenance": "fact",
+          "source_quote": "But my sort of counter to you would be, you've made this argument that it seems to imply, hey, you know, things will accrue to the AI application layer",
+          "source_ref": "Delian Asperuhov, L612-L614"
+        },
+        {
+          "id": "e2",
+          "from": "at3",
+          "to": "an",
+          "relation": "opposes",
+          "provenance": "fact",
+          "source_quote": "I was going to say that, that basically what Delian said was just wrong, because",
+          "source_ref": "Everett Randall, L636-L636"
+        },
+        {
+          "id": "e3",
+          "from": "aa5",
+          "to": "th",
+          "relation": "opposes",
+          "provenance": "fact",
+          "source_quote": "And so far, at least in last 18 months, your thesis is not playing out at all.",
+          "source_ref": "Delian Asperuhov, L622-L622"
+        },
+        {
+          "id": "e4",
+          "from": "at1",
+          "to": "th",
+          "relation": "argues_for",
+          "provenance": "fact",
+          "source_quote": "And so there's a lot of these forms of power that naturally lend themselves to digital products and the scalability of digital products tends to be a lot a lot greater than than physical products",
+          "source_ref": "Everett Randall, L208-L212"
+        },
+        {
+          "id": "e5",
+          "from": "aa2",
+          "to": "an",
+          "relation": "argues_for",
+          "provenance": "fact",
+          "source_quote": "And because you just have much less of monopoly typically in SaaS, that ends up totally, you know, hurting your ebidot, you know, margin profile.",
+          "source_ref": "Delian Asperuhov, L122-L124"
+        },
+        {
+          "id": "e6",
+          "from": "aa3",
+          "to": "an",
+          "relation": "argues_for",
+          "provenance": "fact",
+          "source_quote": "And so, you know, you know, our one line, our founders fund is competition is for losers.",
+          "source_ref": "Delian Asperuhov, L412-L412"
+        },
+        {
+          "id": "e7",
+          "from": "at2",
+          "to": "th",
+          "relation": "argues_for",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Everett offers the both-sides observation as the setup for his own claim about form factor in the next breath, so it functions as a premise of the thesis rather than a concession to the antithesis."
+        },
+        {
+          "id": "e8",
+          "from": "at4",
+          "to": "th",
+          "relation": "argues_for",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The two tests are the conditions under which the thesis still holds for a software company; adjacent to the thesis in the same answer but never linked out loud."
+        },
+        {
+          "id": "e9",
+          "from": "at5",
+          "to": "th",
+          "relation": "argues_for",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "If most tasks no longer need frontier intelligence, application companies can buy inference cheaply and keep their margin, which is what the thesis requires."
+        },
+        {
+          "id": "e10",
+          "from": "aa0",
+          "to": "an",
+          "relation": "argues_for",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Stated in the same turn as the antithesis as its mechanism, but the sentence is a definition rather than an explicit 'because', so the link is read from adjacency."
+        },
+        {
+          "id": "e11",
+          "from": "aa1",
+          "to": "an",
+          "relation": "argues_for",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The Nvidia observation is offered as evidence that hardware orientation and monopoly, not gross margin, predict terminal EBITDA."
+        },
+        {
+          "id": "e12",
+          "from": "aa4",
+          "to": "an",
+          "relation": "argues_for",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The contrast case exists to show that capex-heavy businesses are the ones competition cannot reach, which is the antithesis's claim about monopoly."
+        },
+        {
+          "id": "e13",
+          "from": "aa5",
+          "to": "an",
+          "relation": "argues_for",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Delian presents the revenue observation as confirmation of his own position immediately after stating his counter."
+        },
+        {
+          "id": "e14",
+          "from": "aa6",
+          "to": "an",
+          "relation": "argues_for",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "The steelmanned reply is constructed for the antithesis, not offered by it."
+        },
+        {
+          "id": "e15",
+          "from": "t0",
+          "to": "th",
+          "relation": "isolates",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The host asks Everett for the bull case for software, which assigns him the first half of the framed question."
+        },
+        {
+          "id": "e16",
+          "from": "t0",
+          "to": "an",
+          "relation": "isolates",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The host asks Delian to justify why he likes negative-gross-margin businesses, which assigns him the second half."
+        },
+        {
+          "id": "e17",
+          "from": "t1",
+          "to": "th",
+          "relation": "isolates",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Everett's answer to the rebuttal is that a user would not switch away from ChatGPT, which is a claim about substitution cost, not about margins."
+        },
+        {
+          "id": "e18",
+          "from": "t1",
+          "to": "an",
+          "relation": "isolates",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Delian's two thought experiments hold capital constant and vary only what has to be rebuilt, which is a claim about replication cost."
+        },
+        {
+          "id": "e19",
+          "from": "t2",
+          "to": "t0",
+          "relation": "isolates",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "The framed dichotomy is the thing the derived tension says neither side actually defends."
+        },
+        {
+          "id": "e20",
+          "from": "t1",
+          "to": "t0",
+          "relation": "isolates",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Restates the staged question as the narrower proposition the arguments actually address."
+        },
+        {
+          "id": "e21",
+          "from": "sy1",
+          "to": "t1",
+          "relation": "resolves",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "Keeps both replication cost and substitution cost as real sources of power and explains when each one binds."
+        },
+        {
+          "id": "e22",
+          "from": "sy1",
+          "to": "t2",
+          "relation": "resolves",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "Replaces the atoms/bits axis with scarcity of the controlling input, which is the axis both men actually argue on."
+        },
+        {
+          "id": "e23",
+          "from": "sy2",
+          "to": "t1",
+          "relation": "resolves",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "Identifies the two tests as measuring one quantity, so the contest over which test to use dissolves into a question about which side of the market is tight."
+        },
+        {
+          "id": "e24",
+          "from": "sy2",
+          "to": "t0",
+          "relation": "resolves",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "Explains why the metric the debate was staged on, gross margin, predicts neither test's result."
+        },
+        {
+          "id": "g1",
+          "from": "t1",
+          "to": "aa3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.75
+        },
+        {
+          "id": "g2",
+          "from": "t1",
+          "to": "aa4",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.75
+        },
+        {
+          "id": "g3",
+          "from": "t1",
+          "to": "at3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7
+        },
+        {
+          "id": "g4",
+          "from": "t2",
+          "to": "at2",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8
+        },
+        {
+          "id": "g5",
+          "from": "t2",
+          "to": "aa3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.65
+        },
+        {
+          "id": "g6",
+          "from": "sy1",
+          "to": "at4",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.65
+        },
+        {
+          "id": "g7",
+          "from": "sy1",
+          "to": "at5",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.6
+        },
+        {
+          "id": "g8",
+          "from": "sy1",
+          "to": "aa5",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.6
+        },
+        {
+          "id": "g9",
+          "from": "sy1",
+          "to": "aa1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.6
+        },
+        {
+          "id": "g10",
+          "from": "sy2",
+          "to": "aa3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.6
+        },
+        {
+          "id": "g11",
+          "from": "sy2",
+          "to": "aa4",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.6
+        },
+        {
+          "id": "g12",
+          "from": "sy2",
+          "to": "at3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.55
+        },
+        {
+          "id": "g13",
+          "from": "sy2",
+          "to": "aa2",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.55
+        },
+        {
+          "id": "g14",
+          "from": "aa6",
+          "to": "at3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.55
+        },
+        {
+          "id": "g15",
+          "from": "aa6",
+          "to": "aa5",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.55
+        }
+      ]
+    }
+  ]
+}
