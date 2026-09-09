@@ -76,22 +76,107 @@
         "text": "Fielding Instruments has sold its laboratory instruments through a direct field sales force for the past ten years. Everyone on the board already knows this, and nobody disputes it: the eighty-person field force has been the division's main advantage over the distributors it competes with. Since the board last reviewed the channel, two things have changed. The division's twenty largest customers have moved their purchasing onto an online marketplace that the field force does not serve, and the cost of a single field visit has doubled. The division head has to write the board a memo. She does not head it 'some thoughts on the sales force'. She writes: the division should stop selling through the field force alone and put half of the sales budget behind the marketplace channel within twelve months. Nowhere in the memo does she put the question on the page. She does not have to; by the time the board reaches her sentence, it is already asking it."
       },
       "layout": {
-        "mode": "tree",
-        "root": "s1",
-        "direction": "right",
+        "mode": "plane",
         "camera": {
-          "distance": 150
-        }
+          "distance": 120
+        },
+        "regions": [
+          {
+            "label": "Situation",
+            "x": [
+              -70,
+              -36
+            ],
+            "y": [
+              -42,
+              36
+            ],
+            "color": "#3987e5"
+          },
+          {
+            "label": "Complication",
+            "x": [
+              -34,
+              -4
+            ],
+            "y": [
+              -42,
+              36
+            ],
+            "color": "#d95926"
+          },
+          {
+            "label": "Question",
+            "x": [
+              -2,
+              26
+            ],
+            "y": [
+              -42,
+              36
+            ],
+            "color": "#2f9e63"
+          },
+          {
+            "label": "Answer",
+            "x": [
+              28,
+              62
+            ],
+            "y": [
+              -42,
+              36
+            ],
+            "color": "#7a5cc6"
+          }
+        ],
+        "guides": [
+          {
+            "from": [
+              -35,
+              -46
+            ],
+            "to": [
+              -35,
+              -46
+            ],
+            "style": "solid",
+            "label": "disrupted by →"
+          },
+          {
+            "from": [
+              -3,
+              -46
+            ],
+            "to": [
+              -3,
+              -46
+            ],
+            "style": "solid",
+            "label": "raises →"
+          },
+          {
+            "from": [
+              27,
+              -46
+            ],
+            "to": [
+              27,
+              -46
+            ],
+            "style": "solid",
+            "label": "answered by →"
+          }
+        ]
       },
       "nodes": [
         {
           "id": "s1",
           "slot": "situation",
           "label": "Ten years of direct field selling",
-          "level": 0,
           "pos": [
             -52,
-            12
+            22
           ],
           "text": "For the past ten years the division has sold its laboratory instruments through a direct field sales force.",
           "provenance": "fact",
@@ -105,10 +190,9 @@
           "id": "s2",
           "slot": "situation",
           "label": "The force is the main advantage",
-          "level": 0,
           "pos": [
             -52,
-            0
+            2
           ],
           "text": "The eighty-person field force has been the division's main advantage over the distributors it competes with.",
           "provenance": "fact",
@@ -122,10 +206,9 @@
           "id": "s3",
           "slot": "situation",
           "label": "The board already accepts this",
-          "level": 0,
           "pos": [
             -52,
-            -12
+            -14
           ],
           "text": "The baseline is common ground rather than an argument: everyone on the board already knows it and nobody disputes it.",
           "provenance": "fact",
@@ -137,10 +220,9 @@
           "id": "c1",
           "slot": "complication",
           "label": "Top customers moved to a marketplace",
-          "level": 1,
           "pos": [
             -18,
-            10
+            30
           ],
           "text": "The division's twenty largest customers have moved their purchasing onto an online marketplace that the field force does not serve.",
           "provenance": "fact",
@@ -152,10 +234,9 @@
           "id": "c2",
           "slot": "complication",
           "label": "Cost of a field visit has doubled",
-          "level": 1,
           "pos": [
             -18,
-            -2
+            11
           ],
           "text": "The cost of a single field visit has doubled.",
           "provenance": "fact",
@@ -167,10 +248,9 @@
           "id": "c3",
           "slot": "complication",
           "label": "The force is now a shrinking asset",
-          "level": 1,
           "pos": [
             -18,
-            -16
+            -20
           ],
           "text": "Taken together the two changes turn the field force from the division's advantage into a shrinking asset: dearer per call and blind to the accounts that matter most.",
           "provenance": "derived",
@@ -181,11 +261,11 @@
           "id": "q1",
           "slot": "question",
           "label": "What should we do about the channel?",
-          "level": 2,
           "pos": [
-            16,
+            12,
             2
           ],
+          "size": 1.6,
           "text": "The question the board is already asking and the memo never writes: what should the division do about its route to market?",
           "provenance": "derived",
           "confidence": 0.9,
@@ -195,10 +275,9 @@
           "id": "q2",
           "slot": "question",
           "label": "How, without losing the accounts?",
-          "level": 2,
           "pos": [
-            16,
-            -16
+            12,
+            -34
           ],
           "text": "The new question the answer itself raises, and the point where the pyramid under the introduction begins: how do you move half the budget without losing the accounts the field force holds?",
           "provenance": "derived",
@@ -209,11 +288,11 @@
           "id": "a1",
           "slot": "answer",
           "label": "Stop selling through the force alone",
-          "level": 3,
           "pos": [
-            50,
-            8
+            41,
+            -7
           ],
+          "size": 1.3,
           "text": "The memo's governing thought, stated as a point rather than a topic: the division should stop selling through the field force alone.",
           "provenance": "fact",
           "source_quote": "the division should stop selling through the field force alone",
@@ -226,10 +305,9 @@
           "id": "a2",
           "slot": "answer",
           "label": "Half the budget to the marketplace",
-          "level": 3,
           "pos": [
-            50,
-            -6
+            41,
+            -24
           ],
           "text": "Half of the sales budget goes behind the marketplace channel within twelve months.",
           "provenance": "fact",
@@ -378,22 +456,107 @@
       "why_this_episode": "The founder tells the whole introduction in one contiguous passage, so the Situation, the Complication and the Answer are all quotable facts. Two questions are asked out loud in that passage and neither is the one the answer answers, which is exactly the provenance point this framework exists to make: the Minto question has to be derived even when a transcript is full of question marks.",
       "idea_bearing_slot": "question",
       "layout": {
-        "mode": "tree",
-        "root": "s1",
-        "direction": "right",
+        "mode": "plane",
         "camera": {
-          "distance": 190
-        }
+          "distance": 128
+        },
+        "regions": [
+          {
+            "label": "Situation",
+            "x": [
+              -70,
+              -36
+            ],
+            "y": [
+              -50,
+              40
+            ],
+            "color": "#3987e5"
+          },
+          {
+            "label": "Complication",
+            "x": [
+              -34,
+              -4
+            ],
+            "y": [
+              -50,
+              40
+            ],
+            "color": "#d95926"
+          },
+          {
+            "label": "Question",
+            "x": [
+              -2,
+              26
+            ],
+            "y": [
+              -50,
+              40
+            ],
+            "color": "#2f9e63"
+          },
+          {
+            "label": "Answer",
+            "x": [
+              28,
+              76
+            ],
+            "y": [
+              -50,
+              40
+            ],
+            "color": "#7a5cc6"
+          }
+        ],
+        "guides": [
+          {
+            "from": [
+              -35,
+              -54
+            ],
+            "to": [
+              -35,
+              -54
+            ],
+            "style": "solid",
+            "label": "disrupted by →"
+          },
+          {
+            "from": [
+              -3,
+              -54
+            ],
+            "to": [
+              -3,
+              -54
+            ],
+            "style": "solid",
+            "label": "raises →"
+          },
+          {
+            "from": [
+              27,
+              -54
+            ],
+            "to": [
+              27,
+              -54
+            ],
+            "style": "solid",
+            "label": "answered by →"
+          }
+        ]
       },
       "nodes": [
         {
           "id": "s1",
           "slot": "situation",
           "label": "Logistics unchanged for 100 years",
-          "level": 0,
           "pos": [
-            -62,
-            22
+            -52,
+            20
           ],
           "text": "Logistics has been a market largely unchanged for the past hundred years; it is where the founders started looking.",
           "provenance": "fact",
@@ -407,10 +570,9 @@
           "id": "s2",
           "slot": "situation",
           "label": "Same planes, containerized hub model",
-          "level": 0,
           "pos": [
-            -62,
-            8
+            -52,
+            34
           ],
           "text": "The same 737s and Cessnas still fly the freight, and ship cargo is containerised on a hub-and-spoke model.",
           "provenance": "fact",
@@ -424,10 +586,9 @@
           "id": "s3",
           "slot": "situation",
           "label": "Soviet ekranoplans, 60s and 70s",
-          "level": 0,
           "pos": [
-            -62,
-            -8
+            -52,
+            -2
           ],
           "text": "Ekranoplans were built in the Soviet Union in the 1960s and 70s and were at the time the highest cargo-capacity planes ever built: flying ships.",
           "provenance": "fact",
@@ -441,10 +602,9 @@
           "id": "s4",
           "slot": "situation",
           "label": "Ground effect: lift-drag up 30-50%",
-          "level": 0,
           "pos": [
-            -62,
-            -22
+            -52,
+            -14
           ],
           "text": "Flying in ground effect, extremely close to the water, cuts drag and adds lift: an increase in the lift-to-drag ratio of 30 to 50 percent.",
           "provenance": "fact",
@@ -458,10 +618,9 @@
           "id": "c1",
           "slot": "complication",
           "label": "Soviet-era blockers now solved",
-          "level": 1,
           "pos": [
-            -26,
-            26
+            -18,
+            -22
           ],
           "text": "In the modern age most of the problems the Soviets had are solved: it was a controls problem and a materials-science problem, and composites answer the second.",
           "provenance": "fact",
@@ -475,10 +634,9 @@
           "id": "c2",
           "slot": "complication",
           "label": "Coast Guard certifies, not the FAA",
-          "level": 1,
           "pos": [
-            -26,
-            12
+            -18,
+            8
           ],
           "text": "Ground-effect vehicles are not regulated by the FAA but by the Coast Guard, and Coast Guard certification is significantly easier.",
           "provenance": "fact",
@@ -494,10 +652,9 @@
           "id": "c3",
           "slot": "complication",
           "label": "FAA path: a decade plus, no flights",
-          "level": 1,
           "pos": [
-            -26,
-            -2
+            -18,
+            -8
           ],
           "text": "Companies that built eVTOL aircraft IPO'd or SPAC'd for billions without ever flying a commercial flight, because FAA certification takes a decade or more.",
           "provenance": "fact",
@@ -512,10 +669,9 @@
           "id": "c4",
           "slot": "complication",
           "label": "Composites matured in 10-15 years",
-          "level": 1,
           "pos": [
-            -26,
-            -16
+            -18,
+            -32
           ],
           "text": "Composites have come into their own over the past ten to fifteen years with good manufacturing nearby; Poseidon buys all of its composites from ATV Composites.",
           "provenance": "fact",
@@ -531,10 +687,9 @@
           "id": "c5",
           "slot": "complication",
           "label": "Hobbyist RC parts got extremely good",
-          "level": 1,
           "pos": [
-            -26,
-            -30
+            -18,
+            -44
           ],
           "text": "As gamer GPUs enabled machine learning, hobbyist-grade RC hardware has become extremely good: motors, electronic systems and sensors small enough to fit on the aircraft.",
           "provenance": "fact",
@@ -548,10 +703,9 @@
           "id": "c6",
           "slot": "complication",
           "label": "Regulatory arbitrage moved to hard tech",
-          "level": 1,
           "pos": [
-            -26,
-            -44
+            -18,
+            14
           ],
           "text": "A host names the pattern on air: regulatory arbitrage, previously the domain of crypto, is now being used in hard tech.",
           "provenance": "fact",
@@ -563,10 +717,9 @@
           "id": "c7",
           "slot": "complication",
           "label": "Constraint moved: physics to paperwork",
-          "level": 1,
           "pos": [
-            -26,
-            40
+            -18,
+            27
           ],
           "text": "The binding constraint on coastal and island air freight is no longer aerodynamics or materials but the cost and duration of certification.",
           "provenance": "derived",
@@ -577,10 +730,9 @@
           "id": "q0",
           "slot": "question",
           "label": "What could we build to disrupt this?",
-          "level": 2,
           "pos": [
             12,
-            24
+            34
           ],
           "text": "The founders' own question, voiced in the narration: what could they build to disrupt a logistics market that had not changed in a hundred years?",
           "provenance": "fact",
@@ -594,10 +746,9 @@
           "id": "q1",
           "slot": "question",
           "label": "Why now and not decades ago?",
-          "level": 2,
           "pos": [
             12,
-            8
+            -15
           ],
           "text": "A host asks the why-now question: what in the regulatory picture and in the tech tree has enabled this now rather than decades ago?",
           "provenance": "fact",
@@ -609,11 +760,11 @@
           "id": "q2",
           "slot": "question",
           "label": "Cheapest way to move coastal freight?",
-          "level": 2,
           "pos": [
             12,
-            -8
+            2
           ],
+          "size": 1.6,
           "text": "The question the complication actually forces and nobody asks: now that ground effect works and the craft can be certified as a boat, what is the cheapest way to move freight along coasts and between islands?",
           "provenance": "derived",
           "confidence": 0.85,
@@ -624,11 +775,11 @@
           "id": "q3",
           "slot": "question",
           "label": "Which markets could switch regulators?",
-          "level": 2,
           "pos": [
             12,
-            -26
+            21
           ],
+          "size": 1.15,
           "text": "The general question the moment raises for anyone scanning for opportunities: which physically-ready hard-tech markets are frozen under an expensive certifier when a cheaper regulator already has jurisdiction over the same physics?",
           "provenance": "derived",
           "confidence": 0.6,
@@ -639,11 +790,11 @@
           "id": "a1",
           "slot": "answer",
           "label": "We are building flying boats",
-          "level": 3,
           "pos": [
-            52,
-            16
+            41,
+            -4
           ],
+          "size": 1.5,
           "text": "Flying below 150 metres, and internationally under the IMO, the craft is certified as what is technically a boat: so what they are building are flying boats.",
           "provenance": "fact",
           "source_quote": "But if you're going through the Coast Guard, and so it's if you're flying sub 150 meters and it's the same thing internationally, you're up under the IMO, you get certified as like what is technically a boat. So what we're building are flying boats.",
@@ -652,17 +803,15 @@
             "David Zagaynov",
             "Coast Guard",
             "IMO"
-          ],
-          "size": 1.4
+          ]
         },
         {
           "id": "a2",
           "slot": "answer",
           "label": "Seagull: quarter scale of a 2-ton craft",
-          "level": 3,
           "pos": [
-            52,
-            2
+            41,
+            -22
           ],
           "text": "The Seagull started as a quarter-scale prototype of a full-scale vehicle that will be 50 feet long with a two-ton capacity.",
           "provenance": "fact",
@@ -678,10 +827,9 @@
           "id": "a3",
           "slot": "answer",
           "label": "A third of air-freight price per kg-mile",
-          "level": 3,
           "pos": [
-            52,
-            -12
+            41,
+            -36
           ],
           "text": "Commercial operations start with medical deliveries to remote islands; at full scale, carrying two tons, the aim is to compete with air freight for coastal and island cargo at roughly a quarter to a third of the price per kilogram per mile.",
           "provenance": "fact",
@@ -696,10 +844,9 @@
           "id": "a4",
           "slot": "answer",
           "label": "DoD mission profiles for the Seagull",
-          "level": 3,
           "pos": [
-            52,
-            -26
+            62,
+            -10
           ],
           "text": "Poseidon took the Seagull to the DoD, specifically the Naval Surface Warfare Center and SOCOM, who each had their own mission profiles for a large payload in the marine domain.",
           "provenance": "fact",
@@ -718,10 +865,9 @@
           "id": "a5",
           "slot": "answer",
           "label": "Design to the regulatory boundary",
-          "level": 3,
           "pos": [
-            52,
-            30
+            41,
+            27
           ],
           "text": "The governing thought one level up, never stated: let the certification boundary set the specification. Stay under 150 metres and inside the Coast Guard's jurisdiction, and take the cost advantage that follows.",
           "provenance": "derived",
@@ -732,10 +878,9 @@
           "id": "a6",
           "slot": "answer",
           "label": "Defense first, then island logistics",
-          "level": 3,
           "pos": [
-            52,
-            -40
+            62,
+            -28
           ],
           "text": "Defense is the beachhead: DoD mission profiles fund the vehicle while the commercial answer starts small with medical deliveries and scales to coastal cargo.",
           "provenance": "derived",
