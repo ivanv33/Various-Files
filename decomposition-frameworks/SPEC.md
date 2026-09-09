@@ -43,7 +43,7 @@ Every node and every edge carries `provenance`, one of two values:
 - `fact`: the content is stated in the source. For the TBPN example the source is one transcript file. For the classic example the source is the short scenario text embedded in the example itself. A fact node must carry `source_quote`, a verbatim span copied from the source (at least 5 words), and `source_ref`, a free-text pointer (speaker, approximate position, or line). If a fact is only paraphrasable (spread over several turns), set `paraphrase: true` and still give `source_ref`; at most 30% of the fact nodes in an example may be paraphrases.
 - `derived`: the content is produced by LLM reasoning and is not stated in the source. A derived node must carry `confidence` (0 to 1) and `rationale` (why this inference follows from the facts).
 
-Edges follow the same rule. A causal link that the speaker states ("we lost the deal because the demo crashed") is a `fact` edge. A causal link the LLM infers is a `derived` edge with `confidence`.
+Edges follow the same rule, with a precise criterion: an edge is `fact` only when both endpoints are fact nodes and one speaker's turn states the connection, quoted verbatim in the edge's `source_quote` ("we lost the deal because the demo crashed"). Everything else is `derived` with `confidence`: a link the LLM infers, a link that joins two speakers, a sequence read from narrative order, and any edge that touches a derived node.
 
 Grounding links: an edge with relation `supported_by` runs from a derived node to a fact node and is always `derived` (the judgment that a fact supports an inference is itself an inference). Every derived node should have at least one `supported_by` edge or a direct edge to a fact node; the validator warns when a derived node is not connected to any fact.
 
@@ -54,6 +54,19 @@ The framework's own slot structure (for example that Toulmin has a Warrant slot)
 One narrow exception for scaffolding: some frameworks draw their fixed categories as nodes (the six Ishikawa categories, the four Cynefin domains, Wardley's evolution stages, Pólya's and PDCA's phases). Such a slot is marked `structural: true` in the registry, and its nodes carry `provenance: "schema"`. Schema nodes are neither facts nor inferences; they need no quote, confidence or rationale, they are drawn as neutral grey markers, they stay visible when derived items are hidden, and they are excluded from the fact/derived counts. Only slots flagged structural may use `schema`; content never may.
 
 Why binary and not three-way: a "hybrid" class blurs the rule agents apply. When a slot is partly stated and partly inferred, split it: a fact node for the stated part and a derived node for the inferred part, linked by `supported_by`.
+
+Confidence scale, shared by every framework so a later merge can compare it:
+
+| band | meaning |
+|---|---|
+| 0.90 to 1.00 | the inference is nearly forced by the quoted facts (arithmetic, a direct implication, a restatement the framework requires) |
+| 0.70 to 0.85 | a standard reading most careful readers would share: causation or sequence stated adjacently, the general rule an argument needs in order to work |
+| 0.50 to 0.65 | plausible but contestable: counterfactuals, generalised needs, links across speakers or across segments |
+| below 0.50 | speculative; keep only when the framework requires the slot to be filled, and say so in the rationale |
+
+Where the idea lives: a derived node in the example's `idea_bearing_slot` may carry an `idea` field, one sentence naming the underserved need, market shift or startup idea that node implies. The node's `text` stays framework content (a rebuttal is still a rebuttal, a task is still the actor's task); the idea is the reading of it. Never add nodes whose only content is an idea. Every TBPN example should have at least one node with `idea`; the root README's idea table is generated from them.
+
+Source references: for transcripts, `source_ref` names the speaker when identifiable and the line range in the file as `L<start>-L<end>` (1-based lines of the .md file); for the classic scenario text, `sentence <n>`. `entities` lists every company, person or product the node names, spelled as in `tbpn-transcripts/extractions/`; an empty list is fine when the node names none.
 
 ## 4. graph.json
 
@@ -96,12 +109,13 @@ Node fields:
 | confidence | derived | 0 to 1 |
 | rationale | derived | why the inference follows; at least 20 characters |
 | entities | optional | company, person or product names as they appear in `tbpn-transcripts/extractions/`; the hook for future merging |
+| idea | derived, optional | one sentence: the underserved need, market shift or startup idea this node implies; normally only in the idea-bearing slot |
 | level | layout, optional | tree mode; 0 is the root layer |
 | order | layout, optional | ring mode; 0..n-1 around the circle |
 | pos | layout, optional | `[x, y]` or `[x, y, z]`, world units, recommended range -50..50 |
 | size | optional | multiplier, default 1 |
 
-Edge fields: `id`, `from`, `to`, `relation`, `provenance`, plus `confidence` (derived, required) and optional `label` (printed on the edge, e.g. loop polarity `+`/`-`), `rationale`, `source_quote`.
+Edge fields: `id`, `from`, `to`, `relation`, `provenance`, plus `confidence` (derived, required), `source_quote` and `source_ref` (fact, required: the span in which one speaker states the connection; `paraphrase: true` allowed under the same 30% cap, counted together with nodes), and optional `label` (printed on the edge, e.g. loop polarity `+`/`-`) and `rationale`.
 
 Layout object:
 
@@ -161,10 +175,12 @@ Which derived nodes and edges exist, what reasoning they encode, and what a read
 ## Example 2: from the TBPN transcripts: <title>
 Episode title, date, relative link to the transcript file (../../../tbpn-transcripts/transcripts/<file>.md), and why this episode fits this framework (from the scout's evidence).
 ### Facts (quoted)
+One entry per fact node, grouped by slot: id, label, text, the verbatim quote, the source_ref. Fact edges are listed here too with their quoted connective.
 ### Decomposition
+One entry per derived node, grouped by slot: id, label, text, [derived 0.xx], rationale, and the ids of the facts it is supported by. Derived edges are listed after the nodes. Fact nodes are referenced by id, not repeated.
 ### What the LLM added
 ### Where the opportunity shows up
-Name the idea-bearing slot and read the derived nodes in it as candidate ideas or underserved needs, with their confidence.
+Name the idea-bearing slot and list every node that carries an `idea` field: the idea sentence, the node it is read from, its confidence. Read them as candidate ideas or underserved needs.
 
 ## Building a knowledge graph with this framework
 ### Node and edge types
@@ -231,7 +247,7 @@ Inputs: paths to spec, registry entry, `graph.json`, and the README template (se
 
 The page is built by a **viz builder** child and judged by an independent **viz critic** child. The loop runs until the critic passes or five iterations have run. The parent drives it:
 
-1. **Builder iteration n.** The builder sets the `layout` object and the layout fields on nodes (`level`, `order`, `pos`, `size`), slot colours and shapes, and any decor (axes, regions, guides) so the page renders in the framework's native shape. It may write an extension block in `index.html` for a visual the data-driven engine cannot express. It may edit only those layout fields; never a node's content or provenance. It runs `node _meta/validate.mjs <dir>`, `node _meta/build.mjs <dir>` and `node _meta/snap.mjs <dir>`, looks at its own screenshots and metrics, fixes what it can see, and reports what it changed and why. On iterations after the first it works from the critic's blocking issues (the parent continues the same builder agent with a message, so it keeps context).
+1. **Builder iteration n.** The builder sets the `layout` object and the layout fields on nodes (`level`, `order`, `pos`, `size`), slot colours and shapes, and any decor (axes, regions, guides) so the page renders in the framework's native shape. It may write an extension block in `index.html` for a visual the data-driven engine cannot express. It may shorten a node's `label` (40 characters or fewer, meaning preserved; `text` untouched). It may edit only those fields; never a node's text, provenance, quotes, rationale, edges or ids. It runs `node _meta/validate.mjs <dir>`, `node _meta/build.mjs <dir>` and `node _meta/snap.mjs <dir>`, looks at its own screenshots and metrics, fixes what it can see, and reports what it changed and why. On iterations after the first it works from the critic's blocking issues (the parent continues the same builder agent with a message, so it keeps context).
 2. **Commit** `viz(<slug>): iteration <n>` with the builder's summary as the body.
 3. **Critic iteration n.** A fresh agent every time, given only the rubric below, the spec's viewer section, and the paths. It runs `node _meta/snap.mjs <dir>` itself, reads the screenshots (all examples, default and facts-only and grounding and panel states), `report.json` and `graph.json`, and returns a verdict. It never edits files and never sees the builder's reasoning.
 4. **Record and commit.** The parent appends the verdict to `state.json.viz_reviews` and commits `viz-review(<slug>): iteration <n> <pass|revise>`.
@@ -296,12 +312,12 @@ limitations: <engine limits hit, slots that fit badly, anything the reviewer sho
 
 - Branch: the current feature branch. No PR; the owner merges.
 - Framework agents commit only their own folder through `_meta/commit-framework.sh`, which runs `git add -- <dir>` and `git commit -m <msg> -- <dir>` (path-limited commit, so files staged by other agents are not swept in) and retries with backoff when `index.lock` is held by a concurrent agent.
-- Commit subjects, in order per framework: `scaffold(<slug>): graph.json and state`, `readme(<slug>): first draft`, `viz(<slug>): iteration <n>`, `viz-review(<slug>): iteration <n> <pass|revise>`, then the final `Add framework: <Name> (<slug>)` whose body gives the example chosen, the node counts and the number of viz iterations. The script appends the trailer `Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>`.
+- Commit subjects, in order per framework: `scaffold(<slug>): graph.json and state`, `readme(<slug>): first draft`, `viz(<slug>): iteration <n>`, `viz-review(<slug>): iteration <n> <pass|revise>`, `content(<slug>): <what changed>` for any change to node or edge content after the scaffold (a quote extended, an edge reclassified, a review fix), then the final `Add framework: <Name> (<slug>)` whose body gives the example chosen, the node counts and the number of viz iterations. The reconcile check compares the current `graph.json` against the last `scaffold` or `content` commit with layout fields and labels stripped. The script appends the trailer `Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>`.
 - The orchestrator commits `_meta/`, `SPEC.md`, the root README and `index.html` in its own commits.
 
 ## 11. Validation and review
 
-Automated, `validate.mjs`: structure per schema; slug and category match the folder; slot and relation references resolve; node counts 8..30; fact nodes have quotes present in the source (normalised: lowercase, straight quotes, punctuation stripped, whitespace collapsed) or are flagged paraphrases within the 30% cap; derived nodes have confidence and rationale; derived edges have confidence; `supported_by` runs derived to fact; every derived node connects to a fact (warning); layout fields consistent with the mode; transcript file exists and its date prefix matches `source.date`; `idea_bearing_slot` resolves; labels within 40 characters (warning).
+Automated, `validate.mjs`: structure per schema; slug and category match the folder; slot and relation references resolve; node counts 8..30; fact nodes have quotes present in the source (normalised: lowercase, straight quotes, punctuation stripped, whitespace collapsed) or are flagged paraphrases within the 30% cap; derived nodes have confidence and rationale; fact edges join two fact nodes and quote their connective (verified the same way); derived edges have confidence; `supported_by` runs derived to fact; every derived node connects to a fact (warning); `idea` only on derived nodes, and at least one in the TBPN example's idea-bearing slot (warning); transcript `source_ref` carries a line range (warning); layout fields consistent with the mode; transcript file exists and its date prefix matches `source.date`; `idea_bearing_slot` resolves; labels within 40 characters (warning).
 
 Wave review: after each category wave, a review agent reads every README and graph.json of the wave against this spec and reports violations and weak spots (thin rationale, slot confusion, an example that does not exhibit the framework, prose that contradicts the data). Fixes go back to the same framework agent by message so it keeps its context.
 

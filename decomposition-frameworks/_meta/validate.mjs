@@ -148,9 +148,11 @@ export function validateDir(dir) {
         continue;
       }
       if (slot && slot.structural) E(`${nt}: structural slot ${slot.id} requires provenance schema`);
+      if (n.idea !== undefined && n.provenance !== 'derived') E(`${nt}: idea is only allowed on derived nodes`);
       if (n.provenance === 'fact') {
         factCount++;
         if (!n.source_ref) W(`${nt}: fact without source_ref`);
+        else if (ex.kind === 'tbpn' && !/L\d+/.test(n.source_ref)) W(`${nt}: source_ref should carry a line range like "Speaker, L120-L124"`);
         if (n.paraphrase) {
           paraCount++;
           if (!n.source_quote) E(`${nt}: paraphrase still needs source_quote (the paraphrased content)`);
@@ -162,12 +164,12 @@ export function validateDir(dir) {
         }
       } else {
         derivedCount++;
+        if (n.idea !== undefined && (typeof n.idea !== 'string' || n.idea.length < 20)) E(`${nt}: idea must be a sentence (20+ chars)`);
         if (typeof n.confidence !== 'number' || n.confidence < 0 || n.confidence > 1) E(`${nt}: derived needs confidence 0..1`);
         if (!n.rationale || n.rationale.length < 20) E(`${nt}: derived needs a rationale (20+ chars)`);
         if (n.source_quote) W(`${nt}: derived node carries source_quote; if it is stated in the source it should be a fact`);
       }
     }
-    if (factCount > 0 && paraCount / factCount > PARAPHRASE_CAP) E(`${tag}: ${paraCount}/${factCount} facts are paraphrases; cap is ${Math.round(PARAPHRASE_CAP * 100)}%`);
     if (factCount === 0) E(`${tag}: no fact nodes; every example must be grounded`);
     if (derivedCount === 0) W(`${tag}: no derived nodes; the framework adds nothing here`);
 
@@ -187,6 +189,17 @@ export function validateDir(dir) {
       if (!PROV.has(e.provenance)) { E(`${et}: provenance must be fact|derived|schema`); continue; }
       if (e.provenance === 'schema' && a.provenance !== 'schema' && b.provenance !== 'schema') E(`${et}: provenance schema only when an endpoint is a schema node`);
       if (e.provenance === 'derived' && (typeof e.confidence !== 'number' || e.confidence < 0 || e.confidence > 1)) E(`${et}: derived edge needs confidence 0..1`);
+      if (e.provenance === 'fact') {
+        if (a.provenance !== 'fact' || b.provenance !== 'fact') E(`${et}: a fact edge must join two fact nodes (mark it derived)`);
+        if (!e.source_quote) E(`${et}: a fact edge must quote the span where one speaker states the connection`);
+        else if (e.paraphrase) paraCount++;
+        else {
+          const words = normalize(e.source_quote).split(' ').filter(Boolean);
+          if (words.length < MIN_QUOTE_WORDS) E(`${et}: connective quote has ${words.length} words; need ${MIN_QUOTE_WORDS} (or mark paraphrase)`);
+          if (normSource !== null && !normSource.includes(normalize(e.source_quote))) E(`${et}: source_quote not found verbatim in the source: "${e.source_quote.slice(0, 80)}"`);
+        }
+        if (!e.source_ref) W(`${et}: fact edge without source_ref`);
+      }
       if (e.relation === 'supported_by') {
         if (a.provenance !== 'derived') E(`${et}: supported_by must start at a derived node`);
         if (b.provenance !== 'fact') E(`${et}: supported_by must end at a fact node`);
@@ -195,6 +208,9 @@ export function validateDir(dir) {
       if (a.provenance === 'fact') touchesFact.add(b.id);
       if (b.provenance === 'fact') touchesFact.add(a.id);
     }
+    const factEdges = edges.filter(e => e.provenance === 'fact').length;
+    if (factCount + factEdges > 0 && paraCount / (factCount + factEdges) > PARAPHRASE_CAP) E(`${tag}: ${paraCount}/${factCount + factEdges} facts (nodes + edges) are paraphrases; cap is ${Math.round(PARAPHRASE_CAP * 100)}%`);
+    if (ex.kind === 'tbpn' && ex.idea_bearing_slot && !list.some(n => n.slot === ex.idea_bearing_slot && n.provenance === 'derived' && n.idea)) W(`${tag}: no derived node in the idea-bearing slot "${ex.idea_bearing_slot}" carries an idea field`);
     if (edges.length < list.length - 1) W(`${tag}: ${edges.length} edges for ${list.length} nodes; graph is probably disconnected`);
     for (const n of nodes.values()) if (n.provenance === 'derived' && !touchesFact.has(n.id)) W(`${tag} node ${n.id}: derived node has no edge to any fact (add supported_by)`);
 
