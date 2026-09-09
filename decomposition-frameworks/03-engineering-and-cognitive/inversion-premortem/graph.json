@@ -91,7 +91,38 @@
         "mode": "tree",
         "root": "k_golive",
         "direction": "down",
-        "camera": { "distance": 165 }
+        "regions": [
+          {
+            "label": "0 · goal · the plan as committed",
+            "x": [-72, 72],
+            "y": [41.5, 56.3],
+            "color": "#3987e5"
+          },
+          {
+            "label": "1 · assumed failure · it is later, the plan has failed",
+            "x": [-72, 72],
+            "y": [19.2, 39.4],
+            "color": "#c4384a"
+          },
+          {
+            "label": "2 · pathway · how the failure happened",
+            "x": [-72, 72],
+            "y": [1.3, 17.1],
+            "color": "#d95926"
+          },
+          {
+            "label": "3 · cause · what each pathway is made of",
+            "x": [-72, 72],
+            "y": [-34.2, -0.7],
+            "color": "#2f9e63"
+          },
+          {
+            "label": "4 · safeguard · what would have blocked it",
+            "x": [-72, 72],
+            "y": [-55, -36.5],
+            "color": "#1b998b"
+          }
+        ]
       },
       "nodes": [
         {
@@ -103,7 +134,8 @@
           "source_quote": "The new system goes live on 1 January, every customer on one platform",
           "source_ref": "sentence 2, the director's plan",
           "level": 0,
-          "size": 1.4
+          "size": 1.4,
+          "pos": [16.3, 47]
         },
         {
           "id": "k_retire",
@@ -113,7 +145,8 @@
           "provenance": "fact",
           "source_quote": "the old mainframe is switched off on 31 March",
           "source_ref": "sentence 2, the director's plan",
-          "level": 0
+          "level": 0,
+          "pos": [-23.1, 47]
         },
         {
           "id": "k_fiasco",
@@ -124,7 +157,8 @@
           "source_quote": "it is the following October, the programme has failed completely and publicly",
           "source_ref": "sentence 8, the director's closing exercise",
           "level": 1,
-          "size": 1.5
+          "size": 1.5,
+          "pos": [13.6, 26.8]
         },
         {
           "id": "k_shape",
@@ -134,7 +168,8 @@
           "provenance": "derived",
           "confidence": 0.7,
           "rationale": "The exercise asserts failure but not its content. The three stated commitments (the January cutover, the March shutdown, the budget) are the only things that can visibly break, so the concrete shape of the fiasco is read off them; the word 'publicly' points at customer-visible invoicing rather than internal slippage.",
-          "level": 1
+          "level": 1,
+          "pos": [-25.3, 26.8]
         },
         {
           "id": "k_untested",
@@ -144,7 +179,8 @@
           "provenance": "fact",
           "source_quote": "the payments integration with the bank has never been run end to end at live volumes",
           "source_ref": "sentence 4, noted for the record",
-          "level": 3
+          "level": 3,
+          "pos": [-67.8, -10.4]
         },
         {
           "id": "k_leavers",
@@ -154,7 +190,8 @@
           "provenance": "fact",
           "source_quote": "two of the four engineers who wrote the old system leave in November",
           "source_ref": "sentence 4, noted for the record",
-          "level": 3
+          "level": 3,
+          "pos": [-32.5, -28.4]
         },
         {
           "id": "k_nopenalty",
@@ -164,7 +201,8 @@
           "provenance": "fact",
           "source_quote": "the vendor's contract carries no penalty for late delivery",
           "source_ref": "sentence 4, noted for the record",
-          "level": 3
+          "level": 3,
+          "pos": [24.2, -19.4]
         },
         {
           "id": "k_december",
@@ -174,7 +212,8 @@
           "provenance": "fact",
           "source_quote": "December is the busiest invoicing month of the year",
           "source_ref": "sentence 5, the finance sponsor",
-          "level": 3
+          "level": 3,
+          "pos": [-53.5, -19.4]
         },
         {
           "id": "k_fixeddate",
@@ -184,7 +223,8 @@
           "provenance": "fact",
           "source_quote": "the date has been given to the board and to customers and will not move",
           "source_ref": "sentence 6, the director's answer",
-          "level": 3
+          "level": 3,
+          "pos": [-8.1, -10.4]
         },
         {
           "id": "k_nodissent",
@@ -194,7 +234,8 @@
           "provenance": "fact",
           "source_quote": "Nobody in the room disagrees, and the plan is approved",
           "source_ref": "sentence 7, the approval",
-          "level": 3
+          "level": 3,
+          "pos": [48.1, -28.4]
         },
         {
           "id": "k_silence",
@@ -204,7 +245,8 @@
           "provenance": "derived",
           "confidence": 0.55,
           "rationale": "The text records the absence of disagreement, not its reason, and gives no owner or action for any of the three conditions. Reading unanimity as a cause rather than as reassurance is the pre-mortem's characteristic move and is contestable: the room may simply have judged the risks acceptable.",
-          "level": 3
+          "level": 3,
+          "pos": [67.3, -10.4]
         },
         {
           "id": "k_p1",
@@ -214,7 +256,8 @@
           "provenance": "derived",
           "confidence": 0.65,
           "rationale": "Assembles the one condition the director named as untested into a sequence with a moment of no return. The source states that the integration was never run at live volumes; it does not state that it fails, when, or that customers see it first, and three unstated steps is a story, not a reading.",
-          "level": 2
+          "level": 2,
+          "pos": [-65.4, 7.1]
         },
         {
           "id": "k_p2",
@@ -224,7 +267,8 @@
           "provenance": "derived",
           "confidence": 0.65,
           "rationale": "Joins the stated November departures to the stated March shutdown, which the source never links. The inference is that reconciliation against a system nobody understands is the long pole; plausible, but the team may have documented the old system.",
-          "level": 2
+          "level": 2,
+          "pos": [-18.3, 7.1]
         },
         {
           "id": "k_p3",
@@ -234,7 +278,8 @@
           "provenance": "derived",
           "confidence": 0.6,
           "rationale": "Combines the peak-month fact with the fixed date to infer a missing rehearsal that the source never mentions. Nobody in the meeting says a rehearsal was planned or dropped; this is the pre-mortem supplying an omission rather than reading one.",
-          "level": 2
+          "level": 2,
+          "pos": [26, 7.1]
         },
         {
           "id": "k_p4",
@@ -244,7 +289,8 @@
           "provenance": "derived",
           "confidence": 0.6,
           "rationale": "Three stated conditions (the immovable date, the penalty-free vendor contract, the unanimous approval) are read together as a decision rule that no single one of them states. Contestable: a board told of a red status might well have moved the date.",
-          "level": 2
+          "level": 2,
+          "pos": [67.8, 7.1]
         },
         {
           "id": "k_s1",
@@ -254,7 +300,8 @@
           "provenance": "derived",
           "confidence": 0.75,
           "rationale": "Directly inverts the one condition the director named as untested. The safeguard is not in the source; the source records the gap and takes no action on it.",
-          "level": 4
+          "level": 4,
+          "pos": [-52.4, -47]
         },
         {
           "id": "k_s2",
@@ -264,7 +311,8 @@
           "provenance": "derived",
           "confidence": 0.7,
           "rationale": "Blocks the departure pathway at the only point where it is cheap, before the November leaving date. Nothing in the source suggests retention was considered.",
-          "level": 4
+          "level": 4,
+          "pos": [-3, -47]
         },
         {
           "id": "k_s3",
@@ -274,7 +322,8 @@
           "provenance": "derived",
           "confidence": 0.7,
           "rationale": "Answers the pathways that all pass through the same point: a fixed date, a vendor with nothing at stake and a room that did not object. Deciding the abort rule before the pressure arrives is the standard countermeasure and is nowhere in the source.",
-          "level": 4
+          "level": 4,
+          "pos": [48.3, -47]
         }
       ],
       "edges": [
@@ -578,7 +627,38 @@
         "mode": "tree",
         "root": "p_ramp",
         "direction": "down",
-        "camera": { "distance": 180 }
+        "regions": [
+          {
+            "label": "0 · goal · the plan as committed",
+            "x": [-75, 75],
+            "y": [41.5, 56.3],
+            "color": "#3987e5"
+          },
+          {
+            "label": "1 · assumed failure · it is later, the plan has failed",
+            "x": [-75, 75],
+            "y": [19.2, 39.4],
+            "color": "#c4384a"
+          },
+          {
+            "label": "2 · pathway · how the failure happened",
+            "x": [-75, 75],
+            "y": [1.3, 17.1],
+            "color": "#d95926"
+          },
+          {
+            "label": "3 · cause · what each pathway is made of",
+            "x": [-75, 75],
+            "y": [-34.2, -0.7],
+            "color": "#2f9e63"
+          },
+          {
+            "label": "4 · safeguard · what would have blocked it",
+            "x": [-75, 75],
+            "y": [-55, -36.5],
+            "color": "#1b998b"
+          }
+        ]
       },
       "nodes": [
         {
@@ -590,7 +670,8 @@
           "source_quote": "a product called superpower, 42 megawatts, natural gas. It's going into data centers. Crusoe is our launch customer.",
           "source_ref": "Blake Scholl, L4116-L4118",
           "entities": ["Boom Supersonic", "Superpower", "Crusoe", "Blake Scholl"],
-          "level": 0
+          "level": 0,
+          "pos": [-63.5, 47]
         },
         {
           "id": "p_ramp",
@@ -602,7 +683,8 @@
           "source_ref": "Blake Scholl, L4218-L4222",
           "entities": ["Boom Supersonic", "Blake Scholl"],
           "level": 0,
-          "size": 1.4
+          "size": 1.4,
+          "pos": [21.1, 47]
         },
         {
           "id": "p_factory",
@@ -613,7 +695,8 @@
           "source_quote": "We're about to open early next year, another factory that is three times the size of this one. And that's what's going to be able to do two gigawatts a year.",
           "source_ref": "Blake Scholl, L4356-L4358",
           "entities": ["Boom Supersonic"],
-          "level": 0
+          "level": 0,
+          "pos": [64.1, 47]
         },
         {
           "id": "p_bridge",
@@ -625,7 +708,8 @@
           "source_ref": "Blake Scholl, L4260-L4266",
           "entities": ["Boom Supersonic", "Superpower", "Overture"],
           "level": 0,
-          "size": 1.4
+          "size": 1.4,
+          "pos": [-22.1, 47]
         },
         {
           "id": "fail",
@@ -637,7 +721,8 @@
           "rationale": "The inversion is the method's mandated first move, so the node must exist; what it says is read off the stated commitments, since the 18-month ramp, the two-gigawatt factory, the closed equity door and the airliner it funds are the only things that can visibly fail. The 2028 date and the ordering of the collapse are a judgement, and the source asserts the opposite outcome.",
           "entities": ["Boom Supersonic", "Superpower", "Overture"],
           "level": 1,
-          "size": 1.6
+          "size": 1.6,
+          "pos": [8.1, 26.8]
         },
         {
           "id": "c_demand",
@@ -648,7 +733,8 @@
           "source_quote": "We've got customers that are going to take as much as we can possibly make as fast as we can make it.",
           "source_ref": "Blake Scholl, L4402-L4404",
           "entities": ["Boom Supersonic", "Blake Scholl"],
-          "level": 3
+          "level": 3,
+          "pos": [15.2, -28.4]
         },
         {
           "id": "c_capital",
@@ -659,7 +745,8 @@
           "source_quote": "Today we've got the capital to go do that. How much capital? 300 million.",
           "source_ref": "Blake Scholl with the hosts, L4406-L4410",
           "entities": ["Boom Supersonic", "Blake Scholl"],
-          "level": 3
+          "level": 3,
+          "pos": [48.4, -19.4]
         },
         {
           "id": "c_nomore",
@@ -670,7 +757,8 @@
           "source_quote": "So we're done fundraising. This is the last equity around we ever have to deal.",
           "source_ref": "Blake Scholl, L4424-L4426",
           "entities": ["Boom Supersonic", "Blake Scholl"],
-          "level": 3
+          "level": 3,
+          "pos": [29.8, -10.4]
         },
         {
           "id": "c_challenge",
@@ -681,7 +769,8 @@
           "source_quote": "And so there's going to be a lot of challenge and getting that to work, getting to work reliably, getting manufacturing up to scale.",
           "source_ref": "Blake Scholl, L4394-L4398",
           "entities": ["Boom Supersonic", "Blake Scholl"],
-          "level": 3
+          "level": 3,
+          "pos": [-5.4, -19.4]
         },
         {
           "id": "c_confidence",
@@ -692,7 +781,8 @@
           "source_quote": "So I think this takes us from, you know, less than 50% chance of success to a far greater chance of success. I think overture supersonic flight is basically inevitable at this point.",
           "source_ref": "Blake Scholl, L4450-L4454",
           "entities": ["Boom Supersonic", "Overture", "Blake Scholl"],
-          "level": 3
+          "level": 3,
+          "pos": [65.8, -28.4]
         },
         {
           "id": "c_leadtime",
@@ -703,7 +793,8 @@
           "source_quote": "if we take a turbine blade and we send it to a traditional supplier to be made, it's going to take six, maybe nine months for us to get that part back, going from digital design to hardware.",
           "source_ref": "Blake Scholl, L4518-L4526",
           "entities": ["Boom Supersonic", "Blake Scholl"],
-          "level": 3
+          "level": 3,
+          "pos": [-70.8, -10.4]
         },
         {
           "id": "c_machinist",
@@ -714,7 +805,8 @@
           "source_quote": "It's hard to find enough great CNC machinist.",
           "source_ref": "Blake Scholl, L4650-L4650",
           "entities": ["Boom Supersonic", "Blake Scholl"],
-          "level": 3
+          "level": 3,
+          "pos": [-51.7, -19.4]
         },
         {
           "id": "c_permits",
@@ -725,7 +817,8 @@
           "source_quote": "we have a permission-based approach to building, not a freedom to innovate approach to building.",
           "source_ref": "Blake Scholl, L4576-L4606",
           "entities": ["Blake Scholl"],
-          "level": 3
+          "level": 3,
+          "pos": [-33.2, -28.4]
         },
         {
           "id": "c_optimism",
@@ -736,7 +829,8 @@
           "confidence": 0.6,
           "rationale": "Reads the stated odds revision and the 'easy mode' framing as an input to the plan rather than as commentary on it. Scholl states the confidence and states the commitments; that the second causes the first to be under-slacked is an inference, and a founder may be publicly confident while planning privately for the bad case.",
           "entities": ["Boom Supersonic", "Blake Scholl"],
-          "level": 3
+          "level": 3,
+          "pos": [-12.9, -10.4]
         },
         {
           "id": "path_ramp",
@@ -747,7 +841,8 @@
           "confidence": 0.6,
           "rationale": "Assembles four separately stated constraints (part turnaround, scarce machinists, permission-based building, manufacturing scale-up) into one schedule failure. Each ingredient is quoted; the assembly and the doubling of the timeline are not in the source, and Scholl argues the opposite.",
           "entities": ["Boom Supersonic"],
-          "level": 2
+          "level": 2,
+          "pos": [-63.2, 7.1]
         },
         {
           "id": "path_customer",
@@ -758,7 +853,8 @@
           "confidence": 0.55,
           "rationale": "Nobody in the source hints at demand risk; Scholl says the opposite, that customers will take everything Boom can make. Concentration on a single named counterparty exposed to the same cycle is the model's own reading of the announcement and is entirely contestable.",
           "entities": ["Boom Supersonic", "Crusoe"],
-          "level": 2
+          "level": 2,
+          "pos": [-18.7, 7.1]
         },
         {
           "id": "path_field",
@@ -769,7 +865,8 @@
           "confidence": 0.65,
           "rationale": "Scholl names reliability as one of the two biggest challenges, so the ingredient is stated; the failure in service, its timing against the factory opening and the freeze in the order book are the model's construction.",
           "entities": ["Boom Supersonic"],
-          "level": 2
+          "level": 2,
+          "pos": [26.2, 7.1]
         },
         {
           "id": "path_bridge",
@@ -780,7 +877,8 @@
           "confidence": 0.65,
           "rationale": "The coupling is stated outright, and so is the decision to stop raising equity; that the coupling propagates failure in both directions, rather than only cash in one, is the inference. Pre-mortems on each programme separately would miss it.",
           "entities": ["Boom Supersonic", "Overture", "Superpower"],
-          "level": 2
+          "level": 2,
+          "pos": [70.6, 7.1]
         },
         {
           "id": "s_parts",
@@ -792,7 +890,8 @@
           "rationale": "Attacks the schedule pathway at the input Scholl himself identifies as the industry's binding constraint. Redundancy for an advantage that currently exists in exactly one building is nowhere in the source.",
           "idea": "The six-to-nine-month industry lead time for hot-section parts is a market: a rapid-turn superalloy parts service, printing, heat-treating and machining turbine blades in 24 hours, sold to every turbine and engine builder that sold off its own supply chain.",
           "entities": ["Boom Supersonic"],
-          "level": 4
+          "level": 4,
+          "pos": [-70.5, -47]
         },
         {
           "id": "s_bond",
@@ -804,7 +903,8 @@
           "rationale": "Addresses the customer-concentration and field-failure pathways at the same point, the buyer's inability to price a new vendor's risk. Contestable as a safeguard because the bond costs money the plan has not budgeted, and nothing in the source suggests customers asked for one.",
           "idea": "Behind-the-meter power is bottlenecked on trust, not turbines: an underwriting product that bonds delivery dates and uptime for new energy-hardware vendors would let data-centre developers buy from anyone but GE and Rolls-Royce.",
           "entities": ["Boom Supersonic", "Crusoe"],
-          "level": 4
+          "level": 4,
+          "pos": [21.4, -47]
         },
         {
           "id": "s_firewall",
@@ -815,7 +915,8 @@
           "confidence": 0.65,
           "rationale": "The coupling and the closed equity door are both stated; the safeguard is to decide the exception now rather than under distress. Standard practice for a programme funded by another programme's cash flow, and absent from the source.",
           "entities": ["Boom Supersonic", "Overture"],
-          "level": 4
+          "level": 4,
+          "pos": [70.8, -47]
         },
         {
           "id": "s_permit",
@@ -827,7 +928,8 @@
           "rationale": "Turns a general complaint about American permitting into a specific measure on this plan's critical path. Speculative in that the source never says permits are on Boom's critical path, only that they slow anyone building physical things.",
           "idea": "Pre-permitted, grid-adjacent turbine pads sold as a shelf product, with air and interconnect approvals already granted, would let a data-centre developer buy months rather than wait in a permitting queue.",
           "entities": ["Boom Supersonic"],
-          "level": 4
+          "level": 4,
+          "pos": [-26.4, -47]
         }
       ],
       "edges": [

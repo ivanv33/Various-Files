@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Framework graph</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --plane: #0d0d0d;      /* page plane */
+    --surface: #1a1a19;    /* chart surface (canvas background) */
+    --card: #202020;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --muted: #898781;
+    --hairline: #2c2c2a;
+    --baseline: #383835;
+    --accent: #3987e5;
+    --schema: #898781;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--plane); color: var(--ink-2); font: 14px/1.45 var(--sans); }
+  a { color: var(--ink-2); }
+  a:hover { color: var(--ink); }
+  kbd { font: 11px var(--mono); color: var(--muted); border: 1px solid var(--hairline); border-radius: 3px; padding: 0 4px; margin-left: 4px; }
+  button, .seg button { font: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  body { display: grid; grid-template-rows: auto auto 1fr; height: 100vh; }
+  header.bar { display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--hairline); background: var(--plane); }
+  .title { display: flex; flex-direction: column; min-width: 220px; }
+  .eyebrow { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-size: 17px; font-weight: 600; margin: 2px 0 0; color: var(--ink); letter-spacing: -.01em; }
+  .links { font-size: 12px; margin-top: 2px; display: flex; gap: 12px; }
+  .links a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--hairline); }
+  .links a:hover { color: var(--ink); border-color: var(--muted); }
+  .seg { display: inline-flex; border: 1px solid var(--hairline); border-radius: 6px; overflow: hidden; }
+  .seg button { background: transparent; color: var(--ink-2); border: 0; padding: 6px 12px; cursor: pointer; }
+  .seg button + button { border-left: 1px solid var(--hairline); }
+  .seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
+  .toggles { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; margin-left: auto; font-size: 13px; }
+  .toggles label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; }
+  .toggles input { accent-color: var(--accent); }
+  .toggles button { background: transparent; color: var(--ink-2); border: 1px solid var(--hairline); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+  .toggles button:hover { color: var(--ink); border-color: var(--muted); }
+
+  main { position: relative; overflow: hidden; background: var(--surface); }
+  #stage { position: absolute; inset: 0; }
+  #stage canvas { display: block; }
+  #labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+  #labels * { pointer-events: none; }
+  .nlabel { font: 12px/1.2 var(--sans); color: var(--ink-2); white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6); }
+  .nlabel .lab { display: inline-block; transform: translateY(11px); }
+  .nlabel.derived { color: var(--ink-2); font-style: italic; }
+  .nlabel.schema { color: var(--muted); font: 11px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .nlabel .g { font-size: 9px; margin-right: 4px; vertical-align: 1px; }
+  .nlabel .idea-star { color: #eda100; margin-right: 3px; }
+  #panel .idea { border-left: 2px solid #eda100; padding: 6px 10px; margin: 8px 0; color: var(--ink); background: rgba(237,161,0,.07); }
+  .elabel { font: 11px var(--mono); color: var(--muted); background: var(--surface); padding: 0 4px; border-radius: 3px; }
+  .axlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .tick { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+  .rlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .glabel { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+
+  #tooltip { position: absolute; pointer-events: none; display: none; max-width: 300px; background: var(--card); border: 1px solid var(--hairline); border-radius: 6px; padding: 8px 10px; font-size: 12px; color: var(--ink-2); box-shadow: 0 6px 20px rgba(0,0,0,.5); z-index: 5; }
+  #tooltip .t-label { color: var(--ink); font-weight: 600; margin-bottom: 2px; }
+  #tooltip .t-meta { font: 11px var(--mono); color: var(--muted); }
+
+  .card { position: absolute; background: rgba(32,32,32,.94); border: 1px solid var(--hairline); border-radius: 8px; backdrop-filter: blur(6px); }
+  #legend { left: 12px; bottom: 12px; width: 240px; max-height: calc(100% - 24px); overflow: auto; padding: 10px 12px; font-size: 12px; }
+  #legend h2 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 8px 0 6px; }
+  #legend h2:first-child { margin-top: 0; }
+  .slot-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
+  .chip { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .chip.box { border-radius: 2px; }
+  .chip.diamond { border-radius: 2px; transform: rotate(45deg); }
+  .chip.cone { border-radius: 0; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .slot-row .n { margin-left: auto; font: 11px var(--mono); color: var(--muted); }
+  .slot-row .tp { font: 10px var(--mono); color: var(--muted); }
+  .key-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; color: var(--ink-2); }
+  .key-row .sym { width: 14px; text-align: center; color: var(--ink); }
+  .stats { font: 11px/1.6 var(--mono); color: var(--muted); border-top: 1px solid var(--hairline); margin-top: 8px; padding-top: 6px; }
+  .stats b { color: var(--ink-2); font-weight: 500; }
+
+  /* example note: a strip under the header, never over the graph */
+  #note { display: grid; grid-template-columns: minmax(160px, 24%) 1fr minmax(160px, 22%); gap: 6px 20px; align-items: baseline; padding: 7px 16px; border-bottom: 1px solid var(--hairline); background: var(--plane); font-size: 12px; }
+  #note h3 { margin: 0; font-size: 13px; color: var(--ink); font-weight: 600; line-height: 1.35; }
+  #note p { margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  #note:hover p, #note:focus-within p { -webkit-line-clamp: unset; }
+  #note .src { font: 11px var(--mono); color: var(--muted); word-break: break-word; text-align: right; }
+
+  #panel { right: 12px; top: 12px; bottom: 12px; width: 340px; padding: 12px 14px; overflow: auto; font-size: 13px; z-index: 4; }
+  #panel[hidden] { display: none; }
+  #panel .p-head { display: flex; align-items: flex-start; gap: 8px; }
+  #panel .p-slot { font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  #panel h3 { margin: 4px 0 6px; font-size: 15px; color: var(--ink); font-weight: 600; line-height: 1.3; }
+  #panel .close { margin-left: auto; background: transparent; border: 1px solid var(--hairline); color: var(--ink-2); border-radius: 6px; width: 28px; height: 28px; cursor: pointer; flex: none; }
+  .badge { display: inline-block; font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; border: 1px solid var(--muted); color: var(--ink); }
+  .badge.fact { background: var(--ink-2); color: var(--plane); border-color: var(--ink-2); }
+  .badge.derived { border-style: dashed; }
+  .badge.schema { color: var(--muted); }
+  #panel p { margin: 8px 0; }
+  #panel blockquote { margin: 8px 0; padding: 6px 10px; border-left: 2px solid var(--muted); color: var(--ink-2); font-style: italic; }
+  #panel .ref, #panel .conf { font: 11px var(--mono); color: var(--muted); }
+  #panel h4 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 12px 0 4px; }
+  #panel ul { margin: 0; padding-left: 16px; }
+  #panel li { margin: 2px 0; }
+  #panel li .rel { font: 11px var(--mono); color: var(--muted); }
+  .confbar { height: 3px; background: var(--hairline); border-radius: 2px; margin: 4px 0 8px; overflow: hidden; }
+  .confbar i { display: block; height: 100%; background: var(--ink-2); }
+
+  #fallback { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--muted); padding: 24px; }
+  #fallback[hidden] { display: none; }
+  #fallback code { font: 12px var(--mono); color: var(--ink-2); }
+
+  @media (max-width: 820px) {
+    #legend { width: min(240px, 60%); max-height: 42%; font-size: 11px; }
+    #note { grid-template-columns: 1fr; }
+    #note .src { text-align: left; }
+    #panel { left: 12px; width: auto; top: auto; max-height: 60%; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<header class="bar">
+  <div class="title">
+    <span class="eyebrow" id="category"></span>
+    <h1 id="name">Framework graph</h1>
+    <div class="links"><a id="readme" href="./README.md">README</a><a id="wiki" href="#" target="_blank" rel="noopener">Wikipedia</a><a id="up" href="../../index.html">All frameworks</a></div>
+  </div>
+  <div class="seg" id="examples" role="group" aria-label="Example"></div>
+  <div class="toggles">
+    <label><input type="checkbox" id="t-derived" checked> LLM-derived<kbd>d</kbd></label>
+    <label><input type="checkbox" id="t-grounding"> grounding links<kbd>g</kbd></label>
+    <label><input type="checkbox" id="t-labels" checked> labels</label>
+    <label><input type="checkbox" id="t-rotate"> auto-rotate</label>
+    <button id="reset" type="button">Reset view<kbd>r</kbd></button>
+  </div>
+</header>
+<div id="note" aria-live="polite" tabindex="0"></div>
+<main>
+  <div id="stage"></div>
+  <div id="labels"></div>
+  <div id="fallback">Loading Three.js from jsDelivr… <br><small>This page needs internet access for <code>three@0.186.0</code>. The data itself is embedded.</small></div>
+  <aside id="legend" class="card" aria-label="Legend"></aside>
+  <aside id="panel" class="card" hidden aria-label="Node details"></aside>
+  <div id="tooltip" role="tooltip"></div>
+</main>
+
+<!--__DATA_START__-->
+<script id="graph-data" type="application/json">{"framework":{"slug":"inversion-premortem","name":"Inversion & Pre-Mortem","category":"03-engineering-and-cognitive","wikipedia":"https://en.wikipedia.org/wiki/Pre-mortem","one_liner":"Asserts that the plan has already failed completely, then works backwards to every pathway that could have produced the failure and to the safeguard that would have blocked each one."},"slots":[{"id":"goal","label":"Goal","description":"The plan or outcome being protected: what a named actor has committed to do, ideally with a number and a date. This is the only slot the source reliably hands you.","typical_provenance":"either","color":"#3987e5","shape":"box"},{"id":"assumed_failure","label":"Assumed failure","description":"The inverted statement: it is later and the plan has failed completely and publicly. Asserted, not predicted; a fact only when the source is itself a pre-mortem.","typical_provenance":"derived","color":"#c4384a","shape":"diamond"},{"id":"pathway","label":"Failure pathway","description":"One concrete story of how the failure happened, told in the past tense. Not a risk category: a sequence with actors, order and a moment where the plan could no longer be saved.","typical_provenance":"derived","color":"#d95926","shape":"cone"},{"id":"cause","label":"Cause","description":"A driver of a pathway: a condition, dependency, cost, deadline or scarce input. Often stated in the source as a constraint the speaker has already noticed and priced at zero.","typical_provenance":"either","color":"#2f9e63","shape":"sphere"},{"id":"safeguard","label":"Safeguard","description":"The mandatory measure that blocks a pathway, written so that someone owns it and it can be checked. Never in the source, because the source has not yet imagined the failure.","typical_provenance":"derived","color":"#1b998b","shape":"box"}],"relations":[{"id":"inverted_to","label":"inverted to","description":"the goal is inverted into the assumed failure; the move that starts the exercise"},{"id":"reached_via","label":"reached via","description":"the assumed failure is reached via this pathway"},{"id":"driven_by","label":"driven by","description":"the pathway is driven by this cause"},{"id":"guarded_by","label":"guarded by","description":"the pathway is blocked by this safeguard"},{"id":"rests_on","label":"rests on","description":"the source itself ties the plan, or a stated claim about it, to this stated condition, whether as a dependency the plan needs or a constraint it collides with; because the link is asserted rather than inferred, this edge can be a fact edge"}],"examples":[{"id":"classic","kind":"classic","title":"The Meridian billing go-live: a pre-mortem on an approved plan","summary":"The textbook use of Klein's technique. A steering meeting approves a dated go-live, records three conditions and waves off a fourth, nobody dissents, and the director closes by asserting the failure and asking for the reasons. The plan and its conditions are stated; every pathway and every safeguard is produced by working backwards from the asserted fiasco.","source":{"type":"text","title":"Final steering meeting, Meridian billing replacement","attribution":"Written for this example around the pre-mortem procedure set out in Gary Klein, 'Performing a Project Premortem', Harvard Business Review, September 2007.","text":"At the final steering meeting for the Meridian billing replacement, the programme director presents the plan. The new system goes live on 1 January, every customer on one platform, and the old mainframe is switched off on 31 March. The budget is 4.2 million pounds, of which 3.1 million has already been spent. The director notes three things for the record: the payments integration with the bank has never been run end to end at live volumes; two of the four engineers who wrote the old system leave in November; and the vendor's contract carries no penalty for late delivery. The finance sponsor observes that December is the busiest invoicing month of the year and asks whether January is the right date. The director answers that the date has been given to the board and to customers and will not move. Nobody in the room disagrees, and the plan is approved. Before the meeting closes the director sets one exercise: it is the following October, the programme has failed completely and publicly, and each of you has fifteen minutes to write down every reason why."},"layout":{"mode":"tree","root":"k_golive","direction":"down","regions":[{"label":"0 · goal · the plan as committed","x":[-72,72],"y":[41.5,56.3],"color":"#3987e5"},{"label":"1 · assumed failure · it is later, the plan has failed","x":[-72,72],"y":[19.2,39.4],"color":"#c4384a"},{"label":"2 · pathway · how the failure happened","x":[-72,72],"y":[1.3,17.1],"color":"#d95926"},{"label":"3 · cause · what each pathway is made of","x":[-72,72],"y":[-34.2,-0.7],"color":"#2f9e63"},{"label":"4 · safeguard · what would have blocked it","x":[-72,72],"y":[-55,-36.5],"color":"#1b998b"}]},"nodes":[{"id":"k_golive","slot":"goal","label":"Go live 1 January, all customers","text":"The new billing system goes live on 1 January with every customer on one platform.","provenance":"fact","source_quote":"The new system goes live on 1 January, every customer on one platform","source_ref":"sentence 2, the director's plan","level":0,"size":1.4,"pos":[16.3,47]},{"id":"k_retire","slot":"goal","label":"Old mainframe off on 31 March","text":"The old mainframe is switched off on 31 March, three months after the go-live.","provenance":"fact","source_quote":"the old mainframe is switched off on 31 March","source_ref":"sentence 2, the director's plan","level":0,"pos":[-23.1,47]},{"id":"k_fiasco","slot":"assumed_failure","label":"October: it failed completely","text":"It is the following October and the programme has failed completely and publicly; the team is asked to write down every reason why.","provenance":"fact","source_quote":"it is the following October, the programme has failed completely and publicly","source_ref":"sentence 8, the director's closing exercise","level":1,"size":1.5,"pos":[13.6,26.8]},{"id":"k_shape","slot":"assumed_failure","label":"What complete failure means here","text":"Complete and public failure for this programme means invoices going out wrong or not at all through the winter, the mainframe kept alive past 31 March, and the 4.2 million pound budget breached with the recovery still unfunded.","provenance":"derived","confidence":0.7,"rationale":"The exercise asserts failure but not its content. The three stated commitments (the January cutover, the March shutdown, the budget) are the only things that can visibly break, so the concrete shape of the fiasco is read off them; the word 'publicly' points at customer-visible invoicing rather than internal slippage.","level":1,"pos":[-25.3,26.8]},{"id":"k_untested","slot":"cause","label":"Payments integration never volume-tested","text":"The payments integration with the bank has never been run end to end at live volumes.","provenance":"fact","source_quote":"the payments integration with the bank has never been run end to end at live volumes","source_ref":"sentence 4, noted for the record","level":3,"pos":[-67.8,-10.4]},{"id":"k_leavers","slot":"cause","label":"Half the old-system authors leave","text":"Two of the four engineers who wrote the old system leave in November, seven weeks before the cutover.","provenance":"fact","source_quote":"two of the four engineers who wrote the old system leave in November","source_ref":"sentence 4, noted for the record","level":3,"pos":[-32.5,-28.4]},{"id":"k_nopenalty","slot":"cause","label":"Vendor has no late-delivery penalty","text":"The vendor's contract carries no penalty for late delivery, so the vendor's schedule risk is entirely the buyer's.","provenance":"fact","source_quote":"the vendor's contract carries no penalty for late delivery","source_ref":"sentence 4, noted for the record","level":3,"pos":[24.2,-19.4]},{"id":"k_december","slot":"cause","label":"December is the peak invoicing month","text":"December is the busiest invoicing month of the year, immediately before the go-live date.","provenance":"fact","source_quote":"December is the busiest invoicing month of the year","source_ref":"sentence 5, the finance sponsor","level":3,"pos":[-53.5,-19.4]},{"id":"k_fixeddate","slot":"cause","label":"The date will not move","text":"The go-live date has been given to the board and to customers and will not move.","provenance":"fact","source_quote":"the date has been given to the board and to customers and will not move","source_ref":"sentence 6, the director's answer","level":3,"pos":[-8.1,-10.4]},{"id":"k_nodissent","slot":"cause","label":"Nobody disagreed; plan approved","text":"Nobody in the room disagrees with the plan, and it is approved.","provenance":"fact","source_quote":"Nobody in the room disagrees, and the plan is approved","source_ref":"sentence 7, the approval","level":3,"pos":[48.1,-28.4]},{"id":"k_silence","slot":"cause","label":"Unanimity is a driver, not a signal","text":"The unanimous approval is not evidence that the plan is sound: three conditions were read out and none was assigned an owner, so silence is what leaves them unmanaged.","provenance":"derived","confidence":0.55,"rationale":"The text records the absence of disagreement, not its reason, and gives no owner or action for any of the three conditions. Reading unanimity as a cause rather than as reassurance is the pre-mortem's characteristic move and is contestable: the room may simply have judged the risks acceptable.","level":3,"pos":[67.3,-10.4]},{"id":"k_p1","slot":"pathway","label":"Payments break at live volume","text":"In the first week of January the payments file to the bank fails at production volume, a defect nobody could reproduce in test; direct debits are missed and the failure is visible to customers before it is understood.","provenance":"derived","confidence":0.65,"rationale":"Assembles the one condition the director named as untested into a sequence with a moment of no return. The source states that the integration was never run at live volumes; it does not state that it fails, when, or that customers see it first, and three unstated steps is a story, not a reading.","level":2,"pos":[-65.4,7.1]},{"id":"k_p2","slot":"pathway","label":"The old system's authors are gone","text":"When the January reconciliation disagrees with the mainframe, the two people who could explain the old system's behaviour left in November, so every discrepancy becomes a week of archaeology and the March shutdown slips.","provenance":"derived","confidence":0.65,"rationale":"Joins the stated November departures to the stated March shutdown, which the source never links. The inference is that reconciliation against a system nobody understands is the long pole; plausible, but the team may have documented the old system.","level":2,"pos":[-18.3,7.1]},{"id":"k_p3","slot":"pathway","label":"No rehearsal window before the date","text":"The only weeks in which a full dress rehearsal could have been run were December's, and December was consumed by peak invoicing on the old system, so the programme arrives at 1 January having never rehearsed the cutover.","provenance":"derived","confidence":0.6,"rationale":"Combines the peak-month fact with the fixed date to infer a missing rehearsal that the source never mentions. Nobody in the meeting says a rehearsal was planned or dropped; this is the pre-mortem supplying an omission rather than reading one.","level":2,"pos":[26,7.1]},{"id":"k_p4","slot":"pathway","label":"Red status overruled by the date","text":"In mid-December the programme is amber-to-red, but the date has been given to the board and to customers, the vendor bears no cost for a slip, and no one in the approving room had registered a doubt, so the go-live is ordered anyway.","provenance":"derived","confidence":0.6,"rationale":"Three stated conditions (the immovable date, the penalty-free vendor contract, the unanimous approval) are read together as a decision rule that no single one of them states. Contestable: a board told of a red status might well have moved the date.","level":2,"pos":[67.8,7.1]},{"id":"k_s1","slot":"safeguard","label":"Volume test with the bank, gated","text":"Run the payments integration end to end against production-scale volumes with the bank before the code freeze, and make a passed volume test a written precondition for the go-live decision rather than a task on the plan.","provenance":"derived","confidence":0.75,"rationale":"Directly inverts the one condition the director named as untested. The safeguard is not in the source; the source records the gap and takes no action on it.","level":4,"pos":[-52.4,-47]},{"id":"k_s2","slot":"safeguard","label":"Retain two authors through March","text":"Retain the two departing engineers on a paid consultancy through 31 March, and require a written reconciliation runbook from them before November, so knowledge of the old system survives the cutover.","provenance":"derived","confidence":0.7,"rationale":"Blocks the departure pathway at the only point where it is cheap, before the November leaving date. Nothing in the source suggests retention was considered.","level":4,"pos":[-3,-47]},{"id":"k_s3","slot":"safeguard","label":"Written abort criteria and rollback","text":"Agree in writing, now, the conditions under which the January date is abandoned, name the person who may call it, and rehearse the rollback to the mainframe; a date that cannot move needs an exit that can.","provenance":"derived","confidence":0.7,"rationale":"Answers the pathways that all pass through the same point: a fixed date, a vendor with nothing at stake and a room that did not object. Deciding the abort rule before the pressure arrives is the standard countermeasure and is nowhere in the source.","level":4,"pos":[48.3,-47]}],"edges":[{"id":"kf1","from":"k_retire","to":"k_golive","relation":"rests_on","provenance":"fact","source_quote":"The new system goes live on 1 January, every customer on one platform, and the old mainframe is switched off on 31 March.","source_ref":"sentence 2"},{"id":"kf2","from":"k_golive","to":"k_december","relation":"rests_on","provenance":"fact","source_quote":"The finance sponsor observes that December is the busiest invoicing month of the year and asks whether January is the right date.","source_ref":"sentence 5"},{"id":"kf3","from":"k_golive","to":"k_fixeddate","relation":"rests_on","provenance":"fact","source_quote":"The director answers that the date has been given to the board and to customers and will not move.","source_ref":"sentence 6"},{"id":"kf4","from":"k_golive","to":"k_untested","relation":"rests_on","provenance":"fact","source_quote":"The director notes three things for the record: the payments integration with the bank has never been run end to end at live volumes","source_ref":"sentence 4"},{"id":"kf5","from":"k_golive","to":"k_leavers","relation":"rests_on","provenance":"fact","source_quote":"The director notes three things for the record: the payments integration with the bank has never been run end to end at live volumes; two of the four engineers who wrote the old system leave in November","source_ref":"sentence 4"},{"id":"kf6","from":"k_golive","to":"k_nopenalty","relation":"rests_on","provenance":"fact","source_quote":"The director notes three things for the record: the payments integration with the bank has never been run end to end at live volumes; two of the four engineers who wrote the old system leave in November; and the vendor's contract carries no penalty for late delivery","source_ref":"sentence 4"},{"id":"kf7","from":"k_golive","to":"k_nodissent","relation":"rests_on","provenance":"fact","source_quote":"Nobody in the room disagrees, and the plan is approved.","source_ref":"sentence 7"},{"id":"kf8","from":"k_golive","to":"k_fiasco","relation":"inverted_to","provenance":"fact","source_quote":"Before the meeting closes the director sets one exercise: it is the following October, the programme has failed completely and publicly, and each of you has fifteen minutes to write down every reason why.","source_ref":"sentence 8"},{"id":"ke1","from":"k_golive","to":"k_shape","relation":"inverted_to","provenance":"derived","confidence":0.7,"rationale":"The exercise supplies the assertion of failure; what failure looks like against these particular commitments is inferred."},{"id":"ke2","from":"k_fiasco","to":"k_p1","relation":"reached_via","provenance":"derived","confidence":0.65,"rationale":"The untested integration is the shortest route from the asserted fiasco back to a stated condition."},{"id":"ke3","from":"k_fiasco","to":"k_p2","relation":"reached_via","provenance":"derived","confidence":0.65,"rationale":"The November departures give a second, slower route to the same October verdict."},{"id":"ke4","from":"k_fiasco","to":"k_p3","relation":"reached_via","provenance":"derived","confidence":0.6,"rationale":"A missing rehearsal is inferred from the calendar, not stated anywhere in the meeting."},{"id":"ke5","from":"k_fiasco","to":"k_p4","relation":"reached_via","provenance":"derived","confidence":0.6,"rationale":"The decision-to-go-anyway pathway is the one the meeting itself sets up but never names."},{"id":"ke6","from":"k_p1","to":"k_untested","relation":"driven_by","provenance":"derived","confidence":0.8,"rationale":"A defect that only appears at production volume is exactly what an untested volume path hides."},{"id":"ke7","from":"k_p1","to":"k_december","relation":"driven_by","provenance":"derived","confidence":0.55,"rationale":"January's first payment run carries December's peak billing, so the first live volume is also the year's largest."},{"id":"ke8","from":"k_p2","to":"k_leavers","relation":"driven_by","provenance":"derived","confidence":0.8,"rationale":"The pathway is the direct consequence of losing the only people who know the system being reconciled against."},{"id":"ke9","from":"k_p3","to":"k_december","relation":"driven_by","provenance":"derived","confidence":0.7,"rationale":"Peak invoicing consumes the same people and the same environments a dress rehearsal would need."},{"id":"ke10","from":"k_p3","to":"k_fixeddate","relation":"driven_by","provenance":"derived","confidence":0.6,"rationale":"An immovable date removes the option of buying the rehearsal window with a short delay."},{"id":"ke11","from":"k_p4","to":"k_fixeddate","relation":"driven_by","provenance":"derived","confidence":0.75,"rationale":"A date promised to the board and to customers is the main force behind going live on a red status."},{"id":"ke12","from":"k_p4","to":"k_nopenalty","relation":"driven_by","provenance":"derived","confidence":0.6,"rationale":"With no penalty clause the vendor has no financial reason to warn early that the date is not achievable."},{"id":"ke13","from":"k_p4","to":"k_silence","relation":"driven_by","provenance":"derived","confidence":0.6,"rationale":"A room with no registered doubt has no record to point back to when the status turns red."},{"id":"ke14","from":"k_silence","to":"k_nodissent","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"ke15","from":"k_shape","to":"k_retire","relation":"supported_by","provenance":"derived","confidence":0.75},{"id":"ke16","from":"k_shape","to":"k_golive","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"ke17","from":"k_p1","to":"k_s1","relation":"guarded_by","provenance":"derived","confidence":0.8,"rationale":"A gated volume test is the measure that would have stopped this pathway before the code freeze."},{"id":"ke18","from":"k_p2","to":"k_s2","relation":"guarded_by","provenance":"derived","confidence":0.75,"rationale":"Retention plus a runbook is the only measure available before the November departures."},{"id":"ke19","from":"k_p3","to":"k_s3","relation":"guarded_by","provenance":"derived","confidence":0.6,"rationale":"If the rehearsal cannot be bought, the abort rule is what limits the damage of going in unrehearsed."},{"id":"ke20","from":"k_p4","to":"k_s3","relation":"guarded_by","provenance":"derived","confidence":0.75,"rationale":"Written abort criteria agreed in advance are the standard countermeasure to a date that overrules a status."},{"id":"ke21","from":"k_s1","to":"k_untested","relation":"supported_by","provenance":"derived","confidence":0.85},{"id":"ke22","from":"k_s2","to":"k_leavers","relation":"supported_by","provenance":"derived","confidence":0.85},{"id":"ke23","from":"k_s3","to":"k_fixeddate","relation":"supported_by","provenance":"derived","confidence":0.7},{"id":"ke24","from":"k_s3","to":"k_nopenalty","relation":"supported_by","provenance":"derived","confidence":0.6}]},{"id":"tbpn","kind":"tbpn","title":"Boom Supersonic bets the airliner on a gas turbine","summary":"Live from the Denver factory floor, Blake Scholl announces Superpower, a 42 MW aeroderivative gas turbine for data centres, states the ramp, the second factory, the round and the customer, and says the round is the last equity Boom will ever raise. Every number in the plan is a fact; the failure it could produce, and the safeguards that would block it, are entirely the model's work.","source":{"type":"transcript","file":"tbpn-transcripts/transcripts/2025-12-09_ellisons-counter-offer-chinese-h200s-data-centers-in-space-aaron-ginn-matt-kalish-emil-michael-blake-scholl-naveen-rao-ofir-ehrlich-gorkem-yurtseven-p.md","date":"2025-12-09","episode_title":"Ellison's counter-offer, Chinese H200s, data centers in space (Aaron Ginn, Matt Kalish, Emil Michael, Blake Scholl, Naveen Rao, Ofir Ehrlich, Gorkem Yurtseven)"},"why_this_episode":"Scholl gives a factory tour that states a committed plan with numbers and dates, names the conditions it rests on, and then does the exact opposite of a pre-mortem on camera: the odds move from 'less than 50%' to 'far greater', the hardest remaining work 'feels like easy mode', and the outcome is 'basically inevitable'. That is the optimism the technique exists to invert, and the source stops precisely where the pre-mortem begins, so the assumed failure, the pathways and the safeguards are all model-supplied.","idea_bearing_slot":"safeguard","layout":{"mode":"tree","root":"p_ramp","direction":"down","regions":[{"label":"0 · goal · the plan as committed","x":[-75,75],"y":[41.5,56.3],"color":"#3987e5"},{"label":"1 · assumed failure · it is later, the plan has failed","x":[-75,75],"y":[19.2,39.4],"color":"#c4384a"},{"label":"2 · pathway · how the failure happened","x":[-75,75],"y":[1.3,17.1],"color":"#d95926"},{"label":"3 · cause · what each pathway is made of","x":[-75,75],"y":[-34.2,-0.7],"color":"#2f9e63"},{"label":"4 · safeguard · what would have blocked it","x":[-75,75],"y":[-55,-36.5],"color":"#1b998b"}]},"nodes":[{"id":"p_product","slot":"goal","label":"Superpower: 42 MW gas turbine","text":"Boom is shipping Superpower, a 42 megawatt natural-gas aeroderivative turbine for data centres, with Crusoe as the launch customer.","provenance":"fact","source_quote":"a product called superpower, 42 megawatts, natural gas. It's going into data centers. Crusoe is our launch customer.","source_ref":"Blake Scholl, L4116-L4118","entities":["Boom Supersonic","Superpower","Crusoe","Blake Scholl"],"level":0,"pos":[-63.5,47]},{"id":"p_ramp","slot":"goal","label":"First 200 MW in about 18 months","text":"The Denver facility they are standing in will build the first 200 megawatts of turbines over roughly the next 18 months.","provenance":"fact","source_quote":"The facility we're standing in now is going to do the first 200 megawatts over the next about 18 months.","source_ref":"Blake Scholl, L4218-L4222","entities":["Boom Supersonic","Blake Scholl"],"level":0,"size":1.4,"pos":[21.1,47]},{"id":"p_factory","slot":"goal","label":"Second factory: 2 GW a year","text":"A second factory three times the size opens early next year and is to produce two gigawatts of turbines a year.","provenance":"fact","source_quote":"We're about to open early next year, another factory that is three times the size of this one. And that's what's going to be able to do two gigawatts a year.","source_ref":"Blake Scholl, L4356-L4358","entities":["Boom Supersonic"],"level":0,"pos":[64.1,47]},{"id":"p_bridge","slot":"goal","label":"Turbine cash funds Overture","text":"Superpower is meant to make not just electricity but capital: the cash that finances development of the Overture supersonic airliner.","provenance":"fact","source_quote":"superpower makes not just electricity, it makes capital, and it makes the capital that finances the capital-dispensive development of the overture passenger airliner.","source_ref":"Blake Scholl, L4260-L4266","entities":["Boom Supersonic","Superpower","Overture"],"level":0,"size":1.4,"pos":[-22.1,47]},{"id":"fail","slot":"assumed_failure","label":"2028: both programmes stalled","text":"It is 2028. Superpower shipped a fraction of the promised megawatts years late, the two-gigawatt factory stands underused, Boom is raising equity it said it would never need again, and Overture has slipped out of sight because the cash that was to fund it never arrived.","provenance":"derived","confidence":0.7,"rationale":"The inversion is the method's mandated first move, so the node must exist; what it says is read off the stated commitments, since the 18-month ramp, the two-gigawatt factory, the closed equity door and the airliner it funds are the only things that can visibly fail. The 2028 date and the ordering of the collapse are a judgement, and the source asserts the opposite outcome.","entities":["Boom Supersonic","Superpower","Overture"],"level":1,"size":1.6,"pos":[8.1,26.8]},{"id":"c_demand","slot":"cause","label":"Customers will take everything made","text":"Scholl says customers will take as much as Boom can possibly make, as fast as it can make it.","provenance":"fact","source_quote":"We've got customers that are going to take as much as we can possibly make as fast as we can make it.","source_ref":"Blake Scholl, L4402-L4404","entities":["Boom Supersonic","Blake Scholl"],"level":3,"pos":[15.2,-28.4]},{"id":"c_capital","slot":"cause","label":"300 million raised to do it","text":"Boom has 300 million dollars of capital in hand to execute the ramp.","provenance":"fact","source_quote":"Today we've got the capital to go do that. How much capital? 300 million.","source_ref":"Blake Scholl with the hosts, L4406-L4410","entities":["Boom Supersonic","Blake Scholl"],"level":3,"pos":[48.4,-19.4]},{"id":"c_nomore","slot":"cause","label":"Last equity round, ever","text":"Scholl states that Boom is done fundraising and that this is the last equity round the company will ever have to do.","provenance":"fact","source_quote":"So we're done fundraising. This is the last equity around we ever have to deal.","source_ref":"Blake Scholl, L4424-L4426","entities":["Boom Supersonic","Blake Scholl"],"level":3,"pos":[29.8,-10.4]},{"id":"c_challenge","slot":"cause","label":"Reliability and scale-up named hard","text":"Scholl names the remaining work: getting the turbine to work, getting it to work reliably, and getting manufacturing up to scale.","provenance":"fact","source_quote":"And so there's going to be a lot of challenge and getting that to work, getting to work reliably, getting manufacturing up to scale.","source_ref":"Blake Scholl, L4394-L4398","entities":["Boom Supersonic","Blake Scholl"],"level":3,"pos":[-5.4,-19.4]},{"id":"c_confidence","slot":"cause","label":"Odds revised to 'basically inevitable'","text":"Scholl says the turbine business moves Boom from less than a 50% chance of success to a far greater chance, and that supersonic flight is now basically inevitable.","provenance":"fact","source_quote":"So I think this takes us from, you know, less than 50% chance of success to a far greater chance of success. I think overture supersonic flight is basically inevitable at this point.","source_ref":"Blake Scholl, L4450-L4454","entities":["Boom Supersonic","Overture","Blake Scholl"],"level":3,"pos":[65.8,-28.4]},{"id":"c_leadtime","slot":"cause","label":"Outside blades: six to nine months","text":"A turbine blade sent to a traditional supplier takes six, maybe nine months to come back, from digital design to hardware.","provenance":"fact","source_quote":"if we take a turbine blade and we send it to a traditional supplier to be made, it's going to take six, maybe nine months for us to get that part back, going from digital design to hardware.","source_ref":"Blake Scholl, L4518-L4526","entities":["Boom Supersonic","Blake Scholl"],"level":3,"pos":[-70.8,-10.4]},{"id":"c_machinist","slot":"cause","label":"Not enough great CNC machinists","text":"Boom is hiring as fast as it can find people, and Scholl says it is hard to find enough great CNC machinists.","provenance":"fact","source_quote":"It's hard to find enough great CNC machinist.","source_ref":"Blake Scholl, L4650-L4650","entities":["Boom Supersonic","Blake Scholl"],"level":3,"pos":[-51.7,-19.4]},{"id":"c_permits","slot":"cause","label":"Permission-based approach to building","text":"Scholl names a permission-based rather than freedom-to-innovate approach to building, which he says carries huge delays and huge costs, as a problem bigger than energy production.","provenance":"fact","source_quote":"we have a permission-based approach to building, not a freedom to innovate approach to building.","source_ref":"Blake Scholl, L4576-L4606","entities":["Blake Scholl"],"level":3,"pos":[-33.2,-28.4]},{"id":"c_optimism","slot":"cause","label":"The plan is priced at the good case","text":"The stated confidence is itself a driver: an 18-month ramp, a second factory and a closed equity round are all sized to the case where the hard work turns out to be easy mode, so the plan carries no schedule or capital slack.","provenance":"derived","confidence":0.6,"rationale":"Reads the stated odds revision and the 'easy mode' framing as an input to the plan rather than as commentary on it. Scholl states the confidence and states the commitments; that the second causes the first to be under-slacked is an inference, and a founder may be publicly confident while planning privately for the bad case.","entities":["Boom Supersonic","Blake Scholl"],"level":3,"pos":[-12.9,-10.4]},{"id":"path_ramp","slot":"pathway","label":"The 200 MW ramp slips a year","text":"The first units take longer than planned: hot-section parts that turn in a day in Denver still queue behind machines and machinists that cannot be hired fast enough, permits for the second building slip, and 18 months becomes 30, so the ramp arrives after the customers have signed elsewhere.","provenance":"derived","confidence":0.6,"rationale":"Assembles four separately stated constraints (part turnaround, scarce machinists, permission-based building, manufacturing scale-up) into one schedule failure. Each ingredient is quoted; the assembly and the doubling of the timeline are not in the source, and Scholl argues the opposite.","entities":["Boom Supersonic"],"level":2,"pos":[-63.2,7.1]},{"id":"path_customer","slot":"pathway","label":"Launch customer's own build slips","text":"Crusoe is the only customer named, and its demand comes from the same AI capex cycle that funds Boom; when that cycle pauses, or Crusoe dual-sources to an incumbent for financing reasons, the two-gigawatt factory's fixed cost lands years before its revenue does.","provenance":"derived","confidence":0.55,"rationale":"Nobody in the source hints at demand risk; Scholl says the opposite, that customers will take everything Boom can make. Concentration on a single named counterparty exposed to the same cycle is the model's own reading of the announcement and is entirely contestable.","entities":["Boom Supersonic","Crusoe"],"level":2,"pos":[-18.7,7.1]},{"id":"path_field","slot":"pathway","label":"A field failure freezes the order book","text":"A turbine fails in service at a live data centre in year two. The engine is new, the operator's uptime commitments are not, and while the root cause is chased every prospect waits for someone else to go first, so orders stop at exactly the moment the second factory comes online.","provenance":"derived","confidence":0.65,"rationale":"Scholl names reliability as one of the two biggest challenges, so the ingredient is stated; the failure in service, its timing against the factory opening and the freeze in the order book are the model's construction.","entities":["Boom Supersonic"],"level":2,"pos":[26.2,7.1]},{"id":"path_bridge","slot":"pathway","label":"Turbine slip stops the airliner too","text":"Because the airliner is funded out of turbine cash and the equity door was publicly closed, any turbine delay converts one to one into an Overture delay; the company must either reopen a round it said it would never need or slow the programme the turbine was built to accelerate.","provenance":"derived","confidence":0.65,"rationale":"The coupling is stated outright, and so is the decision to stop raising equity; that the coupling propagates failure in both directions, rather than only cash in one, is the inference. Pre-mortems on each programme separately would miss it.","entities":["Boom Supersonic","Overture","Superpower"],"level":2,"pos":[70.6,7.1]},{"id":"s_parts","slot":"safeguard","label":"Guarantee the 24-hour part turn","text":"Make the in-house 24-hour turn on hot-section parts a contractual capacity commitment rather than a happy property of one building: a second machining cell on a separate site and one qualified external supplier held on retainer, so a single machine, fire or permit cannot stop the ramp.","provenance":"derived","confidence":0.6,"rationale":"Attacks the schedule pathway at the input Scholl himself identifies as the industry's binding constraint. Redundancy for an advantage that currently exists in exactly one building is nowhere in the source.","idea":"The six-to-nine-month industry lead time for hot-section parts is a market: a rapid-turn superalloy parts service, printing, heat-treating and machining turbine blades in 24 hours, sold to every turbine and engine builder that sold off its own supply chain.","entities":["Boom Supersonic"],"level":4,"pos":[-70.5,-47]},{"id":"s_bond","slot":"safeguard","label":"Bond delivery and uptime to customers","text":"Sell the turbine with a delivery-and-uptime bond: a third party underwrites the schedule and the availability so a data-centre developer can buy from an unproven vendor without carrying the whole risk, which also removes the reason a launch customer would quietly dual-source.","provenance":"derived","confidence":0.55,"rationale":"Addresses the customer-concentration and field-failure pathways at the same point, the buyer's inability to price a new vendor's risk. Contestable as a safeguard because the bond costs money the plan has not budgeted, and nothing in the source suggests customers asked for one.","idea":"Behind-the-meter power is bottlenecked on trust, not turbines: an underwriting product that bonds delivery dates and uptime for new energy-hardware vendors would let data-centre developers buy from anyone but GE and Rolls-Royce.","entities":["Boom Supersonic","Crusoe"],"level":4,"pos":[21.4,-47]},{"id":"s_firewall","slot":"safeguard","label":"Ring-fence airliner from turbine cash","text":"Separate the two programmes financially before the coupling is tested: fund Overture to a named milestone from the round already raised, and write down in advance the trigger, the size and the terms of the equity raise that the public 'never again' commitment would otherwise delay past the point of usefulness.","provenance":"derived","confidence":0.65,"rationale":"The coupling and the closed equity door are both stated; the safeguard is to decide the exception now rather than under distress. Standard practice for a programme funded by another programme's cash flow, and absent from the source.","entities":["Boom Supersonic","Overture"],"level":4,"pos":[70.8,-47]},{"id":"s_permit","slot":"safeguard","label":"Pre-permitted sites off the shelf","text":"Take the permission-based approach Scholl names as a constraint off the critical path by pre-clearing air and interconnect permits for the first deployment sites and for the second factory before the machines are ordered, so the schedule is set by manufacturing rather than by a queue.","provenance":"derived","confidence":0.55,"rationale":"Turns a general complaint about American permitting into a specific measure on this plan's critical path. Speculative in that the source never says permits are on Boom's critical path, only that they slow anyone building physical things.","idea":"Pre-permitted, grid-adjacent turbine pads sold as a shelf product, with air and interconnect approvals already granted, would let a data-centre developer buy months rather than wait in a permitting queue.","entities":["Boom Supersonic"],"level":4,"pos":[-26.4,-47]}],"edges":[{"id":"fe1","from":"p_ramp","to":"c_demand","relation":"rests_on","provenance":"derived","confidence":0.7,"rationale":"Scholl asserts the demand and, separately and hundreds of lines earlier, the 200 megawatt ramp; he never says the ramp depends on the demand holding. Reading the two as a dependency is the model joining adjacent claims in one turn, which SPEC 3 classes as derived."},{"id":"fe2","from":"p_ramp","to":"c_capital","relation":"rests_on","provenance":"fact","source_quote":"We've got customers that are going to take as much as we can possibly make as fast as we can make it. Today we've got the capital to go do that.","source_ref":"Blake Scholl, L4402-L4406"},{"id":"fe3","from":"p_bridge","to":"p_product","relation":"rests_on","provenance":"fact","source_quote":"we can now take that same engine core, put a power turbine on it, and get to profitability years faster","source_ref":"Blake Scholl, L4252-L4256"},{"id":"fe4","from":"c_nomore","to":"p_bridge","relation":"rests_on","provenance":"fact","source_quote":"to have raised the round that lets us ship the revenue, new product that then produces the cash to fund the rest of the stuff. So we're done fundraising.","source_ref":"Blake Scholl, L4422-L4424"},{"id":"fe5","from":"p_factory","to":"p_ramp","relation":"rests_on","provenance":"fact","source_quote":"So this is basically the first unit of what we will copy paste into the facility that will do 2 gigawatts per year.","source_ref":"Blake Scholl, L4270-L4270"},{"id":"fe6","from":"p_bridge","to":"c_challenge","relation":"rests_on","provenance":"fact","source_quote":"the single biggest challenges we had were how do we prove that we have a reliable engine, and where do we get all the money to do it? And running the sting on the ground proves the engine is reliable, and it literally prints the cash that we need to go develop the airplane.","source_ref":"Blake Scholl, L4442-L4448"},{"id":"te1","from":"p_ramp","to":"fail","relation":"inverted_to","provenance":"derived","confidence":0.7,"rationale":"The nearest dated commitment is the one the assumed failure negates first."},{"id":"te2","from":"p_bridge","to":"fail","relation":"inverted_to","provenance":"derived","confidence":0.7,"rationale":"Inverting the stated purpose, not only the milestone, is what makes the failure complete rather than a slip."},{"id":"te3","from":"fail","to":"path_ramp","relation":"reached_via","provenance":"derived","confidence":0.6,"rationale":"Schedule is the route with the most stated ingredients and the fewest new assumptions."},{"id":"te4","from":"fail","to":"path_customer","relation":"reached_via","provenance":"derived","confidence":0.55,"rationale":"Demand risk is the route the source explicitly denies, which is why the pre-mortem has to supply it."},{"id":"te5","from":"fail","to":"path_field","relation":"reached_via","provenance":"derived","confidence":0.65,"rationale":"Reliability is named by the speaker as a live challenge, so this route starts from a stated condition."},{"id":"te6","from":"fail","to":"path_bridge","relation":"reached_via","provenance":"derived","confidence":0.65,"rationale":"The coupling between the two programmes turns any single-programme failure into the complete one."},{"id":"te7","from":"path_ramp","to":"c_leadtime","relation":"driven_by","provenance":"derived","confidence":0.7,"rationale":"Part turnaround is the constraint Scholl himself identifies as what sets iteration speed in this industry."},{"id":"te8","from":"path_ramp","to":"c_machinist","relation":"driven_by","provenance":"derived","confidence":0.6,"rationale":"A factory that runs 24-7 on CNC work is rate-limited by the machinists it cannot find."},{"id":"te9","from":"path_ramp","to":"c_permits","relation":"driven_by","provenance":"derived","confidence":0.5,"rationale":"Scholl names permitting as the biggest problem with building physical things, but never says it sits on Boom's own critical path; treating it as a driver here is the model's extension of a general complaint to this plan."},{"id":"te10","from":"path_ramp","to":"c_challenge","relation":"driven_by","provenance":"derived","confidence":0.7,"rationale":"Getting manufacturing up to scale is stated as remaining work, and unfinished scale-up is what a ramp slip is made of."},{"id":"te11","from":"path_ramp","to":"c_optimism","relation":"driven_by","provenance":"derived","confidence":0.6,"rationale":"A schedule with no slack turns each of the other drivers into a delay rather than an absorbed variance."},{"id":"te12","from":"path_customer","to":"c_demand","relation":"driven_by","provenance":"derived","confidence":0.6,"rationale":"Unlimited demand asserted from one named customer is the assumption this pathway breaks."},{"id":"te13","from":"path_customer","to":"c_optimism","relation":"driven_by","provenance":"derived","confidence":0.55,"rationale":"Sizing a two-gigawatt factory to the good case is what makes a demand pause fatal rather than inconvenient."},{"id":"te14","from":"path_field","to":"c_challenge","relation":"driven_by","provenance":"derived","confidence":0.75,"rationale":"The speaker names reliability as one of the two biggest challenges; this pathway is that challenge losing."},{"id":"te15","from":"path_field","to":"c_confidence","relation":"driven_by","provenance":"derived","confidence":0.55,"rationale":"An 'easy mode' framing of the remaining engineering is what would license shipping before the duty-cycle evidence is in."},{"id":"te16","from":"path_bridge","to":"c_nomore","relation":"driven_by","provenance":"derived","confidence":0.75,"rationale":"A publicly closed equity door is what removes the obvious remedy for a turbine delay."},{"id":"te17","from":"path_bridge","to":"c_capital","relation":"driven_by","provenance":"derived","confidence":0.6,"rationale":"300 million funds a ramp on plan; it is the size of the buffer that decides whether a slip is survivable."},{"id":"te18","from":"path_bridge","to":"c_confidence","relation":"driven_by","provenance":"derived","confidence":0.55,"rationale":"Calling the airliner basically inevitable is what makes a coupled dependency feel like an accelerator rather than a risk."},{"id":"te19","from":"path_ramp","to":"s_parts","relation":"guarded_by","provenance":"derived","confidence":0.65,"rationale":"Redundant fast part turnaround is the measure that keeps a single-site advantage from becoming a single point of failure."},{"id":"te20","from":"path_ramp","to":"s_permit","relation":"guarded_by","provenance":"derived","confidence":0.55,"rationale":"Pre-clearing approvals is the only way to take a permitting queue off a manufacturing schedule."},{"id":"te21","from":"path_customer","to":"s_bond","relation":"guarded_by","provenance":"derived","confidence":0.55,"rationale":"A bonded delivery commitment is what lets a second and third customer sign before the track record exists."},{"id":"te22","from":"path_field","to":"s_bond","relation":"guarded_by","provenance":"derived","confidence":0.6,"rationale":"An underwritten uptime commitment converts a field failure from a market freeze into a claim."},{"id":"te23","from":"path_bridge","to":"s_firewall","relation":"guarded_by","provenance":"derived","confidence":0.65,"rationale":"Deciding the funding exception in advance is what stops a public commitment from becoming a delay."},{"id":"te24","from":"c_optimism","to":"c_confidence","relation":"supported_by","provenance":"derived","confidence":0.75},{"id":"te25","from":"c_optimism","to":"c_challenge","relation":"supported_by","provenance":"derived","confidence":0.7},{"id":"te26","from":"fail","to":"p_factory","relation":"supported_by","provenance":"derived","confidence":0.7},{"id":"te27","from":"s_parts","to":"c_leadtime","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"te28","from":"s_bond","to":"c_challenge","relation":"supported_by","provenance":"derived","confidence":0.65},{"id":"te29","from":"s_bond","to":"c_demand","relation":"supported_by","provenance":"derived","confidence":0.6},{"id":"te30","from":"s_firewall","to":"c_nomore","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"te31","from":"s_firewall","to":"p_bridge","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"te32","from":"s_permit","to":"c_permits","relation":"supported_by","provenance":"derived","confidence":0.7}]}]}</script>
+<!--__DATA_END__-->
+
+<!--__EXT_START__-->
+<!-- Framework-specific visuals go here. Optional. Define:
+     window.__frameworkExtension = (ctx) => { /* ctx: { THREE, scene, group, graph, example, nodesById, positions, api } */ };
+     It is called after each example is laid out; add objects to ctx.group so they are removed on example switch. -->
+<!--__EXT_END__-->
+
+<script>
+  // Fallback notice if the module (and Three.js) never loads.
+  window.__engineReady = false;
+  setTimeout(() => { if (!window.__engineReady) { const f = document.getElementById('fallback'); f.innerHTML = 'Could not load Three.js from jsDelivr.<br><small>Check the network connection, then reload. The graph data is embedded in this file and is not lost.</small>'; } }, 9000);
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
+// ---------- palette (validated categorical slots, dark surface; see _meta and SPEC.md section 5) ----------
+const SLOT_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
+const SCHEMA_COLOR = '#898781';
+const INK = '#ffffff', INK2 = '#c3c2b7', MUTED = '#898781', HAIRLINE = '#2c2c2a', SURFACE = '#1a1a19';
+const IDEA = '#eda100';   // marks a node whose `idea` field names an opportunity
+const NODE_R = 2.2;
+
+// ---------- data ----------
+const $ = (id) => document.getElementById(id);
+let GRAPH;
+try { GRAPH = JSON.parse($('graph-data').textContent); } catch (e) { fatal('The embedded graph data is not valid JSON: ' + e.message); }
+if (!GRAPH || !GRAPH.framework || !Array.isArray(GRAPH.examples) || GRAPH.examples.length === 0) fatal('No graph data embedded yet. Run: node _meta/build.mjs <framework-dir>');
+
+function fatal(msg) { const f = $('fallback'); f.hidden = false; f.textContent = msg; window.__engineReady = true; throw new Error(msg); }
+
+const fw = GRAPH.framework;
+document.title = `${fw.name} · graph`;
+$('name').textContent = fw.name;
+$('category').textContent = (fw.category || '').replace(/^\d+-/, '').replace(/-/g, ' ');
+if (fw.wikipedia) $('wiki').href = fw.wikipedia; else $('wiki').remove();
+
+// slot colours: fixed order over content slots, never cycled; beyond 8, muted
+const slotStyle = new Map();
+let ci = 0;
+for (const s of GRAPH.slots) {
+  if (s.structural) slotStyle.set(s.id, { color: SCHEMA_COLOR, shape: s.shape || 'box', slot: s });
+  else slotStyle.set(s.id, { color: s.color || (ci < SLOT_COLORS.length ? SLOT_COLORS[ci++] : MUTED), shape: s.shape || 'sphere', slot: s });
+}
+const relLabel = new Map((GRAPH.relations || []).map(r => [r.id, r.label || r.id]));
+relLabel.set('supported_by', 'supported by');
+
+// ---------- renderer / scene ----------
+const stage = $('stage');
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false }); } catch (e) { fatal('WebGL is not available in this browser.'); }
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setClearColor(new THREE.Color(SURFACE), 1);
+stage.appendChild(renderer.domElement);
+const labelRenderer = new CSS2DRenderer({ element: $('labels') });
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 5000);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.08; controls.autoRotateSpeed = 0.6;
+scene.add(new THREE.AmbientLight(0xffffff, 1.4));
+const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(40, 80, 120); scene.add(key);
+const fill = new THREE.DirectionalLight(0xffffff, 0.5); fill.position.set(-60, -20, -80); scene.add(fill);
+
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, true); labelRenderer.setSize(w, h);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+// The header and the note strip lay out after the first script pass, so a one-shot resize()
+// leaves the WebGL buffer and the CSS2D label layer disagreeing (labels drift from their nodes).
+// Observing the stage keeps both renderers on its real size, at first paint and on every change.
+let roFrame = 0;
+const ro = new ResizeObserver(() => { cancelAnimationFrame(roFrame); roFrame = requestAnimationFrame(() => { resize(); resetView(); }); });
+ro.observe(stage);
+
+// ---------- state ----------
+const state = { exampleIndex: 0, showDerived: true, showGrounding: false, showLabels: true, group: null, nodes: new Map(), edges: [], hit: [], hover: null, selected: null, fit: null };
+
+// ---------- layouts ----------
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+function forceLayout(nodes, edges, pinned, seed, opts = {}) {
+  const rand = mulberry32(seed);
+  const pos = new Map();
+  const R0 = opts.radius || Math.max(18, nodes.length * 2.2);
+  for (const n of nodes) {
+    if (pinned.has(n.id)) pos.set(n.id, pinned.get(n.id).clone());
+    else pos.set(n.id, new THREE.Vector3((rand() - .5) * 2 * R0, (rand() - .5) * 2 * R0, (rand() - .5) * 2 * R0 * (opts.flat ? 0.15 : 1)));
+  }
+  const ids = nodes.map(n => n.id);
+  const L = opts.rest || 16, K = opts.repulse || 420;
+  const f = new Map(ids.map(id => [id, new THREE.Vector3()]));
+  const d = new THREE.Vector3();
+  for (let it = 0; it < 420; it++) {
+    const alpha = 0.9 * (1 - it / 420) + 0.04;
+    for (const id of ids) f.get(id).set(0, 0, 0);
+    for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) {
+      const a = pos.get(ids[i]), b = pos.get(ids[j]);
+      d.subVectors(a, b); let dist = d.length(); if (dist < 0.5) { d.set(rand() - .5, rand() - .5, rand() - .5); dist = 0.5; }
+      const s = K / (dist * dist); d.normalize().multiplyScalar(s);
+      f.get(ids[i]).add(d); f.get(ids[j]).sub(d);
+    }
+    for (const e of edges) {
+      if (!pos.has(e.from) || !pos.has(e.to)) continue;
+      const a = pos.get(e.from), b = pos.get(e.to);
+      d.subVectors(b, a); const dist = Math.max(d.length(), 0.01);
+      const s = (dist - L) * 0.05; d.normalize().multiplyScalar(s);
+      f.get(e.from).add(d); f.get(e.to).sub(d);
+    }
+    for (const id of ids) {
+      if (pinned.has(id)) continue;
+      const p = pos.get(id), ff = f.get(id);
+      ff.addScaledVector(p, -0.012);
+      if (opts.flat) ff.z -= p.z * 0.2;
+      const len = ff.length(); if (len > 6) ff.multiplyScalar(6 / len);
+      p.addScaledVector(ff, alpha);
+    }
+  }
+  return pos;
+}
+
+function treeLayout(ex) {
+  const nodes = ex.nodes, edges = ex.edges.filter(e => e.relation !== 'supported_by');
+  const level = new Map();
+  const explicit = nodes.every(n => Number.isInteger(n.level));
+  if (explicit) nodes.forEach(n => level.set(n.id, n.level));
+  else {
+    const out = new Map(nodes.map(n => [n.id, []])), und = new Map(nodes.map(n => [n.id, []]));
+    for (const e of edges) { out.get(e.from)?.push(e.to); und.get(e.from)?.push(e.to); und.get(e.to)?.push(e.from); }
+    const root = ex.layout.root && level.has(ex.layout.root) === false ? ex.layout.root : nodes[0].id;
+    const q = [root]; level.set(root, 0);
+    while (q.length) { const id = q.shift(); for (const t of out.get(id) || []) if (!level.has(t)) { level.set(t, level.get(id) + 1); q.push(t); } }
+    // unreachable by direction: attach by undirected distance
+    const q2 = [...level.keys()];
+    while (q2.length) { const id = q2.shift(); for (const t of und.get(id) || []) if (!level.has(t)) { level.set(t, level.get(id) + 1); q2.push(t); } }
+    for (const n of nodes) if (!level.has(n.id)) level.set(n.id, 0);
+    for (const n of nodes) if (Number.isInteger(n.level)) level.set(n.id, n.level);
+  }
+  const layers = new Map();
+  for (const n of nodes) { const l = level.get(n.id); if (!layers.has(l)) layers.set(l, []); layers.get(l).push(n); }
+  const order = [...layers.keys()].sort((a, b) => a - b);
+  const pos = new Map();
+  const right = ex.layout.direction === 'right';
+  const GAP_L = right ? 26 : 18, GAP_S = right ? 9 : 14;
+  // barycentre ordering pass to reduce crossings
+  const parents = new Map(nodes.map(n => [n.id, []]));
+  for (const e of edges) if (level.get(e.to) > level.get(e.from)) parents.get(e.to).push(e.from);
+  const xOf = new Map();
+  for (const l of order) {
+    const arr = layers.get(l);
+    if (l !== order[0]) arr.sort((a, b) => {
+      const pa = parents.get(a.id).filter(p => xOf.has(p)), pb = parents.get(b.id).filter(p => xOf.has(p));
+      const ma = pa.length ? pa.reduce((s, p) => s + xOf.get(p), 0) / pa.length : 0;
+      const mb = pb.length ? pb.reduce((s, p) => s + xOf.get(p), 0) / pb.length : 0;
+      return ma - mb;
+    });
+    arr.forEach((n, i) => {
+      const s = (i - (arr.length - 1) / 2) * GAP_S;
+      xOf.set(n.id, s);
+      pos.set(n.id, right ? new THREE.Vector3(l * GAP_L, -s, 0) : new THREE.Vector3(s, -l * GAP_L, 0));
+    });
+  }
+  for (const n of nodes) if (Array.isArray(n.pos)) pos.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  return pos;
+}
+
+function ringLayout(ex) {
+  const nodes = ex.nodes;
+  const onRing = nodes.filter(n => Number.isInteger(n.order) && !Array.isArray(n.pos));
+  const R = Math.max(22, onRing.length * 4.2);
+  const pinned = new Map();
+  onRing.sort((a, b) => a.order - b.order).forEach((n, i) => { const t = Math.PI / 2 - (i / onRing.length) * Math.PI * 2; pinned.set(n.id, new THREE.Vector3(Math.cos(t) * R, Math.sin(t) * R, 0)); });
+  for (const n of nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  if (pinned.size === nodes.length) return pinned;
+  return forceLayout(nodes, ex.edges, pinned, 7, { radius: R * 0.5, flat: true, rest: 12 });
+}
+
+function planeLayout(ex) {
+  const pinned = new Map();
+  for (const n of ex.nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  if (pinned.size === ex.nodes.length) return pinned;
+  return forceLayout(ex.nodes, ex.edges, pinned, 11, { flat: true, rest: 14 });
+}
+
+function computeLayout(ex) {
+  const mode = ex.layout?.mode || 'force';
+  if (mode === 'tree') return treeLayout(ex);
+  if (mode === 'ring') return ringLayout(ex);
+  if (mode === 'plane') return planeLayout(ex);
+  const pinned = new Map();
+  for (const n of ex.nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  return forceLayout(ex.nodes, ex.edges, pinned, 3);
+}
+
+// ---------- geometry helpers ----------
+const GEO = {
+  sphere: (r) => new THREE.SphereGeometry(r, 28, 20),
+  box: (r) => new THREE.BoxGeometry(r * 1.7, r * 1.7, r * 1.7),
+  diamond: (r) => new THREE.OctahedronGeometry(r * 1.25, 0),
+  cone: (r) => new THREE.ConeGeometry(r * 1.1, r * 2.2, 20),
+};
+function label2d(text, cls) { const el = document.createElement('div'); el.className = cls; el.textContent = text; return new CSS2DObject(el); }
+
+function makeNode(n, p) {
+  const st = slotStyle.get(n.slot) || { color: MUTED, shape: 'sphere' };
+  const r = NODE_R * (n.size || 1);
+  const color = new THREE.Color(st.color);
+  const obj = new THREE.Group(); obj.position.copy(p);
+  let mesh, halo = null;
+  if (n.provenance === 'fact') {
+    mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.5, metalness: 0.08 }));
+  } else if (n.provenance === 'derived') {
+    mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.6, metalness: 0.0, transparent: true, opacity: 0.32, depthWrite: false }));
+    halo = new THREE.LineSegments(new THREE.WireframeGeometry(GEO[st.shape](r * 1.35)), new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.75 }));
+    obj.add(halo);
+  } else {
+    mesh = new THREE.Mesh(GEO[st.shape === 'sphere' ? 'box' : st.shape](r * 0.8), new THREE.MeshStandardMaterial({ color: new THREE.Color(SCHEMA_COLOR), roughness: 0.9, metalness: 0, transparent: true, opacity: 0.85 }));
+  }
+  mesh.userData.nodeId = n.id;
+  obj.add(mesh);
+  const hit = new THREE.Mesh(new THREE.SphereGeometry(r * 1.9, 10, 8), new THREE.MeshBasicMaterial({ visible: false }));
+  hit.userData.nodeId = n.id; obj.add(hit);
+  // A node carrying an `idea` is where this framework surfaces an underserved need or opportunity:
+  // mark it so a reader can find the payoff without opening every panel.
+  if (n.idea) {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(r * 1.6, r * 0.11, 8, 40), new THREE.MeshBasicMaterial({ color: new THREE.Color(IDEA) }));
+    ring.userData.isIdeaRing = true; obj.add(ring);
+  }
+  const glyph = n.provenance === 'fact' ? '●' : n.provenance === 'derived' ? '◌' : '▪';
+  const el = document.createElement('div'); el.className = 'nlabel ' + n.provenance;
+  const g = document.createElement('span'); g.className = 'g'; g.textContent = glyph; g.style.color = n.provenance === 'schema' ? MUTED : st.color;
+  const inner = document.createElement('span'); inner.className = 'lab';
+  inner.appendChild(g);
+  if (n.idea) { const st2 = document.createElement('span'); st2.className = 'idea-star'; st2.textContent = '★'; inner.appendChild(st2); }
+  inner.appendChild(document.createTextNode(n.label || n.id));
+  el.appendChild(inner);
+  // Anchor the label below whatever the node actually draws: a diamond reaches further than a
+  // sphere, a derived node adds a 1.35r halo, and an idea node adds a 1.6r ring. Anchoring at -r
+  // regardless (the old behaviour) made labels collide with their own marker on those nodes.
+  const SHAPE_EXTENT = { sphere: 1.0, box: 0.85, diamond: 1.25, cone: 1.1 };
+  let extent = (SHAPE_EXTENT[st.shape] ?? 1) * r;
+  if (n.provenance === 'derived') extent = Math.max(extent, r * 1.35);
+  if (n.idea) extent = Math.max(extent, r * 1.72);
+  const lab = new CSS2DObject(el); lab.position.set(0, -extent, 0); obj.add(lab);
+  return { node: n, obj, mesh, halo, hit, label: lab, r, color: st.color, edges: [] };
+}
+
+function makeEdge(e, A, B) {
+  const from = A.obj.position, to = B.obj.position;
+  const dir = new THREE.Vector3().subVectors(to, from); const len = dir.length(); dir.normalize();
+  const a = from.clone().addScaledVector(dir, A.r * 1.05), b = to.clone().addScaledVector(dir, -(B.r * 1.05 + (e.relation === 'supported_by' ? 0 : 1.6)));
+  const geom = new THREE.BufferGeometry().setFromPoints([a, b]);
+  let mat, arrow = null;
+  const grounding = e.relation === 'supported_by';
+  if (grounding) mat = new THREE.LineDashedMaterial({ color: new THREE.Color(MUTED), dashSize: 0.5, gapSize: 0.9, transparent: true, opacity: 0.55 });
+  else if (e.provenance === 'derived') mat = new THREE.LineDashedMaterial({ color: new THREE.Color(INK2), dashSize: 1.4, gapSize: 0.9, transparent: true, opacity: 0.8 });
+  else if (e.provenance === 'schema') mat = new THREE.LineBasicMaterial({ color: new THREE.Color(HAIRLINE), transparent: true, opacity: 0.9 });
+  else mat = new THREE.LineBasicMaterial({ color: new THREE.Color(INK2), transparent: true, opacity: 0.85 });
+  const line = new THREE.Line(geom, mat); line.computeLineDistances();
+  const grp = new THREE.Group(); grp.add(line);
+  if (!grounding && e.provenance !== 'schema') {
+    arrow = new THREE.Mesh(new THREE.ConeGeometry(0.75, 2.0, 10), new THREE.MeshBasicMaterial({ color: e.provenance === 'derived' ? new THREE.Color(INK2) : new THREE.Color(INK2), transparent: true, opacity: e.provenance === 'derived' ? 0.7 : 0.95 }));
+    arrow.position.copy(to).addScaledVector(dir, -(B.r * 1.05 + 1.0));
+    arrow.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+    grp.add(arrow);
+  }
+  let lab = null;
+  if (e.label) { lab = label2d(e.label, 'elabel'); lab.position.copy(a).lerp(b, 0.5); grp.add(lab); }
+  return { edge: e, grp, line, arrow, label: lab, A, B, grounding, len };
+}
+
+function drawDecor(ex, group, bbox) {
+  const L = ex.layout || {};
+  const z = -0.6;
+  const lineMat = new THREE.LineBasicMaterial({ color: new THREE.Color(0x4a4a47) });
+  const dashMat = new THREE.LineDashedMaterial({ color: new THREE.Color(0x4a4a47), dashSize: 1.2, gapSize: 1.0 });
+  for (const r of (L.regions || [])) {
+    const w = Math.abs(r.x[1] - r.x[0]), h = Math.abs(r.y[1] - r.y[0]);
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.07, depthWrite: false }));
+    m.position.set((r.x[0] + r.x[1]) / 2, (r.y[0] + r.y[1]) / 2, z - 0.5); group.add(m);
+    const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(w, h)), new THREE.LineBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.25 }));
+    edge.position.copy(m.position); group.add(edge);
+    // Caption sits top-centre INSIDE the band. CSS2D centres its box on the position, so anchoring
+    // at the corner made every caption straddle the boundary and builders patched it page-side.
+    const lab = label2d(r.label, 'rlabel'); lab.position.set((r.x[0] + r.x[1]) / 2, Math.max(r.y[0], r.y[1]) - 3, z); group.add(lab);
+    bbox.expandByPoint(new THREE.Vector3(r.x[0], r.y[0], 0)); bbox.expandByPoint(new THREE.Vector3(r.x[1], r.y[1], 0));
+  }
+  // Free-standing captions. Without this a builder has to fake one with a zero-length guide.
+  for (const an of (L.annotations || [])) {
+    const lab = label2d(an.text, an.style === 'axis' ? 'axlabel' : an.style === 'region' ? 'rlabel' : 'glabel');
+    lab.position.set(an.pos[0], an.pos[1], an.pos[2] ?? z); group.add(lab);
+    bbox.expandByPoint(new THREE.Vector3(an.pos[0], an.pos[1], 0));
+  }
+  for (const gd of (L.guides || [])) {
+    const a = new THREE.Vector3(gd.from[0], gd.from[1], gd.from[2] || z), b = new THREE.Vector3(gd.to[0], gd.to[1], gd.to[2] || z);
+    const ln = new THREE.Line(new THREE.BufferGeometry().setFromPoints([a, b]), gd.style === 'dashed' ? dashMat : lineMat); ln.computeLineDistances(); group.add(ln);
+    if (gd.label) { const lab = label2d(gd.label, 'glabel'); lab.position.copy(a).lerp(b, 0.5); group.add(lab); }
+    bbox.expandByPoint(a); bbox.expandByPoint(b);
+  }
+  if (L.axes) {
+    const ax = L.axes.x, ay = L.axes.y;
+    const xmin = ax ? ax.min : bbox.min.x, xmax = ax ? ax.max : bbox.max.x, ymin = ay ? ay.min : bbox.min.y, ymax = ay ? ay.max : bbox.max.y;
+    const pad = 6;
+    if (ax) {
+      const y = ymin - pad;
+      group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(xmin, y, z), new THREE.Vector3(xmax, y, z)]), lineMat));
+      const lab = label2d(ax.label, 'axlabel'); lab.position.set((xmin + xmax) / 2, y - 4.5, z); group.add(lab);
+      for (const t of (ax.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(t.value, y - 1, z), new THREE.Vector3(t.value, y + 1, z)]), lineMat)); const tl = label2d(t.label, 'tick'); tl.position.set(t.value, y - 2.2, z); group.add(tl); }
+      bbox.expandByPoint(new THREE.Vector3(xmin, y - 6, 0)); bbox.expandByPoint(new THREE.Vector3(xmax, y, 0));
+    }
+    if (ay) {
+      const x = xmin - pad;
+      group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x, ymin, z), new THREE.Vector3(x, ymax, z)]), lineMat));
+      const lab = label2d(ay.label, 'axlabel'); lab.element.style.transform = 'rotate(-90deg)'; lab.position.set(x - 5, (ymin + ymax) / 2, z); group.add(lab);
+      for (const t of (ay.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x - 1, t.value, z), new THREE.Vector3(x + 1, t.value, z)]), lineMat)); const tl = label2d(t.label, 'tick'); tl.position.set(x - 2.5, t.value, z); tl.element.style.transform = 'translateX(-50%)'; group.add(tl); }
+      bbox.expandByPoint(new THREE.Vector3(x - 8, ymin, 0)); bbox.expandByPoint(new THREE.Vector3(x, ymax, 0));
+    }
+  }
+}
+
+// ---------- build an example ----------
+function clearGroup() {
+  if (!state.group) return;
+  state.group.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) { (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); } if (o.isCSS2DObject && o.element) o.element.remove(); });
+  scene.remove(state.group);
+  $('labels').replaceChildren();
+  state.group = null; state.nodes.clear(); state.edges = []; state.hit = []; state.hover = null; state.selected = null;
+  $('panel').hidden = true;
+}
+
+function buildExample(i) {
+  clearGroup();
+  state.exampleIndex = i;
+  const ex = GRAPH.examples[i];
+  const group = new THREE.Group(); scene.add(group); state.group = group;
+  const positions = computeLayout(ex);
+  // centre
+  const bbox = new THREE.Box3();
+  for (const p of positions.values()) bbox.expandByPoint(p);
+  const centre = bbox.getCenter(new THREE.Vector3());
+  if (ex.layout?.mode !== 'plane') for (const p of positions.values()) p.sub(centre);
+  const bbox2 = new THREE.Box3(); for (const p of positions.values()) bbox2.expandByPoint(p);
+  for (const n of ex.nodes) { const rec = makeNode(n, positions.get(n.id)); state.nodes.set(n.id, rec); group.add(rec.obj); state.hit.push(rec.hit); }
+  for (const e of ex.edges) {
+    const A = state.nodes.get(e.from), B = state.nodes.get(e.to); if (!A || !B) continue;
+    const rec = makeEdge(e, A, B); state.edges.push(rec); group.add(rec.grp); A.edges.push(rec); B.edges.push(rec);
+  }
+  drawDecor(ex, group, bbox2);
+  // camera fit
+  const size = bbox2.getSize(new THREE.Vector3()), c = bbox2.getCenter(new THREE.Vector3());
+  state.fit = { size, centre: c, mode: ex.layout?.mode || 'force', distance: ex.layout?.camera?.distance };
+  renderNote(ex);
+  renderLegend(ex);    // legend first, so the camera fit can measure it
+  resetView();
+  applyVisibility();
+  for (const b of $('examples').children) b.setAttribute('aria-pressed', String(b.dataset.index == i));
+  try { window.__frameworkExtension?.({ THREE, scene, group, graph: GRAPH, example: ex, nodesById: state.nodes, positions, api: { slotStyle, label2d, colors: { INK, INK2, MUTED, HAIRLINE, SURFACE, SLOT_COLORS, SCHEMA_COLOR } } }); } catch (e) { console.error('framework extension failed', e); }
+}
+
+// Fit the graph into the part of the stage not covered by the legend (left) or the open panel (right),
+// so labels are not hidden under the cards at the default view.
+function safeArea(size) {
+  const W = stage.clientWidth, H = stage.clientHeight;
+  const sr = stage.getBoundingClientRect();
+  let left = 0, top = 0, right = 0;
+  const wide = W > 820;
+  const leg = $('legend'); if (wide && leg && leg.offsetParent !== null) { const r = leg.getBoundingClientRect(); left = Math.max(left, r.right - sr.left + 16); }
+  const panel = $('panel'); if (wide && panel && !panel.hidden) { const r = panel.getBoundingClientRect(); right = Math.max(right, sr.right - r.left + 16); }
+  return { W, H, left, top, right, w: Math.max(200, W - left - right), h: Math.max(200, H - top) };
+}
+function resetView() {
+  if (!state.fit) return;
+  const { size, centre, mode } = state.fit;
+  const sa = safeArea(size);
+  const halfFov = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  const bottomPad = 30;                       // px: labels hang below the lowest row of nodes
+  const availH = Math.max(150, sa.h - bottomPad);
+  // distance at which the graph (plus margins) fits the safe area: the vertical FOV spans sa.H pixels
+  const fitH = (size.y / 2 + 8) * sa.H / (halfFov * availH);
+  const sidePad = 110;                       // px: labels are centred under nodes and stick out sideways
+  const fitW = (size.x / 2 + 6) * sa.H / (halfFov * Math.max(200, sa.w - 2 * sidePad));
+  const dist = state.fit.distance || Math.max(50, Math.max(fitH, fitW) * (mode === 'force' ? 1.3 : 1.08) + size.z / 2);
+  // world units per pixel at the target depth; shift the centre so the graph sits in the safe area
+  const wpp = (2 * dist * halfFov) / sa.H;
+  const target = centre.clone().add(new THREE.Vector3(-((sa.left - sa.right) / 2) * wpp, ((sa.top - bottomPad) / 2) * wpp, 0));
+  const camPos = mode === 'force' ? target.clone().add(new THREE.Vector3(dist * 0.3, dist * 0.22, dist * 0.92)) : target.clone().add(new THREE.Vector3(0, 0, dist));
+  camera.position.copy(camPos); controls.target.copy(target);
+  camera.near = 0.1; camera.far = 5000; camera.updateProjectionMatrix(); controls.update();
+}
+
+function applyVisibility() {
+  for (const rec of state.nodes.values()) {
+    const vis = rec.node.provenance !== 'derived' || state.showDerived;
+    rec.obj.visible = vis;
+    rec.label.visible = vis && state.showLabels;
+    rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+  }
+  for (const rec of state.edges) {
+    const endsOk = rec.A.obj.visible && rec.B.obj.visible;
+    // a derived edge is reasoning too: it goes away with the derived nodes, even when both its ends are facts
+    const vis = endsOk && (!rec.grounding || state.showGrounding) && (rec.edge.provenance !== 'derived' || state.showDerived);
+    rec.grp.visible = vis;
+    if (rec.label) rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+  }
+  // The idea key explains a marker; drop it when no idea node is on screen (e.g. the facts-only view).
+  const ideaKey = $('legend')?.querySelector('.key-row.idea-key');
+  if (ideaKey) ideaKey.style.display = [...state.nodes.values()].some(r => r.node.idea && r.obj.visible) ? '' : 'none';
+  renderStats();
+}
+
+// ---------- legend / note / stats ----------
+function renderLegend(ex) {
+  const el = $('legend'); el.replaceChildren();
+  const h = (t) => { const x = document.createElement('h2'); x.textContent = t; return x; };
+  el.appendChild(h('Slots'));
+  const counts = new Map(); for (const n of ex.nodes) counts.set(n.slot, (counts.get(n.slot) || 0) + 1);
+  for (const s of GRAPH.slots) {
+    const row = document.createElement('div'); row.className = 'slot-row';
+    const chip = document.createElement('span'); const stl = slotStyle.get(s.id);
+    chip.className = 'chip' + (stl.shape && stl.shape !== 'sphere' ? ' ' + stl.shape : ''); chip.style.background = stl.color;
+    if (s.structural) chip.style.borderRadius = '2px';
+    const name = document.createElement('span'); name.textContent = s.label;
+    const tp = document.createElement('span'); tp.className = 'tp'; tp.textContent = s.structural ? 'schema' : (s.typical_provenance || '');
+    const n = document.createElement('span'); n.className = 'n'; n.textContent = String(counts.get(s.id) || 0);
+    row.append(chip, name, tp, n); row.title = s.description || ''; el.appendChild(row);
+  }
+  el.appendChild(h('Provenance'));
+  const ideaCount = ex.nodes.filter(n => n.idea).length;
+  const keys = [['●', 'fact: stated in the source (solid)'], ['◌', 'derived: LLM inference (translucent, dashed)'], ['▪', 'schema: framework scaffolding (grey)'], ['→', 'solid edge stated, dashed inferred'], ['⋯', 'grounding link: derived → fact']];
+  if (ideaCount) keys.push(['★', 'gold ring: an opportunity this framework surfaces']);
+  for (const [sym, txt] of keys) {
+    const row = document.createElement('div'); row.className = 'key-row';
+    if (sym === '★') row.classList.add('idea-key');
+    const a = document.createElement('span'); a.className = 'sym'; a.textContent = sym; if (sym === '★') a.style.color = IDEA;
+    const b = document.createElement('span'); b.textContent = txt; row.append(a, b); el.appendChild(row);
+  }
+  const st = document.createElement('div'); st.className = 'stats'; st.id = 'stats'; el.appendChild(st);
+  renderStats();
+}
+function renderStats() {
+  const st = $('stats'); if (!st) return;
+  const ex = GRAPH.examples[state.exampleIndex];
+  const nf = ex.nodes.filter(n => n.provenance === 'fact').length, nd = ex.nodes.filter(n => n.provenance === 'derived').length, ns = ex.nodes.filter(n => n.provenance === 'schema').length;
+  const ef = ex.edges.filter(e => e.provenance === 'fact').length, ed = ex.edges.filter(e => e.provenance === 'derived' && e.relation !== 'supported_by').length, eg = ex.edges.filter(e => e.relation === 'supported_by').length;
+  const visN = [...state.nodes.values()].filter(r => r.obj.visible).length, visE = state.edges.filter(r => r.grp.visible).length;
+  st.replaceChildren();
+  const line = (html) => { const d = document.createElement('div'); d.append(...html); st.appendChild(d); };
+  const b = (t) => { const x = document.createElement('b'); x.textContent = t; return x; };
+  line(['nodes ', b(String(nf)), ' fact · ', b(String(nd)), ' derived', ns ? ` · ${ns} schema` : '']);
+  line(['edges ', b(String(ef)), ' fact · ', b(String(ed)), ' derived · ', b(String(eg)), ' grounding']);
+  line([`showing ${visN} nodes, ${visE} edges`]);
+}
+function renderNote(ex) {
+  const el = $('note'); el.replaceChildren();
+  const h = document.createElement('h3'); h.textContent = ex.title || ex.id; el.appendChild(h);
+  const p = document.createElement('p'); p.textContent = ex.summary || ''; el.appendChild(p);
+  const s = document.createElement('div'); s.className = 'src';
+  if (ex.source?.type === 'transcript') s.textContent = `TBPN ${ex.source.date} · ${ex.source.episode_title || ''}`;
+  else if (ex.source?.type === 'text') s.textContent = `source: ${ex.source.title || 'scenario text'}`;
+  el.appendChild(s);
+}
+
+// ---------- panel ----------
+function openPanel(rec) {
+  const n = rec.node, ex = GRAPH.examples[state.exampleIndex];
+  const panel = $('panel'); panel.replaceChildren(); panel.hidden = false;
+  const head = document.createElement('div'); head.className = 'p-head';
+  const slotEl = document.createElement('div'); slotEl.className = 'p-slot';
+  const chip = document.createElement('span'); chip.className = 'chip'; chip.style.background = rec.color; slotEl.append(chip, document.createTextNode((slotStyle.get(n.slot)?.slot?.label) || n.slot));
+  const close = document.createElement('button'); close.className = 'close'; close.type = 'button'; close.textContent = '×'; close.setAttribute('aria-label', 'Close'); close.onclick = () => { panel.hidden = true; state.selected = null; };
+  head.append(slotEl, close); panel.appendChild(head);
+  const h3 = document.createElement('h3'); h3.textContent = n.label; panel.appendChild(h3);
+  const badge = document.createElement('span'); badge.className = 'badge ' + n.provenance; badge.textContent = n.provenance; panel.appendChild(badge);
+  const text = document.createElement('p'); text.textContent = n.text; panel.appendChild(text);
+  const h4 = (t) => { const x = document.createElement('h4'); x.textContent = t; panel.appendChild(x); };
+  if (n.provenance === 'fact') {
+    h4(n.paraphrase ? 'Paraphrased from the source' : 'Quoted from the source');
+    const q = document.createElement('blockquote'); q.textContent = n.source_quote || ''; panel.appendChild(q);
+    const r = document.createElement('div'); r.className = 'ref'; r.textContent = n.source_ref || ''; panel.appendChild(r);
+  } else if (n.provenance === 'derived') {
+    h4('Confidence');
+    const c = document.createElement('div'); c.className = 'conf'; c.textContent = `${Math.round((n.confidence || 0) * 100)} / 100`; panel.appendChild(c);
+    const bar = document.createElement('div'); bar.className = 'confbar'; const fillEl = document.createElement('i'); fillEl.style.width = `${Math.round((n.confidence || 0) * 100)}%`; bar.appendChild(fillEl); panel.appendChild(bar);
+    h4('Why the LLM infers this'); const r = document.createElement('p'); r.textContent = n.rationale || ''; panel.appendChild(r);
+    if (n.idea) { h4('Opportunity this points to'); const ip = document.createElement('p'); ip.className = 'idea'; ip.textContent = n.idea; panel.appendChild(ip); }
+    const sup = ex.edges.filter(e => e.relation === 'supported_by' && e.from === n.id).map(e => state.nodes.get(e.to)).filter(Boolean);
+    if (sup.length) { h4('Supported by'); const ul = document.createElement('ul'); for (const s of sup) { const li = document.createElement('li'); li.textContent = s.node.label; const q = document.createElement('div'); q.className = 'ref'; q.textContent = (s.node.source_quote || '').slice(0, 140); li.appendChild(q); ul.appendChild(li); } panel.appendChild(ul); }
+  } else {
+    const r = document.createElement('p'); r.className = 'ref'; r.textContent = 'Framework scaffolding: neither a fact nor an inference.'; panel.appendChild(r);
+  }
+  const rels = rec.edges.filter(e => e.edge.relation !== 'supported_by');
+  if (rels.length) {
+    h4('Edges'); const ul = document.createElement('ul');
+    for (const e of rels) { const li = document.createElement('li'); const out = e.edge.from === n.id; const other = out ? e.B.node : e.A.node; const rl = document.createElement('span'); rl.className = 'rel'; rl.textContent = (out ? '→ ' : '← ') + (relLabel.get(e.edge.relation) || e.edge.relation) + (e.edge.provenance === 'derived' ? ' (inferred)' : '') + ' '; li.append(rl, document.createTextNode(other.label)); ul.appendChild(li); }
+    panel.appendChild(ul);
+  }
+  if (Array.isArray(n.entities) && n.entities.length) { h4('Entities'); const p = document.createElement('p'); p.className = 'ref'; p.textContent = n.entities.join(', '); panel.appendChild(p); }
+}
+
+// ---------- interaction ----------
+const raycaster = new THREE.Raycaster(); const pointer = new THREE.Vector2(); const tooltip = $('tooltip');
+function setHover(rec) {
+  if (state.hover === rec) return;
+  if (state.hover) { const h = state.hover; h.mesh.scale.setScalar(1); if (h.mesh.material.emissive) h.mesh.material.emissive.setHex(0x000000); for (const e of h.edges) { e.line.material.color.set(e.grounding ? MUTED : (e.edge.provenance === 'schema' ? HAIRLINE : INK2)); if (e.arrow) e.arrow.material.color.set(INK2); } }
+  state.hover = rec;
+  if (rec) { rec.mesh.scale.setScalar(1.18); if (rec.mesh.material.emissive) rec.mesh.material.emissive.set(rec.color).multiplyScalar(0.35); for (const e of rec.edges) { if (!e.grp.visible) continue; e.line.material.color.set(INK); if (e.arrow) e.arrow.material.color.set(INK); } }
+  renderer.domElement.style.cursor = rec ? 'pointer' : '';
+}
+renderer.domElement.addEventListener('pointermove', (ev) => {
+  const r = renderer.domElement.getBoundingClientRect();
+  pointer.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
+  raycaster.setFromCamera(pointer, camera);
+  const hits = raycaster.intersectObjects(state.hit.filter(h => h.parent.visible), false);
+  const rec = hits.length ? state.nodes.get(hits[0].object.userData.nodeId) : null;
+  setHover(rec);
+  if (rec) {
+    tooltip.replaceChildren();
+    const a = document.createElement('div'); a.className = 't-label'; a.textContent = rec.node.label;
+    const b = document.createElement('div'); b.className = 't-meta'; b.textContent = `${(slotStyle.get(rec.node.slot)?.slot?.label) || rec.node.slot} · ${rec.node.provenance}${rec.node.provenance === 'derived' ? ' ' + Math.round((rec.node.confidence || 0) * 100) + '%' : ''}`;
+    const c = document.createElement('div'); c.textContent = rec.node.text.length > 160 ? rec.node.text.slice(0, 157) + '…' : rec.node.text;
+    tooltip.append(a, b, c);
+    tooltip.style.display = 'block';
+    const mx = ev.clientX - r.left + 14, my = ev.clientY - r.top + 14;
+    tooltip.style.left = Math.min(mx, r.width - 320) + 'px'; tooltip.style.top = Math.min(my, r.height - 120) + 'px';
+  } else tooltip.style.display = 'none';
+});
+renderer.domElement.addEventListener('pointerleave', () => { setHover(null); tooltip.style.display = 'none'; });
+let downAt = null;
+renderer.domElement.addEventListener('pointerdown', (ev) => { downAt = [ev.clientX, ev.clientY]; });
+renderer.domElement.addEventListener('pointerup', (ev) => {
+  if (!downAt || Math.hypot(ev.clientX - downAt[0], ev.clientY - downAt[1]) > 5) return;
+  if (state.hover) { state.selected = state.hover; openPanel(state.hover); } else { $('panel').hidden = true; state.selected = null; }
+});
+document.addEventListener('keydown', (ev) => {
+  if (ev.target && /input|textarea|select/i.test(ev.target.tagName)) return;
+  if (ev.key === 'd') { $('t-derived').checked = !$('t-derived').checked; $('t-derived').dispatchEvent(new Event('change')); }
+  if (ev.key === 'g') { $('t-grounding').checked = !$('t-grounding').checked; $('t-grounding').dispatchEvent(new Event('change')); }
+  if (ev.key === 'r') resetView();
+  if (ev.key === 'Escape') { $('panel').hidden = true; state.selected = null; }
+});
+$('t-derived').addEventListener('change', (e) => { state.showDerived = e.target.checked; applyVisibility(); });
+$('t-grounding').addEventListener('change', (e) => { state.showGrounding = e.target.checked; applyVisibility(); });
+$('t-labels').addEventListener('change', (e) => { state.showLabels = e.target.checked; applyVisibility(); });
+$('t-rotate').addEventListener('change', (e) => { controls.autoRotate = e.target.checked; });
+$('reset').addEventListener('click', resetView);
+
+// example selector
+const seg = $('examples');
+const kindCount = new Map(); for (const ex of GRAPH.examples) kindCount.set(ex.kind, (kindCount.get(ex.kind) || 0) + 1);
+GRAPH.examples.forEach((ex, i) => { const b = document.createElement('button'); b.type = 'button'; b.dataset.index = i; b.textContent = kindCount.get(ex.kind) > 1 ? (ex.title || ex.id) : ex.kind === 'tbpn' ? 'From TBPN' : ex.kind === 'classic' ? 'Classic' : (ex.title || ex.id); b.title = ex.title || ''; b.setAttribute('aria-pressed', 'false'); b.addEventListener('click', () => buildExample(i)); seg.appendChild(b); });
+
+// ---------- go ----------
+// URL parameters set the initial state (deep links, scripted screenshots): ?example=1&derived=0&grounding=1&labels=0&rotate=1
+const q = new URLSearchParams(location.search);
+const flag = (k, def) => q.has(k) ? !['0', 'false', 'off', 'no'].includes(q.get(k).toLowerCase()) : def;
+state.showDerived = flag('derived', true); $('t-derived').checked = state.showDerived;
+state.showGrounding = flag('grounding', false); $('t-grounding').checked = state.showGrounding;
+state.showLabels = flag('labels', true); $('t-labels').checked = state.showLabels;
+controls.autoRotate = flag('rotate', false); $('t-rotate').checked = controls.autoRotate;
+let startIndex = parseInt(q.get('example') || '0', 10);
+if (!(startIndex >= 0 && startIndex < GRAPH.examples.length)) startIndex = Math.max(0, GRAPH.examples.findIndex(x => x.id === q.get('example')));
+resize();
+buildExample(startIndex);
+$('fallback').hidden = true; window.__engineReady = true;
+function loop() {
+  requestAnimationFrame(loop);
+  controls.update();
+  for (const rec of state.nodes.values()) for (const c of rec.obj.children) if (c.userData.isIdeaRing) c.quaternion.copy(camera.quaternion);
+  renderer.render(scene, camera); labelRenderer.render(scene, camera);
+}
+loop();
+</script>
+</body>
+</html>
