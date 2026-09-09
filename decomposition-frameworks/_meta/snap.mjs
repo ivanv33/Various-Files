@@ -39,14 +39,20 @@ try {
 
   const metrics = () => page.evaluate(() => {
     const main = document.querySelector('main').getBoundingClientRect();
-    const rects = [...document.querySelectorAll('#labels .nlabel')].filter(e => e.style.display !== 'none' && e.offsetParent !== null).map(e => { const r = e.getBoundingClientRect(); return { t: e.textContent.trim(), x: r.left, y: r.top, w: r.width, h: r.height }; });
+    // Node labels AND edge labels: an edge label sitting on a node label is the collision class
+    // critics kept reporting by eye because the metrics could not see it.
+    const vis = (e) => e.style.display !== 'none' && e.offsetParent !== null;
+    const box = (e, kind) => { const r = e.getBoundingClientRect(); return { t: e.textContent.trim(), kind, x: r.left, y: r.top, w: r.width, h: r.height }; };
+    const nodeRects = [...document.querySelectorAll('#labels .nlabel')].filter(vis).map(e => box(e, 'node'));
+    const edgeRects = [...document.querySelectorAll('#labels .elabel')].filter(vis).map(e => box(e, 'edge'));
+    const rects = [...nodeRects, ...edgeRects];
     let overlaps = 0; const pairs = [];
     for (let i = 0; i < rects.length; i++) for (let j = i + 1; j < rects.length; j++) { const a = rects[i], b = rects[j]; if (a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h) { overlaps++; if (pairs.length < 12) pairs.push([a.t, b.t]); } }
     const cards = ['legend', 'panel'].map(id => document.getElementById(id)).filter(e => e && !e.hidden).map(e => e.getBoundingClientRect());
     const offscreen = rects.filter(r => r.x < main.left || r.y < main.top || r.x + r.w > main.right || r.y + r.h > main.bottom).length;
     const underCards = rects.filter(r => cards.some(c => r.x < c.right && c.left < r.x + r.w && r.y < c.bottom && c.top < r.y + r.h)).length;
     const stats = document.getElementById('stats')?.textContent || '';
-    return { labels: rects.length, overlapping_pairs: overlaps, overlap_examples: pairs, offscreen, under_cards: underCards, stats };
+    return { labels: rects.length, node_labels: nodeRects.length, edge_labels: edgeRects.length, overlapping_pairs: overlaps, overlap_examples: pairs, offscreen, under_cards: underCards, stats };
   });
 
   for (let i = 0; i < graph.examples.length; i++) {
@@ -78,7 +84,7 @@ try {
 fs.writeFileSync(path.join(out, 'report.json'), JSON.stringify(report, null, 2));
 for (const ex of report.examples) {
   const m = ex.metrics_default;
-  console.log(`${slug} [${ex.index}] ${ex.id} (${ex.layout}): labels ${m.labels}, overlapping pairs ${m.overlapping_pairs}, offscreen ${m.offscreen}, under cards ${m.under_cards}; console ${ex.console.length ? ex.console.length + ' issue(s)' : 'clean'}`);
+  console.log(`${slug} [${ex.index}] ${ex.id} (${ex.layout}): labels ${m.labels} (${m.node_labels} node / ${m.edge_labels} edge), overlapping pairs ${m.overlapping_pairs}, offscreen ${m.offscreen}, under cards ${m.under_cards}; console ${ex.console.length ? ex.console.length + ' issue(s)' : 'clean'}`);
   for (const c of ex.console) console.log(`    ! ${c}`);
 }
 console.log(`screenshots + report.json in ${path.relative(process.cwd(), out)}`);
