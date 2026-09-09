@@ -50,9 +50,9 @@ Written for this library in the genre CARL is taught in (nursing and allied-heal
 
 **Context**
 
-- `c1` **Sole RN covering sixteen beds** [fact] On a late shift the author was the only registered nurse for sixteen beds, with a healthcare assistant and an agency nurse who did not know the ward. "I was the only registered nurse covering sixteen beds, working with one healthcare assistant and an agency nurse who had never worked on the ward before" (sentence 1)
+- `c1` **Sole RN for sixteen beds** [fact] On a late shift the author was the only registered nurse for sixteen beds, with a healthcare assistant and an agency nurse who did not know the ward. "I was the only registered nurse covering sixteen beds, working with one healthcare assistant and an agency nurse who had never worked on the ward before" (sentence 1)
 - `c2` **1 mg IV morphine prescribed** [fact] A patient was prescribed 1 mg of intravenous morphine for breakthrough pain at about nine in the evening. "a patient was prescribed 1 mg of intravenous morphine for breakthrough pain" (sentence 2)
-- `c3` **Look-alike ampoules, one drawer** [fact] The 1 mg and 10 mg morphine ampoules are kept in the same drawer in almost identical boxes. "The two strengths are kept in the same drawer in almost identical boxes" (sentence 5)
+- `c3` **Look-alikes in one drawer** [fact] The 1 mg and 10 mg morphine ampoules are kept in the same drawer in almost identical boxes. "The two strengths are kept in the same drawer in almost identical boxes" (sentence 5)
 - `c4` **Only small print separates 10x** [derived 0.85] Nothing but the printed strength on a near-identical box separates a dose from ten times that dose. Rationale: The account states that the two strengths sit in one drawer in almost identical boxes and that the ampoules are 1 mg and 10 mg in the same volume; that the small print is the only discriminator is the inference joining those two statements.
 
 **Action**
@@ -67,17 +67,17 @@ Written for this library in the genre CARL is taught in (nursing and allied-heal
 - `r1` **Caught: 10 mg, not 1 mg** [fact] The agency nurse read the label back and stopped her: the ampoule was 10 mg in 1 ml, not 1 mg in 1 ml. "She read the label back and stopped me: the ampoule was 10 mg in 1 ml, not 1 mg in 1 ml" (sentence 4)
 - `r2` **No morphine reached the patient** [fact] No morphine reached the patient. "No morphine reached the patient" (sentence 6)
 - `r3` **Same swap twice before** [fact] The review found that the same two ampoules had been confused twice already that year, by two other nurses. "the same two ampoules had been confused twice already that year, by two other nurses" (sentence 8)
-- `r4` **The barrier that held was the check** [derived 0.80] The error was stopped by a second person reading the label, not by the care taken in drawing the dose up. Rationale: The same nurse both selected the wrong ampoule and asked for the check; identifying the check rather than her own attention as the barrier that actually worked is a reading of that sequence, not a statement in it.
+- `r4` **The barrier that held: the check** [derived 0.80] The error was stopped by a second person reading the label, not by the care taken in drawing the dose up. Rationale: The same nurse both selected the wrong ampoule and asked for the check; identifying the check rather than her own attention as the barrier that actually worked is a reading of that sequence, not a statement in it.
 
 **Learning**
 
-- `l1` **Resolved to read every label twice** [fact] Her first lesson was that she had been careless and would slow down and read every label twice. "I would slow down and read every label twice" (sentence 7)
+- `l1` **Resolved to read labels twice** [fact] Her first lesson was that she had been careless and would slow down and read every label twice. "I would slow down and read every label twice" (sentence 7)
 - `l2` **Vigilance was not what failed** [derived 0.85] Three different nurses made the same mistake, so the variable that failed is not individual attention but the arrangement that requires it. Rationale: The recurrence across two other nurses is stated; concluding from it that attention is the wrong variable to correct is the move from a single-loop resolution to a double-loop diagnosis, and the account gestures at it without naming it.
 
 **Systemic rule**
 
-- `u1` **Separate cupboards, second signature** [fact] The ward now stores the two strengths in separate cupboards and releases the 10 mg ampoule only against a second signature in the controlled-drugs register. "the two strengths are stored in separate cupboards and the 10 mg ampoule is released only against a second signature in the controlled-drugs register" (sentence 9)
-- `u2` **Design the ambiguity out of storage** [derived 0.80] The governing rule moves from asking people to read more carefully to removing the situation in which a misread is possible at all. Rationale: The ward's change and the closing sentence both point at this principle, but the account states the new arrangement rather than the rule behind it; naming the rule is what makes the lesson transfer to every other look-alike pair on the ward.
+- `u1` **Split cupboards, 2nd signature** [fact] The ward now stores the two strengths in separate cupboards and releases the 10 mg ampoule only against a second signature in the controlled-drugs register. "the two strengths are stored in separate cupboards and the 10 mg ampoule is released only against a second signature in the controlled-drugs register" (sentence 9)
+- `u2` **Design ambiguity out of storage** [derived 0.80] The governing rule moves from asking people to read more carefully to removing the situation in which a misread is possible at all. Rationale: The ward's change and the closing sentence both point at this principle, but the account states the new arrangement rather than the rule behind it; naming the rule is what makes the lesson transfer to every other look-alike pair on the ward.
 
 Fact edges. Three, each joining two fact nodes with a connective the account states in one span:
 
@@ -122,13 +122,13 @@ Twenty-one of the twenty-seven nodes and seven of the thirty-four edges are fact
 
 - `ct1` **Robotics to cut restaurant costs** [fact] Cala's mission was to make real food more affordable by using robotics and AI to automate back-kitchen operations. "The vision and the mission was to basically make real food more affordable by using robotics and AI to automate the back kitchen operations" (Ylan Richard, L5898-L5902)
 - `ct2` **Ten million raised from VCs** [fact] By the time the first restaurants were working the company had raised ten million dollars from venture investors. "We had raised 10 million up to that point from VCs" (Ylan Richard, L5948-L5950)
-- `ct3` **European Series A/B funding cliff** [fact] European venture has a structural financing gap at the Series A to Series B moment: a gigantic cliff rather than a next rung. "there's a big financing gap when you get to the Series A slash Series B moment, where basically there's just a gigantic cliff of funding there" (Ylan Richard, L5950-L5954)
-- `ct4` **French insolvency severance rules** [fact] French law gives employees high severance when a company goes bankrupt, with further state-backed protections on top. "what the regulation actually says is just that when a company goes bankrupt, the employee gets pretty high severance" (Ylan Richard, L6148-L6151)
+- `ct3` **European Series A/B cliff** [fact] European venture has a structural financing gap at the Series A to Series B moment: a gigantic cliff rather than a next rung. "there's a big financing gap when you get to the Series A slash Series B moment, where basically there's just a gigantic cliff of funding there" (Ylan Richard, L5950-L5954)
+- `ct4` **French insolvency severance** [fact] French law gives employees high severance when a company goes bankrupt, with further state-backed protections on top. "what the regulation actually says is just that when a company goes bankrupt, the employee gets pretty high severance" (Ylan Richard, L6148-L6151)
 - `ct5` **Cliff unknown at incorporation** [fact] The founders did not know about the financing cliff when they created and structured the business. "we did not understand that when we created the business and structured the business" (Ylan Richard, L5954-L5956)
 
 **Action**
 
-- `a1` **Ran the company for eight years** [fact] The founders ran Cala for eight years, making, in the speaker's words, an ungodly amount of mistakes along the way. "We basically ran the company for eight years, did a bunch, like an ungodly amount of mistakes along the way" (Ylan Richard, L5928-L5932)
+- `a1` **Ran the company eight years** [fact] The founders ran Cala for eight years, making, in the speaker's words, an ungodly amount of mistakes along the way. "We basically ran the company for eight years, did a bunch, like an ungodly amount of mistakes along the way" (Ylan Richard, L5928-L5932)
 - `a2` **Decided to scale on first results** [fact] On the strength of the first profitable restaurants the team decided to start scaling. "we have kept those great first results with the restaurants, let's start scaling" (Ylan Richard, L5946-L5948)
 - `a3` **Tried to restructure to break even** [fact] With scaling blocked, the team tried to restructure away from a handful of profitable restaurants carrying a very high HQ cost. "restructuring the business to go from those hands full of restaurants that were very profitable and a very high HQ cost" (Ylan Richard, L5978-L5982)
 - `a4` **Asked regulators for a workaround** [fact] The founders went to regulators, the government and any structure around them looking for a workaround. "we basically tried to talk to the regulators, to the government, to any structure that was around us to try and find a workaround" (Ylan Richard, L6012-L6014)
@@ -151,8 +151,8 @@ Twenty-one of the twenty-seven nodes and seven of the thirty-four edges are fact
 
 - `u1` **Finance with VC and retail PE** [fact] The financing strategy has to combine venture capital with private equity that handles retail and restaurants naturally, and the business must be tailored to both. "you have to build a strategy around your financing that's both VC but also private equity that does retail and restaurants more naturally" (Ylan Richard, L6222-L6225)
 - `u2` **Keep HQ cost low and lean** [fact] The new company keeps a low HQ cost and lean HQ operations, with the other structuring elements changed to match. "that means low HQ cost, more lean HQ operations" (Ylan Richard, L6228)
-- `u3` **Franchise instead of owning stores** [fact] Franchising is under serious consideration as the path to scale, more aggressively and more capital-efficiently than owning every restaurant as Cala did. "pretty highly considering franchising as kind of a path to scale a lot more aggressively than and a lot more efficiently, capital efficiently than we did with Cali where we own every single restaurant" (Ylan Richard, L6299-L6305)
-- `u4` **Start the next company in New York** [fact] The roadmap is to launch the first store of the new company in New York around the middle of next year. "The higher level roadmap is to launch the first store in New York, middle of next year" (Ylan Richard, L6289)
+- `u3` **Franchise rather than own stores** [fact] Franchising is under serious consideration as the path to scale, more aggressively and more capital-efficiently than owning every restaurant as Cala did. "pretty highly considering franchising as kind of a path to scale a lot more aggressively than and a lot more efficiently, capital efficiently than we did with Cali where we own every single restaurant" (Ylan Richard, L6299-L6305)
+- `u4` **Next company starts in New York** [fact] The roadmap is to launch the first store of the new company in New York around the middle of next year. "The higher level roadmap is to launch the first store in New York, middle of next year" (Ylan Richard, L6289)
 
 Fact edges. Seven, each joining two fact nodes in a span where Richard states the connection himself:
 
@@ -178,11 +178,11 @@ Six derived nodes, and twenty-seven derived edges carrying every link Richard do
 
 **Result**
 
-- `r7` **Regulation made the fix unaffordable** [derived 0.80] Insolvency protection turned a solvable cost problem into an unsolvable one: the cheapest legal route back to profitability cost more cash than the company held. Rationale: He says the restructuring was possible on paper, that French regulation prevented it, and that the severance liability alone exceeded cash on hand; naming that combination as the failure mechanism joins three separate statements into one. Supported by `r4`, `ct4`.
+- `r7` **Regulation priced the fix out** [derived 0.80] Insolvency protection turned a solvable cost problem into an unsolvable one: the cheapest legal route back to profitability cost more cash than the company held. Rationale: He says the restructuring was possible on paper, that French regulation prevented it, and that the severance liability alone exceeded cash on hand; naming that combination as the failure mechanism joins three separate statements into one. Supported by `r4`, `ct4`.
 
 **Learning**
 
-- `l3` **Single-loop fixes could not save it** [derived 0.80] What failed was not how the restaurants were run but how the company was structured, so no improvement inside the existing setup could have changed the outcome. Rationale: The stated results show the operating loop working (profitable stores, weekly retention, payback on the machines) while the outcome was still terminal; diagnosing the failure as sitting in the governing structure rather than in execution is the double-loop reading the speaker approaches but never states. Supported by `r6`, `r1`, `r3`.
+- `l3` **No single-loop fix could save it** [derived 0.80] What failed was not how the restaurants were run but how the company was structured, so no improvement inside the existing setup could have changed the outcome. Rationale: The stated results show the operating loop working (profitable stores, weekly retention, payback on the machines) while the outcome was still terminal; diagnosing the failure as sitting in the governing structure rather than in execution is the double-loop reading the speaker approaches but never states. Supported by `r6`, `r1`, `r3`.
 
 **Systemic rule**
 
