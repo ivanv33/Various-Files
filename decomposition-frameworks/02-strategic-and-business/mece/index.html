@@ -51,7 +51,8 @@
   #stage canvas { display: block; }
   #labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
   #labels * { pointer-events: none; }
-  .nlabel { font: 12px/1.2 var(--sans); color: var(--ink-2); white-space: nowrap; transform: translateY(14px); text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6); }
+  .nlabel { font: 12px/1.2 var(--sans); color: var(--ink-2); white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6); }
+  .nlabel .lab { display: inline-block; transform: translateY(11px); }
   .nlabel.derived { color: var(--ink-2); font-style: italic; }
   .nlabel.schema { color: var(--muted); font: 11px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
   .nlabel .g { font-size: 9px; margin-right: 4px; vertical-align: 1px; }
@@ -423,9 +424,11 @@ function makeNode(n, p) {
   const glyph = n.provenance === 'fact' ? '●' : n.provenance === 'derived' ? '◌' : '▪';
   const el = document.createElement('div'); el.className = 'nlabel ' + n.provenance;
   const g = document.createElement('span'); g.className = 'g'; g.textContent = glyph; g.style.color = n.provenance === 'schema' ? MUTED : st.color;
-  el.appendChild(g);
-  if (n.idea) { const st2 = document.createElement('span'); st2.className = 'idea-star'; st2.textContent = '★'; el.appendChild(st2); }
-  el.appendChild(document.createTextNode(n.label || n.id));
+  const inner = document.createElement('span'); inner.className = 'lab';
+  inner.appendChild(g);
+  if (n.idea) { const st2 = document.createElement('span'); st2.className = 'idea-star'; st2.textContent = '★'; inner.appendChild(st2); }
+  inner.appendChild(document.createTextNode(n.label || n.id));
+  el.appendChild(inner);
   // Anchor the label below whatever the node actually draws: a diamond reaches further than a
   // sphere, a derived node adds a 1.35r halo, and an idea node adds a 1.6r ring. Anchoring at -r
   // regardless (the old behaviour) made labels collide with their own marker on those nodes.
