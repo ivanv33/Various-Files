@@ -55,7 +55,7 @@ Twelve of the seventeen nodes are facts, none of them paraphrases; `source_ref` 
 
 Goal
 
-- `cg1` **The plant exists to make money** [fact] The plant's goal, as division states it, is to make money; every local measure is only a proxy for it. "the plant exists to make money" (sentence 5)
+- `cg1` **Make money** [fact] The plant's goal, as division states it, is to make money; every local measure is only a proxy for it. "the plant exists to make money" (sentence 5)
 
 Step
 
@@ -124,17 +124,17 @@ Fourteen of the twenty-one nodes and three of the twenty-nine edges are facts, n
 
 Goal
 
-- `g1` **Serve the labs' insatiable compute need** [fact] CoreWeave's first job is serving the customers and partners that got it here: the big AI labs and the hyperscalers, who have an insatiable need for compute infrastructure. "The first is serving the customers and partners that got us here. That's the big AI labs, it's the hyperscalers. It's the people that have an insatiable need for computer infrastructure." (Brian Venturo, L3868-L3876)
-- `g2` **Unblock the customers' own growth** [fact] Those customers are blocked from delivering to their next customer and from growing their user base because they do not have any GPUs; throughput here is measured in their unblocked growth. "They're the ones that are blocked from delivering to their next customer, from growing their user base, because they don't have any GPUs." (Brian Venturo, L3878-L3884)
+- `g1` **Serve the labs' compute need** [fact] CoreWeave's first job is serving the customers and partners that got it here: the big AI labs and the hyperscalers, who have an insatiable need for compute infrastructure. "The first is serving the customers and partners that got us here. That's the big AI labs, it's the hyperscalers. It's the people that have an insatiable need for computer infrastructure." (Brian Venturo, L3868-L3876)
+- `g2` **Unblock the customers' growth** [fact] Those customers are blocked from delivering to their next customer and from growing their user base because they do not have any GPUs; throughput here is measured in their unblocked growth. "They're the ones that are blocked from delivering to their next customer, from growing their user base, because they don't have any GPUs." (Brian Venturo, L3878-L3884)
 
 Step
 
 - `s_power` **Grid power from base load** [fact] Contrary to the shortage narrative, the data show a tremendous amount of power available from base load and load-following generation. "Everybody talks about how there's no power left in America. And if you actually look at the data, there's a tremendous amount of power available from base load and load following generation." (Brian Venturo, L4812-L4816)
 - `s_transformers` **Transformers: inside the lead time** [fact] Electrical transformers are a problem, but they are not outside the lead-time window: they can be planned for. "transformers are a problem, but they're not outside the lead time window" (Brian Venturo, L4858-L4858)
-- `s_ups` **UPS: a problem only if needed tomorrow** [fact] Uninterruptible power supplies, like everything else in the build, are only a problem if you need them tomorrow. "UPS is everything's a problem if you need it tomorrow" (Brian Venturo, L4862-L4862)
+- `s_ups` **UPS: only if needed tomorrow** [fact] Uninterruptible power supplies, like everything else in the build, are only a problem if you need them tomorrow. "UPS is everything's a problem if you need it tomorrow" (Brian Venturo, L4862-L4862)
 - `s_labor` **Not enough electricians** [fact] There are not enough electricians in the world to build these data centres on the timelines the customers need. "there's not enough electricians in the world to go out and build these things and timelines these people need" (Brian Venturo, L3912-L3912)
 - `s_build` **Data centre construction** [fact] The data hall itself has to be built, which is why operators are asking how to modularise data centre construction while the planes are already in the air. "How do you modularize the data center construction?" (Brian Venturo, L3912-L3912)
-- `s_fiber` **Fiber capacity between metros** [fact] Fiber capacity between metros is going to be an issue, though not necessarily an insurmountable one. "Fiber capacity between metros is going to be an issue." (Brian Venturo, L4786-L4786)
+- `s_fiber` **Fiber between metros** [fact] Fiber capacity between metros is going to be an issue, though not necessarily an insurmountable one. "Fiber capacity between metros is going to be an issue." (Brian Venturo, L4786-L4786)
 
 Constraint
 
@@ -166,7 +166,7 @@ Seven derived nodes and twenty-six derived edges. Fact nodes are referenced by i
 
 Constraint (`c1` is the stated one)
 
-- `c2` **Break it and the constraint moves back** [derived 0.55] If the capital constraint were relieved, the binding step would move back into the physical chain: transformer and UPS lead times, electricians and peak-day power are inside the window only because nobody is building at the unhaircut rate. Rationale: The fifth focusing step: after a constraint is elevated the next one binds. Venturo says the physical inputs are not outside the lead-time window, which is a statement about today's build rate, not about the rate a fully funded industry would attempt. The step is a standard TOC reading, not something he says. Supported by `c1`, `s_transformers`.
+- `c2` **Break it: the constraint moves back** [derived 0.55] If the capital constraint were relieved, the binding step would move back into the physical chain: transformer and UPS lead times, electricians and peak-day power are inside the window only because nobody is building at the unhaircut rate. Rationale: The fifth focusing step: after a constraint is elevated the next one binds. Venturo says the physical inputs are not outside the lead-time window, which is a statement about today's build rate, not about the rate a fully funded industry would attempt. The step is a standard TOC reading, not something he says. Supported by `c1`, `s_transformers`.
 
 Assumption — all four derived, none of them said by anyone in the interview
 
