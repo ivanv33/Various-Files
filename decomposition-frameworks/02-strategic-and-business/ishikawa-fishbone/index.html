@@ -51,7 +51,8 @@
   #stage canvas { display: block; }
   #labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
   #labels * { pointer-events: none; }
-  .nlabel { font: 12px/1.2 var(--sans); color: var(--ink-2); white-space: nowrap; transform: translateY(14px); text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6); }
+  .nlabel { font: 12px/1.2 var(--sans); color: var(--ink-2); white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6); }
+  .nlabel .lab { display: inline-block; transform: translateY(11px); }
   .nlabel.derived { color: var(--ink-2); font-style: italic; }
   .nlabel.schema { color: var(--muted); font: 11px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
   .nlabel .g { font-size: 9px; margin-right: 4px; vertical-align: 1px; }
@@ -485,9 +486,11 @@ function makeNode(n, p) {
   const glyph = n.provenance === 'fact' ? '●' : n.provenance === 'derived' ? '◌' : '▪';
   const el = document.createElement('div'); el.className = 'nlabel ' + n.provenance;
   const g = document.createElement('span'); g.className = 'g'; g.textContent = glyph; g.style.color = n.provenance === 'schema' ? MUTED : st.color;
-  el.appendChild(g);
-  if (n.idea) { const st2 = document.createElement('span'); st2.className = 'idea-star'; st2.textContent = '★'; el.appendChild(st2); }
-  el.appendChild(document.createTextNode(n.label || n.id));
+  const inner = document.createElement('span'); inner.className = 'lab';
+  inner.appendChild(g);
+  if (n.idea) { const st2 = document.createElement('span'); st2.className = 'idea-star'; st2.textContent = '★'; inner.appendChild(st2); }
+  inner.appendChild(document.createTextNode(n.label || n.id));
+  el.appendChild(inner);
   // Anchor the label below whatever the node actually draws: a diamond reaches further than a
   // sphere, a derived node adds a 1.35r halo, and an idea node adds a 1.6r ring. Anchoring at -r
   // regardless (the old behaviour) made labels collide with their own marker on those nodes.
@@ -538,6 +541,12 @@ function drawDecor(ex, group, bbox) {
     // at the corner made every caption straddle the boundary and builders patched it page-side.
     const lab = label2d(r.label, 'rlabel'); lab.position.set((r.x[0] + r.x[1]) / 2, Math.max(r.y[0], r.y[1]) - 3, z); group.add(lab);
     bbox.expandByPoint(new THREE.Vector3(r.x[0], r.y[0], 0)); bbox.expandByPoint(new THREE.Vector3(r.x[1], r.y[1], 0));
+  }
+  // Free-standing captions. Without this a builder has to fake one with a zero-length guide.
+  for (const an of (L.annotations || [])) {
+    const lab = label2d(an.text, an.style === 'axis' ? 'axlabel' : an.style === 'region' ? 'rlabel' : 'glabel');
+    lab.position.set(an.pos[0], an.pos[1], an.pos[2] ?? z); group.add(lab);
+    bbox.expandByPoint(new THREE.Vector3(an.pos[0], an.pos[1], 0));
   }
   for (const gd of (L.guides || [])) {
     const a = new THREE.Vector3(gd.from[0], gd.from[1], gd.from[2] || z), b = new THREE.Vector3(gd.to[0], gd.to[1], gd.to[2] || z);
