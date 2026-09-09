@@ -66,7 +66,7 @@ Why
 - `w3` **Lubrication pump not pumping** [fact] The lubrication pump was not pumping sufficiently. "The lubrication pump was not pumping sufficiently" (the team, answer to why 3, sentence 8)
 - `w4` **Pump shaft worn and rattling** [fact] The shaft of the pump was worn and rattling. "The shaft of the pump was worn and rattling" (the team, answer to why 4, sentence 10)
 - `w5` **No strainer, metal scrap got in** [fact] There was no strainer attached and metal scrap got in. "There was no strainer attached and metal scrap got in" (the team, answer to why 5, sentence 12)
-- `w6` **Sheet lists one item, on 5 machines** [fact] The maintenance sheet for this machine listed a single item, a monthly oil top-up, and the same sheet was in use on the four other machines of this type on the line. "The maintenance sheet for this machine listed a single item, a monthly oil top-up, and the same sheet was in use on the four other machines of this type on the line" (narrator, sentence 14, the maintenance sheet)
+- `w6` **One-item sheet, 5 machines** [fact] The maintenance sheet for this machine listed a single item, a monthly oil top-up, and the same sheet was in use on the four other machines of this type on the line. "The maintenance sheet for this machine listed a single item, a monthly oil top-up, and the same sheet was in use on the four other machines of this type on the line" (narrator, sentence 14, the maintenance sheet)
 - `w7` **Routine cannot see filtration** [derived 0.80] Nothing in the maintenance routine could detect a missing strainer: a sheet whose only item is an oil top-up inspects the oil, not the filtration, so the omission could persist from installation until the shaft failed. Rationale: The contents of the sheet are stated; that a one-item sheet cannot catch a missing filter, and that the omission was therefore invisible to the routine rather than overlooked by an operator, is the step from the stated condition to its consequence. Supported by `w6`.
 
 Root cause
@@ -75,7 +75,7 @@ Root cause
 
 Countermeasure
 
-- `cm0` **Replace the fuse (the shallow fix)** [derived 0.70] Replacing the fuse is the countermeasure you reach by stopping at the first why; the record of two replacements in a year shows it had already been taken twice, clearing the symptom without touching the cause. Rationale: The scenario states the two replacements but never calls them a countermeasure. Reading the record as two earlier stops at why one is what makes the recurrence meaningful, and it is the inference the framework exists to force. Supported by `p2`, `w1`.
+- `cm0` **Replace the fuse (shallow fix)** [derived 0.70] Replacing the fuse is the countermeasure you reach by stopping at the first why; the record of two replacements in a year shows it had already been taken twice, clearing the symptom without touching the cause. Rationale: The scenario states the two replacements but never calls them a countermeasure. Reading the record as two earlier stops at why one is what makes the recurrence meaningful, and it is the inference the framework exists to force. Supported by `p2`, `w1`.
 - `cm1` **Fit a strainer to the pump** [fact] The team fitted a strainer to the pump inlet and the line restarted. "The team fitted a strainer to the pump inlet and the line restarted" (narrator, sentence 13)
 - `cm2` **Put filtration in the standard** [derived 0.75] The countermeasure that matches the root cause changes the standard rather than the pump: a filtration item on the maintenance sheet, a strainer check at installation acceptance, and an audit of the four sibling machines running the same sheet. Rationale: If the cause is the standard then only the standard can be the remedy, and the shared sheet makes the same failure latent on four other machines, so the countermeasure has to reach them. The scenario states the fix on one pump and nothing beyond it. Supported by `w6`.
 
@@ -123,7 +123,7 @@ Why
 
 Countermeasure
 
-- `c0` **Host: CX entirely code** [fact] A host proposes that a more secure customer-experience function would in future be entirely code, or at least carry AI oversight of every interaction. "is there's a world in the future where a more secure CX function would be entirely code" (Host, L7630-L7632)
+- `c0` **Host: CX entirely code** [fact] A host proposes that a more secure customer-experience function would in future be entirely code, or at least carry AI oversight of every interaction. "is there's a world in the future where a more secure CX function would be entirely code" (Host, L7630-L7632; the AI-oversight clause at L7640)
 - `c1` **Relocate support operations** [fact] Coinbase relocated some of its customer support operations. "We did relocate some of our customer support operations" (Brian Armstrong, L7678)
 - `c2` **$20M bounty as deterrent** [fact] Coinbase flipped the extortion demand and put out a $20 million bounty for information leading to the attackers' arrest and conviction. "we put out a 20 million dollar bounty for any information leading to their arrest" (Brian Armstrong, L7550)
 - `c3` **60% of inquiries answered by AI** [fact] About 60% of Coinbase's customer support inquiries are now answered by AI. "Our customer support, I think maybe 60% of inquiries are being answered by AI now" (Brian Armstrong, L7366)
