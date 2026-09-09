@@ -1,0 +1,24 @@
+{
+  "slug": "pdca-deming",
+  "status": "in_progress",
+  "steps": {
+    "research": "done",
+    "scout": "done",
+    "graph": "done",
+    "validate": "done",
+    "readme": "pending",
+    "viz": "pending",
+    "reconcile": "pending",
+    "commit": "pending"
+  },
+  "tbpn_example": {
+    "file": "tbpn-transcripts/transcripts/2025-11-24_reviewing-the-best-ai-apps-anthropic-unveils-claude-45-opus-doug-demuro-sholto-douglas-quinn-slack-alex-stauffer-alex-shevchenko.md",
+    "date": "2025-11-24",
+    "episode_title": "reviewing-best-ai-apps-claude-opus-45-gemini-chatgpt"
+  },
+  "viz_iterations": 0,
+  "viz_reviews": [],
+  "updated_at": "2026-09-09T00:00:00Z",
+  "notes": "Research: PDCA originates with Shewhart's three-step specification-production-inspection cycle (1939), turned by Deming into a four-step learning loop and taught in Japan from 1950; Deming later renamed Check to Study (PDSA) precisely because 'check' invites inspection rather than comparison against a prediction. The four phases are scaffolding (structural slot `phase`, provenance schema, reserved grey). The framework's sharp edge: the Plan phase's `hypothesis` - what was expected to happen and why - is almost never stated, so it must be derived; a pilot whose hypothesis cannot be recovered was not an experiment. Classic misuse: PDCA as a project-status ritual where Check reports that the work was done rather than what it was measured against. | Scout returned three candidates: (1) Ramp Labs / Ramp Sheets, 2025-11-24; (2) CodeRabbit on GPT-5 golden dataset, 2025-08-07; (3) Super.com's abandoned goods business, 2025-08-28. Chose (1): it is the only one that narrates two full turns of the same cycle, it has a quoted pivot decision AND a quoted hard number (99% of Looms showed a spreadsheet), and its second turn has the thin Check the framework is built to expose. (2) was rejected because the extraction mis-attributes its speaker and its Act is a pricing non-decision; (3) has no number attached to the experiment it measures. | Design decisions: the four phases are schema nodes in the structural `phase` slot (grey, reserved), and every content node carries an in_phase edge to its phase, the way Ishikawa hangs causes on ribs; a relation `advances_to` was added (registry ids all kept) so the four phase markers form a visible cycle that survives the facts-only view. | Provenance calls: the `hypothesis` slot is derived in both TBPN turns (h1, h2) - the source states that an experiment was run and never what it predicted, which is the framework's sharpest contribution. Both TBPN `metric` nodes for the loops that declared nothing (m1, m3) are derived; f_look is a fact metric because the team states the measurement it deliberately took. `yields` is used pilot->measurement as a fact edge wherever a speaker jumps straight from the trial to a number with no metric in between (te_y1f, te_y3f), which makes the thin Check structurally visible: hide the derived layer and the Check phase has numbers with nothing to read them against. The baseline measurement c_base / f_reject sit in the Plan and Check phases respectively per Deming's own ordering (study the current process in Plan). | validate: 0 errors, 0 warnings on the first run.",
+  "issues": []
+}
