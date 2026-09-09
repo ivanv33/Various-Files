@@ -1,0 +1,137 @@
+{
+  "framework": { "slug": "sample", "name": "Engine sample (not a framework)", "category": "00-engine-sample", "wikipedia": "https://en.wikipedia.org/wiki/Graph_drawing", "one_liner": "Synthetic data that exercises every layout mode and provenance style of the viewer." },
+  "slots": [
+    { "id": "evidence", "label": "Evidence", "description": "Something stated in the source.", "typical_provenance": "fact" },
+    { "id": "claim", "label": "Claim", "description": "An assertion, stated or inferred.", "typical_provenance": "either" },
+    { "id": "inference", "label": "Inference", "description": "Reasoning the source does not contain.", "typical_provenance": "derived" },
+    { "id": "outcome", "label": "Outcome", "description": "A result.", "typical_provenance": "fact", "shape": "diamond" },
+    { "id": "phase", "label": "Phase", "description": "Scaffolding.", "typical_provenance": "schema", "structural": true }
+  ],
+  "relations": [
+    { "id": "supports", "label": "supports", "description": "a supports b" },
+    { "id": "leads_to", "label": "leads to", "description": "a leads to b" },
+    { "id": "influences", "label": "influences", "description": "a influences b, label + or -" },
+    { "id": "in_phase", "label": "in phase", "description": "a belongs to phase b" }
+  ],
+  "examples": [
+    {
+      "id": "force", "kind": "classic", "title": "Force layout", "summary": "Ten nodes, mixed provenance, no positions given: the deterministic 3D spring layout places them.",
+      "source": { "type": "text", "title": "scenario", "text": "The demo crashed twice during the pitch. The customer asked for a written guarantee of uptime before signing. The team had shipped a hotfix the night before without running the full test suite. Sales had promised a signature by Friday. The contract was delayed by three weeks. The engineering lead said the hotfix was rushed because the deadline was set by sales. The uptime guarantee was eventually written into the contract at 99.5 percent." },
+      "layout": { "mode": "force" },
+      "nodes": [
+        { "id": "n1", "slot": "evidence", "label": "Demo crashed twice", "text": "The demo crashed twice during the pitch.", "provenance": "fact", "source_quote": "The demo crashed twice during the pitch", "source_ref": "sentence 1" },
+        { "id": "n2", "slot": "evidence", "label": "Customer wants uptime guarantee", "text": "The customer asked for a written guarantee of uptime before signing.", "provenance": "fact", "source_quote": "asked for a written guarantee of uptime before signing", "source_ref": "sentence 2" },
+        { "id": "n3", "slot": "evidence", "label": "Hotfix without full tests", "text": "A hotfix shipped the night before without the full test suite.", "provenance": "fact", "source_quote": "shipped a hotfix the night before without running the full test suite", "source_ref": "sentence 3" },
+        { "id": "n4", "slot": "evidence", "label": "Sales promised Friday", "text": "Sales had promised a signature by Friday.", "provenance": "fact", "source_quote": "Sales had promised a signature by Friday", "source_ref": "sentence 4" },
+        { "id": "n5", "slot": "outcome", "label": "Contract delayed 3 weeks", "text": "The contract was delayed by three weeks.", "provenance": "fact", "source_quote": "The contract was delayed by three weeks", "source_ref": "sentence 5" },
+        { "id": "n6", "slot": "claim", "label": "Deadline caused the rush", "text": "The engineering lead attributes the rushed hotfix to the sales deadline.", "provenance": "fact", "source_quote": "the hotfix was rushed because the deadline was set by sales", "source_ref": "sentence 6" },
+        { "id": "n7", "slot": "inference", "label": "Crash caused the guarantee ask", "text": "The customer's demand for a written uptime guarantee was triggered by seeing the crashes.", "provenance": "derived", "confidence": 0.8, "rationale": "The ask follows the crashes in the narrative and concerns exactly the failure the customer witnessed." },
+        { "id": "n8", "slot": "inference", "label": "Untested hotfix caused crash", "text": "The crashes were most likely introduced by the untested hotfix.", "provenance": "derived", "confidence": 0.65, "rationale": "A change shipped hours earlier without the full suite is the most probable regression source; the text does not state it." },
+        { "id": "n9", "slot": "inference", "label": "Incentive misalignment", "text": "Sales-set deadlines without engineering sign-off create a recurring risk of shipping untested code.", "provenance": "derived", "confidence": 0.55, "rationale": "Generalises the stated attribution into a systemic rule; plausible but based on one incident." },
+        { "id": "n10", "slot": "outcome", "label": "99.5% written into contract", "text": "The uptime guarantee was written into the contract at 99.5 percent.", "provenance": "fact", "source_quote": "written into the contract at 99.5 percent", "source_ref": "sentence 7" }
+      ],
+      "edges": [
+        { "id": "e1", "from": "n3", "to": "n1", "relation": "leads_to", "provenance": "derived", "confidence": 0.65 },
+        { "id": "e2", "from": "n1", "to": "n2", "relation": "leads_to", "provenance": "derived", "confidence": 0.8 },
+        { "id": "e3", "from": "n2", "to": "n5", "relation": "leads_to", "provenance": "fact", "source_quote": "The contract was delayed by three weeks" },
+        { "id": "e4", "from": "n4", "to": "n3", "relation": "leads_to", "provenance": "fact", "source_quote": "the hotfix was rushed because the deadline was set by sales" },
+        { "id": "e5", "from": "n6", "to": "n9", "relation": "supports", "provenance": "derived", "confidence": 0.55 },
+        { "id": "e6", "from": "n7", "to": "n1", "relation": "supported_by", "provenance": "derived", "confidence": 0.8 },
+        { "id": "e7", "from": "n7", "to": "n2", "relation": "supported_by", "provenance": "derived", "confidence": 0.8 },
+        { "id": "e8", "from": "n8", "to": "n3", "relation": "supported_by", "provenance": "derived", "confidence": 0.65 },
+        { "id": "e9", "from": "n9", "to": "n6", "relation": "supported_by", "provenance": "derived", "confidence": 0.55 },
+        { "id": "e10", "from": "n2", "to": "n10", "relation": "leads_to", "provenance": "fact", "source_quote": "eventually written into the contract" },
+        { "id": "e11", "from": "n8", "to": "n7", "relation": "supports", "provenance": "derived", "confidence": 0.5 }
+      ]
+    },
+    {
+      "id": "tree", "kind": "tbpn", "title": "Tree layout (direction down)", "summary": "A root with two levels below it, levels computed by BFS from layout.root; barycentre ordering reduces crossings.",
+      "source": { "type": "transcript", "file": "tbpn-transcripts/transcripts/2025-02-13_trae-stephens-ashlee-vance-avi-schiffmann-shaan-puri-justin-mares-max-meyer-everything-is-computer.md", "date": "2025-02-13", "episode_title": "sample only" },
+      "why_this_episode": "Sample data only; the tree example does not quote the transcript beyond the file existing.",
+      "idea_bearing_slot": "inference",
+      "layout": { "mode": "tree", "root": "r", "direction": "down" },
+      "nodes": [
+        { "id": "r", "slot": "claim", "label": "Governing thought", "text": "The root claim.", "provenance": "derived", "confidence": 0.7, "rationale": "Synthesised from the pillars below; sample data." },
+        { "id": "a", "slot": "claim", "label": "Pillar A", "text": "First pillar.", "provenance": "derived", "confidence": 0.7, "rationale": "Sample pillar derived from evidence." },
+        { "id": "b", "slot": "claim", "label": "Pillar B", "text": "Second pillar.", "provenance": "derived", "confidence": 0.6, "rationale": "Sample pillar derived from evidence." },
+        { "id": "c", "slot": "claim", "label": "Pillar C", "text": "Third pillar.", "provenance": "derived", "confidence": 0.5, "rationale": "Sample pillar derived from evidence." },
+        { "id": "a1", "slot": "evidence", "label": "Evidence A1", "text": "Support for A.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true },
+        { "id": "a2", "slot": "evidence", "label": "Evidence A2", "text": "Support for A.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true },
+        { "id": "b1", "slot": "evidence", "label": "Evidence B1", "text": "Support for B.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true },
+        { "id": "b2", "slot": "evidence", "label": "Evidence B2", "text": "Support for B.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true },
+        { "id": "b3", "slot": "evidence", "label": "Evidence B3", "text": "Support for B.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true },
+        { "id": "c1", "slot": "evidence", "label": "Evidence C1", "text": "Support for C.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true },
+        { "id": "c2", "slot": "outcome", "label": "Outcome C2", "text": "An outcome under C.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true }
+      ],
+      "edges": [
+        { "id": "t1", "from": "r", "to": "a", "relation": "supports", "provenance": "derived", "confidence": 0.7 },
+        { "id": "t2", "from": "r", "to": "b", "relation": "supports", "provenance": "derived", "confidence": 0.7 },
+        { "id": "t3", "from": "r", "to": "c", "relation": "supports", "provenance": "derived", "confidence": 0.7 },
+        { "id": "t4", "from": "a", "to": "a1", "relation": "supports", "provenance": "fact" },
+        { "id": "t5", "from": "a", "to": "a2", "relation": "supports", "provenance": "fact" },
+        { "id": "t6", "from": "b", "to": "b1", "relation": "supports", "provenance": "fact" },
+        { "id": "t7", "from": "b", "to": "b2", "relation": "supports", "provenance": "fact" },
+        { "id": "t8", "from": "b", "to": "b3", "relation": "supports", "provenance": "fact" },
+        { "id": "t9", "from": "c", "to": "c1", "relation": "supports", "provenance": "fact" },
+        { "id": "t10", "from": "c", "to": "c2", "relation": "supports", "provenance": "fact" }
+      ]
+    },
+    {
+      "id": "ring", "kind": "classic", "title": "Ring layout with edge labels", "summary": "Six ordered nodes on a circle, two unordered nodes force-placed inside, polarity labels on edges.",
+      "source": { "type": "text", "title": "scenario", "text": "Filler scenario text long enough to satisfy the two hundred character minimum for a classic example source. It exists only so that the sample validates structurally; the ring example does not quote it. Nothing here is meaningful." },
+      "layout": { "mode": "ring" },
+      "nodes": [
+        { "id": "o1", "slot": "evidence", "label": "Observe", "text": "Observe.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true, "order": 0 },
+        { "id": "o2", "slot": "inference", "label": "Orient", "text": "Orient.", "provenance": "derived", "confidence": 0.6, "rationale": "Sample derived node on the ring.", "order": 1 },
+        { "id": "o3", "slot": "claim", "label": "Decide", "text": "Decide.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true, "order": 2 },
+        { "id": "o4", "slot": "outcome", "label": "Act", "text": "Act.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true, "order": 3 },
+        { "id": "o5", "slot": "evidence", "label": "Observe again", "text": "Observe again.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true, "order": 4 },
+        { "id": "o6", "slot": "inference", "label": "Re-orient", "text": "Re-orient.", "provenance": "derived", "confidence": 0.5, "rationale": "Sample derived node on the ring.", "order": 5 },
+        { "id": "i1", "slot": "inference", "label": "Culture (inner)", "text": "A prior shaping orientation.", "provenance": "derived", "confidence": 0.4, "rationale": "Sample inner node without order." },
+        { "id": "i2", "slot": "phase", "label": "Loop", "text": "Scaffold node.", "provenance": "schema" }
+      ],
+      "edges": [
+        { "id": "r1", "from": "o1", "to": "o2", "relation": "leads_to", "provenance": "fact" },
+        { "id": "r2", "from": "o2", "to": "o3", "relation": "leads_to", "provenance": "derived", "confidence": 0.6 },
+        { "id": "r3", "from": "o3", "to": "o4", "relation": "leads_to", "provenance": "fact" },
+        { "id": "r4", "from": "o4", "to": "o5", "relation": "leads_to", "provenance": "fact" },
+        { "id": "r5", "from": "o5", "to": "o6", "relation": "influences", "provenance": "derived", "confidence": 0.5, "label": "+" },
+        { "id": "r6", "from": "o6", "to": "o1", "relation": "influences", "provenance": "derived", "confidence": 0.5, "label": "-" },
+        { "id": "r7", "from": "i1", "to": "o2", "relation": "influences", "provenance": "derived", "confidence": 0.4, "label": "+" },
+        { "id": "r8", "from": "i1", "to": "o6", "relation": "influences", "provenance": "derived", "confidence": 0.4, "label": "+" },
+        { "id": "r9", "from": "o1", "to": "i2", "relation": "in_phase", "provenance": "schema" }
+      ]
+    },
+    {
+      "id": "plane", "kind": "classic", "title": "Plane layout with axes, regions and guides", "summary": "Explicit positions on a labelled plane: two axes with ticks, two shaded regions, a dashed guide, and schema nodes as stage markers.",
+      "source": { "type": "text", "title": "scenario", "text": "Filler scenario text long enough to satisfy the two hundred character minimum for a classic example source. It exists only so that the sample validates structurally; the plane example does not quote it. Nothing here is meaningful." },
+      "layout": {
+        "mode": "plane",
+        "axes": { "x": { "label": "Evolution", "min": -50, "max": 50, "ticks": [ { "value": -37, "label": "Genesis" }, { "value": -12, "label": "Custom" }, { "value": 12, "label": "Product" }, { "value": 37, "label": "Utility" } ] }, "y": { "label": "Visibility", "min": -40, "max": 40, "ticks": [ { "value": 35, "label": "visible" }, { "value": -35, "label": "invisible" } ] } },
+        "regions": [ { "label": "Custom-built", "x": [-25, 0], "y": [-40, 40], "color": "#d95926" }, { "label": "Commodity", "x": [25, 50], "y": [-40, 40], "color": "#3987e5" } ],
+        "guides": [ { "from": [-45, 0], "to": [45, 0], "style": "dashed", "label": "value chain midline" } ]
+      },
+      "nodes": [
+        { "id": "u", "slot": "claim", "label": "User", "text": "The anchor user.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true, "pos": [-40, 35] },
+        { "id": "need", "slot": "claim", "label": "Need", "text": "The need.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true, "pos": [-20, 25] },
+        { "id": "c1", "slot": "evidence", "label": "Component A", "text": "A visible component.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true, "pos": [0, 10] },
+        { "id": "c2", "slot": "evidence", "label": "Component B", "text": "A product-stage component.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true, "pos": [15, -10] },
+        { "id": "c3", "slot": "evidence", "label": "Component C", "text": "A commodity.", "provenance": "fact", "source_quote": "sample", "source_ref": "n/a", "paraphrase": true, "pos": [38, -30] },
+        { "id": "m1", "slot": "inference", "label": "B moves to utility", "text": "Component B is expected to commoditise.", "provenance": "derived", "confidence": 0.6, "rationale": "Sample movement inference.", "pos": [30, -10] },
+        { "id": "s1", "slot": "phase", "label": "Genesis", "text": "Stage marker.", "provenance": "schema", "pos": [-37, -38] },
+        { "id": "s2", "slot": "phase", "label": "Custom", "text": "Stage marker.", "provenance": "schema", "pos": [-12, -38] },
+        { "id": "s3", "slot": "phase", "label": "Product", "text": "Stage marker.", "provenance": "schema", "pos": [12, -38] },
+        { "id": "s4", "slot": "phase", "label": "Utility", "text": "Stage marker.", "provenance": "schema", "pos": [37, -38] }
+      ],
+      "edges": [
+        { "id": "p1", "from": "u", "to": "need", "relation": "leads_to", "provenance": "fact" },
+        { "id": "p2", "from": "need", "to": "c1", "relation": "leads_to", "provenance": "fact" },
+        { "id": "p3", "from": "c1", "to": "c2", "relation": "leads_to", "provenance": "fact" },
+        { "id": "p4", "from": "c2", "to": "c3", "relation": "leads_to", "provenance": "derived", "confidence": 0.7 },
+        { "id": "p5", "from": "m1", "to": "c2", "relation": "influences", "provenance": "derived", "confidence": 0.6, "label": "→ utility" },
+        { "id": "p6", "from": "m1", "to": "c2", "relation": "supported_by", "provenance": "derived", "confidence": 0.6 },
+        { "id": "p7", "from": "c2", "to": "s3", "relation": "in_phase", "provenance": "schema" }
+      ]
+    }
+  ]
+}

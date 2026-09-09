@@ -1,0 +1,1472 @@
+{
+  "categories": [
+    {
+      "id": "01-narrative-and-statement",
+      "name": "Narrative & Statement Decomposition",
+      "order": 1
+    },
+    {
+      "id": "02-strategic-and-business",
+      "name": "Strategic & Business Decomposition",
+      "order": 2
+    },
+    {
+      "id": "03-engineering-and-cognitive",
+      "name": "Engineering & Cognitive Problem Solving",
+      "order": 3
+    },
+    {
+      "id": "04-sensemaking-and-complex-systems",
+      "name": "Sensemaking & Complex Systems",
+      "order": 4
+    }
+  ],
+  "frameworks": [
+    {
+      "slug": "star-par",
+      "name": "STAR / PAR",
+      "category": "01-narrative-and-statement",
+      "wikipedia": "https://en.wikipedia.org/wiki/Situation,_task,_action,_result",
+      "blurb": "Dissects past events into Situation (context), Task (objective), Action (execution), and Result (outcome). Enforces causal attribution and clarifies personal agency.",
+      "slots": [
+        {
+          "id": "situation",
+          "label": "Situation",
+          "typical_provenance": "fact",
+          "description": "The context before anything was done: who, where, what was at stake."
+        },
+        {
+          "id": "task",
+          "label": "Task",
+          "typical_provenance": "either",
+          "description": "The objective or responsibility the actor had. Often implied rather than stated."
+        },
+        {
+          "id": "action",
+          "label": "Action",
+          "typical_provenance": "fact",
+          "description": "What the actor actually did, as concrete steps."
+        },
+        {
+          "id": "result",
+          "label": "Result",
+          "typical_provenance": "fact",
+          "description": "The measurable outcome, and to whom it is attributed."
+        },
+        {
+          "id": "problem",
+          "label": "Problem (PAR)",
+          "typical_provenance": "either",
+          "description": "PAR variant: Situation and Task collapsed into the problem the actor faced."
+        }
+      ],
+      "relations": [
+        {
+          "id": "sets_up",
+          "label": "sets up",
+          "description": "situation gives rise to the task"
+        },
+        {
+          "id": "motivates",
+          "label": "motivates",
+          "description": "task motivates the action"
+        },
+        {
+          "id": "produces",
+          "label": "produces",
+          "description": "action produces the result"
+        },
+        {
+          "id": "causes",
+          "label": "causes",
+          "description": "generic causal attribution between any two nodes"
+        }
+      ],
+      "layout_hint": "tree, direction right: a left-to-right chain Situation -> Task -> Action -> Result"
+    },
+    {
+      "slug": "carl",
+      "name": "CARL",
+      "category": "01-narrative-and-statement",
+      "wikipedia": "https://en.wikipedia.org/wiki/Double-loop_learning",
+      "blurb": "Extends STAR into Context, Action, Result, and Learning. Extracts double-loop systemic rules to prevent repeat failures.",
+      "slots": [
+        {
+          "id": "context",
+          "label": "Context",
+          "typical_provenance": "fact",
+          "description": "The setting and constraints the actor was in."
+        },
+        {
+          "id": "action",
+          "label": "Action",
+          "typical_provenance": "fact",
+          "description": "What was done."
+        },
+        {
+          "id": "result",
+          "label": "Result",
+          "typical_provenance": "fact",
+          "description": "What happened as a consequence."
+        },
+        {
+          "id": "learning",
+          "label": "Learning",
+          "typical_provenance": "derived",
+          "description": "The single-loop lesson: what to do differently next time in the same situation."
+        },
+        {
+          "id": "rule",
+          "label": "Systemic rule",
+          "typical_provenance": "derived",
+          "description": "The double-loop lesson: which governing assumption or policy must change so the failure class cannot recur."
+        }
+      ],
+      "relations": [
+        {
+          "id": "motivates",
+          "label": "motivates",
+          "description": "context motivates the action"
+        },
+        {
+          "id": "produces",
+          "label": "produces",
+          "description": "action produces the result"
+        },
+        {
+          "id": "teaches",
+          "label": "teaches",
+          "description": "result teaches the learning"
+        },
+        {
+          "id": "generalizes_to",
+          "label": "generalizes to",
+          "description": "learning generalizes to a systemic rule"
+        }
+      ],
+      "layout_hint": "tree, direction right: chain Context -> Action -> Result -> Learning -> Rule"
+    },
+    {
+      "slug": "minto-scqa",
+      "name": "Minto SCQA",
+      "category": "01-narrative-and-statement",
+      "wikipedia": "https://en.wikipedia.org/wiki/Barbara_Minto",
+      "blurb": "Structures problem statements into Situation (stable baseline), Complication (disruption), Question (core inquiry), and Answer (solution). Aligns stakeholders before pitching solutions.",
+      "slots": [
+        {
+          "id": "situation",
+          "label": "Situation",
+          "typical_provenance": "fact",
+          "description": "The stable, agreed baseline nobody disputes."
+        },
+        {
+          "id": "complication",
+          "label": "Complication",
+          "typical_provenance": "fact",
+          "description": "What changed or broke the baseline."
+        },
+        {
+          "id": "question",
+          "label": "Question",
+          "typical_provenance": "derived",
+          "description": "The single question the complication forces; usually never stated by the source."
+        },
+        {
+          "id": "answer",
+          "label": "Answer",
+          "typical_provenance": "derived",
+          "description": "The proposed resolution; the pitch."
+        }
+      ],
+      "relations": [
+        {
+          "id": "disrupted_by",
+          "label": "disrupted by",
+          "description": "situation is disrupted by the complication"
+        },
+        {
+          "id": "raises",
+          "label": "raises",
+          "description": "complication raises the question"
+        },
+        {
+          "id": "answered_by",
+          "label": "answered by",
+          "description": "question is answered by the answer"
+        }
+      ],
+      "layout_hint": "tree, direction right: chain S -> C -> Q -> A"
+    },
+    {
+      "slug": "pyramid-principle",
+      "name": "Pyramid Principle",
+      "category": "01-narrative-and-statement",
+      "wikipedia": "https://en.wikipedia.org/wiki/Barbara_Minto",
+      "blurb": "Structures communication top-down. States the governing conclusion first, supported by mutually exclusive, logically grouped pillars to reduce working memory load.",
+      "slots": [
+        {
+          "id": "governing_thought",
+          "label": "Governing thought",
+          "typical_provenance": "derived",
+          "description": "The one-sentence conclusion the whole structure exists to support."
+        },
+        {
+          "id": "key_line",
+          "label": "Key line",
+          "typical_provenance": "either",
+          "description": "A pillar argument; the set of pillars should be MECE."
+        },
+        {
+          "id": "support",
+          "label": "Support",
+          "typical_provenance": "fact",
+          "description": "Data, quotes or observations under a pillar."
+        }
+      ],
+      "relations": [
+        {
+          "id": "rests_on",
+          "label": "rests on",
+          "description": "a higher node rests on the nodes below it"
+        },
+        {
+          "id": "grouped_with",
+          "label": "grouped with",
+          "description": "siblings that form a logical group (deductive or inductive)"
+        }
+      ],
+      "layout_hint": "tree, direction down: governing thought on top, key lines, then support"
+    },
+    {
+      "slug": "toulmin-model",
+      "name": "Toulmin Model",
+      "category": "01-narrative-and-statement",
+      "wikipedia": "https://en.wikipedia.org/wiki/Stephen_Toulmin",
+      "blurb": "Deconstructs arguments into Claim (assertion), Grounds (evidence), Warrant (logical bridge), Backing (proof of rule), Qualifier (certainty bounds), and Rebuttal (disqualifying conditions). Exposes hidden assumptions.",
+      "slots": [
+        {
+          "id": "claim",
+          "label": "Claim",
+          "typical_provenance": "either",
+          "description": "The assertion being argued for."
+        },
+        {
+          "id": "grounds",
+          "label": "Grounds",
+          "typical_provenance": "fact",
+          "description": "The evidence offered."
+        },
+        {
+          "id": "warrant",
+          "label": "Warrant",
+          "typical_provenance": "derived",
+          "description": "The general rule that licenses the step from grounds to claim; almost always unstated."
+        },
+        {
+          "id": "backing",
+          "label": "Backing",
+          "typical_provenance": "either",
+          "description": "Why the warrant should be accepted."
+        },
+        {
+          "id": "qualifier",
+          "label": "Qualifier",
+          "typical_provenance": "derived",
+          "description": "How strongly the claim is held (probably, in most cases, unless)."
+        },
+        {
+          "id": "rebuttal",
+          "label": "Rebuttal",
+          "typical_provenance": "derived",
+          "description": "Conditions under which the claim fails."
+        }
+      ],
+      "relations": [
+        {
+          "id": "supports",
+          "label": "supports",
+          "description": "grounds support the claim"
+        },
+        {
+          "id": "licenses",
+          "label": "licenses",
+          "description": "warrant licenses the grounds-to-claim step"
+        },
+        {
+          "id": "backs",
+          "label": "backs",
+          "description": "backing backs the warrant"
+        },
+        {
+          "id": "qualifies",
+          "label": "qualifies",
+          "description": "qualifier bounds the claim"
+        },
+        {
+          "id": "rebuts",
+          "label": "rebuts",
+          "description": "rebuttal states when the claim fails"
+        }
+      ],
+      "layout_hint": "plane: the classic Toulmin diagram, grounds left, claim right, warrant below the arrow, backing under warrant, qualifier and rebuttal near the claim"
+    },
+    {
+      "slug": "dialectical-decomposition",
+      "name": "Dialectical Decomposition",
+      "category": "01-narrative-and-statement",
+      "wikipedia": "https://en.wikipedia.org/wiki/Thesis,_antithesis,_synthesis",
+      "blurb": "Pitches an orthodoxy (Thesis) against its critique (Antithesis) to isolate the core tension and derive an integrated higher-order solution (Synthesis). Eliminates false dichotomies.",
+      "slots": [
+        {
+          "id": "thesis",
+          "label": "Thesis",
+          "typical_provenance": "fact",
+          "description": "The orthodoxy as actually stated by its proponents."
+        },
+        {
+          "id": "antithesis",
+          "label": "Antithesis",
+          "typical_provenance": "fact",
+          "description": "The critique as actually stated."
+        },
+        {
+          "id": "argument",
+          "label": "Argument",
+          "typical_provenance": "fact",
+          "description": "A supporting point offered for the thesis or the antithesis."
+        },
+        {
+          "id": "tension",
+          "label": "Core tension",
+          "typical_provenance": "derived",
+          "description": "The precise disagreement once slogans are removed; the thing both sides are really about."
+        },
+        {
+          "id": "synthesis",
+          "label": "Synthesis",
+          "typical_provenance": "derived",
+          "description": "A higher-order position that preserves what is true in both sides."
+        }
+      ],
+      "relations": [
+        {
+          "id": "opposes",
+          "label": "opposes",
+          "description": "antithesis opposes thesis"
+        },
+        {
+          "id": "argues_for",
+          "label": "argues for",
+          "description": "argument argues for thesis or antithesis"
+        },
+        {
+          "id": "isolates",
+          "label": "isolates",
+          "description": "the tension isolates what thesis and antithesis actually contest"
+        },
+        {
+          "id": "resolves",
+          "label": "resolves",
+          "description": "synthesis resolves the tension"
+        }
+      ],
+      "layout_hint": "plane: thesis left, antithesis right, tension between them, synthesis above"
+    },
+    {
+      "slug": "mece",
+      "name": "MECE Principle",
+      "category": "02-strategic-and-business",
+      "wikipedia": "https://en.wikipedia.org/wiki/MECE_principle",
+      "blurb": "Partitions a problem into branches that are Mutually Exclusive (no overlaps) and Collectively Exhaustive (no blind spots). Prevents duplicate effort and omission.",
+      "slots": [
+        {
+          "id": "whole",
+          "label": "Whole",
+          "typical_provenance": "either",
+          "description": "The thing being partitioned (a market, a problem, a population)."
+        },
+        {
+          "id": "bucket",
+          "label": "Bucket",
+          "typical_provenance": "derived",
+          "description": "A partition branch; the partitioning principle is an LLM choice."
+        },
+        {
+          "id": "item",
+          "label": "Item",
+          "typical_provenance": "fact",
+          "description": "An observed member placed in a bucket."
+        },
+        {
+          "id": "gap",
+          "label": "Gap",
+          "typical_provenance": "derived",
+          "description": "A bucket the data leaves empty or thin; a candidate blind spot or underserved space."
+        },
+        {
+          "id": "overlap",
+          "label": "Overlap",
+          "typical_provenance": "derived",
+          "description": "An item or concern that lands in two buckets; a partition defect."
+        }
+      ],
+      "relations": [
+        {
+          "id": "partitions",
+          "label": "partitions into",
+          "description": "whole partitions into buckets"
+        },
+        {
+          "id": "contains",
+          "label": "contains",
+          "description": "bucket contains item"
+        },
+        {
+          "id": "missing_from",
+          "label": "missing from",
+          "description": "gap is missing from a bucket"
+        },
+        {
+          "id": "violates",
+          "label": "violates",
+          "description": "overlap violates exclusivity between buckets"
+        }
+      ],
+      "layout_hint": "tree, direction down: whole, buckets, items; gaps drawn as hollow leaves"
+    },
+    {
+      "slug": "issue-hypothesis-trees",
+      "name": "Issue & Hypothesis Trees",
+      "category": "02-strategic-and-business",
+      "wikipedia": "https://en.wikipedia.org/wiki/Issue_tree",
+      "blurb": "Hierarchical decision maps that break problems into testable branches. Hypothesis trees define specific falsification conditions to avoid aimless data gathering.",
+      "slots": [
+        {
+          "id": "question",
+          "label": "Question",
+          "typical_provenance": "either",
+          "description": "The root question."
+        },
+        {
+          "id": "issue",
+          "label": "Issue",
+          "typical_provenance": "derived",
+          "description": "A sub-question; siblings should be MECE."
+        },
+        {
+          "id": "hypothesis",
+          "label": "Hypothesis",
+          "typical_provenance": "derived",
+          "description": "A candidate answer to an issue, stated so it can be wrong."
+        },
+        {
+          "id": "test",
+          "label": "Test",
+          "typical_provenance": "derived",
+          "description": "The falsification condition: what observation would kill the hypothesis."
+        },
+        {
+          "id": "evidence",
+          "label": "Evidence",
+          "typical_provenance": "fact",
+          "description": "An observation that bears on a hypothesis."
+        }
+      ],
+      "relations": [
+        {
+          "id": "decomposes_into",
+          "label": "decomposes into",
+          "description": "question decomposes into issues"
+        },
+        {
+          "id": "answered_if",
+          "label": "answered if",
+          "description": "issue is answered if the hypothesis holds"
+        },
+        {
+          "id": "falsified_by",
+          "label": "falsified by",
+          "description": "hypothesis is falsified by the test"
+        },
+        {
+          "id": "bears_on",
+          "label": "bears on",
+          "description": "evidence bears on a hypothesis (label + or -)"
+        }
+      ],
+      "layout_hint": "tree, direction down"
+    },
+    {
+      "slug": "five-whys",
+      "name": "5 Whys",
+      "category": "02-strategic-and-business",
+      "wikipedia": "https://en.wikipedia.org/wiki/Five_whys",
+      "blurb": "Traces a single failure through five sequential causal layers to uncover institutional and systemic flaws rather than stopping at human error.",
+      "slots": [
+        {
+          "id": "problem",
+          "label": "Problem",
+          "typical_provenance": "fact",
+          "description": "The observed failure."
+        },
+        {
+          "id": "why",
+          "label": "Why",
+          "typical_provenance": "either",
+          "description": "A causal layer; the first layers are often stated, deeper layers are inferred. Use level 1..5."
+        },
+        {
+          "id": "root_cause",
+          "label": "Root cause",
+          "typical_provenance": "derived",
+          "description": "The systemic cause at the bottom of the chain."
+        },
+        {
+          "id": "countermeasure",
+          "label": "Countermeasure",
+          "typical_provenance": "derived",
+          "description": "What would remove the root cause."
+        }
+      ],
+      "relations": [
+        {
+          "id": "because",
+          "label": "because",
+          "description": "the upper node happened because of the lower node"
+        },
+        {
+          "id": "addressed_by",
+          "label": "addressed by",
+          "description": "root cause is addressed by the countermeasure"
+        }
+      ],
+      "layout_hint": "tree, direction down: a single chain with occasional branches"
+    },
+    {
+      "slug": "ishikawa-fishbone",
+      "name": "Ishikawa (Fishbone) Diagram",
+      "category": "02-strategic-and-business",
+      "wikipedia": "https://en.wikipedia.org/wiki/Ishikawa_diagram",
+      "blurb": "Categorizes root causes across six universal vectors: Methods, Machines, Materials, Measurements, Milieu, and Manpower. Prevents technical monoculture bias.",
+      "slots": [
+        {
+          "id": "effect",
+          "label": "Effect",
+          "typical_provenance": "fact",
+          "description": "The problem at the head of the fish."
+        },
+        {
+          "id": "category",
+          "label": "Category (6M)",
+          "typical_provenance": "schema",
+          "structural": true,
+          "description": "One of Methods, Machines, Materials, Measurements, Milieu, Manpower. Scaffolding, not content."
+        },
+        {
+          "id": "cause",
+          "label": "Cause",
+          "typical_provenance": "either",
+          "description": "A cause attached to a category rib."
+        },
+        {
+          "id": "subcause",
+          "label": "Sub-cause",
+          "typical_provenance": "either",
+          "description": "A finer cause under a cause."
+        }
+      ],
+      "relations": [
+        {
+          "id": "contributes_to",
+          "label": "contributes to",
+          "description": "cause contributes to the effect through its category"
+        },
+        {
+          "id": "belongs_to",
+          "label": "belongs to",
+          "description": "cause belongs to a category"
+        }
+      ],
+      "layout_hint": "plane: spine along x to the effect at the right, six ribs, causes on ribs; guides draw the bones"
+    },
+    {
+      "slug": "rumelt-strategy-kernel",
+      "name": "Rumelt's Strategic Kernel",
+      "category": "02-strategic-and-business",
+      "wikipedia": "https://en.wikipedia.org/wiki/Richard_Rumelt",
+      "blurb": "Strips buzzwords from strategy to define a Diagnosis (the critical obstacle), a Guiding Policy (the trade-offs and overall direction), and Coherent Actions (mutually reinforcing resource commitments).",
+      "slots": [
+        {
+          "id": "challenge",
+          "label": "Challenge",
+          "typical_provenance": "fact",
+          "description": "The situation as described, before diagnosis."
+        },
+        {
+          "id": "fluff",
+          "label": "Fluff",
+          "typical_provenance": "fact",
+          "description": "Stated goals or slogans that are not strategy; kept so the reader sees what was stripped."
+        },
+        {
+          "id": "diagnosis",
+          "label": "Diagnosis",
+          "typical_provenance": "derived",
+          "description": "The critical obstacle, named."
+        },
+        {
+          "id": "guiding_policy",
+          "label": "Guiding policy",
+          "typical_provenance": "either",
+          "description": "The overall approach and the trade-offs it accepts."
+        },
+        {
+          "id": "coherent_action",
+          "label": "Coherent action",
+          "typical_provenance": "either",
+          "description": "A resource commitment that implements the policy and reinforces the others."
+        }
+      ],
+      "relations": [
+        {
+          "id": "diagnoses",
+          "label": "diagnoses",
+          "description": "diagnosis names the obstacle in the challenge"
+        },
+        {
+          "id": "addresses",
+          "label": "addresses",
+          "description": "guiding policy addresses the diagnosis"
+        },
+        {
+          "id": "implements",
+          "label": "implements",
+          "description": "action implements the policy"
+        },
+        {
+          "id": "reinforces",
+          "label": "reinforces",
+          "description": "action reinforces another action"
+        },
+        {
+          "id": "masks",
+          "label": "masks",
+          "description": "fluff masks the challenge"
+        }
+      ],
+      "layout_hint": "tree, direction down: challenge, diagnosis, policy, actions; fluff to the side"
+    },
+    {
+      "slug": "theory-of-constraints",
+      "name": "Theory of Constraints & Evaporating Cloud",
+      "category": "02-strategic-and-business",
+      "wikipedia": "https://en.wikipedia.org/wiki/Theory_of_constraints",
+      "blurb": "Identifies the single operational bottleneck dictating systemic throughput. The Evaporating Cloud diagram resolves chronic trade-offs by identifying and breaking invalid assumptions.",
+      "slots": [
+        {
+          "id": "goal",
+          "label": "Goal",
+          "typical_provenance": "either",
+          "description": "What the system exists to produce."
+        },
+        {
+          "id": "step",
+          "label": "Step",
+          "typical_provenance": "fact",
+          "description": "A stage in the flow of work."
+        },
+        {
+          "id": "constraint",
+          "label": "Constraint",
+          "typical_provenance": "derived",
+          "description": "The single step that limits throughput."
+        },
+        {
+          "id": "objective",
+          "label": "Objective (cloud)",
+          "typical_provenance": "either",
+          "description": "Evaporating Cloud: the shared objective both sides want."
+        },
+        {
+          "id": "requirement",
+          "label": "Requirement (cloud)",
+          "typical_provenance": "either",
+          "description": "Evaporating Cloud: a necessary condition for the objective."
+        },
+        {
+          "id": "prerequisite",
+          "label": "Prerequisite (cloud)",
+          "typical_provenance": "either",
+          "description": "Evaporating Cloud: a wanted action that satisfies a requirement; the two prerequisites conflict."
+        },
+        {
+          "id": "assumption",
+          "label": "Assumption",
+          "typical_provenance": "derived",
+          "description": "The unstated belief behind a requirement-prerequisite arrow; the one that is invalid breaks the conflict."
+        },
+        {
+          "id": "injection",
+          "label": "Injection",
+          "typical_provenance": "derived",
+          "description": "The idea that invalidates the assumption and evaporates the cloud."
+        }
+      ],
+      "relations": [
+        {
+          "id": "feeds",
+          "label": "feeds",
+          "description": "step feeds the next step"
+        },
+        {
+          "id": "limits",
+          "label": "limits",
+          "description": "constraint limits the goal"
+        },
+        {
+          "id": "requires",
+          "label": "requires",
+          "description": "objective requires requirement; requirement requires prerequisite"
+        },
+        {
+          "id": "conflicts_with",
+          "label": "conflicts with",
+          "description": "the two prerequisites conflict"
+        },
+        {
+          "id": "justifies",
+          "label": "justifies",
+          "description": "assumption justifies a requires arrow"
+        },
+        {
+          "id": "breaks",
+          "label": "breaks",
+          "description": "injection breaks an assumption"
+        }
+      ],
+      "layout_hint": "plane: the flow of steps along the top with the constraint highlighted; the five-box cloud below with assumptions on the arrows"
+    },
+    {
+      "slug": "first-principles",
+      "name": "First Principles Thinking",
+      "category": "03-engineering-and-cognitive",
+      "wikipedia": "https://en.wikipedia.org/wiki/First_principle",
+      "blurb": "Strips away industry precedent and analogy to isolate fundamental physical or mathematical truths, rebuilding solutions upward from fundamental limits.",
+      "slots": [
+        {
+          "id": "problem",
+          "label": "Problem",
+          "typical_provenance": "fact",
+          "description": "The question as posed."
+        },
+        {
+          "id": "assumption",
+          "label": "Assumption",
+          "typical_provenance": "either",
+          "description": "A precedent, analogy or industry belief that the reasoning removes."
+        },
+        {
+          "id": "fundamental_truth",
+          "label": "Fundamental truth",
+          "typical_provenance": "either",
+          "description": "A physical, mathematical or economic fact that cannot be argued away."
+        },
+        {
+          "id": "constraint",
+          "label": "Derived limit",
+          "typical_provenance": "derived",
+          "description": "A bound implied by the truths (a cost floor, a speed limit)."
+        },
+        {
+          "id": "rebuilt_solution",
+          "label": "Rebuilt solution",
+          "typical_provenance": "derived",
+          "description": "What becomes possible when building up from the limits instead of the precedent."
+        }
+      ],
+      "relations": [
+        {
+          "id": "assumes",
+          "label": "assumes",
+          "description": "the problem as posed assumes a precedent"
+        },
+        {
+          "id": "stripped_to",
+          "label": "stripped to",
+          "description": "assumption is stripped to a fundamental truth"
+        },
+        {
+          "id": "implies",
+          "label": "implies",
+          "description": "truth implies a derived limit"
+        },
+        {
+          "id": "rebuilds_into",
+          "label": "rebuilds into",
+          "description": "limits rebuild into a solution"
+        }
+      ],
+      "layout_hint": "tree, direction down: problem, assumptions, truths, limits, rebuilt solution"
+    },
+    {
+      "slug": "functional-decomposition",
+      "name": "Functional Decomposition",
+      "category": "03-engineering-and-cognitive",
+      "wikipedia": "https://en.wikipedia.org/wiki/Functional_decomposition",
+      "blurb": "Treats systems as hierarchical black boxes with strict inputs, outputs, and interface contracts. Minimizes coupling and isolates blast radiuses.",
+      "slots": [
+        {
+          "id": "system",
+          "label": "System",
+          "typical_provenance": "fact",
+          "description": "The whole being decomposed."
+        },
+        {
+          "id": "function",
+          "label": "Function",
+          "typical_provenance": "either",
+          "description": "A black box with a single responsibility."
+        },
+        {
+          "id": "input",
+          "label": "Input",
+          "typical_provenance": "either",
+          "description": "What a function consumes."
+        },
+        {
+          "id": "output",
+          "label": "Output",
+          "typical_provenance": "either",
+          "description": "What a function produces."
+        },
+        {
+          "id": "contract",
+          "label": "Interface contract",
+          "typical_provenance": "derived",
+          "description": "The guarantees a function makes to its consumers; usually never stated in the source."
+        }
+      ],
+      "relations": [
+        {
+          "id": "composed_of",
+          "label": "composed of",
+          "description": "system is composed of functions; functions of sub-functions"
+        },
+        {
+          "id": "consumes",
+          "label": "consumes",
+          "description": "function consumes input"
+        },
+        {
+          "id": "produces",
+          "label": "produces",
+          "description": "function produces output"
+        },
+        {
+          "id": "depends_on",
+          "label": "depends on",
+          "description": "function depends on another function"
+        },
+        {
+          "id": "bound_by",
+          "label": "bound by",
+          "description": "function is bound by a contract"
+        }
+      ],
+      "layout_hint": "tree, direction down: system, functions, sub-functions; inputs and outputs beside their function"
+    },
+    {
+      "slug": "polya-four-step",
+      "name": "Pólya's 4-Step Method",
+      "category": "03-engineering-and-cognitive",
+      "wikipedia": "https://en.wikipedia.org/wiki/How_to_Solve_It",
+      "blurb": "Understand (data/unknowns), Plan (analogous/simpler cases), Carry Out (verifiable steps), and Look Back (generalizing the heuristic). Prevents premature coding or calculating.",
+      "slots": [
+        {
+          "id": "phase",
+          "label": "Phase",
+          "typical_provenance": "schema",
+          "structural": true,
+          "description": "Understand, Plan, Carry out, Look back. Scaffolding."
+        },
+        {
+          "id": "problem",
+          "label": "Problem",
+          "typical_provenance": "fact",
+          "description": "The problem as posed."
+        },
+        {
+          "id": "unknown",
+          "label": "Unknown",
+          "typical_provenance": "either",
+          "description": "What is sought."
+        },
+        {
+          "id": "data",
+          "label": "Data",
+          "typical_provenance": "fact",
+          "description": "What is given."
+        },
+        {
+          "id": "condition",
+          "label": "Condition",
+          "typical_provenance": "either",
+          "description": "How the unknown and the data are connected."
+        },
+        {
+          "id": "plan",
+          "label": "Plan",
+          "typical_provenance": "derived",
+          "description": "The approach chosen, including the analogous or simpler problem it borrows from (Pólya's 'related problem')."
+        },
+        {
+          "id": "step",
+          "label": "Step",
+          "typical_provenance": "derived",
+          "description": "A verifiable step in carrying out the plan."
+        },
+        {
+          "id": "check",
+          "label": "Check",
+          "typical_provenance": "derived",
+          "description": "How a step or the result is verified."
+        },
+        {
+          "id": "generalization",
+          "label": "Generalization",
+          "typical_provenance": "derived",
+          "description": "Look back: the heuristic that transfers to other problems."
+        }
+      ],
+      "relations": [
+        {
+          "id": "in_phase",
+          "label": "in phase",
+          "description": "node belongs to a phase"
+        },
+        {
+          "id": "connects",
+          "label": "connects",
+          "description": "condition connects unknown and data"
+        },
+        {
+          "id": "borrows_from",
+          "label": "borrows from",
+          "description": "plan borrows from an analogous or simpler solved problem (a plan node with attrs.kind = analogy)"
+        },
+        {
+          "id": "executes",
+          "label": "executes",
+          "description": "plan is executed by steps"
+        },
+        {
+          "id": "verifies",
+          "label": "verifies",
+          "description": "check verifies a step"
+        },
+        {
+          "id": "generalizes",
+          "label": "generalizes",
+          "description": "generalization generalizes the plan"
+        }
+      ],
+      "layout_hint": "tree, direction right: four phase columns"
+    },
+    {
+      "slug": "means-ends-analysis",
+      "name": "Means-Ends Analysis",
+      "category": "03-engineering-and-cognitive",
+      "wikipedia": "https://en.wikipedia.org/wiki/Means%E2%80%93ends_analysis",
+      "blurb": "Continuously evaluates the distance between the current state and goal state, recursively chaining operators and creating sub-goals to remove preconditions.",
+      "slots": [
+        {
+          "id": "current_state",
+          "label": "Current state",
+          "typical_provenance": "fact",
+          "description": "Where things are now."
+        },
+        {
+          "id": "goal_state",
+          "label": "Goal state",
+          "typical_provenance": "either",
+          "description": "Where things should be."
+        },
+        {
+          "id": "difference",
+          "label": "Difference",
+          "typical_provenance": "derived",
+          "description": "The gap that matters most between current and goal."
+        },
+        {
+          "id": "operator",
+          "label": "Operator",
+          "typical_provenance": "either",
+          "description": "An action that reduces a difference."
+        },
+        {
+          "id": "precondition",
+          "label": "Precondition",
+          "typical_provenance": "derived",
+          "description": "What must be true before an operator can be applied."
+        },
+        {
+          "id": "subgoal",
+          "label": "Sub-goal",
+          "typical_provenance": "derived",
+          "description": "A precondition promoted to a goal of its own."
+        }
+      ],
+      "relations": [
+        {
+          "id": "differs_by",
+          "label": "differs by",
+          "description": "current state differs from goal state by a difference"
+        },
+        {
+          "id": "reduced_by",
+          "label": "reduced by",
+          "description": "difference is reduced by an operator"
+        },
+        {
+          "id": "requires",
+          "label": "requires",
+          "description": "operator requires a precondition"
+        },
+        {
+          "id": "becomes_subgoal",
+          "label": "becomes sub-goal",
+          "description": "unmet precondition becomes a sub-goal"
+        },
+        {
+          "id": "transforms",
+          "label": "transforms",
+          "description": "operator transforms one state into another"
+        }
+      ],
+      "layout_hint": "plane or tree, direction right: current state left, goal right, operators and sub-goals in between"
+    },
+    {
+      "slug": "inversion-premortem",
+      "name": "Inversion & Pre-Mortem",
+      "category": "03-engineering-and-cognitive",
+      "wikipedia": "https://en.wikipedia.org/wiki/Pre-mortem",
+      "blurb": "Assumes complete future failure (prospective hindsight), lists every pathway to disaster, and engineers mandatory safeguards in advance. Overcomes optimism bias.",
+      "slots": [
+        {
+          "id": "goal",
+          "label": "Goal",
+          "typical_provenance": "either",
+          "description": "The plan or outcome being protected."
+        },
+        {
+          "id": "assumed_failure",
+          "label": "Assumed failure",
+          "typical_provenance": "derived",
+          "description": "The inverted statement: it is later and the plan has failed completely."
+        },
+        {
+          "id": "pathway",
+          "label": "Failure pathway",
+          "typical_provenance": "derived",
+          "description": "One concrete story of how the failure happened."
+        },
+        {
+          "id": "cause",
+          "label": "Cause",
+          "typical_provenance": "either",
+          "description": "A driver of a pathway; sometimes visible in the source, sometimes inferred."
+        },
+        {
+          "id": "safeguard",
+          "label": "Safeguard",
+          "typical_provenance": "derived",
+          "description": "The mandatory measure that blocks a pathway."
+        }
+      ],
+      "relations": [
+        {
+          "id": "inverted_to",
+          "label": "inverted to",
+          "description": "goal is inverted to the assumed failure"
+        },
+        {
+          "id": "reached_via",
+          "label": "reached via",
+          "description": "failure is reached via a pathway"
+        },
+        {
+          "id": "driven_by",
+          "label": "driven by",
+          "description": "pathway is driven by a cause"
+        },
+        {
+          "id": "guarded_by",
+          "label": "guarded by",
+          "description": "pathway is guarded by a safeguard"
+        }
+      ],
+      "layout_hint": "tree, direction down: goal, assumed failure, pathways, causes and safeguards"
+    },
+    {
+      "slug": "cynefin",
+      "name": "Cynefin Framework",
+      "category": "04-sensemaking-and-complex-systems",
+      "wikipedia": "https://en.wikipedia.org/wiki/Cynefin_framework",
+      "blurb": "Categorizes environments to match decision protocols: Clear (Sense-Categorize-Respond), Complicated (Sense-Analyze-Respond), Complex (Probe-Sense-Respond), and Chaotic (Act-Sense-Respond). Prevents applying rigid blueprints to emergent spaces.",
+      "slots": [
+        {
+          "id": "domain",
+          "label": "Domain",
+          "typical_provenance": "schema",
+          "structural": true,
+          "description": "Clear, Complicated, Complex, Chaotic, Disorder. Scaffolding; each carries its protocol."
+        },
+        {
+          "id": "item",
+          "label": "Situation",
+          "typical_provenance": "fact",
+          "description": "A decision, market or event being classified."
+        },
+        {
+          "id": "signal",
+          "label": "Signal",
+          "typical_provenance": "fact",
+          "description": "An observation that indicates which domain the situation is in (cause-effect visible? experts agree? emergent?)."
+        },
+        {
+          "id": "response",
+          "label": "Response",
+          "typical_provenance": "derived",
+          "description": "What the matching protocol prescribes for this situation."
+        }
+      ],
+      "relations": [
+        {
+          "id": "classified_as",
+          "label": "classified as",
+          "description": "situation is classified into a domain (derived edge with confidence)"
+        },
+        {
+          "id": "indicates",
+          "label": "indicates",
+          "description": "signal indicates the classification"
+        },
+        {
+          "id": "calls_for",
+          "label": "calls for",
+          "description": "situation calls for a response"
+        }
+      ],
+      "layout_hint": "plane: four quadrant regions with Disorder in the centre; situations placed inside their domain"
+    },
+    {
+      "slug": "wardley-mapping",
+      "name": "Wardley Mapping",
+      "category": "04-sensemaking-and-complex-systems",
+      "wikipedia": "https://en.wikipedia.org/wiki/Wardley_map",
+      "blurb": "Maps user needs vertically by visibility and horizontally along an evolution axis (Genesis -> Custom -> Product -> Utility). Exposes custom components that should be commoditized utilities.",
+      "slots": [
+        {
+          "id": "user",
+          "label": "User",
+          "typical_provenance": "either",
+          "description": "Who the map is anchored on."
+        },
+        {
+          "id": "need",
+          "label": "Need",
+          "typical_provenance": "either",
+          "description": "What the user needs."
+        },
+        {
+          "id": "component",
+          "label": "Component",
+          "typical_provenance": "fact",
+          "description": "A capability in the value chain, as mentioned in the source."
+        },
+        {
+          "id": "stage",
+          "label": "Evolution stage",
+          "typical_provenance": "schema",
+          "structural": true,
+          "description": "Genesis, Custom, Product, Commodity/Utility. Scaffolding drawn as the x axis."
+        },
+        {
+          "id": "movement",
+          "label": "Movement",
+          "typical_provenance": "derived",
+          "description": "A predicted shift of a component along the axis."
+        },
+        {
+          "id": "play",
+          "label": "Play",
+          "typical_provenance": "derived",
+          "description": "A strategic move the map suggests: commoditise, build, exit, wait."
+        }
+      ],
+      "relations": [
+        {
+          "id": "needs",
+          "label": "needs",
+          "description": "user needs a need"
+        },
+        {
+          "id": "fulfilled_by",
+          "label": "fulfilled by",
+          "description": "need is fulfilled by a component"
+        },
+        {
+          "id": "depends_on",
+          "label": "depends on",
+          "description": "component depends on a lower component"
+        },
+        {
+          "id": "at_stage",
+          "label": "at stage",
+          "description": "component is at an evolution stage (derived edge with confidence); sets its x position"
+        },
+        {
+          "id": "moves",
+          "label": "moves",
+          "description": "movement moves a component"
+        },
+        {
+          "id": "enables",
+          "label": "enables",
+          "description": "movement enables a play"
+        }
+      ],
+      "layout_hint": "plane: x = evolution (Genesis to Utility), y = visibility to the user; value chain edges run downward"
+    },
+    {
+      "slug": "ooda-loop",
+      "name": "OODA Loop",
+      "category": "04-sensemaking-and-complex-systems",
+      "wikipedia": "https://en.wikipedia.org/wiki/OODA_loop",
+      "blurb": "Observe, Orient, Decide, Act. Focuses on Orientation (mental models, cultural conditioning) to execute decision cycles faster than an adversary or shifting market.",
+      "slots": [
+        {
+          "id": "actor",
+          "label": "Actor",
+          "typical_provenance": "fact",
+          "description": "Who is running the loop; competing actors run competing loops."
+        },
+        {
+          "id": "observation",
+          "label": "Observation",
+          "typical_provenance": "fact",
+          "description": "What the actor saw."
+        },
+        {
+          "id": "orientation",
+          "label": "Orientation",
+          "typical_provenance": "derived",
+          "description": "The mental model, culture or prior that filtered the observation; rarely stated."
+        },
+        {
+          "id": "decision",
+          "label": "Decision",
+          "typical_provenance": "either",
+          "description": "What the actor chose."
+        },
+        {
+          "id": "action",
+          "label": "Action",
+          "typical_provenance": "fact",
+          "description": "What the actor did."
+        },
+        {
+          "id": "feedback",
+          "label": "Feedback",
+          "typical_provenance": "derived",
+          "description": "How the action changed what the actor or the adversary observes next."
+        }
+      ],
+      "relations": [
+        {
+          "id": "informs",
+          "label": "informs",
+          "description": "observation informs orientation"
+        },
+        {
+          "id": "shapes",
+          "label": "shapes",
+          "description": "orientation shapes the decision"
+        },
+        {
+          "id": "executes",
+          "label": "executes",
+          "description": "decision is executed as action"
+        },
+        {
+          "id": "feeds_back",
+          "label": "feeds back",
+          "description": "action feeds back into observation"
+        },
+        {
+          "id": "performed_by",
+          "label": "performed by",
+          "description": "a loop node is performed by an actor"
+        }
+      ],
+      "layout_hint": "ring: one loop per actor; use pos to offset a second actor's ring"
+    },
+    {
+      "slug": "pdca-deming",
+      "name": "PDCA / Deming Cycle",
+      "category": "04-sensemaking-and-complex-systems",
+      "wikipedia": "https://en.wikipedia.org/wiki/PDCA",
+      "blurb": "Plan (hypothesis), Do (contained pilot), Check (statistical measurement), and Act (standardize or pivot). Prevents unverified global rollouts.",
+      "slots": [
+        {
+          "id": "phase",
+          "label": "Phase",
+          "typical_provenance": "schema",
+          "structural": true,
+          "description": "Plan, Do, Check, Act. Scaffolding."
+        },
+        {
+          "id": "hypothesis",
+          "label": "Hypothesis",
+          "typical_provenance": "either",
+          "description": "Plan: what is expected to happen and why."
+        },
+        {
+          "id": "pilot",
+          "label": "Pilot",
+          "typical_provenance": "fact",
+          "description": "Do: the contained trial actually run."
+        },
+        {
+          "id": "metric",
+          "label": "Metric",
+          "typical_provenance": "fact",
+          "description": "Check: what was measured."
+        },
+        {
+          "id": "measurement",
+          "label": "Measurement",
+          "typical_provenance": "fact",
+          "description": "Check: the observed value or outcome."
+        },
+        {
+          "id": "decision",
+          "label": "Decision",
+          "typical_provenance": "either",
+          "description": "Act: standardise, adjust, or abandon."
+        }
+      ],
+      "relations": [
+        {
+          "id": "in_phase",
+          "label": "in phase",
+          "description": "node belongs to a phase"
+        },
+        {
+          "id": "tests",
+          "label": "tests",
+          "description": "pilot tests the hypothesis"
+        },
+        {
+          "id": "measured_by",
+          "label": "measured by",
+          "description": "pilot is measured by a metric"
+        },
+        {
+          "id": "yields",
+          "label": "yields",
+          "description": "metric yields a measurement"
+        },
+        {
+          "id": "leads_to",
+          "label": "leads to",
+          "description": "measurement leads to the decision"
+        },
+        {
+          "id": "restarts",
+          "label": "restarts",
+          "description": "decision restarts the cycle with a new hypothesis"
+        }
+      ],
+      "layout_hint": "ring: the four phases around the circle, content nodes near their phase"
+    },
+    {
+      "slug": "systems-thinking",
+      "name": "Systems Thinking",
+      "category": "04-sensemaking-and-complex-systems",
+      "wikipedia": "https://en.wikipedia.org/wiki/Systems_thinking",
+      "blurb": "Analyzes dynamics via Stocks (reservoirs), Flows (rates of change), and Feedback Loops (balancing vs. reinforcing). Targets systemic leverage points (information flows, rules, goals) rather than tweaking surface parameters.",
+      "slots": [
+        {
+          "id": "stock",
+          "label": "Stock",
+          "typical_provenance": "either",
+          "description": "An accumulation (users, cash, talent, trust)."
+        },
+        {
+          "id": "flow",
+          "label": "Flow",
+          "typical_provenance": "either",
+          "description": "A rate that fills or drains a stock."
+        },
+        {
+          "id": "variable",
+          "label": "Variable",
+          "typical_provenance": "either",
+          "description": "An auxiliary quantity that influences a flow."
+        },
+        {
+          "id": "loop",
+          "label": "Feedback loop",
+          "typical_provenance": "derived",
+          "description": "A closed chain of influence, reinforcing (R) or balancing (B); almost never stated."
+        },
+        {
+          "id": "delay",
+          "label": "Delay",
+          "typical_provenance": "derived",
+          "description": "A lag between cause and effect that produces oscillation or overshoot."
+        },
+        {
+          "id": "leverage_point",
+          "label": "Leverage point",
+          "typical_provenance": "derived",
+          "description": "Where a small intervention changes the system's behaviour (Meadows' hierarchy)."
+        }
+      ],
+      "relations": [
+        {
+          "id": "inflow",
+          "label": "inflow",
+          "description": "flow fills a stock"
+        },
+        {
+          "id": "outflow",
+          "label": "outflow",
+          "description": "flow drains a stock"
+        },
+        {
+          "id": "influences",
+          "label": "influences",
+          "description": "one quantity influences another; label + or -"
+        },
+        {
+          "id": "part_of_loop",
+          "label": "part of loop",
+          "description": "node participates in a feedback loop"
+        },
+        {
+          "id": "delays",
+          "label": "delays",
+          "description": "delay sits on an influence"
+        },
+        {
+          "id": "acts_on",
+          "label": "acts on",
+          "description": "leverage point acts on a node"
+        }
+      ],
+      "layout_hint": "force, or plane with stocks as boxes and loops drawn as rings"
+    }
+  ]
+}
