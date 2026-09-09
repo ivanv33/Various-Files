@@ -1,0 +1,1606 @@
+{
+  "$schema": "../../_meta/schema.json",
+  "framework": {
+    "slug": "cynefin",
+    "name": "Cynefin Framework",
+    "category": "04-sensemaking-and-complex-systems",
+    "wikipedia": "https://en.wikipedia.org/wiki/Cynefin_framework",
+    "one_liner": "Sorts situations by the kind of causality they have - Clear, Complicated, Complex, Chaotic, or Disorder - so that each one gets the decision protocol its domain allows instead of the one the organisation prefers."
+  },
+  "slots": [
+    {
+      "id": "domain",
+      "label": "Domain",
+      "description": "Clear, Complicated, Complex, Chaotic, Disorder. The five domains are scaffolding, not content: each is a kind of causality and the decision protocol that kind of causality permits.",
+      "typical_provenance": "schema",
+      "structural": true,
+      "shape": "box"
+    },
+    {
+      "id": "item",
+      "label": "Situation",
+      "description": "A decision, market, launch or incident being classified, taken from the source as the speakers describe it.",
+      "typical_provenance": "fact",
+      "color": "#6ea8fe",
+      "shape": "sphere"
+    },
+    {
+      "id": "signal",
+      "label": "Signal",
+      "description": "A quoted observation that tells you which domain a situation is in: is cause and effect visible, do the experts agree, is the answer only available after you try something, is there time to analyse at all.",
+      "typical_provenance": "fact",
+      "color": "#4fc3a1",
+      "shape": "diamond"
+    },
+    {
+      "id": "response",
+      "label": "Response",
+      "description": "What the matching protocol prescribes for this situation: categorise, analyse, probe, or act. Derived, because the source shows what was done, not what the domain permits.",
+      "typical_provenance": "derived",
+      "color": "#b48ef0",
+      "shape": "cone"
+    }
+  ],
+  "relations": [
+    {
+      "id": "classified_as",
+      "label": "classified as",
+      "description": "A situation is placed in a domain. Always derived: the classification is the judgment the framework exists to make. A second edge labelled 'treated as' records the domain whose protocol was actually applied."
+    },
+    {
+      "id": "observed_in",
+      "label": "observed in",
+      "description": "An observation belongs to a situation. A fact edge when one span of the source states both; derived when the link has to be inferred across turns."
+    },
+    {
+      "id": "indicates",
+      "label": "indicates",
+      "description": "An observation is diagnostic of a domain: this is what makes the classification readable rather than asserted. Always derived."
+    },
+    {
+      "id": "calls_for",
+      "label": "calls for",
+      "description": "A situation calls for the response its domain permits. Always derived."
+    }
+  ],
+  "examples": [
+    {
+      "id": "classic",
+      "kind": "classic",
+      "title": "Meridian Foods: four items on one Monday agenda",
+      "summary": "A mid-size manufacturer puts an invoice queue, an intermittent line fault, a new plant-based product and an allergen recall on the same agenda, then sends all four to the programme office on one Gantt chart. Two of the four come out fine and the framework says which two, and why.",
+      "source": {
+        "type": "text",
+        "title": "Meridian Foods, Monday operations review",
+        "attribution": "Composite of the standard teaching cases used with Cynefin (Snowden and Boone, 'A Leader's Framework for Decision Making', Harvard Business Review, November 2007): a rule-governed back-office queue, an expert-diagnosable machine fault, an emergent product launch, and a recall crisis.",
+        "text": "Meridian Foods, a mid-size manufacturer, holds its Monday operations review, and four items are on the agenda.\n\nThe first is invoice exceptions. About three percent of supplier invoices fail the automated match each week. The cause is known, the correction is written down in the finance handbook, and a clerk who follows it clears the queue by Wednesday.\n\nThe second is an intermittent fault on packaging line four. The line stops about twice a shift and nobody on site knows why. Two of the maintenance engineers disagree about the cause, and the maintenance lead says a week of instrumented testing will settle which of them is right.\n\nThe third is the plant-based line the company launched in March. Sales are flat in two regions and triple the forecast in a third, and the brand team cannot say why. Shoppers have been using the product in ways nobody designed it for.\n\nThe fourth is an allergen mislabel found on a pallet that shipped on Friday. Stores open in twelve hours, nobody yet knows how much of the batch is affected, and the recall hotline is already ringing.\n\nThe operations director sends all four items to the programme office, which puts each one on a single Gantt chart with a named owner, a fixed milestone and a monthly steering review. By June the invoice queue is clean and the packaging fault has been found and fixed. The plant-based plan has slipped three times; each slip produces a replanning exercise and a new forecast, and not one regional test has been run. The recall was handled by a director who ignored the chart, called the stores herself and asked her questions afterwards. At the July review the team argues about whether the plant-based line needs a better plan or no plan at all, and each manager argues from the kind of problem he is used to."
+      },
+      "layout": {
+        "mode": "plane",
+        "axes": {
+          "x": {
+            "label": "Causality  ·  unordered (left)  →  ordered (right)",
+            "min": -60,
+            "max": 60,
+            "ticks": [
+              {
+                "value": -37,
+                "label": "no reliable cause and effect"
+              },
+              {
+                "value": 37,
+                "label": "cause and effect available"
+              }
+            ]
+          },
+          "y": {
+            "label": "Protocol  ·  respond at once (low)  →  a step before responding (high)",
+            "min": -60,
+            "max": 60,
+            "ticks": [
+              {
+                "value": 37,
+                "label": "probe / analyse first"
+              },
+              {
+                "value": -37,
+                "label": "act / categorise now"
+              }
+            ]
+          }
+        },
+        "regions": [
+          {
+            "label": "COMPLEX",
+            "x": [
+              -60,
+              -14
+            ],
+            "y": [
+              14,
+              60
+            ],
+            "color": "#8a5cf5"
+          },
+          {
+            "label": "COMPLICATED",
+            "x": [
+              14,
+              60
+            ],
+            "y": [
+              14,
+              60
+            ],
+            "color": "#3987e5"
+          },
+          {
+            "label": "CHAOTIC",
+            "x": [
+              -60,
+              -14
+            ],
+            "y": [
+              -60,
+              -14
+            ],
+            "color": "#d6453f"
+          },
+          {
+            "label": "CLEAR",
+            "x": [
+              14,
+              60
+            ],
+            "y": [
+              -60,
+              -14
+            ],
+            "color": "#3fa66f"
+          },
+          {
+            "label": "DISORDER",
+            "x": [
+              -14,
+              14
+            ],
+            "y": [
+              -14,
+              14
+            ],
+            "color": "#6f6f6b"
+          }
+        ],
+        "guides": [
+          {
+            "from": [
+              14,
+              -37
+            ],
+            "to": [
+              -14,
+              -37
+            ],
+            "style": "dashed",
+            "label": "the cliff · a clear rule that stops holding drops you into chaos"
+          }
+        ],
+        "annotations": [
+          {
+            "pos": [
+              0,
+              -52
+            ],
+            "text": "dashed 'treated as' edge = the protocol actually applied",
+            "style": "caption"
+          }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "d_clear",
+          "slot": "domain",
+          "label": "Clear · sense, categorise, respond",
+          "text": "Cause and effect are self-evident and stable, so the right answer is known and written down. Protocol: sense, categorise, respond, applying best practice. Failure mode: the categories outlive the conditions that made them true.",
+          "provenance": "schema",
+          "pos": [
+            37,
+            -20
+          ]
+        },
+        {
+          "id": "d_complicated",
+          "slot": "domain",
+          "label": "Complicated · sense, analyse, respond",
+          "text": "Cause and effect are knowable but not self-evident; expertise or analysis finds the answer, and there may be several defensible answers. Protocol: sense, analyse, respond, applying good practice. Failure mode: expert entrainment, where the analysis only confirms the discipline it came from.",
+          "provenance": "schema",
+          "pos": [
+            37,
+            50
+          ]
+        },
+        {
+          "id": "d_complex",
+          "slot": "domain",
+          "label": "Complex · probe, sense, respond",
+          "text": "Cause and effect cohere only in retrospect, so no amount of analysis in advance produces the answer. Protocol: probe with safe-to-fail experiments, sense what emerges, respond. Failure mode: imposing a plan and then treating the first slip as a planning error.",
+          "provenance": "schema",
+          "pos": [
+            -37,
+            50
+          ]
+        },
+        {
+          "id": "d_chaotic",
+          "slot": "domain",
+          "label": "Chaotic · act, sense, respond",
+          "text": "There is no usable cause and effect and the situation moves faster than any analysis of it. Protocol: act to establish order, sense where stability is returning, then respond. Failure mode: waiting for the review the clock does not allow.",
+          "provenance": "schema",
+          "pos": [
+            -37,
+            -20
+          ]
+        },
+        {
+          "id": "d_disorder",
+          "slot": "domain",
+          "label": "Disorder · no domain agreed",
+          "text": "Nobody knows which domain the situation is in, so each person acts from the domain they are most comfortable in. The only move is to break the situation into parts and move each part to a domain where it can be handled.",
+          "provenance": "schema",
+          "pos": [
+            0,
+            9
+          ]
+        },
+        {
+          "id": "c_invoice",
+          "slot": "item",
+          "label": "3% of invoices fail the match",
+          "text": "Three percent of supplier invoices fail the automated match every week, a recurring back-office exception queue.",
+          "provenance": "fact",
+          "source_quote": "About three percent of supplier invoices fail the automated match each week.",
+          "source_ref": "sentence 2",
+          "pos": [
+            37,
+            -33
+          ]
+        },
+        {
+          "id": "c_handbook",
+          "slot": "signal",
+          "label": "Written down in the handbook",
+          "text": "The cause of the exceptions is known, the correction is documented, and a clerk following the document clears the queue on a predictable schedule.",
+          "provenance": "fact",
+          "source_quote": "The cause is known, the correction is written down in the finance handbook, and a clerk who follows it clears the queue by Wednesday.",
+          "source_ref": "sentence 3",
+          "pos": [
+            55,
+            -44
+          ]
+        },
+        {
+          "id": "c_line4",
+          "slot": "item",
+          "label": "Line four stops twice a shift",
+          "text": "An intermittent fault stops packaging line four about twice a shift, and nobody on site knows the cause.",
+          "provenance": "fact",
+          "source_quote": "an intermittent fault on packaging line four. The line stops about twice a shift and nobody on site knows why.",
+          "source_ref": "sentences 4-5",
+          "pos": [
+            24,
+            40
+          ]
+        },
+        {
+          "id": "c_disagree",
+          "slot": "signal",
+          "label": "Two engineers disagree; test it",
+          "text": "Two maintenance engineers hold different theories of the cause, and the maintenance lead puts a price on settling it: one week of instrumented testing.",
+          "provenance": "fact",
+          "source_quote": "Two of the maintenance engineers disagree about the cause, and the maintenance lead says a week of instrumented testing will settle which of them is right.",
+          "source_ref": "sentence 6",
+          "pos": [
+            50,
+            29
+          ]
+        },
+        {
+          "id": "c_plant",
+          "slot": "item",
+          "label": "Plant-based: flat, flat, triple",
+          "text": "The plant-based line launched in March is flat in two regions and at triple forecast in a third, and the brand team cannot explain the pattern.",
+          "provenance": "fact",
+          "source_quote": "the plant-based line the company launched in March. Sales are flat in two regions and triple the forecast in a third, and the brand team cannot say why.",
+          "source_ref": "sentences 7-8",
+          "pos": [
+            -24,
+            40
+          ]
+        },
+        {
+          "id": "c_unexpected",
+          "slot": "signal",
+          "label": "Used in ways nobody designed for",
+          "text": "Shoppers are using the product in ways the company did not design it for, so the behaviour driving the numbers was not in anyone's model.",
+          "provenance": "fact",
+          "source_quote": "Shoppers have been using the product in ways nobody designed it for.",
+          "source_ref": "sentence 9",
+          "pos": [
+            -54,
+            29
+          ]
+        },
+        {
+          "id": "c_gantt",
+          "slot": "signal",
+          "label": "All four onto one Gantt chart",
+          "text": "Every item, regardless of what kind of problem it is, is given a named owner, a fixed milestone and a monthly steering review.",
+          "provenance": "fact",
+          "source_quote": "puts each one on a single Gantt chart with a named owner, a fixed milestone and a monthly steering review",
+          "source_ref": "sentence 13",
+          "pos": [
+            -20,
+            22
+          ]
+        },
+        {
+          "id": "c_slips",
+          "slot": "signal",
+          "label": "Three slips, no regional test",
+          "text": "The plant-based plan has slipped three times, each slip producing a replan and a new forecast, while not one regional test has been run.",
+          "provenance": "fact",
+          "source_quote": "The plant-based plan has slipped three times; each slip produces a replanning exercise and a new forecast, and not one regional test has been run.",
+          "source_ref": "sentence 15",
+          "pos": [
+            -37,
+            29
+          ]
+        },
+        {
+          "id": "c_recall",
+          "slot": "item",
+          "label": "Allergen mislabel on a pallet",
+          "text": "An allergen mislabel is found on a pallet that has already shipped, with stores opening in twelve hours.",
+          "provenance": "fact",
+          "source_quote": "an allergen mislabel found on a pallet that shipped on Friday",
+          "source_ref": "sentence 10",
+          "pos": [
+            -37,
+            -31
+          ]
+        },
+        {
+          "id": "c_hours",
+          "slot": "signal",
+          "label": "Stores open in twelve hours",
+          "text": "Nobody knows the scope of the affected batch, the hotline is already ringing, and the clock runs out before any analysis could finish.",
+          "provenance": "fact",
+          "source_quote": "Stores open in twelve hours, nobody yet knows how much of the batch is affected, and the recall hotline is already ringing.",
+          "source_ref": "sentence 11",
+          "pos": [
+            -37,
+            -44
+          ]
+        },
+        {
+          "id": "c_argue",
+          "slot": "item",
+          "label": "Better plan, or no plan at all?",
+          "text": "At the July review the team cannot agree whether the plant-based line needs a better plan or no plan at all, and each manager argues from the kind of problem he is used to.",
+          "provenance": "fact",
+          "source_quote": "the team argues about whether the plant-based line needs a better plan or no plan at all, and each manager argues from the kind of problem he is used to",
+          "source_ref": "sentence 18",
+          "pos": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "c_r_cat",
+          "slot": "response",
+          "label": "Apply the handbook, move on",
+          "text": "Clear protocol: sense the exception, categorise it against the handbook, respond. The only management question worth asking is whether the rule still matches the conditions, because that is the one way this domain fails.",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The scenario states that the cause is known and the correction documented, which is the defining condition of the Clear domain; sense-categorise-respond follows from the classification, and the expiry question is the failure mode the framework attaches to it.",
+          "pos": [
+            37,
+            -47
+          ]
+        },
+        {
+          "id": "c_r_an",
+          "slot": "response",
+          "label": "Buy the week of instrumentation",
+          "text": "Complicated protocol: sense, analyse, respond. The week of instrumented testing is the correct purchase because the answer exists and the disagreement is about which expert holds it, not about whether anyone can.",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Expert disagreement that a defined experiment can settle is Cynefin's marker for the Complicated domain rather than the Complex one; the scenario states the price of the analysis but does not draw the conclusion that it is the right spend.",
+          "pos": [
+            37,
+            19
+          ]
+        },
+        {
+          "id": "c_r_probe",
+          "slot": "response",
+          "label": "Three cheap regional probes",
+          "text": "Complex protocol: probe, sense, respond. Run several small parallel regional tests designed to be safe to fail, watch which pattern amplifies, and commit behind the one that holds. A fourth replan produces a new forecast and no new information.",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The scenario reports three slips, no test and an unexplained demand pattern, which is exactly the signature Cynefin predicts when a Complex situation is run on a Complicated protocol; the prescribed probe is the framework's answer and is not in the text.",
+          "pos": [
+            -37,
+            19
+          ]
+        },
+        {
+          "id": "c_r_act",
+          "slot": "response",
+          "label": "Act now, sense after",
+          "text": "Chaotic protocol: act to establish order, then sense. Calling the stores before the scope of the batch is known is the correct move in this domain, and the chart's monthly review is irrelevant to it.",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The scenario reports the director acting before analysing and the outcome holding, and Cynefin prescribes act-sense-respond when the clock is shorter than any possible analysis; the judgment that this was right rather than reckless is the inference.",
+          "pos": [
+            -37,
+            -53
+          ]
+        },
+        {
+          "id": "c_r_split",
+          "slot": "response",
+          "label": "Split the agenda item by item",
+          "text": "Disorder protocol: stop arguing about the whole and break it into parts, then move each part to the domain where it can be handled. The plant-based line holds a Clear supply question, a Complicated pricing question and a Complex demand question, and only the third is what the argument is about.",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "Each manager arguing from his habitual problem type is Cynefin's description of Disorder; the decomposition prescribed here is the framework's remedy and the scenario never performs it.",
+          "pos": [
+            0,
+            -9
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "id": "ce1",
+          "from": "c_handbook",
+          "to": "c_invoice",
+          "relation": "observed_in",
+          "provenance": "fact",
+          "source_quote": "About three percent of supplier invoices fail the automated match each week. The cause is known, the correction is written down in the finance handbook",
+          "source_ref": "sentences 2-3"
+        },
+        {
+          "id": "ce2",
+          "from": "c_disagree",
+          "to": "c_line4",
+          "relation": "observed_in",
+          "provenance": "fact",
+          "source_quote": "The line stops about twice a shift and nobody on site knows why. Two of the maintenance engineers disagree about the cause",
+          "source_ref": "sentences 5-6"
+        },
+        {
+          "id": "ce3",
+          "from": "c_unexpected",
+          "to": "c_plant",
+          "relation": "observed_in",
+          "provenance": "fact",
+          "source_quote": "the brand team cannot say why. Shoppers have been using the product in ways nobody designed it for.",
+          "source_ref": "sentences 8-9"
+        },
+        {
+          "id": "ce4",
+          "from": "c_hours",
+          "to": "c_recall",
+          "relation": "observed_in",
+          "provenance": "fact",
+          "source_quote": "an allergen mislabel found on a pallet that shipped on Friday. Stores open in twelve hours, nobody yet knows how much of the batch is affected",
+          "source_ref": "sentences 10-11"
+        },
+        {
+          "id": "ce5",
+          "from": "c_gantt",
+          "to": "c_plant",
+          "relation": "observed_in",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The chart is stated to cover all four items, so it covers the plant-based line; the source does not single that item out."
+        },
+        {
+          "id": "ce6",
+          "from": "c_slips",
+          "to": "c_plant",
+          "relation": "observed_in",
+          "provenance": "fact",
+          "source_quote": "The plant-based plan has slipped three times; each slip produces a replanning exercise and a new forecast",
+          "source_ref": "sentence 15"
+        },
+        {
+          "id": "ce7",
+          "from": "c_handbook",
+          "to": "d_clear",
+          "relation": "indicates",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "A known cause with a written correction that a non-expert can apply is the textbook marker of the Clear domain."
+        },
+        {
+          "id": "ce8",
+          "from": "c_disagree",
+          "to": "d_complicated",
+          "relation": "indicates",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Experts who disagree but agree on an experiment that would settle it means the answer is knowable: Complicated, not Complex."
+        },
+        {
+          "id": "ce9",
+          "from": "c_unexpected",
+          "to": "d_complex",
+          "relation": "indicates",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Use the designers did not anticipate means the behaviour driving the outcome was outside every model, which is emergence."
+        },
+        {
+          "id": "ce10",
+          "from": "c_slips",
+          "to": "d_complex",
+          "relation": "indicates",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Repeated slips that each produce a replan instead of new information are the signature of a plan imposed on a space where the answer can only be found by trying."
+        },
+        {
+          "id": "ce11",
+          "from": "c_hours",
+          "to": "d_chaotic",
+          "relation": "indicates",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Unknown scope plus a deadline shorter than any possible analysis is the Chaotic condition: you must act to create enough order to sense."
+        },
+        {
+          "id": "ce12",
+          "from": "c_gantt",
+          "to": "d_complicated",
+          "relation": "indicates",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "A named owner, a fixed milestone and a monthly review is the Complicated protocol made into a procedure: it assumes the answer is knowable in advance."
+        },
+        {
+          "id": "ce13",
+          "from": "c_invoice",
+          "to": "d_clear",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "Stable cause, documented correction, no judgment required: Clear."
+        },
+        {
+          "id": "ce14",
+          "from": "c_line4",
+          "to": "d_complicated",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The cause is not visible but is knowable by instrumented analysis, and the experts differ only about which knowable answer is right."
+        },
+        {
+          "id": "ce15",
+          "from": "c_plant",
+          "to": "d_complex",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Demand that is flat in two regions and triple in a third for reasons nobody can state, driven by unanticipated use, is emergent: the pattern is only legible after the fact."
+        },
+        {
+          "id": "ce16",
+          "from": "c_plant",
+          "to": "d_complicated",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "label": "treated as",
+          "rationale": "The programme office gave the launch a fixed milestone and a monthly steering review, which is the protocol of the Complicated domain applied to a Complex situation."
+        },
+        {
+          "id": "ce17",
+          "from": "c_recall",
+          "to": "d_chaotic",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Unknown scope, an irreversible shipment and twelve hours: there is no usable cause and effect to analyse before acting."
+        },
+        {
+          "id": "ce18",
+          "from": "c_recall",
+          "to": "d_complicated",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "label": "treated as",
+          "rationale": "The recall went onto the same chart with a milestone and a monthly review; the director's success came from ignoring that assignment, not from it."
+        },
+        {
+          "id": "ce19",
+          "from": "c_argue",
+          "to": "d_disorder",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The July argument is not about the evidence but about which kind of problem this is, with each manager arguing from his habitual domain: the definition of Disorder."
+        },
+        {
+          "id": "ce20",
+          "from": "c_invoice",
+          "to": "c_r_cat",
+          "relation": "calls_for",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The response follows from the Clear classification."
+        },
+        {
+          "id": "ce21",
+          "from": "c_line4",
+          "to": "c_r_an",
+          "relation": "calls_for",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The response follows from the Complicated classification and the stated price of the test."
+        },
+        {
+          "id": "ce22",
+          "from": "c_plant",
+          "to": "c_r_probe",
+          "relation": "calls_for",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The response follows from the Complex classification and from what the three slips show."
+        },
+        {
+          "id": "ce23",
+          "from": "c_recall",
+          "to": "c_r_act",
+          "relation": "calls_for",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The response follows from the Chaotic classification."
+        },
+        {
+          "id": "ce24",
+          "from": "c_argue",
+          "to": "c_r_split",
+          "relation": "calls_for",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "The response follows from the Disorder classification."
+        },
+        {
+          "id": "ce25",
+          "from": "c_r_probe",
+          "to": "c_slips",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The slips with no test are the evidence that replanning is producing forecasts rather than information."
+        },
+        {
+          "id": "ce26",
+          "from": "c_r_probe",
+          "to": "c_unexpected",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Unanticipated use is the evidence that the demand pattern cannot be planned into existence."
+        },
+        {
+          "id": "ce27",
+          "from": "c_r_an",
+          "to": "c_disagree",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The engineers' disagreement and the week of testing are the evidence that the answer is knowable."
+        },
+        {
+          "id": "ce28",
+          "from": "c_r_act",
+          "to": "c_hours",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The twelve-hour clock and the unknown batch scope are the evidence that analysis cannot precede action."
+        },
+        {
+          "id": "ce29",
+          "from": "c_r_cat",
+          "to": "c_handbook",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The handbook is the evidence that a categorisation step is all this situation needs."
+        },
+        {
+          "id": "ce30",
+          "from": "c_r_split",
+          "to": "c_argue",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The argument itself is the evidence that the object has not been decomposed."
+        }
+      ]
+    },
+    {
+      "id": "tbpn",
+      "kind": "tbpn",
+      "title": "SpaceX after Starship Flight 10: four cost decisions, four kinds of causality",
+      "summary": "The hosts walk through Flight 10 and then through David Senra's account of how Elon Musk attacks cost at SpaceX. Within four hundred lines the episode puts a fixed orbital deadline, a qualified aerospace part, a four-bolt specification and a cracked engine skirt side by side, and shows three of them being answered out of a rulebook.",
+      "source": {
+        "type": "transcript",
+        "file": "tbpn-transcripts/transcripts/2025-08-27_spacex-launch-deep-dive-reactions-josh-reeves-keller-cliffton-will-brown-julia-steinberg-olivia-moore-flo-crivello.md",
+        "date": "2025-08-27",
+        "episode_title": "SpaceX Flight 10, venture debt, NVIDIA earnings, consumer AI top 100"
+      },
+      "why_this_episode": "One continuous stretch of the episode, from the Flight 10 recap to the Founders podcast quotes, contains a situation in every Cynefin domain at once: an 18-month transfer window whose causality is fixed, a three-million-dollar part whose price experts can itemise, a flight deliberately stress-tested because the answer is not knowable in advance, and a crack found the day before launch with hours to decide. It also contains the framework's central failure in the speakers' own words, engineers answering 'no' from a specification where the only available answer is to pull two bolts and see what breaks.",
+      "idea_bearing_slot": "response",
+      "layout": {
+        "mode": "plane",
+        "axes": {
+          "x": {
+            "label": "Causality  ·  unordered (left)  →  ordered (right)",
+            "min": -60,
+            "max": 60,
+            "ticks": [
+              {
+                "value": -37,
+                "label": "no reliable cause and effect"
+              },
+              {
+                "value": 37,
+                "label": "cause and effect available"
+              }
+            ]
+          },
+          "y": {
+            "label": "Protocol  ·  respond at once (low)  →  a step before responding (high)",
+            "min": -60,
+            "max": 60,
+            "ticks": [
+              {
+                "value": 37,
+                "label": "probe / analyse first"
+              },
+              {
+                "value": -37,
+                "label": "act / categorise now"
+              }
+            ]
+          }
+        },
+        "regions": [
+          {
+            "label": "COMPLEX",
+            "x": [
+              -60,
+              -14
+            ],
+            "y": [
+              14,
+              60
+            ],
+            "color": "#8a5cf5"
+          },
+          {
+            "label": "COMPLICATED",
+            "x": [
+              14,
+              60
+            ],
+            "y": [
+              14,
+              60
+            ],
+            "color": "#3987e5"
+          },
+          {
+            "label": "CHAOTIC",
+            "x": [
+              -60,
+              -14
+            ],
+            "y": [
+              -60,
+              -14
+            ],
+            "color": "#d6453f"
+          },
+          {
+            "label": "CLEAR",
+            "x": [
+              14,
+              60
+            ],
+            "y": [
+              -60,
+              -14
+            ],
+            "color": "#3fa66f"
+          },
+          {
+            "label": "DISORDER",
+            "x": [
+              -14,
+              14
+            ],
+            "y": [
+              -14,
+              14
+            ],
+            "color": "#6f6f6b"
+          }
+        ],
+        "guides": [
+          {
+            "from": [
+              14,
+              -37
+            ],
+            "to": [
+              -14,
+              -37
+            ],
+            "style": "dashed",
+            "label": "the cliff · a clear rule that stops holding drops you into chaos"
+          }
+        ],
+        "annotations": [
+          {
+            "pos": [
+              0,
+              -52
+            ],
+            "text": "three situations carry a dashed 'treated as' edge into CLEAR: the rulebook was the protocol actually applied",
+            "style": "caption"
+          }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "d_clear",
+          "slot": "domain",
+          "label": "Clear · sense, categorise, respond",
+          "text": "Cause and effect are self-evident and stable, so the right answer is known and written down. Protocol: sense, categorise, respond, applying best practice. Failure mode: the categories outlive the conditions that made them true.",
+          "provenance": "schema",
+          "pos": [
+            37,
+            -20
+          ]
+        },
+        {
+          "id": "d_complicated",
+          "slot": "domain",
+          "label": "Complicated · sense, analyse, respond",
+          "text": "Cause and effect are knowable but not self-evident; expertise or analysis finds the answer, and there may be several defensible answers. Protocol: sense, analyse, respond, applying good practice. Failure mode: expert entrainment, where the analysis only confirms the discipline it came from.",
+          "provenance": "schema",
+          "pos": [
+            37,
+            50
+          ]
+        },
+        {
+          "id": "d_complex",
+          "slot": "domain",
+          "label": "Complex · probe, sense, respond",
+          "text": "Cause and effect cohere only in retrospect, so no amount of analysis in advance produces the answer. Protocol: probe with safe-to-fail experiments, sense what emerges, respond. Failure mode: imposing a plan and then treating the first slip as a planning error.",
+          "provenance": "schema",
+          "pos": [
+            -37,
+            50
+          ]
+        },
+        {
+          "id": "d_chaotic",
+          "slot": "domain",
+          "label": "Chaotic · act, sense, respond",
+          "text": "There is no usable cause and effect and the situation moves faster than any analysis of it. Protocol: act to establish order, sense where stability is returning, then respond. Failure mode: waiting for the review the clock does not allow.",
+          "provenance": "schema",
+          "pos": [
+            -37,
+            -20
+          ]
+        },
+        {
+          "id": "d_disorder",
+          "slot": "domain",
+          "label": "Disorder · no domain agreed",
+          "text": "Nobody knows which domain the situation is in, so each person acts from the domain they are most comfortable in. The only move is to break the situation into parts and move each part to a domain where it can be handled.",
+          "provenance": "schema",
+          "pos": [
+            0,
+            9
+          ]
+        },
+        {
+          "id": "i_window",
+          "slot": "item",
+          "label": "The March Mars transfer window",
+          "text": "Musk wants an uncrewed Starship at Mars next year, and the transfer window that allows it opens about every eighteen months: hit March 2026 or wait until 2028.",
+          "provenance": "fact",
+          "source_quote": "there's a March transfer window that only comes up, I think, every 18 months or so. So it's really critical to hit it in 26, or else you've got to wait until 2028",
+          "source_ref": "TBPN host, L312-L316",
+          "entities": [
+            "SpaceX",
+            "Starship",
+            "Elon Musk"
+          ],
+          "pos": [
+            37,
+            -33
+          ]
+        },
+        {
+          "id": "i_cooling",
+          "slot": "item",
+          "label": "$3M air cooling system",
+          "text": "An engineer priced the air cooling system for Falcon 9 at three million dollars; Musk asked what a house air conditioner costs, and the team bought commercial units and modified the pumps.",
+          "provenance": "fact",
+          "source_quote": "when an engineer told Elon the air cooling system for the Falcon 9 would cost $3 million,",
+          "source_ref": "TBPN host reading David Senra's How Elon Works, L352",
+          "entities": [
+            "SpaceX",
+            "Falcon 9",
+            "Elon Musk",
+            "Gwen Shotwell",
+            "David Senra"
+          ],
+          "pos": [
+            24,
+            40
+          ]
+        },
+        {
+          "id": "i_cranes",
+          "slot": "item",
+          "label": "$2M pair of cranes",
+          "text": "A pair of cranes to lift rockets was quoted at two million dollars, a price justified by the Air Force safety regulations the team was shown.",
+          "provenance": "fact",
+          "source_quote": "Elon saved money by questioning the requirements when he asked his team why it would cost $2 million to build a pair of cranes.",
+          "source_ref": "TBPN host reading David Senra's How Elon Works, L466-L468",
+          "entities": [
+            "SpaceX",
+            "Elon Musk",
+            "David Senra"
+          ],
+          "pos": [
+            50,
+            40
+          ]
+        },
+        {
+          "id": "i_flight10",
+          "slot": "item",
+          "label": "Flight 10 set up as a stress test",
+          "text": "SpaceX deliberately configured the Flight 10 mission to stress test parts of the Starship spacecraft rather than to fly the safest possible profile.",
+          "provenance": "fact",
+          "source_quote": "experiment with its design, SpaceX set up Tuesday's mission to stress test parts of the Starship Spacecraft",
+          "source_ref": "TBPN host reading the Wall Street Journal, L260-L262",
+          "entities": [
+            "SpaceX",
+            "Starship"
+          ],
+          "pos": [
+            -50,
+            40
+          ]
+        },
+        {
+          "id": "i_bolts",
+          "slot": "item",
+          "label": "Why four bolts? Who set that spec?",
+          "text": "Walking the line, Musk questions a specification that calls for four bolts and asks who set it and whether two would do.",
+          "provenance": "fact",
+          "source_quote": "Why do we have to have four bolts there? Who set that specification? Can we do it with two?",
+          "source_ref": "TBPN host quoting David Senra quoting Elon Musk, L396-L400",
+          "entities": [
+            "SpaceX",
+            "Elon Musk",
+            "David Senra"
+          ],
+          "pos": [
+            -22,
+            40
+          ]
+        },
+        {
+          "id": "i_skirt",
+          "slot": "item",
+          "label": "Two cracks in the engine skirt",
+          "text": "The day before a launch, a final inspection found two small cracks in the engine skirt of the rocket's second stage.",
+          "provenance": "fact",
+          "source_quote": "a final inspection revealed two small cracks in the engine skirt of the rocket's second stage",
+          "source_ref": "TBPN host reading David Senra's How Elon Works, L532-L534",
+          "entities": [
+            "SpaceX",
+            "Elon Musk",
+            "David Senra"
+          ],
+          "pos": [
+            -37,
+            -31
+          ]
+        },
+        {
+          "id": "i_vibes",
+          "slot": "item",
+          "label": "The vibes going in were rough",
+          "text": "Before the flight the public read on SpaceX was an argument between stock explanations: Musk distracted by politics, or Musk too focused on AI companions.",
+          "provenance": "fact",
+          "source_quote": "the vibes going into this were rough, honestly. Lots of people with the Elon's been distracted by politics take. Lots of people with the Elon too focused on AI romantic companions take.",
+          "source_ref": "TBPN hosts, L98-L102",
+          "entities": [
+            "SpaceX",
+            "Elon Musk"
+          ],
+          "pos": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "g_ducttape",
+          "slot": "signal",
+          "label": "Will duct tape work? Tinfoil?",
+          "text": "The host states the question the flight was flown to answer: how cheap can the vehicle be made, and what happens if you try the cheapest thing.",
+          "provenance": "fact",
+          "source_quote": "the calculus here is like, how cheap can you make this thing? If you use duct tape, will that work? Will you use tinfoil?",
+          "source_ref": "TBPN host, L266-L268",
+          "entities": [
+            "SpaceX",
+            "Starship"
+          ],
+          "pos": [
+            -50,
+            29
+          ]
+        },
+        {
+          "id": "g_debris",
+          "slot": "signal",
+          "label": "Debris: we clearly didn't need it",
+          "text": "Watching parts shed during ascent, the hosts note they cannot say where the debris came from, and conclude only afterwards that it was not needed.",
+          "provenance": "fact",
+          "source_quote": "There's just a bunch of debris. That's not what we want to see. Where did the stuff come from? We clearly didn't need it.",
+          "source_ref": "TBPN hosts over the launch video, L66-L72",
+          "entities": [
+            "SpaceX",
+            "Starship"
+          ],
+          "pos": [
+            -58,
+            18
+          ]
+        },
+        {
+          "id": "g_tryit",
+          "slot": "signal",
+          "label": "We'll try it. See if it fails.",
+          "text": "Asked whether two bolts would do, the team answers no from the specification; Musk's answer is to run the article and find out.",
+          "provenance": "fact",
+          "source_quote": "They would say no. He said, we'll try it. See if it fails.",
+          "source_ref": "TBPN host quoting David Senra quoting Elon Musk, L402-L406",
+          "entities": [
+            "SpaceX",
+            "Elon Musk"
+          ],
+          "pos": [
+            -22,
+            29
+          ]
+        },
+        {
+          "id": "g_qualified",
+          "slot": "signal",
+          "label": "Probably tested for aerospace",
+          "text": "The host itemises what the three million dollars buys: aerospace qualification testing, a team to make it work reliably, and a set of nice-to-haves.",
+          "provenance": "fact",
+          "source_quote": "But like if you're spending $3 million on the air cooling system, like it probably has been tested in aerospace environment. It probably comes to the team to help you get it working reliably. There's probably lots of nice to haves that go into that.",
+          "source_ref": "TBPN host, L362-L366",
+          "entities": [
+            "SpaceX",
+            "Falcon 9"
+          ],
+          "pos": [
+            24,
+            29
+          ]
+        },
+        {
+          "id": "g_obsolete",
+          "slot": "signal",
+          "label": "Most of the regs were obsolete",
+          "text": "The two million dollar crane price rested on Air Force safety regulations, and most of those regulations turned out to be obsolete; the Air Force revised them and the cranes cost three hundred thousand.",
+          "provenance": "fact",
+          "source_quote": "He was shown all the safety regulations imposed by the Air Force. Most were obsolete.",
+          "source_ref": "TBPN host reading David Senra's How Elon Works, L474-L476",
+          "entities": [
+            "SpaceX",
+            "Elon Musk"
+          ],
+          "pos": [
+            50,
+            29
+          ]
+        },
+        {
+          "id": "g_usualplan",
+          "slot": "signal",
+          "label": "The usual plan: replace the engine",
+          "text": "Everyone at NASA assumed the launch would stand down for weeks, because the standard procedure for cracks in the engine skirt is to replace the entire engine.",
+          "provenance": "fact",
+          "source_quote": "Everyone at NASA assumed we'd be standing down from the launch for a few weeks. The usual plan would be then to replace the entire engine.",
+          "source_ref": "TBPN host reading David Senra's How Elon Works, L534-L538",
+          "entities": [
+            "SpaceX",
+            "David Senra"
+          ],
+          "pos": [
+            -55,
+            -42
+          ]
+        },
+        {
+          "id": "g_decisions",
+          "slot": "signal",
+          "label": "20% wrong, but if I don't, we die",
+          "text": "Musk estimated a hundred command decisions a day on the factory floor, accepted that at least a fifth would be wrong, and said the company dies if he does not make them.",
+          "provenance": "fact",
+          "source_quote": "At least 20% are going to be wrong, he said, but we're going to alter them later. But if I don't make decisions, we die.",
+          "source_ref": "TBPN host reading David Senra's How Elon Works, L418-L420",
+          "entities": [
+            "SpaceX",
+            "Elon Musk",
+            "David Senra"
+          ],
+          "pos": [
+            -22,
+            -42
+          ]
+        },
+        {
+          "id": "r_categorize",
+          "slot": "response",
+          "label": "The window is fixed: categorise",
+          "text": "Clear protocol: sense, categorise against the known rule, respond. Orbital mechanics is the one item on this list with no judgment in it, so the programme's scarce variance budget belongs on the items where cause and effect are not yet visible.",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The window is set by celestial mechanics independently of anything SpaceX decides, which is the defining condition of the Clear domain; the episode states the constraint and the deadline pressure but never draws the allocation conclusion.",
+          "entities": [
+            "SpaceX",
+            "Starship"
+          ],
+          "pos": [
+            37,
+            -47
+          ]
+        },
+        {
+          "id": "r_unbundle",
+          "slot": "response",
+          "label": "Unbundle the assurance you buy",
+          "text": "Complicated protocol: sense, analyse, respond. Three million dollars is not a price but a bundle of qualification testing, reliability support and nice-to-haves, and the analytic move is to price each element separately and buy only the ones this flight needs.",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "The host itemises the bundle himself without concluding that it can be unpicked; Cynefin's Complicated domain says an expert-knowable answer exists, so the move is to decompose the price rather than to probe it or to pay it.",
+          "idea": "Assurance sold separately from hardware is an underserved market: qualification, instrumentation and reliability support offered as a service would let a programme buy a six thousand dollar commercial unit and only the aerospace confidence it actually needs.",
+          "entities": [
+            "SpaceX",
+            "Falcon 9"
+          ],
+          "pos": [
+            37,
+            19
+          ]
+        },
+        {
+          "id": "r_probe",
+          "slot": "response",
+          "label": "Probe the spec, not its owner",
+          "text": "Complex protocol: probe, sense, respond. Whether four bolts are needed cannot be answered from the document that specifies four bolts, so the only move that produces information is to fly an article with two and watch it hold or fail.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The episode shows the engineers answering from the specification and Musk answering with a test; Cynefin names the second the Complex protocol and predicts the first, a defence of a requirement whose originating conditions nobody present can state. The prescription generalises the single case the hosts report.",
+          "idea": "Nobody sells inherited-requirement auditing: a firm that systematically re-probes the specifications carrying a hardware programme's cost, the way SpaceX did with bolt counts and Air Force crane rules, would be selling a share of the 85 to 98 percent savings this episode reports on individual line items.",
+          "entities": [
+            "SpaceX",
+            "Elon Musk"
+          ],
+          "pos": [
+            -37,
+            19
+          ]
+        },
+        {
+          "id": "r_act",
+          "slot": "response",
+          "label": "Pre-delegate the hour-long call",
+          "text": "Chaotic protocol: act to establish order, then sense. With a launch hours away the binding constraint is decision latency, not engineering judgment, so the capability to buy in advance is delegated authority and a pre-costed reversal path rather than a faster review.",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "The episode reports the decision taking under an hour against an expectation of weeks, and a separate passage gives the decision regime it came from: a hundred calls a day with a fifth expected to be wrong. Cynefin's act-sense-respond explains why that works here, but the inference that the transferable asset is pre-delegation rather than speed is ours.",
+          "idea": "Hardware teams have no tooling for decision latency: pre-delegated authority with blast radius and reversal cost computed in advance is what lets a programme trim a cracked skirt in an hour instead of standing down for weeks, and it is sold nowhere.",
+          "entities": [
+            "SpaceX",
+            "Elon Musk"
+          ],
+          "pos": [
+            -37,
+            -53
+          ]
+        },
+        {
+          "id": "r_triage",
+          "slot": "response",
+          "label": "Split the programme, then judge",
+          "text": "Disorder protocol: break the object into parts and move each part to a domain where it can be handled. The pre-flight argument is unresolvable because it treats one programme as one object, when its transfer window is Clear, its supplier pricing Complicated and its flap loads Complex.",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "Each take the hosts report explains the whole programme from a single frame, which is what Cynefin calls arguing from your preferred domain; the remedy of decomposing the object before classifying it is never said in the episode.",
+          "idea": "Hard-tech diligence lacks an instrument that separates a programme's fixed-schedule risk from its emergent-engineering risk, and a per-part domain scoreboard would price launch and defence companies better than the single narrative their coverage trades on.",
+          "entities": [
+            "SpaceX",
+            "Starship"
+          ],
+          "pos": [
+            0,
+            -9
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "id": "te1",
+          "from": "g_ducttape",
+          "to": "i_flight10",
+          "relation": "observed_in",
+          "provenance": "fact",
+          "source_quote": "set up Tuesday's mission to stress test parts of the Starship Spacecraft. We certainly saw that on display with the parts flying all over the place, seeking to give engineers information to continue developing the vehicle. Basically, the calculus here is like, how cheap can you make this thing?",
+          "source_ref": "TBPN host reading the Wall Street Journal, then commenting, L262-L268"
+        },
+        {
+          "id": "te2",
+          "from": "g_tryit",
+          "to": "i_bolts",
+          "relation": "observed_in",
+          "provenance": "fact",
+          "source_quote": "Why do we have to have four bolts there? Who set that specification? Can we do it with two? They would say no. He said, we'll try it. See if it fails.",
+          "source_ref": "TBPN host quoting David Senra quoting Elon Musk, L396-L406"
+        },
+        {
+          "id": "te3",
+          "from": "g_obsolete",
+          "to": "i_cranes",
+          "relation": "observed_in",
+          "provenance": "fact",
+          "source_quote": "when he asked his team why it would cost $2 million to build a pair of cranes. These are cranes. They're supposed to lift rockets. He was shown all the safety regulations imposed by the Air Force. Most were obsolete.",
+          "source_ref": "TBPN host reading David Senra's How Elon Works, L466-L476"
+        },
+        {
+          "id": "te4",
+          "from": "g_usualplan",
+          "to": "i_skirt",
+          "relation": "observed_in",
+          "provenance": "fact",
+          "source_quote": "a final inspection revealed two small cracks in the engine skirt of the rocket's second stage. That's the piece of the bottom. Everyone at NASA assumed we'd be standing down from the launch for a few weeks.",
+          "source_ref": "TBPN host reading David Senra's How Elon Works, L532-L536"
+        },
+        {
+          "id": "te5",
+          "from": "g_debris",
+          "to": "i_flight10",
+          "relation": "observed_in",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The debris is shed during the Flight 10 ascent the hosts are watching, but the connection to the stress-test configuration is made 190 lines later by a different source."
+        },
+        {
+          "id": "te6",
+          "from": "g_qualified",
+          "to": "i_cooling",
+          "relation": "observed_in",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The host is plainly itemising the three million dollar part just described, but the two statements are separated by the Gwen Shotwell exchange and the six thousand dollar comparison."
+        },
+        {
+          "id": "te7",
+          "from": "g_decisions",
+          "to": "i_skirt",
+          "relation": "observed_in",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "The hundred-decisions-a-day passage describes the regime in which a call like the skirt trim gets made, but the episode never connects the two stories."
+        },
+        {
+          "id": "te8",
+          "from": "g_ducttape",
+          "to": "d_complex",
+          "relation": "indicates",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Asking whether duct tape would work is an admission that the answer is not available from analysis: you learn the minimum by trying it, which is the Complex condition."
+        },
+        {
+          "id": "te9",
+          "from": "g_debris",
+          "to": "d_complex",
+          "relation": "indicates",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Knowing that a part was unnecessary only after watching it fall off is retrospective coherence, Cynefin's defining marker for the Complex domain."
+        },
+        {
+          "id": "te10",
+          "from": "g_tryit",
+          "to": "d_complex",
+          "relation": "indicates",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "One party can only answer from the document and the other can only answer by running the test; when the document's authority is what is in question, the answer exists nowhere but in the probe."
+        },
+        {
+          "id": "te11",
+          "from": "g_qualified",
+          "to": "d_complicated",
+          "relation": "indicates",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "A price that decomposes into testing, support and optional extras is knowable by expertise: several defensible answers, all reachable by analysis, which is the Complicated domain."
+        },
+        {
+          "id": "te12",
+          "from": "g_obsolete",
+          "to": "d_complicated",
+          "relation": "indicates",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Whether a regulation still applies is answerable, and it was in fact answered by examining the rules and negotiating with the Air Force: knowable, not emergent."
+        },
+        {
+          "id": "te13",
+          "from": "g_obsolete",
+          "to": "d_clear",
+          "relation": "indicates",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "label": "rule outlived its conditions",
+          "rationale": "Regulations applied by category long after the conditions that produced them had gone is exactly how Cynefin says the Clear domain fails, and it is why the price looked like a fact."
+        },
+        {
+          "id": "te14",
+          "from": "g_usualplan",
+          "to": "d_clear",
+          "relation": "indicates",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "A standard procedure invoked by everyone present without analysis of this particular crack is the Clear protocol: sense, categorise, respond."
+        },
+        {
+          "id": "te15",
+          "from": "g_decisions",
+          "to": "d_chaotic",
+          "relation": "indicates",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Accepting a known error rate because the alternative is not deciding is the Chaotic protocol stated outright: act first, correct later."
+        },
+        {
+          "id": "te16",
+          "from": "i_window",
+          "to": "d_clear",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The transfer window's cause and effect are fixed, public and independent of the programme: there is nothing to analyse and nothing to probe, only a date to categorise against."
+        },
+        {
+          "id": "te17",
+          "from": "i_cooling",
+          "to": "d_complicated",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "What an adequate cooling system costs is knowable by comparison and analysis, which is what Musk's question to Gwen Shotwell performed; experts differ on the answer but an answer exists in advance."
+        },
+        {
+          "id": "te18",
+          "from": "i_cranes",
+          "to": "d_complicated",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Which of the Air Force requirements still had a reason behind it was discoverable by examination and negotiation, so the situation was Complicated rather than emergent."
+        },
+        {
+          "id": "te19",
+          "from": "i_cranes",
+          "to": "d_clear",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "label": "treated as",
+          "rationale": "The team answered the cost question by showing the regulations, which is sense-categorise-respond: the Clear protocol applied to a question the rulebook could not settle."
+        },
+        {
+          "id": "te20",
+          "from": "i_flight10",
+          "to": "d_complex",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "A flight configured to stress parts to failure in order to give engineers information is a probe by construction: the team is buying retrospective coherence it cannot get any other way."
+        },
+        {
+          "id": "te21",
+          "from": "i_bolts",
+          "to": "d_complex",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Nobody in the exchange can say why the specification says four, so the margin it encodes is unknown; the true load limit of this assembly is only discoverable by testing it, which places the question in the Complex domain rather than the Complicated one."
+        },
+        {
+          "id": "te22",
+          "from": "i_bolts",
+          "to": "d_clear",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "label": "treated as",
+          "rationale": "The engineers' answer is no, read off the specification as a category: the Clear protocol applied to the one question in the episode that only a probe can answer."
+        },
+        {
+          "id": "te23",
+          "from": "i_skirt",
+          "to": "d_chaotic",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "Cracks found the day before a launch leave no time for the structural analysis that would settle the question, and the cost of the default is weeks: the clock, not the physics, puts this in the Chaotic domain. A reader could defend Complicated instead, which is why the confidence is low."
+        },
+        {
+          "id": "te24",
+          "from": "i_skirt",
+          "to": "d_clear",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "label": "treated as",
+          "rationale": "Everyone assumed the usual plan, replace the engine and stand down, which is a category lookup rather than a judgment about these two cracks."
+        },
+        {
+          "id": "te25",
+          "from": "i_vibes",
+          "to": "d_disorder",
+          "relation": "classified_as",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The pre-flight argument was not about evidence but about which story explained the programme, each commentator reasoning from his preferred frame: Cynefin's Disorder."
+        },
+        {
+          "id": "te26",
+          "from": "i_window",
+          "to": "r_categorize",
+          "relation": "calls_for",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The response follows from the Clear classification."
+        },
+        {
+          "id": "te27",
+          "from": "i_cooling",
+          "to": "r_unbundle",
+          "relation": "calls_for",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "The response follows from the Complicated classification and from the host's own itemisation of the price."
+        },
+        {
+          "id": "te28",
+          "from": "i_bolts",
+          "to": "r_probe",
+          "relation": "calls_for",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The response follows from the Complex classification and from the mismatch with the protocol actually applied."
+        },
+        {
+          "id": "te29",
+          "from": "i_skirt",
+          "to": "r_act",
+          "relation": "calls_for",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "The response follows from the Chaotic classification."
+        },
+        {
+          "id": "te30",
+          "from": "i_vibes",
+          "to": "r_triage",
+          "relation": "calls_for",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "The response follows from the Disorder classification."
+        },
+        {
+          "id": "te31",
+          "from": "r_probe",
+          "to": "g_tryit",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The two answers in this quote, the specification's no and Musk's test, are the whole argument for the Complex protocol here."
+        },
+        {
+          "id": "te32",
+          "from": "r_probe",
+          "to": "g_obsolete",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The obsolete crane regulations are the second instance, and the evidence that inherited requirements carry unexamined cost."
+        },
+        {
+          "id": "te33",
+          "from": "r_unbundle",
+          "to": "g_qualified",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The host's itemisation is the evidence that the price is a bundle rather than a figure."
+        },
+        {
+          "id": "te34",
+          "from": "r_act",
+          "to": "g_usualplan",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The weeks-long default is the cost that decision latency imposes, and the reason pre-delegation is worth buying."
+        },
+        {
+          "id": "te35",
+          "from": "r_act",
+          "to": "g_decisions",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The hundred-decisions-a-day regime is the evidence that the speed came from a standing delegation rather than from one heroic call."
+        },
+        {
+          "id": "te36",
+          "from": "r_categorize",
+          "to": "i_window",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The eighteen-month window is the fact the categorisation is made against."
+        },
+        {
+          "id": "te37",
+          "from": "r_triage",
+          "to": "i_vibes",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The two competing takes are the evidence that the programme was being judged as one undifferentiated object."
+        }
+      ]
+    }
+  ]
+}
