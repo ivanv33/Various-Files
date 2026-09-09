@@ -67,15 +67,139 @@
       },
       "layout": {
         "mode": "plane",
-        "camera": { "distance": 150 },
         "guides": [
-          { "from": [-54, 0], "to": [42, 0], "style": "solid" },
-          { "from": [-40, 0], "to": [-56, 36], "style": "solid" },
-          { "from": [-28, 0], "to": [-44, -36], "style": "solid" },
-          { "from": [-16, 0], "to": [-32, 36], "style": "solid" },
-          { "from": [-4, 0], "to": [-20, -36], "style": "solid" },
-          { "from": [8, 0], "to": [-8, 36], "style": "solid" },
-          { "from": [20, 0], "to": [4, -36], "style": "solid" }
+          {
+            "from": [
+              -46,
+              0
+            ],
+            "to": [
+              24,
+              0
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              -37,
+              0
+            ],
+            "to": [
+              -50.95,
+              31
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              -15,
+              0
+            ],
+            "to": [
+              -28.95,
+              31
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              7,
+              0
+            ],
+            "to": [
+              -6.95,
+              31
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              -26,
+              0
+            ],
+            "to": [
+              -41.52,
+              -34.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              -4,
+              0
+            ],
+            "to": [
+              -19.52,
+              -34.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              18,
+              0
+            ],
+            "to": [
+              2.47,
+              -34.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              30,
+              -5.5
+            ],
+            "to": [
+              42,
+              -5.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              42,
+              -5.5
+            ],
+            "to": [
+              47,
+              0
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              47,
+              0
+            ],
+            "to": [
+              42,
+              5.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              42,
+              5.5
+            ],
+            "to": [
+              30,
+              5.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              30,
+              5.5
+            ],
+            "to": [
+              30,
+              -5.5
+            ],
+            "style": "solid"
+          }
         ]
       },
       "nodes": [
@@ -87,8 +211,11 @@
           "provenance": "fact",
           "source_quote": "the scrap rate on the Line 3 housings has risen from two per cent to nine per cent over the last six weeks, and every rejected part shows the same surface defect, a cloudy streak near the gate",
           "source_ref": "sentence 2",
-          "pos": [46, 0],
-          "size": 1.6
+          "pos": [
+            38,
+            0
+          ],
+          "size": 1.8
         },
         {
           "id": "cat_methods",
@@ -96,7 +223,11 @@
           "label": "Methods",
           "text": "Methods: the procedures, settings and written work instructions by which the job is done.",
           "provenance": "schema",
-          "pos": [-40, 0]
+          "pos": [
+            -37,
+            0
+          ],
+          "size": 1.3
         },
         {
           "id": "cat_measurements",
@@ -104,7 +235,11 @@
           "label": "Measurements",
           "text": "Measurements: the gauges, calibrations and records by which the process is known.",
           "provenance": "schema",
-          "pos": [-28, 0]
+          "pos": [
+            -26,
+            0
+          ],
+          "size": 1.3
         },
         {
           "id": "cat_machines",
@@ -112,7 +247,11 @@
           "label": "Machines",
           "text": "Machines: the press, the mould tool, the dryer and every other piece of equipment the job runs on.",
           "provenance": "schema",
-          "pos": [-16, 0]
+          "pos": [
+            -15,
+            0
+          ],
+          "size": 1.3
         },
         {
           "id": "cat_milieu",
@@ -120,7 +259,11 @@
           "label": "Milieu",
           "text": "Milieu: the surrounding conditions - temperature, humidity, storage, season, the plant around the line.",
           "provenance": "schema",
-          "pos": [-4, 0]
+          "pos": [
+            -4,
+            0
+          ],
+          "size": 1.3
         },
         {
           "id": "cat_materials",
@@ -128,7 +271,11 @@
           "label": "Materials",
           "text": "Materials: the resin, the colourant and every other physical input the line consumes.",
           "provenance": "schema",
-          "pos": [8, 0]
+          "pos": [
+            7,
+            0
+          ],
+          "size": 1.3
         },
         {
           "id": "cat_manpower",
@@ -136,7 +283,11 @@
           "label": "Manpower",
           "text": "Manpower: the operators and inspectors, their training, experience and shift patterns.",
           "provenance": "schema",
-          "pos": [20, 0]
+          "pos": [
+            18,
+            0
+          ],
+          "size": 1.3
         },
         {
           "id": "c_methods_drying",
@@ -146,7 +297,10 @@
           "provenance": "fact",
           "source_quote": "we cut the drying time on the resin from four hours to two",
           "source_ref": "Nakamura, process engineering, sentence 6",
-          "pos": [-45, 12]
+          "pos": [
+            -43.97,
+            15.5
+          ]
         },
         {
           "id": "sc_methods_schedule",
@@ -156,7 +310,10 @@
           "provenance": "fact",
           "source_quote": "when the schedule tightened in August",
           "source_ref": "Nakamura, process engineering, sentence 6",
-          "pos": [-50, 24]
+          "pos": [
+            -50.05,
+            29
+          ]
         },
         {
           "id": "c_measure_gauge",
@@ -166,7 +323,10 @@
           "provenance": "fact",
           "source_quote": "the gauge at final inspection was last calibrated fourteen months ago, and the standard is twelve months",
           "source_ref": "Watanabe, inspection, sentence 7",
-          "pos": [-33, -12]
+          "pos": [
+            -30.72,
+            -10.5
+          ]
         },
         {
           "id": "c_measure_lots",
@@ -176,7 +336,10 @@
           "provenance": "fact",
           "source_quote": "We have been drawing from both suppliers' drums without recording which lot went into which run",
           "source_ref": "Sato, purchasing, sentence 5",
-          "pos": [-38, -24]
+          "pos": [
+            -40.4,
+            -32
+          ]
         },
         {
           "id": "c_measure_drift",
@@ -186,7 +349,10 @@
           "provenance": "derived",
           "confidence": 0.6,
           "rationale": "The scrap rate is a number produced by the very gauge the circle has just reported as two months past its calibration interval. Nothing in the minutes separates a change in the process from a change in the measurement of it.",
-          "pos": [-22, -25]
+          "pos": [
+            -35.67,
+            -21.5
+          ]
         },
         {
           "id": "c_machines_tool",
@@ -196,7 +362,10 @@
           "provenance": "derived",
           "confidence": 0.5,
           "rationale": "The minutes end by recording that nobody from maintenance attended and the mould tool was not discussed. The Machines rib is empty because no one in the room owned it, not because the tool has been cleared; the defect's location at the gate is precisely where tool condition would show.",
-          "pos": [-21, 12]
+          "pos": [
+            -24,
+            20
+          ]
         },
         {
           "id": "c_milieu_humid",
@@ -206,7 +375,10 @@
           "provenance": "fact",
           "source_quote": "the store has been running humid since June",
           "source_ref": "Kato, facilities, sentence 8",
-          "pos": [-9, -12]
+          "pos": [
+            -11.2,
+            -16
+          ]
         },
         {
           "id": "sc_milieu_dehumidifier",
@@ -216,7 +388,10 @@
           "provenance": "fact",
           "source_quote": "the dehumidifier in the material store failed at the start of the summer and has not been repaired",
           "source_ref": "Kato, facilities, sentence 8",
-          "pos": [-14, -24]
+          "pos": [
+            -16.15,
+            -27
+          ]
         },
         {
           "id": "c_materials_supplier",
@@ -226,7 +401,10 @@
           "provenance": "fact",
           "source_quote": "we qualified a second resin supplier in the spring",
           "source_ref": "Sato, purchasing, sentence 4",
-          "pos": [3, 12]
+          "pos": [
+            -4.03,
+            24.5
+          ]
         },
         {
           "id": "c_materials_moisture",
@@ -236,7 +414,10 @@
           "provenance": "derived",
           "confidence": 0.8,
           "rationale": "The defect is specific: a cloudy streak at the gate is the standard signature of moisture in a moulded part. Three independently reported causes each raise the water the resin carries, and no other reported cause explains why every reject shows the same mark rather than a scatter of defects.",
-          "pos": [30, 11]
+          "pos": [
+            2.05,
+            11
+          ]
         },
         {
           "id": "c_manpower_shadow",
@@ -246,7 +427,10 @@
           "provenance": "fact",
           "source_quote": "the two operators who joined in July were shown the job by a colleague on their first night, and nobody walked them through the written procedure",
           "source_ref": "Ito, night shift, sentence 3",
-          "pos": [15, -12]
+          "pos": [
+            13.27,
+            -10.5
+          ]
         },
         {
           "id": "sc_manpower_noonboarding",
@@ -256,27 +440,118 @@
           "provenance": "derived",
           "confidence": 0.6,
           "rationale": "Ito reports the shadowing without qualification or apology and offers it as a standing condition of the night shift, which reads as routine practice rather than a one-off lapse. A single lapse would not be worth bringing to the circle.",
-          "pos": [10, -24]
+          "pos": [
+            8.32,
+            -21.5
+          ]
         }
       ],
       "edges": [
-        { "id": "sp_methods", "from": "cat_methods", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
-        { "id": "sp_measurements", "from": "cat_measurements", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
-        { "id": "sp_machines", "from": "cat_machines", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
-        { "id": "sp_milieu", "from": "cat_milieu", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
-        { "id": "sp_materials", "from": "cat_materials", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
-        { "id": "sp_manpower", "from": "cat_manpower", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
-
-        { "id": "b_methods_drying", "from": "c_methods_drying", "to": "cat_methods", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_measure_gauge", "from": "c_measure_gauge", "to": "cat_measurements", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_measure_lots", "from": "c_measure_lots", "to": "cat_measurements", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_measure_drift", "from": "c_measure_drift", "to": "cat_measurements", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_machines_tool", "from": "c_machines_tool", "to": "cat_machines", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_milieu_humid", "from": "c_milieu_humid", "to": "cat_milieu", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_materials_supplier", "from": "c_materials_supplier", "to": "cat_materials", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_materials_moisture", "from": "c_materials_moisture", "to": "cat_materials", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_manpower_shadow", "from": "c_manpower_shadow", "to": "cat_manpower", "relation": "belongs_to", "provenance": "schema" },
-
+        {
+          "id": "sp_methods",
+          "from": "cat_methods",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "sp_measurements",
+          "from": "cat_measurements",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "sp_machines",
+          "from": "cat_machines",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "sp_milieu",
+          "from": "cat_milieu",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "sp_materials",
+          "from": "cat_materials",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "sp_manpower",
+          "from": "cat_manpower",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_methods_drying",
+          "from": "c_methods_drying",
+          "to": "cat_methods",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_measure_gauge",
+          "from": "c_measure_gauge",
+          "to": "cat_measurements",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_measure_lots",
+          "from": "c_measure_lots",
+          "to": "cat_measurements",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_measure_drift",
+          "from": "c_measure_drift",
+          "to": "cat_measurements",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_machines_tool",
+          "from": "c_machines_tool",
+          "to": "cat_machines",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_milieu_humid",
+          "from": "c_milieu_humid",
+          "to": "cat_milieu",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_materials_supplier",
+          "from": "c_materials_supplier",
+          "to": "cat_materials",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_materials_moisture",
+          "from": "c_materials_moisture",
+          "to": "cat_materials",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_manpower_shadow",
+          "from": "c_manpower_shadow",
+          "to": "cat_manpower",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
         {
           "id": "f_schedule_drying",
           "from": "sc_methods_schedule",
@@ -295,7 +570,6 @@
           "source_quote": "the dehumidifier in the material store failed at the start of the summer and has not been repaired, so the store has been running humid since June",
           "source_ref": "Kato, facilities, sentence 8"
         },
-
         {
           "id": "d_noonboarding_shadow",
           "from": "sc_manpower_noonboarding",
@@ -359,7 +633,6 @@
           "confidence": 0.5,
           "rationale": "Gate wear or a thermal fault in the tool would produce a repeating defect at the gate, which is what the inspection report describes; the rib is unexamined, not cleared."
         },
-
         {
           "id": "g_drift_gauge",
           "from": "c_measure_drift",
@@ -395,15 +668,139 @@
       "idea_bearing_slot": "subcause",
       "layout": {
         "mode": "plane",
-        "camera": { "distance": 165 },
         "guides": [
-          { "from": [-62, 0], "to": [40, 0], "style": "solid" },
-          { "from": [-48, 0], "to": [-64, 36], "style": "solid" },
-          { "from": [-36, 0], "to": [-52, -36], "style": "solid" },
-          { "from": [-24, 0], "to": [-40, 36], "style": "solid" },
-          { "from": [-12, 0], "to": [-28, -36], "style": "solid" },
-          { "from": [0, 0], "to": [-16, 36], "style": "solid" },
-          { "from": [12, 0], "to": [-4, -36], "style": "solid" }
+          {
+            "from": [
+              -46,
+              0
+            ],
+            "to": [
+              24,
+              0
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              -37,
+              0
+            ],
+            "to": [
+              -54.78,
+              39.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              -15,
+              0
+            ],
+            "to": [
+              -32.78,
+              39.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              7,
+              0
+            ],
+            "to": [
+              -10.78,
+              39.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              -26,
+              0
+            ],
+            "to": [
+              -39.27,
+              -29.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              -4,
+              0
+            ],
+            "to": [
+              -17.27,
+              -29.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              18,
+              0
+            ],
+            "to": [
+              4.72,
+              -29.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              30,
+              -5.5
+            ],
+            "to": [
+              42,
+              -5.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              42,
+              -5.5
+            ],
+            "to": [
+              47,
+              0
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              47,
+              0
+            ],
+            "to": [
+              42,
+              5.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              42,
+              5.5
+            ],
+            "to": [
+              30,
+              5.5
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              30,
+              5.5
+            ],
+            "to": [
+              30,
+              -5.5
+            ],
+            "style": "solid"
+          }
         ]
       },
       "nodes": [
@@ -416,8 +813,11 @@
           "source_quote": "So we really don't have an industrial base anymore.",
           "source_ref": "Chris Power, L5254-L5256",
           "entities": [],
-          "pos": [44, 0],
-          "size": 1.6
+          "pos": [
+            38,
+            0
+          ],
+          "size": 1.8
         },
         {
           "id": "cat_methods",
@@ -425,7 +825,11 @@
           "label": "Methods",
           "text": "Methods: the processes, software workflows and programming steps by which parts are made.",
           "provenance": "schema",
-          "pos": [-48, 0]
+          "pos": [
+            -37,
+            0
+          ],
+          "size": 1.3
         },
         {
           "id": "cat_measurements",
@@ -433,7 +837,11 @@
           "label": "Measurements",
           "text": "Measurements: the instruments, records and data by which the process is known - including whether any record of it exists at all.",
           "provenance": "schema",
-          "pos": [-36, 0]
+          "pos": [
+            -26,
+            0
+          ],
+          "size": 1.3
         },
         {
           "id": "cat_machines",
@@ -441,7 +849,11 @@
           "label": "Machines",
           "text": "Machines: the machine tools, plant and capital equipment the work runs on.",
           "provenance": "schema",
-          "pos": [-24, 0]
+          "pos": [
+            -15,
+            0
+          ],
+          "size": 1.3
         },
         {
           "id": "cat_milieu",
@@ -449,7 +861,11 @@
           "label": "Milieu",
           "text": "Milieu: the surrounding environment - trade policy, export control, the decisions the country made about where things get made.",
           "provenance": "schema",
-          "pos": [-12, 0]
+          "pos": [
+            -4,
+            0
+          ],
+          "size": 1.3
         },
         {
           "id": "cat_materials",
@@ -457,7 +873,11 @@
           "label": "Materials",
           "text": "Materials: the physical inputs the system consumes - here the machine tools themselves, which a factory has to buy before it can make anything.",
           "provenance": "schema",
-          "pos": [0, 0]
+          "pos": [
+            7,
+            0
+          ],
+          "size": 1.3
         },
         {
           "id": "cat_manpower",
@@ -465,7 +885,11 @@
           "label": "Manpower",
           "text": "Manpower: the people, their skills, their training and who they will take direction from.",
           "provenance": "schema",
-          "pos": [12, 0]
+          "pos": [
+            18,
+            0
+          ],
+          "size": 1.3
         },
         {
           "id": "c_methods_cam",
@@ -475,8 +899,13 @@
           "provenance": "fact",
           "source_quote": "all of those digital manufacturing tools, which are super hard to use and you need to be an expert, generate basically terrible assembly code that the machines run on",
           "source_ref": "Chris Power, L5406-L5414",
-          "entities": ["Hadrian"],
-          "pos": [-53, 12]
+          "entities": [
+            "Hadrian"
+          ],
+          "pos": [
+            -41.95,
+            11
+          ]
         },
         {
           "id": "sc_methods_nocursor",
@@ -486,8 +915,14 @@
           "provenance": "fact",
           "source_quote": "there's no cursor for cam that you're like on top of and just plugging in to speed things up",
           "source_ref": "John Coogan, L5398-L5400",
-          "entities": ["Cursor", "Hadrian"],
-          "pos": [-58, 24]
+          "entities": [
+            "Cursor",
+            "Hadrian"
+          ],
+          "pos": [
+            -50.05,
+            29
+          ]
         },
         {
           "id": "sc_methods_nofeedback",
@@ -497,7 +932,10 @@
           "provenance": "derived",
           "confidence": 0.55,
           "rationale": "Power states both halves separately: the tools emit terrible assembly code, and no process data from American manufacturing reaches any model. If no run data returns to the toolchain, there is no mechanism by which the code could have improved; the connection between the two statements is the reader's.",
-          "pos": [-42, 22]
+          "pos": [
+            -46,
+            20
+          ]
         },
         {
           "id": "c_measure_nodata",
@@ -507,8 +945,13 @@
           "provenance": "fact",
           "source_quote": "There is no stack overflow for manufacturing data. So none of the off-the-shelf models actually have ever been trained on any of this.",
           "source_ref": "Chris Power, L5426-L5428",
-          "entities": ["Hadrian"],
-          "pos": [-41, -12]
+          "entities": [
+            "Hadrian"
+          ],
+          "pos": [
+            -30.5,
+            -10
+          ]
         },
         {
           "id": "sc_measure_corpus_moat",
@@ -519,8 +962,14 @@
           "confidence": 0.75,
           "rationale": "Power gives both halves in one passage: export control keeps the data off the internet, and his own models work only because his factory is the one creating a labelled data set daily. The general rule follows directly from the pair he states.",
           "idea": "In any export-controlled or privacy-walled vertical - ITAR machining, clinical operations, utility field work - the defensible asset is the instrumented operation that generates a proprietary corpus, not a model fine-tuned on public text.",
-          "entities": ["Hadrian"],
-          "pos": [-46, -24]
+          "entities": [
+            "Hadrian"
+          ],
+          "pos": [
+            -34.55,
+            -19
+          ],
+          "size": 1.25
         },
         {
           "id": "c_machines_old",
@@ -531,7 +980,10 @@
           "source_quote": "a lot of the capital equipment in all of the naval facilities or, you know, everywhere in machine shops is, you know, somewhere between from the 1950s to the 1980s",
           "source_ref": "Chris Power, L5580-L5584",
           "entities": [],
-          "pos": [-29, 12]
+          "pos": [
+            -21.97,
+            15.5
+          ]
         },
         {
           "id": "sc_machines_nocomputers",
@@ -542,7 +994,10 @@
           "source_quote": "it's just impossible to automate it because often none of them have computers on them in the first place",
           "source_ref": "Chris Power, L5584-L5586",
           "entities": [],
-          "pos": [-34, 24]
+          "pos": [
+            -26.02,
+            24.5
+          ]
         },
         {
           "id": "sc_machines_brownfield",
@@ -554,7 +1009,11 @@
           "rationale": "Power's own conclusion from the old plant is that you have to build factories from scratch with new technology; he treats the installed base as impossible rather than as a market, which implies no retrofit path is on offer to the shops that own it.",
           "idea": "A retrofit layer - sensing, motion capture and closed-loop control bolted onto machine tools that have no computer - would open the 1950s-to-1980s installed base that every automation vendor currently writes off as unreachable.",
           "entities": [],
-          "pos": [-20, 25]
+          "pos": [
+            -30.08,
+            33.5
+          ],
+          "size": 1.25
         },
         {
           "id": "c_milieu_itar",
@@ -565,7 +1024,10 @@
           "source_quote": "because American manufacturing is largely regulated in high tire, there is no training data on the internet",
           "source_ref": "Chris Power, L5418-L5420",
           "entities": [],
-          "pos": [-17, -12]
+          "pos": [
+            -10.52,
+            -14.5
+          ]
         },
         {
           "id": "c_milieu_offshore",
@@ -576,7 +1038,10 @@
           "source_quote": "we de-industrialize the country from the 70s through the 90s and gave all our industrial power to China",
           "source_ref": "Chris Power, L5250-L5252",
           "entities": [],
-          "pos": [-22, -25]
+          "pos": [
+            -14.57,
+            -23.5
+          ]
         },
         {
           "id": "c_materials_nocnc",
@@ -587,7 +1052,10 @@
           "source_quote": "we invented, Air Force invented CNC machine, and we no longer make CNC machines in the US",
           "source_ref": "Chris Power, L5612-L5616",
           "entities": [],
-          "pos": [-5, 12]
+          "pos": [
+            2.05,
+            11
+          ]
         },
         {
           "id": "sc_materials_china",
@@ -597,8 +1065,13 @@
           "provenance": "fact",
           "source_quote": "the main manufacturing markets where we buy from is China's number one. We don't buy for them because they got spyware all over this stuff",
           "source_ref": "Chris Power, L5620-L5624",
-          "entities": ["Haas"],
-          "pos": [-11, 24]
+          "entities": [
+            "Haas"
+          ],
+          "pos": [
+            -2,
+            20
+          ]
         },
         {
           "id": "sc_materials_conflict",
@@ -609,7 +1082,10 @@
           "source_quote": "can we even buy the amount of capital equipment to put in the factories because we don't produce that capital equipment in the US anymore",
           "source_ref": "Chris Power, L5632-L5634",
           "entities": [],
-          "pos": [4, 23]
+          "pos": [
+            -6.05,
+            29
+          ]
         },
         {
           "id": "sc_materials_nomaker",
@@ -620,8 +1096,14 @@
           "confidence": 0.6,
           "rationale": "Power names the absence, calls it a very hard question the country has to answer, and then describes his own response as growing fast and buying all the capital expenditure from allied partners. Treating the supply itself as fixed, rather than as something to rebuild, is the reader's inference from that workaround.",
           "idea": "A domestic machine-tool builder, or a financing vehicle that pre-buys allied capital equipment and leases it into US factories, sits upstream of every re-industrialisation plan and is not being built.",
-          "entities": ["Hadrian"],
-          "pos": [-16, 34]
+          "entities": [
+            "Hadrian"
+          ],
+          "pos": [
+            -10.1,
+            38
+          ],
+          "size": 1.25
         },
         {
           "id": "c_manpower_aging",
@@ -632,7 +1114,10 @@
           "source_quote": "the incredibly skilled workforce that does incredible technical things in high-precision machining or castings are all aging out",
           "source_ref": "Chris Power, L5252-L5256",
           "entities": [],
-          "pos": [7, -12]
+          "pos": [
+            13.5,
+            -10
+          ]
         },
         {
           "id": "c_manpower_mba",
@@ -643,7 +1128,10 @@
           "source_quote": "no master machinist or welder is going to respect a kid who's got a suit and a Harvard MBA on coming and telling him what to do",
           "source_ref": "Chris Power, L5532-L5536",
           "entities": [],
-          "pos": [2, -24]
+          "pos": [
+            9.45,
+            -19
+          ]
         },
         {
           "id": "c_manpower_loop",
@@ -654,27 +1142,118 @@
           "confidence": 0.6,
           "rationale": "Power states both facts in adjacent clauses - the country gave its industrial power away from the 70s to the 90s, and the skilled cohort is now aging out - but asserts only that they happened, not that each sustains the other. The circularity is the reader's addition and it is what makes the effect stable rather than merely bad.",
           "entities": [],
-          "pos": [17, -25]
+          "pos": [
+            5.4,
+            -28
+          ]
         }
       ],
       "edges": [
-        { "id": "sp_methods", "from": "cat_methods", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
-        { "id": "sp_measurements", "from": "cat_measurements", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
-        { "id": "sp_machines", "from": "cat_machines", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
-        { "id": "sp_milieu", "from": "cat_milieu", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
-        { "id": "sp_materials", "from": "cat_materials", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
-        { "id": "sp_manpower", "from": "cat_manpower", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
-
-        { "id": "b_methods_cam", "from": "c_methods_cam", "to": "cat_methods", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_measure_nodata", "from": "c_measure_nodata", "to": "cat_measurements", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_machines_old", "from": "c_machines_old", "to": "cat_machines", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_milieu_itar", "from": "c_milieu_itar", "to": "cat_milieu", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_milieu_offshore", "from": "c_milieu_offshore", "to": "cat_milieu", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_materials_nocnc", "from": "c_materials_nocnc", "to": "cat_materials", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_manpower_aging", "from": "c_manpower_aging", "to": "cat_manpower", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_manpower_mba", "from": "c_manpower_mba", "to": "cat_manpower", "relation": "belongs_to", "provenance": "schema" },
-        { "id": "b_manpower_loop", "from": "c_manpower_loop", "to": "cat_manpower", "relation": "belongs_to", "provenance": "schema" },
-
+        {
+          "id": "sp_methods",
+          "from": "cat_methods",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "sp_measurements",
+          "from": "cat_measurements",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "sp_machines",
+          "from": "cat_machines",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "sp_milieu",
+          "from": "cat_milieu",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "sp_materials",
+          "from": "cat_materials",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "sp_manpower",
+          "from": "cat_manpower",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_methods_cam",
+          "from": "c_methods_cam",
+          "to": "cat_methods",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_measure_nodata",
+          "from": "c_measure_nodata",
+          "to": "cat_measurements",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_machines_old",
+          "from": "c_machines_old",
+          "to": "cat_machines",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_milieu_itar",
+          "from": "c_milieu_itar",
+          "to": "cat_milieu",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_milieu_offshore",
+          "from": "c_milieu_offshore",
+          "to": "cat_milieu",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_materials_nocnc",
+          "from": "c_materials_nocnc",
+          "to": "cat_materials",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_manpower_aging",
+          "from": "c_manpower_aging",
+          "to": "cat_manpower",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_manpower_mba",
+          "from": "c_manpower_mba",
+          "to": "cat_manpower",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
+        {
+          "id": "b_manpower_loop",
+          "from": "c_manpower_loop",
+          "to": "cat_manpower",
+          "relation": "belongs_to",
+          "provenance": "schema"
+        },
         {
           "id": "f_aging_effect",
           "from": "c_manpower_aging",
@@ -720,7 +1299,6 @@
           "source_quote": "if the balloon goes up with the conflict you know can we even buy the amount of capital equipment to put in the factories because we don't produce that capital equipment in the US anymore",
           "source_ref": "Chris Power, L5630-L5634"
         },
-
         {
           "id": "d_nocursor_cam",
           "from": "sc_methods_nocursor",
@@ -784,7 +1362,6 @@
           "confidence": 0.6,
           "rationale": "A self-reinforcing loop is what turns a historical decision into a standing condition, which is why the effect is stated in the present tense."
         },
-
         {
           "id": "g_loop_offshore",
           "from": "c_manpower_loop",
