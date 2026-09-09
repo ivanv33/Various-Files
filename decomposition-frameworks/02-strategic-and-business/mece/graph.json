@@ -63,7 +63,7 @@
     {
       "id": "missing_from",
       "label": "missing from",
-      "description": "what the partition does not hold: an unopened branch of the cut, or an absent member of a bucket"
+      "description": "what the partition does not hold: an unopened branch of the cut, an absent member of a bucket, or a share of the whole that no branch accounts for"
     },
     {
       "id": "violates",
@@ -1038,15 +1038,6 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "The host had put the model layer outside the vertical question, which is what makes its reappearance a mixed cut rather than a choice."
-        },
-        {
-          "id": "te36",
-          "from": "b_durable",
-          "to": "i_rippling",
-          "relation": "supported_by",
-          "provenance": "derived",
-          "confidence": 0.65,
-          "rationale": "One stated case of a company AI does not displace is the only evidence for the branch."
         }
       ]
     }

@@ -171,7 +171,7 @@ Derived edges. Twenty-one carry a framework relation:
 - `violates`: `te18` `o_labs` -> `b_model` (0.85); `te19` `o_labs` -> `b_code` (0.85); `te20` `o_ai_everything` -> `cut1` (0.70).
 - `missing_from`: `te21` `g_unnamed` -> `b_rest` (0.55); `te22` `g_nosoftware` -> `b_rest` (0.65); `te23` `g_labor` -> `cut1` (0.70), missing from the cut itself, which is why no branch is sized correctly; `te24` `g_nofinalist` -> `b_fin` (0.75); `te25` -> `b_acct` (0.75).
 
-Eleven are grounding links: `te26`, `te27` from `cut2` to `b_model`, `b_fin` (0.80); `te28` `b_rest` -> `w1` (0.70); `te29`, `te30` from `g_unnamed` to `w1` (0.60) and `cut1` (0.55); `te31` `g_nosoftware` -> `i_legal` (0.65); `te32` `g_labor` -> `i_support` (0.70); `te33` `g_nofinalist` -> `b_fin` (0.75); `te34`, `te35` from `o_labs` to `i_coding` and `cut0` (0.85); `te36` `b_durable` -> `i_rippling` (0.65).
+Ten are grounding links: `te26`, `te27` from `cut2` to `b_model`, `b_fin` (0.80); `te28` `b_rest` -> `w1` (0.70); `te29`, `te30` from `g_unnamed` to `w1` (0.60) and `cut1` (0.55); `te31` `g_nosoftware` -> `i_legal` (0.65); `te32` `g_labor` -> `i_support` (0.70); `te33` `g_nofinalist` -> `b_fin` (0.75); `te34`, `te35` from `o_labs` to `i_coding` and `cut0` (0.85). `b_durable` needs none: its `contains` edge `te16` already lands on the fact node `i_rippling`.
 
 ### What the LLM added
 
