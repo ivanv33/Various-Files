@@ -1,0 +1,24 @@
+{
+  "slug": "ishikawa-fishbone",
+  "status": "in_progress",
+  "steps": {
+    "research": "done",
+    "scout": "done",
+    "graph": "done",
+    "validate": "done",
+    "readme": "pending",
+    "viz": "pending",
+    "reconcile": "pending",
+    "commit": "pending"
+  },
+  "tbpn_example": {
+    "file": "tbpn-transcripts/transcripts/2025-03-27_defense-tech-day-delian-asparouhov-dhruva-rajendra-steven-simoni-chris-power-aaron-slodov-aj-piplica-connor-love-cameron-mccord.md",
+    "date": "2025-03-27",
+    "episode_title": "defense-tech-day-reindustrialization-tariffs"
+  },
+  "viz_iterations": 0,
+  "viz_reviews": [],
+  "updated_at": "2026-09-09T14:25:30Z",
+  "notes": "Research: Kaoru Ishikawa, Kawasaki shipyards, 1960s. The six 6M categories are structural scaffolding per SPEC 3: provenance \"schema\", no quote/confidence/rationale, excluded from the fact/derived counts, and the registry already marks the slot structural.\nEdge provenance decision: belongs_to (cause to category) and the category-to-effect spine edges are provenance \"schema\" - they are the bones of the fish, not claims about the world, so they stay visible when derived is hidden and the fishbone survives the facts-only view. The 6M filing of a specific cause is a judgment; where it is genuinely contestable (the TBPN 'no public corpus' cause reads as Measurements but could be filed as Materials, and 'no lot traceability' in the classic comes from a purchasing sentence but is a records failure) the judgment is discussed in the README rather than hidden in an edge confidence. Recorded here so a later reviewer does not read the schema edges as a provenance claim.\nScout returned three candidates; picked #1 (Chris Power / Hadrian) because it is the only one that populates all six ribs from a single speaker, and it sits in Ishikawa's home domain of manufacturing. Rejected #2 (Mike Gallagher on Navy shipbuilding, Materials rib empty) and #3 (Air India 787 crash, Materials empty and Machines thin).\nEmpty-rib demonstration: the TBPN source fills all six ribs with facts, so the 'a rib can be empty' lesson is carried by the classic example instead - the minutes end with 'Nobody from maintenance attended the circle, and the mould tool was not discussed', so the Machines rib holds exactly one derived node (c_machines_tool, 0.5). With derived hidden, that bone is visibly bare, which is the diagnostic Ishikawa exists to produce.\nProvenance shape: this framework is extraction-heavy. Facts dominate (classic 9/4, tbpn 13/5) because a fishbone's causes are usually said out loud; the inference concentrates at the sub-cause tips, which is why idea_bearing_slot is \"subcause\".\nValidate: 0 errors, 0 warnings.",
+  "issues": []
+}

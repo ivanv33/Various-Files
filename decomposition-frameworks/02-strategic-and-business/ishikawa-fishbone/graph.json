@@ -1,0 +1,845 @@
+{
+  "framework": {
+    "slug": "ishikawa-fishbone",
+    "name": "Ishikawa (Fishbone) Diagram",
+    "category": "02-strategic-and-business",
+    "wikipedia": "https://en.wikipedia.org/wiki/Ishikawa_diagram",
+    "one_liner": "Files every candidate cause of one named effect onto six fixed ribs - Methods, Machines, Materials, Measurements, Milieu, Manpower - so a team searches the whole space of causes instead of the corner it already knows."
+  },
+  "slots": [
+    {
+      "id": "effect",
+      "label": "Effect",
+      "description": "The one problem at the head of the fish, stated as an observed outcome rather than as a diagnosis. Everything else in the diagram is a candidate explanation of this and nothing else.",
+      "typical_provenance": "fact",
+      "color": "#d95926",
+      "shape": "box"
+    },
+    {
+      "id": "category",
+      "label": "Category (6M)",
+      "description": "One of Methods, Machines, Materials, Measurements, Milieu, Manpower. Scaffolding given by the framework, not content taken from the source: the six ribs exist before anyone reads a word.",
+      "typical_provenance": "schema",
+      "structural": true,
+      "color": "#7a7873",
+      "shape": "box"
+    },
+    {
+      "id": "cause",
+      "label": "Cause",
+      "description": "A candidate cause hanging on one category rib. Usually stated by a speaker; sometimes the reader has to put one on a rib the source left bare.",
+      "typical_provenance": "either",
+      "color": "#3987e5",
+      "shape": "sphere"
+    },
+    {
+      "id": "subcause",
+      "label": "Sub-cause",
+      "description": "A finer cause under a cause: the reason behind the reason. The level where a source usually stops talking and where the reader's inference, and the opportunity, tend to live.",
+      "typical_provenance": "either",
+      "color": "#1b998b",
+      "shape": "diamond"
+    }
+  ],
+  "relations": [
+    {
+      "id": "contributes_to",
+      "label": "contributes to",
+      "description": "this node is offered as a cause of the node it points at; the arrow always runs toward the head of the fish"
+    },
+    {
+      "id": "belongs_to",
+      "label": "belongs to",
+      "description": "a cause is filed on this category rib; the bone itself, not a claim about the world"
+    }
+  ],
+  "examples": [
+    {
+      "id": "classic",
+      "kind": "classic",
+      "title": "Quality circle, Line 3: the scrap rate on the moulded housings",
+      "summary": "A moulding department's Thursday quality circle: the scrap rate has tripled, every reject shows the same defect, and five departments each name a cause. Five ribs fill from the minutes; the Machines rib stays bare because nobody from maintenance came.",
+      "source": {
+        "type": "text",
+        "title": "Minutes of the Thursday quality circle, moulding department",
+        "attribution": "Synthetic scenario in the genre Kaoru Ishikawa used at Kawasaki Heavy Industries: one defect, a circle of the people who touch the line, and a cause offered by each of them.",
+        "text": "Minutes of the Thursday quality circle, moulding department.\n\nThe scrap rate on the Line 3 housings has risen from two per cent to nine per cent over the last six weeks, and every rejected part shows the same surface defect, a cloudy streak near the gate.\n\nIto, night shift: the two operators who joined in July were shown the job by a colleague on their first night, and nobody walked them through the written procedure.\n\nSato, purchasing: we qualified a second resin supplier in the spring. We have been drawing from both suppliers' drums without recording which lot went into which run.\n\nNakamura, process engineering: when the schedule tightened in August we cut the drying time on the resin from four hours to two, so that the line would not sit idle.\n\nWatanabe, inspection: the gauge at final inspection was last calibrated fourteen months ago, and the standard is twelve months.\n\nKato, facilities: the dehumidifier in the material store failed at the start of the summer and has not been repaired, so the store has been running humid since June.\n\nNobody from maintenance attended the circle, and the mould tool was not discussed."
+      },
+      "layout": {
+        "mode": "plane",
+        "camera": { "distance": 150 },
+        "guides": [
+          { "from": [-54, 0], "to": [42, 0], "style": "solid" },
+          { "from": [-40, 0], "to": [-56, 36], "style": "solid" },
+          { "from": [-28, 0], "to": [-44, -36], "style": "solid" },
+          { "from": [-16, 0], "to": [-32, 36], "style": "solid" },
+          { "from": [-4, 0], "to": [-20, -36], "style": "solid" },
+          { "from": [8, 0], "to": [-8, 36], "style": "solid" },
+          { "from": [20, 0], "to": [4, -36], "style": "solid" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "effect",
+          "slot": "effect",
+          "label": "Line 3 scrap rate 2% to 9%",
+          "text": "The scrap rate on the Line 3 housings has gone from two per cent to nine per cent in six weeks, and every rejected part carries the same defect: a cloudy streak near the gate.",
+          "provenance": "fact",
+          "source_quote": "the scrap rate on the Line 3 housings has risen from two per cent to nine per cent over the last six weeks, and every rejected part shows the same surface defect, a cloudy streak near the gate",
+          "source_ref": "sentence 2",
+          "pos": [46, 0],
+          "size": 1.6
+        },
+        {
+          "id": "cat_methods",
+          "slot": "category",
+          "label": "Methods",
+          "text": "Methods: the procedures, settings and written work instructions by which the job is done.",
+          "provenance": "schema",
+          "pos": [-40, 0]
+        },
+        {
+          "id": "cat_measurements",
+          "slot": "category",
+          "label": "Measurements",
+          "text": "Measurements: the gauges, calibrations and records by which the process is known.",
+          "provenance": "schema",
+          "pos": [-28, 0]
+        },
+        {
+          "id": "cat_machines",
+          "slot": "category",
+          "label": "Machines",
+          "text": "Machines: the press, the mould tool, the dryer and every other piece of equipment the job runs on.",
+          "provenance": "schema",
+          "pos": [-16, 0]
+        },
+        {
+          "id": "cat_milieu",
+          "slot": "category",
+          "label": "Milieu",
+          "text": "Milieu: the surrounding conditions - temperature, humidity, storage, season, the plant around the line.",
+          "provenance": "schema",
+          "pos": [-4, 0]
+        },
+        {
+          "id": "cat_materials",
+          "slot": "category",
+          "label": "Materials",
+          "text": "Materials: the resin, the colourant and every other physical input the line consumes.",
+          "provenance": "schema",
+          "pos": [8, 0]
+        },
+        {
+          "id": "cat_manpower",
+          "slot": "category",
+          "label": "Manpower",
+          "text": "Manpower: the operators and inspectors, their training, experience and shift patterns.",
+          "provenance": "schema",
+          "pos": [20, 0]
+        },
+        {
+          "id": "c_methods_drying",
+          "slot": "cause",
+          "label": "Drying time cut from 4h to 2h",
+          "text": "Process engineering halved the resin drying time, from four hours to two, in August.",
+          "provenance": "fact",
+          "source_quote": "we cut the drying time on the resin from four hours to two",
+          "source_ref": "Nakamura, process engineering, sentence 6",
+          "pos": [-45, 12]
+        },
+        {
+          "id": "sc_methods_schedule",
+          "slot": "subcause",
+          "label": "Schedule pressure in August",
+          "text": "The change was made because the production schedule tightened in August and the line would otherwise have stood idle.",
+          "provenance": "fact",
+          "source_quote": "when the schedule tightened in August",
+          "source_ref": "Nakamura, process engineering, sentence 6",
+          "pos": [-50, 24]
+        },
+        {
+          "id": "c_measure_gauge",
+          "slot": "cause",
+          "label": "Gauge 14 months since calibration",
+          "text": "The gauge used at final inspection was last calibrated fourteen months ago against a twelve-month standard.",
+          "provenance": "fact",
+          "source_quote": "the gauge at final inspection was last calibrated fourteen months ago, and the standard is twelve months",
+          "source_ref": "Watanabe, inspection, sentence 7",
+          "pos": [-33, -12]
+        },
+        {
+          "id": "c_measure_lots",
+          "slot": "cause",
+          "label": "No lot traceability per run",
+          "text": "Resin is drawn from both suppliers' drums without any record of which lot went into which run, so no run can be traced back to its material.",
+          "provenance": "fact",
+          "source_quote": "We have been drawing from both suppliers' drums without recording which lot went into which run",
+          "source_ref": "Sato, purchasing, sentence 5",
+          "pos": [-38, -24]
+        },
+        {
+          "id": "c_measure_drift",
+          "slot": "cause",
+          "label": "Some of the 9% may be gauge drift",
+          "text": "An uncalibrated gauge fails good parts as readily as it passes bad ones, so part of the rise from two per cent to nine per cent may be the instrument moving rather than the process.",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "The scrap rate is a number produced by the very gauge the circle has just reported as two months past its calibration interval. Nothing in the minutes separates a change in the process from a change in the measurement of it.",
+          "pos": [-22, -25]
+        },
+        {
+          "id": "c_machines_tool",
+          "slot": "cause",
+          "label": "Mould tool never examined",
+          "text": "The mould tool and its gate have not been inspected for wear, deposit or a temperature-control fault, any of which would put a defect exactly where this one appears.",
+          "provenance": "derived",
+          "confidence": 0.5,
+          "rationale": "The minutes end by recording that nobody from maintenance attended and the mould tool was not discussed. The Machines rib is empty because no one in the room owned it, not because the tool has been cleared; the defect's location at the gate is precisely where tool condition would show.",
+          "pos": [-21, 12]
+        },
+        {
+          "id": "c_milieu_humid",
+          "slot": "cause",
+          "label": "Material store humid since June",
+          "text": "The material store has been running humid since June, so the resin sits in damp air before it reaches the dryer.",
+          "provenance": "fact",
+          "source_quote": "the store has been running humid since June",
+          "source_ref": "Kato, facilities, sentence 8",
+          "pos": [-9, -12]
+        },
+        {
+          "id": "sc_milieu_dehumidifier",
+          "slot": "subcause",
+          "label": "Store dehumidifier failed, unrepaired",
+          "text": "The dehumidifier in the material store failed at the start of the summer and has still not been repaired.",
+          "provenance": "fact",
+          "source_quote": "the dehumidifier in the material store failed at the start of the summer and has not been repaired",
+          "source_ref": "Kato, facilities, sentence 8",
+          "pos": [-14, -24]
+        },
+        {
+          "id": "c_materials_supplier",
+          "slot": "cause",
+          "label": "Second resin supplier qualified",
+          "text": "A second resin supplier was qualified in the spring and both suppliers' drums are now in use on the line.",
+          "provenance": "fact",
+          "source_quote": "we qualified a second resin supplier in the spring",
+          "source_ref": "Sato, purchasing, sentence 4",
+          "pos": [3, 12]
+        },
+        {
+          "id": "c_materials_moisture",
+          "slot": "cause",
+          "label": "Moisture in the resin at the gate",
+          "text": "Resin carrying too much water into the mould flashes to steam at the gate and leaves a cloudy streak. Three of the reported causes - a second supplier of unknown drying behaviour, a drying step cut in half, and a store that has been damp since June - all move the same variable in the same direction.",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The defect is specific: a cloudy streak at the gate is the standard signature of moisture in a moulded part. Three independently reported causes each raise the water the resin carries, and no other reported cause explains why every reject shows the same mark rather than a scatter of defects.",
+          "pos": [30, 11]
+        },
+        {
+          "id": "c_manpower_shadow",
+          "slot": "cause",
+          "label": "July operators trained by shadowing",
+          "text": "The two operators who joined in July were shown the job by a colleague on their first night, and nobody took them through the written procedure.",
+          "provenance": "fact",
+          "source_quote": "the two operators who joined in July were shown the job by a colleague on their first night, and nobody walked them through the written procedure",
+          "source_ref": "Ito, night shift, sentence 3",
+          "pos": [15, -12]
+        },
+        {
+          "id": "sc_manpower_noonboarding",
+          "slot": "subcause",
+          "label": "No onboarding step uses the procedure",
+          "text": "Being shown the job by whoever is on shift is the department's normal way of starting someone, not an exception made in July, so the written procedure is not the thing anyone is actually taught.",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "Ito reports the shadowing without qualification or apology and offers it as a standing condition of the night shift, which reads as routine practice rather than a one-off lapse. A single lapse would not be worth bringing to the circle.",
+          "pos": [10, -24]
+        }
+      ],
+      "edges": [
+        { "id": "sp_methods", "from": "cat_methods", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
+        { "id": "sp_measurements", "from": "cat_measurements", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
+        { "id": "sp_machines", "from": "cat_machines", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
+        { "id": "sp_milieu", "from": "cat_milieu", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
+        { "id": "sp_materials", "from": "cat_materials", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
+        { "id": "sp_manpower", "from": "cat_manpower", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
+
+        { "id": "b_methods_drying", "from": "c_methods_drying", "to": "cat_methods", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_measure_gauge", "from": "c_measure_gauge", "to": "cat_measurements", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_measure_lots", "from": "c_measure_lots", "to": "cat_measurements", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_measure_drift", "from": "c_measure_drift", "to": "cat_measurements", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_machines_tool", "from": "c_machines_tool", "to": "cat_machines", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_milieu_humid", "from": "c_milieu_humid", "to": "cat_milieu", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_materials_supplier", "from": "c_materials_supplier", "to": "cat_materials", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_materials_moisture", "from": "c_materials_moisture", "to": "cat_materials", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_manpower_shadow", "from": "c_manpower_shadow", "to": "cat_manpower", "relation": "belongs_to", "provenance": "schema" },
+
+        {
+          "id": "f_schedule_drying",
+          "from": "sc_methods_schedule",
+          "to": "c_methods_drying",
+          "relation": "contributes_to",
+          "provenance": "fact",
+          "source_quote": "when the schedule tightened in August we cut the drying time on the resin from four hours to two",
+          "source_ref": "Nakamura, process engineering, sentence 6"
+        },
+        {
+          "id": "f_dehum_humid",
+          "from": "sc_milieu_dehumidifier",
+          "to": "c_milieu_humid",
+          "relation": "contributes_to",
+          "provenance": "fact",
+          "source_quote": "the dehumidifier in the material store failed at the start of the summer and has not been repaired, so the store has been running humid since June",
+          "source_ref": "Kato, facilities, sentence 8"
+        },
+
+        {
+          "id": "d_noonboarding_shadow",
+          "from": "sc_manpower_noonboarding",
+          "to": "c_manpower_shadow",
+          "relation": "contributes_to",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "If shadowing is the department's normal onboarding, that practice is the cause of what happened to the July starters rather than the other way round."
+        },
+        {
+          "id": "d_supplier_moisture",
+          "from": "c_materials_supplier",
+          "to": "c_materials_moisture",
+          "relation": "contributes_to",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "A second supplier's resin need not dry on the same schedule as the first; qualifying it in spring puts an unvalidated moisture behaviour on the line."
+        },
+        {
+          "id": "d_drying_moisture",
+          "from": "c_methods_drying",
+          "to": "c_materials_moisture",
+          "relation": "contributes_to",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Halving a drying time is a direct reduction in water removed; the link from the stated change to residual moisture is close to forced."
+        },
+        {
+          "id": "d_humid_moisture",
+          "from": "c_milieu_humid",
+          "to": "c_materials_moisture",
+          "relation": "contributes_to",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Hygroscopic resin picks up water from damp storage air before it ever reaches the dryer, so the store condition raises the load the shortened dry has to remove."
+        },
+        {
+          "id": "d_moisture_effect",
+          "from": "c_materials_moisture",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The single mechanism the three ribs share is also the one that produces the specific mark reported: a cloudy streak at the gate."
+        },
+        {
+          "id": "d_drift_effect",
+          "from": "c_measure_drift",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "The effect is a measured rate, so an instrument fault contributes to the number even when the process has not changed."
+        },
+        {
+          "id": "d_tool_effect",
+          "from": "c_machines_tool",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "derived",
+          "confidence": 0.5,
+          "rationale": "Gate wear or a thermal fault in the tool would produce a repeating defect at the gate, which is what the inspection report describes; the rib is unexamined, not cleared."
+        },
+
+        {
+          "id": "g_drift_gauge",
+          "from": "c_measure_drift",
+          "to": "c_measure_gauge",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The calibration lapse reported by inspection is the fact the inference rests on."
+        },
+        {
+          "id": "g_moisture_lots",
+          "from": "c_materials_moisture",
+          "to": "c_measure_lots",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "The missing lot records are why the moisture reading cannot be confirmed or ruled out from the existing data; the inference has to stand on the defect signature instead."
+        }
+      ]
+    },
+    {
+      "id": "tbpn",
+      "kind": "tbpn",
+      "title": "Chris Power of Hadrian: why the United States has no industrial base",
+      "summary": "Asked for the pitch for Hadrian, Chris Power states the effect in one sentence and then spends the next four hundred lines naming causes of it - aging machinists, 1950s plant, no domestic machine tools, CAM software that emits bad code, no public process data, offshoring and export control. All six ribs fill from one speaker.",
+      "source": {
+        "type": "transcript",
+        "file": "tbpn-transcripts/transcripts/2025-03-27_defense-tech-day-delian-asparouhov-dhruva-rajendra-steven-simoni-chris-power-aaron-slodov-aj-piplica-connor-love-cameron-mccord.md",
+        "date": "2025-03-27",
+        "episode_title": "defense-tech-day-reindustrialization-tariffs"
+      },
+      "why_this_episode": "Ishikawa needs one named bad outcome and several causes of it that are different in kind, not one cause chased down through five whys. Power names the effect flatly - there is no industrial base anymore - and then supplies a cause on every one of the six ribs, in the framework's home domain of manufacturing quality, with each cause concrete enough to quote.",
+      "idea_bearing_slot": "subcause",
+      "layout": {
+        "mode": "plane",
+        "camera": { "distance": 165 },
+        "guides": [
+          { "from": [-62, 0], "to": [40, 0], "style": "solid" },
+          { "from": [-48, 0], "to": [-64, 36], "style": "solid" },
+          { "from": [-36, 0], "to": [-52, -36], "style": "solid" },
+          { "from": [-24, 0], "to": [-40, 36], "style": "solid" },
+          { "from": [-12, 0], "to": [-28, -36], "style": "solid" },
+          { "from": [0, 0], "to": [-16, 36], "style": "solid" },
+          { "from": [12, 0], "to": [-4, -36], "style": "solid" }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "effect",
+          "slot": "effect",
+          "label": "No US industrial base left",
+          "text": "The United States no longer has an industrial base: the plant and the people needed to make high-precision machined and cast parts at scale are gone.",
+          "provenance": "fact",
+          "source_quote": "So we really don't have an industrial base anymore.",
+          "source_ref": "Chris Power, L5254-L5256",
+          "entities": [],
+          "pos": [44, 0],
+          "size": 1.6
+        },
+        {
+          "id": "cat_methods",
+          "slot": "category",
+          "label": "Methods",
+          "text": "Methods: the processes, software workflows and programming steps by which parts are made.",
+          "provenance": "schema",
+          "pos": [-48, 0]
+        },
+        {
+          "id": "cat_measurements",
+          "slot": "category",
+          "label": "Measurements",
+          "text": "Measurements: the instruments, records and data by which the process is known - including whether any record of it exists at all.",
+          "provenance": "schema",
+          "pos": [-36, 0]
+        },
+        {
+          "id": "cat_machines",
+          "slot": "category",
+          "label": "Machines",
+          "text": "Machines: the machine tools, plant and capital equipment the work runs on.",
+          "provenance": "schema",
+          "pos": [-24, 0]
+        },
+        {
+          "id": "cat_milieu",
+          "slot": "category",
+          "label": "Milieu",
+          "text": "Milieu: the surrounding environment - trade policy, export control, the decisions the country made about where things get made.",
+          "provenance": "schema",
+          "pos": [-12, 0]
+        },
+        {
+          "id": "cat_materials",
+          "slot": "category",
+          "label": "Materials",
+          "text": "Materials: the physical inputs the system consumes - here the machine tools themselves, which a factory has to buy before it can make anything.",
+          "provenance": "schema",
+          "pos": [0, 0]
+        },
+        {
+          "id": "cat_manpower",
+          "slot": "category",
+          "label": "Manpower",
+          "text": "Manpower: the people, their skills, their training and who they will take direction from.",
+          "provenance": "schema",
+          "pos": [12, 0]
+        },
+        {
+          "id": "c_methods_cam",
+          "slot": "cause",
+          "label": "CAM tools emit bad machine code",
+          "text": "The digital manufacturing tools are hard to use, require an expert to drive, and generate poor assembly code for the machines to run.",
+          "provenance": "fact",
+          "source_quote": "all of those digital manufacturing tools, which are super hard to use and you need to be an expert, generate basically terrible assembly code that the machines run on",
+          "source_ref": "Chris Power, L5406-L5414",
+          "entities": ["Hadrian"],
+          "pos": [-53, 12]
+        },
+        {
+          "id": "sc_methods_nocursor",
+          "slot": "subcause",
+          "label": "No Cursor for CAM exists",
+          "text": "There is no AI assistant sitting on top of CAM programming the way Cursor sits on top of software code; Hadrian had to build that stack itself.",
+          "provenance": "fact",
+          "source_quote": "there's no cursor for cam that you're like on top of and just plugging in to speed things up",
+          "source_ref": "John Coogan, L5398-L5400",
+          "entities": ["Cursor", "Hadrian"],
+          "pos": [-58, 24]
+        },
+        {
+          "id": "sc_methods_nofeedback",
+          "slot": "subcause",
+          "label": "Toolchain never sees its own output",
+          "text": "Nothing carries the result of a cut back to the program that produced it, so the code that comes out of CAM is never scored against the part that came out of the machine. The tools stay bad because nothing measures them.",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "Power states both halves separately: the tools emit terrible assembly code, and no process data from American manufacturing reaches any model. If no run data returns to the toolchain, there is no mechanism by which the code could have improved; the connection between the two statements is the reader's.",
+          "pos": [-42, 22]
+        },
+        {
+          "id": "c_measure_nodata",
+          "slot": "cause",
+          "label": "No public manufacturing corpus",
+          "text": "There is no Stack Overflow for manufacturing data, so no off-the-shelf model has ever been trained on how these parts are actually made.",
+          "provenance": "fact",
+          "source_quote": "There is no stack overflow for manufacturing data. So none of the off-the-shelf models actually have ever been trained on any of this.",
+          "source_ref": "Chris Power, L5426-L5428",
+          "entities": ["Hadrian"],
+          "pos": [-41, -12]
+        },
+        {
+          "id": "sc_measure_corpus_moat",
+          "slot": "subcause",
+          "label": "The corpus only exists inside a factory",
+          "text": "The only labelled manufacturing data that exists is what a running factory records day by day, and that record stays inside the company that owns the factory. The public shortage is therefore structural: the data is not missing, it is private.",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Power gives both halves in one passage: export control keeps the data off the internet, and his own models work only because his factory is the one creating a labelled data set daily. The general rule follows directly from the pair he states.",
+          "idea": "In any export-controlled or privacy-walled vertical - ITAR machining, clinical operations, utility field work - the defensible asset is the instrumented operation that generates a proprietary corpus, not a model fine-tuned on public text.",
+          "entities": ["Hadrian"],
+          "pos": [-46, -24]
+        },
+        {
+          "id": "c_machines_old",
+          "slot": "cause",
+          "label": "Installed plant is 1950s to 1980s",
+          "text": "The capital equipment in naval facilities and in machine shops generally dates from somewhere between the 1950s and the 1980s.",
+          "provenance": "fact",
+          "source_quote": "a lot of the capital equipment in all of the naval facilities or, you know, everywhere in machine shops is, you know, somewhere between from the 1950s to the 1980s",
+          "source_ref": "Chris Power, L5580-L5584",
+          "entities": [],
+          "pos": [-29, 12]
+        },
+        {
+          "id": "sc_machines_nocomputers",
+          "slot": "subcause",
+          "label": "No computers on the old machines",
+          "text": "That equipment cannot be automated at all, because most of it has no computer on it in the first place.",
+          "provenance": "fact",
+          "source_quote": "it's just impossible to automate it because often none of them have computers on them in the first place",
+          "source_ref": "Chris Power, L5584-L5586",
+          "entities": [],
+          "pos": [-34, 24]
+        },
+        {
+          "id": "sc_machines_brownfield",
+          "slot": "subcause",
+          "label": "Nobody sells a retrofit for it",
+          "text": "Because the installed base has no controller to talk to, automation is sold only to new factories, and the existing plant is written off rather than upgraded - which is why it is still 1950s equipment.",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "Power's own conclusion from the old plant is that you have to build factories from scratch with new technology; he treats the installed base as impossible rather than as a market, which implies no retrofit path is on offer to the shops that own it.",
+          "idea": "A retrofit layer - sensing, motion capture and closed-loop control bolted onto machine tools that have no computer - would open the 1950s-to-1980s installed base that every automation vendor currently writes off as unreachable.",
+          "entities": [],
+          "pos": [-20, 25]
+        },
+        {
+          "id": "c_milieu_itar",
+          "slot": "cause",
+          "label": "Export control keeps the data offline",
+          "text": "Because American manufacturing is largely export-controlled, none of its process data reaches the public internet. (The transcript renders ITAR as 'high tire'.)",
+          "provenance": "fact",
+          "source_quote": "because American manufacturing is largely regulated in high tire, there is no training data on the internet",
+          "source_ref": "Chris Power, L5418-L5420",
+          "entities": [],
+          "pos": [-17, -12]
+        },
+        {
+          "id": "c_milieu_offshore",
+          "slot": "cause",
+          "label": "Offshored the base to China, 70s-90s",
+          "text": "From the 1970s through the 1990s the country de-industrialised deliberately and handed its industrial power to China.",
+          "provenance": "fact",
+          "source_quote": "we de-industrialize the country from the 70s through the 90s and gave all our industrial power to China",
+          "source_ref": "Chris Power, L5250-L5252",
+          "entities": [],
+          "pos": [-22, -25]
+        },
+        {
+          "id": "c_materials_nocnc",
+          "slot": "cause",
+          "label": "US no longer makes CNC machines",
+          "text": "The Air Force invented the CNC machine and the United States no longer manufactures CNC machines at all.",
+          "provenance": "fact",
+          "source_quote": "we invented, Air Force invented CNC machine, and we no longer make CNC machines in the US",
+          "source_ref": "Chris Power, L5612-L5616",
+          "entities": [],
+          "pos": [-5, 12]
+        },
+        {
+          "id": "sc_materials_china",
+          "slot": "subcause",
+          "label": "Chinese machine tools carry spyware",
+          "text": "China is the largest machine-tool market, but its machines are not bought because of spyware, which leaves Germany, South Korea and Japan as the only sources.",
+          "provenance": "fact",
+          "source_quote": "the main manufacturing markets where we buy from is China's number one. We don't buy for them because they got spyware all over this stuff",
+          "source_ref": "Chris Power, L5620-L5624",
+          "entities": ["Haas"],
+          "pos": [-11, 24]
+        },
+        {
+          "id": "sc_materials_conflict",
+          "slot": "subcause",
+          "label": "A conflict would cut off the capex",
+          "text": "If a conflict starts, the country may not be able to buy the capital equipment to fill its factories, because it does not make that equipment itself.",
+          "provenance": "fact",
+          "source_quote": "can we even buy the amount of capital equipment to put in the factories because we don't produce that capital equipment in the US anymore",
+          "source_ref": "Chris Power, L5632-L5634",
+          "entities": [],
+          "pos": [4, 23]
+        },
+        {
+          "id": "sc_materials_nomaker",
+          "slot": "subcause",
+          "label": "No one is rebuilding machine tools",
+          "text": "Nobody has restarted domestic machine-tool manufacturing, so the gap is not closing on its own; the working answer on offer is to buy faster from allied partners, which keeps the dependency in place.",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "Power names the absence, calls it a very hard question the country has to answer, and then describes his own response as growing fast and buying all the capital expenditure from allied partners. Treating the supply itself as fixed, rather than as something to rebuild, is the reader's inference from that workaround.",
+          "idea": "A domestic machine-tool builder, or a financing vehicle that pre-buys allied capital equipment and leases it into US factories, sits upstream of every re-industrialisation plan and is not being built.",
+          "entities": ["Hadrian"],
+          "pos": [-16, 34]
+        },
+        {
+          "id": "c_manpower_aging",
+          "slot": "cause",
+          "label": "Skilled machinists aging out",
+          "text": "The people who do high-precision machining and castings are retiring, and no comparable cohort is coming up behind them.",
+          "provenance": "fact",
+          "source_quote": "the incredibly skilled workforce that does incredible technical things in high-precision machining or castings are all aging out",
+          "source_ref": "Chris Power, L5252-L5256",
+          "entities": [],
+          "pos": [7, -12]
+        },
+        {
+          "id": "c_manpower_mba",
+          "slot": "cause",
+          "label": "Machinists will not follow an MBA",
+          "text": "A master machinist or welder will not take direction from an outside manager in a suit with a Harvard MBA, which is why buying up existing shops and running them from the top does not work.",
+          "provenance": "fact",
+          "source_quote": "no master machinist or welder is going to respect a kid who's got a suit and a Harvard MBA on coming and telling him what to do",
+          "source_ref": "Chris Power, L5532-L5536",
+          "entities": [],
+          "pos": [2, -24]
+        },
+        {
+          "id": "c_manpower_loop",
+          "slot": "cause",
+          "label": "The skills gap is self-reinforcing",
+          "text": "Offshoring removed the factories in which machinists were trained, so the cohort that would have replaced the retiring one was never made. The missing base and the missing workforce now each keep the other missing.",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "Power states both facts in adjacent clauses - the country gave its industrial power away from the 70s to the 90s, and the skilled cohort is now aging out - but asserts only that they happened, not that each sustains the other. The circularity is the reader's addition and it is what makes the effect stable rather than merely bad.",
+          "entities": [],
+          "pos": [17, -25]
+        }
+      ],
+      "edges": [
+        { "id": "sp_methods", "from": "cat_methods", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
+        { "id": "sp_measurements", "from": "cat_measurements", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
+        { "id": "sp_machines", "from": "cat_machines", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
+        { "id": "sp_milieu", "from": "cat_milieu", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
+        { "id": "sp_materials", "from": "cat_materials", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
+        { "id": "sp_manpower", "from": "cat_manpower", "to": "effect", "relation": "contributes_to", "provenance": "schema" },
+
+        { "id": "b_methods_cam", "from": "c_methods_cam", "to": "cat_methods", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_measure_nodata", "from": "c_measure_nodata", "to": "cat_measurements", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_machines_old", "from": "c_machines_old", "to": "cat_machines", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_milieu_itar", "from": "c_milieu_itar", "to": "cat_milieu", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_milieu_offshore", "from": "c_milieu_offshore", "to": "cat_milieu", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_materials_nocnc", "from": "c_materials_nocnc", "to": "cat_materials", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_manpower_aging", "from": "c_manpower_aging", "to": "cat_manpower", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_manpower_mba", "from": "c_manpower_mba", "to": "cat_manpower", "relation": "belongs_to", "provenance": "schema" },
+        { "id": "b_manpower_loop", "from": "c_manpower_loop", "to": "cat_manpower", "relation": "belongs_to", "provenance": "schema" },
+
+        {
+          "id": "f_aging_effect",
+          "from": "c_manpower_aging",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "fact",
+          "source_quote": "castings are all aging out. So we really don't have an industrial base anymore.",
+          "source_ref": "Chris Power, L5254-L5256"
+        },
+        {
+          "id": "f_offshore_aging",
+          "from": "c_milieu_offshore",
+          "to": "c_manpower_aging",
+          "relation": "contributes_to",
+          "provenance": "fact",
+          "source_quote": "we de-industrialize the country from the 70s through the 90s and gave all our industrial power to China. And now the incredibly skilled workforce that does incredible technical things in high-precision machining or castings are all aging out",
+          "source_ref": "Chris Power, L5250-L5256"
+        },
+        {
+          "id": "f_itar_nodata",
+          "from": "c_milieu_itar",
+          "to": "c_measure_nodata",
+          "relation": "contributes_to",
+          "provenance": "fact",
+          "source_quote": "because American manufacturing is largely regulated in high tire, there is no training data on the internet",
+          "source_ref": "Chris Power, L5418-L5420"
+        },
+        {
+          "id": "f_nocomputers_old",
+          "from": "sc_machines_nocomputers",
+          "to": "c_machines_old",
+          "relation": "contributes_to",
+          "provenance": "fact",
+          "source_quote": "somewhere between from the 1950s to the 1980s. And it's just impossible to automate it because often none of them have computers on them in the first place",
+          "source_ref": "Chris Power, L5582-L5586"
+        },
+        {
+          "id": "f_conflict_nocnc",
+          "from": "sc_materials_conflict",
+          "to": "c_materials_nocnc",
+          "relation": "contributes_to",
+          "provenance": "fact",
+          "source_quote": "if the balloon goes up with the conflict you know can we even buy the amount of capital equipment to put in the factories because we don't produce that capital equipment in the US anymore",
+          "source_ref": "Chris Power, L5630-L5634"
+        },
+
+        {
+          "id": "d_nocursor_cam",
+          "from": "sc_methods_nocursor",
+          "to": "c_methods_cam",
+          "relation": "contributes_to",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The host names the missing assistant and Power answers with the main reason the tools are bad. The link is stated across two speakers' turns rather than inside one, so it is a reading rather than a quotation."
+        },
+        {
+          "id": "d_nofeedback_cam",
+          "from": "sc_methods_nofeedback",
+          "to": "c_methods_cam",
+          "relation": "contributes_to",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "A toolchain with no return path from the machine to the program cannot improve its own output; this explains persistence rather than origin."
+        },
+        {
+          "id": "d_corpus_nodata",
+          "from": "sc_measure_corpus_moat",
+          "to": "c_measure_nodata",
+          "relation": "contributes_to",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "If the only corpus is generated privately inside working factories, the public absence is a consequence of where the data is made, not an accident of collection."
+        },
+        {
+          "id": "d_brownfield_old",
+          "from": "sc_machines_brownfield",
+          "to": "c_machines_old",
+          "relation": "contributes_to",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "Plant stays at 1950s vintage partly because no supplier offers an upgrade path for it; the absence of a retrofit market is a cause of the age, not only a consequence."
+        },
+        {
+          "id": "d_china_nocnc",
+          "from": "sc_materials_china",
+          "to": "c_materials_nocnc",
+          "relation": "contributes_to",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Power lists the security exclusion of Chinese machines immediately after stating that the US makes none, inside one answer about where machine tools come from; the two are adjacent in the same argument but he never states the connective."
+        },
+        {
+          "id": "d_nomaker_nocnc",
+          "from": "sc_materials_nomaker",
+          "to": "c_materials_nocnc",
+          "relation": "contributes_to",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "The absence persists because no one is rebuilding the capability; the workaround Power describes routes around the gap instead of closing it."
+        },
+        {
+          "id": "d_loop_effect",
+          "from": "c_manpower_loop",
+          "to": "effect",
+          "relation": "contributes_to",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "A self-reinforcing loop is what turns a historical decision into a standing condition, which is why the effect is stated in the present tense."
+        },
+
+        {
+          "id": "g_loop_offshore",
+          "from": "c_manpower_loop",
+          "to": "c_milieu_offshore",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "One half of the loop is quoted: the country gave its industrial power away."
+        },
+        {
+          "id": "g_loop_aging",
+          "from": "c_manpower_loop",
+          "to": "c_manpower_aging",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The other half is quoted: the skilled cohort is aging out with nobody behind it."
+        },
+        {
+          "id": "g_brownfield_nocomputers",
+          "from": "sc_machines_brownfield",
+          "to": "sc_machines_nocomputers",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The absence of a controller is the stated fact that makes retrofit hard and therefore unsold."
+        },
+        {
+          "id": "g_corpus_itar",
+          "from": "sc_measure_corpus_moat",
+          "to": "c_milieu_itar",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Export control is the stated reason the data cannot leave the companies that make it."
+        },
+        {
+          "id": "g_nofeedback_nodata",
+          "from": "sc_methods_nofeedback",
+          "to": "c_measure_nodata",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "The stated absence of any process corpus is the evidence that no measurement loop closes anywhere in the toolchain."
+        },
+        {
+          "id": "g_nomaker_conflict",
+          "from": "sc_materials_nomaker",
+          "to": "sc_materials_conflict",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "The conflict scenario Power raises is the stated cost of leaving the supply gap open."
+        }
+      ]
+    }
+  ]
+}
