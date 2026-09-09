@@ -101,10 +101,10 @@ Why it fits: a completed 72-hour event narrated three days later by the two peop
 - `a2` (Jeff Wang, ~line 5562): "I was on the phone for pretty much 24 hours, nonstop on my phone after the all hands"
 - `a3` (Jeff Wang, ~line 5566): "me and Scott, we worked really fast. We met at our office the next day. He even brought in everything on a piece of paper to sign."
 - `a4` (Scott Wu, ~line 5588): "we got things signed like one or two hours before we were able to put out the announcement"
-- `a5` (Jeff Wang, ~line 5406): "after talking to Scott and the Cognition team, it was done in my mind"
+- `a5` (Jeff Wang, ~lines 5406-5412): "after talking to Scott and the Cognition team, it was done in my mind. There's a done deal. I don't know if you guys know this, but Cognition was probably the only other team that we thought was smarter than our team, actually."
 - `a6` (Jeff Wang, ~line 5664): "we really went out of our way to make this a very generous acquisition"
 - `r1` (Jeff Wang, ~line 5392): "this is a this is a real acquisition. Okay, we are being acquired by cognition"
-- `r2` (Cognition's announcement read on air, ~line 280): "100% of windsurf employees will participate financially they will also have all their vesting cliffs waves"
+- `r2` (Cognition's announcement read on air, ~lines 282-286 (the word what is a host interjection)): "100% of windsurf employees will participate financially they will also have all their vesting cliffs waves what and will receive fully accelerated vesting for their work today"
 - `r3` (Jeff Wang, ~line 5676): "They kind of cheered for like a standing ovation or something. So I think the sentiment has shifted. The team is even more fired up to go."
 - `r4` (Jeff Wang, ~line 5682): "The whole product is still there. All the things we had and the GTM team is still there. And now they also have Devon to sell as well."
 - `r5` (host, ~line 358): "the fact that they were able to get this deal done in just a couple of days is fantastic"
@@ -171,7 +171,7 @@ The idea-bearing slot is Task: the need the actor had to meet is where a market 
 
 ### Node and edge types
 
-One node type per slot: `situation`, `task`, `action`, `result`, `problem`. Edges: `sets_up` (situation to task), `motivates` (task or problem to action), `produces` (action to result), `causes` (any pair, including situation to situation and result to result), `supported_by` (derived to fact, always derived). Layout is a left-to-right tree: situation and problem at level 0, task 1, action 2, result 3. `entities` carry company and person names as the extractions spell them, for the future merge.
+One node type per slot: `situation`, `task`, `action`, `result`, `problem`. Edges: `sets_up` (situation to task), `motivates` (task or problem to action), `produces` (action to result), `causes` (any pair, including situation to situation and result to result), `supported_by` (derived to fact, always derived). In the viewer both examples are drawn on a plane with four labelled bands, Situation, Task, Action and Result, read left to right, and a Problem (PAR) band spanning the first two; the relation names sit in the gaps. `entities` carry company and person names as the extractions spell them, for the future merge.
 
 ### Fact or derived: rules of thumb
 
