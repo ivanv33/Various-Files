@@ -57,9 +57,45 @@
         "text": "A note is on your desk at twenty to ten on Tuesday morning, written in the order the calls came in. John Collins telephoned to say he cannot make the meeting at three o'clock today, because he is on a train to Manchester until six. Hal Johnson does not mind meeting later, or even tomorrow, but not before half past ten, since he has a board call every morning. Don Clifford's assistant rang to say Don cannot come before Thursday. The conference room is booked tomorrow for the auditors, but it is free on Thursday. Could we change the meeting to Thursday at eleven?"
       },
       "layout": {
-        "mode": "tree",
-        "root": "gt",
-        "direction": "down"
+        "mode": "plane",
+        "regions": [
+          {
+            "label": "Governing thought",
+            "x": [
+              -24,
+              24
+            ],
+            "y": [
+              40,
+              56
+            ],
+            "color": "#d95926"
+          },
+          {
+            "label": "Key line",
+            "x": [
+              -44,
+              44
+            ],
+            "y": [
+              19,
+              33
+            ],
+            "color": "#8e6bd9"
+          },
+          {
+            "label": "Support",
+            "x": [
+              -64,
+              64
+            ],
+            "y": [
+              -34,
+              12
+            ],
+            "color": "#3987e5"
+          }
+        ]
       },
       "nodes": [
         {
@@ -70,18 +106,27 @@
           "provenance": "fact",
           "source_quote": "Could we change the meeting to Thursday at eleven?",
           "source_ref": "sentence 6, the last line of the note",
-          "size": 1.4,
-          "level": 0
+          "size": 1.6,
+          "level": 0,
+          "pos": [
+            0,
+            48
+          ]
         },
         {
           "id": "k1",
           "slot": "key_line",
-          "label": "Thursday is the first day all can meet",
+          "label": "Thursday: first day all can meet",
           "text": "Thursday is the earliest day on which all three attendees are free: today is impossible for two of them and tomorrow is impossible for Don Clifford.",
           "provenance": "derived",
           "confidence": 0.9,
           "rationale": "Intersecting the three stated constraints leaves Thursday as the first free day; the note reports the three calls but never states the intersection, which is the whole point of the message.",
-          "level": 1
+          "level": 1,
+          "pos": [
+            -33.3,
+            26
+          ],
+          "size": 1.15
         },
         {
           "id": "k2",
@@ -91,27 +136,42 @@
           "provenance": "fact",
           "source_quote": "The conference room is booked tomorrow for the auditors, but it is free on Thursday",
           "source_ref": "sentence 5",
-          "level": 1
+          "level": 1,
+          "pos": [
+            0,
+            26
+          ],
+          "size": 1.15
         },
         {
           "id": "k3",
           "slot": "key_line",
-          "label": "Eleven is the earliest hour that works",
+          "label": "Eleven is the earliest hour",
           "text": "Eleven o'clock is the earliest hour on Thursday that clears the attendees' own constraints, because Hal Johnson cannot start before half past ten.",
           "provenance": "derived",
           "confidence": 0.8,
           "rationale": "The note gives an earliest-start constraint of half past ten and then proposes eleven; the step from the constraint to the hour is arithmetic the reader has to do.",
-          "level": 1
+          "level": 1,
+          "pos": [
+            34.1,
+            26
+          ],
+          "size": 1.15
         },
         {
           "id": "s1",
           "slot": "support",
-          "label": "Collins cannot make three today",
+          "label": "Collins: not at three today",
           "text": "John Collins telephoned to say he cannot make the meeting at three o'clock today.",
           "provenance": "fact",
           "source_quote": "John Collins telephoned to say he cannot make the meeting at three o'clock today",
           "source_ref": "sentence 2",
-          "level": 2
+          "level": 2,
+          "pos": [
+            -57.2,
+            -8
+          ],
+          "size": 0.85
         },
         {
           "id": "s2",
@@ -121,7 +181,12 @@
           "provenance": "fact",
           "source_quote": "because he is on a train to Manchester until six",
           "source_ref": "sentence 2",
-          "level": 2
+          "level": 3,
+          "pos": [
+            -62,
+            -26
+          ],
+          "size": 0.75
         },
         {
           "id": "s3",
@@ -131,27 +196,42 @@
           "provenance": "fact",
           "source_quote": "Hal Johnson does not mind meeting later, or even tomorrow, but not before half past ten",
           "source_ref": "sentence 3",
-          "level": 2
+          "level": 2,
+          "pos": [
+            53.9,
+            -8
+          ],
+          "size": 0.85
         },
         {
           "id": "s4",
           "slot": "support",
-          "label": "Johnson has a board call each morning",
+          "label": "Johnson: a board call each morning",
           "text": "Johnson's earliest-start constraint has a reason: he has a board call every morning.",
           "provenance": "fact",
           "source_quote": "since he has a board call every morning",
           "source_ref": "sentence 3",
-          "level": 2
+          "level": 3,
+          "pos": [
+            58,
+            -26
+          ],
+          "size": 0.75
         },
         {
           "id": "s5",
           "slot": "support",
-          "label": "Clifford cannot come before Thursday",
+          "label": "Clifford: not before Thursday",
           "text": "Don Clifford's assistant rang to say Don cannot come before Thursday.",
           "provenance": "fact",
           "source_quote": "Don Clifford's assistant rang to say Don cannot come before Thursday",
           "source_ref": "sentence 4",
-          "level": 2
+          "level": 2,
+          "pos": [
+            20.7,
+            -8
+          ],
+          "size": 0.85
         },
         {
           "id": "d1",
@@ -161,7 +241,12 @@
           "provenance": "derived",
           "confidence": 0.95,
           "rationale": "Two of the three stated constraints exclude today outright; the elimination is forced by the quoted facts but is never written down.",
-          "level": 2
+          "level": 2,
+          "pos": [
+            -31.9,
+            -8
+          ],
+          "size": 0.85
         },
         {
           "id": "d2",
@@ -171,7 +256,12 @@
           "provenance": "derived",
           "confidence": 0.9,
           "rationale": "Tomorrow is the option the note leaves open for Johnson; two stated facts close it, and the reader has to combine an attendee constraint with a room constraint to see it.",
-          "level": 2
+          "level": 2,
+          "pos": [
+            -7.8,
+            -8
+          ],
+          "size": 0.85
         }
       ],
       "edges": [
@@ -349,9 +439,45 @@
       "why_this_episode": "A speaker who enumerates his own key lines with ordinals ('the first thing... a second thing... and then the third thing'), so pillar membership is a quoted fact rather than an inference, and who nevertheless leaves the apex empty: the label he puts on top is the intellectually blank 'two or three things that are underappreciated', and his conclusion arrives after the pillars rather than before them. The passage therefore shows the Pyramid Principle's two failure modes in one place - a grouping that does not synthesise, and an answer delivered bottom-up - while giving numbers under every pillar and, fifty lines later, the timing pillar the stated set omits.",
       "idea_bearing_slot": "governing_thought",
       "layout": {
-        "mode": "tree",
-        "root": "gt",
-        "direction": "down"
+        "mode": "plane",
+        "regions": [
+          {
+            "label": "Governing thought",
+            "x": [
+              -38,
+              38
+            ],
+            "y": [
+              44,
+              62
+            ],
+            "color": "#d95926"
+          },
+          {
+            "label": "Key line",
+            "x": [
+              -50,
+              50
+            ],
+            "y": [
+              22,
+              35
+            ],
+            "color": "#8e6bd9"
+          },
+          {
+            "label": "Support",
+            "x": [
+              -67,
+              67
+            ],
+            "y": [
+              -29,
+              15
+            ],
+            "color": "#3987e5"
+          }
+        ]
       },
       "nodes": [
         {
@@ -366,8 +492,12 @@
           "entities": [
             "Elad Gil"
           ],
-          "size": 1.5,
-          "level": 0
+          "size": 1.7,
+          "level": 0,
+          "pos": [
+            0,
+            56
+          ]
         },
         {
           "id": "gt_stated",
@@ -380,12 +510,17 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 0
+          "level": 0,
+          "pos": [
+            34,
+            50
+          ],
+          "size": 0.8
         },
         {
           "id": "gt_group",
           "slot": "governing_thought",
-          "label": "Two or three underappreciated things",
+          "label": "2-3 underappreciated things",
           "text": "The label the speaker actually puts on top of his group: there are two or three underappreciated things about this AI wave. It announces a set without saying what the set adds up to, and without settling how many members it has.",
           "provenance": "fact",
           "source_quote": "I think there's two or three things that are underappreciated about this AI wave",
@@ -393,12 +528,17 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 0
+          "level": 0,
+          "pos": [
+            -34,
+            50
+          ],
+          "size": 0.8
         },
         {
           "id": "k1",
           "slot": "key_line",
-          "label": "Capability is now a call away",
+          "label": "Capability is a call away",
           "text": "The first pillar: the capability set has shifted dramatically, and not only in what the models can do - they can be reached with an API call, which puts the capability in everybody's hands.",
           "provenance": "fact",
           "source_quote": "I think that the first thing is that the capability set has shifted dramatically, not just in terms of what these models can do, but the fact that you can just ping them with an API and something's accessible to everybody.",
@@ -406,7 +546,12 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 1
+          "level": 1,
+          "pos": [
+            -46,
+            28
+          ],
+          "size": 1.15
         },
         {
           "id": "k2",
@@ -419,12 +564,17 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 1
+          "level": 1,
+          "pos": [
+            -16,
+            28
+          ],
+          "size": 1.15
         },
         {
           "id": "k3",
           "slot": "key_line",
-          "label": "TAMs shift from seats to labour",
+          "label": "TAMs shift: seats to labour",
           "text": "The third pillar: the addressable markets are shifting from seat-based pricing and seat-based value to labour, because the product replaces human work rather than equipping a worker.",
           "provenance": "fact",
           "source_quote": "And then the third thing is that a lot of this is about what you're saying, which is the tams of markets are shifting from seat-based pricing or seat-based value to labor. You're replacing human labor.",
@@ -432,12 +582,17 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 1
+          "level": 1,
+          "pos": [
+            16,
+            28
+          ],
+          "size": 1.15
         },
         {
           "id": "k4",
           "slot": "key_line",
-          "label": "The rate is set by org process",
+          "label": "Org process sets the rate",
           "text": "A fourth pillar the speaker never files under his group: whatever the size, it is reached only at the speed enterprises change process, so the market is large and slow rather than large and imminent.",
           "provenance": "derived",
           "confidence": 0.7,
@@ -446,12 +601,17 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 1
+          "level": 1,
+          "pos": [
+            46,
+            28
+          ],
+          "size": 1.15
         },
         {
           "id": "s12",
           "slot": "support",
-          "label": "Real revenue is already showing up",
+          "label": "Real revenue already booked",
           "text": "Both things can be true at once, the speaker says: real revenue is being booked by these companies today.",
           "provenance": "fact",
           "source_quote": "And I think both things can be true simultaneously, which is we're seeing real revenue for these companies, right?",
@@ -459,12 +619,17 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 2
+          "level": 2,
+          "pos": [
+            -62,
+            8
+          ],
+          "size": 0.9
         },
         {
           "id": "s1",
           "slot": "support",
-          "label": "Cursor in the high hundreds of millions",
+          "label": "Cursor: high hundreds of $M",
           "text": "Cursor is rumoured to be at high hundreds of millions of revenue.",
           "provenance": "fact",
           "source_quote": "Cursor is rumored to be in the high hundreds of millions of revenue.",
@@ -473,12 +638,17 @@
             "Cursor",
             "Elad Gil"
           ],
-          "level": 3
+          "level": 3,
+          "pos": [
+            -64,
+            -20
+          ],
+          "size": 0.75
         },
         {
           "id": "s2",
           "slot": "support",
-          "label": "Azure adds $2-3B of AI revenue a quarter",
+          "label": "Azure: +$2-3B AI a quarter",
           "text": "Azure added something like two or three billion dollars of AI revenue per quarter, from a cold start two or three years ago.",
           "provenance": "fact",
           "source_quote": "Azure added something like two or three billion of the AI revenue per quarter from sort of a cold start two or three years ago",
@@ -487,12 +657,17 @@
             "Microsoft",
             "Elad Gil"
           ],
-          "level": 3
+          "level": 3,
+          "pos": [
+            -32,
+            -20
+          ],
+          "size": 0.75
         },
         {
           "id": "s3",
           "slot": "support",
-          "label": "Distribution is already everywhere",
+          "label": "Distribution is everywhere",
           "text": "The distribution for these products already exists and is massive; it is everywhere in some sense.",
           "provenance": "fact",
           "source_quote": "But to your point, we have massive distribution. It's already everywhere in some sense, right?",
@@ -500,12 +675,17 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 2
+          "level": 2,
+          "pos": [
+            -60,
+            -5
+          ],
+          "size": 0.9
         },
         {
           "id": "d1",
           "slot": "support",
-          "label": "Open market test: no software line",
+          "label": "Open market: no software line",
           "text": "The screen the legal example implies but the speaker does not state: the open markets are the professions with almost no software line item and a large payroll line, because there is no incumbent to displace and the budget being competed for is wages.",
           "provenance": "derived",
           "confidence": 0.75,
@@ -513,12 +693,17 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 2
+          "level": 2,
+          "pos": [
+            -28,
+            8
+          ],
+          "size": 0.9
         },
         {
           "id": "s4",
           "slot": "support",
-          "label": "Legal never bought software; now it can",
+          "label": "Legal never bought software",
           "text": "Legal was hard to sell software into and bought almost none, and because of AI a vendor can suddenly exist there. ('RV' in the transcript is a speech-to-text error for the vendor's name.)",
           "provenance": "fact",
           "source_quote": "It was really hard to sell into legal, but because of AI, suddenly RV can exist, right?",
@@ -526,12 +711,17 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 3
+          "level": 3,
+          "pos": [
+            -2,
+            -20
+          ],
+          "size": 0.75
         },
         {
           "id": "s5",
           "slot": "support",
-          "label": "Not how many seats, how much work",
+          "label": "Not seats, how much work",
           "text": "Customer support is the worked example: the question is not how many seats you can sell to customer-support reps, as with a seat-priced incumbent, but how much of their work you can do.",
           "provenance": "fact",
           "source_quote": "And so you're looking at, for example, customer support. It's not Zendaz, How many seats can you sell the customer support reps? It's how much can you augment and do work for customer support reps?",
@@ -540,12 +730,17 @@
             "Zendesk",
             "Elad Gil"
           ],
-          "level": 2
+          "level": 2,
+          "pos": [
+            5,
+            8
+          ],
+          "size": 0.9
         },
         {
           "id": "s6",
           "slot": "support",
-          "label": "Labour market versus software market",
+          "label": "Labour vs software market",
           "text": "The comparison stated flatly: it is the labour market versus the software market.",
           "provenance": "fact",
           "source_quote": "It's the labor market versus the software market.",
@@ -553,12 +748,17 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 2
+          "level": 2,
+          "pos": [
+            2,
+            -5
+          ],
+          "size": 0.9
         },
         {
           "id": "s7",
           "slot": "support",
-          "label": "$5T of services spend is reachable",
+          "label": "$5T of services spend",
           "text": "The speaker's team sized the services economy where AI could intervene at about $5 trillion, a large share of GDP.",
           "provenance": "fact",
           "source_quote": "The services economy that we looked at on my team in terms of where AI could intervene is about $5 trillion. So it's a lot of GDP is accessible to this.",
@@ -566,12 +766,17 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 2
+          "level": 2,
+          "pos": [
+            34,
+            8
+          ],
+          "size": 0.9
         },
         {
           "id": "d2",
           "slot": "support",
-          "label": "Price as a share of the function",
+          "label": "Price as a share of function",
           "text": "What the seat-to-labour shift implies for the price tag, once the host's framing and the speaker's are put together: the unit of pricing becomes a share of what the function costs to run, not a per-user fee.",
           "provenance": "derived",
           "confidence": 0.7,
@@ -579,7 +784,12 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 2
+          "level": 2,
+          "pos": [
+            32,
+            -5
+          ],
+          "size": 0.9
         },
         {
           "id": "s11",
@@ -592,12 +802,17 @@
           "entities": [
             "Ripling"
           ],
-          "level": 3
+          "level": 3,
+          "pos": [
+            30,
+            -20
+          ],
+          "size": 0.75
         },
         {
           "id": "s8",
           "slot": "support",
-          "label": "It will probably take a decade",
+          "label": "Probably takes a decade",
           "text": "The flip side, in the speaker's own words: it will probably take a decade.",
           "provenance": "fact",
           "source_quote": "But the flip side of it is it'll probably take a decade, right?",
@@ -605,12 +820,17 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 2
+          "level": 2,
+          "pos": [
+            62,
+            8
+          ],
+          "size": 0.9
         },
         {
           "id": "s9",
           "slot": "support",
-          "label": "The impediment is not the technology",
+          "label": "The impediment is not tech",
           "text": "The biggest impediment to adoption is not the technology, which could already do a great deal, but organisational process and workflow management.",
           "provenance": "fact",
           "source_quote": "And I think the biggest impediment to adoption isn't the technology. We could do so much stuff with the technology right now. It's organizational process. It's workflow management.",
@@ -618,12 +838,17 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 2
+          "level": 2,
+          "pos": [
+            62,
+            -5
+          ],
+          "size": 0.9
         },
         {
           "id": "s10",
           "slot": "support",
-          "label": "The internet took fifteen years",
+          "label": "The internet took 15 years",
           "text": "The precedent the host brings in from a Ken Griffin talk: in 1999 and 2000 it was obvious the internet would change the world, and it still took fifteen years to have an impact.",
           "provenance": "fact",
           "source_quote": "ken griffin gave a talk earlier this week and he was saying that in 1999 and 2000 it was very obvious that the internet was going to change the world change the way that our economies run yet it still took 15 years for it to actually have an impact",
@@ -631,7 +856,12 @@
           "entities": [
             "Ken Griffin"
           ],
-          "level": 2
+          "level": 3,
+          "pos": [
+            63,
+            -20
+          ],
+          "size": 0.75
         }
       ],
       "edges": [
