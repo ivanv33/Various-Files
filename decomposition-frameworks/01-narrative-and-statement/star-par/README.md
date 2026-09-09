@@ -107,7 +107,7 @@ Twenty of the twenty-three nodes are facts, none paraphrased. The transcript is 
 - `s5` [fact] **'Just a shell' vs code, product, team**: Outsiders said what was left was just a shell; Cognition looked and saw the code, the product, the customers and, most importantly, the whole team. "people were saying, well, the thing that's left is just a shell. And we looked at it and we said, well, actually, I don't know if that's right. There's the code, there's the product, there's the customers, and most importantly, there's the whole team" (Scott Wu, L5428-L5434)
 - `s6` [fact] **Cognition over-focused on engineers**: Scott Wu says Cognition tends to over-focus on software engineers because that is who they are and how they think. "we tend to over-focus on software engineers because it's just who we are and how we think about it" (Scott Wu, L5498-L5502)
 - `s7` [fact] **Windsurf had built out all functions**: Windsurf's team had built out sales, deployed engineering, enterprise work, infrastructure, marketing, operations and finance. "the whole team have built out a really great kind of suite of all the different kinds different functions, right? Sales, deployed engineering, enterprise work, infrastructure, marketing, operations, and so on, finance, et cetera." (Scott Wu, L5510-L5518)
-- `s8` [fact] **Other teams circling the GTM team**: Over the weekend other companies were circling, wanting to hire away Windsurf's go-to-market team. "over the weekend, I'd heard other teams that were kind of circling, wanting to hoover up their GTM team" (host, L352-L356)
+- `s8` [fact] **Teams circling the GTM team**: Over the weekend other companies were circling, wanting to hire away Windsurf's go-to-market team. "over the weekend, I'd heard other teams that were kind of circling, wanting to hoover up their GTM team" (host, L352-L356)
 
 **Task**
 
@@ -146,11 +146,11 @@ Three derived nodes, referencing the facts above by id.
 
 **Task**
 
-- `t2` [derived 0.75] **Keep team and customers from scattering**: The objective behind the options was to find a home for the whole company before the sales and go-to-market staff accepted the offers circling them. Rationale: Follows from the stated facts that other teams were trying to hire away the GTM team and that hundreds of employees were angry; Wang states his priority as options and paths, never as retention. Supported by `s8`, `s3`, `s2` for its text and by `s6`, `s7`, `r2` for the idea it carries (see "Where the opportunity shows up").
+- `t2` [derived 0.75] **Keep team, customers from scattering**: The objective behind the options was to find a home for the whole company before the sales and go-to-market staff accepted the offers circling them. Rationale: Follows from the stated facts that other teams were trying to hire away the GTM team and that hundreds of employees were angry; Wang states his priority as options and paths, never as retention. Supported by `s8`, `s3`, `s2` for its text and by `s6`, `s7`, `r2` for the idea it carries (see "Where the opportunity shows up").
 
 **Problem (PAR)**
 
-- `p1` [derived 0.80] **Problem: no founders, poachers, no time**: PAR framing: a funded company with product, customers and a commercial team but no founders, an angry staff and competitors poaching, with days rather than weeks to find an answer. Rationale: Collapses the stated situation and Wang's stated priority into one problem statement; which facts count as the problem and the time bound are the analyst's framing. 0.80 is the 0.70-0.85 band of the shared confidence scale: most careful readers given these quotes would draw the same boundary, though 'days rather than weeks' is read from the sequence and stated by nobody. Supported by `s2`, `s3`, `s8`, `t1`.
+- `p1` [derived 0.80] **No founders, poachers, no time**: PAR framing: a funded company with product, customers and a commercial team but no founders, an angry staff and competitors poaching, with days rather than weeks to find an answer. Rationale: Collapses the stated situation and Wang's stated priority into one problem statement; which facts count as the problem and the time bound are the analyst's framing. 0.80 is the 0.70-0.85 band of the shared confidence scale: most careful readers given these quotes would draw the same boundary, though 'days rather than weeks' is read from the sequence and stated by nobody. Supported by `s2`, `s3`, `s8`, `t1`.
 
 **Result**
 
@@ -181,7 +181,7 @@ Shown, the derived layer supplies exactly what narration leaves out: a motive (`
 
 The idea-bearing slot is Task: the objective the actor owned is where the unmet need shows, because the actor's problem is somebody's market. One node carries an `idea` field:
 
-- `t2` (0.75), "Keep team and customers from scattering": *The gap this weekend exposed is a market on two sides: research-heavy AI labs that over-index on engineers can buy a built-out commercial organisation whole instead of growing one, and the employees a founder-only hire strands have no default protection until an acquirer improvises it.*
+- `t2` (0.75), "Keep team, customers from scattering": *The gap this weekend exposed is a market on two sides: research-heavy AI labs that over-index on engineers can buy a built-out commercial organisation whole instead of growing one, and the employees a founder-only hire strands have no default protection until an acquirer improvises it.*
 
 Read from three facts, and no further. `s6` is Wu conceding that Cognition over-focuses on software engineers "because it's just who we are"; `s7` is his list of what Windsurf had instead (sales, deployed engineering, enterprise work, infrastructure, marketing, operations, finance). Together they describe a lab short of a commercial organisation buying one intact, which suggests a market in placing or building go-to-market organisations for research-heavy labs, and a second in the commercial teams stranded by founder acqui-hires. `r2` is the other side: 100% participation, waived cliffs and accelerated vesting had to be written into this particular deal because nothing makes them a default, which suggests standard terms, tooling or advisory for employees left behind when founders are hired away.
 
