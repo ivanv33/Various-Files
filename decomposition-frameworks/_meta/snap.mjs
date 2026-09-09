@@ -78,26 +78,34 @@ try {
       // confidence, the rationale, the supporting facts and the opportunity, which is the whole
       // point of this library. Clicking the first label in DOM order (the old behaviour) almost
       // always landed on a fact node, so no critic ever saw the inference panel.
-      const pick = await page.evaluate(() => {
+      // Capture BOTH panels. The derived one carries the confidence, rationale, supporting facts
+      // and opportunity; the fact one carries the verbatim quote and its reference. Sampling only
+      // one leaves half of the provenance story unverified on every page.
+      const locate = (want) => page.evaluate((want) => {
         const vis = (e) => e.style.display !== 'none' && e.offsetParent !== null;
         const all = [...document.querySelectorAll('#labels .nlabel')].filter(vis);
-        const target = all.find(e => e.classList.contains('derived') && e.querySelector('.idea-star'))
-          || all.find(e => e.classList.contains('derived'))
-          || all[0];
+        const target = want === 'derived'
+          ? (all.find(e => e.classList.contains('derived') && e.querySelector('.idea-star')) || all.find(e => e.classList.contains('derived')))
+          : all.find(e => e.classList.contains('fact'));
         if (!target) return null;
         const r = target.getBoundingClientRect();
         return { x: r.left + r.width / 2, y: r.top - 8, kind: target.className, idea: !!target.querySelector('.idea-star') };
+      }, want);
+      const readPanel = () => page.evaluate(() => {
+        const p = document.getElementById('panel');
+        if (!p || p.hidden) return null;
+        return { badge: p.querySelector('.badge')?.textContent || null, headings: [...p.querySelectorAll('h4')].map(h => h.textContent), quoted: !!p.querySelector('blockquote') };
       });
-      if (pick) {
+      rec.panels = {};
+      for (const want of ['derived', 'fact']) {
+        const pick = await locate(want);
+        if (!pick) { rec.panels[want] = 'no visible node of this kind'; continue; }
         await page.mouse.click(pick.x, pick.y);
         await new Promise(r => setTimeout(r, 300));
-        await shot('panel');
-        rec.panel_node = { classes: pick.kind, has_idea: pick.idea };
-        rec.panel_sections = await page.evaluate(() => {
-          const p = document.getElementById('panel');
-          if (!p || p.hidden) return null;
-          return { badge: p.querySelector('.badge')?.textContent || null, headings: [...p.querySelectorAll('h4')].map(h => h.textContent) };
-        });
+        await shot(`panel-${want}`);
+        rec.panels[want] = { node: pick.kind, has_idea: pick.idea, panel: await readPanel() };
+        await page.keyboard.press('Escape');
+        await new Promise(r => setTimeout(r, 150));
       }
     }
     rec.console = [...rec.console, ...errors];
