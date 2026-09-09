@@ -105,38 +105,38 @@
         "axes": {
           "x": {
             "label": "Evolution  ·  uncharted → industrialised",
-            "min": -60,
-            "max": 60,
+            "min": -64,
+            "max": 64,
             "ticks": [
               {
-                "value": -45,
+                "value": -48,
                 "label": "I"
               },
               {
-                "value": -15,
+                "value": -16,
                 "label": "II"
               },
               {
-                "value": 15,
+                "value": 16,
                 "label": "III"
               },
               {
-                "value": 45,
+                "value": 48,
                 "label": "IV"
               }
             ]
           },
           "y": {
-            "label": "Value chain  ·  visibility to the user",
-            "min": -68,
-            "max": 34,
+            "label": "Value chain",
+            "min": -69,
+            "max": 38,
             "ticks": [
               {
-                "value": 30,
+                "value": 34,
                 "label": "visible"
               },
               {
-                "value": -45,
+                "value": -44,
                 "label": "invisible"
               }
             ]
@@ -144,59 +144,59 @@
         },
         "regions": [
           {
-            "label": "uncharted · unmodelled",
+            "label": "novel · uncertain",
             "x": [
-              -60,
-              -30
+              -64,
+              -32
             ],
             "y": [
-              -68,
-              34
+              -53,
+              38
             ]
           },
           {
-            "label": "emerging · learning",
+            "label": "bespoke · learning",
             "x": [
-              -30,
+              -32,
               0
             ],
             "y": [
-              -68,
-              34
+              -53,
+              38
             ]
           },
           {
-            "label": "converging · known",
+            "label": "common · defined",
             "x": [
               0,
-              30
+              32
             ],
             "y": [
-              -68,
-              34
+              -53,
+              38
             ]
           },
           {
-            "label": "industrialised · utility",
+            "label": "ubiquitous · metered",
             "x": [
-              30,
-              60
+              32,
+              64
             ],
             "y": [
-              -68,
-              34
+              -53,
+              38
             ]
           }
         ],
         "guides": [
           {
             "from": [
-              -60,
-              -56
+              -64,
+              -58
             ],
             "to": [
-              60,
-              -56
+              64,
+              -58
             ],
             "style": "dashed",
             "label": "plays read off the map"
@@ -214,8 +214,8 @@
           "source_quote": "Our customers come in for one thing",
           "source_ref": "shop owner's notes, sentence 2",
           "pos": [
-            20,
-            26
+            22,
+            28
           ]
         },
         {
@@ -228,7 +228,7 @@
           "source_ref": "shop owner's notes, sentence 2",
           "pos": [
             26,
-            15
+            18
           ]
         },
         {
@@ -240,8 +240,8 @@
           "source_quote": "The hot water comes from a kettle",
           "source_ref": "shop owner's notes, sentence 4",
           "pos": [
-            -6,
-            4
+            -17,
+            8
           ]
         },
         {
@@ -253,8 +253,8 @@
           "source_quote": "We buy the tea from a wholesaler",
           "source_ref": "shop owner's notes, sentence 5",
           "pos": [
-            34,
-            4
+            38,
+            8
           ]
         },
         {
@@ -266,8 +266,8 @@
           "source_quote": "the cups from a catering supplier; both arrive the next day and cost pennies",
           "source_ref": "shop owner's notes, sentence 5",
           "pos": [
-            46,
-            4
+            55,
+            8
           ]
         },
         {
@@ -279,8 +279,8 @@
           "source_quote": "The kettle is a commercial model we picked out of a catalogue, and we bought four of them.",
           "source_ref": "shop owner's notes, sentence 6",
           "pos": [
-            14,
-            -8
+            13,
+            -14
           ]
         },
         {
@@ -292,8 +292,8 @@
           "source_quote": "our staff spend the first hour of every morning boiling, refilling and descaling kettles",
           "source_ref": "shop owner's notes, sentence 8",
           "pos": [
-            -20,
-            -8
+            -22,
+            -25
           ]
         },
         {
@@ -305,8 +305,8 @@
           "source_quote": "the kettle needs water and power",
           "source_ref": "shop owner's notes, sentence 4",
           "pos": [
-            42,
-            -20
+            39,
+            -25
           ]
         },
         {
@@ -319,7 +319,7 @@
           "source_ref": "shop owner's notes, sentence 7",
           "pos": [
             50,
-            -31
+            -36
           ]
         },
         {
@@ -331,8 +331,8 @@
           "confidence": 0.6,
           "rationale": "Everything hot water depends on (kettle, water, power) is already Product or Commodity, and the only remaining custom part is an hour of manual labour a day. Wardley's climatic pattern is that such a component keeps industrialising; the counter-argument is that a tea shop's scale may never justify the plumbing, so this stays contestable.",
           "pos": [
-            20,
-            4
+            42,
+            -3
           ]
         },
         {
@@ -344,8 +344,8 @@
           "confidence": 0.7,
           "rationale": "The owner notes that every tea shop on the street uses the same equipment, which is the signature of a component whose feature differences no longer decide anything. That is the Product-to-Commodity transition in Wardley's terms.",
           "pos": [
-            40,
-            -9
+            46,
+            -14
           ]
         },
         {
@@ -357,8 +357,8 @@
           "confidence": 0.6,
           "rationale": "If hot water is heading for utility, the shop can stop being the thing that industrialises it and simply buy the industrialised version, converting a fixed morning labour cost into a metered one.",
           "pos": [
-            16,
-            -62
+            36,
+            -66
           ]
         },
         {
@@ -370,52 +370,52 @@
           "confidence": 0.65,
           "rationale": "The map has nothing in Genesis and almost everything in Product or Commodity, so no advantage can come from the lower value chain; the only uncharted space left is what the customer actually experiences.",
           "pos": [
-            -22,
-            -62
+            -36,
+            -66
           ]
         },
         {
           "id": "s1",
           "slot": "stage",
-          "label": "I Genesis",
+          "label": "Genesis",
           "text": "Genesis: the component is novel and uncertain; it is built by hand because nothing to buy exists yet.",
           "provenance": "schema",
           "pos": [
-            -45,
-            -50
+            -48,
+            -47
           ]
         },
         {
           "id": "s2",
           "slot": "stage",
-          "label": "II Custom-built",
+          "label": "Custom-built",
           "text": "Custom-built: the component is understood well enough to build deliberately, but every instance is bespoke.",
           "provenance": "schema",
           "pos": [
-            -15,
-            -50
+            -16,
+            -47
           ]
         },
         {
           "id": "s3",
           "slot": "stage",
-          "label": "III Product (+rental)",
+          "label": "Product/rental",
           "text": "Product: competing, substitutable versions can be bought or rented; the differences are features, not existence.",
           "provenance": "schema",
           "pos": [
-            15,
-            -50
+            16,
+            -47
           ]
         },
         {
           "id": "s4",
           "slot": "stage",
-          "label": "IV Commodity (+utility)",
+          "label": "Commodity/utility",
           "text": "Commodity or utility: the component is undifferentiated, metered and bought without thought.",
           "provenance": "schema",
           "pos": [
-            45,
-            -50
+            48,
+            -47
           ]
         }
       ],
@@ -656,38 +656,38 @@
         "axes": {
           "x": {
             "label": "Evolution  ·  uncharted → industrialised",
-            "min": -60,
-            "max": 60,
+            "min": -64,
+            "max": 64,
             "ticks": [
               {
-                "value": -45,
+                "value": -48,
                 "label": "I"
               },
               {
-                "value": -15,
+                "value": -16,
                 "label": "II"
               },
               {
-                "value": 15,
+                "value": 16,
                 "label": "III"
               },
               {
-                "value": 45,
+                "value": 48,
                 "label": "IV"
               }
             ]
           },
           "y": {
-            "label": "Value chain  ·  visibility to the user",
-            "min": -68,
-            "max": 34,
+            "label": "Value chain",
+            "min": -69,
+            "max": 38,
             "ticks": [
               {
-                "value": 30,
+                "value": 34,
                 "label": "visible"
               },
               {
-                "value": -45,
+                "value": -44,
                 "label": "invisible"
               }
             ]
@@ -695,59 +695,59 @@
         },
         "regions": [
           {
-            "label": "uncharted · unmodelled",
+            "label": "novel · uncertain",
             "x": [
-              -60,
-              -30
+              -64,
+              -32
             ],
             "y": [
-              -68,
-              34
+              -53,
+              38
             ]
           },
           {
-            "label": "emerging · learning",
+            "label": "bespoke · learning",
             "x": [
-              -30,
+              -32,
               0
             ],
             "y": [
-              -68,
-              34
+              -53,
+              38
             ]
           },
           {
-            "label": "converging · known",
+            "label": "common · defined",
             "x": [
               0,
-              30
+              32
             ],
             "y": [
-              -68,
-              34
+              -53,
+              38
             ]
           },
           {
-            "label": "industrialised · utility",
+            "label": "ubiquitous · metered",
             "x": [
-              30,
-              60
+              32,
+              64
             ],
             "y": [
-              -68,
-              34
+              -53,
+              38
             ]
           }
         ],
         "guides": [
           {
             "from": [
-              -60,
-              -56
+              -64,
+              -58
             ],
             "to": [
-              60,
-              -56
+              64,
+              -58
             ],
             "style": "dashed",
             "label": "plays read off the map"
@@ -769,7 +769,7 @@
           ],
           "pos": [
             22,
-            26
+            28
           ]
         },
         {
@@ -784,8 +784,8 @@
             "Poolside"
           ],
           "pos": [
-            -10,
-            26
+            -26,
+            28
           ]
         },
         {
@@ -798,7 +798,7 @@
           "source_ref": "Eiso Kant, L4426-L4428",
           "pos": [
             30,
-            15
+            18
           ]
         },
         {
@@ -813,8 +813,8 @@
             "Poolside"
           ],
           "pos": [
-            -18,
-            15
+            -28,
+            18
           ]
         },
         {
@@ -830,7 +830,7 @@
           ],
           "pos": [
             12,
-            4
+            8
           ]
         },
         {
@@ -845,8 +845,8 @@
             "Poolside"
           ],
           "pos": [
-            -22,
-            4
+            -18,
+            8
           ]
         },
         {
@@ -858,8 +858,8 @@
           "source_quote": "You're just selling your tokens behind an API, and that's your commodity business.",
           "source_ref": "Eiso Kant, L4238",
           "pos": [
-            46,
-            -5
+            42,
+            8
           ]
         },
         {
@@ -874,8 +874,8 @@
             "Poolside"
           ],
           "pos": [
-            22,
-            -15
+            8,
+            -1
           ]
         },
         {
@@ -890,8 +890,8 @@
             "Poolside"
           ],
           "pos": [
-            -48,
-            -15
+            -44,
+            -10
           ]
         },
         {
@@ -908,8 +908,8 @@
             "Nvidia"
           ],
           "pos": [
-            14,
-            -25
+            22,
+            -19
           ]
         },
         {
@@ -921,8 +921,8 @@
           "source_quote": "The actual bottleneck is bringing it all together and actually having powered shells like data centers online. Because, well, last year I could call someone for 50 megawatts and I could kind of, you know, get it within six to nine months. If I needed to call someone for 250 megawatts, guys, there's no one you can call.",
           "source_ref": "Eiso Kant, L4380-L4384",
           "pos": [
-            -16,
-            -34
+            -26,
+            -28
           ]
         },
         {
@@ -937,8 +937,8 @@
             "Poolside"
           ],
           "pos": [
-            -44,
-            -43
+            -42,
+            -37
           ]
         },
         {
@@ -950,8 +950,8 @@
           "source_quote": "There's a lot of like 400-kilovolt electricity that comes off the grid. There's a lot of sources of energy in the United States.",
           "source_ref": "Eiso Kant, L4374-L4376",
           "pos": [
-            46,
-            -43
+            50,
+            -37
           ]
         },
         {
@@ -966,8 +966,8 @@
             "Poolside"
           ],
           "pos": [
-            -15,
-            -62
+            40,
+            -66
           ]
         },
         {
@@ -982,8 +982,8 @@
             "Poolside"
           ],
           "pos": [
-            52,
-            -17
+            48,
+            -1
           ]
         },
         {
@@ -998,8 +998,8 @@
             "Poolside"
           ],
           "pos": [
-            8,
-            -35
+            10,
+            -28
           ]
         },
         {
@@ -1015,8 +1015,8 @@
             "Nvidia"
           ],
           "pos": [
-            34,
-            -27
+            47,
+            -19
           ]
         },
         {
@@ -1032,14 +1032,14 @@
             "Poolside"
           ],
           "pos": [
-            8,
-            -62
+            -40,
+            -66
           ]
         },
         {
           "id": "pl3",
           "slot": "play",
-          "label": "Productise the deployment layer",
+          "label": "Productise deployment",
           "text": "If the model layer is a commodity, the defensible position is the bespoke layer above it: the stack that gets a frontier model into an air-gapped site, a GovCloud, an ATO, a workstation or a Humvee.",
           "provenance": "derived",
           "confidence": 0.6,
@@ -1049,52 +1049,52 @@
             "Poolside"
           ],
           "pos": [
-            24,
-            -62
+            -2,
+            -66
           ]
         },
         {
           "id": "s1",
           "slot": "stage",
-          "label": "I Genesis",
+          "label": "Genesis",
           "text": "Genesis: the component is novel and uncertain; it is built by hand because nothing to buy exists yet.",
           "provenance": "schema",
           "pos": [
-            -45,
-            -50
+            -48,
+            -47
           ]
         },
         {
           "id": "s2",
           "slot": "stage",
-          "label": "II Custom-built",
+          "label": "Custom-built",
           "text": "Custom-built: the component is understood well enough to build deliberately, but every instance is bespoke.",
           "provenance": "schema",
           "pos": [
-            -15,
-            -50
+            -16,
+            -47
           ]
         },
         {
           "id": "s3",
           "slot": "stage",
-          "label": "III Product (+rental)",
+          "label": "Product/rental",
           "text": "Product: competing, substitutable versions can be bought or rented; the differences are features, not existence.",
           "provenance": "schema",
           "pos": [
-            15,
-            -50
+            16,
+            -47
           ]
         },
         {
           "id": "s4",
           "slot": "stage",
-          "label": "IV Commodity (+utility)",
+          "label": "Commodity/utility",
           "text": "Commodity or utility: the component is undifferentiated, metered and bought without thought.",
           "provenance": "schema",
           "pos": [
-            45,
-            -50
+            48,
+            -47
           ]
         }
       ],
