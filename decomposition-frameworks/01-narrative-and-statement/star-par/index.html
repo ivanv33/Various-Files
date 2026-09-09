@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Framework graph</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --plane: #0d0d0d;      /* page plane */
+    --surface: #1a1a19;    /* chart surface (canvas background) */
+    --card: #202020;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --muted: #898781;
+    --hairline: #2c2c2a;
+    --baseline: #383835;
+    --accent: #3987e5;
+    --schema: #898781;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--plane); color: var(--ink-2); font: 14px/1.45 var(--sans); }
+  a { color: var(--ink-2); }
+  a:hover { color: var(--ink); }
+  kbd { font: 11px var(--mono); color: var(--muted); border: 1px solid var(--hairline); border-radius: 3px; padding: 0 4px; margin-left: 4px; }
+  button, .seg button { font: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  body { display: grid; grid-template-rows: auto 1fr; height: 100vh; }
+  header.bar { display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--hairline); background: var(--plane); }
+  .title { display: flex; flex-direction: column; min-width: 220px; }
+  .eyebrow { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-size: 17px; font-weight: 600; margin: 2px 0 0; color: var(--ink); letter-spacing: -.01em; }
+  .links { font-size: 12px; margin-top: 2px; display: flex; gap: 12px; }
+  .links a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--hairline); }
+  .links a:hover { color: var(--ink); border-color: var(--muted); }
+  .seg { display: inline-flex; border: 1px solid var(--hairline); border-radius: 6px; overflow: hidden; }
+  .seg button { background: transparent; color: var(--ink-2); border: 0; padding: 6px 12px; cursor: pointer; }
+  .seg button + button { border-left: 1px solid var(--hairline); }
+  .seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
+  .toggles { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; margin-left: auto; font-size: 13px; }
+  .toggles label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; }
+  .toggles input { accent-color: var(--accent); }
+  .toggles button { background: transparent; color: var(--ink-2); border: 1px solid var(--hairline); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+  .toggles button:hover { color: var(--ink); border-color: var(--muted); }
+
+  main { position: relative; overflow: hidden; background: var(--surface); }
+  #stage { position: absolute; inset: 0; }
+  #stage canvas { display: block; width: 100% !important; height: 100% !important; }
+  #labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  #labels * { pointer-events: none; }
+  .nlabel { font: 12px/1.2 var(--sans); color: var(--ink-2); white-space: nowrap; transform: translateY(14px); text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6); }
+  .nlabel.derived { color: var(--ink-2); font-style: italic; }
+  .nlabel.schema { color: var(--muted); font: 11px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .nlabel .g { font-size: 9px; margin-right: 4px; vertical-align: 1px; }
+  .elabel { font: 11px var(--mono); color: var(--muted); background: var(--surface); padding: 0 4px; border-radius: 3px; }
+  .axlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .tick { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+  .rlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .glabel { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+
+  #tooltip { position: absolute; pointer-events: none; display: none; max-width: 300px; background: var(--card); border: 1px solid var(--hairline); border-radius: 6px; padding: 8px 10px; font-size: 12px; color: var(--ink-2); box-shadow: 0 6px 20px rgba(0,0,0,.5); z-index: 5; }
+  #tooltip .t-label { color: var(--ink); font-weight: 600; margin-bottom: 2px; }
+  #tooltip .t-meta { font: 11px var(--mono); color: var(--muted); }
+
+  .card { position: absolute; background: rgba(32,32,32,.94); border: 1px solid var(--hairline); border-radius: 8px; backdrop-filter: blur(6px); }
+  #legend { left: 12px; bottom: 12px; width: 240px; max-height: calc(100% - 24px); overflow: auto; padding: 10px 12px; font-size: 12px; }
+  #legend h2 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 8px 0 6px; }
+  #legend h2:first-child { margin-top: 0; }
+  .slot-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
+  .chip { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .slot-row .n { margin-left: auto; font: 11px var(--mono); color: var(--muted); }
+  .slot-row .tp { font: 10px var(--mono); color: var(--muted); }
+  .key-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; color: var(--ink-2); }
+  .key-row .sym { width: 14px; text-align: center; color: var(--ink); }
+  .stats { font: 11px/1.6 var(--mono); color: var(--muted); border-top: 1px solid var(--hairline); margin-top: 8px; padding-top: 6px; }
+  .stats b { color: var(--ink-2); font-weight: 500; }
+
+  #note { right: 12px; top: 12px; width: 300px; padding: 10px 12px; font-size: 12px; }
+  #note h3 { margin: 0 0 4px; font-size: 13px; color: var(--ink); font-weight: 600; }
+  #note p { margin: 0 0 6px; }
+  #note .src { font: 11px var(--mono); color: var(--muted); word-break: break-word; }
+
+  #panel { right: 12px; top: 12px; bottom: 12px; width: 340px; padding: 12px 14px; overflow: auto; font-size: 13px; z-index: 4; }
+  #panel[hidden] { display: none; }
+  #panel .p-head { display: flex; align-items: flex-start; gap: 8px; }
+  #panel .p-slot { font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  #panel h3 { margin: 4px 0 6px; font-size: 15px; color: var(--ink); font-weight: 600; line-height: 1.3; }
+  #panel .close { margin-left: auto; background: transparent; border: 1px solid var(--hairline); color: var(--ink-2); border-radius: 6px; width: 28px; height: 28px; cursor: pointer; flex: none; }
+  .badge { display: inline-block; font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; border: 1px solid var(--muted); color: var(--ink); }
+  .badge.fact { background: var(--ink-2); color: var(--plane); border-color: var(--ink-2); }
+  .badge.derived { border-style: dashed; }
+  .badge.schema { color: var(--muted); }
+  #panel p { margin: 8px 0; }
+  #panel blockquote { margin: 8px 0; padding: 6px 10px; border-left: 2px solid var(--muted); color: var(--ink-2); font-style: italic; }
+  #panel .ref, #panel .conf { font: 11px var(--mono); color: var(--muted); }
+  #panel h4 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 12px 0 4px; }
+  #panel ul { margin: 0; padding-left: 16px; }
+  #panel li { margin: 2px 0; }
+  #panel li .rel { font: 11px var(--mono); color: var(--muted); }
+  .confbar { height: 3px; background: var(--hairline); border-radius: 2px; margin: 4px 0 8px; overflow: hidden; }
+  .confbar i { display: block; height: 100%; background: var(--ink-2); }
+
+  #fallback { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--muted); padding: 24px; }
+  #fallback[hidden] { display: none; }
+  #fallback code { font: 12px var(--mono); color: var(--ink-2); }
+
+  @media (max-width: 820px) {
+    #legend { width: min(240px, 60%); max-height: 42%; font-size: 11px; }
+    #note { display: none; }
+    #panel { left: 12px; width: auto; top: auto; max-height: 60%; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<header class="bar">
+  <div class="title">
+    <span class="eyebrow" id="category"></span>
+    <h1 id="name">Framework graph</h1>
+    <div class="links"><a id="readme" href="./README.md">README</a><a id="wiki" href="#" target="_blank" rel="noopener">Wikipedia</a><a id="up" href="../../index.html">All frameworks</a></div>
+  </div>
+  <div class="seg" id="examples" role="group" aria-label="Example"></div>
+  <div class="toggles">
+    <label><input type="checkbox" id="t-derived" checked> LLM-derived<kbd>d</kbd></label>
+    <label><input type="checkbox" id="t-grounding"> grounding links<kbd>g</kbd></label>
+    <label><input type="checkbox" id="t-labels" checked> labels</label>
+    <label><input type="checkbox" id="t-rotate"> auto-rotate</label>
+    <button id="reset" type="button">Reset view<kbd>r</kbd></button>
+  </div>
+</header>
+<main>
+  <div id="stage"></div>
+  <div id="labels"></div>
+  <div id="fallback">Loading Three.js from jsDelivr… <br><small>This page needs internet access for <code>three@0.186.0</code>. The data itself is embedded.</small></div>
+  <aside id="legend" class="card" aria-label="Legend"></aside>
+  <aside id="note" class="card" aria-live="polite"></aside>
+  <aside id="panel" class="card" hidden aria-label="Node details"></aside>
+  <div id="tooltip" role="tooltip"></div>
+</main>
+
+<!--__DATA_START__-->
+<script id="graph-data" type="application/json">{"framework":{"slug":"star-par","name":"STAR / PAR","category":"01-narrative-and-statement","wikipedia":"https://en.wikipedia.org/wiki/Situation,_task,_action,_result","one_liner":"Takes a completed event apart into the Situation the actor faced, the Task they owned, the Actions they took and the Result those actions produced, so that agency and causal attribution have to be stated rather than implied."},"slots":[{"id":"situation","label":"Situation","description":"The context before anything was done: who was involved, where, what had just happened and what was at stake. Normally stated, because narrators open with it.","typical_provenance":"fact"},{"id":"task","label":"Task","description":"The objective or responsibility the actor owned in that situation: what had to be achieved, by when, and why it mattered. Often implied by the situation and the actions rather than said.","typical_provenance":"either"},{"id":"action","label":"Action","description":"What the actor actually did, as concrete first-person steps in order; the slot that exposes agency ('I' rather than 'we').","typical_provenance":"fact"},{"id":"result","label":"Result","description":"What happened afterwards, measured where possible, and to which action it is attributed. The outcome is usually stated; the attribution often is not.","typical_provenance":"fact"},{"id":"problem","label":"Problem (PAR)","description":"PAR variant: Situation and Task collapsed into a single statement of the problem the actor faced. Used here as a derived compression of the stated situation and task.","typical_provenance":"either"}],"relations":[{"id":"sets_up","label":"sets up","description":"situation gives rise to the task"},{"id":"motivates","label":"motivates","description":"task motivates the action"},{"id":"produces","label":"produces","description":"action produces the result"},{"id":"causes","label":"causes","description":"generic causal attribution between any two nodes"}],"examples":[{"id":"classic","kind":"classic","title":"Clearing a support backlog before renewals (interview answer)","summary":"A behavioural-interview answer in textbook STAR order: a support lead describes a billing incident, the brief she was given, three concrete actions and the measured outcome. The graph separates what she states from what an interviewer has to infer, above all which action produced which result.","source":{"type":"text","title":"Interview answer: tell me about a time you delivered under pressure","text":"In my second year as support team lead at a mid-sized software company, we shipped a billing update in March that double-charged about four hundred customers. Within two days, complaints about the charge had pushed the ticket queue from a normal sixty open tickets to over nine hundred, and our average first response time went from four hours to three days. Two of my six agents were on leave that month. I was asked to get the queue back under control before the quarterly renewals in April. First, I wrote a one-page macro that explained the bug and the refund timeline, and I had it sent proactively to all four hundred affected accounts before they wrote in; new tickets fell by half the next day. Second, I split the queue so that the two most experienced agents took only refund cases and the rest handled everything else. Third, I asked finance to process the refunds in one batch instead of case by case. By the end of the third week the queue was back under eighty tickets and the first response time was under five hours. Our renewal rate in April was 94 percent, one point higher than the previous quarter. Afterwards we made the proactive notice a standard step for any billing incident.","attribution":"Written for this library as a behavioural-interview answer, the setting in which STAR was popularised (DDI's Targeted Selection); the company and figures are invented."},"layout":{"mode":"tree","direction":"right"},"nodes":[{"id":"s1","slot":"situation","label":"Billing update double-charged ~400","text":"A billing update shipped in March double-charged about four hundred customers.","provenance":"fact","source_quote":"we shipped a billing update in March that double-charged about four hundred customers","source_ref":"sentence 1","level":0},{"id":"s2","slot":"situation","label":"Queue: 60 to over 900 in two days","text":"Within two days, complaints about the charge pushed the open-ticket queue from a normal sixty to over nine hundred.","provenance":"fact","source_quote":"complaints about the charge had pushed the ticket queue from a normal sixty open tickets to over nine hundred","source_ref":"sentence 2","level":0},{"id":"s3","slot":"situation","label":"First response: 4 hours to 3 days","text":"Average first response time went from four hours to three days.","provenance":"fact","source_quote":"our average first response time went from four hours to three days","source_ref":"sentence 2","level":0},{"id":"s4","slot":"situation","label":"Two of six agents on leave","text":"Two of the six support agents were on leave that month.","provenance":"fact","source_quote":"Two of my six agents were on leave that month","source_ref":"sentence 3","level":0},{"id":"s5","slot":"situation","label":"Demand 15x, capacity two-thirds","text":"Ticket volume rose roughly fifteen-fold while the team ran at two-thirds of its normal capacity.","provenance":"derived","confidence":0.9,"rationale":"Arithmetic on stated figures (900 against 60 tickets, four of six agents); the speaker never states the ratio, but it is what makes the situation critical rather than merely busy.","level":0},{"id":"t1","slot":"task","label":"Control the queue before renewals","text":"The lead was asked to get the queue back under control before the quarterly renewals in April.","provenance":"fact","source_quote":"I was asked to get the queue back under control before the quarterly renewals in April","source_ref":"sentence 4","level":1},{"id":"t2","slot":"task","label":"Real objective: protect renewals","text":"The underlying objective was to protect April renewal revenue from the affected customers, not merely to shrink the queue.","provenance":"derived","confidence":0.8,"rationale":"The deadline is tied to renewals and the speaker reports the renewal rate as a result; the text never states retention as the goal, only the queue.","level":1},{"id":"p1","slot":"problem","label":"Problem: incident, short staff, renewals","text":"PAR compression: a self-inflicted billing incident flooded a short-staffed support team a few weeks before quarterly renewals.","provenance":"derived","confidence":0.85,"rationale":"PAR collapses Situation and Task into one problem statement; choosing which facts constitute the problem (the incident, the staffing gap, the renewal deadline) is the analyst's framing, not the speaker's words.","level":0},{"id":"a1","slot":"action","label":"Macro sent proactively to 400 accounts","text":"Wrote a one-page macro explaining the bug and the refund timeline and had it sent proactively to all four hundred affected accounts before they wrote in.","provenance":"fact","source_quote":"I wrote a one-page macro that explained the bug and the refund timeline, and I had it sent proactively to all four hundred affected accounts before they wrote in","source_ref":"sentence 5","level":2},{"id":"a2","slot":"action","label":"Split queue: experts take refunds","text":"Split the queue so that the two most experienced agents took only refund cases and the rest handled everything else.","provenance":"fact","source_quote":"I split the queue so that the two most experienced agents took only refund cases and the rest handled everything else","source_ref":"sentence 6","level":2},{"id":"a3","slot":"action","label":"Asked finance to batch refunds","text":"Asked finance to process the refunds in one batch instead of case by case.","provenance":"fact","source_quote":"I asked finance to process the refunds in one batch instead of case by case","source_ref":"sentence 7","level":2},{"id":"r0","slot":"result","label":"New tickets halved next day","text":"New tickets fell by half the day after the proactive notice went out.","provenance":"fact","source_quote":"new tickets fell by half the next day","source_ref":"sentence 5","level":3},{"id":"r1","slot":"result","label":"Queue under 80 by week three","text":"By the end of the third week the queue was back under eighty tickets.","provenance":"fact","source_quote":"By the end of the third week the queue was back under eighty tickets","source_ref":"sentence 8","level":3},{"id":"r2","slot":"result","label":"First response under five hours","text":"By the end of the third week the first response time was under five hours.","provenance":"fact","source_quote":"the first response time was under five hours","source_ref":"sentence 8","level":3},{"id":"r3","slot":"result","label":"April renewals 94%, up one point","text":"The renewal rate in April was 94 percent, one point higher than the previous quarter.","provenance":"fact","source_quote":"Our renewal rate in April was 94 percent, one point higher than the previous quarter","source_ref":"sentence 9","level":3},{"id":"r4","slot":"result","label":"Proactive notice made standard","text":"The proactive notice became a standard step for any billing incident.","provenance":"fact","source_quote":"we made the proactive notice a standard step for any billing incident","source_ref":"sentence 10","level":3},{"id":"r5","slot":"result","label":"Uplift attributable to response?","text":"The part of the April renewal uplift that the incident response produced, if any; the attribution is the speaker's implication, not a stated measurement.","provenance":"derived","confidence":0.4,"rationale":"The speaker places the renewal figure after the actions, inviting the listener to credit them, but gives no base rate or comparison; a one-point move could be normal quarter-to-quarter noise.","level":3}],"edges":[{"id":"c1","from":"s1","to":"s2","relation":"causes","provenance":"fact","source_quote":"complaints about the charge had pushed the ticket queue"},{"id":"c2","from":"s2","to":"t1","relation":"sets_up","provenance":"fact","source_quote":"I was asked to get the queue back under control"},{"id":"c3","from":"t1","to":"a1","relation":"motivates","provenance":"fact","source_quote":"First, I wrote a one-page macro"},{"id":"c4","from":"t1","to":"a2","relation":"motivates","provenance":"fact","source_quote":"Second, I split the queue"},{"id":"c5","from":"t1","to":"a3","relation":"motivates","provenance":"fact","source_quote":"Third, I asked finance to process the refunds"},{"id":"c6","from":"a1","to":"r0","relation":"produces","provenance":"fact","source_quote":"before they wrote in; new tickets fell by half the next day"},{"id":"c7","from":"a1","to":"r4","relation":"produces","provenance":"fact","source_quote":"Afterwards we made the proactive notice a standard step"},{"id":"c8","from":"s3","to":"t1","relation":"sets_up","provenance":"derived","confidence":0.7,"rationale":"'Back under control' names the queue; the response-time collapse is the same problem seen from the customer's side, but the speaker does not name it as part of the brief."},{"id":"c9","from":"s4","to":"a2","relation":"causes","provenance":"derived","confidence":0.5,"rationale":"With a third of the team out, splitting the queue reads as a response to the staffing gap; the speaker never connects the two."},{"id":"c10","from":"s5","to":"t1","relation":"sets_up","provenance":"derived","confidence":0.6,"rationale":"The computed gap between demand and capacity is what 'back under control' had to close."},{"id":"c11","from":"t2","to":"a1","relation":"motivates","provenance":"derived","confidence":0.65,"rationale":"The proactive notice reaches every affected account before renewal; it serves retention, not only queue size."},{"id":"c12","from":"p1","to":"a1","relation":"motivates","provenance":"derived","confidence":0.7,"rationale":"PAR reading: the problem statement, not the brief, is what the first action answers."},{"id":"c13","from":"r0","to":"r1","relation":"causes","provenance":"derived","confidence":0.75,"rationale":"Halving inbound is the largest lever on the backlog; the text credits no single action with the week-three figure."},{"id":"c14","from":"a2","to":"r2","relation":"produces","provenance":"derived","confidence":0.6,"rationale":"Specialising the experienced agents on refund cases plausibly cut handling time; the speaker lists the action without attributing the response-time result to it."},{"id":"c15","from":"a3","to":"r1","relation":"produces","provenance":"derived","confidence":0.5,"rationale":"A single refund batch closes the refund tickets together; no result is attributed to it in the text."},{"id":"c16","from":"a1","to":"r5","relation":"produces","provenance":"derived","confidence":0.4,"rationale":"Of the three actions, the proactive notice is the one most plausibly felt by renewing customers."},{"id":"c17","from":"s5","to":"s2","relation":"supported_by","provenance":"derived","confidence":0.9},{"id":"c18","from":"s5","to":"s4","relation":"supported_by","provenance":"derived","confidence":0.9},{"id":"c19","from":"t2","to":"t1","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"c20","from":"t2","to":"r3","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"c21","from":"p1","to":"s1","relation":"supported_by","provenance":"derived","confidence":0.85},{"id":"c22","from":"p1","to":"s4","relation":"supported_by","provenance":"derived","confidence":0.85},{"id":"c23","from":"p1","to":"t1","relation":"supported_by","provenance":"derived","confidence":0.85},{"id":"c24","from":"r5","to":"r3","relation":"supported_by","provenance":"derived","confidence":0.4}]},{"id":"tbpn","kind":"tbpn","title":"Windsurf's wild weekend: selling the company Google left behind","summary":"Three days after Google DeepMind hired away Windsurf's founders, the interim CEO Jeff Wang and Cognition's CEO Scott Wu tell how the remaining company was sold over a weekend: what they faced, what Wang set out to do, what each of them did hour by hour, and what the team got. Speaker-stated attribution sits next to attribution only an analyst can supply.","source":{"type":"transcript","file":"tbpn-transcripts/transcripts/2025-07-14_windsurfs-wild-weekend-spacex-invests-2b-into-xai-zucks-ai-data-supercluster-jeff-huber-scott-wu-jeff-wang-carl-pei-garrett-mccurrach.md","date":"2025-07-14","episode_title":"Windsurf's Wild Weekend, SpaceX Invests $2B into xAI, Zuck's AI Data Supercluster (Jeff Huber, Scott Wu, Jeff Wang, Carl Pei, Garrett McCurrach)","url":"https://podscripts.co/podcasts/tbpn-live/windsurfs-wild-weekend-spacex-invests-2b-into-xai-zucks-ai-data-supercluster-jeff-huber-scott-wu-jeff-wang-carl-pei-garrett-mccurrach"},"why_this_episode":"A completed 72-hour event narrated by the two people who did it, three days after it happened. The Situation is on the record (founders and engineers hired by Google DeepMind, a commercial team left behind and being poached, hundreds of angry employees), Wang states his Task in so many words ('my immediate priority was...'), the Actions are timed (24 hours of calls, a next-day meeting with a paper agreement, signing two hours before the announcement) and the Results are measurable and read from the announcement (100% participation, cliffs waived, accelerated vesting) then confirmed on air (standing ovation, product and GTM team intact). Some causal links are stated by the speakers and some are not, which is exactly the distinction STAR exists to force.","idea_bearing_slot":"task","layout":{"mode":"tree","direction":"right"},"nodes":[{"id":"s1","slot":"situation","label":"Founders, engineers hired by DeepMind","text":"Google DeepMind hired Windsurf's founders Varun Mohan and Douglas Chen and part of its engineering team, in a deal that left the rest of the company behind.","provenance":"fact","source_quote":"very excited to welcome Windsurf AI founders, Mohan and Douglas Chen, and some of the brilliant Windsurf engineering team to Google DeepMind","source_ref":"host reading Demis Hassabis's post, ~line 78","entities":["Windsurf","Google DeepMind","Varun Mohan","Douglas Chen"],"level":0},{"id":"s2","slot":"situation","label":"Left behind: sales, enterprise, GTM","text":"What remained at Windsurf after the founders left was the commercial organisation: sales, enterprise, account management and go-to-market.","provenance":"fact","source_quote":"the people that got left behind at Windsurf were sales, enterprise, account management, GTM","source_ref":"host, ~line 348","entities":["Windsurf"],"level":0},{"id":"s3","slot":"situation","label":"Hundreds of angry employees","text":"Jeff Wang was now running a company of hundreds of employees who were angry about what had just happened.","provenance":"fact","source_quote":"you now run a company with hundreds of employees that are angry about what just happened","source_ref":"host to Jeff Wang, ~line 2158","entities":["Windsurf","Jeff Wang"],"level":0},{"id":"s4","slot":"situation","label":"A tough Friday; nobody wanted his shoes","text":"Wang calls the Friday of the founders' departure a tough one; nobody would have wanted to be in his position.","provenance":"fact","source_quote":"It was a tough it was a tough Friday, I'll say. I don't think anybody would want to be in my shoes on Friday.","source_ref":"Jeff Wang, ~line 5398","entities":["Jeff Wang"],"level":0},{"id":"s5","slot":"situation","label":"'Just a shell' vs code, product, team","text":"Outsiders said what was left was just a shell; Cognition looked and saw the code, the product, the customers and, most importantly, the whole team.","provenance":"fact","source_quote":"people were saying, well, the thing that's left is just a shell. And we looked at it and we said, well, actually, I don't know if that's right. There's the code, there's the product, there's the customers, and most importantly, there's the whole team","source_ref":"Scott Wu, ~line 5428","entities":["Windsurf","Cognition","Scott Wu"],"level":0},{"id":"s6","slot":"situation","label":"Cognition over-focused on engineers","text":"Scott Wu says Cognition tends to over-focus on software engineers because that is who they are and how they think.","provenance":"fact","source_quote":"we tend to over-focus on software engineers because it's just who we are and how we think about it","source_ref":"Scott Wu, ~line 5498","entities":["Cognition","Scott Wu"],"level":0},{"id":"s7","slot":"situation","label":"Windsurf had built out all functions","text":"Windsurf's team had built out sales, deployed engineering, enterprise work, infrastructure, marketing, operations and finance.","provenance":"fact","source_quote":"the whole team have built out a really great kind of suite of all the different kinds different functions, right? Sales, deployed engineering, enterprise work, infrastructure, marketing, operations, and so on, finance, et cetera.","source_ref":"Scott Wu, ~line 5510","entities":["Windsurf"],"level":0},{"id":"s8","slot":"situation","label":"Other teams circling the GTM team","text":"Over the weekend other companies were circling, wanting to hire away Windsurf's go-to-market team.","provenance":"fact","source_quote":"over the weekend, I'd heard other teams that were kind of circling, wanting to hoover up their GTM team","source_ref":"host, ~line 352","entities":["Windsurf"],"level":0},{"id":"t1","slot":"task","label":"Priority: many options, paths forward","text":"Wang's immediate priority was to get many options on the table and have many paths forward, and to give the team a path immediately because it was happening now.","provenance":"fact","source_quote":"My immediate priority was just to get a lot of options on the table and to have a lot of paths forward. I had to tell the team like, this is the path forward immediately because this is happening now.","source_ref":"Jeff Wang, ~line 5546","entities":["Jeff Wang","Windsurf"],"level":1},{"id":"t2","slot":"task","label":"Keep team and customers from scattering","text":"The objective behind the options was to find a home for the whole company before the sales and go-to-market staff accepted the offers circling them.","provenance":"derived","confidence":0.75,"rationale":"Follows from the stated facts that other teams were trying to hire away the GTM team and that hundreds of employees were angry; Wang states his priority as options and paths, never as retention.","entities":["Windsurf"],"level":1},{"id":"t3","slot":"task","label":"Underserved: GTM orgs for AI labs","text":"Research-heavy AI labs that over-index on engineers need complete go-to-market organisations and may buy them whole rather than build them; supplying or building GTM organisations for labs is an underserved need.","provenance":"derived","confidence":0.55,"rationale":"Generalises Wu's admission that Cognition over-focuses on engineers and his list of the functions Windsurf had built; one deal is the evidence, and Wu calls the fit unintentional.","entities":["Cognition","Windsurf"],"level":1},{"id":"t4","slot":"task","label":"Underserved: default staff protections","text":"Employees left behind when founders are hired away need protection terms (accelerated vesting, waived cliffs) by default rather than an improvised rescue; deal-structure norms or tooling for this are an underserved need.","provenance":"derived","confidence":0.5,"rationale":"The angry team and the terms Cognition had to invent within days show the gap; the hosts debate leaving money for unvested options as a norm elsewhere in the episode, but nobody states it as a product or market.","entities":["Windsurf","Cognition"],"level":1},{"id":"p1","slot":"problem","label":"Problem: no founders, poachers, no time","text":"PAR framing: a funded company with product, customers and a commercial team but no founders, an angry staff and competitors poaching, with days rather than weeks to find an answer.","provenance":"derived","confidence":0.8,"rationale":"Collapses the stated situation and Wang's stated priority into one problem statement; which facts count as the problem and the time bound are the analyst's framing.","entities":["Windsurf"],"level":0},{"id":"a1","slot":"action","label":"Talked to many AI companies","text":"Wang talked to a lot of teams, among them many AI and foundation-model companies.","provenance":"fact","source_quote":"we talked to a lot of teams out there. There's a lot of AI companies, foundational companies.","source_ref":"Jeff Wang, ~line 5402","entities":["Jeff Wang"],"level":2},{"id":"a2","slot":"action","label":"24 hours on the phone after all-hands","text":"After the all-hands, Wang was on the phone for roughly 24 hours nonstop.","provenance":"fact","source_quote":"I was on the phone for pretty much 24 hours, nonstop on my phone after the all hands","source_ref":"Jeff Wang, ~line 5562","entities":["Jeff Wang"],"level":2},{"id":"a3","slot":"action","label":"Met Scott next day; paper agreement","text":"Wang and Wu worked fast: they met at Windsurf's office the next day and Wu brought the agreement on paper to sign.","provenance":"fact","source_quote":"me and Scott, we worked really fast. We met at our office the next day. He even brought in everything on a piece of paper to sign.","source_ref":"Jeff Wang, ~line 5566","entities":["Jeff Wang","Scott Wu"],"level":2},{"id":"a4","slot":"action","label":"Signed 1-2 hours before announcing","text":"The documents were signed one or two hours before the announcement went out.","provenance":"fact","source_quote":"we got things signed like one or two hours before we were able to put out the announcement","source_ref":"Scott Wu, ~line 5588","entities":["Cognition","Windsurf"],"level":2},{"id":"a5","slot":"action","label":"Chose Cognition: 'done in my mind'","text":"After talking to Scott Wu and the Cognition team the decision was made; Wang adds that Cognition was the only other team they thought was smarter than their own.","provenance":"fact","source_quote":"after talking to Scott and the Cognition team, it was done in my mind","source_ref":"Jeff Wang, ~line 5406","entities":["Cognition","Scott Wu","Jeff Wang"],"level":2},{"id":"a6","slot":"action","label":"Made the deal deliberately generous","text":"Wang, Wu and the team went out of their way to make the acquisition very generous to employees.","provenance":"fact","source_quote":"we really went out of our way to make this a very generous acquisition","source_ref":"Jeff Wang, ~line 5664","entities":["Jeff Wang","Scott Wu"],"level":2},{"id":"r1","slot":"result","label":"Acquired by Cognition","text":"Windsurf is being acquired by Cognition in what Wang calls a real acquisition.","provenance":"fact","source_quote":"this is a this is a real acquisition. Okay, we are being acquired by cognition","source_ref":"Jeff Wang, ~line 5392","entities":["Windsurf","Cognition"],"level":3},{"id":"r2","slot":"result","label":"100% participate; cliffs waived","text":"All Windsurf employees participate financially, vesting cliffs are waived and, per the same announcement, vesting is fully accelerated.","provenance":"fact","source_quote":"100% of windsurf employees will participate financially they will also have all their vesting cliffs waves","source_ref":"Cognition's announcement read on air, ~line 280","entities":["Windsurf","Cognition"],"level":3},{"id":"r3","slot":"result","label":"Standing ovation; sentiment shifted","text":"At the Monday all-hands the team cheered with something like a standing ovation; the sentiment has shifted and the team is more fired up.","provenance":"fact","source_quote":"They kind of cheered for like a standing ovation or something. So I think the sentiment has shifted. The team is even more fired up to go.","source_ref":"Jeff Wang, ~line 5676","entities":["Windsurf"],"level":3},{"id":"r4","slot":"result","label":"Product and GTM intact, plus Devin","text":"The whole product and the GTM team are still there, and the team now also has Devin to sell.","provenance":"fact","source_quote":"The whole product is still there. All the things we had and the GTM team is still there. And now they also have Devon to sell as well.","source_ref":"Jeff Wang, ~line 5682","entities":["Windsurf","Cognition","Devin"],"level":3},{"id":"r5","slot":"result","label":"Deal done in a couple of days","text":"The deal was done in just a couple of days.","provenance":"fact","source_quote":"the fact that they were able to get this deal done in just a couple of days is fantastic","source_ref":"host, ~line 358","entities":["Windsurf","Cognition"],"level":3},{"id":"r6","slot":"result","label":"Speed kept the GTM team from leaving","text":"Closing within days is what preserved the go-to-market team as an asset; a slower process would have lost people to the teams circling them.","provenance":"derived","confidence":0.65,"rationale":"Combines three stated facts (competitors circling, a couple-of-days close, the team still there); the counterfactual that a slow process would have lost them is nobody's statement.","entities":["Windsurf"],"level":3}],"edges":[{"id":"e1","from":"s1","to":"t1","relation":"sets_up","provenance":"fact","source_quote":"this is the path forward immediately because this is happening now"},{"id":"e2","from":"s3","to":"t1","relation":"sets_up","provenance":"fact","source_quote":"you were all of a sudden managing a team of hundreds of people that probably all wanted your time and attention"},{"id":"e3","from":"t1","to":"a1","relation":"motivates","provenance":"fact","source_quote":"My immediate priority was just to get a lot of options on the table"},{"id":"e4","from":"t1","to":"a2","relation":"motivates","provenance":"fact","source_quote":"What is the best use of my time? I can tell you I was on the phone for pretty much 24 hours"},{"id":"e5","from":"a1","to":"a5","relation":"causes","provenance":"fact","source_quote":"after talking to Scott and the Cognition team, it was done in my mind"},{"id":"e6","from":"a4","to":"r1","relation":"produces","provenance":"fact","source_quote":"we got things signed like one or two hours before we were able to put out the announcement"},{"id":"e7","from":"a6","to":"r2","relation":"produces","provenance":"fact","source_quote":"we really went out of our way to make this a very generous acquisition"},{"id":"e8","from":"a3","to":"r5","relation":"produces","provenance":"fact","source_quote":"me and Scott, we worked really fast"},{"id":"e9","from":"s2","to":"s8","relation":"causes","provenance":"fact","source_quote":"wanting to hoover up their GTM team"},{"id":"e10","from":"r1","to":"r4","relation":"causes","provenance":"fact","source_quote":"And now they also have Devon to sell as well"},{"id":"e11","from":"s4","to":"t1","relation":"sets_up","provenance":"derived","confidence":0.7,"rationale":"Narrative order only: the priority statement answers the Friday, but Wang never links the two explicitly."},{"id":"e12","from":"a5","to":"a3","relation":"causes","provenance":"derived","confidence":0.85,"rationale":"Sequence: the decision precedes the next-day meeting; Wang does not say the meeting was arranged because of it."},{"id":"e13","from":"a3","to":"a4","relation":"causes","provenance":"derived","confidence":0.85,"rationale":"The paper agreement brought to the meeting is what got signed; stated as sequence, not as cause."},{"id":"e14","from":"s8","to":"t2","relation":"sets_up","provenance":"derived","confidence":0.75,"rationale":"Competitors poaching the GTM team is what makes keeping the company whole the real objective."},{"id":"e15","from":"t2","to":"a2","relation":"motivates","provenance":"derived","confidence":0.7,"rationale":"A 24-hour phone marathon makes sense as a race against attrition; Wang gives no reason for the pace."},{"id":"e16","from":"t2","to":"a6","relation":"motivates","provenance":"derived","confidence":0.7,"rationale":"Generous terms are a retention device; Wang presents the generosity without stating its purpose."},{"id":"e17","from":"a6","to":"r3","relation":"causes","provenance":"derived","confidence":0.7,"rationale":"Wang juxtaposes the generous terms with the ovation ('so I think the sentiment has shifted'); the causal claim is implied, not stated."},{"id":"e18","from":"r5","to":"r6","relation":"causes","provenance":"derived","confidence":0.65,"rationale":"The speed of the close is the premise of the inferred preservation of the team."},{"id":"e19","from":"r6","to":"r4","relation":"causes","provenance":"derived","confidence":0.6,"rationale":"If speed prevented departures, the intact GTM team is its consequence."},{"id":"e20","from":"s5","to":"r1","relation":"causes","provenance":"derived","confidence":0.6,"rationale":"A buyer existed because Cognition valued what outsiders called a shell; nobody states this as the reason the deal happened."},{"id":"e21","from":"s6","to":"t3","relation":"sets_up","provenance":"derived","confidence":0.55,"rationale":"The engineering skew is the situation that gives rise to the generalised need."},{"id":"e22","from":"s7","to":"t3","relation":"sets_up","provenance":"derived","confidence":0.55,"rationale":"Windsurf's built-out functions are the complement that the generalised need names."},{"id":"e23","from":"s3","to":"t4","relation":"sets_up","provenance":"derived","confidence":0.5,"rationale":"Stranded, angry employees are the situation the protection norm would answer."},{"id":"e24","from":"s1","to":"t4","relation":"sets_up","provenance":"derived","confidence":0.5,"rationale":"The founder-only hire is the deal shape that creates stranded employees."},{"id":"e25","from":"p1","to":"a1","relation":"motivates","provenance":"derived","confidence":0.75,"rationale":"PAR reading: the compressed problem, not the stated priority, is what the search for buyers answers."},{"id":"e26","from":"t2","to":"s8","relation":"supported_by","provenance":"derived","confidence":0.75},{"id":"e27","from":"t2","to":"s3","relation":"supported_by","provenance":"derived","confidence":0.75},{"id":"e28","from":"t2","to":"s2","relation":"supported_by","provenance":"derived","confidence":0.75},{"id":"e29","from":"t3","to":"s6","relation":"supported_by","provenance":"derived","confidence":0.55},{"id":"e30","from":"t3","to":"s7","relation":"supported_by","provenance":"derived","confidence":0.55},{"id":"e31","from":"t4","to":"s3","relation":"supported_by","provenance":"derived","confidence":0.5},{"id":"e32","from":"t4","to":"r2","relation":"supported_by","provenance":"derived","confidence":0.5},{"id":"e33","from":"r6","to":"s8","relation":"supported_by","provenance":"derived","confidence":0.65},{"id":"e34","from":"r6","to":"r5","relation":"supported_by","provenance":"derived","confidence":0.65},{"id":"e35","from":"r6","to":"r4","relation":"supported_by","provenance":"derived","confidence":0.65},{"id":"e36","from":"p1","to":"s2","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"e37","from":"p1","to":"s3","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"e38","from":"p1","to":"s8","relation":"supported_by","provenance":"derived","confidence":0.8},{"id":"e39","from":"p1","to":"t1","relation":"supported_by","provenance":"derived","confidence":0.8}]}]}</script>
+<!--__DATA_END__-->
+
+<!--__EXT_START__-->
+<!-- Framework-specific visuals go here. Optional. Define:
+     window.__frameworkExtension = (ctx) => { /* ctx: { THREE, scene, group, graph, example, nodesById, positions, api } */ };
+     It is called after each example is laid out; add objects to ctx.group so they are removed on example switch. -->
+<!--__EXT_END__-->
+
+<script>
+  // Fallback notice if the module (and Three.js) never loads.
+  window.__engineReady = false;
+  setTimeout(() => { if (!window.__engineReady) { const f = document.getElementById('fallback'); f.innerHTML = 'Could not load Three.js from jsDelivr.<br><small>Check the network connection, then reload. The graph data is embedded in this file and is not lost.</small>'; } }, 9000);
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
+// ---------- palette (validated categorical slots, dark surface; see _meta and SPEC.md section 5) ----------
+const SLOT_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
+const SCHEMA_COLOR = '#898781';
+const INK = '#ffffff', INK2 = '#c3c2b7', MUTED = '#898781', HAIRLINE = '#2c2c2a', SURFACE = '#1a1a19';
+const NODE_R = 2.2;
+
+// ---------- data ----------
+const $ = (id) => document.getElementById(id);
+let GRAPH;
+try { GRAPH = JSON.parse($('graph-data').textContent); } catch (e) { fatal('The embedded graph data is not valid JSON: ' + e.message); }
+if (!GRAPH || !GRAPH.framework || !Array.isArray(GRAPH.examples) || GRAPH.examples.length === 0) fatal('No graph data embedded yet. Run: node _meta/build.mjs <framework-dir>');
+
+function fatal(msg) { const f = $('fallback'); f.hidden = false; f.textContent = msg; window.__engineReady = true; throw new Error(msg); }
+
+const fw = GRAPH.framework;
+document.title = `${fw.name} · graph`;
+$('name').textContent = fw.name;
+$('category').textContent = (fw.category || '').replace(/^\d+-/, '').replace(/-/g, ' ');
+if (fw.wikipedia) $('wiki').href = fw.wikipedia; else $('wiki').remove();
+
+// slot colours: fixed order over content slots, never cycled; beyond 8, muted
+const slotStyle = new Map();
+let ci = 0;
+for (const s of GRAPH.slots) {
+  if (s.structural) slotStyle.set(s.id, { color: SCHEMA_COLOR, shape: s.shape || 'box', slot: s });
+  else slotStyle.set(s.id, { color: s.color || (ci < SLOT_COLORS.length ? SLOT_COLORS[ci++] : MUTED), shape: s.shape || 'sphere', slot: s });
+}
+const relLabel = new Map((GRAPH.relations || []).map(r => [r.id, r.label || r.id]));
+relLabel.set('supported_by', 'supported by');
+
+// ---------- renderer / scene ----------
+const stage = $('stage');
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false }); } catch (e) { fatal('WebGL is not available in this browser.'); }
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setClearColor(new THREE.Color(SURFACE), 1);
+stage.appendChild(renderer.domElement);
+const labelRenderer = new CSS2DRenderer({ element: $('labels') });
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 5000);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.08; controls.autoRotateSpeed = 0.6;
+scene.add(new THREE.AmbientLight(0xffffff, 1.4));
+const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(40, 80, 120); scene.add(key);
+const fill = new THREE.DirectionalLight(0xffffff, 0.5); fill.position.set(-60, -20, -80); scene.add(fill);
+
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, true); labelRenderer.setSize(w, h);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+
+// ---------- state ----------
+const state = { exampleIndex: 0, showDerived: true, showGrounding: false, showLabels: true, group: null, nodes: new Map(), edges: [], hit: [], hover: null, selected: null, fit: null };
+
+// ---------- layouts ----------
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+function forceLayout(nodes, edges, pinned, seed, opts = {}) {
+  const rand = mulberry32(seed);
+  const pos = new Map();
+  const R0 = opts.radius || Math.max(18, nodes.length * 2.2);
+  for (const n of nodes) {
+    if (pinned.has(n.id)) pos.set(n.id, pinned.get(n.id).clone());
+    else pos.set(n.id, new THREE.Vector3((rand() - .5) * 2 * R0, (rand() - .5) * 2 * R0, (rand() - .5) * 2 * R0 * (opts.flat ? 0.15 : 1)));
+  }
+  const ids = nodes.map(n => n.id);
+  const L = opts.rest || 16, K = opts.repulse || 420;
+  const f = new Map(ids.map(id => [id, new THREE.Vector3()]));
+  const d = new THREE.Vector3();
+  for (let it = 0; it < 420; it++) {
+    const alpha = 0.9 * (1 - it / 420) + 0.04;
+    for (const id of ids) f.get(id).set(0, 0, 0);
+    for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) {
+      const a = pos.get(ids[i]), b = pos.get(ids[j]);
+      d.subVectors(a, b); let dist = d.length(); if (dist < 0.5) { d.set(rand() - .5, rand() - .5, rand() - .5); dist = 0.5; }
+      const s = K / (dist * dist); d.normalize().multiplyScalar(s);
+      f.get(ids[i]).add(d); f.get(ids[j]).sub(d);
+    }
+    for (const e of edges) {
+      if (!pos.has(e.from) || !pos.has(e.to)) continue;
+      const a = pos.get(e.from), b = pos.get(e.to);
+      d.subVectors(b, a); const dist = Math.max(d.length(), 0.01);
+      const s = (dist - L) * 0.05; d.normalize().multiplyScalar(s);
+      f.get(e.from).add(d); f.get(e.to).sub(d);
+    }
+    for (const id of ids) {
+      if (pinned.has(id)) continue;
+      const p = pos.get(id), ff = f.get(id);
+      ff.addScaledVector(p, -0.012);
+      if (opts.flat) ff.z -= p.z * 0.2;
+      const len = ff.length(); if (len > 6) ff.multiplyScalar(6 / len);
+      p.addScaledVector(ff, alpha);
+    }
+  }
+  return pos;
+}
+
+function treeLayout(ex) {
+  const nodes = ex.nodes, edges = ex.edges.filter(e => e.relation !== 'supported_by');
+  const level = new Map();
+  const explicit = nodes.every(n => Number.isInteger(n.level));
+  if (explicit) nodes.forEach(n => level.set(n.id, n.level));
+  else {
+    const out = new Map(nodes.map(n => [n.id, []])), und = new Map(nodes.map(n => [n.id, []]));
+    for (const e of edges) { out.get(e.from)?.push(e.to); und.get(e.from)?.push(e.to); und.get(e.to)?.push(e.from); }
+    const root = ex.layout.root && level.has(ex.layout.root) === false ? ex.layout.root : nodes[0].id;
+    const q = [root]; level.set(root, 0);
+    while (q.length) { const id = q.shift(); for (const t of out.get(id) || []) if (!level.has(t)) { level.set(t, level.get(id) + 1); q.push(t); } }
+    // unreachable by direction: attach by undirected distance
+    const q2 = [...level.keys()];
+    while (q2.length) { const id = q2.shift(); for (const t of und.get(id) || []) if (!level.has(t)) { level.set(t, level.get(id) + 1); q2.push(t); } }
+    for (const n of nodes) if (!level.has(n.id)) level.set(n.id, 0);
+    for (const n of nodes) if (Number.isInteger(n.level)) level.set(n.id, n.level);
+  }
+  const layers = new Map();
+  for (const n of nodes) { const l = level.get(n.id); if (!layers.has(l)) layers.set(l, []); layers.get(l).push(n); }
+  const order = [...layers.keys()].sort((a, b) => a - b);
+  const pos = new Map();
+  const right = ex.layout.direction === 'right';
+  const GAP_L = right ? 26 : 18, GAP_S = right ? 9 : 14;
+  // barycentre ordering pass to reduce crossings
+  const parents = new Map(nodes.map(n => [n.id, []]));
+  for (const e of edges) if (level.get(e.to) > level.get(e.from)) parents.get(e.to).push(e.from);
+  const xOf = new Map();
+  for (const l of order) {
+    const arr = layers.get(l);
+    if (l !== order[0]) arr.sort((a, b) => {
+      const pa = parents.get(a.id).filter(p => xOf.has(p)), pb = parents.get(b.id).filter(p => xOf.has(p));
+      const ma = pa.length ? pa.reduce((s, p) => s + xOf.get(p), 0) / pa.length : 0;
+      const mb = pb.length ? pb.reduce((s, p) => s + xOf.get(p), 0) / pb.length : 0;
+      return ma - mb;
+    });
+    arr.forEach((n, i) => {
+      const s = (i - (arr.length - 1) / 2) * GAP_S;
+      xOf.set(n.id, s);
+      pos.set(n.id, right ? new THREE.Vector3(l * GAP_L, -s, 0) : new THREE.Vector3(s, -l * GAP_L, 0));
+    });
+  }
+  for (const n of nodes) if (Array.isArray(n.pos)) pos.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  return pos;
+}
+
+function ringLayout(ex) {
+  const nodes = ex.nodes;
+  const onRing = nodes.filter(n => Number.isInteger(n.order) && !Array.isArray(n.pos));
+  const R = Math.max(22, onRing.length * 4.2);
+  const pinned = new Map();
+  onRing.sort((a, b) => a.order - b.order).forEach((n, i) => { const t = Math.PI / 2 - (i / onRing.length) * Math.PI * 2; pinned.set(n.id, new THREE.Vector3(Math.cos(t) * R, Math.sin(t) * R, 0)); });
+  for (const n of nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  if (pinned.size === nodes.length) return pinned;
+  return forceLayout(nodes, ex.edges, pinned, 7, { radius: R * 0.5, flat: true, rest: 12 });
+}
+
+function planeLayout(ex) {
+  const pinned = new Map();
+  for (const n of ex.nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  if (pinned.size === ex.nodes.length) return pinned;
+  return forceLayout(ex.nodes, ex.edges, pinned, 11, { flat: true, rest: 14 });
+}
+
+function computeLayout(ex) {
+  const mode = ex.layout?.mode || 'force';
+  if (mode === 'tree') return treeLayout(ex);
+  if (mode === 'ring') return ringLayout(ex);
+  if (mode === 'plane') return planeLayout(ex);
+  const pinned = new Map();
+  for (const n of ex.nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  return forceLayout(ex.nodes, ex.edges, pinned, 3);
+}
+
+// ---------- geometry helpers ----------
+const GEO = {
+  sphere: (r) => new THREE.SphereGeometry(r, 28, 20),
+  box: (r) => new THREE.BoxGeometry(r * 1.7, r * 1.7, r * 1.7),
+  diamond: (r) => new THREE.OctahedronGeometry(r * 1.25, 0),
+  cone: (r) => new THREE.ConeGeometry(r * 1.1, r * 2.2, 20),
+};
+function label2d(text, cls) { const el = document.createElement('div'); el.className = cls; el.textContent = text; return new CSS2DObject(el); }
+
+function makeNode(n, p) {
+  const st = slotStyle.get(n.slot) || { color: MUTED, shape: 'sphere' };
+  const r = NODE_R * (n.size || 1);
+  const color = new THREE.Color(st.color);
+  const obj = new THREE.Group(); obj.position.copy(p);
+  let mesh, halo = null;
+  if (n.provenance === 'fact') {
+    mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.5, metalness: 0.08 }));
+  } else if (n.provenance === 'derived') {
+    mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.6, metalness: 0.0, transparent: true, opacity: 0.32, depthWrite: false }));
+    halo = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(r * 1.35, 1)), new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.75 }));
+    obj.add(halo);
+  } else {
+    mesh = new THREE.Mesh(GEO[st.shape === 'sphere' ? 'box' : st.shape](r * 0.8), new THREE.MeshStandardMaterial({ color: new THREE.Color(SCHEMA_COLOR), roughness: 0.9, metalness: 0, transparent: true, opacity: 0.85 }));
+  }
+  mesh.userData.nodeId = n.id;
+  obj.add(mesh);
+  const hit = new THREE.Mesh(new THREE.SphereGeometry(r * 1.9, 10, 8), new THREE.MeshBasicMaterial({ visible: false }));
+  hit.userData.nodeId = n.id; obj.add(hit);
+  const glyph = n.provenance === 'fact' ? '●' : n.provenance === 'derived' ? '◌' : '▪';
+  const el = document.createElement('div'); el.className = 'nlabel ' + n.provenance;
+  const g = document.createElement('span'); g.className = 'g'; g.textContent = glyph; g.style.color = n.provenance === 'schema' ? MUTED : st.color;
+  el.appendChild(g); el.appendChild(document.createTextNode(n.label || n.id));
+  const lab = new CSS2DObject(el); lab.position.set(0, -r, 0); obj.add(lab);
+  return { node: n, obj, mesh, halo, hit, label: lab, r, color: st.color, edges: [] };
+}
+
+function makeEdge(e, A, B) {
+  const from = A.obj.position, to = B.obj.position;
+  const dir = new THREE.Vector3().subVectors(to, from); const len = dir.length(); dir.normalize();
+  const a = from.clone().addScaledVector(dir, A.r * 1.05), b = to.clone().addScaledVector(dir, -(B.r * 1.05 + (e.relation === 'supported_by' ? 0 : 1.6)));
+  const geom = new THREE.BufferGeometry().setFromPoints([a, b]);
+  let mat, arrow = null;
+  const grounding = e.relation === 'supported_by';
+  if (grounding) mat = new THREE.LineDashedMaterial({ color: new THREE.Color(MUTED), dashSize: 0.5, gapSize: 0.9, transparent: true, opacity: 0.55 });
+  else if (e.provenance === 'derived') mat = new THREE.LineDashedMaterial({ color: new THREE.Color(INK2), dashSize: 1.4, gapSize: 0.9, transparent: true, opacity: 0.8 });
+  else if (e.provenance === 'schema') mat = new THREE.LineBasicMaterial({ color: new THREE.Color(HAIRLINE), transparent: true, opacity: 0.9 });
+  else mat = new THREE.LineBasicMaterial({ color: new THREE.Color(INK2), transparent: true, opacity: 0.85 });
+  const line = new THREE.Line(geom, mat); line.computeLineDistances();
+  const grp = new THREE.Group(); grp.add(line);
+  if (!grounding && e.provenance !== 'schema') {
+    arrow = new THREE.Mesh(new THREE.ConeGeometry(0.75, 2.0, 10), new THREE.MeshBasicMaterial({ color: e.provenance === 'derived' ? new THREE.Color(INK2) : new THREE.Color(INK2), transparent: true, opacity: e.provenance === 'derived' ? 0.7 : 0.95 }));
+    arrow.position.copy(to).addScaledVector(dir, -(B.r * 1.05 + 1.0));
+    arrow.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+    grp.add(arrow);
+  }
+  let lab = null;
+  if (e.label) { lab = label2d(e.label, 'elabel'); lab.position.copy(a).lerp(b, 0.5); grp.add(lab); }
+  return { edge: e, grp, line, arrow, label: lab, A, B, grounding, len };
+}
+
+function drawDecor(ex, group, bbox) {
+  const L = ex.layout || {};
+  const z = -0.6;
+  const lineMat = new THREE.LineBasicMaterial({ color: new THREE.Color(0x4a4a47) });
+  const dashMat = new THREE.LineDashedMaterial({ color: new THREE.Color(0x4a4a47), dashSize: 1.2, gapSize: 1.0 });
+  for (const r of (L.regions || [])) {
+    const w = Math.abs(r.x[1] - r.x[0]), h = Math.abs(r.y[1] - r.y[0]);
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.07, depthWrite: false }));
+    m.position.set((r.x[0] + r.x[1]) / 2, (r.y[0] + r.y[1]) / 2, z - 0.5); group.add(m);
+    const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(w, h)), new THREE.LineBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.25 }));
+    edge.position.copy(m.position); group.add(edge);
+    const lab = label2d(r.label, 'rlabel'); lab.position.set(Math.min(r.x[0], r.x[1]) + 2, Math.max(r.y[0], r.y[1]) - 2, z); group.add(lab);
+    bbox.expandByPoint(new THREE.Vector3(r.x[0], r.y[0], 0)); bbox.expandByPoint(new THREE.Vector3(r.x[1], r.y[1], 0));
+  }
+  for (const gd of (L.guides || [])) {
+    const a = new THREE.Vector3(gd.from[0], gd.from[1], gd.from[2] || z), b = new THREE.Vector3(gd.to[0], gd.to[1], gd.to[2] || z);
+    const ln = new THREE.Line(new THREE.BufferGeometry().setFromPoints([a, b]), gd.style === 'dashed' ? dashMat : lineMat); ln.computeLineDistances(); group.add(ln);
+    if (gd.label) { const lab = label2d(gd.label, 'glabel'); lab.position.copy(a).lerp(b, 0.5); group.add(lab); }
+    bbox.expandByPoint(a); bbox.expandByPoint(b);
+  }
+  if (L.axes) {
+    const ax = L.axes.x, ay = L.axes.y;
+    const xmin = ax ? ax.min : bbox.min.x, xmax = ax ? ax.max : bbox.max.x, ymin = ay ? ay.min : bbox.min.y, ymax = ay ? ay.max : bbox.max.y;
+    const pad = 6;
+    if (ax) {
+      const y = ymin - pad;
+      group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(xmin, y, z), new THREE.Vector3(xmax, y, z)]), lineMat));
+      const lab = label2d(ax.label, 'axlabel'); lab.position.set((xmin + xmax) / 2, y - 4.5, z); group.add(lab);
+      for (const t of (ax.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(t.value, y - 1, z), new THREE.Vector3(t.value, y + 1, z)]), lineMat)); const tl = label2d(t.label, 'tick'); tl.position.set(t.value, y - 2.2, z); group.add(tl); }
+      bbox.expandByPoint(new THREE.Vector3(xmin, y - 6, 0)); bbox.expandByPoint(new THREE.Vector3(xmax, y, 0));
+    }
+    if (ay) {
+      const x = xmin - pad;
+      group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x, ymin, z), new THREE.Vector3(x, ymax, z)]), lineMat));
+      const lab = label2d(ay.label, 'axlabel'); lab.element.style.transform = 'rotate(-90deg)'; lab.position.set(x - 5, (ymin + ymax) / 2, z); group.add(lab);
+      for (const t of (ay.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x - 1, t.value, z), new THREE.Vector3(x + 1, t.value, z)]), lineMat)); const tl = label2d(t.label, 'tick'); tl.position.set(x - 2.5, t.value, z); tl.element.style.transform = 'translateX(-50%)'; group.add(tl); }
+      bbox.expandByPoint(new THREE.Vector3(x - 8, ymin, 0)); bbox.expandByPoint(new THREE.Vector3(x, ymax, 0));
+    }
+  }
+}
+
+// ---------- build an example ----------
+function clearGroup() {
+  if (!state.group) return;
+  state.group.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) { (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); } if (o.isCSS2DObject && o.element) o.element.remove(); });
+  scene.remove(state.group);
+  $('labels').replaceChildren();
+  state.group = null; state.nodes.clear(); state.edges = []; state.hit = []; state.hover = null; state.selected = null;
+  $('panel').hidden = true;
+}
+
+function buildExample(i) {
+  clearGroup();
+  state.exampleIndex = i;
+  const ex = GRAPH.examples[i];
+  const group = new THREE.Group(); scene.add(group); state.group = group;
+  const positions = computeLayout(ex);
+  // centre
+  const bbox = new THREE.Box3();
+  for (const p of positions.values()) bbox.expandByPoint(p);
+  const centre = bbox.getCenter(new THREE.Vector3());
+  if (ex.layout?.mode !== 'plane') for (const p of positions.values()) p.sub(centre);
+  const bbox2 = new THREE.Box3(); for (const p of positions.values()) bbox2.expandByPoint(p);
+  for (const n of ex.nodes) { const rec = makeNode(n, positions.get(n.id)); state.nodes.set(n.id, rec); group.add(rec.obj); state.hit.push(rec.hit); }
+  for (const e of ex.edges) {
+    const A = state.nodes.get(e.from), B = state.nodes.get(e.to); if (!A || !B) continue;
+    const rec = makeEdge(e, A, B); state.edges.push(rec); group.add(rec.grp); A.edges.push(rec); B.edges.push(rec);
+  }
+  drawDecor(ex, group, bbox2);
+  // camera fit
+  const size = bbox2.getSize(new THREE.Vector3()), c = bbox2.getCenter(new THREE.Vector3());
+  state.fit = { size, centre: c, mode: ex.layout?.mode || 'force', distance: ex.layout?.camera?.distance };
+  resetView();
+  applyVisibility();
+  renderNote(ex);
+  renderLegend(ex);
+  for (const b of $('examples').children) b.setAttribute('aria-pressed', String(b.dataset.index == i));
+  try { window.__frameworkExtension?.({ THREE, scene, group, graph: GRAPH, example: ex, nodesById: state.nodes, positions, api: { slotStyle, label2d, colors: { INK, INK2, MUTED, HAIRLINE, SURFACE, SLOT_COLORS, SCHEMA_COLOR } } }); } catch (e) { console.error('framework extension failed', e); }
+}
+
+// Fit the graph into the part of the stage not covered by the legend (left) and the note (top right),
+// so labels are not hidden under the cards at the default view.
+function safeArea(size) {
+  const W = stage.clientWidth, H = stage.clientHeight;
+  const sr = stage.getBoundingClientRect();
+  let left = 0, top = 0, right = 0;
+  const wide = W > 820;
+  const leg = $('legend'); if (wide && leg && leg.offsetParent !== null) { const r = leg.getBoundingClientRect(); left = Math.max(left, r.right - sr.left + 16); }
+  const note = $('note'); if (wide && note && note.offsetParent !== null) { const r = note.getBoundingClientRect(); top = Math.max(top, r.bottom - sr.top + 8); }
+  const panel = $('panel'); if (wide && panel && !panel.hidden) { const r = panel.getBoundingClientRect(); right = Math.max(right, sr.right - r.left + 16); }
+  // the note only covers the top-right corner: only wide graphs need the top inset
+  if (top > 0 && size.x / Math.max(1, size.y) < 1.3) top = 0;
+  return { W, H, left, top, right, w: Math.max(200, W - left - right), h: Math.max(200, H - top) };
+}
+function resetView() {
+  if (!state.fit) return;
+  const { size, centre, mode } = state.fit;
+  const sa = safeArea(size);
+  const halfFov = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  const aspect = Math.max(0.5, sa.w / sa.h);
+  const fitH = (size.y / 2 + 10) / halfFov, fitW = (size.x / 2 + 14) / (halfFov * aspect);
+  const dist = state.fit.distance || Math.max(50, Math.max(fitH, fitW) * (mode === 'force' ? 1.3 : 1.1) + size.z / 2);
+  // world units per pixel at the target depth; shift the centre so the graph sits in the safe area
+  const wpp = (2 * dist * halfFov) / sa.H;
+  const target = centre.clone().add(new THREE.Vector3(-((sa.left - sa.right) / 2) * wpp, (sa.top / 2) * wpp, 0));
+  const camPos = mode === 'force' ? target.clone().add(new THREE.Vector3(dist * 0.3, dist * 0.22, dist * 0.92)) : target.clone().add(new THREE.Vector3(0, 0, dist));
+  camera.position.copy(camPos); controls.target.copy(target);
+  camera.near = 0.1; camera.far = 5000; camera.updateProjectionMatrix(); controls.update();
+}
+
+function applyVisibility() {
+  for (const rec of state.nodes.values()) {
+    const vis = rec.node.provenance !== 'derived' || state.showDerived;
+    rec.obj.visible = vis;
+    rec.label.visible = vis && state.showLabels;
+    rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+  }
+  for (const rec of state.edges) {
+    const endsOk = rec.A.obj.visible && rec.B.obj.visible;
+    const vis = endsOk && (!rec.grounding || state.showGrounding);
+    rec.grp.visible = vis;
+    if (rec.label) rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+  }
+  renderStats();
+}
+
+// ---------- legend / note / stats ----------
+function renderLegend(ex) {
+  const el = $('legend'); el.replaceChildren();
+  const h = (t) => { const x = document.createElement('h2'); x.textContent = t; return x; };
+  el.appendChild(h('Slots'));
+  const counts = new Map(); for (const n of ex.nodes) counts.set(n.slot, (counts.get(n.slot) || 0) + 1);
+  for (const s of GRAPH.slots) {
+    const row = document.createElement('div'); row.className = 'slot-row';
+    const chip = document.createElement('span'); chip.className = 'chip'; chip.style.background = slotStyle.get(s.id).color; if (s.structural) chip.style.borderRadius = '2px';
+    const name = document.createElement('span'); name.textContent = s.label;
+    const tp = document.createElement('span'); tp.className = 'tp'; tp.textContent = s.structural ? 'schema' : (s.typical_provenance || '');
+    const n = document.createElement('span'); n.className = 'n'; n.textContent = String(counts.get(s.id) || 0);
+    row.append(chip, name, tp, n); row.title = s.description || ''; el.appendChild(row);
+  }
+  el.appendChild(h('Provenance'));
+  for (const [sym, txt] of [['●', 'fact: stated in the source (solid)'], ['◌', 'derived: LLM inference (translucent, dashed)'], ['▪', 'schema: framework scaffolding (grey)'], ['→', 'solid edge stated, dashed inferred'], ['⋯', 'grounding link: derived → fact']]) {
+    const row = document.createElement('div'); row.className = 'key-row';
+    const a = document.createElement('span'); a.className = 'sym'; a.textContent = sym; const b = document.createElement('span'); b.textContent = txt; row.append(a, b); el.appendChild(row);
+  }
+  const st = document.createElement('div'); st.className = 'stats'; st.id = 'stats'; el.appendChild(st);
+  renderStats();
+}
+function renderStats() {
+  const st = $('stats'); if (!st) return;
+  const ex = GRAPH.examples[state.exampleIndex];
+  const nf = ex.nodes.filter(n => n.provenance === 'fact').length, nd = ex.nodes.filter(n => n.provenance === 'derived').length, ns = ex.nodes.filter(n => n.provenance === 'schema').length;
+  const ef = ex.edges.filter(e => e.provenance === 'fact').length, ed = ex.edges.filter(e => e.provenance === 'derived' && e.relation !== 'supported_by').length, eg = ex.edges.filter(e => e.relation === 'supported_by').length;
+  const visN = [...state.nodes.values()].filter(r => r.obj.visible).length, visE = state.edges.filter(r => r.grp.visible).length;
+  st.replaceChildren();
+  const line = (html) => { const d = document.createElement('div'); d.append(...html); st.appendChild(d); };
+  const b = (t) => { const x = document.createElement('b'); x.textContent = t; return x; };
+  line(['nodes ', b(String(nf)), ' fact · ', b(String(nd)), ' derived', ns ? ` · ${ns} schema` : '']);
+  line(['edges ', b(String(ef)), ' fact · ', b(String(ed)), ' derived · ', b(String(eg)), ' grounding']);
+  line([`showing ${visN} nodes, ${visE} edges`]);
+}
+function renderNote(ex) {
+  const el = $('note'); el.replaceChildren();
+  const h = document.createElement('h3'); h.textContent = ex.title || ex.id; el.appendChild(h);
+  const p = document.createElement('p'); p.textContent = ex.summary || ''; el.appendChild(p);
+  const s = document.createElement('div'); s.className = 'src';
+  if (ex.source?.type === 'transcript') s.textContent = `TBPN ${ex.source.date} · ${ex.source.episode_title || ''}`;
+  else if (ex.source?.type === 'text') s.textContent = `source: ${ex.source.title || 'scenario text'}`;
+  el.appendChild(s);
+}
+
+// ---------- panel ----------
+function openPanel(rec) {
+  const n = rec.node, ex = GRAPH.examples[state.exampleIndex];
+  const panel = $('panel'); panel.replaceChildren(); panel.hidden = false;
+  const head = document.createElement('div'); head.className = 'p-head';
+  const slotEl = document.createElement('div'); slotEl.className = 'p-slot';
+  const chip = document.createElement('span'); chip.className = 'chip'; chip.style.background = rec.color; slotEl.append(chip, document.createTextNode((slotStyle.get(n.slot)?.slot?.label) || n.slot));
+  const close = document.createElement('button'); close.className = 'close'; close.type = 'button'; close.textContent = '×'; close.setAttribute('aria-label', 'Close'); close.onclick = () => { panel.hidden = true; state.selected = null; };
+  head.append(slotEl, close); panel.appendChild(head);
+  const h3 = document.createElement('h3'); h3.textContent = n.label; panel.appendChild(h3);
+  const badge = document.createElement('span'); badge.className = 'badge ' + n.provenance; badge.textContent = n.provenance; panel.appendChild(badge);
+  const text = document.createElement('p'); text.textContent = n.text; panel.appendChild(text);
+  const h4 = (t) => { const x = document.createElement('h4'); x.textContent = t; panel.appendChild(x); };
+  if (n.provenance === 'fact') {
+    h4(n.paraphrase ? 'Paraphrased from the source' : 'Quoted from the source');
+    const q = document.createElement('blockquote'); q.textContent = n.source_quote || ''; panel.appendChild(q);
+    const r = document.createElement('div'); r.className = 'ref'; r.textContent = n.source_ref || ''; panel.appendChild(r);
+  } else if (n.provenance === 'derived') {
+    h4('Confidence');
+    const c = document.createElement('div'); c.className = 'conf'; c.textContent = `${Math.round((n.confidence || 0) * 100)} / 100`; panel.appendChild(c);
+    const bar = document.createElement('div'); bar.className = 'confbar'; const fillEl = document.createElement('i'); fillEl.style.width = `${Math.round((n.confidence || 0) * 100)}%`; bar.appendChild(fillEl); panel.appendChild(bar);
+    h4('Why the LLM infers this'); const r = document.createElement('p'); r.textContent = n.rationale || ''; panel.appendChild(r);
+    const sup = ex.edges.filter(e => e.relation === 'supported_by' && e.from === n.id).map(e => state.nodes.get(e.to)).filter(Boolean);
+    if (sup.length) { h4('Supported by'); const ul = document.createElement('ul'); for (const s of sup) { const li = document.createElement('li'); li.textContent = s.node.label; const q = document.createElement('div'); q.className = 'ref'; q.textContent = (s.node.source_quote || '').slice(0, 140); li.appendChild(q); ul.appendChild(li); } panel.appendChild(ul); }
+  } else {
+    const r = document.createElement('p'); r.className = 'ref'; r.textContent = 'Framework scaffolding: neither a fact nor an inference.'; panel.appendChild(r);
+  }
+  const rels = rec.edges.filter(e => e.edge.relation !== 'supported_by');
+  if (rels.length) {
+    h4('Edges'); const ul = document.createElement('ul');
+    for (const e of rels) { const li = document.createElement('li'); const out = e.edge.from === n.id; const other = out ? e.B.node : e.A.node; const rl = document.createElement('span'); rl.className = 'rel'; rl.textContent = (out ? '→ ' : '← ') + (relLabel.get(e.edge.relation) || e.edge.relation) + (e.edge.provenance === 'derived' ? ' (inferred)' : '') + ' '; li.append(rl, document.createTextNode(other.label)); ul.appendChild(li); }
+    panel.appendChild(ul);
+  }
+  if (Array.isArray(n.entities) && n.entities.length) { h4('Entities'); const p = document.createElement('p'); p.className = 'ref'; p.textContent = n.entities.join(', '); panel.appendChild(p); }
+}
+
+// ---------- interaction ----------
+const raycaster = new THREE.Raycaster(); const pointer = new THREE.Vector2(); const tooltip = $('tooltip');
+function setHover(rec) {
+  if (state.hover === rec) return;
+  if (state.hover) { const h = state.hover; h.mesh.scale.setScalar(1); if (h.mesh.material.emissive) h.mesh.material.emissive.setHex(0x000000); for (const e of h.edges) { e.line.material.color.set(e.grounding ? MUTED : (e.edge.provenance === 'schema' ? HAIRLINE : INK2)); if (e.arrow) e.arrow.material.color.set(INK2); } }
+  state.hover = rec;
+  if (rec) { rec.mesh.scale.setScalar(1.18); if (rec.mesh.material.emissive) rec.mesh.material.emissive.set(rec.color).multiplyScalar(0.35); for (const e of rec.edges) { if (!e.grp.visible) continue; e.line.material.color.set(INK); if (e.arrow) e.arrow.material.color.set(INK); } }
+  renderer.domElement.style.cursor = rec ? 'pointer' : '';
+}
+renderer.domElement.addEventListener('pointermove', (ev) => {
+  const r = renderer.domElement.getBoundingClientRect();
+  pointer.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
+  raycaster.setFromCamera(pointer, camera);
+  const hits = raycaster.intersectObjects(state.hit.filter(h => h.parent.visible), false);
+  const rec = hits.length ? state.nodes.get(hits[0].object.userData.nodeId) : null;
+  setHover(rec);
+  if (rec) {
+    tooltip.replaceChildren();
+    const a = document.createElement('div'); a.className = 't-label'; a.textContent = rec.node.label;
+    const b = document.createElement('div'); b.className = 't-meta'; b.textContent = `${(slotStyle.get(rec.node.slot)?.slot?.label) || rec.node.slot} · ${rec.node.provenance}${rec.node.provenance === 'derived' ? ' ' + Math.round((rec.node.confidence || 0) * 100) + '%' : ''}`;
+    const c = document.createElement('div'); c.textContent = rec.node.text.length > 160 ? rec.node.text.slice(0, 157) + '…' : rec.node.text;
+    tooltip.append(a, b, c);
+    tooltip.style.display = 'block';
+    const mx = ev.clientX - r.left + 14, my = ev.clientY - r.top + 14;
+    tooltip.style.left = Math.min(mx, r.width - 320) + 'px'; tooltip.style.top = Math.min(my, r.height - 120) + 'px';
+  } else tooltip.style.display = 'none';
+});
+renderer.domElement.addEventListener('pointerleave', () => { setHover(null); tooltip.style.display = 'none'; });
+let downAt = null;
+renderer.domElement.addEventListener('pointerdown', (ev) => { downAt = [ev.clientX, ev.clientY]; });
+renderer.domElement.addEventListener('pointerup', (ev) => {
+  if (!downAt || Math.hypot(ev.clientX - downAt[0], ev.clientY - downAt[1]) > 5) return;
+  if (state.hover) { state.selected = state.hover; openPanel(state.hover); } else { $('panel').hidden = true; state.selected = null; }
+});
+document.addEventListener('keydown', (ev) => {
+  if (ev.target && /input|textarea|select/i.test(ev.target.tagName)) return;
+  if (ev.key === 'd') { $('t-derived').checked = !$('t-derived').checked; $('t-derived').dispatchEvent(new Event('change')); }
+  if (ev.key === 'g') { $('t-grounding').checked = !$('t-grounding').checked; $('t-grounding').dispatchEvent(new Event('change')); }
+  if (ev.key === 'r') resetView();
+  if (ev.key === 'Escape') { $('panel').hidden = true; state.selected = null; }
+});
+$('t-derived').addEventListener('change', (e) => { state.showDerived = e.target.checked; applyVisibility(); });
+$('t-grounding').addEventListener('change', (e) => { state.showGrounding = e.target.checked; applyVisibility(); });
+$('t-labels').addEventListener('change', (e) => { state.showLabels = e.target.checked; applyVisibility(); });
+$('t-rotate').addEventListener('change', (e) => { controls.autoRotate = e.target.checked; });
+$('reset').addEventListener('click', resetView);
+
+// example selector
+const seg = $('examples');
+const kindCount = new Map(); for (const ex of GRAPH.examples) kindCount.set(ex.kind, (kindCount.get(ex.kind) || 0) + 1);
+GRAPH.examples.forEach((ex, i) => { const b = document.createElement('button'); b.type = 'button'; b.dataset.index = i; b.textContent = kindCount.get(ex.kind) > 1 ? (ex.title || ex.id) : ex.kind === 'tbpn' ? 'From TBPN' : ex.kind === 'classic' ? 'Classic' : (ex.title || ex.id); b.title = ex.title || ''; b.setAttribute('aria-pressed', 'false'); b.addEventListener('click', () => buildExample(i)); seg.appendChild(b); });
+
+// ---------- go ----------
+// URL parameters set the initial state (deep links, scripted screenshots): ?example=1&derived=0&grounding=1&labels=0&rotate=1
+const q = new URLSearchParams(location.search);
+const flag = (k, def) => q.has(k) ? !['0', 'false', 'off', 'no'].includes(q.get(k).toLowerCase()) : def;
+state.showDerived = flag('derived', true); $('t-derived').checked = state.showDerived;
+state.showGrounding = flag('grounding', false); $('t-grounding').checked = state.showGrounding;
+state.showLabels = flag('labels', true); $('t-labels').checked = state.showLabels;
+controls.autoRotate = flag('rotate', false); $('t-rotate').checked = controls.autoRotate;
+let startIndex = parseInt(q.get('example') || '0', 10);
+if (!(startIndex >= 0 && startIndex < GRAPH.examples.length)) startIndex = Math.max(0, GRAPH.examples.findIndex(x => x.id === q.get('example')));
+resize();
+buildExample(startIndex);
+$('fallback').hidden = true; window.__engineReady = true;
+function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); labelRenderer.render(scene, camera); }
+loop();
+</script>
+</body>
+</html>
