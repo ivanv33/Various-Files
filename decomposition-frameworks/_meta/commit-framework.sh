@@ -18,7 +18,7 @@ case "$REL" in
 esac
 MSG="$SUBJECT"
 [ -n "$BODY" ] && MSG="$MSG"$'\n\n'"$BODY"
-MSG="$MSG"$'\n\nCo-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>'
+MSG="$MSG"$'\n\nCo-Authored-By: Claude Opus 5 <noreply@anthropic.com>'
 ERR="$(mktemp)"
 trap 'rm -f "$ERR"' EXIT
 for attempt in $(seq 1 60); do
