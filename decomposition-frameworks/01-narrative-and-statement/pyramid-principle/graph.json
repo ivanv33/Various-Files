@@ -58,42 +58,105 @@
       },
       "layout": {
         "mode": "plane",
-        "regions": [
+        "guides": [
           {
-            "label": "Governing thought",
-            "x": [
-              -24,
-              24
+            "from": [
+              0,
+              58
             ],
-            "y": [
+            "to": [
+              -40,
+              32
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              -40,
+              32
+            ],
+            "to": [
+              -52,
+              14
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              -52,
+              14
+            ],
+            "to": [
+              -62,
+              -22
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              -62,
+              -22
+            ],
+            "to": [
+              62,
+              -22
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              62,
+              -22
+            ],
+            "to": [
+              52,
+              14
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              52,
+              14
+            ],
+            "to": [
               40,
-              56
+              32
             ],
-            "color": "#d95926"
+            "style": "solid"
           },
           {
-            "label": "Key line",
-            "x": [
-              -44,
-              44
+            "from": [
+              40,
+              32
             ],
-            "y": [
-              19,
-              33
+            "to": [
+              0,
+              58
             ],
-            "color": "#8e6bd9"
+            "style": "solid"
           },
           {
-            "label": "Support",
-            "x": [
-              -64,
-              64
+            "from": [
+              -40,
+              32
             ],
-            "y": [
-              -34,
-              12
+            "to": [
+              40,
+              32
             ],
-            "color": "#3987e5"
+            "style": "dashed"
+          },
+          {
+            "from": [
+              -52,
+              14
+            ],
+            "to": [
+              52,
+              14
+            ],
+            "style": "dashed"
           }
         ]
       },
@@ -106,11 +169,11 @@
           "provenance": "fact",
           "source_quote": "Could we change the meeting to Thursday at eleven?",
           "source_ref": "sentence 6, the last line of the note",
-          "size": 1.6,
+          "size": 1.9,
           "level": 0,
           "pos": [
             0,
-            48
+            45
           ]
         },
         {
@@ -123,10 +186,10 @@
           "rationale": "Intersecting the three stated constraints leaves Thursday as the first free day; the note reports the three calls but never states the intersection, which is the whole point of the message.",
           "level": 1,
           "pos": [
-            -33.3,
-            26
+            -34,
+            23
           ],
-          "size": 1.15
+          "size": 1.2
         },
         {
           "id": "k2",
@@ -139,9 +202,9 @@
           "level": 1,
           "pos": [
             0,
-            26
+            23
           ],
-          "size": 1.15
+          "size": 1.2
         },
         {
           "id": "k3",
@@ -153,70 +216,70 @@
           "rationale": "The note gives an earliest-start constraint of half past ten and then proposes eleven; the step from the constraint to the hour is arithmetic the reader has to do.",
           "level": 1,
           "pos": [
-            34.1,
-            26
+            34,
+            23
           ],
-          "size": 1.15
+          "size": 1.2
         },
         {
           "id": "s1",
           "slot": "support",
-          "label": "Collins: not at three today",
+          "label": "Collins: not at three",
           "text": "John Collins telephoned to say he cannot make the meeting at three o'clock today.",
           "provenance": "fact",
           "source_quote": "John Collins telephoned to say he cannot make the meeting at three o'clock today",
           "source_ref": "sentence 2",
           "level": 2,
           "pos": [
-            -57.2,
-            -8
+            -55,
+            0
           ],
           "size": 0.85
         },
         {
           "id": "s2",
           "slot": "support",
-          "label": "Collins is on a train until six",
+          "label": "Collins on a train until six",
           "text": "Collins is on a train to Manchester until six, which is why he cannot make the three o'clock.",
           "provenance": "fact",
           "source_quote": "because he is on a train to Manchester until six",
           "source_ref": "sentence 2",
           "level": 3,
           "pos": [
-            -62,
-            -26
+            -55,
+            -14
           ],
-          "size": 0.75
+          "size": 0.7
         },
         {
           "id": "s3",
           "slot": "support",
-          "label": "Johnson: not before half past ten",
+          "label": "Johnson: not before 10:30",
           "text": "Hal Johnson does not mind meeting later today or tomorrow, but not before half past ten.",
           "provenance": "fact",
           "source_quote": "Hal Johnson does not mind meeting later, or even tomorrow, but not before half past ten",
           "source_ref": "sentence 3",
           "level": 2,
           "pos": [
-            53.9,
-            -8
+            53,
+            0
           ],
           "size": 0.85
         },
         {
           "id": "s4",
           "slot": "support",
-          "label": "Johnson: a board call each morning",
+          "label": "Board call every morning",
           "text": "Johnson's earliest-start constraint has a reason: he has a board call every morning.",
           "provenance": "fact",
           "source_quote": "since he has a board call every morning",
           "source_ref": "sentence 3",
           "level": 3,
           "pos": [
-            58,
-            -26
+            53,
+            -14
           ],
-          "size": 0.75
+          "size": 0.7
         },
         {
           "id": "s5",
@@ -228,8 +291,8 @@
           "source_ref": "sentence 4",
           "level": 2,
           "pos": [
-            20.7,
-            -8
+            22,
+            0
           ],
           "size": 0.85
         },
@@ -243,8 +306,8 @@
           "rationale": "Two of the three stated constraints exclude today outright; the elimination is forced by the quoted facts but is never written down.",
           "level": 2,
           "pos": [
-            -31.9,
-            -8
+            -32,
+            0
           ],
           "size": 0.85
         },
@@ -258,8 +321,8 @@
           "rationale": "Tomorrow is the option the note leaves open for Johnson; two stated facts close it, and the reader has to combine an attendee constraint with a room constraint to see it.",
           "level": 2,
           "pos": [
-            -7.8,
-            -8
+            -7,
+            0
           ],
           "size": 0.85
         }
@@ -440,42 +503,105 @@
       "idea_bearing_slot": "governing_thought",
       "layout": {
         "mode": "plane",
-        "regions": [
+        "guides": [
           {
-            "label": "Governing thought",
-            "x": [
-              -38,
-              38
+            "from": [
+              0,
+              60
             ],
-            "y": [
-              44,
-              62
+            "to": [
+              -46,
+              33
             ],
-            "color": "#d95926"
+            "style": "solid"
           },
           {
-            "label": "Key line",
-            "x": [
-              -50,
-              50
+            "from": [
+              -46,
+              33
             ],
-            "y": [
-              22,
-              35
-            ],
-            "color": "#8e6bd9"
-          },
-          {
-            "label": "Support",
-            "x": [
-              -67,
-              67
-            ],
-            "y": [
-              -29,
+            "to": [
+              -56,
               15
             ],
-            "color": "#3987e5"
+            "style": "solid"
+          },
+          {
+            "from": [
+              -56,
+              15
+            ],
+            "to": [
+              -68,
+              -40
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              -68,
+              -40
+            ],
+            "to": [
+              68,
+              -40
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              68,
+              -40
+            ],
+            "to": [
+              56,
+              15
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              56,
+              15
+            ],
+            "to": [
+              46,
+              33
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              46,
+              33
+            ],
+            "to": [
+              0,
+              60
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              -46,
+              33
+            ],
+            "to": [
+              46,
+              33
+            ],
+            "style": "dashed"
+          },
+          {
+            "from": [
+              -56,
+              15
+            ],
+            "to": [
+              56,
+              15
+            ],
+            "style": "dashed"
           }
         ]
       },
@@ -483,7 +609,7 @@
         {
           "id": "gt",
           "slot": "governing_thought",
-          "label": "AI markets are sized as software",
+          "label": "AI markets sized as software",
           "text": "The one-sentence answer the passage never states: the AI wave is being under-sized because three things moved at once - the capability became a call away, buyers who never bought software opened up, and the budget in play is labour rather than seats - so a market measured with software instincts will be measured wrong.",
           "provenance": "derived",
           "confidence": 0.75,
@@ -492,11 +618,11 @@
           "entities": [
             "Elad Gil"
           ],
-          "size": 1.7,
+          "size": 2.0,
           "level": 0,
           "pos": [
             0,
-            56
+            49
           ]
         },
         {
@@ -512,10 +638,10 @@
           ],
           "level": 0,
           "pos": [
-            34,
-            50
+            30,
+            38
           ],
-          "size": 0.8
+          "size": 0.7
         },
         {
           "id": "gt_group",
@@ -530,15 +656,15 @@
           ],
           "level": 0,
           "pos": [
-            -34,
-            50
+            -30,
+            38
           ],
-          "size": 0.8
+          "size": 0.7
         },
         {
           "id": "k1",
           "slot": "key_line",
-          "label": "Capability is a call away",
+          "label": "Capability: one API call",
           "text": "The first pillar: the capability set has shifted dramatically, and not only in what the models can do - they can be reached with an API call, which puts the capability in everybody's hands.",
           "provenance": "fact",
           "source_quote": "I think that the first thing is that the capability set has shifted dramatically, not just in terms of what these models can do, but the fact that you can just ping them with an API and something's accessible to everybody.",
@@ -548,15 +674,15 @@
           ],
           "level": 1,
           "pos": [
-            -46,
-            28
+            -51,
+            24
           ],
-          "size": 1.15
+          "size": 1.2
         },
         {
           "id": "k2",
           "slot": "key_line",
-          "label": "The markets are oddly open",
+          "label": "Closed markets are open",
           "text": "The second pillar: markets that were closed to software are open. Legal never bought any software and was hard to sell into, and now a vendor can exist there.",
           "provenance": "fact",
           "source_quote": "I think a second thing is that the markets are oddly open. Like legal never bought any software.",
@@ -566,15 +692,15 @@
           ],
           "level": 1,
           "pos": [
-            -16,
-            28
+            -21,
+            24
           ],
-          "size": 1.15
+          "size": 1.2
         },
         {
           "id": "k3",
           "slot": "key_line",
-          "label": "TAMs shift: seats to labour",
+          "label": "TAMs: seats to labour",
           "text": "The third pillar: the addressable markets are shifting from seat-based pricing and seat-based value to labour, because the product replaces human work rather than equipping a worker.",
           "provenance": "fact",
           "source_quote": "And then the third thing is that a lot of this is about what you're saying, which is the tams of markets are shifting from seat-based pricing or seat-based value to labor. You're replacing human labor.",
@@ -584,10 +710,10 @@
           ],
           "level": 1,
           "pos": [
-            16,
-            28
+            8,
+            24
           ],
-          "size": 1.15
+          "size": 1.2
         },
         {
           "id": "k4",
@@ -603,15 +729,15 @@
           ],
           "level": 1,
           "pos": [
-            46,
-            28
+            44,
+            24
           ],
-          "size": 1.15
+          "size": 1.2
         },
         {
           "id": "s12",
           "slot": "support",
-          "label": "Real revenue already booked",
+          "label": "Revenue already booked",
           "text": "Both things can be true at once, the speaker says: real revenue is being booked by these companies today.",
           "provenance": "fact",
           "source_quote": "And I think both things can be true simultaneously, which is we're seeing real revenue for these companies, right?",
@@ -621,7 +747,7 @@
           ],
           "level": 2,
           "pos": [
-            -62,
+            -48,
             8
           ],
           "size": 0.9
@@ -629,7 +755,7 @@
         {
           "id": "s1",
           "slot": "support",
-          "label": "Cursor: high hundreds of $M",
+          "label": "Cursor: hundreds of $M",
           "text": "Cursor is rumoured to be at high hundreds of millions of revenue.",
           "provenance": "fact",
           "source_quote": "Cursor is rumored to be in the high hundreds of millions of revenue.",
@@ -640,15 +766,15 @@
           ],
           "level": 3,
           "pos": [
-            -64,
+            -60,
             -20
           ],
-          "size": 0.75
+          "size": 0.8
         },
         {
           "id": "s2",
           "slot": "support",
-          "label": "Azure: +$2-3B AI a quarter",
+          "label": "Azure: +$2-3B a quarter",
           "text": "Azure added something like two or three billion dollars of AI revenue per quarter, from a cold start two or three years ago.",
           "provenance": "fact",
           "source_quote": "Azure added something like two or three billion of the AI revenue per quarter from sort of a cold start two or three years ago",
@@ -659,15 +785,15 @@
           ],
           "level": 3,
           "pos": [
-            -32,
-            -20
+            -40,
+            -34
           ],
           "size": 0.75
         },
         {
           "id": "s3",
           "slot": "support",
-          "label": "Distribution is everywhere",
+          "label": "Distribution everywhere",
           "text": "The distribution for these products already exists and is massive; it is everywhere in some sense.",
           "provenance": "fact",
           "source_quote": "But to your point, we have massive distribution. It's already everywhere in some sense, right?",
@@ -678,14 +804,14 @@
           "level": 2,
           "pos": [
             -60,
-            -5
+            -6
           ],
           "size": 0.9
         },
         {
           "id": "d1",
           "slot": "support",
-          "label": "Open market: no software line",
+          "label": "No software line item",
           "text": "The screen the legal example implies but the speaker does not state: the open markets are the professions with almost no software line item and a large payroll line, because there is no incumbent to displace and the budget being competed for is wages.",
           "provenance": "derived",
           "confidence": 0.75,
@@ -695,7 +821,7 @@
           ],
           "level": 2,
           "pos": [
-            -28,
+            -20,
             8
           ],
           "size": 0.9
@@ -703,7 +829,7 @@
         {
           "id": "s4",
           "slot": "support",
-          "label": "Legal never bought software",
+          "label": "Legal bought no software",
           "text": "Legal was hard to sell software into and bought almost none, and because of AI a vendor can suddenly exist there. ('RV' in the transcript is a speech-to-text error for the vendor's name.)",
           "provenance": "fact",
           "source_quote": "It was really hard to sell into legal, but because of AI, suddenly RV can exist, right?",
@@ -711,12 +837,12 @@
           "entities": [
             "Elad Gil"
           ],
-          "level": 3,
+          "level": 2,
           "pos": [
-            -2,
-            -20
+            -30,
+            -6
           ],
-          "size": 0.75
+          "size": 0.9
         },
         {
           "id": "s5",
@@ -732,7 +858,7 @@
           ],
           "level": 2,
           "pos": [
-            5,
+            10,
             8
           ],
           "size": 0.9
@@ -750,8 +876,8 @@
           ],
           "level": 2,
           "pos": [
-            2,
-            -5
+            3,
+            -6
           ],
           "size": 0.9
         },
@@ -768,15 +894,15 @@
           ],
           "level": 2,
           "pos": [
-            34,
-            8
+            -4,
+            -20
           ],
-          "size": 0.9
+          "size": 0.85
         },
         {
           "id": "d2",
           "slot": "support",
-          "label": "Price as a share of function",
+          "label": "A share of function cost",
           "text": "What the seat-to-labour shift implies for the price tag, once the host's framing and the speaker's are put together: the unit of pricing becomes a share of what the function costs to run, not a per-user fee.",
           "provenance": "derived",
           "confidence": 0.7,
@@ -786,15 +912,15 @@
           ],
           "level": 2,
           "pos": [
-            32,
-            -5
+            24,
+            -20
           ],
-          "size": 0.9
+          "size": 0.85
         },
         {
           "id": "s11",
           "slot": "support",
-          "label": "Host: 3%, 5% or 1% of revenue?",
+          "label": "3%, 5% or 1% of revenue?",
           "text": "The host's framing immediately before the pyramid: a seat-based incumbent such as an HR platform could transition to value-based pricing on the value of running the function - three, five or one percent of revenue.",
           "provenance": "fact",
           "source_quote": "I could see them transitioning to kind of value-based pricing around what is it, what's the value of like running your HR department, right?",
@@ -804,8 +930,8 @@
           ],
           "level": 3,
           "pos": [
-            30,
-            -20
+            24,
+            -34
           ],
           "size": 0.75
         },
@@ -822,7 +948,7 @@
           ],
           "level": 2,
           "pos": [
-            62,
+            45,
             8
           ],
           "size": 0.9
@@ -840,8 +966,8 @@
           ],
           "level": 2,
           "pos": [
-            62,
-            -5
+            35,
+            -6
           ],
           "size": 0.9
         },
@@ -856,12 +982,12 @@
           "entities": [
             "Ken Griffin"
           ],
-          "level": 3,
+          "level": 2,
           "pos": [
-            63,
+            60,
             -20
           ],
-          "size": 0.75
+          "size": 0.8
         }
       ],
       "edges": [
