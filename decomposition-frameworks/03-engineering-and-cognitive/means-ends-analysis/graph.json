@@ -1,0 +1,1157 @@
+{
+  "framework": {
+    "slug": "means-ends-analysis",
+    "name": "Means-Ends Analysis",
+    "category": "03-engineering-and-cognitive",
+    "wikipedia": "https://en.wikipedia.org/wiki/Means%E2%80%93ends_analysis",
+    "one_liner": "Measures the distance between where you are and where you want to be, picks the operator that shrinks the biggest difference, and promotes every unmet precondition into a goal of its own."
+  },
+  "slots": [
+    {
+      "id": "current_state",
+      "label": "Current state",
+      "description": "Where things are now: the position, the numbers, the inventory of what exists before anything is applied.",
+      "typical_provenance": "fact",
+      "color": "#6ea8fe",
+      "shape": "sphere"
+    },
+    {
+      "id": "goal_state",
+      "label": "Goal state",
+      "description": "Where things should be, stated precisely enough that you could tell whether you had arrived.",
+      "typical_provenance": "either",
+      "color": "#4fc3a1",
+      "shape": "box"
+    },
+    {
+      "id": "difference",
+      "label": "Difference",
+      "description": "The gap that matters most between current and goal, named in a way that selects an operator.",
+      "typical_provenance": "derived",
+      "color": "#ef6f6c",
+      "shape": "diamond"
+    },
+    {
+      "id": "operator",
+      "label": "Operator",
+      "description": "An action known to reduce a difference of that kind.",
+      "typical_provenance": "either",
+      "color": "#b48ef0",
+      "shape": "cone"
+    },
+    {
+      "id": "precondition",
+      "label": "Precondition",
+      "description": "What must already be true before an operator can be applied at all.",
+      "typical_provenance": "derived",
+      "color": "#ff9de2",
+      "shape": "sphere"
+    },
+    {
+      "id": "subgoal",
+      "label": "Sub-goal",
+      "description": "An unmet precondition promoted to a goal of its own, which restarts the whole loop one level down.",
+      "typical_provenance": "derived",
+      "color": "#7fe0c8",
+      "shape": "box"
+    }
+  ],
+  "relations": [
+    {
+      "id": "differs_by",
+      "label": "differs by",
+      "description": "current state differs from goal state by a difference"
+    },
+    {
+      "id": "reduced_by",
+      "label": "reduced by",
+      "description": "difference is reduced by an operator"
+    },
+    {
+      "id": "requires",
+      "label": "requires",
+      "description": "operator requires a precondition"
+    },
+    {
+      "id": "becomes_subgoal",
+      "label": "becomes sub-goal",
+      "description": "unmet precondition becomes a sub-goal"
+    },
+    {
+      "id": "transforms",
+      "label": "transforms",
+      "description": "operator transforms one state into another"
+    }
+  ],
+  "examples": [
+    {
+      "id": "classic",
+      "kind": "classic",
+      "title": "Getting a boy to nursery school",
+      "summary": "The textbook means-ends chain: a distance to cover, a car that will not start, a shop that does not know, a telephone. Each unmet precondition becomes a goal one level down, and the same loop runs again.",
+      "source": {
+        "type": "text",
+        "title": "The nursery-school problem (scenario text)",
+        "attribution": "Retold from the nursery-school illustration of means-ends analysis in Newell and Simon, Human Problem Solving (1972), the standard exposition of the General Problem Solver's loop.",
+        "text": "A father has to get his four-year-old son to nursery school this morning. He is at home with the boy, the school is three miles away across town, and the session starts in forty minutes. His car is in the driveway and it is the only thing he owns that covers three miles in ten minutes. The car will not start; the battery is dead. The auto repair shop six blocks away stocks batteries and will install one the same day, which is what the car needs to start. Nobody has told the shop anything, so it has no idea that a battery is wanted. To tell the shop anything he has to reach it, and the telephone on the kitchen wall reaches the shop, which opens at eight. He picks up the telephone and dials."
+      },
+      "layout": {
+        "mode": "plane",
+        "axes": {
+          "x": {
+            "label": "means → end",
+            "min": -60,
+            "max": 64,
+            "ticks": [
+              { "value": -46, "label": "current" },
+              { "value": -18, "label": "difference" },
+              { "value": 10, "label": "operator" },
+              { "value": 34, "label": "precondition" },
+              { "value": 56, "label": "goal" }
+            ]
+          },
+          "y": {
+            "label": "recursion depth",
+            "min": -36,
+            "max": 34,
+            "ticks": [
+              { "value": 24, "label": "level 0" },
+              { "value": 0, "label": "level 1" },
+              { "value": -24, "label": "level 2" }
+            ]
+          }
+        },
+        "regions": [
+          { "label": "the original goal", "x": [-60, 64], "y": [14, 34] },
+          { "label": "sub-goal: a car that runs", "x": [-60, 64], "y": [-10, 10] },
+          { "label": "sub-goal: a shop that knows", "x": [-60, 64], "y": [-36, -14] }
+        ],
+        "camera": { "distance": 150 }
+      },
+      "nodes": [
+        {
+          "id": "c1",
+          "slot": "current_state",
+          "label": "At home, forty minutes left",
+          "text": "The father is at home with the boy. The school is three miles away across town and the morning session starts in forty minutes.",
+          "provenance": "fact",
+          "source_quote": "He is at home with the boy, the school is three miles away across town, and the session starts in forty minutes.",
+          "source_ref": "sentence 2",
+          "pos": [-46, 24]
+        },
+        {
+          "id": "g1",
+          "slot": "goal_state",
+          "label": "Son at nursery school",
+          "text": "The boy is at nursery school this morning. That is the state the whole chain exists to reach.",
+          "provenance": "fact",
+          "source_quote": "A father has to get his four-year-old son to nursery school this morning.",
+          "source_ref": "sentence 1",
+          "pos": [56, 24]
+        },
+        {
+          "id": "d1",
+          "slot": "difference",
+          "label": "Three miles of distance",
+          "text": "The difference that matters between the two states is distance: three miles a four-year-old cannot cover in the time left. Not money, not permission, not information.",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The scenario gives a position, a destination and a clock, and never names the gap between them. Distance is the reading that makes the car relevant; if the difference were named as information or as money, a different operator would be selected and the rest of the chain would not follow.",
+          "pos": [-18, 24]
+        },
+        {
+          "id": "o1",
+          "slot": "operator",
+          "label": "Drive the car across town",
+          "text": "Driving the car covers the three miles. It is the only thing the father owns that reduces a difference of this size in the time available.",
+          "provenance": "fact",
+          "source_quote": "His car is in the driveway and it is the only thing he owns that covers three miles in ten minutes.",
+          "source_ref": "sentence 3",
+          "pos": [10, 24]
+        },
+        {
+          "id": "p1",
+          "slot": "precondition",
+          "label": "The car has to start",
+          "text": "Before the drive operator can be applied the car has to start. The operator is available and not applicable, which are different things.",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "Means-ends analysis tests an operator's preconditions before applying it. The dead battery is only a blocker once you have said that driving needs a running car; the scenario states the dead battery and never states the requirement it violates.",
+          "pos": [34, 24]
+        },
+        {
+          "id": "s1",
+          "slot": "subgoal",
+          "label": "Sub-goal: a car that runs",
+          "text": "The unmet precondition is promoted to a goal in its own right: get the car into a state where it starts. The compare-difference-operator loop now runs on this goal instead.",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "This is the recursive step the method is named for, and it is never said out loud: the scenario moves from the dead battery to the repair shop as though no new goal had been created. Without the promotion there is no second level and no explanation of why a repair shop is suddenly relevant to nursery school.",
+          "pos": [56, 0]
+        },
+        {
+          "id": "c2",
+          "slot": "current_state",
+          "label": "The car will not start",
+          "text": "The car is in the driveway and it will not start, because the battery is dead.",
+          "provenance": "fact",
+          "source_quote": "The car will not start; the battery is dead.",
+          "source_ref": "sentence 4",
+          "pos": [-46, 0]
+        },
+        {
+          "id": "d2",
+          "slot": "difference",
+          "label": "No cranking current",
+          "text": "Between the car as it is and the car the drive operator needs there is one difference: a dead battery delivers no current to the starter.",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The scenario names the dead battery as a state, not as the difference between two states. Reading it as the difference is what makes replacing the battery, rather than pushing the car or calling a taxi, the operator the chain selects.",
+          "pos": [-18, 0]
+        },
+        {
+          "id": "o2",
+          "slot": "operator",
+          "label": "Shop fits a new battery",
+          "text": "The auto repair shop six blocks away stocks batteries and will install one the same day, which is what the car needs to start.",
+          "provenance": "fact",
+          "source_quote": "The auto repair shop six blocks away stocks batteries and will install one the same day, which is what the car needs to start.",
+          "source_ref": "sentence 5",
+          "pos": [10, 0]
+        },
+        {
+          "id": "p2",
+          "slot": "precondition",
+          "label": "The shop has to know",
+          "text": "Before the shop can fit a battery it has to know that one is wanted. The scenario records that it does not; the requirement is what turns that into a blocker.",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "An operator that belongs to somebody else carries a precondition of consent or instruction, and the scenario states only the shop's ignorance. Naming the requirement is what produces the third level; reading sentence 6 as a complaint produces nothing.",
+          "pos": [34, 0]
+        },
+        {
+          "id": "s2",
+          "slot": "subgoal",
+          "label": "Sub-goal: a shop that knows",
+          "text": "The second unmet precondition becomes the second sub-goal, one level deeper: get the fact that a battery is wanted from the father's head into the shop.",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The same promotion as s1, applied to p2. It is worth making explicit because the recursion is the framework's whole claim: the machinery that handled a three-mile drive handles a missing sentence without changing shape.",
+          "pos": [56, -24]
+        },
+        {
+          "id": "c3",
+          "slot": "current_state",
+          "label": "The shop has not been told",
+          "text": "The repair shop has been told nothing, so it has no idea that a battery is wanted.",
+          "provenance": "fact",
+          "source_quote": "Nobody has told the shop anything, so it has no idea that a battery is wanted.",
+          "source_ref": "sentence 6",
+          "pos": [-46, -24]
+        },
+        {
+          "id": "d3",
+          "slot": "difference",
+          "label": "A difference of information",
+          "text": "Between what the shop knows and what it must know there is a difference of information. It is not a difference of distance or of money, so neither the car nor a cheque reduces it.",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The scenario never classifies the gap. Classifying it as information is what selects a telephone: the same naming step as d1, performed on a gap of a completely different kind, which is how the method keeps working as it descends.",
+          "pos": [-18, -24]
+        },
+        {
+          "id": "o3",
+          "slot": "operator",
+          "label": "Telephone the shop",
+          "text": "The telephone on the kitchen wall reaches the shop, which opens at eight. Picking it up applies the operator.",
+          "provenance": "fact",
+          "source_quote": "the telephone on the kitchen wall reaches the shop, which opens at eight",
+          "source_ref": "sentence 7",
+          "pos": [10, -24]
+        },
+        {
+          "id": "p3",
+          "slot": "precondition",
+          "label": "Someone has to pick up",
+          "text": "Before the telephone operator can work the shop has to be open and someone has to answer. The scenario says the shop opens at eight and never says what time it is.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The opening hour is stated as colour, and it is actually a precondition that the text leaves untested: forty minutes before a nursery session may well be before eight. Flagging it is the honest end of the chain, because the method stops at the first precondition it cannot check rather than at the first one it can satisfy.",
+          "pos": [34, -24]
+        }
+      ],
+      "edges": [
+        {
+          "id": "ce1",
+          "from": "c1",
+          "to": "d1",
+          "relation": "differs_by",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The position and the clock in sentence 2 are what make distance the operative gap."
+        },
+        {
+          "id": "ce2",
+          "from": "g1",
+          "to": "d1",
+          "relation": "differs_by",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "A difference is defined by both states; the goal supplies the destination end of the three miles."
+        },
+        {
+          "id": "ce3",
+          "from": "d1",
+          "to": "o1",
+          "relation": "reduced_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Sentence 3 says the car covers the distance but never says that the car is therefore the operator for this gap; that selection is the method's step."
+        },
+        {
+          "id": "ce17",
+          "from": "o1",
+          "to": "g1",
+          "relation": "transforms",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Applying the drive operator turns the at-home state into the at-school state. The scenario never completes the drive, so the transformation is inferred from the operator's stated effect."
+        },
+        {
+          "id": "ce4",
+          "from": "o1",
+          "to": "p1",
+          "relation": "requires",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "Driving a car requires a car that starts; the requirement is implicit in the operator and is what the dead battery violates."
+        },
+        {
+          "id": "ce5",
+          "from": "p1",
+          "to": "s1",
+          "relation": "becomes_subgoal",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The promotion step: an unmet precondition is re-entered as a goal, which is the only reason the repair shop enters a story about nursery school."
+        },
+        {
+          "id": "ce6",
+          "from": "c2",
+          "to": "d2",
+          "relation": "differs_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The dead battery in sentence 4 is the content of the second-level difference."
+        },
+        {
+          "id": "ce7",
+          "from": "s1",
+          "to": "d2",
+          "relation": "differs_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The new goal supplies the other end of the second-level gap: a car that starts."
+        },
+        {
+          "id": "ce8",
+          "from": "d2",
+          "to": "o2",
+          "relation": "reduced_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Fitting a battery is selected because the difference was classified as a missing battery rather than as a car that is generally broken."
+        },
+        {
+          "id": "ce15",
+          "from": "o2",
+          "to": "c2",
+          "relation": "transforms",
+          "provenance": "fact",
+          "source_quote": "The auto repair shop six blocks away stocks batteries and will install one the same day, which is what the car needs to start.",
+          "source_ref": "sentence 5",
+          "label": "fixes"
+        },
+        {
+          "id": "ce9",
+          "from": "o2",
+          "to": "p2",
+          "relation": "requires",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "An operator owned by someone else requires that they be instructed; the shop cannot act on a need it has not been told about."
+        },
+        {
+          "id": "ce10",
+          "from": "p2",
+          "to": "s2",
+          "relation": "becomes_subgoal",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The second promotion, identical in form to the first and applied to a gap of a different kind."
+        },
+        {
+          "id": "ce11",
+          "from": "c3",
+          "to": "d3",
+          "relation": "differs_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Sentence 6 states the shop's ignorance, which is the content of the third-level difference."
+        },
+        {
+          "id": "ce12",
+          "from": "s2",
+          "to": "d3",
+          "relation": "differs_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The third-level goal supplies the other end: a shop that knows."
+        },
+        {
+          "id": "ce13",
+          "from": "d3",
+          "to": "o3",
+          "relation": "reduced_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "A telephone is the operator for a difference of information, and only for that kind of difference."
+        },
+        {
+          "id": "ce16",
+          "from": "o3",
+          "to": "c3",
+          "relation": "transforms",
+          "provenance": "fact",
+          "source_quote": "To tell the shop anything he has to reach it, and the telephone on the kitchen wall reaches the shop, which opens at eight.",
+          "source_ref": "sentence 7",
+          "label": "informs"
+        },
+        {
+          "id": "ce14",
+          "from": "o3",
+          "to": "p3",
+          "relation": "requires",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "A telephone call requires an answer at the other end, which the scenario leaves unverified."
+        },
+        {
+          "id": "ce18",
+          "from": "p1",
+          "to": "c2",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The dead battery is the evidence that this precondition is unmet."
+        },
+        {
+          "id": "ce19",
+          "from": "p2",
+          "to": "c3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The shop's stated ignorance is the evidence that this precondition is unmet."
+        },
+        {
+          "id": "ce20",
+          "from": "p3",
+          "to": "o3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The opening hour inside sentence 7 is the only evidence bearing on whether the call can be answered."
+        },
+        {
+          "id": "ce21",
+          "from": "s1",
+          "to": "c2",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The sub-goal exists because of the state sentence 4 reports."
+        },
+        {
+          "id": "ce22",
+          "from": "s2",
+          "to": "c3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The sub-goal exists because of the state sentence 6 reports."
+        },
+        {
+          "id": "ce23",
+          "from": "d1",
+          "to": "c1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "Three miles and forty minutes are the stated quantities the distance reading rests on."
+        }
+      ]
+    },
+    {
+      "id": "tbpn",
+      "kind": "tbpn",
+      "title": "Hadrian: four times the factory, and a workforce money cannot buy",
+      "summary": "Chris Power states Hadrian's current state and its goal state with numbers, names five operators, and then names the one thing no operator can buy: the workforce. The preconditions underneath the rest of his plan are never stated, and that is where the openings are.",
+      "source": {
+        "type": "transcript",
+        "file": "tbpn-transcripts/transcripts/2025-07-17_astronomer-ceo-affair-at-coldplay-concert-juul-approved-by-the-fda-is-ai-causing-historic-crashouts-chris-power-jeremie-eliahou-chris-best-alex-mashra.md",
+        "date": "2025-07-17",
+        "episode_title": "Astronomer CEO affair at Coldplay concert, Juul approved by the FDA, is AI causing historic crashouts (Chris Power, Jeremie Eliahou, Chris Best, Alex Mashrabov)"
+      },
+      "why_this_episode": "Live from the Reindustrialize summit, Chris Power gives the two states this framework needs in consecutive sentences: Factory 2 in LA with revenue up 10x, and Factory 3 in Arizona at four times the size. He then names the operators that close the gap and, unusually, names one precondition out loud and says that money cannot satisfy it, which is exactly the moment a precondition becomes a sub-goal.",
+      "idea_bearing_slot": "precondition",
+      "layout": {
+        "mode": "plane",
+        "axes": {
+          "x": {
+            "label": "means → end",
+            "min": -62,
+            "max": 66,
+            "ticks": [
+              { "value": -48, "label": "current" },
+              { "value": -20, "label": "difference" },
+              { "value": 8, "label": "operator" },
+              { "value": 34, "label": "precondition" },
+              { "value": 58, "label": "goal" }
+            ]
+          },
+          "y": {
+            "label": "recursion depth",
+            "min": -40,
+            "max": 38,
+            "ticks": [
+              { "value": 26, "label": "level 0" },
+              { "value": 2, "label": "level 1" },
+              { "value": -26, "label": "level 2" }
+            ]
+          }
+        },
+        "regions": [
+          { "label": "the goal: four times the capacity", "x": [-62, 66], "y": [12, 38] },
+          { "label": "sub-goal: a workforce, and the money for machines", "x": [-62, 66], "y": [-14, 10] },
+          { "label": "sub-goal: software nobody has written", "x": [-62, 66], "y": [-40, -16] }
+        ],
+        "camera": { "distance": 170 }
+      },
+      "nodes": [
+        {
+          "id": "cs1",
+          "slot": "current_state",
+          "label": "Factory 2 in LA, revenue up 10x",
+          "text": "Hadrian's second factory is in Los Angeles and scaled revenue tenfold last year, which is why capacity is now the binding issue.",
+          "provenance": "fact",
+          "source_quote": "So last year in factory two in LA, you know, we scaled revenue 10 X last year.",
+          "source_ref": "Chris Power, L3734-L3736",
+          "entities": ["Hadrian", "Chris Power"],
+          "pos": [-48, 26]
+        },
+        {
+          "id": "gs1",
+          "slot": "goal_state",
+          "label": "Factory 3 in Arizona, 4x LA",
+          "text": "The goal state is a third factory in Arizona, four times the size of the Los Angeles facility, filled with machines.",
+          "provenance": "fact",
+          "source_quote": "to buy more machines and put them in factory three in Arizona, which is gonna be four times the size of our facility in LA.",
+          "source_ref": "Chris Power, L3740-L3744",
+          "entities": ["Hadrian"],
+          "pos": [58, 26]
+        },
+        {
+          "id": "gs2",
+          "slot": "goal_state",
+          "label": "A program from one aircraft to 20",
+          "text": "The customer-side goal: a new program of record scaling from one aircraft to twenty, with no other supplier able to keep up.",
+          "provenance": "fact",
+          "source_quote": "we're scaling a new program of record and no one else can keep up. We're going from one aircraft to 20.",
+          "source_ref": "Chris Power, L4036-L4040",
+          "entities": ["Hadrian"],
+          "pos": [58, 38]
+        },
+        {
+          "id": "df1",
+          "slot": "difference",
+          "label": "Obviously need more capacity",
+          "text": "Power states the top-level difference himself: after 10x revenue growth the gap between what Factory 2 produces and what demand asks for is capacity.",
+          "provenance": "fact",
+          "source_quote": "And so obviously need more capacity.",
+          "source_ref": "Chris Power, L3736",
+          "entities": ["Hadrian"],
+          "pos": [-20, 26]
+        },
+        {
+          "id": "df2",
+          "slot": "difference",
+          "label": "4x of floor, 20x of demand",
+          "text": "The two numbers never meet in the conversation. Floor space and machines go up four times; the program they serve goes up twenty times. The missing factor of five has to come from output per machine and per person, not from more building.",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Arithmetic on two stated quantities that are fifteen minutes apart in the interview: Factory 3 is 'four times the size of our facility in LA' and the program is 'going from one aircraft to 20'. Nobody divides them. The quotient is what makes automation a requirement rather than a preference, and it is the one number that decides whether the plan closes the gap.",
+          "pos": [-20, 38]
+        },
+        {
+          "id": "op1",
+          "slot": "operator",
+          "label": "Scale up machining in Factory 3",
+          "text": "The first operator: put the machining capacity of four LA factories on the floor in Arizona, across every machining format.",
+          "provenance": "fact",
+          "source_quote": "So we'll scale up machining in factory three, four times the size",
+          "source_ref": "Chris Power, L3866-L3868",
+          "entities": ["Hadrian"],
+          "pos": [8, 26]
+        },
+        {
+          "id": "op2",
+          "slot": "operator",
+          "label": "Morgan Stanley capacity instrument",
+          "text": "A debt instrument from Morgan Stanley, raised specifically to expand factory capacity rather than to fund the company.",
+          "provenance": "fact",
+          "source_quote": "And Morgan Stanley is providing us this huge instrument as well to expand factory capacity.",
+          "source_ref": "Chris Power, L3718-L3722",
+          "entities": ["Hadrian", "Morgan Stanley"],
+          "pos": [8, 14]
+        },
+        {
+          "id": "op3",
+          "slot": "operator",
+          "label": "A $260M equity round",
+          "text": "An equity round of $260 million, led by the investors Power names as Founders Fund and Lux (the transcript garbles the names), announced the morning of the interview.",
+          "provenance": "fact",
+          "source_quote": "are leading a huge $260 million round into Hadrian.",
+          "source_ref": "Chris Power, L3714",
+          "entities": ["Hadrian", "Founders Fund", "Chris Power"],
+          "pos": [8, 2]
+        },
+        {
+          "id": "pc1",
+          "slot": "precondition",
+          "label": "Machines bought without equity",
+          "text": "Before the floor can be filled at this rate, the capital equipment has to be paid for out of something other than equity, because equity is reserved for headcount and products.",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Power states the allocation rule as a preference ('we don't want to use equity dollars to scale'), not as a gate. Read as a precondition it explains the shape of the whole financing: a 4x factory cannot be bought with dilution at a tolerable price, so a separate machine-financing instrument has to exist before the scale-up operator can run.",
+          "entities": ["Hadrian", "Morgan Stanley"],
+          "pos": [34, 26]
+        },
+        {
+          "id": "sg1",
+          "slot": "subgoal",
+          "label": "Sub-goal: finance the machines",
+          "text": "The capital precondition promoted to a goal of its own: find an instrument that buys CapEx without touching equity. This is the one sub-goal in the interview that is already solved.",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The Morgan Stanley instrument only makes sense as the answer to a goal nobody states. Naming the sub-goal is what distinguishes it from the equity round: two operators, two different sub-goals, one of which buys steel and one of which buys people.",
+          "entities": ["Hadrian", "Morgan Stanley"],
+          "pos": [58, 2]
+        },
+        {
+          "id": "cs2",
+          "slot": "current_state",
+          "label": "Primes' suppliers: 60% on time",
+          "text": "A prime contractor spending a billion dollars a year sees its suppliers deliver on time 60% of the time, often three to five months late.",
+          "provenance": "fact",
+          "source_quote": "a lot of the primes have a billion dollars in spend a year and their suppliers are delivering on time, 60% and they're often three to five months late.",
+          "source_ref": "Chris Power, L4046-L4052",
+          "entities": ["Hadrian"],
+          "pos": [-48, 14]
+        },
+        {
+          "id": "df3",
+          "slot": "difference",
+          "label": "Schedule and capacity, not cost",
+          "text": "Power names what customers are actually paying to close: schedule, capacity and stability, rather than unit cost. One missing part stops a line at millions of dollars a day.",
+          "provenance": "fact",
+          "source_quote": "people are really coming to us for the schedule and the capacity and stability versus cost.",
+          "source_ref": "Chris Power, L4056-L4058",
+          "entities": ["Hadrian"],
+          "pos": [-20, 14]
+        },
+        {
+          "id": "cs3",
+          "slot": "current_state",
+          "label": "No one can find the workforce",
+          "text": "In submarines, shipbuilding and munitions the binding constraint is not the cost of the work but that nobody can find people to do it.",
+          "provenance": "fact",
+          "source_quote": "it's not about automation to make things cheaper. It's just no one can find the workforce.",
+          "source_ref": "Chris Power, L3974-L3976",
+          "entities": ["Hadrian"],
+          "pos": [-48, 2]
+        },
+        {
+          "id": "df4",
+          "slot": "difference",
+          "label": "No scaled workforce at any price",
+          "text": "The difference that no amount of capital reduces: a billion dollars cannot hire two thousand welders, because the scaled workforce no longer exists in the country.",
+          "provenance": "fact",
+          "source_quote": "because you could give me a billion dollars and say, go hire 2,000 welders, and we can no longer have that scaled workforce in the country.",
+          "source_ref": "Chris Power, L3986-L3992",
+          "entities": ["Hadrian"],
+          "pos": [-20, 2]
+        },
+        {
+          "id": "op4",
+          "slot": "operator",
+          "label": "Automated factories",
+          "text": "Automating the factory is presented not as a way to make parts cheaper but as the only available operator once the labour difference cannot be reduced by hiring.",
+          "provenance": "fact",
+          "source_quote": "So automated factories are sometimes the only way to win in these critical domains.",
+          "source_ref": "Chris Power, L3994-L3996",
+          "entities": ["Hadrian"],
+          "pos": [8, -10]
+        },
+        {
+          "id": "op5",
+          "slot": "operator",
+          "label": "Advanced mfg plus new workforce",
+          "text": "The compound operator Power actually proposes: Hadrian's model of advanced manufacturing combined with a new industrial workforce, not one or the other.",
+          "provenance": "fact",
+          "source_quote": "So you have to use our model of advanced manufacturing combined with this new industrial workforce that we're so grateful to work with.",
+          "source_ref": "Chris Power, L3978-L3982",
+          "entities": ["Hadrian"],
+          "pos": [8, -22]
+        },
+        {
+          "id": "pc2",
+          "slot": "precondition",
+          "label": "A workforce money cannot buy",
+          "text": "Both operators require people who can run an advanced factory: machinists, welders, quality inspectors, operators. The precondition is unmet and, by Power's own statement, unbuyable at any price.",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "Power states the labour shortage and states the automation response, but never puts the requirement between them: an automated factory still needs trained people, so automation reduces the headcount the operator needs without removing the precondition. Treating it as a precondition rather than as background is what turns it into a goal with an owner.",
+          "idea": "A training-and-placement pipeline that delivers machinists, welders and quality inspectors to advanced factories on a contracted schedule is a business whose price is already quoted: primes losing millions of dollars a day to 60% on-time delivery are paying for schedule, not for cheap labour.",
+          "entities": ["Hadrian"],
+          "pos": [34, 2]
+        },
+        {
+          "id": "sg2",
+          "slot": "subgoal",
+          "label": "Sub-goal: the industrial workforce",
+          "text": "The labour precondition promoted to a goal Hadrian pursues itself: build the new industrial workforce, and use equity dollars rather than debt to do it.",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Power's phrasing gives this away twice: the round is 'more importantly' about the new industrial workforce, and equity dollars are earmarked 'to hire more people'. Neither sentence says a sub-goal has been created, but a company that allocates a separate instrument to a precondition has promoted it.",
+          "entities": ["Hadrian", "Chris Power"],
+          "pos": [58, -26]
+        },
+        {
+          "id": "cs4",
+          "slot": "current_state",
+          "label": "We hollowed out the talent base",
+          "text": "The starting state of the workforce sub-goal: the talent base was hollowed out over decades of offshoring, so the skills are not there to be recruited.",
+          "provenance": "fact",
+          "source_quote": "It is really a we hollowed out the talent base. We don't have a lot of the talent anymore.",
+          "source_ref": "Chris Power, L4140-L4142",
+          "entities": ["Hadrian"],
+          "pos": [-48, -10]
+        },
+        {
+          "id": "op6",
+          "slot": "operator",
+          "label": "Software and robotics for 10x",
+          "text": "The operator for the workforce sub-goal: use software and robotics to make the workforce that does exist ten times more productive.",
+          "provenance": "fact",
+          "source_quote": "And the only way to do that is use software and robotics to enable this workforce to be 10 times more productive.",
+          "source_ref": "Chris Power, L4144-L4146",
+          "entities": ["Hadrian"],
+          "pos": [8, -34]
+        },
+        {
+          "id": "cs5",
+          "slot": "current_state",
+          "label": "Factory software 30 years behind",
+          "text": "Manufacturing software is thirty years behind the rest of Silicon Valley, which Power offers to software engineers as a reason to come and work on it.",
+          "provenance": "fact",
+          "source_quote": "for software engineers, manufacturing software is 30 years behind the rest of Silicon Valley.",
+          "source_ref": "Chris Power, L4180-L4182",
+          "entities": ["Hadrian"],
+          "pos": [-48, -26]
+        },
+        {
+          "id": "df5",
+          "slot": "difference",
+          "label": "The tooling gap on the floor",
+          "text": "Between the software an automated factory needs and the software the industry actually has there are thirty years. That gap, not the robots, is what stands between the existing workforce and a tenfold gain.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Power states the thirty-year lag as a recruiting pitch in a different part of the conversation from the 10x productivity claim. Putting them together turns a fact about an industry into the difference that blocks his own operator: you cannot deploy software that is not written.",
+          "entities": ["Hadrian"],
+          "pos": [-20, -26]
+        },
+        {
+          "id": "pc3",
+          "slot": "precondition",
+          "label": "Software nobody has written yet",
+          "text": "Before software and robotics can make a workforce ten times more productive, that software has to exist for the processes being automated: machining, welding, castings, inspection.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Follows from the two stated facts, the 10x-productivity operator and the thirty-year software lag, neither of which is presented as bearing on the other. The precondition is what explains why a manufacturing company is hiring software engineers at all.",
+          "idea": "Machine-level software for the shop floor is a greenfield category by the operator's own admission: scheduling, tooling, quality and traceability for machining, welding and castings, sold to the factories whose automation plans are all gated on the same missing layer.",
+          "entities": ["Hadrian"],
+          "pos": [34, -26]
+        },
+        {
+          "id": "sg3",
+          "slot": "subgoal",
+          "label": "Sub-goal: write the floor software",
+          "text": "The software precondition promoted to a goal two levels down from the original one. Hadrian takes it on internally; nobody in the conversation suggests it can be bought.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The third promotion in the chain, and the one with the weakest stated support: Power advertises the software opportunity to engineers rather than describing a program. Naming it as a sub-goal is what shows how far the original capacity goal has recursed.",
+          "idea": "The recursion itself is the market signal: every defence manufacturer scaling capacity hits the same two missing layers, trained operators and floor software, which means these are industry-wide sub-goals being solved separately and expensively inside each company.",
+          "entities": ["Hadrian"],
+          "pos": [58, -38]
+        }
+      ],
+      "edges": [
+        {
+          "id": "fe1",
+          "from": "cs1",
+          "to": "df1",
+          "relation": "differs_by",
+          "provenance": "fact",
+          "source_quote": "So last year in factory two in LA, you know, we scaled revenue 10 X last year. Wow. And so obviously need more capacity.",
+          "source_ref": "Chris Power, L3734-L3736",
+          "label": "so"
+        },
+        {
+          "id": "fe2",
+          "from": "df1",
+          "to": "op1",
+          "relation": "reduced_by",
+          "provenance": "fact",
+          "source_quote": "And so obviously need more capacity. So we're gonna use all of the factory financing capital to buy more machines and put them in factory three in Arizona",
+          "source_ref": "Chris Power, L3736-L3742"
+        },
+        {
+          "id": "fe3",
+          "from": "df1",
+          "to": "op2",
+          "relation": "reduced_by",
+          "provenance": "fact",
+          "source_quote": "And Morgan Stanley is providing us this huge instrument as well to expand factory capacity.",
+          "source_ref": "Chris Power, L3718-L3722"
+        },
+        {
+          "id": "fe4",
+          "from": "op1",
+          "to": "gs1",
+          "relation": "transforms",
+          "provenance": "fact",
+          "source_quote": "So we're gonna use all of the factory financing capital to buy more machines and put them in factory three in Arizona, which is gonna be four times the size of our facility in LA.",
+          "source_ref": "Chris Power, L3738-L3744"
+        },
+        {
+          "id": "fe5",
+          "from": "cs2",
+          "to": "df3",
+          "relation": "differs_by",
+          "provenance": "fact",
+          "source_quote": "they're often three to five months late. So that is less about cost. And that's more about, I want a stable supply chain that I don't want to have to worry about. Cause if you have one part missing, your manufacturing line goes down and then it's millions of dollars a day. Right? So people are really coming to us for the schedule and the capacity and stability versus cost.",
+          "source_ref": "Chris Power, L4052-L4058"
+        },
+        {
+          "id": "fe6",
+          "from": "cs3",
+          "to": "df4",
+          "relation": "differs_by",
+          "provenance": "fact",
+          "source_quote": "It's just no one can find the workforce. So you have to use our model of advanced manufacturing combined with this new industrial workforce that we're so grateful to work with. That's the power, because you could give me a billion dollars and say, go hire 2,000 welders, and we can no longer have that scaled workforce in the country.",
+          "source_ref": "Chris Power, L3976-L3992"
+        },
+        {
+          "id": "fe7",
+          "from": "df4",
+          "to": "op4",
+          "relation": "reduced_by",
+          "provenance": "fact",
+          "source_quote": "because you could give me a billion dollars and say, go hire 2,000 welders, and we can no longer have that scaled workforce in the country. So automated factories are sometimes the only way to win in these critical domains.",
+          "source_ref": "Chris Power, L3986-L3996"
+        },
+        {
+          "id": "fe8",
+          "from": "df4",
+          "to": "op5",
+          "relation": "reduced_by",
+          "provenance": "fact",
+          "source_quote": "So you have to use our model of advanced manufacturing combined with this new industrial workforce that we're so grateful to work with. That's the power, because you could give me a billion dollars and say, go hire 2,000 welders, and we can no longer have that scaled workforce in the country.",
+          "source_ref": "Chris Power, L3978-L3992"
+        },
+        {
+          "id": "fe9",
+          "from": "op6",
+          "to": "cs4",
+          "relation": "transforms",
+          "provenance": "fact",
+          "source_quote": "It is really a we hollowed out the talent base. We don't have a lot of the talent anymore. And the only way to do that is use software and robotics to enable this workforce to be 10 times more productive.",
+          "source_ref": "Chris Power, L4140-L4146",
+          "label": "the only way"
+        },
+        {
+          "id": "de1",
+          "from": "gs2",
+          "to": "df2",
+          "relation": "differs_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The twenty-aircraft figure is one of the two numbers the quotient is taken from."
+        },
+        {
+          "id": "de2",
+          "from": "gs1",
+          "to": "df2",
+          "relation": "differs_by",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The 4x factory is the other number; the difference is the ratio between them."
+        },
+        {
+          "id": "de3",
+          "from": "cs1",
+          "to": "df2",
+          "relation": "differs_by",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Factory 2 is the unit the 4x is measured in, so it sets the baseline the ratio is computed against."
+        },
+        {
+          "id": "de4",
+          "from": "df2",
+          "to": "op4",
+          "relation": "reduced_by",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "If floor space grows 4x while demand grows 20x, the remaining factor has to come from output per machine and per person, which is what automation is for. Power never connects the automation argument to the capacity arithmetic; he reaches automation from the labour shortage instead."
+        },
+        {
+          "id": "de5",
+          "from": "op1",
+          "to": "pc1",
+          "relation": "requires",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Filling four times the floor with machines requires the machines to be paid for; the allocation rule Power states makes equity unavailable for it."
+        },
+        {
+          "id": "de6",
+          "from": "pc1",
+          "to": "sg1",
+          "relation": "becomes_subgoal",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The promotion step: a financing requirement becomes a goal with its own operator, which is the Morgan Stanley instrument."
+        },
+        {
+          "id": "de7",
+          "from": "op2",
+          "to": "sg1",
+          "relation": "transforms",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The instrument is the operator that satisfies the financing sub-goal; Power describes what it is for but never frames it as closing a sub-goal."
+        },
+        {
+          "id": "de8",
+          "from": "op1",
+          "to": "gs2",
+          "relation": "transforms",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Scaling machining capacity is what lets the program of record go from one aircraft to twenty; the two are stated fifteen minutes apart and never joined."
+        },
+        {
+          "id": "de9",
+          "from": "df3",
+          "to": "op1",
+          "relation": "reduced_by",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "If customers are buying schedule and capacity, more machining capacity is the operator that delivers it. Power states both halves and leaves the link to the listener."
+        },
+        {
+          "id": "de10",
+          "from": "df3",
+          "to": "op5",
+          "relation": "reduced_by",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The compound operator is sold to programs that are behind schedule, so the schedule difference is what it is meant to reduce."
+        },
+        {
+          "id": "de11",
+          "from": "cs4",
+          "to": "df4",
+          "relation": "differs_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The hollowed-out talent base is the history behind the workforce difference; Power gives the cause in one passage and the difference in another."
+        },
+        {
+          "id": "de12",
+          "from": "op4",
+          "to": "pc2",
+          "relation": "requires",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "An automated factory reduces how many people an operator needs; it does not remove the requirement for trained ones. The requirement is nowhere stated."
+        },
+        {
+          "id": "de13",
+          "from": "op5",
+          "to": "pc2",
+          "relation": "requires",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The compound operator names the workforce as one of its two halves, so it cannot be applied until that half exists."
+        },
+        {
+          "id": "de14",
+          "from": "pc2",
+          "to": "sg2",
+          "relation": "becomes_subgoal",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The promotion that organises the whole interview: Power calls the new industrial workforce the more important half of the announcement, which is what a company does with a precondition it has decided to own."
+        },
+        {
+          "id": "de15",
+          "from": "op3",
+          "to": "sg2",
+          "relation": "transforms",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Equity dollars are earmarked for hiring people rather than for CapEx, which makes the round the operator for the workforce sub-goal: 'We wanna use equity dollars to hire more people to build more products for our customers'."
+        },
+        {
+          "id": "de16",
+          "from": "op6",
+          "to": "sg2",
+          "relation": "transforms",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Making the existing workforce ten times more productive is the other operator on the same sub-goal, and the only one that changes the arithmetic rather than the headcount."
+        },
+        {
+          "id": "de17",
+          "from": "sg2",
+          "to": "df5",
+          "relation": "differs_by",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "Once building the workforce is itself the goal, the gap between the existing workforce and a tenfold-productive one is a tooling gap. This is the second recursion step and nothing in the source states it."
+        },
+        {
+          "id": "de18",
+          "from": "cs5",
+          "to": "df5",
+          "relation": "differs_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The thirty-year lag is the stated measurement of the tooling gap's size."
+        },
+        {
+          "id": "de19",
+          "from": "df5",
+          "to": "op6",
+          "relation": "reduced_by",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Software and robotics is the operator aimed at the tooling gap, which is why the gap has to be named before the operator makes sense."
+        },
+        {
+          "id": "de20",
+          "from": "op6",
+          "to": "pc3",
+          "relation": "requires",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Deploying software requires the software to exist for these processes, which by the speaker's own account the industry is thirty years short of."
+        },
+        {
+          "id": "de21",
+          "from": "pc3",
+          "to": "sg3",
+          "relation": "becomes_subgoal",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The third promotion: the missing software becomes a goal two levels below the original capacity goal, which is how far this plan has had to recurse."
+        },
+        {
+          "id": "sb1",
+          "from": "df2",
+          "to": "gs1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The 4x figure is one of the two quantities the ratio is computed from."
+        },
+        {
+          "id": "sb2",
+          "from": "pc1",
+          "to": "op2",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The existence of a dedicated machine-financing instrument is the evidence that the capital requirement was treated as a gate."
+        },
+        {
+          "id": "sb3",
+          "from": "pc2",
+          "to": "df4",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The billion-dollars-and-2,000-welders statement is the direct evidence that this precondition cannot be met by spending."
+        },
+        {
+          "id": "sb4",
+          "from": "pc2",
+          "to": "cs3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The stated inability to find a workforce in submarines, shipbuilding and munitions grounds the requirement."
+        },
+        {
+          "id": "sb5",
+          "from": "pc3",
+          "to": "cs5",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The thirty-year software lag is the evidence that the software the operator needs has not been written."
+        },
+        {
+          "id": "sb6",
+          "from": "sg1",
+          "to": "op2",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The instrument is the visible trace of the financing sub-goal."
+        },
+        {
+          "id": "sb7",
+          "from": "sg2",
+          "to": "op5",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Naming the new industrial workforce as half of the operator is the evidence that Hadrian has taken the precondition on as a goal."
+        },
+        {
+          "id": "sb8",
+          "from": "sg3",
+          "to": "cs5",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The recruiting pitch to software engineers is the only trace in the source of work on this sub-goal."
+        }
+      ]
+    }
+  ]
+}
