@@ -90,13 +90,70 @@
       "layout": {
         "mode": "plane",
         "regions": [
-          { "label": "Fluff (not strategy)", "x": [-62, -34], "y": [-46, 46], "color": "#c9a227" },
-          { "label": "Challenge", "x": [-30, 62], "y": [30, 46], "color": "#7a8fa6" },
-          { "label": "Diagnosis", "x": [-30, 62], "y": [6, 26], "color": "#d94f3d" },
-          { "label": "Guiding policy", "x": [-30, 62], "y": [-22, 2], "color": "#3f7fb5" },
-          { "label": "Coherent actions", "x": [-30, 62], "y": [-46, -20], "color": "#4a9d6a" }
+          {
+            "label": "Fluff (not strategy)",
+            "x": [
+              -62,
+              -34
+            ],
+            "y": [
+              -46,
+              46
+            ],
+            "color": "#c9a227"
+          },
+          {
+            "label": "Challenge",
+            "x": [
+              -30,
+              62
+            ],
+            "y": [
+              30,
+              46
+            ],
+            "color": "#7a8fa6"
+          },
+          {
+            "label": "Diagnosis",
+            "x": [
+              -30,
+              62
+            ],
+            "y": [
+              6,
+              26
+            ],
+            "color": "#d94f3d"
+          },
+          {
+            "label": "Guiding policy",
+            "x": [
+              -30,
+              62
+            ],
+            "y": [
+              -22,
+              2
+            ],
+            "color": "#3f7fb5"
+          },
+          {
+            "label": "Coherent actions",
+            "x": [
+              -30,
+              62
+            ],
+            "y": [
+              -46,
+              -20
+            ],
+            "color": "#4a9d6a"
+          }
         ],
-        "camera": { "distance": 175 }
+        "camera": {
+          "distance": 175
+        }
       },
       "nodes": [
         {
@@ -107,8 +164,13 @@
           "provenance": "fact",
           "source_quote": "Apple was about ninety days from insolvency",
           "source_ref": "sentence 1",
-          "entities": ["Apple"],
-          "pos": [-18, 38]
+          "entities": [
+            "Apple"
+          ],
+          "pos": [
+            -18,
+            38
+          ]
         },
         {
           "id": "c2",
@@ -118,8 +180,13 @@
           "provenance": "fact",
           "source_quote": "Its share of the personal computer market was under four per cent",
           "source_ref": "sentence 2",
-          "entities": ["Apple"],
-          "pos": [4, 38]
+          "entities": [
+            "Apple"
+          ],
+          "pos": [
+            4,
+            38
+          ]
         },
         {
           "id": "c3",
@@ -129,8 +196,15 @@
           "provenance": "fact",
           "source_quote": "selling more than a dozen Macintosh model families in overlapping configurations",
           "source_ref": "sentence 3",
-          "entities": ["Apple", "Macintosh", "Newton"],
-          "pos": [26, 38]
+          "entities": [
+            "Apple",
+            "Macintosh",
+            "Newton"
+          ],
+          "pos": [
+            26,
+            38
+          ]
         },
         {
           "id": "c4",
@@ -140,8 +214,14 @@
           "provenance": "fact",
           "source_quote": "it had licensed the Macintosh operating system to clone makers who sold to the same buyers Apple sold to",
           "source_ref": "sentence 3",
-          "entities": ["Apple", "Macintosh"],
-          "pos": [48, 38]
+          "entities": [
+            "Apple",
+            "Macintosh"
+          ],
+          "pos": [
+            48,
+            38
+          ]
         },
         {
           "id": "f1",
@@ -151,8 +231,13 @@
           "provenance": "fact",
           "source_quote": "to regain lost market share",
           "source_ref": "sentence 2, the plan in circulation",
-          "entities": ["Apple"],
-          "pos": [-48, 26]
+          "entities": [
+            "Apple"
+          ],
+          "pos": [
+            -48,
+            26
+          ]
         },
         {
           "id": "f2",
@@ -162,8 +247,13 @@
           "provenance": "fact",
           "source_quote": "to return the company to profitability",
           "source_ref": "sentence 2, the plan in circulation",
-          "entities": ["Apple"],
-          "pos": [-48, 6]
+          "entities": [
+            "Apple"
+          ],
+          "pos": [
+            -48,
+            6
+          ]
         },
         {
           "id": "f3",
@@ -173,8 +263,13 @@
           "provenance": "fact",
           "source_quote": "to reassert Apple as the industry's leader in innovation",
           "source_ref": "sentence 2, the plan in circulation",
-          "entities": ["Apple"],
-          "pos": [-48, -14]
+          "entities": [
+            "Apple"
+          ],
+          "pos": [
+            -48,
+            -14
+          ]
         },
         {
           "id": "d1",
@@ -184,8 +279,13 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "The scenario gives the product count, the clone licences and the cash position separately and never says what connects them. Reading them as one obstacle - scope exceeding scale - is precisely the diagnosis the plan omits, and it is what makes the cash deadline binding rather than merely alarming.",
-          "entities": ["Apple"],
-          "pos": [-12, 16]
+          "entities": [
+            "Apple"
+          ],
+          "pos": [
+            -12,
+            16
+          ]
         },
         {
           "id": "d2",
@@ -195,8 +295,13 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "The text states the share and that the standard had won the volume game. That this makes the share objective unreachable, and that a small differentiated position is what remains, is the step the text does not take.",
-          "entities": ["Apple"],
-          "pos": [14, 16]
+          "entities": [
+            "Apple"
+          ],
+          "pos": [
+            14,
+            16
+          ]
         },
         {
           "id": "d3",
@@ -206,8 +311,14 @@
           "provenance": "derived",
           "confidence": 0.75,
           "rationale": "The scenario says the clones sold to the same buyers. That this made the licences self-defeating rather than merely competitive, because the operating system was the only thing Apple owned that its rivals did not, is an inference.",
-          "entities": ["Apple", "Macintosh"],
-          "pos": [40, 16]
+          "entities": [
+            "Apple",
+            "Macintosh"
+          ],
+          "pos": [
+            40,
+            16
+          ]
         },
         {
           "id": "g1",
@@ -217,8 +328,14 @@
           "provenance": "fact",
           "source_quote": "Apple would make four computers and nothing else",
           "source_ref": "sentence 4, Jobs",
-          "entities": ["Apple", "Steve Jobs"],
-          "pos": [-18, -4]
+          "entities": [
+            "Apple",
+            "Steve Jobs"
+          ],
+          "pos": [
+            -18,
+            -4
+          ]
         },
         {
           "id": "g2",
@@ -228,8 +345,14 @@
           "provenance": "fact",
           "source_quote": "he was going to wait for the next big thing",
           "source_ref": "sentence 7, Jobs",
-          "entities": ["Apple", "Steve Jobs"],
-          "pos": [30, -4]
+          "entities": [
+            "Apple",
+            "Steve Jobs"
+          ],
+          "pos": [
+            30,
+            -4
+          ]
         },
         {
           "id": "g3",
@@ -237,10 +360,15 @@
           "label": "Concentrate on one platform",
           "text": "The approach underneath the rule was concentration: one operating system, one narrow line, and every resource pointed at the few things a four-per-cent company could still do better than anyone.",
           "provenance": "derived",
-          "confidence": 0.80,
+          "confidence": 0.8,
           "rationale": "No sentence states a policy. It is the common shape of every action taken - the four-product line, the cancellations, the channel and manufacturing cuts - read back as the direction that generated them rather than as five separate decisions.",
-          "entities": ["Apple"],
-          "pos": [-8, -16]
+          "entities": [
+            "Apple"
+          ],
+          "pos": [
+            -8,
+            -16
+          ]
         },
         {
           "id": "g4",
@@ -250,8 +378,13 @@
           "provenance": "derived",
           "confidence": 0.75,
           "rationale": "Rumelt's test for a guiding policy is what it gives up. The scenario lists cancellations but never states what was surrendered by making them; naming the abandoned share objective is what turns a list of cuts into a policy with a price.",
-          "entities": ["Apple"],
-          "pos": [30, -16]
+          "entities": [
+            "Apple"
+          ],
+          "pos": [
+            30,
+            -16
+          ]
         },
         {
           "id": "a1",
@@ -261,8 +394,13 @@
           "provenance": "fact",
           "source_quote": "a desktop and a portable for consumers, a desktop and a portable for professionals",
           "source_ref": "sentence 4",
-          "entities": ["Apple"],
-          "pos": [-24, -28]
+          "entities": [
+            "Apple"
+          ],
+          "pos": [
+            -24,
+            -28
+          ]
         },
         {
           "id": "a2",
@@ -272,8 +410,14 @@
           "provenance": "fact",
           "source_quote": "He ended the Newton, the printers and the clone licences",
           "source_ref": "sentence 5",
-          "entities": ["Apple", "Newton"],
-          "pos": [-6, -28]
+          "entities": [
+            "Apple",
+            "Newton"
+          ],
+          "pos": [
+            -6,
+            -28
+          ]
         },
         {
           "id": "a3",
@@ -283,8 +427,13 @@
           "provenance": "fact",
           "source_quote": "He cut inventory and the number of distributors",
           "source_ref": "sentence 6",
-          "entities": ["Apple"],
-          "pos": [12, -28]
+          "entities": [
+            "Apple"
+          ],
+          "pos": [
+            12,
+            -28
+          ]
         },
         {
           "id": "a4",
@@ -294,8 +443,13 @@
           "provenance": "fact",
           "source_quote": "moved manufacturing to contract assemblers",
           "source_ref": "sentence 6",
-          "entities": ["Apple"],
-          "pos": [30, -28]
+          "entities": [
+            "Apple"
+          ],
+          "pos": [
+            30,
+            -28
+          ]
         },
         {
           "id": "a5",
@@ -305,8 +459,13 @@
           "provenance": "fact",
           "source_quote": "opened a direct online store that sold Apple machines without a middleman",
           "source_ref": "sentence 6",
-          "entities": ["Apple"],
-          "pos": [48, -28]
+          "entities": [
+            "Apple"
+          ],
+          "pos": [
+            48,
+            -28
+          ]
         },
         {
           "id": "a6",
@@ -314,10 +473,15 @@
           "label": "Each cut feeds the four",
           "text": "The cancellations, the channel cuts and the outsourcing are one move rather than five: every engineer, dollar and shelf released by killing a product line or a distributor tier is one the four remaining computers can use.",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "The scenario lists the actions in sequence and never says they are connected. Reading them as transfers into a single line, rather than as independent cost cuts, is the coherence test the framework applies and the reason the set counts as a strategy.",
-          "entities": ["Apple"],
-          "pos": [16, -40]
+          "entities": [
+            "Apple"
+          ],
+          "pos": [
+            16,
+            -40
+          ]
         }
       ],
       "edges": [
@@ -347,7 +511,7 @@
           "to": "c2",
           "relation": "masks",
           "provenance": "derived",
-          "confidence": 0.80,
+          "confidence": 0.8,
           "rationale": "The share objective restates the fact that share is low. It names no obstacle and no route, so it occupies the place where the diagnosis of the lost volume game should be."
         },
         {
@@ -419,7 +583,7 @@
           "to": "c3",
           "relation": "supported_by",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "The overlapping Macintosh families and the clones compete in the same configurations, which is what makes the split visible."
         },
         {
@@ -437,7 +601,7 @@
           "to": "d2",
           "relation": "addresses",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "Waiting for the next big thing is an answer to a lost volume contest, not to a cash crisis: it concedes the current game and buys position in the next one."
         },
         {
@@ -455,7 +619,7 @@
           "to": "d1",
           "relation": "addresses",
           "provenance": "derived",
-          "confidence": 0.80,
+          "confidence": 0.8,
           "rationale": "The stated rule is the sharp instrument for the unstated diagnosis; the scenario gives the rule but never says what obstacle it was aimed at."
         },
         {
@@ -464,7 +628,7 @@
           "to": "g1",
           "relation": "supported_by",
           "provenance": "derived",
-          "confidence": 0.80,
+          "confidence": 0.8,
           "rationale": "The four-computer rule is the clearest evidence of the concentration policy."
         },
         {
@@ -491,7 +655,7 @@
           "to": "g3",
           "relation": "implements",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "Outsourcing assembly moves capital out of a capability Apple did not need to own once the line was four products wide."
         },
         {
@@ -500,7 +664,7 @@
           "to": "g3",
           "relation": "implements",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "A direct store is the distribution form a four-product line can support without a distributor tier."
         },
         {
@@ -518,7 +682,7 @@
           "to": "a1",
           "relation": "reinforces",
           "provenance": "derived",
-          "confidence": 0.80,
+          "confidence": 0.8,
           "rationale": "The engineering and cash released by ending the Newton, the printers and the clones is what the four computers were funded with."
         },
         {
@@ -527,7 +691,7 @@
           "to": "a4",
           "relation": "reinforces",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "Fewer models and fewer distributors make demand predictable enough for contract assembly to work without large buffers."
         },
         {
@@ -536,7 +700,7 @@
           "to": "a3",
           "relation": "reinforces",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "A direct store replaces the volume the cut distributors carried, which is what makes the channel cut survivable."
         },
         {
@@ -545,7 +709,7 @@
           "to": "a2",
           "relation": "supported_by",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "The cancellations are the largest of the transfers into the four-product line."
         },
         {
@@ -576,13 +740,70 @@
       "layout": {
         "mode": "plane",
         "regions": [
-          { "label": "Fluff (not strategy)", "x": [-62, -34], "y": [-48, 46], "color": "#c9a227" },
-          { "label": "Challenge", "x": [-30, 62], "y": [30, 46], "color": "#7a8fa6" },
-          { "label": "Diagnosis", "x": [-30, 62], "y": [2, 28], "color": "#d94f3d" },
-          { "label": "Guiding policy", "x": [-30, 62], "y": [-22, 0], "color": "#3f7fb5" },
-          { "label": "Coherent actions", "x": [-30, 62], "y": [-48, -24], "color": "#4a9d6a" }
+          {
+            "label": "Fluff (not strategy)",
+            "x": [
+              -62,
+              -34
+            ],
+            "y": [
+              -48,
+              46
+            ],
+            "color": "#c9a227"
+          },
+          {
+            "label": "Challenge",
+            "x": [
+              -32,
+              64
+            ],
+            "y": [
+              30,
+              46
+            ],
+            "color": "#7a8fa6"
+          },
+          {
+            "label": "Diagnosis",
+            "x": [
+              -32,
+              64
+            ],
+            "y": [
+              2,
+              28
+            ],
+            "color": "#d94f3d"
+          },
+          {
+            "label": "Guiding policy",
+            "x": [
+              -32,
+              64
+            ],
+            "y": [
+              -22,
+              0
+            ],
+            "color": "#3f7fb5"
+          },
+          {
+            "label": "Coherent actions",
+            "x": [
+              -32,
+              64
+            ],
+            "y": [
+              -48,
+              -24
+            ],
+            "color": "#4a9d6a"
+          }
         ],
-        "camera": { "distance": 180 }
+        "camera": {
+          "distance": 180
+        }
       },
       "nodes": [
         {
@@ -593,8 +814,14 @@
           "provenance": "fact",
           "source_quote": "And I was told over and over again by people like, this is stupid. One, that's where the profit is, but two, you can't survive. Like the whole industry depends on this.",
           "source_ref": "Max Levchin, L5112-L5116",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [-18, 38]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            -24,
+            38
+          ]
         },
         {
           "id": "c2",
@@ -604,8 +831,14 @@
           "provenance": "fact",
           "source_quote": "like lending is kind of a dirty industry",
           "source_ref": "Max Levchin, L5094-L5096",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [6, 38]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            -2,
+            38
+          ]
         },
         {
           "id": "c3",
@@ -615,8 +848,13 @@
           "provenance": "fact",
           "source_quote": "The model will never work in a high interest rate environment, right?",
           "source_ref": "TBPN host, L4566",
-          "entities": ["Affirm"],
-          "pos": [30, 38]
+          "entities": [
+            "Affirm"
+          ],
+          "pos": [
+            20,
+            38
+          ]
         },
         {
           "id": "c4",
@@ -626,8 +864,31 @@
           "provenance": "fact",
           "source_quote": "the machines will not make the mistake that consumers make when they're like, oh, it's a big zero. I have the asterisk. I don't care about the asterisk.",
           "source_ref": "Max Levchin, L5118",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [52, 38]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            40,
+            38
+          ]
+        },
+        {
+          "id": "c5",
+          "slot": "challenge",
+          "label": "Bad products get demoted by AI",
+          "text": "Levchin's forecast for the market: a financial product that is not good for consumers will be naturally demoted by the next generation of search engines, which are the AI bots.",
+          "provenance": "fact",
+          "source_quote": "where if it's not good for consumers, it will be naturally demoted by the next generation of search engines, which are the AI bots.",
+          "source_ref": "Max Levchin, L5128-L5132",
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            58,
+            38
+          ]
         },
         {
           "id": "f1",
@@ -637,8 +898,14 @@
           "provenance": "fact",
           "source_quote": "Anyway, so our mission is to build honest financial products that improve lives.",
           "source_ref": "Max Levchin, L5032",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [-48, 34]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            -48,
+            34
+          ]
         },
         {
           "id": "f2",
@@ -648,8 +915,14 @@
           "provenance": "fact",
           "source_quote": "So if you look at our mission statements, which I'm very proud to note has not changed a word since today we started the company.",
           "source_ref": "Max Levchin, L5008",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [-48, 12]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            -48,
+            12
+          ]
         },
         {
           "id": "f3",
@@ -659,8 +932,14 @@
           "provenance": "fact",
           "source_quote": "And so in that domain, we're unmatched and that's always been our strength and we continue to win",
           "source_ref": "Max Levchin, L4964",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [-48, -10]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            -48,
+            -10
+          ]
         },
         {
           "id": "f4",
@@ -670,8 +949,14 @@
           "provenance": "fact",
           "source_quote": "there's tons of opportunity to apply the same level of purism that we brought to lending to other things, from mortgages to banking, to auto loans, to all sorts of fun things",
           "source_ref": "Max Levchin, L5124-L5128",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [-48, -34]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            -48,
+            -34
+          ]
         },
         {
           "id": "d1",
@@ -681,8 +966,14 @@
           "provenance": "fact",
           "source_quote": "You want to maybe stay away from that because like ultimately it's all about late fees and compounding interest.",
           "source_ref": "Max Levchin, L5104-L5106",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [-16, 22]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            -16,
+            22
+          ]
         },
         {
           "id": "d2",
@@ -692,8 +983,14 @@
           "provenance": "fact",
           "source_quote": "It's very hard to compete in a highly competitive market on things like clever slogans and temporary promos, like you have to perform day in and day out and year in, you're out.",
           "source_ref": "Max Levchin, L4952-L4954",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [12, 22]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            12,
+            22
+          ]
         },
         {
           "id": "d3",
@@ -703,8 +1000,14 @@
           "provenance": "fact",
           "source_quote": "You have to be because at any given time, somebody may choose to no longer participate.",
           "source_ref": "Max Levchin, L4584-L4586",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [40, 22]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            40,
+            22
+          ]
         },
         {
           "id": "d4",
@@ -712,11 +1015,17 @@
           "label": "The profit pool is the borrower's error",
           "text": "The critical obstacle behind the stated one: in consumer credit the industry's margin is produced by borrower mistakes, so refusing fee and compounding revenue removes the profit pool itself rather than trimming a line item.",
           "provenance": "derived",
-          "confidence": 0.80,
+          "confidence": 0.8,
           "rationale": "Levchin says the industry is all about late fees and that he was told the profit is there and that he could not survive without it. Putting those together as one obstacle - the revenue and the customer's error are the same thing - is not said, and it is what makes the policy costly rather than merely nice.",
           "idea": "Because the industry's margin is the borrower's error, the underserved market is a no-asterisk version of the products where the error is largest - overdraft-priced deposit accounts, subprime auto, revolving retail cards - for a lender willing to earn its margin from selection instead.",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [-14, 8]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            -14,
+            8
+          ]
         },
         {
           "id": "d5",
@@ -726,8 +1035,13 @@
           "provenance": "derived",
           "confidence": 0.75,
           "rationale": "Follows from the stated policy plus the stated claim that underwriting is the competitive edge, but the causal direction - that the edge is forced by the policy rather than chosen alongside it - is the inference. It explains why a firm with less margin invests most in modelling.",
-          "entities": ["Affirm"],
-          "pos": [14, 8]
+          "entities": [
+            "Affirm"
+          ],
+          "pos": [
+            14,
+            8
+          ]
         },
         {
           "id": "d6",
@@ -735,11 +1049,16 @@
           "label": "Nobody prices the asterisk",
           "text": "The obstacle that outlasts the others: the industry's margin depends on borrowers not pricing terms they cannot read. That asymmetry, not the fee itself, is what has no defence once reading is delegated to a machine.",
           "provenance": "derived",
-          "confidence": 0.60,
+          "confidence": 0.6,
           "rationale": "Levchin states the consumer behaviour and that machines will not repeat it, and separately that products bad for consumers will be demoted by AI search. Naming the asymmetry itself as the obstacle - and therefore as the thing a competitor could attack directly - goes beyond either statement.",
           "idea": "A machine-readable true-cost layer for consumer credit, publishing fee, penalty and compounding terms in a form an AI advisor can rank, would turn the asterisk into a comparison field and re-price every lender whose margin depends on it going unread.",
-          "entities": ["Affirm"],
-          "pos": [42, 8]
+          "entities": [
+            "Affirm"
+          ],
+          "pos": [
+            42,
+            8
+          ]
         },
         {
           "id": "g1",
@@ -749,8 +1068,14 @@
           "provenance": "fact",
           "source_quote": "We started the company specifically to not have late fees, to not have compounding interest to all the things that people hate, we want it to be on the opposite side.",
           "source_ref": "Max Levchin, L5108-L5110",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [-18, -6]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            -18,
+            -6
+          ]
         },
         {
           "id": "g2",
@@ -760,8 +1085,14 @@
           "provenance": "fact",
           "source_quote": "And so our competitive edge has always been underwriting, just depth of understanding of the borrower of the end customer, better usage of data, better modeling, kind of living in the cutting edge of whatever most interesting math thing that happened in the research world",
           "source_ref": "Max Levchin, L4956-L4960",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [8, -6]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            8,
+            -6
+          ]
         },
         {
           "id": "g3",
@@ -771,8 +1102,13 @@
           "provenance": "fact",
           "source_quote": "So we're non-depository, non-bank lender, which means that our own capital or the capital that we lend out is some form of sourced. and there's multiple ways of doing it. We're extremely diversified in a source of capital.",
           "source_ref": "Max Levchin, L4576-L4582",
-          "entities": ["Affirm"],
-          "pos": [34, -6]
+          "entities": [
+            "Affirm"
+          ],
+          "pos": [
+            34,
+            -6
+          ]
         },
         {
           "id": "g4",
@@ -782,8 +1118,14 @@
           "provenance": "fact",
           "source_quote": "okay, you have less margin and less opportunity for margin. And boy, that's going to be tough.",
           "source_ref": "Max Levchin, L5118",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [56, -6]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            56,
+            -6
+          ]
         },
         {
           "id": "g5",
@@ -793,8 +1135,13 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "Levchin states the renunciation and, separately, the cost and the underwriting edge; he never states that they are one policy in which the second pays for the first. That joining is what makes the commitments coherent rather than a list of virtues.",
-          "entities": ["Affirm"],
-          "pos": [10, -18]
+          "entities": [
+            "Affirm"
+          ],
+          "pos": [
+            10,
+            -18
+          ]
         },
         {
           "id": "a1",
@@ -804,8 +1151,14 @@
           "provenance": "fact",
           "source_quote": "In fact, we will not lend money to someone who cannot afford it. Our whole model is built around the idea of no late fees, no gimmicks, no compounding interest, which means that we can only lend money to those who can afford.",
           "source_ref": "Max Levchin, L4916-L4920",
-          "entities": ["Affirm", "Max Levchin"],
-          "pos": [-20, -30]
+          "entities": [
+            "Affirm",
+            "Max Levchin"
+          ],
+          "pos": [
+            -20,
+            -30
+          ]
         },
         {
           "id": "a2",
@@ -815,8 +1168,13 @@
           "provenance": "fact",
           "source_quote": "we now are big enough where we securitize in a fairly regular basis, which means people buy our securities. that we securitize, and then we have a whole collection of what's called warehouse lines where you finance the receivables or you borrow against the receivables as a security. And so all of that comprises our capital markets program.",
           "source_ref": "Max Levchin, L4598-L4608",
-          "entities": ["Affirm"],
-          "pos": [2, -30]
+          "entities": [
+            "Affirm"
+          ],
+          "pos": [
+            2,
+            -30
+          ]
         },
         {
           "id": "a3",
@@ -826,8 +1184,13 @@
           "provenance": "fact",
           "source_quote": "growing nicely in part that's because our card which we launched a couple of years ago, that's growing at 120% year over year.",
           "source_ref": "Max Levchin, L4522-L4524",
-          "entities": ["Affirm"],
-          "pos": [26, -30]
+          "entities": [
+            "Affirm"
+          ],
+          "pos": [
+            26,
+            -30
+          ]
         },
         {
           "id": "a4",
@@ -837,8 +1200,13 @@
           "provenance": "fact",
           "source_quote": "So this quarter, our average ticket is just under $300.",
           "source_ref": "Max Levchin, L4678",
-          "entities": ["Affirm"],
-          "pos": [50, -30]
+          "entities": [
+            "Affirm"
+          ],
+          "pos": [
+            50,
+            -30
+          ]
         },
         {
           "id": "a5",
@@ -846,10 +1214,15 @@
           "label": "Push down-market into small tickets",
           "text": "Read as a commitment rather than an outcome: the ticket has fallen from about $900 at IPO to under $300 while frequency rose, which is a deliberate move into small, repeat purchases where a fee-free product's advantage over a revolving card compounds fastest.",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "The transcript reports the ticket size and the card's growth as results. Treating the drift as a chosen commitment - and explaining why the no-fee policy is worth most at small, frequent tickets - is the inference; it is what makes the card and the ticket one action rather than two statistics.",
-          "entities": ["Affirm"],
-          "pos": [6, -42]
+          "entities": [
+            "Affirm"
+          ],
+          "pos": [
+            6,
+            -42
+          ]
         },
         {
           "id": "a6",
@@ -859,8 +1232,13 @@
           "provenance": "derived",
           "confidence": 0.55,
           "rationale": "Nothing in the transcript raises a tension; Levchin presents the card and the falling ticket as unambiguous wins. The framework requires the coherence of the action set to be tested rather than assumed, and this is the one link where two commitments plausibly compete for the same scarce capability.",
-          "entities": ["Affirm"],
-          "pos": [38, -42]
+          "entities": [
+            "Affirm"
+          ],
+          "pos": [
+            38,
+            -42
+          ]
         }
       ],
       "edges": [
@@ -939,7 +1317,7 @@
           "to": "d2",
           "relation": "masks",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "Pride that the mission has not changed a word in fifteen years is offered as evidence of strategic constancy a few minutes after the speaker says markets are not won on slogans; the unchanged sentence hides that everything load-bearing did change."
         },
         {
@@ -948,7 +1326,7 @@
           "to": "d5",
           "relation": "masks",
           "provenance": "derived",
-          "confidence": 0.60,
+          "confidence": 0.6,
           "rationale": "'We're unmatched and we continue to win' converts a capability that has to be re-earned every quarter into a settled property, which hides that the selection edge is the policy's single point of failure."
         },
         {
@@ -966,7 +1344,7 @@
           "to": "c1",
           "relation": "diagnoses",
           "provenance": "derived",
-          "confidence": 0.80,
+          "confidence": 0.8,
           "rationale": "Reframes the warning he was given as the structure of the industry rather than as scepticism about his company."
         },
         {
@@ -975,7 +1353,7 @@
           "to": "d1",
           "relation": "supported_by",
           "provenance": "derived",
-          "confidence": 0.80,
+          "confidence": 0.8,
           "rationale": "The stated diagnosis supplies the mechanism; the derived one says the mechanism is the profit pool."
         },
         {
@@ -993,7 +1371,7 @@
           "to": "g1",
           "relation": "supported_by",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "The renounced revenue is what leaves selection as the only remaining lever."
         },
         {
@@ -1002,17 +1380,17 @@
           "to": "c4",
           "relation": "diagnoses",
           "provenance": "derived",
-          "confidence": 0.60,
+          "confidence": 0.6,
           "rationale": "Takes the asterisk behaviour to be the industry's revenue mechanism rather than a consumer failing."
         },
         {
           "id": "te16",
           "from": "d6",
-          "to": "f4",
+          "to": "c5",
           "relation": "supported_by",
           "provenance": "derived",
-          "confidence": 0.55,
-          "rationale": "The expansion list is where the speaker himself predicts that products bad for consumers get demoted by AI search, which is the asymmetry closing."
+          "confidence": 0.65,
+          "rationale": "The speaker's own forecast that products bad for consumers get demoted by AI search is the evidence that the asymmetry is closing."
         },
         {
           "id": "te17",
@@ -1029,7 +1407,7 @@
           "to": "d5",
           "relation": "addresses",
           "provenance": "derived",
-          "confidence": 0.80,
+          "confidence": 0.8,
           "rationale": "The policy accepts the selection constraint rather than working around it."
         },
         {
@@ -1047,7 +1425,7 @@
           "to": "g4",
           "relation": "supported_by",
           "provenance": "derived",
-          "confidence": 0.80,
+          "confidence": 0.8,
           "rationale": "The stated margin cost is the price the trade-off pays."
         },
         {
@@ -1056,7 +1434,7 @@
           "to": "g2",
           "relation": "supported_by",
           "provenance": "derived",
-          "confidence": 0.80,
+          "confidence": 0.8,
           "rationale": "The stated underwriting edge is the compensating half of the trade-off."
         },
         {
@@ -1065,7 +1443,7 @@
           "to": "c3",
           "relation": "addresses",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "Diversified, long-dated sourcing is what turns a rate move into a slow trickle rather than a shock, which is the answer to the hosts' criticism; the transcript never connects the two."
         },
         {
@@ -1083,7 +1461,7 @@
           "to": "g1",
           "relation": "implements",
           "provenance": "derived",
-          "confidence": 0.60,
+          "confidence": 0.6,
           "rationale": "The card carries the fee-free product into everyday offline spending, which is where the contrast with a revolving credit card is felt most often; the transcript reports its growth without saying what it is for."
         },
         {
@@ -1101,7 +1479,7 @@
           "to": "a2",
           "relation": "reinforces",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "Lending only to those who can afford it produces the low loss rates that make the securitisations sellable, which in turn lowers the cost of the capital the underwriting is applied to."
         },
         {
@@ -1110,7 +1488,7 @@
           "to": "a5",
           "relation": "reinforces",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "The card is the instrument that makes the small-ticket, offline volume reachable at all."
         },
         {
@@ -1119,7 +1497,7 @@
           "to": "a1",
           "relation": "reinforces",
           "provenance": "derived",
-          "confidence": 0.60,
+          "confidence": 0.6,
           "rationale": "A diversified, publicly observed funding programme prices the loan book continuously, which disciplines the underwriting it funds."
         },
         {
@@ -1128,7 +1506,7 @@
           "to": "a4",
           "relation": "supported_by",
           "provenance": "derived",
-          "confidence": 0.70,
+          "confidence": 0.7,
           "rationale": "The sub-$300 average ticket against roughly $900 at IPO is the measurement of the move."
         },
         {
