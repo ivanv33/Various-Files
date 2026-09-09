@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Framework graph</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --plane: #0d0d0d;      /* page plane */
+    --surface: #1a1a19;    /* chart surface (canvas background) */
+    --card: #202020;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --muted: #898781;
+    --hairline: #2c2c2a;
+    --baseline: #383835;
+    --accent: #3987e5;
+    --schema: #898781;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--plane); color: var(--ink-2); font: 14px/1.45 var(--sans); }
+  a { color: var(--ink-2); }
+  a:hover { color: var(--ink); }
+  kbd { font: 11px var(--mono); color: var(--muted); border: 1px solid var(--hairline); border-radius: 3px; padding: 0 4px; margin-left: 4px; }
+  button, .seg button { font: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  body { display: grid; grid-template-rows: auto auto 1fr; height: 100vh; }
+  header.bar { display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--hairline); background: var(--plane); }
+  .title { display: flex; flex-direction: column; min-width: 220px; }
+  .eyebrow { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-size: 17px; font-weight: 600; margin: 2px 0 0; color: var(--ink); letter-spacing: -.01em; }
+  .links { font-size: 12px; margin-top: 2px; display: flex; gap: 12px; }
+  .links a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--hairline); }
+  .links a:hover { color: var(--ink); border-color: var(--muted); }
+  .seg { display: inline-flex; border: 1px solid var(--hairline); border-radius: 6px; overflow: hidden; }
+  .seg button { background: transparent; color: var(--ink-2); border: 0; padding: 6px 12px; cursor: pointer; }
+  .seg button + button { border-left: 1px solid var(--hairline); }
+  .seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
+  .toggles { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; margin-left: auto; font-size: 13px; }
+  .toggles label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; }
+  .toggles input { accent-color: var(--accent); }
+  .toggles button { background: transparent; color: var(--ink-2); border: 1px solid var(--hairline); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+  .toggles button:hover { color: var(--ink); border-color: var(--muted); }
+
+  main { position: relative; overflow: hidden; background: var(--surface); }
+  #stage { position: absolute; inset: 0; }
+  #stage canvas { display: block; }
+  #labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+  #labels * { pointer-events: none; }
+  .nlabel { font: 12px/1.2 var(--sans); color: var(--ink-2); white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6); }
+  .nlabel .lab { display: inline-block; transform: translateY(11px); }
+  .nlabel.derived { color: var(--ink-2); font-style: italic; }
+  .nlabel.schema { color: var(--muted); font: 11px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .nlabel .g { font-size: 9px; margin-right: 4px; vertical-align: 1px; }
+  .nlabel .idea-star { color: #eda100; margin-right: 3px; }
+  #panel .idea { border-left: 2px solid #eda100; padding: 6px 10px; margin: 8px 0; color: var(--ink); background: rgba(237,161,0,.07); }
+  .elabel { font: 11px var(--mono); color: var(--muted); background: var(--surface); padding: 0 4px; border-radius: 3px; }
+  .axlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .tick { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+  .rlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .glabel { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+
+  #tooltip { position: absolute; pointer-events: none; display: none; max-width: 300px; background: var(--card); border: 1px solid var(--hairline); border-radius: 6px; padding: 8px 10px; font-size: 12px; color: var(--ink-2); box-shadow: 0 6px 20px rgba(0,0,0,.5); z-index: 5; }
+  #tooltip .t-label { color: var(--ink); font-weight: 600; margin-bottom: 2px; }
+  #tooltip .t-meta { font: 11px var(--mono); color: var(--muted); }
+
+  .card { position: absolute; background: rgba(32,32,32,.94); border: 1px solid var(--hairline); border-radius: 8px; backdrop-filter: blur(6px); }
+  #legend { left: 12px; bottom: 12px; width: 240px; max-height: calc(100% - 24px); overflow: auto; padding: 10px 12px; font-size: 12px; }
+  #legend h2 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 8px 0 6px; }
+  #legend h2:first-child { margin-top: 0; }
+  .slot-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
+  .chip { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .chip.box { border-radius: 2px; }
+  .chip.diamond { border-radius: 2px; transform: rotate(45deg); }
+  .chip.cone { border-radius: 0; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .slot-row .n { margin-left: auto; font: 11px var(--mono); color: var(--muted); }
+  .slot-row .tp { font: 10px var(--mono); color: var(--muted); }
+  .key-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; color: var(--ink-2); }
+  .key-row .sym { width: 14px; text-align: center; color: var(--ink); }
+  .stats { font: 11px/1.6 var(--mono); color: var(--muted); border-top: 1px solid var(--hairline); margin-top: 8px; padding-top: 6px; }
+  .stats b { color: var(--ink-2); font-weight: 500; }
+
+  /* example note: a strip under the header, never over the graph */
+  #note { display: grid; grid-template-columns: minmax(160px, 24%) 1fr minmax(160px, 22%); gap: 6px 20px; align-items: baseline; padding: 7px 16px; border-bottom: 1px solid var(--hairline); background: var(--plane); font-size: 12px; }
+  #note h3 { margin: 0; font-size: 13px; color: var(--ink); font-weight: 600; line-height: 1.35; }
+  #note p { margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  #note:hover p, #note:focus-within p { -webkit-line-clamp: unset; }
+  #note .src { font: 11px var(--mono); color: var(--muted); word-break: break-word; text-align: right; }
+
+  #panel { right: 12px; top: 12px; bottom: 12px; width: 340px; padding: 12px 14px; overflow: auto; font-size: 13px; z-index: 4; }
+  #panel[hidden] { display: none; }
+  #panel .p-head { display: flex; align-items: flex-start; gap: 8px; }
+  #panel .p-slot { font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  #panel h3 { margin: 4px 0 6px; font-size: 15px; color: var(--ink); font-weight: 600; line-height: 1.3; }
+  #panel .close { margin-left: auto; background: transparent; border: 1px solid var(--hairline); color: var(--ink-2); border-radius: 6px; width: 28px; height: 28px; cursor: pointer; flex: none; }
+  .badge { display: inline-block; font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; border: 1px solid var(--muted); color: var(--ink); }
+  .badge.fact { background: var(--ink-2); color: var(--plane); border-color: var(--ink-2); }
+  .badge.derived { border-style: dashed; }
+  .badge.schema { color: var(--muted); }
+  #panel p { margin: 8px 0; }
+  #panel blockquote { margin: 8px 0; padding: 6px 10px; border-left: 2px solid var(--muted); color: var(--ink-2); font-style: italic; }
+  #panel .ref, #panel .conf { font: 11px var(--mono); color: var(--muted); }
+  #panel h4 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 12px 0 4px; }
+  #panel ul { margin: 0; padding-left: 16px; }
+  #panel li { margin: 2px 0; }
+  #panel li .rel { font: 11px var(--mono); color: var(--muted); }
+  .confbar { height: 3px; background: var(--hairline); border-radius: 2px; margin: 4px 0 8px; overflow: hidden; }
+  .confbar i { display: block; height: 100%; background: var(--ink-2); }
+
+  #fallback { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--muted); padding: 24px; }
+  #fallback[hidden] { display: none; }
+  #fallback code { font: 12px var(--mono); color: var(--ink-2); }
+
+  @media (max-width: 820px) {
+    #legend { width: min(240px, 60%); max-height: 42%; font-size: 11px; }
+    #note { grid-template-columns: 1fr; }
+    #note .src { text-align: left; }
+    #panel { left: 12px; width: auto; top: auto; max-height: 60%; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<header class="bar">
+  <div class="title">
+    <span class="eyebrow" id="category"></span>
+    <h1 id="name">Framework graph</h1>
+    <div class="links"><a id="readme" href="./README.md">README</a><a id="wiki" href="#" target="_blank" rel="noopener">Wikipedia</a><a id="up" href="../../index.html">All frameworks</a></div>
+  </div>
+  <div class="seg" id="examples" role="group" aria-label="Example"></div>
+  <div class="toggles">
+    <label><input type="checkbox" id="t-derived" checked> LLM-derived<kbd>d</kbd></label>
+    <label><input type="checkbox" id="t-grounding"> grounding links<kbd>g</kbd></label>
+    <label><input type="checkbox" id="t-labels" checked> labels</label>
+    <label><input type="checkbox" id="t-rotate"> auto-rotate</label>
+    <button id="reset" type="button">Reset view<kbd>r</kbd></button>
+  </div>
+</header>
+<div id="note" aria-live="polite" tabindex="0"></div>
+<main>
+  <div id="stage"></div>
+  <div id="labels"></div>
+  <div id="fallback">Loading Three.js from jsDelivr… <br><small>This page needs internet access for <code>three@0.186.0</code>. The data itself is embedded.</small></div>
+  <aside id="legend" class="card" aria-label="Legend"></aside>
+  <aside id="panel" class="card" hidden aria-label="Node details"></aside>
+  <div id="tooltip" role="tooltip"></div>
+</main>
+
+<!--__DATA_START__-->
+<script id="graph-data" type="application/json">{"framework":{"slug":"functional-decomposition","name":"Functional Decomposition","category":"03-engineering-and-cognitive","wikipedia":"https://en.wikipedia.org/wiki/Functional_decomposition","one_liner":"Takes a whole apart into black boxes with one responsibility each, strict inputs and outputs, and an interface contract; the contract is the part nobody says out loud."},"slots":[{"id":"system","label":"System","description":"The whole being decomposed: the thing whose behaviour the functions jointly produce.","typical_provenance":"fact","color":"#d95926","shape":"box"},{"id":"function","label":"Function","description":"A black box with a single responsibility, named by what it does rather than by who staffs it or which vendor sells it.","typical_provenance":"either","color":"#3987e5","shape":"box"},{"id":"input","label":"Input","description":"What a function consumes: material, energy, data or money crossing the boundary inwards.","typical_provenance":"either","color":"#199e70","shape":"cone"},{"id":"output","label":"Output","description":"What a function produces: what crosses the boundary outwards and becomes some other box's input.","typical_provenance":"either","color":"#9085e9","shape":"cone"},{"id":"contract","label":"Interface contract","description":"The guarantees a function makes to its consumers: quantity, rate, accuracy, timing, ordering. Almost never stated in the source, which is why it is the derived slot.","typical_provenance":"derived","color":"#d55181","shape":"diamond"}],"relations":[{"id":"composed_of","label":"composed of","description":"a system is composed of functions; a function of sub-functions"},{"id":"consumes","label":"consumes","description":"a function consumes an input"},{"id":"produces","label":"produces","description":"a function produces an output"},{"id":"depends_on","label":"depends on","description":"a function cannot do its job unless another function has done its own"},{"id":"bound_by","label":"bound by","description":"a function is bound by an interface contract it owes its consumers"}],"examples":[{"id":"classic","kind":"classic","title":"The fortnightly payroll run, and the promise nobody wrote down","summary":"A batch payroll decomposed into four steps with named inputs and outputs. The decomposition is clean and the run still broke, because the guarantee each step made to the next one existed only as an accident of execution order.","source":{"type":"text","title":"Northwind Foods payroll (structured-analysis style scenario)","attribution":"A stepwise-refinement example in the tradition of DeMarco and Yourdon's structured analysis; the scenario text is written for this example so that the fact nodes have something verbatim to quote.","text":"Northwind Foods runs its fortnightly payroll as a single batch job. The batch takes three inputs: the timekeeping export from the depots, the employee master file from HR, and the current tax tables. It produces four things: a payslip for every employee, a payment instruction file for the bank, a journal posting for the general ledger, and a statutory return for the revenue office. Inside, the run is four steps. Validation reads the timekeeping export and rejects any shift that has no matching employee or that overlaps another shift. Gross pay calculation turns validated shifts into gross amounts, applying the overtime and shift-premium rules. Deduction calculation takes gross pay and the tax tables and produces tax, pension and garnishment amounts. Disbursement takes net pay and produces the bank file and the payslips, and posts the journal. Each step reads only what the step before it wrote. Last quarter the run was changed so that deductions could be calculated before gross pay had finished, to save twenty minutes of wall clock time. Nothing in the specification said this was forbidden. The next run paid three hundred people the right gross and the wrong tax, and the general ledger did not balance against the bank file. The team's post mortem noted that nobody had ever written down what each step promised the next one."},"layout":{"mode":"plane","regions":[{"label":"The box that owns the order","x":[-52,58],"y":[17,33],"color":"#9085e9"},{"label":"Four steps, strictly in order","x":[-52,58],"y":[-6,14],"color":"#3987e5"},{"label":"Interface contracts — in the gaps","x":[-52,58],"y":[-46,-19],"color":"#d55181"}],"camera":{"distance":117}},"nodes":[{"id":"cs","slot":"system","label":"Fortnightly payroll run","text":"Northwind Foods runs its fortnightly payroll as a single batch job. This is the whole being decomposed.","provenance":"fact","source_quote":"Northwind Foods runs its fortnightly payroll as a single batch job","source_ref":"sentence 1","pos":[0,42],"size":1.8},{"id":"cf1","slot":"function","label":"Validate shifts","text":"Validation reads the timekeeping export and rejects any shift that has no matching employee or that overlaps another shift.","provenance":"fact","source_quote":"Validation reads the timekeeping export and rejects any shift that has no matching employee or that overlaps another shift","source_ref":"sentence 5","pos":[-33,5],"size":1.15},{"id":"cf2","slot":"function","label":"Calculate gross pay","text":"Gross pay calculation turns validated shifts into gross amounts, applying the overtime and shift-premium rules.","provenance":"fact","source_quote":"Gross pay calculation turns validated shifts into gross amounts, applying the overtime and shift-premium rules","source_ref":"sentence 6","pos":[-7,5],"size":1.15},{"id":"cf3","slot":"function","label":"Calculate deductions","text":"Deduction calculation takes gross pay and the tax tables and produces tax, pension and garnishment amounts.","provenance":"fact","source_quote":"Deduction calculation takes gross pay and the tax tables and produces tax, pension and garnishment amounts","source_ref":"sentence 7","pos":[19,5],"size":1.15},{"id":"cf4","slot":"function","label":"Disburse and post","text":"Disbursement takes net pay and produces the bank file and the payslips, and posts the journal.","provenance":"fact","source_quote":"Disbursement takes net pay and produces the bank file and the payslips, and posts the journal","source_ref":"sentence 8","pos":[44,5],"size":1.15},{"id":"cf5","slot":"function","label":"Sequence the steps","text":"A fifth function owns the order in which the four steps run and how much of one may overlap the next. The scenario never names it, but somebody changed it last quarter.","provenance":"derived","confidence":0.7,"rationale":"Sentence 10 says the run was changed so that deductions could be calculated before gross pay had finished. A change like that has to be made somewhere, and the scenario names four steps and no scheduler, so the function that owns step order is present in the system and absent from its description.","pos":[2,24],"size":1.15},{"id":"ci1","slot":"input","label":"Timekeeping export","text":"The timekeeping export from the depots: the shifts people actually worked.","provenance":"fact","source_quote":"the timekeeping export from the depots","source_ref":"sentence 2","pos":[-60,16],"size":0.9},{"id":"ci2","slot":"input","label":"Employee master file","text":"The employee master file from HR: who exists, at what rate, on what terms.","provenance":"fact","source_quote":"the employee master file from HR","source_ref":"sentence 2","pos":[-62,2],"size":0.9},{"id":"ci3","slot":"input","label":"Current tax tables","text":"The current tax tables, which set the rates deduction calculation applies.","provenance":"fact","source_quote":"and the current tax tables","source_ref":"sentence 2","pos":[19,-11],"size":0.9},{"id":"co1","slot":"output","label":"Payslip per employee","text":"A payslip for every employee: the statement the employee receives.","provenance":"fact","source_quote":"a payslip for every employee","source_ref":"sentence 3","pos":[60,16],"size":0.9},{"id":"co2","slot":"output","label":"Bank payment file","text":"A payment instruction file for the bank: the money actually leaving.","provenance":"fact","source_quote":"a payment instruction file for the bank","source_ref":"sentence 3","pos":[64,2],"size":0.9},{"id":"co3","slot":"output","label":"Ledger journal posting","text":"A journal posting for the general ledger: the same money as the accounts see it.","provenance":"fact","source_quote":"a journal posting for the general ledger","source_ref":"sentence 3","pos":[60,-12],"size":0.9},{"id":"cc4","slot":"contract","label":"Read only the prior step's output","text":"The one guarantee the scenario states: each step reads only what the step before it wrote. It is a rule about access, not about completeness, which is exactly why it was not enough.","provenance":"fact","source_quote":"Each step reads only what the step before it wrote","source_ref":"sentence 9","pos":[-8,-38],"size":1},{"id":"cc2","slot":"contract","label":"One employee, no overlap","text":"What validation promises gross pay calculation: every shift it passes on matches exactly one employee and overlaps no other shift, so the next step never has to check.","provenance":"derived","confidence":0.85,"rationale":"Sentence 5 states what validation rejects. Reading the rejection rule as a promise to the consumer is the inference, and it is the promise that lets gross pay calculation apply rates without re-checking identity or overlap.","pos":[-32,-28],"size":1},{"id":"cc1","slot":"contract","label":"Gross is final before deductions read","text":"What gross pay calculation owes deduction calculation: by the time deductions reads a gross amount, that amount is complete and will not change. This is the guarantee the reordering broke.","provenance":"derived","confidence":0.9,"rationale":"Sentence 9 gives only an access rule, and sentence 12 says the reordered run produced the right gross and the wrong tax. A wrong tax on a right gross can only mean deductions read a gross that was still moving, so completeness at read time was a promise in force and never written; sentence 13 says so outright.","pos":[10,-28],"size":1},{"id":"cc3","slot":"contract","label":"Bank file and journal agree","text":"What disbursement owes everyone downstream: the payment instruction file and the journal posting describe the same money to the penny.","provenance":"derived","confidence":0.85,"rationale":"Sentence 12 reports that the general ledger did not balance against the bank file and treats that as a failure. It is only a failure if agreement between the two was guaranteed, and the scenario states no such guarantee anywhere.","pos":[40,-38],"size":1}],"edges":[{"id":"ce_c1","from":"cs","to":"cf1","relation":"composed_of","provenance":"derived","confidence":0.9,"rationale":"Sentence 4 says the run is four steps and sentences 5 to 8 name four activities, but no sentence says that validation is one of the run's four steps. Matching the count to the names is the decomposition's own move."},{"id":"ce_c2","from":"cs","to":"cf2","relation":"composed_of","provenance":"derived","confidence":0.9,"rationale":"Same inference as for validation: sentence 4 gives the count, sentence 6 gives the activity, and joining them into a parent-child relation is the reading, not the text."},{"id":"ce_c3","from":"cs","to":"cf3","relation":"composed_of","provenance":"derived","confidence":0.9,"rationale":"Sentence 4 gives the count and sentence 7 gives the activity; that deduction calculation is a step of this run rather than a separate job is inferred from their adjacency."},{"id":"ce_c4","from":"cs","to":"cf4","relation":"composed_of","provenance":"derived","confidence":0.9,"rationale":"Sentence 4 gives the count and sentence 8 gives the activity. Disbursement is also the step that writes the system's stated outputs, which is the strongest evidence that it sits inside the system rather than after it."},{"id":"ce_c5","from":"cs","to":"cf5","relation":"composed_of","provenance":"derived","confidence":0.7,"rationale":"Sentence 10 shows that step order is configurable and was configured, so the run contains a box that owns order. The scenario counts four steps and does not count this one."},{"id":"ce_n1","from":"cs","to":"ci1","relation":"consumes","provenance":"fact","source_quote":"The batch takes three inputs: the timekeeping export from the depots","source_ref":"sentence 2"},{"id":"ce_n2","from":"cs","to":"ci2","relation":"consumes","provenance":"fact","source_quote":"The batch takes three inputs: the timekeeping export from the depots, the employee master file from HR","source_ref":"sentence 2"},{"id":"ce_n3","from":"cs","to":"ci3","relation":"consumes","provenance":"fact","source_quote":"the employee master file from HR, and the current tax tables","source_ref":"sentence 2"},{"id":"ce_n4","from":"cf1","to":"ci1","relation":"consumes","provenance":"fact","source_quote":"Validation reads the timekeeping export","source_ref":"sentence 5"},{"id":"ce_n5","from":"cf1","to":"ci2","relation":"consumes","provenance":"derived","confidence":0.85,"rationale":"Sentence 5 says validation rejects a shift with no matching employee. Matching requires the employee master file named in sentence 2, but the scenario never connects the file to the step."},{"id":"ce_n6","from":"cf3","to":"ci3","relation":"consumes","provenance":"fact","source_quote":"Deduction calculation takes gross pay and the tax tables","source_ref":"sentence 7"},{"id":"ce_p1","from":"cs","to":"co1","relation":"produces","provenance":"fact","source_quote":"It produces four things: a payslip for every employee","source_ref":"sentence 3"},{"id":"ce_p2","from":"cs","to":"co2","relation":"produces","provenance":"fact","source_quote":"a payslip for every employee, a payment instruction file for the bank","source_ref":"sentence 3"},{"id":"ce_p3","from":"cs","to":"co3","relation":"produces","provenance":"fact","source_quote":"a payment instruction file for the bank, a journal posting for the general ledger","source_ref":"sentence 3"},{"id":"ce_p4","from":"cf4","to":"co1","relation":"produces","provenance":"fact","source_quote":"Disbursement takes net pay and produces the bank file and the payslips","source_ref":"sentence 8"},{"id":"ce_p5","from":"cf4","to":"co2","relation":"produces","provenance":"fact","source_quote":"produces the bank file and the payslips","source_ref":"sentence 8"},{"id":"ce_p6","from":"cf4","to":"co3","relation":"produces","provenance":"fact","source_quote":"the bank file and the payslips, and posts the journal","source_ref":"sentence 8"},{"id":"ce_d1","from":"cf2","to":"cf1","relation":"depends_on","provenance":"fact","source_quote":"Gross pay calculation turns validated shifts into gross amounts","source_ref":"sentence 6"},{"id":"ce_d2","from":"cf3","to":"cf2","relation":"depends_on","provenance":"fact","source_quote":"Deduction calculation takes gross pay","source_ref":"sentence 7"},{"id":"ce_d3","from":"cf4","to":"cf3","relation":"depends_on","provenance":"derived","confidence":0.85,"rationale":"Sentence 8 says disbursement takes net pay. Net pay is gross pay less the deductions of sentence 7, so disbursement cannot run before deduction calculation; the scenario never states the arithmetic or the dependency."},{"id":"ce_d4","from":"cf5","to":"cf2","relation":"depends_on","provenance":"derived","confidence":0.6,"rationale":"To order the steps the sequencing function must know when gross pay calculation has finished. Sentence 10 shows it did not know, which is the whole failure; the dependency is the one that should have existed."},{"id":"ce_b1","from":"cs","to":"cc4","relation":"bound_by","provenance":"fact","source_quote":"Each step reads only what the step before it wrote","source_ref":"sentence 9"},{"id":"ce_b2","from":"cf1","to":"cc2","relation":"bound_by","provenance":"derived","confidence":0.85,"rationale":"Turning validation's stated rejection rule into a guarantee it owes the next step is the inference; the scenario states the rule and never states the promise."},{"id":"ce_b3","from":"cf2","to":"cc1","relation":"bound_by","provenance":"derived","confidence":0.9,"rationale":"The completeness guarantee belongs to the step that produces gross pay, because it is the only box that knows when a gross amount has stopped changing."},{"id":"ce_b4","from":"cf5","to":"cc1","relation":"bound_by","provenance":"derived","confidence":0.8,"rationale":"The sequencing function is the box that can actually violate the guarantee, and it is the box that did: sentence 10 is a change to order, sentence 12 is the result. An unnamed box cannot be held to a contract."},{"id":"ce_b5","from":"cf4","to":"cc3","relation":"bound_by","provenance":"derived","confidence":0.85,"rationale":"Disbursement is the single step that writes both the bank file and the journal posting, so agreement between them is a guarantee only it can make."},{"id":"ce_s1","from":"cc1","to":"cc4","relation":"supported_by","provenance":"derived","confidence":0.85,"rationale":"The stated access rule in sentence 9 is the nearest thing to the unstated completeness rule, and the gap between them is what the example is about."},{"id":"ce_s2","from":"cc1","to":"cf3","relation":"supported_by","provenance":"derived","confidence":0.9,"rationale":"Deduction calculation is the consumer the guarantee is owed to, per sentence 7, which is what makes it a contract rather than an internal invariant."},{"id":"ce_s3","from":"cc2","to":"ci2","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"The employee master file of sentence 2 is what makes the matching half of the guarantee checkable at all."},{"id":"ce_s4","from":"cc3","to":"co2","relation":"supported_by","provenance":"derived","confidence":0.85,"rationale":"The bank file of sentence 3 is one of the two artefacts the guarantee is about, and sentence 12 reports it disagreeing with the other."}]},{"id":"tbpn","kind":"tbpn","title":"Crusoe's AI factory: the boxes are stated, the guarantees are not","summary":"Chase Lockmiller walks the Abilene AI factory from curtailed wind power through transformers, switchgear, data halls and a closed water loop. Every box and almost every flow is said out loud; what no box publishes is the guarantee it makes to the box downstream, and the one guarantee most obviously missing is the one Crusoe replaced by opening its own factories.","source":{"type":"transcript","file":"tbpn-transcripts/transcripts/2025-05-29_elon-musk-is-leaving-washington-meta-partners-with-anduril-kim-jong-uns-side-launch-goes-sideways-peter-rahal-john-andrew-entwistle-ashlee-vance-chase.md","date":"2025-05-29","episode_title":"Elon Musk Is Leaving Washington, Meta Partners With Anduril, Kim Jong Un's Side Launch Goes Sideways","url":"https://podscripts.co/podcasts/tbpn-live/elon-musk-is-leaving-washington-meta-partners-with-anduril-kim-jong-uns-side-launch-goes-sideways-peter-rahal-john-andrew-entwistle-ashlee-vance-chase-lochmiller-matan-grinberg-jonny-dyer-david-hsu-sushanth-raman-rob-toews"},"why_this_episode":"Crusoe Energy's Chase Lockmiller is asked what it actually takes to build a gigawatt AI campus and answers by walking the stack: the energy he sources, the transformer stack, the switchgear, the data halls, the closed-loop water circuit, and the software layer above it. He names the boxes and, unusually for conversational speech, states what goes into several of them and what comes out, which gives the input and output slots real facts to hold. He also supplies the framework's hardest slot by negation: he says switchgear is a long-lead bottleneck and that Crusoe started manufacturing it in-house, which is what a missing interface contract looks like from the buyer's side.","idea_bearing_slot":"contract","layout":{"mode":"plane","regions":[{"label":"Interface contracts — in the gaps","x":[-68,62],"y":[-64,-33],"color":"#d55181"}],"annotations":[{"pos":[34,5],"text":"Closed cooling loop","style":"caption"},{"pos":[-20,3],"text":"The box nobody names","style":"caption"}],"camera":{"distance":132}},"nodes":[{"id":"sys","slot":"system","label":"Abilene AI factory","text":"The whole being decomposed: an AI factory, a plant that manufactures intelligent outcomes from inputs sent by users. Crusoe's Abilene, Texas facility will consume 1.2 gigawatts of total power capacity.","provenance":"fact","source_quote":"It's like what we're building are these AI factories, right? So they're factories that manufacture intelligence. Factories that manufacture intelligent outcomes that are prompted by inputs from users.","source_ref":"Chase Lockmiller, L3114-L3120","entities":["Crusoe Energy"],"pos":[0,40],"size":1.8},{"id":"f_energy","slot":"function","label":"Source low-cost power","text":"The first box in Crusoe's energy-first approach: find where low-cost, clean, abundant energy can be accessed and put the computing infrastructure there, rather than building where data centres already are.","provenance":"fact","source_quote":"where can we access low cost, you know, clean as much as we can, and abundant energy to power computing infrastructure?","source_ref":"Chase Lockmiller, L2738-L2740","entities":["Crusoe Energy"],"pos":[-28,24],"size":1.15},{"id":"f_electrical","slot":"function","label":"Step voltage down to the data hall","text":"The box nobody names: whatever takes power at transmission voltage and delivers breaker-protected feeds at the data hall. Its three parts are all named; the function they jointly perform is not.","provenance":"derived","confidence":0.8,"rationale":"Lockmiller names high-voltage transformers, medium-voltage transformers and switchgear in sequence and calls them a whole stack, but never names the job they jointly do. The contents of the box are quoted; the box itself is the decomposition's inference, and it is the level at which the lead-time problem is actually owned.","entities":["Crusoe Energy"],"pos":[-20,14],"size":1.15},{"id":"f_compute","slot":"function","label":"Run the racks in the data halls","text":"The data halls hold racks of Nvidia chips with cold water flowing over them. This is the box that turns power into computation; everything else in the factory exists to keep it fed and cool.","provenance":"fact","source_quote":"cold water that flows into the rack and it flows over the chips through this copper pipe","source_ref":"Chase Lockmiller, L3402-L3404","entities":["Nvidia"],"pos":[8,24],"size":1.15},{"id":"f_cooling","slot":"function","label":"Remove heat in a closed loop","text":"Crusoe's AI factories use a closed-loop architecture: the water that carries heat off the chips is the same water, circulating, rather than a fresh supply being consumed.","provenance":"fact","source_quote":"The way we've designed our AI factories is what's called a closed loop architecture.","source_ref":"Chase Lockmiller, L3400-L3400","entities":["Crusoe Energy"],"pos":[28,14],"size":1.15},{"id":"f_software","slot":"function","label":"Managed infrastructure as a service","text":"The top box of the stack: managed infrastructure as a service at the software layer, which is what a customer actually buys. Crusoe built this from the ground up alongside the energy and the buildings.","provenance":"fact","source_quote":"as well as managed infrastructure as a service at the software layer","source_ref":"Chase Lockmiller, L3020-L3022","entities":["Crusoe Energy"],"pos":[48,24],"size":1.15},{"id":"f_hv","slot":"function","label":"High-voltage transformers","text":"High-voltage transformers are a big bottleneck and long lead time assets. A lot of that capacity gets built in China, but the supply chain is diverse enough that Lockmiller is not worried about the trade war.","provenance":"fact","source_quote":"high voltage transformers, but they are kind of long lead time assets.","source_ref":"Chase Lockmiller, L3282-L3282","entities":[],"pos":[-40,-1],"size":1},{"id":"f_mv","slot":"function","label":"Medium-voltage transformers","text":"There is a whole stack on the transformer side, and medium-voltage transformers are the next layer of it below the high-voltage ones.","provenance":"fact","source_quote":"There's a whole stack in the transformer side too. So like you have the medium voltage transformers.","source_ref":"Chase Lockmiller, L3284-L3286","entities":[],"pos":[-27,-16],"size":1},{"id":"f_switchgear","slot":"function","label":"Switchgear: the breakers","text":"Electrical switchgear is the electrical room holding all of the breakers that feed into the data halls. It is a major long lead time item and a bottleneck, and Crusoe started manufacturing it in-house in Tulsa and outside Denver.","provenance":"fact","source_quote":"It's electrical switch gear. This is basically like your electrical room that has all of the breakers that feed into the actual data halls","source_ref":"Chase Lockmiller, L3300-L3306","entities":["Crusoe Energy"],"pos":[-12,-26],"size":1},{"id":"f_coldplate","slot":"function","label":"Cold plate: chip to water","text":"Inside the rack, heat exchanges from the silicon through the copper and into the water. This is the box that gets the heat off the chip.","provenance":"fact","source_quote":"you have this heat exchange between the silicon that goes through the copper and then to the water","source_ref":"Chase Lockmiller, L3404-L3406","entities":["Nvidia"],"pos":[16,-1],"size":1},{"id":"f_chiller","slot":"function","label":"Outdoor chiller: water to air","text":"A heat exchanger outside, like a massive maze of copper pipe, with air blown over it. Chillers are another big thing, alongside switchgear, in the list of bottlenecks.","provenance":"fact","source_quote":"That hot water then goes out to a heat exchanger that's a chiller that's outside.","source_ref":"Chase Lockmiller, L3410-L3410","entities":[],"pos":[52,-16],"size":1},{"id":"i_prompts","slot":"input","label":"Prompts from users","text":"The system's demand-side input: the prompts users send, which is what the factory converts into intelligent outcomes.","provenance":"fact","source_quote":"Factories that manufacture intelligent outcomes that are prompted by inputs from users.","source_ref":"Chase Lockmiller, L3118-L3120","entities":[],"pos":[-27,40],"size":0.9},{"id":"i_energy","slot":"input","label":"Curtailed wind and solar","text":"Abilene has an abundance of wind and solar built on production tax credits, and not enough demand for it: power gets curtailed and sometimes sold at a negative price. That surplus is the factory's energy input.","provenance":"fact","source_quote":"Abilene is a market where there's an abundance of energy, a lot of wind particularly, and solar had been built on the back of production tax credit incentives","source_ref":"Chase Lockmiller, L2804-L2806","entities":[],"pos":[-58,24],"size":0.9},{"id":"i_credit","slot":"input","label":"Infrastructure credit","text":"Credit is the input that decides whether a factory of this size exists at all. The Abilene expansion's funding totals about fifteen billion dollars and was done in partnership with Blue Owl Capital.","provenance":"fact","source_quote":"credit is the unlock to all of this infrastructure getting built","source_ref":"Chase Lockmiller, L3180-L3182","entities":["Blue Owl Capital","Crusoe Energy"],"pos":[-54,40],"size":0.9},{"id":"i_coldwater","slot":"input","label":"Cold water into the rack","text":"Cold water flows into the rack. In a closed loop this is not a fresh supply: it is the same water coming back from the chiller.","provenance":"fact","source_quote":"you have cold water that flows into the rack","source_ref":"Chase Lockmiller, L3402-L3402","entities":[],"pos":[52,-1],"size":0.9},{"id":"o_intelligence","slot":"output","label":"Intelligent outcomes","text":"What the factory manufactures: intelligence, in the form of outcomes prompted by users. Lockmiller sees no near-term shortage of demand for more of it.","provenance":"fact","source_quote":"they're factories that manufacture intelligence","source_ref":"Chase Lockmiller, L3116-L3116","entities":[],"pos":[27,40],"size":0.9},{"id":"o_hotwater","slot":"output","label":"Hot water out of the rack","text":"Hot water is exhausted from the rack, carrying the heat the chips produced. It is the cold plate's output and the chiller's input.","provenance":"fact","source_quote":"and then hot water sort of exhausted from the rack","source_ref":"Chase Lockmiller, L3406-L3408","entities":[],"pos":[16,-16],"size":0.9},{"id":"o_heat","slot":"output","label":"Heat exhausted to the air","text":"Air is blown over the chiller and the heat gets exhausted out of the water. Heat, not water, is what actually leaves the system.","provenance":"fact","source_quote":"the heat basically gets exhausted out of the water","source_ref":"Chase Lockmiller, L3418-L3418","entities":[],"pos":[52,-26],"size":0.9},{"id":"c_water","slot":"contract","label":"Fill the loop once, not per hour","text":"The one guarantee stated out loud, and it is made to the local community rather than to a downstream box: a building holds a million gallons, and it is filled one time, not consumed per hour.","provenance":"fact","source_quote":"So while we have one million gallons of water per building, we only fill it one time.","source_ref":"Chase Lockmiller, L3424-L3426","entities":["Crusoe Energy"],"pos":[38,-56],"size":1},{"id":"c_thermal","slot":"contract","label":"Carry away a full rack of heat","text":"What the cooling box owes the racks: remove the entire thermal load of a GB200-density rack, continuously, because at these densities there is no longer enough heat capacity to move that heat off the chip any other way.","provenance":"derived","confidence":0.8,"rationale":"Lockmiller states the physical fact that the new Nvidia architectures produce more heat than a traditional aluminium heat sink can move, and separately describes the closed loop, but never states what the loop guarantees. The guarantee is close to forced: a cooling box whose promise is weaker than the rack's heat output shuts the rack down.","entities":["Nvidia"],"pos":[-10,-56],"size":1},{"id":"c_power","slot":"contract","label":"Firm power whatever the wind does","text":"What the energy box owes the data hall: continuous power at a contracted price, although its input is wind and solar that frequently gets curtailed. Somebody has to stand between an intermittent source and a load that cannot blink, and the transcript never says who.","provenance":"derived","confidence":0.65,"rationale":"The speaker states both that Abilene's surplus is wind and solar that frequently gets curtailed and that the facility will consume 1.2 gigawatts of total power capacity. A load of that size cannot follow the weather, so a firming guarantee has to exist between the two; he names neither the guarantee nor its owner.","idea":"Firming as a product: a counterparty that sells a gigawatt-scale AI load a firm power guarantee on top of a curtailed renewable grid, taking the intermittency risk the developer currently absorbs by owning generation itself.","entities":["Crusoe Energy"],"pos":[-44,-44],"size":1},{"id":"c_switchgear","slot":"contract","label":"A delivery date you can finance","text":"What the switchgear and medium-voltage transformer boxes owe their consumer and nobody sells: a delivery date firm enough to underwrite a construction schedule against. Crusoe's answer was to stop buying switchgear and open its own factories in Tulsa and outside Denver.","provenance":"derived","confidence":0.7,"rationale":"Lockmiller says switchgear is a major long lead time item and definitely a bottleneck, and that Crusoe started manufacturing it in-house with two factories. A buyer that would rather not be a manufacturer integrating backwards is evidence that what is missing is a guarantee rather than a part, and he never states the guarantee because nobody offers one.","idea":"A supplier of long-lead electrical gear that sells an underwritten delivery date rather than a part: lead-time insurance, or take-or-pay slots, on switchgear and medium-voltage transformers, for every data-centre developer too small to open a factory the way Crusoe did.","entities":["Crusoe Energy"],"pos":[-2,-44],"size":1},{"id":"c_uptime","slot":"contract","label":"One tenant, one cluster, one term","text":"What the compute box owes above it: a working cluster delivered to a single customer for the term the debt was raised against. Fifteen billion dollars of financing sits on one tenant's demand for one facility.","provenance":"derived","confidence":0.7,"rationale":"Lockmiller says the 1.2 gigawatt Abilene facility is for one customer and that its funding, about fifteen billion dollars, was completed with Blue Owl Capital. An asset financed against a single tenant must be guaranteeing availability to that tenant, but the term sheet is the one document the interview never reads out.","entities":["Blue Owl Capital","Crusoe Energy"],"pos":[38,-44],"size":1}],"edges":[{"id":"e_c1","from":"sys","to":"f_energy","relation":"composed_of","provenance":"fact","source_quote":"And we had done that from the ground up, all the way from energy data centers","source_ref":"Chase Lockmiller, L3016-L3018"},{"id":"e_c2","from":"sys","to":"f_software","relation":"composed_of","provenance":"fact","source_quote":"all the way from energy data centers, as well as managed infrastructure as a service at the software layer","source_ref":"Chase Lockmiller, L3018-L3022"},{"id":"e_c3","from":"sys","to":"f_cooling","relation":"composed_of","provenance":"fact","source_quote":"The way we've designed our AI factories is what's called a closed loop architecture.","source_ref":"Chase Lockmiller, L3400-L3400"},{"id":"e_c4","from":"sys","to":"f_compute","relation":"composed_of","provenance":"derived","confidence":0.85,"rationale":"Lockmiller never enumerates the factory's subsystems. That the data halls of racks are one box inside the AI factory is forced by the facts that the breakers feed into them and the water flows over their chips, but it is not stated."},{"id":"e_c5","from":"sys","to":"f_electrical","relation":"composed_of","provenance":"derived","confidence":0.8,"rationale":"The parent box is itself an inference, so its membership in the system is too. What is stated is that transformers and switchgear are part of what it means to build this stuff out."},{"id":"e_c6","from":"f_electrical","to":"f_hv","relation":"composed_of","provenance":"derived","confidence":0.85,"rationale":"Lockmiller introduces high-voltage transformers when asked what it takes to build the factory, then says there is a whole stack on the transformer side. Placing the high-voltage layer inside that stack is the reading."},{"id":"e_c7","from":"f_electrical","to":"f_mv","relation":"composed_of","provenance":"derived","confidence":0.9,"rationale":"He says outright that there is a whole stack in the transformer side and that it contains the medium-voltage transformers; only the name of the containing function is supplied by the decomposition."},{"id":"e_c8","from":"f_electrical","to":"f_switchgear","relation":"composed_of","provenance":"derived","confidence":0.85,"rationale":"Switchgear is named in the same breath as the transformer stack and described as the electrical room feeding the data halls, which places it at the bottom of the same voltage-stepping chain."},{"id":"e_c9","from":"f_cooling","to":"f_coldplate","relation":"composed_of","provenance":"derived","confidence":0.85,"rationale":"The closed loop is stated as an architecture and the chip-to-water exchange is stated as a step of it; treating that step as a sub-function with its own boundary is the decomposition's move."},{"id":"e_c10","from":"f_cooling","to":"f_chiller","relation":"composed_of","provenance":"derived","confidence":0.9,"rationale":"The chiller is described as receiving the loop's hot water and returning cold water, which makes it part of the loop rather than a consumer of it, but no sentence says so."},{"id":"e_n1","from":"sys","to":"i_prompts","relation":"consumes","provenance":"fact","source_quote":"Factories that manufacture intelligent outcomes that are prompted by inputs from users.","source_ref":"Chase Lockmiller, L3118-L3120"},{"id":"e_n2","from":"sys","to":"i_credit","relation":"consumes","provenance":"fact","source_quote":"credit is the unlock to all of this infrastructure getting built","source_ref":"Chase Lockmiller, L3180-L3182"},{"id":"e_n3","from":"f_energy","to":"i_energy","relation":"consumes","provenance":"derived","confidence":0.8,"rationale":"Lockmiller states that an AI data centre can be built in Abilene to soak up the curtailed energy, and separately that his energy-first box looks for exactly such low-cost abundant power. Assigning that curtailed surplus to that box as its input is the join he does not make explicitly."},{"id":"e_n4","from":"f_coldplate","to":"i_coldwater","relation":"consumes","provenance":"fact","source_quote":"you have cold water that flows into the rack and it flows over the chips through this copper pipe","source_ref":"Chase Lockmiller, L3402-L3404"},{"id":"e_n5","from":"f_chiller","to":"o_hotwater","relation":"consumes","provenance":"fact","source_quote":"That hot water then goes out to a heat exchanger that's a chiller that's outside.","source_ref":"Chase Lockmiller, L3410-L3410"},{"id":"e_p1","from":"sys","to":"o_intelligence","relation":"produces","provenance":"fact","source_quote":"they're factories that manufacture intelligence","source_ref":"Chase Lockmiller, L3116-L3116"},{"id":"e_p2","from":"f_coldplate","to":"o_hotwater","relation":"produces","provenance":"fact","source_quote":"you have this heat exchange between the silicon that goes through the copper and then to the water and then hot water sort of exhausted from the rack","source_ref":"Chase Lockmiller, L3404-L3408"},{"id":"e_p3","from":"f_chiller","to":"o_heat","relation":"produces","provenance":"fact","source_quote":"And then you blow air over it. You try to blow cold air over it. And then the heat basically gets exhausted out of the water.","source_ref":"Chase Lockmiller, L3414-L3418"},{"id":"e_p4","from":"f_chiller","to":"i_coldwater","relation":"produces","provenance":"fact","label":"closes the loop","source_quote":"And then you basically have cold water from that that then feeds right back into the system.","source_ref":"Chase Lockmiller, L3420-L3422"},{"id":"e_d1","from":"f_compute","to":"f_switchgear","relation":"depends_on","provenance":"fact","source_quote":"all of the breakers that feed into the actual data halls","source_ref":"Chase Lockmiller, L3304-L3306"},{"id":"e_d2","from":"f_switchgear","to":"f_mv","relation":"depends_on","provenance":"derived","confidence":0.75,"rationale":"Breakers distribute at the voltage the medium-voltage transformers hand them, so the switchgear cannot do its job until that step down has happened. The ordering is standard electrical practice and is nowhere stated in the interview."},{"id":"e_d3","from":"f_mv","to":"f_hv","relation":"depends_on","provenance":"derived","confidence":0.8,"rationale":"Calling the transformers high and medium voltage states the order of the steps implicitly: the medium-voltage layer receives what the high-voltage layer delivers. Lockmiller gives the names and not the sequence."},{"id":"e_d4","from":"f_hv","to":"f_energy","relation":"depends_on","provenance":"derived","confidence":0.8,"rationale":"The transformer stack has nothing to step down until the energy box has secured generation and an interconnect. That the two are in series follows from the build narrative rather than from any sentence."},{"id":"e_d5","from":"f_compute","to":"f_cooling","relation":"depends_on","provenance":"derived","confidence":0.85,"rationale":"Lockmiller states that there is simply not enough heat capacity to move the new chips' heat with an aluminium heat sink, which makes liquid cooling a precondition for running the racks at all rather than an optimisation. The dependency itself is never said."},{"id":"e_d6","from":"f_software","to":"f_compute","relation":"depends_on","provenance":"derived","confidence":0.8,"rationale":"Managed infrastructure as a service has nothing to manage without the racks beneath it. The layering is implied by the phrase at the software layer and by the ground-up build, not stated as a dependency."},{"id":"e_b1","from":"f_cooling","to":"c_water","relation":"bound_by","provenance":"fact","source_quote":"But in our case, we've designed it with a closed loop architecture that is like, you fill it one time, then you're done.","source_ref":"Chase Lockmiller, L3454-L3458"},{"id":"e_b2","from":"f_cooling","to":"c_thermal","relation":"bound_by","provenance":"derived","confidence":0.8,"rationale":"The thermal guarantee belongs to the cooling box because it is the only box whose output is the absence of heat. Lockmiller describes its mechanism and never its promise."},{"id":"e_b3","from":"f_energy","to":"c_power","relation":"bound_by","provenance":"derived","confidence":0.65,"rationale":"The energy box is the one that faces the intermittent source, so the firming guarantee is owed by it even though the interview never assigns it to anyone."},{"id":"e_b4","from":"f_switchgear","to":"c_switchgear","relation":"bound_by","provenance":"derived","confidence":0.7,"rationale":"Switchgear is the box Lockmiller names twice as a bottleneck and the box Crusoe chose to manufacture itself, which makes it the box whose missing delivery guarantee was binding."},{"id":"e_b5","from":"f_mv","to":"c_switchgear","relation":"bound_by","provenance":"derived","confidence":0.65,"rationale":"He groups switchgear and medium-voltage transformers as one long-lead problem, so the same missing guarantee binds both boxes. Treating one contract as covering two functions is the inference."},{"id":"e_b6","from":"f_compute","to":"c_uptime","relation":"bound_by","provenance":"derived","confidence":0.7,"rationale":"Availability to the single tenant is a promise only the box that runs the racks can make, and it is the promise the financing is written against."},{"id":"e_s1","from":"c_switchgear","to":"f_hv","relation":"supported_by","provenance":"derived","confidence":0.7,"rationale":"High-voltage transformers being long lead time assets is the nearest stated fact to the missing guarantee: the lead time is acknowledged and never underwritten."},{"id":"e_s2","from":"c_thermal","to":"f_compute","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"The racks are the consumer the thermal guarantee is owed to, which is what makes it a contract rather than a property of the plumbing."},{"id":"e_s3","from":"c_power","to":"i_energy","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"The curtailed wind and solar input is what makes the firming guarantee necessary: an input that gets switched off is exactly what a firm guarantee has to absorb."},{"id":"e_s4","from":"c_uptime","to":"i_credit","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"Credit is what the availability guarantee is written for; the fifteen billion dollars is the measure of how much the guarantee is worth."}]}]}</script>
+<!--__DATA_END__-->
+
+<!--__EXT_START__-->
+<!-- Framework-specific visuals go here. Optional. Define:
+     window.__frameworkExtension = (ctx) => { /* ctx: { THREE, scene, group, graph, example, nodesById, positions, api } */ };
+     It is called after each example is laid out; add objects to ctx.group so they are removed on example switch. -->
+<!--__EXT_END__-->
+
+<script>
+  // Fallback notice if the module (and Three.js) never loads.
+  window.__engineReady = false;
+  setTimeout(() => { if (!window.__engineReady) { const f = document.getElementById('fallback'); f.innerHTML = 'Could not load Three.js from jsDelivr.<br><small>Check the network connection, then reload. The graph data is embedded in this file and is not lost.</small>'; } }, 9000);
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
+// ---------- palette (validated categorical slots, dark surface; see _meta and SPEC.md section 5) ----------
+const SLOT_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
+const SCHEMA_COLOR = '#898781';
+const INK = '#ffffff', INK2 = '#c3c2b7', MUTED = '#898781', HAIRLINE = '#2c2c2a', SURFACE = '#1a1a19';
+const IDEA = '#eda100';   // marks a node whose `idea` field names an opportunity
+const NODE_R = 2.2;
+
+// ---------- data ----------
+const $ = (id) => document.getElementById(id);
+let GRAPH;
+try { GRAPH = JSON.parse($('graph-data').textContent); } catch (e) { fatal('The embedded graph data is not valid JSON: ' + e.message); }
+if (!GRAPH || !GRAPH.framework || !Array.isArray(GRAPH.examples) || GRAPH.examples.length === 0) fatal('No graph data embedded yet. Run: node _meta/build.mjs <framework-dir>');
+
+function fatal(msg) { const f = $('fallback'); f.hidden = false; f.textContent = msg; window.__engineReady = true; throw new Error(msg); }
+
+const fw = GRAPH.framework;
+document.title = `${fw.name} · graph`;
+$('name').textContent = fw.name;
+$('category').textContent = (fw.category || '').replace(/^\d+-/, '').replace(/-/g, ' ');
+if (fw.wikipedia) $('wiki').href = fw.wikipedia; else $('wiki').remove();
+
+// slot colours: fixed order over content slots, never cycled; beyond 8, muted
+const slotStyle = new Map();
+let ci = 0;
+for (const s of GRAPH.slots) {
+  if (s.structural) slotStyle.set(s.id, { color: SCHEMA_COLOR, shape: s.shape || 'box', slot: s });
+  else slotStyle.set(s.id, { color: s.color || (ci < SLOT_COLORS.length ? SLOT_COLORS[ci++] : MUTED), shape: s.shape || 'sphere', slot: s });
+}
+const relLabel = new Map((GRAPH.relations || []).map(r => [r.id, r.label || r.id]));
+relLabel.set('supported_by', 'supported by');
+
+// ---------- renderer / scene ----------
+const stage = $('stage');
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false }); } catch (e) { fatal('WebGL is not available in this browser.'); }
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setClearColor(new THREE.Color(SURFACE), 1);
+stage.appendChild(renderer.domElement);
+const labelRenderer = new CSS2DRenderer({ element: $('labels') });
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 5000);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.08; controls.autoRotateSpeed = 0.6;
+scene.add(new THREE.AmbientLight(0xffffff, 1.4));
+const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(40, 80, 120); scene.add(key);
+const fill = new THREE.DirectionalLight(0xffffff, 0.5); fill.position.set(-60, -20, -80); scene.add(fill);
+
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, true); labelRenderer.setSize(w, h);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+// The header and the note strip lay out after the first script pass, so a one-shot resize()
+// leaves the WebGL buffer and the CSS2D label layer disagreeing (labels drift from their nodes).
+// Observing the stage keeps both renderers on its real size, at first paint and on every change.
+let roFrame = 0;
+const ro = new ResizeObserver(() => { cancelAnimationFrame(roFrame); roFrame = requestAnimationFrame(() => { resize(); resetView(); }); });
+ro.observe(stage);
+
+// ---------- state ----------
+const state = { exampleIndex: 0, showDerived: true, showGrounding: false, showLabels: true, group: null, nodes: new Map(), edges: [], hit: [], hover: null, selected: null, fit: null };
+
+// ---------- layouts ----------
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+function forceLayout(nodes, edges, pinned, seed, opts = {}) {
+  const rand = mulberry32(seed);
+  const pos = new Map();
+  const R0 = opts.radius || Math.max(18, nodes.length * 2.2);
+  for (const n of nodes) {
+    if (pinned.has(n.id)) pos.set(n.id, pinned.get(n.id).clone());
+    else pos.set(n.id, new THREE.Vector3((rand() - .5) * 2 * R0, (rand() - .5) * 2 * R0, (rand() - .5) * 2 * R0 * (opts.flat ? 0.15 : 1)));
+  }
+  const ids = nodes.map(n => n.id);
+  const L = opts.rest || 16, K = opts.repulse || 420;
+  const f = new Map(ids.map(id => [id, new THREE.Vector3()]));
+  const d = new THREE.Vector3();
+  for (let it = 0; it < 420; it++) {
+    const alpha = 0.9 * (1 - it / 420) + 0.04;
+    for (const id of ids) f.get(id).set(0, 0, 0);
+    for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) {
+      const a = pos.get(ids[i]), b = pos.get(ids[j]);
+      d.subVectors(a, b); let dist = d.length(); if (dist < 0.5) { d.set(rand() - .5, rand() - .5, rand() - .5); dist = 0.5; }
+      const s = K / (dist * dist); d.normalize().multiplyScalar(s);
+      f.get(ids[i]).add(d); f.get(ids[j]).sub(d);
+    }
+    for (const e of edges) {
+      if (!pos.has(e.from) || !pos.has(e.to)) continue;
+      const a = pos.get(e.from), b = pos.get(e.to);
+      d.subVectors(b, a); const dist = Math.max(d.length(), 0.01);
+      const s = (dist - L) * 0.05; d.normalize().multiplyScalar(s);
+      f.get(e.from).add(d); f.get(e.to).sub(d);
+    }
+    for (const id of ids) {
+      if (pinned.has(id)) continue;
+      const p = pos.get(id), ff = f.get(id);
+      ff.addScaledVector(p, -0.012);
+      if (opts.flat) ff.z -= p.z * 0.2;
+      const len = ff.length(); if (len > 6) ff.multiplyScalar(6 / len);
+      p.addScaledVector(ff, alpha);
+    }
+  }
+  return pos;
+}
+
+function treeLayout(ex) {
+  const nodes = ex.nodes, edges = ex.edges.filter(e => e.relation !== 'supported_by');
+  const level = new Map();
+  const explicit = nodes.every(n => Number.isInteger(n.level));
+  if (explicit) nodes.forEach(n => level.set(n.id, n.level));
+  else {
+    const out = new Map(nodes.map(n => [n.id, []])), und = new Map(nodes.map(n => [n.id, []]));
+    for (const e of edges) { out.get(e.from)?.push(e.to); und.get(e.from)?.push(e.to); und.get(e.to)?.push(e.from); }
+    const root = ex.layout.root && level.has(ex.layout.root) === false ? ex.layout.root : nodes[0].id;
+    const q = [root]; level.set(root, 0);
+    while (q.length) { const id = q.shift(); for (const t of out.get(id) || []) if (!level.has(t)) { level.set(t, level.get(id) + 1); q.push(t); } }
+    // unreachable by direction: attach by undirected distance
+    const q2 = [...level.keys()];
+    while (q2.length) { const id = q2.shift(); for (const t of und.get(id) || []) if (!level.has(t)) { level.set(t, level.get(id) + 1); q2.push(t); } }
+    for (const n of nodes) if (!level.has(n.id)) level.set(n.id, 0);
+    for (const n of nodes) if (Number.isInteger(n.level)) level.set(n.id, n.level);
+  }
+  const layers = new Map();
+  for (const n of nodes) { const l = level.get(n.id); if (!layers.has(l)) layers.set(l, []); layers.get(l).push(n); }
+  const order = [...layers.keys()].sort((a, b) => a - b);
+  const pos = new Map();
+  const right = ex.layout.direction === 'right';
+  const GAP_L = right ? 26 : 18, GAP_S = right ? 9 : 14;
+  // barycentre ordering pass to reduce crossings
+  const parents = new Map(nodes.map(n => [n.id, []]));
+  for (const e of edges) if (level.get(e.to) > level.get(e.from)) parents.get(e.to).push(e.from);
+  const xOf = new Map();
+  for (const l of order) {
+    const arr = layers.get(l);
+    if (l !== order[0]) arr.sort((a, b) => {
+      const pa = parents.get(a.id).filter(p => xOf.has(p)), pb = parents.get(b.id).filter(p => xOf.has(p));
+      const ma = pa.length ? pa.reduce((s, p) => s + xOf.get(p), 0) / pa.length : 0;
+      const mb = pb.length ? pb.reduce((s, p) => s + xOf.get(p), 0) / pb.length : 0;
+      return ma - mb;
+    });
+    arr.forEach((n, i) => {
+      const s = (i - (arr.length - 1) / 2) * GAP_S;
+      xOf.set(n.id, s);
+      pos.set(n.id, right ? new THREE.Vector3(l * GAP_L, -s, 0) : new THREE.Vector3(s, -l * GAP_L, 0));
+    });
+  }
+  for (const n of nodes) if (Array.isArray(n.pos)) pos.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  return pos;
+}
+
+function ringLayout(ex) {
+  const nodes = ex.nodes;
+  const onRing = nodes.filter(n => Number.isInteger(n.order) && !Array.isArray(n.pos));
+  const R = Math.max(22, onRing.length * 4.2);
+  const pinned = new Map();
+  onRing.sort((a, b) => a.order - b.order).forEach((n, i) => { const t = Math.PI / 2 - (i / onRing.length) * Math.PI * 2; pinned.set(n.id, new THREE.Vector3(Math.cos(t) * R, Math.sin(t) * R, 0)); });
+  for (const n of nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  if (pinned.size === nodes.length) return pinned;
+  return forceLayout(nodes, ex.edges, pinned, 7, { radius: R * 0.5, flat: true, rest: 12 });
+}
+
+function planeLayout(ex) {
+  const pinned = new Map();
+  for (const n of ex.nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  if (pinned.size === ex.nodes.length) return pinned;
+  return forceLayout(ex.nodes, ex.edges, pinned, 11, { flat: true, rest: 14 });
+}
+
+function computeLayout(ex) {
+  const mode = ex.layout?.mode || 'force';
+  if (mode === 'tree') return treeLayout(ex);
+  if (mode === 'ring') return ringLayout(ex);
+  if (mode === 'plane') return planeLayout(ex);
+  const pinned = new Map();
+  for (const n of ex.nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  return forceLayout(ex.nodes, ex.edges, pinned, 3);
+}
+
+// ---------- geometry helpers ----------
+const GEO = {
+  sphere: (r) => new THREE.SphereGeometry(r, 28, 20),
+  box: (r) => new THREE.BoxGeometry(r * 1.7, r * 1.7, r * 1.7),
+  diamond: (r) => new THREE.OctahedronGeometry(r * 1.25, 0),
+  cone: (r) => new THREE.ConeGeometry(r * 1.1, r * 2.2, 20),
+};
+function label2d(text, cls, innerTransform) {
+  const el = document.createElement('div'); el.className = cls;
+  if (innerTransform) {
+    const inner = document.createElement('span');
+    inner.className = 'lab'; inner.style.display = 'inline-block'; inner.style.transform = innerTransform;
+    inner.textContent = text; el.appendChild(inner);
+  } else el.textContent = text;
+  return new CSS2DObject(el);
+}
+
+function makeNode(n, p) {
+  const st = slotStyle.get(n.slot) || { color: MUTED, shape: 'sphere' };
+  const r = NODE_R * (n.size || 1);
+  const color = new THREE.Color(st.color);
+  const obj = new THREE.Group(); obj.position.copy(p);
+  let mesh, halo = null;
+  if (n.provenance === 'fact') {
+    mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.5, metalness: 0.08 }));
+  } else if (n.provenance === 'derived') {
+    mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.6, metalness: 0.0, transparent: true, opacity: 0.32, depthWrite: false }));
+    halo = new THREE.LineSegments(new THREE.WireframeGeometry(GEO[st.shape](r * 1.35)), new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.75 }));
+    obj.add(halo);
+  } else {
+    mesh = new THREE.Mesh(GEO[st.shape === 'sphere' ? 'box' : st.shape](r * 0.8), new THREE.MeshStandardMaterial({ color: new THREE.Color(SCHEMA_COLOR), roughness: 0.9, metalness: 0, transparent: true, opacity: 0.85 }));
+  }
+  mesh.userData.nodeId = n.id;
+  obj.add(mesh);
+  const hit = new THREE.Mesh(new THREE.SphereGeometry(r * 1.9, 10, 8), new THREE.MeshBasicMaterial({ visible: false }));
+  hit.userData.nodeId = n.id; obj.add(hit);
+  // A node carrying an `idea` is where this framework surfaces an underserved need or opportunity:
+  // mark it so a reader can find the payoff without opening every panel.
+  if (n.idea) {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(r * 1.6, r * 0.11, 8, 40), new THREE.MeshBasicMaterial({ color: new THREE.Color(IDEA) }));
+    ring.userData.isIdeaRing = true; obj.add(ring);
+  }
+  const glyph = n.provenance === 'fact' ? '●' : n.provenance === 'derived' ? '◌' : '▪';
+  const el = document.createElement('div'); el.className = 'nlabel ' + n.provenance;
+  const g = document.createElement('span'); g.className = 'g'; g.textContent = glyph; g.style.color = n.provenance === 'schema' ? MUTED : st.color;
+  const inner = document.createElement('span'); inner.className = 'lab';
+  inner.appendChild(g);
+  if (n.idea) { const st2 = document.createElement('span'); st2.className = 'idea-star'; st2.textContent = '★'; inner.appendChild(st2); }
+  inner.appendChild(document.createTextNode(n.label || n.id));
+  el.appendChild(inner);
+  // Anchor the label below whatever the node actually draws: a diamond reaches further than a
+  // sphere, a derived node adds a 1.35r halo, and an idea node adds a 1.6r ring. Anchoring at -r
+  // regardless (the old behaviour) made labels collide with their own marker on those nodes.
+  const SHAPE_EXTENT = { sphere: 1.0, box: 0.85, diamond: 1.25, cone: 1.1 };
+  let extent = (SHAPE_EXTENT[st.shape] ?? 1) * r;
+  if (n.provenance === 'derived') extent = Math.max(extent, r * 1.35);
+  if (n.idea) extent = Math.max(extent, r * 1.72);
+  const lab = new CSS2DObject(el); lab.position.set(0, -extent, 0); obj.add(lab);
+  return { node: n, obj, mesh, halo, hit, label: lab, r, color: st.color, edges: [] };
+}
+
+function makeEdge(e, A, B) {
+  const from = A.obj.position, to = B.obj.position;
+  const dir = new THREE.Vector3().subVectors(to, from); const len = dir.length(); dir.normalize();
+  const a = from.clone().addScaledVector(dir, A.r * 1.05), b = to.clone().addScaledVector(dir, -(B.r * 1.05 + (e.relation === 'supported_by' ? 0 : 1.6)));
+  const geom = new THREE.BufferGeometry().setFromPoints([a, b]);
+  let mat, arrow = null;
+  const grounding = e.relation === 'supported_by';
+  if (grounding) mat = new THREE.LineDashedMaterial({ color: new THREE.Color(MUTED), dashSize: 0.5, gapSize: 0.9, transparent: true, opacity: 0.55 });
+  else if (e.provenance === 'derived') mat = new THREE.LineDashedMaterial({ color: new THREE.Color(INK2), dashSize: 1.4, gapSize: 0.9, transparent: true, opacity: 0.8 });
+  else if (e.provenance === 'schema') mat = new THREE.LineBasicMaterial({ color: new THREE.Color(HAIRLINE), transparent: true, opacity: 0.9 });
+  else mat = new THREE.LineBasicMaterial({ color: new THREE.Color(INK2), transparent: true, opacity: 0.85 });
+  const line = new THREE.Line(geom, mat); line.computeLineDistances();
+  const grp = new THREE.Group(); grp.add(line);
+  if (!grounding && e.provenance !== 'schema') {
+    arrow = new THREE.Mesh(new THREE.ConeGeometry(0.75, 2.0, 10), new THREE.MeshBasicMaterial({ color: e.provenance === 'derived' ? new THREE.Color(INK2) : new THREE.Color(INK2), transparent: true, opacity: e.provenance === 'derived' ? 0.7 : 0.95 }));
+    arrow.position.copy(to).addScaledVector(dir, -(B.r * 1.05 + 1.0));
+    arrow.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+    grp.add(arrow);
+  }
+  let lab = null;
+  if (e.label) { lab = label2d(e.label, 'elabel'); lab.position.copy(a).lerp(b, 0.5); grp.add(lab); }
+  return { edge: e, grp, line, arrow, label: lab, A, B, grounding, len };
+}
+
+function drawDecor(ex, parent, bbox, offset) {
+  const L = ex.layout || {};
+  // Nodes are re-centred on their bounding box in every mode except plane, but decor coordinates
+  // are authored in the same space as node positions. Shift the decor by the same amount so a
+  // region or axis lines up with its nodes without the author having to centre on the origin.
+  const group = new THREE.Group();
+  group.position.copy(offset).negate();
+  parent.add(group);
+  const shift = (v) => new THREE.Vector3(v.x - offset.x, v.y - offset.y, v.z - offset.z);
+  const z = -0.6;
+  const lineMat = new THREE.LineBasicMaterial({ color: new THREE.Color(0x4a4a47) });
+  const dashMat = new THREE.LineDashedMaterial({ color: new THREE.Color(0x4a4a47), dashSize: 1.2, gapSize: 1.0 });
+  for (const r of (L.regions || [])) {
+    const w = Math.abs(r.x[1] - r.x[0]), h = Math.abs(r.y[1] - r.y[0]);
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.07, depthWrite: false }));
+    m.position.set((r.x[0] + r.x[1]) / 2, (r.y[0] + r.y[1]) / 2, z - 0.5); group.add(m);
+    const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(w, h)), new THREE.LineBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.25 }));
+    edge.position.copy(m.position); group.add(edge);
+    // Caption sits top-centre INSIDE the band. CSS2D centres its box on the position, so anchoring
+    // at the corner made every caption straddle the boundary and builders patched it page-side.
+    const lab = label2d(r.label, 'rlabel'); lab.position.set((r.x[0] + r.x[1]) / 2, Math.max(r.y[0], r.y[1]) - 3, z); group.add(lab);
+    bbox.expandByPoint(shift(new THREE.Vector3(r.x[0], r.y[0], 0))); bbox.expandByPoint(shift(new THREE.Vector3(r.x[1], r.y[1], 0)));
+  }
+  // Free-standing captions. Without this a builder has to fake one with a zero-length guide.
+  for (const an of (L.annotations || [])) {
+    const lab = label2d(an.text, an.style === 'axis' ? 'axlabel' : an.style === 'region' ? 'rlabel' : 'glabel');
+    lab.position.set(an.pos[0], an.pos[1], an.pos[2] ?? z); group.add(lab);
+    bbox.expandByPoint(shift(new THREE.Vector3(an.pos[0], an.pos[1], 0)));
+  }
+  for (const gd of (L.guides || [])) {
+    const a = new THREE.Vector3(gd.from[0], gd.from[1], gd.from[2] || z), b = new THREE.Vector3(gd.to[0], gd.to[1], gd.to[2] || z);
+    const ln = new THREE.Line(new THREE.BufferGeometry().setFromPoints([a, b]), gd.style === 'dashed' ? dashMat : lineMat); ln.computeLineDistances(); group.add(ln);
+    if (gd.label) { const lab = label2d(gd.label, 'glabel'); lab.position.copy(a).lerp(b, 0.5); group.add(lab); }
+    bbox.expandByPoint(shift(a)); bbox.expandByPoint(shift(b));
+  }
+  if (L.axes) {
+    const ax = L.axes.x, ay = L.axes.y;
+    const xmin = ax ? ax.min : bbox.min.x, xmax = ax ? ax.max : bbox.max.x, ymin = ay ? ay.min : bbox.min.y, ymax = ay ? ay.max : bbox.max.y;
+    const pad = 6;
+    if (ax) {
+      const y = ymin - pad;
+      group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(xmin, y, z), new THREE.Vector3(xmax, y, z)]), lineMat));
+      const lab = label2d(ax.label, 'axlabel'); lab.position.set((xmin + xmax) / 2, y - 7.5, z); group.add(lab);
+      for (const t of (ax.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(t.value, y - 1, z), new THREE.Vector3(t.value, y + 1, z)]), lineMat)); const tl = label2d(t.label, 'tick'); tl.position.set(t.value, y - 2.2, z); group.add(tl); }
+      bbox.expandByPoint(shift(new THREE.Vector3(xmin, y - 9, 0))); bbox.expandByPoint(shift(new THREE.Vector3(xmax, y, 0)));
+    }
+    if (ay) {
+      const x = xmin - pad;
+      group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x, ymin, z), new THREE.Vector3(x, ymax, z)]), lineMat));
+      const lab = label2d(ay.label, 'axlabel', 'rotate(-90deg)'); lab.position.set(x - 8, (ymin + ymax) / 2, z); group.add(lab);
+      for (const t of (ay.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x - 1, t.value, z), new THREE.Vector3(x + 1, t.value, z)]), lineMat)); const tl = label2d(t.label, 'tick', 'translateX(-50%)'); tl.position.set(x - 2.5, t.value, z); group.add(tl); }
+      bbox.expandByPoint(shift(new THREE.Vector3(x - 11, ymin, 0))); bbox.expandByPoint(shift(new THREE.Vector3(x, ymax, 0)));
+    }
+  }
+}
+
+// ---------- build an example ----------
+function clearGroup() {
+  if (!state.group) return;
+  state.group.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) { (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); } if (o.isCSS2DObject && o.element) o.element.remove(); });
+  scene.remove(state.group);
+  $('labels').replaceChildren();
+  state.group = null; state.nodes.clear(); state.edges = []; state.hit = []; state.hover = null; state.selected = null;
+  $('panel').hidden = true;
+}
+
+function buildExample(i) {
+  clearGroup();
+  state.exampleIndex = i;
+  const ex = GRAPH.examples[i];
+  const group = new THREE.Group(); scene.add(group); state.group = group;
+  const positions = computeLayout(ex);
+  // centre
+  const bbox = new THREE.Box3();
+  for (const p of positions.values()) bbox.expandByPoint(p);
+  const centre = bbox.getCenter(new THREE.Vector3());
+  const decorOffset = ex.layout?.mode !== 'plane' ? centre.clone() : new THREE.Vector3();
+  if (ex.layout?.mode !== 'plane') for (const p of positions.values()) p.sub(centre);
+  const bbox2 = new THREE.Box3(); for (const p of positions.values()) bbox2.expandByPoint(p);
+  for (const n of ex.nodes) { const rec = makeNode(n, positions.get(n.id)); state.nodes.set(n.id, rec); group.add(rec.obj); state.hit.push(rec.hit); }
+  for (const e of ex.edges) {
+    const A = state.nodes.get(e.from), B = state.nodes.get(e.to); if (!A || !B) continue;
+    const rec = makeEdge(e, A, B); state.edges.push(rec); group.add(rec.grp); A.edges.push(rec); B.edges.push(rec);
+  }
+  drawDecor(ex, group, bbox2, decorOffset);
+  // camera fit
+  const size = bbox2.getSize(new THREE.Vector3()), c = bbox2.getCenter(new THREE.Vector3());
+  state.fit = { size, centre: c, mode: ex.layout?.mode || 'force', distance: ex.layout?.camera?.distance };
+  renderNote(ex);
+  renderLegend(ex);    // legend first, so the camera fit can measure it
+  resetView();
+  applyVisibility();
+  for (const b of $('examples').children) b.setAttribute('aria-pressed', String(b.dataset.index == i));
+  try { window.__frameworkExtension?.({ THREE, scene, group, graph: GRAPH, example: ex, nodesById: state.nodes, positions, api: { slotStyle, label2d, colors: { INK, INK2, MUTED, HAIRLINE, SURFACE, SLOT_COLORS, SCHEMA_COLOR } } }); } catch (e) { console.error('framework extension failed', e); }
+}
+
+// Fit the graph into the part of the stage not covered by the legend (left) or the open panel (right),
+// so labels are not hidden under the cards at the default view.
+function safeArea(size) {
+  const W = stage.clientWidth, H = stage.clientHeight;
+  const sr = stage.getBoundingClientRect();
+  let left = 0, top = 0, right = 0;
+  const wide = W > 820;
+  const leg = $('legend'); if (wide && leg && leg.offsetParent !== null) { const r = leg.getBoundingClientRect(); left = Math.max(left, r.right - sr.left + 16); }
+  const panel = $('panel'); if (wide && panel && !panel.hidden) { const r = panel.getBoundingClientRect(); right = Math.max(right, sr.right - r.left + 16); }
+  return { W, H, left, top, right, w: Math.max(200, W - left - right), h: Math.max(200, H - top) };
+}
+function resetView() {
+  if (!state.fit) return;
+  const { size, centre, mode } = state.fit;
+  const sa = safeArea(size);
+  const halfFov = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  const bottomPad = 30;                       // px: labels hang below the lowest row of nodes
+  const availH = Math.max(150, sa.h - bottomPad);
+  // distance at which the graph (plus margins) fits the safe area: the vertical FOV spans sa.H pixels
+  const fitH = (size.y / 2 + 8) * sa.H / (halfFov * availH);
+  const sidePad = 110;                       // px: labels are centred under nodes and stick out sideways
+  const fitW = (size.x / 2 + 6) * sa.H / (halfFov * Math.max(200, sa.w - 2 * sidePad));
+  const dist = state.fit.distance || Math.max(50, Math.max(fitH, fitW) * (mode === 'force' ? 1.3 : 1.08) + size.z / 2);
+  // world units per pixel at the target depth; shift the centre so the graph sits in the safe area
+  const wpp = (2 * dist * halfFov) / sa.H;
+  const target = centre.clone().add(new THREE.Vector3(-((sa.left - sa.right) / 2) * wpp, ((sa.top - bottomPad) / 2) * wpp, 0));
+  const camPos = mode === 'force' ? target.clone().add(new THREE.Vector3(dist * 0.3, dist * 0.22, dist * 0.92)) : target.clone().add(new THREE.Vector3(0, 0, dist));
+  camera.position.copy(camPos); controls.target.copy(target);
+  camera.near = 0.1; camera.far = 5000; camera.updateProjectionMatrix(); controls.update();
+}
+
+function applyVisibility() {
+  for (const rec of state.nodes.values()) {
+    const vis = rec.node.provenance !== 'derived' || state.showDerived;
+    rec.obj.visible = vis;
+    rec.label.visible = vis && state.showLabels;
+    rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+  }
+  for (const rec of state.edges) {
+    const endsOk = rec.A.obj.visible && rec.B.obj.visible;
+    // a derived edge is reasoning too: it goes away with the derived nodes, even when both its ends are facts
+    const vis = endsOk && (!rec.grounding || state.showGrounding) && (rec.edge.provenance !== 'derived' || state.showDerived);
+    rec.grp.visible = vis;
+    if (rec.label) rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+  }
+  // The idea key explains a marker; drop it when no idea node is on screen (e.g. the facts-only view).
+  const ideaKey = $('legend')?.querySelector('.key-row.idea-key');
+  if (ideaKey) ideaKey.style.display = [...state.nodes.values()].some(r => r.node.idea && r.obj.visible) ? '' : 'none';
+  renderStats();
+}
+
+// ---------- legend / note / stats ----------
+function renderLegend(ex) {
+  const el = $('legend'); el.replaceChildren();
+  const h = (t) => { const x = document.createElement('h2'); x.textContent = t; return x; };
+  el.appendChild(h('Slots'));
+  const counts = new Map(); for (const n of ex.nodes) counts.set(n.slot, (counts.get(n.slot) || 0) + 1);
+  for (const s of GRAPH.slots) {
+    const row = document.createElement('div'); row.className = 'slot-row';
+    const chip = document.createElement('span'); const stl = slotStyle.get(s.id);
+    chip.className = 'chip' + (stl.shape && stl.shape !== 'sphere' ? ' ' + stl.shape : ''); chip.style.background = stl.color;
+    if (s.structural) chip.style.borderRadius = '2px';
+    const name = document.createElement('span'); name.textContent = s.label;
+    const tp = document.createElement('span'); tp.className = 'tp'; tp.textContent = s.structural ? 'schema' : (s.typical_provenance || '');
+    const n = document.createElement('span'); n.className = 'n'; n.textContent = String(counts.get(s.id) || 0);
+    row.append(chip, name, tp, n); row.title = s.description || ''; el.appendChild(row);
+  }
+  el.appendChild(h('Provenance'));
+  const ideaCount = ex.nodes.filter(n => n.idea).length;
+  const keys = [['●', 'fact: stated in the source (solid)'], ['◌', 'derived: LLM inference (translucent, dashed)'], ['▪', 'schema: framework scaffolding (grey)'], ['→', 'solid edge stated, dashed inferred'], ['⋯', 'grounding link: derived → fact']];
+  if (ideaCount) keys.push(['★', 'gold ring: an opportunity this framework surfaces']);
+  for (const [sym, txt] of keys) {
+    const row = document.createElement('div'); row.className = 'key-row';
+    if (sym === '★') row.classList.add('idea-key');
+    const a = document.createElement('span'); a.className = 'sym'; a.textContent = sym; if (sym === '★') a.style.color = IDEA;
+    const b = document.createElement('span'); b.textContent = txt; row.append(a, b); el.appendChild(row);
+  }
+  const st = document.createElement('div'); st.className = 'stats'; st.id = 'stats'; el.appendChild(st);
+  renderStats();
+}
+function renderStats() {
+  const st = $('stats'); if (!st) return;
+  const ex = GRAPH.examples[state.exampleIndex];
+  const nf = ex.nodes.filter(n => n.provenance === 'fact').length, nd = ex.nodes.filter(n => n.provenance === 'derived').length, ns = ex.nodes.filter(n => n.provenance === 'schema').length;
+  const ef = ex.edges.filter(e => e.provenance === 'fact').length, ed = ex.edges.filter(e => e.provenance === 'derived' && e.relation !== 'supported_by').length, eg = ex.edges.filter(e => e.relation === 'supported_by').length;
+  const visN = [...state.nodes.values()].filter(r => r.obj.visible).length, visE = state.edges.filter(r => r.grp.visible).length;
+  st.replaceChildren();
+  const line = (html) => { const d = document.createElement('div'); d.append(...html); st.appendChild(d); };
+  const b = (t) => { const x = document.createElement('b'); x.textContent = t; return x; };
+  line(['nodes ', b(String(nf)), ' fact · ', b(String(nd)), ' derived', ns ? ` · ${ns} schema` : '']);
+  line(['edges ', b(String(ef)), ' fact · ', b(String(ed)), ' derived · ', b(String(eg)), ' grounding']);
+  line([`showing ${visN} nodes, ${visE} edges`]);
+}
+function renderNote(ex) {
+  const el = $('note'); el.replaceChildren();
+  const h = document.createElement('h3'); h.textContent = ex.title || ex.id; el.appendChild(h);
+  const p = document.createElement('p'); p.textContent = ex.summary || ''; el.appendChild(p);
+  const s = document.createElement('div'); s.className = 'src';
+  if (ex.source?.type === 'transcript') s.textContent = `TBPN ${ex.source.date} · ${ex.source.episode_title || ''}`;
+  else if (ex.source?.type === 'text') s.textContent = `source: ${ex.source.title || 'scenario text'}`;
+  el.appendChild(s);
+}
+
+// ---------- panel ----------
+function openPanel(rec) {
+  const n = rec.node, ex = GRAPH.examples[state.exampleIndex];
+  const panel = $('panel'); panel.replaceChildren(); panel.hidden = false;
+  const head = document.createElement('div'); head.className = 'p-head';
+  const slotEl = document.createElement('div'); slotEl.className = 'p-slot';
+  const chip = document.createElement('span'); chip.className = 'chip'; chip.style.background = rec.color; slotEl.append(chip, document.createTextNode((slotStyle.get(n.slot)?.slot?.label) || n.slot));
+  const close = document.createElement('button'); close.className = 'close'; close.type = 'button'; close.textContent = '×'; close.setAttribute('aria-label', 'Close'); close.onclick = () => { panel.hidden = true; state.selected = null; };
+  head.append(slotEl, close); panel.appendChild(head);
+  const h3 = document.createElement('h3'); h3.textContent = n.label; panel.appendChild(h3);
+  const badge = document.createElement('span'); badge.className = 'badge ' + n.provenance; badge.textContent = n.provenance; panel.appendChild(badge);
+  const text = document.createElement('p'); text.textContent = n.text; panel.appendChild(text);
+  const h4 = (t) => { const x = document.createElement('h4'); x.textContent = t; panel.appendChild(x); };
+  if (n.provenance === 'fact') {
+    h4(n.paraphrase ? 'Paraphrased from the source' : 'Quoted from the source');
+    const q = document.createElement('blockquote'); q.textContent = n.source_quote || ''; panel.appendChild(q);
+    const r = document.createElement('div'); r.className = 'ref'; r.textContent = n.source_ref || ''; panel.appendChild(r);
+  } else if (n.provenance === 'derived') {
+    h4('Confidence');
+    const c = document.createElement('div'); c.className = 'conf'; c.textContent = `${Math.round((n.confidence || 0) * 100)} / 100`; panel.appendChild(c);
+    const bar = document.createElement('div'); bar.className = 'confbar'; const fillEl = document.createElement('i'); fillEl.style.width = `${Math.round((n.confidence || 0) * 100)}%`; bar.appendChild(fillEl); panel.appendChild(bar);
+    h4('Why the LLM infers this'); const r = document.createElement('p'); r.textContent = n.rationale || ''; panel.appendChild(r);
+    if (n.idea) { h4('Opportunity this points to'); const ip = document.createElement('p'); ip.className = 'idea'; ip.textContent = n.idea; panel.appendChild(ip); }
+    const sup = ex.edges.filter(e => e.relation === 'supported_by' && e.from === n.id).map(e => state.nodes.get(e.to)).filter(Boolean);
+    if (sup.length) { h4('Supported by'); const ul = document.createElement('ul'); for (const s of sup) { const li = document.createElement('li'); li.textContent = s.node.label; const q = document.createElement('div'); q.className = 'ref'; q.textContent = (s.node.source_quote || '').slice(0, 140); li.appendChild(q); ul.appendChild(li); } panel.appendChild(ul); }
+  } else {
+    const r = document.createElement('p'); r.className = 'ref'; r.textContent = 'Framework scaffolding: neither a fact nor an inference.'; panel.appendChild(r);
+  }
+  const rels = rec.edges.filter(e => e.edge.relation !== 'supported_by');
+  if (rels.length) {
+    h4('Edges'); const ul = document.createElement('ul');
+    for (const e of rels) { const li = document.createElement('li'); const out = e.edge.from === n.id; const other = out ? e.B.node : e.A.node; const rl = document.createElement('span'); rl.className = 'rel'; rl.textContent = (out ? '→ ' : '← ') + (relLabel.get(e.edge.relation) || e.edge.relation) + (e.edge.provenance === 'derived' ? ' (inferred)' : '') + ' '; li.append(rl, document.createTextNode(other.label)); ul.appendChild(li); }
+    panel.appendChild(ul);
+  }
+  if (Array.isArray(n.entities) && n.entities.length) { h4('Entities'); const p = document.createElement('p'); p.className = 'ref'; p.textContent = n.entities.join(', '); panel.appendChild(p); }
+}
+
+// ---------- interaction ----------
+const raycaster = new THREE.Raycaster(); const pointer = new THREE.Vector2(); const tooltip = $('tooltip');
+function setHover(rec) {
+  if (state.hover === rec) return;
+  if (state.hover) { const h = state.hover; h.mesh.scale.setScalar(1); if (h.mesh.material.emissive) h.mesh.material.emissive.setHex(0x000000); for (const e of h.edges) { e.line.material.color.set(e.grounding ? MUTED : (e.edge.provenance === 'schema' ? HAIRLINE : INK2)); if (e.arrow) e.arrow.material.color.set(INK2); } }
+  state.hover = rec;
+  if (rec) { rec.mesh.scale.setScalar(1.18); if (rec.mesh.material.emissive) rec.mesh.material.emissive.set(rec.color).multiplyScalar(0.35); for (const e of rec.edges) { if (!e.grp.visible) continue; e.line.material.color.set(INK); if (e.arrow) e.arrow.material.color.set(INK); } }
+  renderer.domElement.style.cursor = rec ? 'pointer' : '';
+}
+renderer.domElement.addEventListener('pointermove', (ev) => {
+  const r = renderer.domElement.getBoundingClientRect();
+  pointer.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
+  raycaster.setFromCamera(pointer, camera);
+  const hits = raycaster.intersectObjects(state.hit.filter(h => h.parent.visible), false);
+  const rec = hits.length ? state.nodes.get(hits[0].object.userData.nodeId) : null;
+  setHover(rec);
+  if (rec) {
+    tooltip.replaceChildren();
+    const a = document.createElement('div'); a.className = 't-label'; a.textContent = rec.node.label;
+    const b = document.createElement('div'); b.className = 't-meta'; b.textContent = `${(slotStyle.get(rec.node.slot)?.slot?.label) || rec.node.slot} · ${rec.node.provenance}${rec.node.provenance === 'derived' ? ' ' + Math.round((rec.node.confidence || 0) * 100) + '%' : ''}`;
+    const c = document.createElement('div'); c.textContent = rec.node.text.length > 160 ? rec.node.text.slice(0, 157) + '…' : rec.node.text;
+    tooltip.append(a, b, c);
+    tooltip.style.display = 'block';
+    const mx = ev.clientX - r.left + 14, my = ev.clientY - r.top + 14;
+    tooltip.style.left = Math.min(mx, r.width - 320) + 'px'; tooltip.style.top = Math.min(my, r.height - 120) + 'px';
+  } else tooltip.style.display = 'none';
+});
+renderer.domElement.addEventListener('pointerleave', () => { setHover(null); tooltip.style.display = 'none'; });
+let downAt = null;
+renderer.domElement.addEventListener('pointerdown', (ev) => { downAt = [ev.clientX, ev.clientY]; });
+renderer.domElement.addEventListener('pointerup', (ev) => {
+  if (!downAt || Math.hypot(ev.clientX - downAt[0], ev.clientY - downAt[1]) > 5) return;
+  if (state.hover) { state.selected = state.hover; openPanel(state.hover); } else { $('panel').hidden = true; state.selected = null; }
+});
+document.addEventListener('keydown', (ev) => {
+  if (ev.target && /input|textarea|select/i.test(ev.target.tagName)) return;
+  if (ev.key === 'd') { $('t-derived').checked = !$('t-derived').checked; $('t-derived').dispatchEvent(new Event('change')); }
+  if (ev.key === 'g') { $('t-grounding').checked = !$('t-grounding').checked; $('t-grounding').dispatchEvent(new Event('change')); }
+  if (ev.key === 'r') resetView();
+  if (ev.key === 'Escape') { $('panel').hidden = true; state.selected = null; }
+});
+$('t-derived').addEventListener('change', (e) => { state.showDerived = e.target.checked; applyVisibility(); });
+$('t-grounding').addEventListener('change', (e) => { state.showGrounding = e.target.checked; applyVisibility(); });
+$('t-labels').addEventListener('change', (e) => { state.showLabels = e.target.checked; applyVisibility(); });
+$('t-rotate').addEventListener('change', (e) => { controls.autoRotate = e.target.checked; });
+$('reset').addEventListener('click', resetView);
+
+// example selector
+const seg = $('examples');
+const kindCount = new Map(); for (const ex of GRAPH.examples) kindCount.set(ex.kind, (kindCount.get(ex.kind) || 0) + 1);
+GRAPH.examples.forEach((ex, i) => { const b = document.createElement('button'); b.type = 'button'; b.dataset.index = i; b.textContent = kindCount.get(ex.kind) > 1 ? (ex.title || ex.id) : ex.kind === 'tbpn' ? 'From TBPN' : ex.kind === 'classic' ? 'Classic' : (ex.title || ex.id); b.title = ex.title || ''; b.setAttribute('aria-pressed', 'false'); b.addEventListener('click', () => buildExample(i)); seg.appendChild(b); });
+
+// ---------- go ----------
+// URL parameters set the initial state (deep links, scripted screenshots): ?example=1&derived=0&grounding=1&labels=0&rotate=1
+const q = new URLSearchParams(location.search);
+const flag = (k, def) => q.has(k) ? !['0', 'false', 'off', 'no'].includes(q.get(k).toLowerCase()) : def;
+state.showDerived = flag('derived', true); $('t-derived').checked = state.showDerived;
+state.showGrounding = flag('grounding', false); $('t-grounding').checked = state.showGrounding;
+state.showLabels = flag('labels', true); $('t-labels').checked = state.showLabels;
+controls.autoRotate = flag('rotate', false); $('t-rotate').checked = controls.autoRotate;
+let startIndex = parseInt(q.get('example') || '0', 10);
+if (!(startIndex >= 0 && startIndex < GRAPH.examples.length)) startIndex = Math.max(0, GRAPH.examples.findIndex(x => x.id === q.get('example')));
+resize();
+buildExample(startIndex);
+$('fallback').hidden = true; window.__engineReady = true;
+function loop() {
+  requestAnimationFrame(loop);
+  controls.update();
+  for (const rec of state.nodes.values()) for (const c of rec.obj.children) if (c.userData.isIdeaRing) c.quaternion.copy(camera.quaternion);
+  renderer.render(scene, camera); labelRenderer.render(scene, camera);
+}
+loop();
+</script>
+</body>
+</html>

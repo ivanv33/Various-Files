@@ -11,31 +11,41 @@
       "id": "system",
       "label": "System",
       "description": "The whole being decomposed: the thing whose behaviour the functions jointly produce.",
-      "typical_provenance": "fact"
+      "typical_provenance": "fact",
+      "color": "#d95926",
+      "shape": "box"
     },
     {
       "id": "function",
       "label": "Function",
       "description": "A black box with a single responsibility, named by what it does rather than by who staffs it or which vendor sells it.",
-      "typical_provenance": "either"
+      "typical_provenance": "either",
+      "color": "#3987e5",
+      "shape": "box"
     },
     {
       "id": "input",
       "label": "Input",
       "description": "What a function consumes: material, energy, data or money crossing the boundary inwards.",
-      "typical_provenance": "either"
+      "typical_provenance": "either",
+      "color": "#199e70",
+      "shape": "cone"
     },
     {
       "id": "output",
       "label": "Output",
       "description": "What a function produces: what crosses the boundary outwards and becomes some other box's input.",
-      "typical_provenance": "either"
+      "typical_provenance": "either",
+      "color": "#9085e9",
+      "shape": "cone"
     },
     {
       "id": "contract",
       "label": "Interface contract",
       "description": "The guarantees a function makes to its consumers: quantity, rate, accuracy, timing, ordering. Almost never stated in the source, which is why it is the derived slot.",
-      "typical_provenance": "derived"
+      "typical_provenance": "derived",
+      "color": "#d55181",
+      "shape": "diamond"
     }
   ],
   "relations": [
@@ -78,9 +88,30 @@
         "text": "Northwind Foods runs its fortnightly payroll as a single batch job. The batch takes three inputs: the timekeeping export from the depots, the employee master file from HR, and the current tax tables. It produces four things: a payslip for every employee, a payment instruction file for the bank, a journal posting for the general ledger, and a statutory return for the revenue office. Inside, the run is four steps. Validation reads the timekeeping export and rejects any shift that has no matching employee or that overlaps another shift. Gross pay calculation turns validated shifts into gross amounts, applying the overtime and shift-premium rules. Deduction calculation takes gross pay and the tax tables and produces tax, pension and garnishment amounts. Disbursement takes net pay and produces the bank file and the payslips, and posts the journal. Each step reads only what the step before it wrote. Last quarter the run was changed so that deductions could be calculated before gross pay had finished, to save twenty minutes of wall clock time. Nothing in the specification said this was forbidden. The next run paid three hundred people the right gross and the wrong tax, and the general ledger did not balance against the bank file. The team's post mortem noted that nobody had ever written down what each step promised the next one."
       },
       "layout": {
-        "mode": "tree",
-        "root": "cs",
-        "direction": "down"
+        "mode": "plane",
+        "regions": [
+          {
+            "label": "The box that owns the order",
+            "x": [-52, 58],
+            "y": [17, 33],
+            "color": "#9085e9"
+          },
+          {
+            "label": "Four steps, strictly in order",
+            "x": [-52, 58],
+            "y": [-6, 14],
+            "color": "#3987e5"
+          },
+          {
+            "label": "Interface contracts — in the gaps",
+            "x": [-52, 58],
+            "y": [-46, -19],
+            "color": "#d55181"
+          }
+        ],
+        "camera": {
+          "distance": 117
+        }
       },
       "nodes": [
         {
@@ -91,7 +122,8 @@
           "provenance": "fact",
           "source_quote": "Northwind Foods runs its fortnightly payroll as a single batch job",
           "source_ref": "sentence 1",
-          "level": 0
+          "pos": [0, 42],
+          "size": 1.8
         },
         {
           "id": "cf1",
@@ -101,7 +133,8 @@
           "provenance": "fact",
           "source_quote": "Validation reads the timekeeping export and rejects any shift that has no matching employee or that overlaps another shift",
           "source_ref": "sentence 5",
-          "level": 1
+          "pos": [-33, 5],
+          "size": 1.15
         },
         {
           "id": "cf2",
@@ -111,7 +144,8 @@
           "provenance": "fact",
           "source_quote": "Gross pay calculation turns validated shifts into gross amounts, applying the overtime and shift-premium rules",
           "source_ref": "sentence 6",
-          "level": 1
+          "pos": [-7, 5],
+          "size": 1.15
         },
         {
           "id": "cf3",
@@ -121,7 +155,8 @@
           "provenance": "fact",
           "source_quote": "Deduction calculation takes gross pay and the tax tables and produces tax, pension and garnishment amounts",
           "source_ref": "sentence 7",
-          "level": 1
+          "pos": [19, 5],
+          "size": 1.15
         },
         {
           "id": "cf4",
@@ -131,7 +166,8 @@
           "provenance": "fact",
           "source_quote": "Disbursement takes net pay and produces the bank file and the payslips, and posts the journal",
           "source_ref": "sentence 8",
-          "level": 1
+          "pos": [44, 5],
+          "size": 1.15
         },
         {
           "id": "cf5",
@@ -141,7 +177,8 @@
           "provenance": "derived",
           "confidence": 0.7,
           "rationale": "Sentence 10 says the run was changed so that deductions could be calculated before gross pay had finished. A change like that has to be made somewhere, and the scenario names four steps and no scheduler, so the function that owns step order is present in the system and absent from its description.",
-          "level": 1
+          "pos": [2, 24],
+          "size": 1.15
         },
         {
           "id": "ci1",
@@ -151,7 +188,8 @@
           "provenance": "fact",
           "source_quote": "the timekeeping export from the depots",
           "source_ref": "sentence 2",
-          "level": 2
+          "pos": [-60, 16],
+          "size": 0.9
         },
         {
           "id": "ci2",
@@ -161,7 +199,8 @@
           "provenance": "fact",
           "source_quote": "the employee master file from HR",
           "source_ref": "sentence 2",
-          "level": 2
+          "pos": [-62, 2],
+          "size": 0.9
         },
         {
           "id": "ci3",
@@ -171,7 +210,8 @@
           "provenance": "fact",
           "source_quote": "and the current tax tables",
           "source_ref": "sentence 2",
-          "level": 2
+          "pos": [19, -11],
+          "size": 0.9
         },
         {
           "id": "co1",
@@ -181,7 +221,8 @@
           "provenance": "fact",
           "source_quote": "a payslip for every employee",
           "source_ref": "sentence 3",
-          "level": 2
+          "pos": [60, 16],
+          "size": 0.9
         },
         {
           "id": "co2",
@@ -191,7 +232,8 @@
           "provenance": "fact",
           "source_quote": "a payment instruction file for the bank",
           "source_ref": "sentence 3",
-          "level": 2
+          "pos": [64, 2],
+          "size": 0.9
         },
         {
           "id": "co3",
@@ -201,7 +243,8 @@
           "provenance": "fact",
           "source_quote": "a journal posting for the general ledger",
           "source_ref": "sentence 3",
-          "level": 2
+          "pos": [60, -12],
+          "size": 0.9
         },
         {
           "id": "cc4",
@@ -211,7 +254,8 @@
           "provenance": "fact",
           "source_quote": "Each step reads only what the step before it wrote",
           "source_ref": "sentence 9",
-          "level": 3
+          "pos": [-8, -38],
+          "size": 1
         },
         {
           "id": "cc2",
@@ -221,7 +265,8 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "Sentence 5 states what validation rejects. Reading the rejection rule as a promise to the consumer is the inference, and it is the promise that lets gross pay calculation apply rates without re-checking identity or overlap.",
-          "level": 3
+          "pos": [-32, -28],
+          "size": 1
         },
         {
           "id": "cc1",
@@ -231,7 +276,8 @@
           "provenance": "derived",
           "confidence": 0.9,
           "rationale": "Sentence 9 gives only an access rule, and sentence 12 says the reordered run produced the right gross and the wrong tax. A wrong tax on a right gross can only mean deductions read a gross that was still moving, so completeness at read time was a promise in force and never written; sentence 13 says so outright.",
-          "level": 3
+          "pos": [10, -28],
+          "size": 1
         },
         {
           "id": "cc3",
@@ -241,7 +287,8 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "Sentence 12 reports that the general ledger did not balance against the bank file and treats that as a failure. It is only a failure if agreement between the two was guaranteed, and the scenario states no such guarantee anywhere.",
-          "level": 3
+          "pos": [40, -38],
+          "size": 1
         }
       ],
       "edges": [
@@ -532,9 +579,30 @@
       "why_this_episode": "Crusoe Energy's Chase Lockmiller is asked what it actually takes to build a gigawatt AI campus and answers by walking the stack: the energy he sources, the transformer stack, the switchgear, the data halls, the closed-loop water circuit, and the software layer above it. He names the boxes and, unusually for conversational speech, states what goes into several of them and what comes out, which gives the input and output slots real facts to hold. He also supplies the framework's hardest slot by negation: he says switchgear is a long-lead bottleneck and that Crusoe started manufacturing it in-house, which is what a missing interface contract looks like from the buyer's side.",
       "idea_bearing_slot": "contract",
       "layout": {
-        "mode": "tree",
-        "root": "sys",
-        "direction": "down"
+        "mode": "plane",
+        "regions": [
+          {
+            "label": "Interface contracts — in the gaps",
+            "x": [-68, 62],
+            "y": [-64, -33],
+            "color": "#d55181"
+          }
+        ],
+        "annotations": [
+          {
+            "pos": [34, 5],
+            "text": "Closed cooling loop",
+            "style": "caption"
+          },
+          {
+            "pos": [-20, 3],
+            "text": "The box nobody names",
+            "style": "caption"
+          }
+        ],
+        "camera": {
+          "distance": 132
+        }
       },
       "nodes": [
         {
@@ -548,12 +616,13 @@
           "entities": [
             "Crusoe Energy"
           ],
-          "level": 0
+          "pos": [0, 40],
+          "size": 1.8
         },
         {
           "id": "f_energy",
           "slot": "function",
-          "label": "Source abundant low-cost power",
+          "label": "Source low-cost power",
           "text": "The first box in Crusoe's energy-first approach: find where low-cost, clean, abundant energy can be accessed and put the computing infrastructure there, rather than building where data centres already are.",
           "provenance": "fact",
           "source_quote": "where can we access low cost, you know, clean as much as we can, and abundant energy to power computing infrastructure?",
@@ -561,7 +630,8 @@
           "entities": [
             "Crusoe Energy"
           ],
-          "level": 1
+          "pos": [-28, 24],
+          "size": 1.15
         },
         {
           "id": "f_electrical",
@@ -574,7 +644,8 @@
           "entities": [
             "Crusoe Energy"
           ],
-          "level": 1
+          "pos": [-20, 14],
+          "size": 1.15
         },
         {
           "id": "f_compute",
@@ -587,7 +658,8 @@
           "entities": [
             "Nvidia"
           ],
-          "level": 1
+          "pos": [8, 24],
+          "size": 1.15
         },
         {
           "id": "f_cooling",
@@ -600,7 +672,8 @@
           "entities": [
             "Crusoe Energy"
           ],
-          "level": 1
+          "pos": [28, 14],
+          "size": 1.15
         },
         {
           "id": "f_software",
@@ -613,7 +686,8 @@
           "entities": [
             "Crusoe Energy"
           ],
-          "level": 1
+          "pos": [48, 24],
+          "size": 1.15
         },
         {
           "id": "f_hv",
@@ -624,7 +698,8 @@
           "source_quote": "high voltage transformers, but they are kind of long lead time assets.",
           "source_ref": "Chase Lockmiller, L3282-L3282",
           "entities": [],
-          "level": 2
+          "pos": [-40, -1],
+          "size": 1
         },
         {
           "id": "f_mv",
@@ -635,7 +710,8 @@
           "source_quote": "There's a whole stack in the transformer side too. So like you have the medium voltage transformers.",
           "source_ref": "Chase Lockmiller, L3284-L3286",
           "entities": [],
-          "level": 2
+          "pos": [-27, -16],
+          "size": 1
         },
         {
           "id": "f_switchgear",
@@ -648,7 +724,8 @@
           "entities": [
             "Crusoe Energy"
           ],
-          "level": 2
+          "pos": [-12, -26],
+          "size": 1
         },
         {
           "id": "f_coldplate",
@@ -661,7 +738,8 @@
           "entities": [
             "Nvidia"
           ],
-          "level": 2
+          "pos": [16, -1],
+          "size": 1
         },
         {
           "id": "f_chiller",
@@ -672,7 +750,8 @@
           "source_quote": "That hot water then goes out to a heat exchanger that's a chiller that's outside.",
           "source_ref": "Chase Lockmiller, L3410-L3410",
           "entities": [],
-          "level": 2
+          "pos": [52, -16],
+          "size": 1
         },
         {
           "id": "i_prompts",
@@ -683,18 +762,20 @@
           "source_quote": "Factories that manufacture intelligent outcomes that are prompted by inputs from users.",
           "source_ref": "Chase Lockmiller, L3118-L3120",
           "entities": [],
-          "level": 3
+          "pos": [-27, 40],
+          "size": 0.9
         },
         {
           "id": "i_energy",
           "slot": "input",
-          "label": "Curtailed wind and solar power",
+          "label": "Curtailed wind and solar",
           "text": "Abilene has an abundance of wind and solar built on production tax credits, and not enough demand for it: power gets curtailed and sometimes sold at a negative price. That surplus is the factory's energy input.",
           "provenance": "fact",
           "source_quote": "Abilene is a market where there's an abundance of energy, a lot of wind particularly, and solar had been built on the back of production tax credit incentives",
           "source_ref": "Chase Lockmiller, L2804-L2806",
           "entities": [],
-          "level": 3
+          "pos": [-58, 24],
+          "size": 0.9
         },
         {
           "id": "i_credit",
@@ -708,7 +789,8 @@
             "Blue Owl Capital",
             "Crusoe Energy"
           ],
-          "level": 3
+          "pos": [-54, 40],
+          "size": 0.9
         },
         {
           "id": "i_coldwater",
@@ -719,7 +801,8 @@
           "source_quote": "you have cold water that flows into the rack",
           "source_ref": "Chase Lockmiller, L3402-L3402",
           "entities": [],
-          "level": 3
+          "pos": [52, -1],
+          "size": 0.9
         },
         {
           "id": "o_intelligence",
@@ -730,7 +813,8 @@
           "source_quote": "they're factories that manufacture intelligence",
           "source_ref": "Chase Lockmiller, L3116-L3116",
           "entities": [],
-          "level": 3
+          "pos": [27, 40],
+          "size": 0.9
         },
         {
           "id": "o_hotwater",
@@ -741,7 +825,8 @@
           "source_quote": "and then hot water sort of exhausted from the rack",
           "source_ref": "Chase Lockmiller, L3406-L3408",
           "entities": [],
-          "level": 3
+          "pos": [16, -16],
+          "size": 0.9
         },
         {
           "id": "o_heat",
@@ -752,7 +837,8 @@
           "source_quote": "the heat basically gets exhausted out of the water",
           "source_ref": "Chase Lockmiller, L3418-L3418",
           "entities": [],
-          "level": 3
+          "pos": [52, -26],
+          "size": 0.9
         },
         {
           "id": "c_water",
@@ -765,7 +851,8 @@
           "entities": [
             "Crusoe Energy"
           ],
-          "level": 4
+          "pos": [38, -56],
+          "size": 1
         },
         {
           "id": "c_thermal",
@@ -778,7 +865,8 @@
           "entities": [
             "Nvidia"
           ],
-          "level": 4
+          "pos": [-10, -56],
+          "size": 1
         },
         {
           "id": "c_power",
@@ -792,7 +880,8 @@
           "entities": [
             "Crusoe Energy"
           ],
-          "level": 4
+          "pos": [-44, -44],
+          "size": 1
         },
         {
           "id": "c_switchgear",
@@ -806,7 +895,8 @@
           "entities": [
             "Crusoe Energy"
           ],
-          "level": 4
+          "pos": [-2, -44],
+          "size": 1
         },
         {
           "id": "c_uptime",
@@ -820,7 +910,8 @@
             "Blue Owl Capital",
             "Crusoe Energy"
           ],
-          "level": 4
+          "pos": [38, -44],
+          "size": 1
         }
       ],
       "edges": [
