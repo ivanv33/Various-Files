@@ -6,8 +6,8 @@
     "scout": "done",
     "graph": "done",
     "validate": "done",
-    "readme": "pending",
-    "viz": "pending",
+    "readme": "done",
+    "viz": "done",
     "reconcile": "pending",
     "commit": "pending"
   },
@@ -16,7 +16,7 @@
     "date": "2025-03-27",
     "episode_title": "defense-tech-day-reindustrialization-tariffs"
   },
-  "viz_iterations": 1,
+  "viz_iterations": 2,
   "viz_reviews": [
     {
       "iteration": 1,
@@ -39,9 +39,31 @@
         "Neither panel screenshot exercises a derived node, so rationale + confidence rendering was not confirmed visually."
       ],
       "at": "2026-09-09T15:19:27Z"
+    },
+    {
+      "iteration": 2,
+      "verdict": "pass",
+      "scores": {
+        "demonstrates": 5,
+        "provenance": 5,
+        "legibility": 4,
+        "fidelity": 5
+      },
+      "blocking_issues": [],
+      "suggestions": [
+        "snap.mjs clicks the effect node for the panel shot in both examples, so the derived-node panel is never captured; the engine does render it. Orchestrator fix: have snap click a derived idea node for the tbpn panel shot, e.g. sc_measure_corpus_moat.",
+        "The side panel is an opaque column over the right ~350px of the stage, so in both panel shots it covers the fish head and the effect node the shot is about. Engine scope.",
+        "On the tbpn Machines and Materials ribs the sub-cause nodes are collinear with their cause, so the fact edge f_nocomputers_old is overdrawn by the derived d_brownfield_old, and f_conflict_nocnc by d_nomaker_nocnc; along those two ribs the solid/dashed cue is carried only by the node rendering.",
+        "Rib guides run to the outermost node including derived ones, so in facts-only some ribs end in bare tails.",
+        "MANPOWER is the tightest label, ending about 13px short of the head outline at the default camera in both examples.",
+        "Several edges pass through label text (tbpn f_offshore_aging across 'Export control keeps the data offline'; classic g_moisture_lots across 'Gauge 14 months since calibration'); readable at 1400x900.",
+        "The legend keeps the gold-ring idea key in the facts-only view where all three idea nodes are hidden. Engine scope."
+      ],
+      "summary": "Reads as a fishbone immediately: grey spine bar terminating in an arrow and a pentagon head holding the effect box, six ribs alternating up and down, causes on the ribs and sub-causes further out. Category labels offset to their own rib's side so the top row reads Methods, Machines, Materials and the bottom Measurements, Milieu, Manpower. Provenance is the strongest part: in classic facts-only the Machines rib is a bare bone because its only cause is an inference; in tbpn all six fill from one speaker and the three idea nodes carry gold rings. 0 overlapping label pairs, 0 off-screen, 0 under cards, console clean in both examples and both views; stats lines match graph.json in all four states. Legibility 4 because a few edges cross label text and two tbpn ribs overdraw collinear fact and derived edges.",
+      "at": "2026-09-09T16:05:00Z"
     }
   ],
-  "updated_at": "2026-09-09T15:19:27Z",
+  "updated_at": "2026-09-09T16:05:00Z",
   "notes": "Research: Kaoru Ishikawa, Kawasaki shipyards, 1960s. The six 6M categories are structural scaffolding per SPEC 3: provenance \"schema\", no quote/confidence/rationale, excluded from the fact/derived counts, and the registry already marks the slot structural.\nEdge provenance decision: belongs_to (cause to category) and the category-to-effect spine edges are provenance \"schema\" - they are the bones of the fish, not claims about the world, so they stay visible when derived is hidden and the fishbone survives the facts-only view. The 6M filing of a specific cause is a judgment; where it is genuinely contestable (the TBPN 'no public corpus' cause reads as Measurements but could be filed as Materials, and 'no lot traceability' in the classic comes from a purchasing sentence but is a records failure) the judgment is discussed in the README rather than hidden in an edge confidence. Recorded here so a later reviewer does not read the schema edges as a provenance claim.\nScout returned three candidates; picked #1 (Chris Power / Hadrian) because it is the only one that populates all six ribs from a single speaker, and it sits in Ishikawa's home domain of manufacturing. Rejected #2 (Mike Gallagher on Navy shipbuilding, Materials rib empty) and #3 (Air India 787 crash, Materials empty and Machines thin).\nEmpty-rib demonstration: the TBPN source fills all six ribs with facts, so the 'a rib can be empty' lesson is carried by the classic example instead - the minutes end with 'Nobody from maintenance attended the circle, and the mould tool was not discussed', so the Machines rib holds exactly one derived node (c_machines_tool, 0.5). With derived hidden, that bone is visibly bare, which is the diagnostic Ishikawa exists to produce.\nProvenance shape: this framework is extraction-heavy. Facts dominate (classic 9/4, tbpn 13/5) because a fishbone's causes are usually said out loud; the inference concentrates at the sub-cause tips, which is why idea_bearing_slot is \"subcause\".\nValidate: 0 errors, 0 warnings.",
   "issues": []
 }
