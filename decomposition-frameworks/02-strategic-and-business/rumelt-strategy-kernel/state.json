@@ -1,0 +1,24 @@
+{
+  "slug": "rumelt-strategy-kernel",
+  "status": "in_progress",
+  "steps": {
+    "research": "done",
+    "scout": "done",
+    "graph": "done",
+    "validate": "done",
+    "readme": "pending",
+    "viz": "pending",
+    "reconcile": "pending",
+    "commit": "pending"
+  },
+  "tbpn_example": {
+    "file": "tbpn-transcripts/transcripts/2025-08-29_pop-mart-the-history-economics-max-levchin-jim-belosic.md",
+    "date": "2025-08-29",
+    "episode_title": "Pop Mart, the history & economics, Max Levchin, Jim Belosic"
+  },
+  "viz_iterations": 0,
+  "viz_reviews": [],
+  "updated_at": "2026-09-09T00:00:00Z",
+  "notes": "Research: Rumelt, Good Strategy / Bad Strategy (2011). Kernel = diagnosis (name the critical obstacle, replace overwhelming complexity with a simpler story), guiding policy (overall approach plus the trade-off it accepts), coherent actions (coordinated resource commitments that reinforce rather than fight each other). Hallmarks of bad strategy: fluff, failure to face the challenge, mistaking goals for strategy, bad strategic objectives.\n\nScout: three candidates returned (Levchin/Affirm 2025-08-29; Josh Isner/Axon 2025-10-02; Chris Power/Hadrian 2025-03-27). Chose Levchin/Affirm: it is the only one where the guiding policy's price is stated out loud on the record ('you have less margin and less opportunity for margin') and where the fluff (two mission statements, two claims of standing) sits minutes away from the real policy, which is exactly the contrast this framework exists to draw.\n\nDesign decisions:\n- idea_bearing_slot is diagnosis. Ideas sit on d4 (0.80, no-asterisk products where the borrower's error is largest) and d6 (0.60, machine-readable true-cost layer for AI advisors).\n- The diagnosis slot is deliberately mixed provenance in the TBPN example: d1, d2 and d3 are diagnoses Levchin actually states, d4, d5 and d6 are the obstacles underneath them. This is the framework's honest shape - founders state situational diagnoses, they do not state the binding one.\n- Fact/derived ratio is fact-heavy (tbpn 19/6 nodes, 6/32 edges) on purpose. A transcript hands you slogans, numbers and actions; the diagnosis and every link between the kernel's layers have to be inferred. Six fact edges were found where a speaker states the connection with 'because', 'which means' or 'And so', which is what keeps the facts-only view connected.\n- The classic example is Apple 1997 as Rumelt tells it, written as a scenario so the fact nodes can quote it. The three objectives (regain share, return to profitability, reassert innovation leadership) stand for the goals-as-strategy plans of the period rather than quoting a document; this is recorded in source.attribution.\n- Layout starts as plane mode with four labelled kernel bands and the fluff quarantined in a band of its own on the left, since the layout hint's tree cannot put fluff to the side. The viz builder owns the final layout.\n\nValidate: 0 errors, 0 warnings.",
+  "issues": []
+}
