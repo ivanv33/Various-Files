@@ -1,0 +1,24 @@
+{
+  "slug": "star-par",
+  "status": "in_progress",
+  "steps": {
+    "research": "done",
+    "scout": "done",
+    "graph": "done",
+    "validate": "done",
+    "readme": "pending",
+    "viz": "pending",
+    "reconcile": "pending",
+    "commit": "pending"
+  },
+  "tbpn_example": {
+    "file": "tbpn-transcripts/transcripts/2025-07-14_windsurfs-wild-weekend-spacex-invests-2b-into-xai-zucks-ai-data-supercluster-jeff-huber-scott-wu-jeff-wang-carl-pei-garrett-mccurrach.md",
+    "date": "2025-07-14",
+    "episode_title": "Windsurf's Wild Weekend, SpaceX Invests $2B into xAI, Zuck's AI Data Supercluster (Jeff Huber, Scott Wu, Jeff Wang, Carl Pei, Garrett McCurrach)"
+  },
+  "viz_iterations": 0,
+  "viz_reviews": [],
+  "updated_at": "2026-09-09T05:25:19.474Z",
+  "notes": "Research (step 2): STAR = Situation, Task, Action, Result; the behavioural-interview decomposition popularised through DDI's Targeted Selection (1970s), used for interview answers, resume bullets (PAR / CAR variants: Problem or Context, Action, Result) and performance reviews; STARR / STARL add Reflection or Learning. Situation forces the starting conditions and stakes; Task forces the actor's own objective and responsibility and is the slot most often left implicit; Action forces concrete first-person steps; Result forces a measurable outcome attributed to the action. Common misuse: 'we' instead of 'I' (agency blurred), action without result, result without attribution (post hoc), situation that swallows the answer, hypothetical instead of completed events, result that merely restates the action. Provenance plan: situation, action and result are normally facts; task is usually derived from situation plus the actions taken; action->result attribution is a fact edge only when the speaker states it, otherwise a derived 'causes' edge with confidence; competing causes from the situation are derived edges. Idea-bearing slot candidate: task (the need the actor had to meet), to be confirmed after the scout. Scout (step 3): three candidates returned: (1) Windsurf acquired by Cognition, told live by Jeff Wang and Scott Wu, 2025-07-14; (2) Agree.com launch to 20,000 users, Marty Ringlein, 2025-05-07; (3) Shaan Puri buying into Somewhere.com, 2025-02-13. Chose (1): a completed 72-hour event narrated by the actors themselves, an explicitly stated Task (rare; lets the graph show a fact-Task beside a derived-Task), timed Actions, measurable Results with speaker-stated attribution, corpus-central entities (Windsurf, Cognition, Google DeepMind) for the future merge, and an underserved-market reading (labs buying GTM organisations; default employee protections in founder acqui-hires). (2) was a close second: single-actor, first-person, numeric results, but its idea angle is a strategy pattern more than an underserved need. Idea-bearing slot: task. Provenance rule applied to edges in both examples: an edge is fact only when the speaker states the connection (because, so, a stated priority enacted); narrative-sequence links are derived with high confidence (0.7-0.9). Graph (step 4): validate.mjs PASS, 0 errors, 0 warnings. classic 17 nodes (13 fact / 4 derived), tbpn 25 nodes (20 fact / 5 derived).",
+  "issues": []
+}
