@@ -48,7 +48,7 @@
 
   main { position: relative; overflow: hidden; background: var(--surface); }
   #stage { position: absolute; inset: 0; }
-  #stage canvas { display: block; width: 100% !important; height: 100% !important; }
+  #stage canvas { display: block; }
   #labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
   #labels * { pointer-events: none; }
   .nlabel { font: 12px/1.2 var(--sans); color: var(--ink-2); white-space: nowrap; transform: translateY(14px); text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6); }
@@ -222,6 +222,12 @@ function resize() {
   camera.aspect = w / h; camera.updateProjectionMatrix();
 }
 window.addEventListener('resize', resize);
+// The header and the note strip lay out after the first script pass, so a one-shot resize()
+// leaves the WebGL buffer and the CSS2D label layer disagreeing (labels drift from their nodes).
+// Observing the stage keeps both renderers on its real size, at first paint and on every change.
+let roFrame = 0;
+const ro = new ResizeObserver(() => { cancelAnimationFrame(roFrame); roFrame = requestAnimationFrame(() => { resize(); resetView(); }); });
+ro.observe(stage);
 
 // ---------- state ----------
 const state = { exampleIndex: 0, showDerived: true, showGrounding: false, showLabels: true, group: null, nodes: new Map(), edges: [], hit: [], hover: null, selected: null, fit: null };
