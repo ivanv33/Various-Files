@@ -1,0 +1,24 @@
+{
+  "slug": "functional-decomposition",
+  "status": "in_progress",
+  "steps": {
+    "research": "done",
+    "scout": "done",
+    "graph": "done",
+    "validate": "done",
+    "readme": "pending",
+    "viz": "pending",
+    "reconcile": "pending",
+    "commit": "pending"
+  },
+  "viz_iterations": 0,
+  "viz_reviews": [],
+  "updated_at": "2026-09-09T00:00:00Z",
+  "notes": "Research: Functional Decomposition as used in systems engineering (MIL-STD-499 / functional flow block diagrams), structured analysis (Yourdon/DeMarco stepwise refinement), and Parnas's information hiding (1972). Slots: system, function, input, output, contract. The contract slot carries the weight: guarantees a black box makes to consumers are essentially never stated in conversation, so they are derived; components and what they consume/produce are usually stated. Classic misuse to guard against: an org chart presented as a functional decomposition. A function is defined by what it guarantees, not by who staffs it. | Scout returned three candidates: (1) Brad Porter/Cobot retail fulfillment chain plus robot capability stack, 2025-06-04; (2) Chase Lockmiller/Crusoe AI factory, 2025-05-29; (3) Kushal Byatnal/Extend document pipeline, 2025-07-03. Chose (2): it is the only one that gives a genuine two-level hierarchy (factory -> energy/electrical/compute/cooling/software -> transformer and cooling sub-stacks) AND stated inputs and outputs for several boxes (the closed water loop is the most literal consumes/produces chain in the corpus), plus the sharpest unowned contract: switchgear and medium-voltage transformers have no financeable delivery date, which is why Crusoe opened its own factories in Tulsa and Denver. Candidate 1 decomposes two different wholes at once; candidate 3 names its pipeline in one sentence rather than walking it. Scout also flagged two passages that look like matches but are the org-chart/vendor-list failure mode (2025-03-08 semiconductor stack mapped only to Chinese company names; 2025-08-05 Intel Foundry reporting lines) - both avoided. | Graph design notes: validate passes with 0 errors and 0 warnings. Deliberate provenance choices: (a) composed_of edges are almost all derived in both examples, because naming boxes is not the same as stating the hierarchy that contains them - this is the framework's central lesson and it is stated in the README; (b) each example carries exactly one FACT contract node (classic cc4 'each step reads only what the step before it wrote', tbpn c_water 'we only fill it one time'), the exception that shows why the rest are derived: a contract gets stated only when somebody is defending against an accusation or writing an access rule, never as a guarantee to a downstream box; (c) one derived FUNCTION node per example (classic cf5 the unnamed sequencer, tbpn f_electrical the unnamed voltage-stepping box) because in both sources the parts are named and the containing function is not.",
+  "issues": [],
+  "tbpn_example": {
+    "file": "tbpn-transcripts/transcripts/2025-05-29_elon-musk-is-leaving-washington-meta-partners-with-anduril-kim-jong-uns-side-launch-goes-sideways-peter-rahal-john-andrew-entwistle-ashlee-vance-chase.md",
+    "date": "2025-05-29",
+    "episode_title": "Elon Musk Is Leaving Washington, Meta Partners With Anduril, Kim Jong Un's Side Launch Goes Sideways"
+  }
+}
