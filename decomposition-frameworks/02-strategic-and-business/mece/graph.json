@@ -11,37 +11,49 @@
       "id": "whole",
       "label": "Whole",
       "description": "The thing being partitioned: a market, a spend, a problem, a population. Its size is what the branches must add up to.",
-      "typical_provenance": "either"
+      "typical_provenance": "either",
+      "color": "#9085e9",
+      "shape": "sphere"
     },
     {
       "id": "cut",
       "label": "Cut",
       "description": "The single dimension the whole is cut on. Choosing it is the whole of MECE: one cut gives exclusive branches, two cuts at once give overlaps.",
-      "typical_provenance": "derived"
+      "typical_provenance": "derived",
+      "color": "#c98500",
+      "shape": "cone"
     },
     {
       "id": "bucket",
       "label": "Bucket",
       "description": "A branch of the partition. Usually the analyst's construction rather than the source's, even when the source names the members.",
-      "typical_provenance": "derived"
+      "typical_provenance": "derived",
+      "color": "#3987e5",
+      "shape": "box"
     },
     {
       "id": "item",
       "label": "Item",
       "description": "An observed member placed in a bucket: a company, a ledger line, a customer type. This is where the source's own words live.",
-      "typical_provenance": "fact"
+      "typical_provenance": "fact",
+      "color": "#199e70",
+      "shape": "sphere"
     },
     {
       "id": "gap",
       "label": "Gap",
       "description": "A branch the data leaves empty or thin: no member, or no member that counts. The candidate blind spot, and in a market the candidate underserved space.",
-      "typical_provenance": "derived"
+      "typical_provenance": "derived",
+      "color": "#d55181",
+      "shape": "box"
     },
     {
       "id": "overlap",
       "label": "Overlap",
       "description": "An item or a branch that lands in two buckets at once. Always a symptom of two dimensions mixed into one cut.",
-      "typical_provenance": "derived"
+      "typical_provenance": "derived",
+      "color": "#d95926",
+      "shape": "diamond"
     }
   ],
   "relations": [
@@ -84,9 +96,69 @@
         "attribution": "A written-out version of the standard MECE teaching case: a volume or cost base whose reported lines neither add up nor stay apart. The test is Barbara Minto's."
       },
       "layout": {
-        "mode": "tree",
-        "root": "c_whole",
-        "direction": "down"
+        "mode": "plane",
+        "regions": [
+          {
+            "label": "Counted by the ledger",
+            "x": [
+              -70,
+              25
+            ],
+            "y": [
+              -40,
+              11
+            ],
+            "color": "#3987e5"
+          },
+          {
+            "label": "Left out",
+            "x": [
+              29,
+              62
+            ],
+            "y": [
+              -40,
+              50
+            ],
+            "color": "#d55181"
+          },
+          {
+            "label": "Not on this cut",
+            "x": [
+              -70,
+              25
+            ],
+            "y": [
+              -52,
+              -41
+            ],
+            "color": "#d95926"
+          }
+        ],
+        "guides": [
+          {
+            "from": [
+              -64,
+              2
+            ],
+            "to": [
+              25,
+              2
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              25,
+              2
+            ],
+            "to": [
+              54,
+              2
+            ],
+            "style": "dashed"
+          }
+        ]
       },
       "nodes": [
         {
@@ -97,7 +169,12 @@
           "provenance": "fact",
           "source_quote": "the company shipped 4.1 million cases in total",
           "source_ref": "finance director, sentence 2",
-          "level": 0
+          "level": 0,
+          "pos": [
+            -8,
+            46
+          ],
+          "size": 2
         },
         {
           "id": "c_cut_rule",
@@ -107,7 +184,12 @@
           "provenance": "fact",
           "source_quote": "asking for one picture of where every case goes, cut one way only",
           "source_ref": "CEO, sentence 8",
-          "level": 1
+          "level": 1,
+          "pos": [
+            -8,
+            32
+          ],
+          "size": 1.15
         },
         {
           "id": "c_cut",
@@ -117,7 +199,12 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "The CEO demands one cut but never says which. Channel is the dimension four of the five ledger lines already follow (supermarkets, convenience, own website, vending), so it is the cut that costs the least re-coding, and it is the cut that makes the German line's ambiguity visible instead of hiding it inside a geography branch.",
-          "level": 1
+          "level": 1,
+          "pos": [
+            -8,
+            18
+          ],
+          "size": 1.15
         },
         {
           "id": "c_b_grocery",
@@ -127,7 +214,12 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "The ledger keeps supermarkets and convenience stores as two lines. Merging them into one branch is the analyst's move; it is justified because both sell the same pack to the same drinker through the same route to market, and separating them would cut on account size, which is a second dimension.",
-          "level": 2
+          "level": 2,
+          "pos": [
+            -58,
+            2
+          ],
+          "size": 1.15
         },
         {
           "id": "c_b_dtc",
@@ -137,7 +229,12 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "The website line is one ledger row; calling it a branch of the channel cut is the analyst's construction, and it is what makes the 0.2 million comparable with the 1.7 million rather than a footnote.",
-          "level": 2
+          "level": 2,
+          "pos": [
+            -22,
+            2
+          ],
+          "size": 1.15
         },
         {
           "id": "c_b_vending",
@@ -147,7 +244,12 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "Vending is a distinct route to market with its own economics; the ledger names the operators but never calls them a channel. As a branch it stays exclusive of grocery because a case cannot be both machine-filled and shelf-stocked.",
-          "level": 2
+          "level": 2,
+          "pos": [
+            6,
+            2
+          ],
+          "size": 1.15
         },
         {
           "id": "c_g_onprem",
@@ -157,7 +259,12 @@
           "provenance": "derived",
           "confidence": 0.65,
           "rationale": "Nothing in the minutes says the on-premise channel exists. It is the branch the cut requires in order to be collectively exhaustive: once channel is the dimension, off-trade and on-trade are the two halves of it, and the source has only ever counted the off-trade half.",
-          "level": 2
+          "level": 2,
+          "pos": [
+            48,
+            2
+          ],
+          "size": 1.2
         },
         {
           "id": "c_i_super",
@@ -167,7 +274,12 @@
           "provenance": "fact",
           "source_quote": "Supermarket chains took 1.7 million cases",
           "source_ref": "finance director, sentence 3",
-          "level": 3
+          "level": 3,
+          "pos": [
+            -64,
+            -16
+          ],
+          "size": 0.85
         },
         {
           "id": "c_i_conv",
@@ -177,7 +289,12 @@
           "provenance": "fact",
           "source_quote": "convenience stores took 0.9 million",
           "source_ref": "finance director, sentence 3",
-          "level": 3
+          "level": 3,
+          "pos": [
+            -52,
+            -30
+          ],
+          "size": 0.85
         },
         {
           "id": "c_i_web",
@@ -187,7 +304,12 @@
           "provenance": "fact",
           "source_quote": "The company's own website shipped 0.2 million cases direct to consumers",
           "source_ref": "finance director, sentence 4",
-          "level": 3
+          "level": 3,
+          "pos": [
+            -22,
+            -16
+          ],
+          "size": 0.85
         },
         {
           "id": "c_i_vend",
@@ -197,7 +319,12 @@
           "provenance": "fact",
           "source_quote": "vending operators took 0.3 million",
           "source_ref": "finance director, sentence 4",
-          "level": 3
+          "level": 3,
+          "pos": [
+            6,
+            -16
+          ],
+          "size": 0.85
         },
         {
           "id": "c_i_wholesale",
@@ -207,7 +334,12 @@
           "provenance": "fact",
           "source_quote": "a further 0.4 million cases went to a German wholesaler",
           "source_ref": "sales director, sentence 5",
-          "level": 3
+          "level": 3,
+          "pos": [
+            -38,
+            -46
+          ],
+          "size": 0.85
         },
         {
           "id": "c_g_stated",
@@ -217,7 +349,12 @@
           "provenance": "fact",
           "source_quote": "the company has no salesperson who calls on restaurants, canteens or hotels, and that the ledger has never had a line for them",
           "source_ref": "head of marketing, sentence 7",
-          "level": 3
+          "level": 3,
+          "pos": [
+            48,
+            -16
+          ],
+          "size": 1.2
         },
         {
           "id": "c_g_unaccounted",
@@ -227,7 +364,12 @@
           "provenance": "derived",
           "confidence": 0.9,
           "rationale": "Arithmetic on the stated numbers: 1.7 + 0.9 + 0.2 + 0.3 + 0.4 = 3.5 against a stated total of 4.1. The minutes say the lines do not add up and that nobody can say what the rest were; the size of the hole, and that it is a seventh of the business, is the inference.",
-          "level": 3
+          "level": 3,
+          "pos": [
+            52,
+            46
+          ],
+          "size": 1.2
         },
         {
           "id": "c_o_german",
@@ -237,7 +379,12 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "The minutes state the booking basis and the uncertainty but not the diagnosis. Naming it as a second dimension smuggled into a single cut is what turns an accounting annoyance into the reason the partition fails the exclusivity test, and it says what to do: re-code the German cases by channel before the picture is drawn.",
-          "level": 3
+          "level": 3,
+          "pos": [
+            -2,
+            -46
+          ],
+          "size": 1.15
         }
       ],
       "edges": [
@@ -437,9 +584,69 @@
       "why_this_episode": "Elad Gil does the partition out loud. Asked how to think about AI companies, he says the markets have crystallised, runs the AI application market vertical by vertical naming the finalists in each, flags the verticals where the winner is unknown, and separately sizes the whole at about $5 trillion of services. It is a MECE exercise with its two classic defects on the record: a layer (the foundation model companies) is mixed in with the verticals and re-appears inside them, and the branches he can name cover only a sliver of the whole he has stated.",
       "idea_bearing_slot": "gap",
       "layout": {
-        "mode": "tree",
-        "root": "w1",
-        "direction": "down"
+        "mode": "plane",
+        "regions": [
+          {
+            "label": "Branches Gil named",
+            "x": [
+              -66.5,
+              37
+            ],
+            "y": [
+              -4,
+              15
+            ],
+            "color": "#3987e5"
+          },
+          {
+            "label": "Added by the LLM",
+            "x": [
+              39,
+              66.5
+            ],
+            "y": [
+              -4,
+              15
+            ],
+            "color": "#9085e9"
+          },
+          {
+            "label": "What the cut leaves out",
+            "x": [
+              -66.5,
+              66.5
+            ],
+            "y": [
+              -51,
+              -37
+            ],
+            "color": "#d55181"
+          }
+        ],
+        "guides": [
+          {
+            "from": [
+              -66.5,
+              8
+            ],
+            "to": [
+              37,
+              8
+            ],
+            "style": "solid"
+          },
+          {
+            "from": [
+              37,
+              8
+            ],
+            "to": [
+              66.5,
+              8
+            ],
+            "style": "dashed"
+          }
+        ]
       },
       "nodes": [
         {
@@ -451,7 +658,12 @@
           "source_quote": "The services economy that we looked at on my team in terms of where AI could intervene is about $5 trillion.",
           "source_ref": "Elad Gil, L3144-L3144",
           "entities": [],
-          "level": 0
+          "level": 0,
+          "pos": [
+            0,
+            52
+          ],
+          "size": 2
         },
         {
           "id": "cut0",
@@ -462,7 +674,12 @@
           "source_quote": "If we're talking vertical markets, smaller markets, not the foundation model layer.",
           "source_ref": "Host, L2938-L2940",
           "entities": [],
-          "level": 1
+          "level": 1,
+          "pos": [
+            -33,
+            32
+          ],
+          "size": 1.15
         },
         {
           "id": "cut1",
@@ -473,7 +690,12 @@
           "source_quote": "And you can go through sort of vertical by vertical.",
           "source_ref": "Elad Gil, L2996-L2996",
           "entities": [],
-          "level": 1
+          "level": 1,
+          "pos": [
+            0,
+            32
+          ],
+          "size": 1.15
         },
         {
           "id": "cut2",
@@ -483,7 +705,12 @@
           "provenance": "derived",
           "confidence": 0.8,
           "rationale": "Gil applies the same finalists test to every vertical he names but never calls it a dimension. Reading it as a second cut is what turns financial tooling, sales enablement and accounting from a list into a class, and it is the class an investor or a founder is actually choosing between.",
-          "level": 1
+          "level": 1,
+          "pos": [
+            33,
+            32
+          ],
+          "size": 1.15
         },
         {
           "id": "b_model",
@@ -494,7 +721,12 @@
           "source_quote": "We know that for the foundation model market.",
           "source_ref": "Elad Gil, L2988-L2988",
           "entities": [],
-          "level": 2
+          "level": 2,
+          "pos": [
+            -66.5,
+            8
+          ],
+          "size": 1.15
         },
         {
           "id": "b_code",
@@ -505,7 +737,12 @@
           "source_quote": "We know for coding, it's cognition, cursor, and then the foundation model companies in Microsoft.",
           "source_ref": "Elad Gil, L2994-L2994",
           "entities": [],
-          "level": 2
+          "level": 2,
+          "pos": [
+            -47.5,
+            8
+          ],
+          "size": 1.15
         },
         {
           "id": "b_health",
@@ -516,7 +753,12 @@
           "source_quote": "There's a bunch of verticals now we know, a bridge for healthcare and maybe commier.",
           "source_ref": "Elad Gil, L2998-L2998",
           "entities": [],
-          "level": 2
+          "level": 2,
+          "pos": [
+            -28.5,
+            8
+          ],
+          "size": 1.15
         },
         {
           "id": "b_legal",
@@ -527,7 +769,12 @@
           "source_quote": "legal feels like it's already solidified except a handful of these more vertical specific",
           "source_ref": "Elad Gil, L3014-L3014",
           "entities": [],
-          "level": 2
+          "level": 2,
+          "pos": [
+            -9.5,
+            8
+          ],
+          "size": 1.15
         },
         {
           "id": "b_fin",
@@ -538,7 +785,12 @@
           "source_quote": "And there's tons of players, but we don't know who the winners are. That's financial tooling.",
           "source_ref": "Elad Gil, L3004-L3006",
           "entities": [],
-          "level": 2
+          "level": 2,
+          "pos": [
+            9.5,
+            8
+          ],
+          "size": 1.15
         },
         {
           "id": "b_acct",
@@ -549,7 +801,12 @@
           "source_quote": "Maybe that's sales enablement. Maybe that's accounting.",
           "source_ref": "Elad Gil, L3008-L3010",
           "entities": [],
-          "level": 2
+          "level": 2,
+          "pos": [
+            28.5,
+            8
+          ],
+          "size": 1.15
         },
         {
           "id": "b_rest",
@@ -559,7 +816,12 @@
           "provenance": "derived",
           "confidence": 0.7,
           "rationale": "Gil states a whole of about $5 trillion and names roughly eight verticals, then says you can come up with the list. Nobody closes the partition. Adding the residual branch is what turns a list of markets into a statement about coverage, and every gap below hangs inside it.",
-          "level": 2
+          "level": 2,
+          "pos": [
+            47.5,
+            8
+          ],
+          "size": 1.15
         },
         {
           "id": "b_durable",
@@ -569,7 +831,12 @@
           "provenance": "derived",
           "confidence": 0.65,
           "rationale": "Gil says of one company that nobody is going to do the AI-first version and suddenly win. Generalising the one case into a branch of the same partition is the inference, and it matters because it is the part of the $5 trillion that is inside the whole but not inside the opportunity.",
-          "level": 2
+          "level": 2,
+          "pos": [
+            66.5,
+            8
+          ],
+          "size": 1.15
         },
         {
           "id": "i_labs",
@@ -587,7 +854,12 @@
             "Meta",
             "Mistral"
           ],
-          "level": 3
+          "level": 3,
+          "pos": [
+            -66.5,
+            -14
+          ],
+          "size": 0.85
         },
         {
           "id": "i_coding",
@@ -602,7 +874,12 @@
             "Cursor",
             "Microsoft"
           ],
-          "level": 3
+          "level": 3,
+          "pos": [
+            -47.5,
+            -26
+          ],
+          "size": 0.85
         },
         {
           "id": "i_health",
@@ -616,7 +893,12 @@
             "Abridge",
             "Commure"
           ],
-          "level": 3
+          "level": 3,
+          "pos": [
+            -28.5,
+            -14
+          ],
+          "size": 0.85
         },
         {
           "id": "i_legal",
@@ -629,7 +911,12 @@
           "entities": [
             "Harvey"
           ],
-          "level": 3
+          "level": 3,
+          "pos": [
+            -9.5,
+            -26
+          ],
+          "size": 0.85
         },
         {
           "id": "i_support",
@@ -642,7 +929,12 @@
           "entities": [
             "Zendesk"
           ],
-          "level": 3
+          "level": 3,
+          "pos": [
+            47.5,
+            -14
+          ],
+          "size": 0.85
         },
         {
           "id": "i_rippling",
@@ -655,7 +947,12 @@
           "entities": [
             "Rippling"
           ],
-          "level": 3
+          "level": 3,
+          "pos": [
+            66.5,
+            -26
+          ],
+          "size": 0.85
         },
         {
           "id": "o_labs",
@@ -665,7 +962,12 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "The host explicitly excluded the model layer from the question, and Gil's coding list ends with the foundation model companies. The double count is on the record; naming it as a mixed cut rather than a quirk is the inference, and it carries a rule: every vertical bucket has to be defended against the lab that is already sitting in it.",
-          "level": 3
+          "level": 3,
+          "pos": [
+            -57,
+            20
+          ],
+          "size": 1.15
         },
         {
           "id": "o_ai_everything",
@@ -676,7 +978,12 @@
           "source_quote": "And AI means everything now. It means consumer. It means roll-ups. It means vertical fast.",
           "source_ref": "Elad Gil, L3042-L3044",
           "entities": [],
-          "level": 3
+          "level": 3,
+          "pos": [
+            57,
+            44
+          ],
+          "size": 1.15
         },
         {
           "id": "g_unnamed",
@@ -687,18 +994,28 @@
           "confidence": 0.55,
           "rationale": "The arithmetic is forced but the reading is not: coverage is inferred by comparing a stated whole with a list the speaker himself treats as illustrative rather than complete, and the un-named remainder may be un-named because it is unattractive rather than because it is unnoticed.",
           "idea": "The largest AI application segment is the set of service lines nobody at the table can name: where there is neither a finalist nor a crowd, the first credible product defines the category instead of fighting for it, so the highest-yield screen is to list the services economy by payroll and strike out every line that appeared in this conversation.",
-          "level": 3
+          "level": 3,
+          "pos": [
+            20,
+            -44
+          ],
+          "size": 1.2
         },
         {
           "id": "g_nosoftware",
           "slot": "gap",
-          "label": "Verticals that never bought software",
+          "label": "Verticals that bought no software",
           "text": "The branch with no incumbent is the branch that never bought software in the first place. Legal was one of those until AI made it buyable; the rest of that class is still empty.",
           "provenance": "derived",
           "confidence": 0.65,
           "rationale": "Gil gives the mechanism for exactly one vertical: legal bought no software, was hard to sell into, and became reachable because of AI. Turning one case into a screen for the whole residual branch is a generalisation, and it is contestable because legal also had unusually high billing rates, which is not true of every software-free trade.",
           "idea": "Screen the services economy for lines with near-zero software spend per worker and high labor spend, such as claims adjusting, freight brokerage, permitting, title work and medical billing appeals, because each one is an empty bucket where an AI-native entrant has no incumbent to displace and no crowd to outspend.",
-          "level": 3
+          "level": 3,
+          "pos": [
+            64,
+            -44
+          ],
+          "size": 1.2
         },
         {
           "id": "g_labor",
@@ -709,7 +1026,12 @@
           "confidence": 0.7,
           "rationale": "Gil states the shift from seat-based value to labor and applies it to customer support. Reading it as a missing branch rather than a pricing note is the inference: if the cut is drawn on software categories, a whole dimension of the $5 trillion has no bucket, which is why the market sizes come out too small.",
           "idea": "Price and size against the labor line rather than the seat line: the open space is any vertical where software spend is near zero and payroll is large, and the product that wins it is sold as work delivered, not as software seats, which also removes the incumbent's price anchor.",
-          "level": 3
+          "level": 3,
+          "pos": [
+            -64,
+            -44
+          ],
+          "size": 1.2
         },
         {
           "id": "g_nofinalist",
@@ -720,7 +1042,12 @@
           "confidence": 0.7,
           "rationale": "Gil states both halves for these verticals, that the market matters and that there are tons of players with no known winner, but does not distinguish them from a branch that is genuinely empty. The distinction is the inference, and it is what stops a MECE reading of a market map from mistaking a crowd for an opening.",
           "idea": "Rank branches by finalists per player, not by finalists: a branch with many entrants and no winner prices entry at the cost of a distribution war, while a branch with neither entrant nor winner is where the same capital buys the category.",
-          "level": 3
+          "level": 3,
+          "pos": [
+            -24,
+            -44
+          ],
+          "size": 1.2
         }
       ],
       "edges": [
