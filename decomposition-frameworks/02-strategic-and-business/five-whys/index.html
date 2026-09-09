@@ -433,7 +433,9 @@ function drawDecor(ex, group, bbox) {
     m.position.set((r.x[0] + r.x[1]) / 2, (r.y[0] + r.y[1]) / 2, z - 0.5); group.add(m);
     const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(w, h)), new THREE.LineBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.25 }));
     edge.position.copy(m.position); group.add(edge);
-    const lab = label2d(r.label, 'rlabel'); lab.position.set(Math.min(r.x[0], r.x[1]) + 2, Math.max(r.y[0], r.y[1]) - 2, z); group.add(lab);
+    // Caption sits top-centre INSIDE the band. CSS2D centres its box on the position, so anchoring
+    // at the corner made every caption straddle the boundary and builders patched it page-side.
+    const lab = label2d(r.label, 'rlabel'); lab.position.set((r.x[0] + r.x[1]) / 2, Math.max(r.y[0], r.y[1]) - 3, z); group.add(lab);
     bbox.expandByPoint(new THREE.Vector3(r.x[0], r.y[0], 0)); bbox.expandByPoint(new THREE.Vector3(r.x[1], r.y[1], 0));
   }
   for (const gd of (L.guides || [])) {
