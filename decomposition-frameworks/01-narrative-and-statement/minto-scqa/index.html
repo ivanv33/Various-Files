@@ -436,7 +436,14 @@ function makeNode(n, p) {
   el.appendChild(g);
   if (n.idea) { const st2 = document.createElement('span'); st2.className = 'idea-star'; st2.textContent = '★'; el.appendChild(st2); }
   el.appendChild(document.createTextNode(n.label || n.id));
-  const lab = new CSS2DObject(el); lab.position.set(0, -r, 0); obj.add(lab);
+  // Anchor the label below whatever the node actually draws: a diamond reaches further than a
+  // sphere, a derived node adds a 1.35r halo, and an idea node adds a 1.6r ring. Anchoring at -r
+  // regardless (the old behaviour) made labels collide with their own marker on those nodes.
+  const SHAPE_EXTENT = { sphere: 1.0, box: 0.85, diamond: 1.25, cone: 1.1 };
+  let extent = (SHAPE_EXTENT[st.shape] ?? 1) * r;
+  if (n.provenance === 'derived') extent = Math.max(extent, r * 1.35);
+  if (n.idea) extent = Math.max(extent, r * 1.72);
+  const lab = new CSS2DObject(el); lab.position.set(0, -extent, 0); obj.add(lab);
   return { node: n, obj, mesh, halo, hit, label: lab, r, color: st.color, edges: [] };
 }
 

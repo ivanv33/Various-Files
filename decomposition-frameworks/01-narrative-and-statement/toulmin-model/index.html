@@ -49,12 +49,14 @@
   main { position: relative; overflow: hidden; background: var(--surface); }
   #stage { position: absolute; inset: 0; }
   #stage canvas { display: block; }
-  #labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  #labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
   #labels * { pointer-events: none; }
   .nlabel { font: 12px/1.2 var(--sans); color: var(--ink-2); white-space: nowrap; transform: translateY(14px); text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6); }
   .nlabel.derived { color: var(--ink-2); font-style: italic; }
   .nlabel.schema { color: var(--muted); font: 11px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
   .nlabel .g { font-size: 9px; margin-right: 4px; vertical-align: 1px; }
+  .nlabel .idea-star { color: #eda100; margin-right: 3px; }
+  #panel .idea { border-left: 2px solid #eda100; padding: 6px 10px; margin: 8px 0; color: var(--ink); background: rgba(237,161,0,.07); }
   .elabel { font: 11px var(--mono); color: var(--muted); background: var(--surface); padding: 0 4px; border-radius: 3px; }
   .axlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
   .tick { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
@@ -71,6 +73,9 @@
   #legend h2:first-child { margin-top: 0; }
   .slot-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
   .chip { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .chip.box { border-radius: 2px; }
+  .chip.diamond { border-radius: 2px; transform: rotate(45deg); }
+  .chip.cone { border-radius: 0; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
   .slot-row .n { margin-left: auto; font: 11px var(--mono); color: var(--muted); }
   .slot-row .tp { font: 10px var(--mono); color: var(--muted); }
   .key-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; color: var(--ink-2); }
@@ -299,6 +304,7 @@ import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer
 const SLOT_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
 const SCHEMA_COLOR = '#898781';
 const INK = '#ffffff', INK2 = '#c3c2b7', MUTED = '#898781', HAIRLINE = '#2c2c2a', SURFACE = '#1a1a19';
+const IDEA = '#eda100';   // marks a node whose `idea` field names an opportunity
 const NODE_R = 2.2;
 
 // ---------- data ----------
@@ -492,7 +498,7 @@ function makeNode(n, p) {
     mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.5, metalness: 0.08 }));
   } else if (n.provenance === 'derived') {
     mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.6, metalness: 0.0, transparent: true, opacity: 0.32, depthWrite: false }));
-    halo = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(r * 1.35, 1)), new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.75 }));
+    halo = new THREE.LineSegments(new THREE.WireframeGeometry(GEO[st.shape](r * 1.35)), new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.75 }));
     obj.add(halo);
   } else {
     mesh = new THREE.Mesh(GEO[st.shape === 'sphere' ? 'box' : st.shape](r * 0.8), new THREE.MeshStandardMaterial({ color: new THREE.Color(SCHEMA_COLOR), roughness: 0.9, metalness: 0, transparent: true, opacity: 0.85 }));
@@ -501,11 +507,26 @@ function makeNode(n, p) {
   obj.add(mesh);
   const hit = new THREE.Mesh(new THREE.SphereGeometry(r * 1.9, 10, 8), new THREE.MeshBasicMaterial({ visible: false }));
   hit.userData.nodeId = n.id; obj.add(hit);
+  // A node carrying an `idea` is where this framework surfaces an underserved need or opportunity:
+  // mark it so a reader can find the payoff without opening every panel.
+  if (n.idea) {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(r * 1.6, r * 0.11, 8, 40), new THREE.MeshBasicMaterial({ color: new THREE.Color(IDEA) }));
+    ring.userData.isIdeaRing = true; obj.add(ring);
+  }
   const glyph = n.provenance === 'fact' ? '●' : n.provenance === 'derived' ? '◌' : '▪';
   const el = document.createElement('div'); el.className = 'nlabel ' + n.provenance;
   const g = document.createElement('span'); g.className = 'g'; g.textContent = glyph; g.style.color = n.provenance === 'schema' ? MUTED : st.color;
-  el.appendChild(g); el.appendChild(document.createTextNode(n.label || n.id));
-  const lab = new CSS2DObject(el); lab.position.set(0, -r, 0); obj.add(lab);
+  el.appendChild(g);
+  if (n.idea) { const st2 = document.createElement('span'); st2.className = 'idea-star'; st2.textContent = '★'; el.appendChild(st2); }
+  el.appendChild(document.createTextNode(n.label || n.id));
+  // Anchor the label below whatever the node actually draws: a diamond reaches further than a
+  // sphere, a derived node adds a 1.35r halo, and an idea node adds a 1.6r ring. Anchoring at -r
+  // regardless (the old behaviour) made labels collide with their own marker on those nodes.
+  const SHAPE_EXTENT = { sphere: 1.0, box: 0.85, diamond: 1.25, cone: 1.1 };
+  let extent = (SHAPE_EXTENT[st.shape] ?? 1) * r;
+  if (n.provenance === 'derived') extent = Math.max(extent, r * 1.35);
+  if (n.idea) extent = Math.max(extent, r * 1.72);
+  const lab = new CSS2DObject(el); lab.position.set(0, -extent, 0); obj.add(lab);
   return { node: n, obj, mesh, halo, hit, label: lab, r, color: st.color, edges: [] };
 }
 
@@ -544,7 +565,9 @@ function drawDecor(ex, group, bbox) {
     m.position.set((r.x[0] + r.x[1]) / 2, (r.y[0] + r.y[1]) / 2, z - 0.5); group.add(m);
     const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(w, h)), new THREE.LineBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.25 }));
     edge.position.copy(m.position); group.add(edge);
-    const lab = label2d(r.label, 'rlabel'); lab.position.set(Math.min(r.x[0], r.x[1]) + 2, Math.max(r.y[0], r.y[1]) - 2, z); group.add(lab);
+    // Caption sits top-centre INSIDE the band. CSS2D centres its box on the position, so anchoring
+    // at the corner made every caption straddle the boundary and builders patched it page-side.
+    const lab = label2d(r.label, 'rlabel'); lab.position.set((r.x[0] + r.x[1]) / 2, Math.max(r.y[0], r.y[1]) - 3, z); group.add(lab);
     bbox.expandByPoint(new THREE.Vector3(r.x[0], r.y[0], 0)); bbox.expandByPoint(new THREE.Vector3(r.x[1], r.y[1], 0));
   }
   for (const gd of (L.guides || [])) {
@@ -669,16 +692,22 @@ function renderLegend(ex) {
   const counts = new Map(); for (const n of ex.nodes) counts.set(n.slot, (counts.get(n.slot) || 0) + 1);
   for (const s of GRAPH.slots) {
     const row = document.createElement('div'); row.className = 'slot-row';
-    const chip = document.createElement('span'); chip.className = 'chip'; chip.style.background = slotStyle.get(s.id).color; if (s.structural) chip.style.borderRadius = '2px';
+    const chip = document.createElement('span'); const stl = slotStyle.get(s.id);
+    chip.className = 'chip' + (stl.shape && stl.shape !== 'sphere' ? ' ' + stl.shape : ''); chip.style.background = stl.color;
+    if (s.structural) chip.style.borderRadius = '2px';
     const name = document.createElement('span'); name.textContent = s.label;
     const tp = document.createElement('span'); tp.className = 'tp'; tp.textContent = s.structural ? 'schema' : (s.typical_provenance || '');
     const n = document.createElement('span'); n.className = 'n'; n.textContent = String(counts.get(s.id) || 0);
     row.append(chip, name, tp, n); row.title = s.description || ''; el.appendChild(row);
   }
   el.appendChild(h('Provenance'));
-  for (const [sym, txt] of [['●', 'fact: stated in the source (solid)'], ['◌', 'derived: LLM inference (translucent, dashed)'], ['▪', 'schema: framework scaffolding (grey)'], ['→', 'solid edge stated, dashed inferred'], ['⋯', 'grounding link: derived → fact']]) {
+  const ideaCount = ex.nodes.filter(n => n.idea).length;
+  const keys = [['●', 'fact: stated in the source (solid)'], ['◌', 'derived: LLM inference (translucent, dashed)'], ['▪', 'schema: framework scaffolding (grey)'], ['→', 'solid edge stated, dashed inferred'], ['⋯', 'grounding link: derived → fact']];
+  if (ideaCount) keys.push(['★', 'gold ring: an opportunity this framework surfaces']);
+  for (const [sym, txt] of keys) {
     const row = document.createElement('div'); row.className = 'key-row';
-    const a = document.createElement('span'); a.className = 'sym'; a.textContent = sym; const b = document.createElement('span'); b.textContent = txt; row.append(a, b); el.appendChild(row);
+    const a = document.createElement('span'); a.className = 'sym'; a.textContent = sym; if (sym === '★') a.style.color = IDEA;
+    const b = document.createElement('span'); b.textContent = txt; row.append(a, b); el.appendChild(row);
   }
   const st = document.createElement('div'); st.className = 'stats'; st.id = 'stats'; el.appendChild(st);
   renderStats();
@@ -728,6 +757,7 @@ function openPanel(rec) {
     const c = document.createElement('div'); c.className = 'conf'; c.textContent = `${Math.round((n.confidence || 0) * 100)} / 100`; panel.appendChild(c);
     const bar = document.createElement('div'); bar.className = 'confbar'; const fillEl = document.createElement('i'); fillEl.style.width = `${Math.round((n.confidence || 0) * 100)}%`; bar.appendChild(fillEl); panel.appendChild(bar);
     h4('Why the LLM infers this'); const r = document.createElement('p'); r.textContent = n.rationale || ''; panel.appendChild(r);
+    if (n.idea) { h4('Opportunity this points to'); const ip = document.createElement('p'); ip.className = 'idea'; ip.textContent = n.idea; panel.appendChild(ip); }
     const sup = ex.edges.filter(e => e.relation === 'supported_by' && e.from === n.id).map(e => state.nodes.get(e.to)).filter(Boolean);
     if (sup.length) { h4('Supported by'); const ul = document.createElement('ul'); for (const s of sup) { const li = document.createElement('li'); li.textContent = s.node.label; const q = document.createElement('div'); q.className = 'ref'; q.textContent = (s.node.source_quote || '').slice(0, 140); li.appendChild(q); ul.appendChild(li); } panel.appendChild(ul); }
   } else {
@@ -807,7 +837,12 @@ if (!(startIndex >= 0 && startIndex < GRAPH.examples.length)) startIndex = Math.
 resize();
 buildExample(startIndex);
 $('fallback').hidden = true; window.__engineReady = true;
-function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); labelRenderer.render(scene, camera); }
+function loop() {
+  requestAnimationFrame(loop);
+  controls.update();
+  for (const rec of state.nodes.values()) for (const c of rec.obj.children) if (c.userData.isIdeaRing) c.quaternion.copy(camera.quaternion);
+  renderer.render(scene, camera); labelRenderer.render(scene, camera);
+}
 loop();
 </script>
 </body>
