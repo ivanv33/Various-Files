@@ -1,0 +1,1157 @@
+{
+  "framework": {
+    "slug": "toulmin-model",
+    "name": "Toulmin Model",
+    "category": "01-narrative-and-statement",
+    "wikipedia": "https://en.wikipedia.org/wiki/Stephen_Toulmin",
+    "one_liner": "Takes one argument apart into claim, grounds, warrant, backing, qualifier and rebuttal, so that the unstated rule carrying the evidence to the conclusion, and the conditions under which it fails, are made explicit."
+  },
+  "slots": [
+    {
+      "id": "claim",
+      "label": "Claim",
+      "description": "The assertion the speaker wants accepted; the destination of the argument.",
+      "typical_provenance": "either",
+      "color": "#d95926",
+      "shape": "box"
+    },
+    {
+      "id": "grounds",
+      "label": "Grounds",
+      "description": "The specific facts, data or observations the speaker appeals to in support of the claim.",
+      "typical_provenance": "fact",
+      "color": "#3987e5",
+      "shape": "sphere"
+    },
+    {
+      "id": "warrant",
+      "label": "Warrant",
+      "description": "The general, rule-like statement that licenses the step from grounds to claim ('if these grounds, then this claim'); almost always left unstated and the usual point of contest.",
+      "typical_provenance": "derived",
+      "color": "#2f9e63",
+      "shape": "diamond"
+    },
+    {
+      "id": "backing",
+      "label": "Backing",
+      "description": "The field-specific assurance behind the warrant: statutes, statistics, precedent, credit ratings, expertise. Supports the warrant, not the claim.",
+      "typical_provenance": "either",
+      "color": "#1b998b",
+      "shape": "sphere"
+    },
+    {
+      "id": "qualifier",
+      "label": "Qualifier",
+      "description": "How strongly the claim is held: presumably, probably, almost all, in most cases. A stated hedge is a fact; the strength the argument actually earns is usually inferred.",
+      "typical_provenance": "derived",
+      "color": "#8e6bd9",
+      "shape": "cone"
+    },
+    {
+      "id": "rebuttal",
+      "label": "Rebuttal",
+      "description": "The conditions of exception under which the warrant does not carry the claim ('unless ...'). Where an argument is weakest and where an underserved need often hides.",
+      "typical_provenance": "derived",
+      "color": "#c4384a",
+      "shape": "diamond"
+    }
+  ],
+  "relations": [
+    {
+      "id": "supports",
+      "label": "supports",
+      "description": "grounds support the claim"
+    },
+    {
+      "id": "licenses",
+      "label": "licenses",
+      "description": "warrant licenses the grounds-to-claim step"
+    },
+    {
+      "id": "backs",
+      "label": "backs",
+      "description": "backing backs the warrant"
+    },
+    {
+      "id": "qualifies",
+      "label": "qualifies",
+      "description": "qualifier bounds the claim"
+    },
+    {
+      "id": "rebuts",
+      "label": "rebuts",
+      "description": "rebuttal states when the claim fails"
+    }
+  ],
+  "examples": [
+    {
+      "id": "classic",
+      "kind": "classic",
+      "title": "Harry was born in Bermuda",
+      "summary": "Toulmin's own textbook case: a clerk moves from one birthplace fact to a presumptive nationality claim. The scenario states the grounds, the claim, the hedge, the statutes and two exceptions, and never states the rule that does the work.",
+      "source": {
+        "type": "text",
+        "title": "Harry and the passport office",
+        "attribution": "Adapted from Stephen Toulmin, The Uses of Argument (1958), the 'Harry was born in Bermuda' example",
+        "text": "At the passport office a clerk is asked whether Harry may hold a British passport. The file shows one relevant fact: Harry was born in Bermuda. The clerk writes on the form: so, presumably, Harry is a British subject. When Harry's employer asks why a birthplace should settle a question of nationality, the clerk replies that the office relies on the relevant statutes and other legal provisions, and that the presumption would not hold if both of Harry's parents were aliens at the time of his birth, or if Harry has since become a naturalised citizen of another country. The employer points out that nobody has checked the parents' nationality, and the clerk agrees to hold the passport until the birth record is examined."
+      },
+      "layout": {
+        "mode": "plane",
+        "guides": [
+          {
+            "from": [
+              0,
+              4
+            ],
+            "to": [
+              0,
+              16
+            ],
+            "style": "dashed",
+            "label": "since"
+          },
+          {
+            "from": [
+              0,
+              -20
+            ],
+            "to": [
+              0,
+              -8
+            ],
+            "style": "dashed",
+            "label": "on account of"
+          },
+          {
+            "from": [
+              34,
+              -6
+            ],
+            "to": [
+              22,
+              24
+            ],
+            "style": "dashed",
+            "label": "unless"
+          }
+        ],
+        "regions": [
+          {
+            "label": "Grounds",
+            "x": [
+              -58,
+              -32
+            ],
+            "y": [
+              10,
+              32
+            ],
+            "color": "#3987e5"
+          },
+          {
+            "label": "Claim",
+            "x": [
+              32,
+              58
+            ],
+            "y": [
+              10,
+              32
+            ],
+            "color": "#d95926"
+          },
+          {
+            "label": "Warrant",
+            "x": [
+              -14,
+              14
+            ],
+            "y": [
+              -8,
+              8
+            ],
+            "color": "#2f9e63"
+          },
+          {
+            "label": "Backing",
+            "x": [
+              -30,
+              30
+            ],
+            "y": [
+              -38,
+              -18
+            ],
+            "color": "#1b998b"
+          }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "g",
+          "slot": "grounds",
+          "label": "Harry was born in Bermuda",
+          "text": "Harry was born in Bermuda.",
+          "provenance": "fact",
+          "source_quote": "Harry was born in Bermuda",
+          "source_ref": "sentence 2, the file",
+          "pos": [
+            -45,
+            20
+          ]
+        },
+        {
+          "id": "c",
+          "slot": "claim",
+          "label": "Harry is a British subject",
+          "text": "Harry is a British subject.",
+          "provenance": "fact",
+          "source_quote": "Harry is a British subject",
+          "source_ref": "sentence 3, the clerk's note on the form",
+          "pos": [
+            45,
+            20
+          ],
+          "size": 1.3
+        },
+        {
+          "id": "q1",
+          "slot": "qualifier",
+          "label": "Presumably",
+          "text": "The claim is held presumptively, not with certainty: the clerk writes 'so, presumably'.",
+          "provenance": "fact",
+          "source_quote": "so, presumably, Harry is a British subject",
+          "source_ref": "sentence 3, the clerk's note on the form",
+          "pos": [
+            14,
+            28
+          ]
+        },
+        {
+          "id": "q2",
+          "slot": "qualifier",
+          "label": "Strength tracks the exceptions",
+          "text": "'Presumably' encodes that the two exceptions are rare but unverified: the claim is strong in the absence of evidence about the parents, and would become certain only once both exceptions are excluded.",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "Reads the stated qualifier against the stated exceptions. The text gives the word 'presumably' but not what strength it encodes or what would raise it to certainty.",
+          "pos": [
+            14,
+            42
+          ]
+        },
+        {
+          "id": "w1",
+          "slot": "warrant",
+          "label": "Born in Bermuda, generally British",
+          "text": "A person born in Bermuda will generally be a British subject.",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "Nowhere stated. It is the general, bridge-like rule that alone carries the step from the birthplace to the nationality claim; the employer's question (why should a birthplace settle nationality) is exactly a demand for it.",
+          "pos": [
+            0,
+            0
+          ],
+          "size": 1.2
+        },
+        {
+          "id": "b1",
+          "slot": "backing",
+          "label": "Office relies on the statutes",
+          "text": "The office relies on the relevant statutes and other legal provisions.",
+          "provenance": "fact",
+          "source_quote": "the office relies on the relevant statutes and other legal provisions",
+          "source_ref": "sentence 4, the clerk's reply",
+          "pos": [
+            -14,
+            -26
+          ]
+        },
+        {
+          "id": "b2",
+          "slot": "backing",
+          "label": "Statutes confer nationality by birth",
+          "text": "The statutes make birth in a British territory such as Bermuda a ground of British nationality, subject to listed exceptions; that is why the birthplace rule can be relied on.",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The clerk cites the statutes but not their content. The inference that they contain a birthright rule with exceptions is what makes the citation count as backing for the warrant rather than a bare appeal to authority.",
+          "pos": [
+            14,
+            -26
+          ]
+        },
+        {
+          "id": "r1",
+          "slot": "rebuttal",
+          "label": "Unless both parents were aliens",
+          "text": "The presumption would not hold if both of Harry's parents were aliens at the time of his birth.",
+          "provenance": "fact",
+          "source_quote": "if both of Harry's parents were aliens at the time of his birth",
+          "source_ref": "sentence 4, the clerk's reply",
+          "pos": [
+            34,
+            -6
+          ]
+        },
+        {
+          "id": "r2",
+          "slot": "rebuttal",
+          "label": "Unless naturalised elsewhere",
+          "text": "The presumption would not hold if Harry has since become a naturalised citizen of another country.",
+          "provenance": "fact",
+          "source_quote": "if Harry has since become a naturalised citizen of another country",
+          "source_ref": "sentence 4, the clerk's reply",
+          "pos": [
+            54,
+            -6
+          ]
+        },
+        {
+          "id": "r3",
+          "slot": "rebuttal",
+          "label": "Parents' nationality unchecked",
+          "text": "Nobody has checked the parents' nationality.",
+          "provenance": "fact",
+          "source_quote": "nobody has checked the parents' nationality",
+          "source_ref": "sentence 5, the employer",
+          "pos": [
+            56,
+            -26
+          ]
+        },
+        {
+          "id": "r4",
+          "slot": "rebuttal",
+          "label": "Alien-parents exception is live",
+          "text": "Because the parents' nationality has not been checked, the first exception cannot be ruled out; the claim should stay presumptive until the birth record is examined.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Combines the stated exception with the stated gap in the file. The text says the passport is held until the record is examined but does not say which exception is the live one.",
+          "pos": [
+            38,
+            -26
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "id": "ce1",
+          "from": "g",
+          "to": "c",
+          "relation": "supports",
+          "provenance": "fact",
+          "source_quote": "so, presumably, Harry is a British subject",
+          "source_ref": "sentence 3: the 'so' states the step"
+        },
+        {
+          "id": "ce2",
+          "from": "w1",
+          "to": "c",
+          "relation": "licenses",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The rule is the only thing that licenses the birthplace-to-nationality step."
+        },
+        {
+          "id": "ce3",
+          "from": "w1",
+          "to": "g",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.9
+        },
+        {
+          "id": "ce4",
+          "from": "w1",
+          "to": "c",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.9
+        },
+        {
+          "id": "ce5",
+          "from": "b1",
+          "to": "w1",
+          "relation": "backs",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The clerk offers the statutes in answer to the employer's demand for the rule; the text does not say the statutes contain the rule."
+        },
+        {
+          "id": "ce6",
+          "from": "b2",
+          "to": "w1",
+          "relation": "backs",
+          "provenance": "derived",
+          "confidence": 0.75
+        },
+        {
+          "id": "ce7",
+          "from": "b2",
+          "to": "b1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.75
+        },
+        {
+          "id": "ce8",
+          "from": "q1",
+          "to": "c",
+          "relation": "qualifies",
+          "provenance": "fact",
+          "source_quote": "so, presumably, Harry is a British subject",
+          "source_ref": "sentence 3"
+        },
+        {
+          "id": "ce9",
+          "from": "q2",
+          "to": "c",
+          "relation": "qualifies",
+          "provenance": "derived",
+          "confidence": 0.6
+        },
+        {
+          "id": "ce10",
+          "from": "q2",
+          "to": "q1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.6
+        },
+        {
+          "id": "ce11",
+          "from": "q2",
+          "to": "r1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.6
+        },
+        {
+          "id": "ce12",
+          "from": "r1",
+          "to": "c",
+          "relation": "rebuts",
+          "provenance": "fact",
+          "source_quote": "the presumption would not hold if both of Harry's parents were aliens",
+          "source_ref": "sentence 4"
+        },
+        {
+          "id": "ce13",
+          "from": "r2",
+          "to": "c",
+          "relation": "rebuts",
+          "provenance": "fact",
+          "source_quote": "or if Harry has since become a naturalised citizen of another country",
+          "source_ref": "sentence 4"
+        },
+        {
+          "id": "ce14",
+          "from": "r4",
+          "to": "c",
+          "relation": "rebuts",
+          "provenance": "derived",
+          "confidence": 0.7
+        },
+        {
+          "id": "ce15",
+          "from": "r4",
+          "to": "r1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7
+        },
+        {
+          "id": "ce16",
+          "from": "r4",
+          "to": "r3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7
+        }
+      ]
+    },
+    {
+      "id": "tbpn",
+      "kind": "tbpn",
+      "title": "Glenn Hutchins: the AI data-center build-out is not the CLEC bubble",
+      "summary": "Asked whether debt-financing AI infrastructure can be done responsibly, Hutchins argues that today's data centers, unlike the dot-com fiber CLECs, have solvent contracted counterparties, are built to suit, return about 2x over four-to-five-year contracts and leave an option on used GPUs. The warrant that turns those grounds into 'not a bubble' is never stated, and the same episode contains its rebuttal.",
+      "source": {
+        "type": "transcript",
+        "file": "tbpn-transcripts/transcripts/2025-11-19_gemini-3-reactions-cloudflare-outage-the-upsides-of-bubbles-byrne-hobart-glenn-hutchins-yogi-goel-sam-jones-ali-madani-amit-jain.md",
+        "date": "2025-11-19",
+        "episode_title": "Gemini 3 reactions, Cloudflare outage, the upsides of bubbles (Byrne Hobart, Glenn Hutchins, Yogi Goel, Sam Jones, Ali Madani, Amit Jain)",
+        "url": "https://podscripts.co/podcasts/tbpn-live/gemini-3-reactions-cloudflare-outage-the-upsides-of-bubbles-byrne-hobart-glenn-hutchins-yogi-goel-sam-jones-ali-madani-amit-jain"
+      },
+      "why_this_episode": "A complete argument by one speaker in one passage (lines 4720-4890): a claim by disanalogy, five numeric or structural grounds, backing by credit rating and by the TSMC/Taiwan precedent, a self-supplied hedge, and a rule that is never stated yet carries the whole step. The hosts do not contest it on air ('That's a really good point. I haven't considered that.'), while an earlier guest in the same file, Byrne Hobart, states the economic-obsolescence condition that undercuts one of the grounds. The speaker's own involvement with CoreWeave, the exemplar he cites, makes the backing itself worth a Toulmin look.",
+      "idea_bearing_slot": "rebuttal",
+      "layout": {
+        "mode": "plane",
+        "guides": [
+          {
+            "from": [
+              4,
+              -2
+            ],
+            "to": [
+              4,
+              8
+            ],
+            "style": "dashed",
+            "label": "since"
+          },
+          {
+            "from": [
+              4,
+              -26
+            ],
+            "to": [
+              4,
+              -14
+            ],
+            "style": "dashed",
+            "label": "on account of"
+          },
+          {
+            "from": [
+              50,
+              -10
+            ],
+            "to": [
+              36,
+              26
+            ],
+            "style": "dashed",
+            "label": "unless"
+          }
+        ],
+        "regions": [
+          {
+            "label": "Grounds",
+            "x": [
+              -60,
+              -36
+            ],
+            "y": [
+              -40,
+              44
+            ],
+            "color": "#3987e5"
+          },
+          {
+            "label": "Claim",
+            "x": [
+              34,
+              60
+            ],
+            "y": [
+              4,
+              44
+            ],
+            "color": "#d95926"
+          },
+          {
+            "label": "Warrant",
+            "x": [
+              -22,
+              30
+            ],
+            "y": [
+              -14,
+              0
+            ],
+            "color": "#2f9e63"
+          },
+          {
+            "label": "Backing",
+            "x": [
+              -30,
+              30
+            ],
+            "y": [
+              -42,
+              -22
+            ],
+            "color": "#1b998b"
+          },
+          {
+            "label": "Rebuttal",
+            "x": [
+              34,
+              64
+            ],
+            "y": [
+              -42,
+              -6
+            ],
+            "color": "#c4384a"
+          }
+        ]
+      },
+      "nodes": [
+        {
+          "id": "c1",
+          "slot": "claim",
+          "label": "Not analogous to the CLEC overbuild",
+          "text": "Today's AI data-center build-out is not analogous to the dot-com CLEC fiber build, where money went into the ground before the customers existed; it is a very different kind of financing structure.",
+          "provenance": "fact",
+          "source_quote": "it's not analogous. all to the CLEX where they put a bunch of money in the ground and then went to get the customers and the customer weren't there.",
+          "source_ref": "Glenn Hutchins, L4880-4886, closing his answer on debt financing and bubbles",
+          "entities": [
+            "Glenn Hutchins"
+          ],
+          "pos": [
+            46,
+            12
+          ],
+          "size": 1.4
+        },
+        {
+          "id": "c2",
+          "slot": "claim",
+          "label": "Debt financing can be done responsibly",
+          "text": "Financing the AI build-out with debt, Blue Owl-style, can be done responsibly.",
+          "provenance": "fact",
+          "source_quote": "It can be done responsibly, yeah.",
+          "source_ref": "Glenn Hutchins agreeing with the host, L4634-4636, before the answer begins",
+          "entities": [
+            "Glenn Hutchins",
+            "Blue Owl"
+          ],
+          "pos": [
+            46,
+            36
+          ]
+        },
+        {
+          "id": "g1",
+          "slot": "grounds",
+          "label": "Solvent counterparty takes all output",
+          "text": "Almost every data center being built has a solvent counterparty contracted to take all of its output.",
+          "provenance": "fact",
+          "source_quote": "every one of these data centers, almost all of them, has a counterparty, a solvent counterparty that is contracted to take all the output.",
+          "source_ref": "Glenn Hutchins, L4788-4798",
+          "entities": [
+            "Glenn Hutchins"
+          ],
+          "pos": [
+            -48,
+            40
+          ]
+        },
+        {
+          "id": "g2",
+          "slot": "grounds",
+          "label": "Built to suit, not build-and-hope",
+          "text": "The data centers are built to suit a contracted customer, not on the 'if you build it, they will come' model.",
+          "provenance": "fact",
+          "source_quote": "They're built to suit, not if you build it, they will come.",
+          "source_ref": "Glenn Hutchins, L4800-4802",
+          "pos": [
+            -48,
+            22
+          ]
+        },
+        {
+          "id": "g5",
+          "slot": "grounds",
+          "label": "CLECs built first, went to zero",
+          "text": "During the dot-com build the CLECs constructed fiber networks all around the country before the customers existed; they all went to zero and people lost their money.",
+          "provenance": "fact",
+          "source_quote": "the fiber optic networks were getting constructed all around the country, the CLECs, and those all went to zero and people lost their money on it.",
+          "source_ref": "Glenn Hutchins, L4772-4780",
+          "pos": [
+            -48,
+            4
+          ]
+        },
+        {
+          "id": "g3",
+          "slot": "grounds",
+          "label": "About 2x money over a 4-5 year deal",
+          "text": "Each deal, so far as Hutchins understands it, generates about a two-times multiple of money over the four-to-five-year contract on the cost of buying the GPUs and standing up the data center.",
+          "provenance": "fact",
+          "source_quote": "in the four to five-year period of the deal, generates about a two-time multiple of money on the cost of buying the GPUs and standing up the data centers.",
+          "source_ref": "Glenn Hutchins, L4826-4836",
+          "pos": [
+            -48,
+            -14
+          ]
+        },
+        {
+          "id": "g4",
+          "slot": "grounds",
+          "label": "Embedded option on used GPUs",
+          "text": "After the contract the owner of the GPUs holds an embedded option on the value of the used GPUs, which will be worth something.",
+          "provenance": "fact",
+          "source_quote": "the owner of the GPUs in the data center has an embedded option, on the value of the used GPUs, which will be worth something.",
+          "source_ref": "Glenn Hutchins, L4852-4856",
+          "pos": [
+            -48,
+            -32
+          ]
+        },
+        {
+          "id": "w0",
+          "slot": "warrant",
+          "label": "Each build has a commercial proposition",
+          "text": "Each contract and build has a commercial proposition in it; done well, as at CoreWeave, they stack like bricks in a wall.",
+          "provenance": "fact",
+          "source_quote": "each of the contracts and builds right now has a commercial proposition in it. And when done well, these companies that are doing this, like CoreWeave, are putting one of building a wall with one of those bricks on top of the other.",
+          "source_ref": "Glenn Hutchins, L4866-4872, the sentence before 'So it's not analogous'",
+          "entities": [
+            "Glenn Hutchins",
+            "CoreWeave"
+          ],
+          "pos": [
+            -14,
+            -8
+          ]
+        },
+        {
+          "id": "w1",
+          "slot": "warrant",
+          "label": "Contracted offtake transfers demand risk",
+          "text": "If a solvent counterparty has contracted to take all of a data center's output, the demand risk that sank the CLECs sits on that counterparty's balance sheet, so the build can be financed like a leased asset rather than a speculation.",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Never stated. It is the only general rule that carries 'solvent counterparty contracted to take all the output' and 'built to suit' across to 'not analogous to the CLECs'. Contestable: it holds only while the counterparty stays solvent for the whole contract term.",
+          "pos": [
+            6,
+            -4
+          ],
+          "size": 1.2
+        },
+        {
+          "id": "w2",
+          "slot": "warrant",
+          "label": "2x plus residual value bounds the loss",
+          "text": "If a four-to-five-year contract returns about twice the capital and the hardware keeps resale value afterwards, the downside of each build is bounded even if AI demand cools.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Hutchins gives the 2x multiple and the embedded option as data but never says why they make the build safe; the bridging rule is that contracted cash flows plus residual value bound the loss. It depends on the contracts performing and on used GPUs holding value.",
+          "pos": [
+            24,
+            -8
+          ]
+        },
+        {
+          "id": "b1",
+          "slot": "backing",
+          "label": "Microsoft: world's best credit rating",
+          "text": "Microsoft has, in Hutchins's view, the world's best credit rating, and will survive even if the sector collapses before it recovers.",
+          "provenance": "fact",
+          "source_quote": "Microsoft has, I think, the world's best credit rating.",
+          "source_ref": "Glenn Hutchins, L4810; survival point at L4820",
+          "entities": [
+            "Microsoft"
+          ],
+          "pos": [
+            -18,
+            -32
+          ]
+        },
+        {
+          "id": "b2",
+          "slot": "backing",
+          "label": "TSMC borrowed Taiwan's credit rating",
+          "text": "TSMC succeeded largely because Taiwan was willing to lend it the national credit rating; capital at fab scale was only approachable that way, and the data-center build needs financing at a similar scale.",
+          "provenance": "fact",
+          "source_quote": "TSMC succeeded largely because the country of Taiwan was willing to, essentially, to lend them the credit rating.",
+          "source_ref": "Glenn Hutchins, L4666-4668; 'Very similar today' at L4680",
+          "entities": [
+            "TSMC"
+          ],
+          "pos": [
+            0,
+            -32
+          ]
+        },
+        {
+          "id": "b3",
+          "slot": "backing",
+          "label": "Old hardware keeps value (iPhone)",
+          "text": "Used hardware keeps value: a five-year-old iPhone is still worth something even though people are buying the new ones.",
+          "provenance": "fact",
+          "source_quote": "I mean, your five-year-old iPhone is still worth something.",
+          "source_ref": "Glenn Hutchins, L4858",
+          "pos": [
+            30,
+            -32
+          ]
+        },
+        {
+          "id": "b4",
+          "slot": "backing",
+          "label": "Project finance on offtake contracts",
+          "text": "Lending against contracted offtake rather than merchant demand is the standard project-finance structure for pipelines and power plants; a strong balance sheet behind the offtake is what makes capital-intensive builds bankable.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Hutchins invokes a financing structure and a credit-rating backstop (Microsoft, TSMC and Taiwan) but never names the project-finance principle that makes those assurances relevant to the warrant. Field knowledge, not stated in the transcript.",
+          "pos": [
+            16,
+            -40
+          ]
+        },
+        {
+          "id": "q1",
+          "slot": "qualifier",
+          "label": "Internet camp: some will fail",
+          "text": "The claim is held in the '1999 internet' sense, not the '2008 subprime' sense: of course some companies will fail, some capital will be lost, and scoundrels will be attracted by the money moving around.",
+          "provenance": "fact",
+          "source_quote": "I am more in the internet camp which means that of course there will be companies that will be formed that won't be successful",
+          "source_ref": "Glenn Hutchins, L4746-4760",
+          "pos": [
+            30,
+            30
+          ]
+        },
+        {
+          "id": "q2",
+          "slot": "qualifier",
+          "label": "Holds for hyperscaler-grade offtake",
+          "text": "The claim holds in aggregate for builds whose offtaker is a hyperscaler-grade credit; it is weaker for builds contracted to labs or neoclouds whose solvency depends on continued fundraising.",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "Hutchins's backing is a single exemplar (Microsoft) and his grounds say 'almost all', not all. Bounding the claim to counterparty quality follows from what he offers and from the host's remark about OpenAI's capital consumption.",
+          "pos": [
+            12,
+            36
+          ]
+        },
+        {
+          "id": "r0",
+          "slot": "rebuttal",
+          "label": "OpenAI burns capital before cash flow",
+          "text": "The host notes how capital-consumptive OpenAI will be before profit or cash flow comes, unlike Google, which threw off cash well before its IPO.",
+          "provenance": "fact",
+          "source_quote": "you look at how capital consumptive Open AI will be before profit comes or cash flow comes",
+          "source_ref": "Host, L4896-4900, immediately after Hutchins's answer",
+          "entities": [
+            "OpenAI"
+          ],
+          "pos": [
+            50,
+            -14
+          ]
+        },
+        {
+          "id": "r1",
+          "slot": "rebuttal",
+          "label": "Older GPUs can be economically worthless",
+          "text": "A GPU that produces fewer tokens per watt than newer ones can be economically worthless even though it can still do something useful.",
+          "provenance": "fact",
+          "source_quote": "if the GPU is producing fewer tokens per watt and that just relative to newer ones, it can be economically worthless, even though it can still actually do something useful.",
+          "source_ref": "Byrne Hobart, L3300, earlier segment of the same episode",
+          "entities": [
+            "Byrne Hobart"
+          ],
+          "pos": [
+            60,
+            -32
+          ]
+        },
+        {
+          "id": "r2",
+          "slot": "rebuttal",
+          "label": "Unless the offtaker is a weaker credit",
+          "text": "Unless the contracted counterparty is not Microsoft-grade: a large share of offtake is contracted by OpenAI and other labs that burn capital for years, so the 'solvent counterparty' premise depends on their continued funding.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The host observes that OpenAI will be capital consumptive before cash flow comes; Hutchins's solvency backing names only Microsoft. If the offtaker cannot pay through a downturn, the warrant's transfer of demand risk fails. Underserved need: counterparty-risk rating or insurance for compute offtake contracts.",
+          "entities": [
+            "OpenAI",
+            "Microsoft"
+          ],
+          "pos": [
+            38,
+            -22
+          ]
+        },
+        {
+          "id": "r3",
+          "slot": "rebuttal",
+          "label": "Unless used GPUs are worth far less",
+          "text": "Unless the residual value of used GPUs is far below what the 2x math assumes: nobody prices the embedded option, and a newer chip that produces more tokens per watt can make an older fleet economically worthless while it still runs.",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "Hobart's economic-obsolescence point, made earlier in the same episode, contradicts the iPhone analogy; the deal math Hutchins cites is stated 'so far as I understand it' and depends on this unpriced option. Underserved need: a priced residual-value benchmark or guarantee market for used accelerators.",
+          "pos": [
+            46,
+            -40
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1",
+          "from": "g1",
+          "to": "c1",
+          "relation": "supports",
+          "provenance": "fact",
+          "source_quote": "but the major difference between that and today is every one of these data centers",
+          "source_ref": "Glenn Hutchins, L4786-4788"
+        },
+        {
+          "id": "e2",
+          "from": "g2",
+          "to": "c1",
+          "relation": "supports",
+          "provenance": "fact",
+          "source_quote": "They're built to suit, not if you build it, they will come.",
+          "source_ref": "Glenn Hutchins, L4800-4802"
+        },
+        {
+          "id": "e3",
+          "from": "g5",
+          "to": "c1",
+          "relation": "supports",
+          "provenance": "fact",
+          "source_quote": "The major difference between that, and people use that as analogy today",
+          "source_ref": "Glenn Hutchins, L4782-4784"
+        },
+        {
+          "id": "e4",
+          "from": "g3",
+          "to": "c1",
+          "relation": "supports",
+          "provenance": "fact",
+          "source_quote": "And the last point I would make and just finish this in a new one is that each of these deals",
+          "source_ref": "Glenn Hutchins, L4826"
+        },
+        {
+          "id": "e5",
+          "from": "g4",
+          "to": "c1",
+          "relation": "supports",
+          "provenance": "fact",
+          "source_quote": "And then the owner of the GPUs in the data center has an embedded option",
+          "source_ref": "Glenn Hutchins, L4852-4854"
+        },
+        {
+          "id": "e6",
+          "from": "w0",
+          "to": "c1",
+          "relation": "licenses",
+          "provenance": "fact",
+          "source_quote": "So it's not, it's not analogous.",
+          "source_ref": "Glenn Hutchins, L4880: the 'So' states the inference"
+        },
+        {
+          "id": "e7",
+          "from": "w1",
+          "to": "c1",
+          "relation": "licenses",
+          "provenance": "derived",
+          "confidence": 0.8
+        },
+        {
+          "id": "e8",
+          "from": "w2",
+          "to": "c1",
+          "relation": "licenses",
+          "provenance": "derived",
+          "confidence": 0.7
+        },
+        {
+          "id": "e9",
+          "from": "w1",
+          "to": "g1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8
+        },
+        {
+          "id": "e10",
+          "from": "w1",
+          "to": "g2",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8
+        },
+        {
+          "id": "e11",
+          "from": "w1",
+          "to": "w0",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8
+        },
+        {
+          "id": "e12",
+          "from": "w2",
+          "to": "g3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7
+        },
+        {
+          "id": "e13",
+          "from": "w2",
+          "to": "g4",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7
+        },
+        {
+          "id": "e14",
+          "from": "b1",
+          "to": "w1",
+          "relation": "backs",
+          "provenance": "fact",
+          "source_quote": "If you sign a deal with Microsoft to take the off-put for your data center",
+          "source_ref": "Glenn Hutchins, L4812, offered right after the counterparty grounds"
+        },
+        {
+          "id": "e15",
+          "from": "b2",
+          "to": "w1",
+          "relation": "backs",
+          "provenance": "fact",
+          "source_quote": "Very similar today, which is the scale of financing that's required to build all these",
+          "source_ref": "Glenn Hutchins, L4680-4682"
+        },
+        {
+          "id": "e16",
+          "from": "b3",
+          "to": "w2",
+          "relation": "backs",
+          "provenance": "fact",
+          "source_quote": "I mean, your five-year-old iPhone is still worth something.",
+          "source_ref": "Glenn Hutchins, L4858, offered right after the embedded-option grounds"
+        },
+        {
+          "id": "e17",
+          "from": "b4",
+          "to": "w1",
+          "relation": "backs",
+          "provenance": "derived",
+          "confidence": 0.7
+        },
+        {
+          "id": "e18",
+          "from": "b4",
+          "to": "b1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7
+        },
+        {
+          "id": "e19",
+          "from": "b4",
+          "to": "b2",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7
+        },
+        {
+          "id": "e20",
+          "from": "q1",
+          "to": "c1",
+          "relation": "qualifies",
+          "provenance": "fact",
+          "source_quote": "I am more in the internet camp which means that of course there will be",
+          "source_ref": "Glenn Hutchins, L4746-4750"
+        },
+        {
+          "id": "e21",
+          "from": "q2",
+          "to": "c1",
+          "relation": "qualifies",
+          "provenance": "derived",
+          "confidence": 0.65
+        },
+        {
+          "id": "e22",
+          "from": "q2",
+          "to": "g1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.65
+        },
+        {
+          "id": "e23",
+          "from": "q2",
+          "to": "b1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.65
+        },
+        {
+          "id": "e24",
+          "from": "r0",
+          "to": "c1",
+          "relation": "rebuts",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "The host raises OpenAI's capital consumption as a contrast, not as an objection; reading it as an exception condition is an inference."
+        },
+        {
+          "id": "e25",
+          "from": "r1",
+          "to": "c1",
+          "relation": "rebuts",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Hobart was answering a different question earlier in the episode; the judgment that his point undercuts the embedded-option grounds is the LLM's."
+        },
+        {
+          "id": "e26",
+          "from": "r2",
+          "to": "c1",
+          "relation": "rebuts",
+          "provenance": "derived",
+          "confidence": 0.7
+        },
+        {
+          "id": "e27",
+          "from": "r2",
+          "to": "r0",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7
+        },
+        {
+          "id": "e28",
+          "from": "r2",
+          "to": "g1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.7
+        },
+        {
+          "id": "e29",
+          "from": "r3",
+          "to": "c1",
+          "relation": "rebuts",
+          "provenance": "derived",
+          "confidence": 0.55
+        },
+        {
+          "id": "e30",
+          "from": "r3",
+          "to": "r1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.55
+        },
+        {
+          "id": "e31",
+          "from": "r3",
+          "to": "g4",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.55
+        },
+        {
+          "id": "e32",
+          "from": "c1",
+          "to": "c2",
+          "relation": "supports",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The CLEC disanalogy is the argument Hutchins offers for why debt financing can be done responsibly; he does not state the link."
+        }
+      ]
+    }
+  ]
+}
