@@ -565,6 +565,9 @@ function applyVisibility() {
     rec.grp.visible = vis;
     if (rec.label) rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
   }
+  // The idea key explains a marker; drop it when no idea node is on screen (e.g. the facts-only view).
+  const ideaKey = $('legend')?.querySelector('.key-row.idea-key');
+  if (ideaKey) ideaKey.style.display = [...state.nodes.values()].some(r => r.node.idea && r.obj.visible) ? '' : 'none';
   renderStats();
 }
 
@@ -590,6 +593,7 @@ function renderLegend(ex) {
   if (ideaCount) keys.push(['★', 'gold ring: an opportunity this framework surfaces']);
   for (const [sym, txt] of keys) {
     const row = document.createElement('div'); row.className = 'key-row';
+    if (sym === '★') row.classList.add('idea-key');
     const a = document.createElement('span'); a.className = 'sym'; a.textContent = sym; if (sym === '★') a.style.color = IDEA;
     const b = document.createElement('span'); b.textContent = txt; row.append(a, b); el.appendChild(row);
   }

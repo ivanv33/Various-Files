@@ -74,8 +74,31 @@ try {
     // click the first node to show the panel
     const clicked = await page.evaluate(() => { const c = document.querySelector('#stage canvas'); if (!c) return false; return true; });
     if (clicked) {
-      const pt = await page.evaluate(() => { const e = document.querySelector('#labels .nlabel'); if (!e) return null; const r = e.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top - 8 }; });
-      if (pt) { await page.mouse.click(pt.x, pt.y); await new Promise(r => setTimeout(r, 300)); await shot('panel'); }
+      // Open the panel on a DERIVED node, preferring one carrying an idea: that panel shows the
+      // confidence, the rationale, the supporting facts and the opportunity, which is the whole
+      // point of this library. Clicking the first label in DOM order (the old behaviour) almost
+      // always landed on a fact node, so no critic ever saw the inference panel.
+      const pick = await page.evaluate(() => {
+        const vis = (e) => e.style.display !== 'none' && e.offsetParent !== null;
+        const all = [...document.querySelectorAll('#labels .nlabel')].filter(vis);
+        const target = all.find(e => e.classList.contains('derived') && e.querySelector('.idea-star'))
+          || all.find(e => e.classList.contains('derived'))
+          || all[0];
+        if (!target) return null;
+        const r = target.getBoundingClientRect();
+        return { x: r.left + r.width / 2, y: r.top - 8, kind: target.className, idea: !!target.querySelector('.idea-star') };
+      });
+      if (pick) {
+        await page.mouse.click(pick.x, pick.y);
+        await new Promise(r => setTimeout(r, 300));
+        await shot('panel');
+        rec.panel_node = { classes: pick.kind, has_idea: pick.idea };
+        rec.panel_sections = await page.evaluate(() => {
+          const p = document.getElementById('panel');
+          if (!p || p.hidden) return null;
+          return { badge: p.querySelector('.badge')?.textContent || null, headings: [...p.querySelectorAll('h4')].map(h => h.textContent) };
+        });
+      }
     }
     rec.console = [...rec.console, ...errors];
     report.examples.push(rec);
