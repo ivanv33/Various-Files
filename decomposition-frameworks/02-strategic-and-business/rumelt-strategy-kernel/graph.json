@@ -20,7 +20,7 @@
       "label": "Fluff",
       "description": "Stated goals, missions and slogans that are not strategy; kept in the graph so the reader sees exactly what was stripped away.",
       "typical_provenance": "fact",
-      "color": "#c9a227",
+      "color": "#8a6fc4",
       "shape": "cone"
     },
     {
@@ -93,67 +93,64 @@
           {
             "label": "Fluff (not strategy)",
             "x": [
-              -62,
-              -34
+              -80,
+              -48
             ],
             "y": [
-              -46,
-              46
+              -62,
+              58
             ],
-            "color": "#c9a227"
+            "color": "#8a6fc4"
           },
           {
             "label": "Challenge",
             "x": [
-              -30,
-              62
+              -40,
+              78
             ],
             "y": [
-              30,
-              46
+              29.5,
+              58
             ],
             "color": "#7a8fa6"
           },
           {
             "label": "Diagnosis",
             "x": [
-              -30,
-              62
+              -40,
+              78
             ],
             "y": [
-              6,
-              26
+              -3,
+              28.5
             ],
             "color": "#d94f3d"
           },
           {
             "label": "Guiding policy",
             "x": [
-              -30,
-              62
+              -40,
+              78
             ],
             "y": [
-              -22,
-              2
+              -32.5,
+              -4.5
             ],
             "color": "#3f7fb5"
           },
           {
             "label": "Coherent actions",
             "x": [
-              -30,
-              62
+              -40,
+              78
             ],
             "y": [
-              -46,
-              -20
+              -62,
+              -34
             ],
             "color": "#4a9d6a"
           }
-        ],
-        "camera": {
-          "distance": 175
-        }
+        ]
       },
       "nodes": [
         {
@@ -168,8 +165,8 @@
             "Apple"
           ],
           "pos": [
-            -18,
-            38
+            -22,
+            50
           ]
         },
         {
@@ -184,8 +181,8 @@
             "Apple"
           ],
           "pos": [
-            4,
-            38
+            19,
+            50
           ]
         },
         {
@@ -202,8 +199,8 @@
             "Newton"
           ],
           "pos": [
-            26,
-            38
+            60,
+            50
           ]
         },
         {
@@ -219,7 +216,7 @@
             "Macintosh"
           ],
           "pos": [
-            48,
+            19,
             38
           ]
         },
@@ -235,9 +232,10 @@
             "Apple"
           ],
           "pos": [
-            -48,
-            26
-          ]
+            -64,
+            45
+          ],
+          "size": 0.85
         },
         {
           "id": "f2",
@@ -251,14 +249,15 @@
             "Apple"
           ],
           "pos": [
-            -48,
-            6
-          ]
+            -64,
+            33
+          ],
+          "size": 0.85
         },
         {
           "id": "f3",
           "slot": "fluff",
-          "label": "Reassert leadership in innovation",
+          "label": "Reassert innovation leadership",
           "text": "The plan's third objective was to reassert Apple as the industry's leader in innovation.",
           "provenance": "fact",
           "source_quote": "to reassert Apple as the industry's leader in innovation",
@@ -267,9 +266,10 @@
             "Apple"
           ],
           "pos": [
-            -48,
-            -14
-          ]
+            -64,
+            21
+          ],
+          "size": 0.85
         },
         {
           "id": "d1",
@@ -283,14 +283,15 @@
             "Apple"
           ],
           "pos": [
-            -12,
-            16
-          ]
+            -22,
+            12
+          ],
+          "size": 1.15
         },
         {
           "id": "d2",
           "slot": "diagnosis",
-          "label": "The volume game was already lost",
+          "label": "The volume game was lost",
           "text": "Apple could not beat the Windows-Intel standard on volume, so a market-share objective was a wish rather than a route; the reachable position was a small, profitable, differentiated one.",
           "provenance": "derived",
           "confidence": 0.85,
@@ -299,9 +300,10 @@
             "Apple"
           ],
           "pos": [
-            14,
-            16
-          ]
+            19,
+            12
+          ],
+          "size": 1.15
         },
         {
           "id": "d3",
@@ -316,9 +318,10 @@
             "Macintosh"
           ],
           "pos": [
-            40,
-            16
-          ]
+            60,
+            12
+          ],
+          "size": 1.15
         },
         {
           "id": "g1",
@@ -333,8 +336,8 @@
             "Steve Jobs"
           ],
           "pos": [
-            -18,
-            -4
+            -10,
+            -12.5
           ]
         },
         {
@@ -350,8 +353,8 @@
             "Steve Jobs"
           ],
           "pos": [
-            30,
-            -4
+            48,
+            -12.5
           ]
         },
         {
@@ -366,8 +369,8 @@
             "Apple"
           ],
           "pos": [
-            -8,
-            -16
+            -10,
+            -24.5
           ]
         },
         {
@@ -382,14 +385,14 @@
             "Apple"
           ],
           "pos": [
-            30,
-            -16
+            48,
+            -24.5
           ]
         },
         {
           "id": "a1",
           "slot": "coherent_action",
-          "label": "Consumer and pro, desktop and portable",
+          "label": "Consumer/pro, desktop/portable",
           "text": "The line was cut to a desktop and a portable for consumers and a desktop and a portable for professionals.",
           "provenance": "fact",
           "source_quote": "a desktop and a portable for consumers, a desktop and a portable for professionals",
@@ -398,14 +401,14 @@
             "Apple"
           ],
           "pos": [
-            -24,
-            -28
+            -22,
+            -42
           ]
         },
         {
           "id": "a2",
           "slot": "coherent_action",
-          "label": "End Newton, printers, clone licences",
+          "label": "End Newton, printers, clones",
           "text": "Apple ended the Newton, the printers and the clone licences.",
           "provenance": "fact",
           "source_quote": "He ended the Newton, the printers and the clone licences",
@@ -415,8 +418,8 @@
             "Newton"
           ],
           "pos": [
-            -6,
-            -28
+            19,
+            -42
           ]
         },
         {
@@ -431,8 +434,8 @@
             "Apple"
           ],
           "pos": [
-            12,
-            -28
+            60,
+            -42
           ]
         },
         {
@@ -447,8 +450,8 @@
             "Apple"
           ],
           "pos": [
-            30,
-            -28
+            -22,
+            -54
           ]
         },
         {
@@ -463,8 +466,8 @@
             "Apple"
           ],
           "pos": [
-            48,
-            -28
+            19,
+            -54
           ]
         },
         {
@@ -479,8 +482,8 @@
             "Apple"
           ],
           "pos": [
-            16,
-            -40
+            60,
+            -54
           ]
         }
       ],
@@ -743,67 +746,64 @@
           {
             "label": "Fluff (not strategy)",
             "x": [
-              -62,
-              -34
+              -80,
+              -48
             ],
             "y": [
-              -48,
-              46
+              -62,
+              58
             ],
-            "color": "#c9a227"
+            "color": "#8a6fc4"
           },
           {
             "label": "Challenge",
             "x": [
-              -32,
-              64
+              -40,
+              78
             ],
             "y": [
-              30,
-              46
+              29.5,
+              58
             ],
             "color": "#7a8fa6"
           },
           {
             "label": "Diagnosis",
             "x": [
-              -32,
-              64
+              -40,
+              78
             ],
             "y": [
-              2,
-              28
+              -3,
+              28.5
             ],
             "color": "#d94f3d"
           },
           {
             "label": "Guiding policy",
             "x": [
-              -32,
-              64
+              -40,
+              78
             ],
             "y": [
-              -22,
-              0
+              -32.5,
+              -4.5
             ],
             "color": "#3f7fb5"
           },
           {
             "label": "Coherent actions",
             "x": [
-              -32,
-              64
+              -40,
+              78
             ],
             "y": [
-              -48,
-              -24
+              -62,
+              -34
             ],
             "color": "#4a9d6a"
           }
-        ],
-        "camera": {
-          "distance": 180
-        }
+        ]
       },
       "nodes": [
         {
@@ -819,8 +819,8 @@
             "Max Levchin"
           ],
           "pos": [
-            -24,
-            38
+            -22,
+            50
           ]
         },
         {
@@ -836,8 +836,8 @@
             "Max Levchin"
           ],
           "pos": [
-            -2,
-            38
+            19,
+            50
           ]
         },
         {
@@ -852,8 +852,8 @@
             "Affirm"
           ],
           "pos": [
-            20,
-            38
+            60,
+            50
           ]
         },
         {
@@ -869,7 +869,7 @@
             "Max Levchin"
           ],
           "pos": [
-            40,
+            -10,
             38
           ]
         },
@@ -886,14 +886,14 @@
             "Max Levchin"
           ],
           "pos": [
-            58,
+            48,
             38
           ]
         },
         {
           "id": "f1",
           "slot": "fluff",
-          "label": "Mission: honest financial products",
+          "label": "Mission: honest finance",
           "text": "The mission statement: to build honest financial products that improve lives.",
           "provenance": "fact",
           "source_quote": "Anyway, so our mission is to build honest financial products that improve lives.",
@@ -903,14 +903,15 @@
             "Max Levchin"
           ],
           "pos": [
-            -48,
-            34
-          ]
+            -64,
+            45
+          ],
+          "size": 0.85
         },
         {
           "id": "f2",
           "slot": "fluff",
-          "label": "Mission unchanged in fifteen years",
+          "label": "Unchanged in fifteen years",
           "text": "Levchin notes with pride that the mission statement has not changed a word since the company started, almost fifteen years earlier.",
           "provenance": "fact",
           "source_quote": "So if you look at our mission statements, which I'm very proud to note has not changed a word since today we started the company.",
@@ -920,14 +921,15 @@
             "Max Levchin"
           ],
           "pos": [
-            -48,
-            12
-          ]
+            -64,
+            26
+          ],
+          "size": 0.85
         },
         {
           "id": "f3",
           "slot": "fluff",
-          "label": "In that domain we're unmatched",
+          "label": "In that domain, unmatched",
           "text": "A claim of standing rather than of direction: in underwriting, Affirm is unmatched, it has always been the strength, and it continues to win.",
           "provenance": "fact",
           "source_quote": "And so in that domain, we're unmatched and that's always been our strength and we continue to win",
@@ -937,14 +939,15 @@
             "Max Levchin"
           ],
           "pos": [
-            -48,
-            -10
-          ]
+            -64,
+            12
+          ],
+          "size": 0.85
         },
         {
           "id": "f4",
           "slot": "fluff",
-          "label": "Purism from mortgages to auto loans",
+          "label": "Purism in mortgages and autos",
           "text": "The expansion ambition: apply the same level of purism to mortgages, banking, auto loans and all sorts of fun things.",
           "provenance": "fact",
           "source_quote": "there's tons of opportunity to apply the same level of purism that we brought to lending to other things, from mortgages to banking, to auto loans, to all sorts of fun things",
@@ -954,9 +957,10 @@
             "Max Levchin"
           ],
           "pos": [
-            -48,
-            -34
-          ]
+            -64,
+            -2
+          ],
+          "size": 0.85
         },
         {
           "id": "d1",
@@ -971,9 +975,10 @@
             "Max Levchin"
           ],
           "pos": [
-            -16,
-            22
-          ]
+            -22,
+            20.5
+          ],
+          "size": 1.15
         },
         {
           "id": "d2",
@@ -988,9 +993,10 @@
             "Max Levchin"
           ],
           "pos": [
-            12,
-            22
-          ]
+            19,
+            20.5
+          ],
+          "size": 1.15
         },
         {
           "id": "d3",
@@ -1005,14 +1011,15 @@
             "Max Levchin"
           ],
           "pos": [
-            40,
-            22
-          ]
+            60,
+            20.5
+          ],
+          "size": 1.15
         },
         {
           "id": "d4",
           "slot": "diagnosis",
-          "label": "The profit pool is the borrower's error",
+          "label": "Profit pool is borrower error",
           "text": "The critical obstacle behind the stated one: in consumer credit the industry's margin is produced by borrower mistakes, so refusing fee and compounding revenue removes the profit pool itself rather than trimming a line item.",
           "provenance": "derived",
           "confidence": 0.8,
@@ -1023,14 +1030,15 @@
             "Max Levchin"
           ],
           "pos": [
-            -14,
-            8
-          ]
+            -22,
+            5.5
+          ],
+          "size": 1.15
         },
         {
           "id": "d5",
           "slot": "diagnosis",
-          "label": "Selection has to replace fee income",
+          "label": "Selection replaces fee income",
           "text": "With fee and compounding revenue renounced, the only remaining lever is who gets lent to: the binding constraint becomes underwriting accuracy, not distribution, brand or cost of funds.",
           "provenance": "derived",
           "confidence": 0.75,
@@ -1039,9 +1047,10 @@
             "Affirm"
           ],
           "pos": [
-            14,
-            8
-          ]
+            19,
+            5.5
+          ],
+          "size": 1.15
         },
         {
           "id": "d6",
@@ -1056,14 +1065,15 @@
             "Affirm"
           ],
           "pos": [
-            42,
-            8
-          ]
+            60,
+            5.5
+          ],
+          "size": 1.15
         },
         {
           "id": "g1",
           "slot": "guiding_policy",
-          "label": "No late fees, no compounding interest",
+          "label": "No late fees, no compounding",
           "text": "The company was started specifically to have no late fees and no compounding interest, and to be on the opposite side of the things people hate.",
           "provenance": "fact",
           "source_quote": "We started the company specifically to not have late fees, to not have compounding interest to all the things that people hate, we want it to be on the opposite side.",
@@ -1073,8 +1083,8 @@
             "Max Levchin"
           ],
           "pos": [
-            -18,
-            -6
+            -22,
+            -12.5
           ]
         },
         {
@@ -1090,8 +1100,8 @@
             "Max Levchin"
           ],
           "pos": [
-            8,
-            -6
+            19,
+            -12.5
           ]
         },
         {
@@ -1106,8 +1116,8 @@
             "Affirm"
           ],
           "pos": [
-            34,
-            -6
+            60,
+            -12.5
           ]
         },
         {
@@ -1123,8 +1133,8 @@
             "Max Levchin"
           ],
           "pos": [
-            56,
-            -6
+            48,
+            -24.5
           ]
         },
         {
@@ -1139,8 +1149,8 @@
             "Affirm"
           ],
           "pos": [
-            10,
-            -18
+            -10,
+            -24.5
           ]
         },
         {
@@ -1156,14 +1166,14 @@
             "Max Levchin"
           ],
           "pos": [
-            -20,
-            -30
+            -22,
+            -42
           ]
         },
         {
           "id": "a2",
           "slot": "coherent_action",
-          "label": "Securitise and run warehouse lines",
+          "label": "Securitise, warehouse lines",
           "text": "Affirm securitises loans regularly and runs a collection of warehouse lines against the receivables; together these make up its capital markets program.",
           "provenance": "fact",
           "source_quote": "we now are big enough where we securitize in a fairly regular basis, which means people buy our securities. that we securitize, and then we have a whole collection of what's called warehouse lines where you finance the receivables or you borrow against the receivables as a security. And so all of that comprises our capital markets program.",
@@ -1172,8 +1182,8 @@
             "Affirm"
           ],
           "pos": [
-            2,
-            -30
+            19,
+            -42
           ]
         },
         {
@@ -1188,8 +1198,8 @@
             "Affirm"
           ],
           "pos": [
-            26,
-            -30
+            60,
+            -42
           ]
         },
         {
@@ -1204,14 +1214,14 @@
             "Affirm"
           ],
           "pos": [
-            50,
-            -30
+            -22,
+            -54
           ]
         },
         {
           "id": "a5",
           "slot": "coherent_action",
-          "label": "Push down-market into small tickets",
+          "label": "Down-market into small tickets",
           "text": "Read as a commitment rather than an outcome: the ticket has fallen from about $900 at IPO to under $300 while frequency rose, which is a deliberate move into small, repeat purchases where a fee-free product's advantage over a revolving card compounds fastest.",
           "provenance": "derived",
           "confidence": 0.7,
@@ -1220,14 +1230,14 @@
             "Affirm"
           ],
           "pos": [
-            6,
-            -42
+            19,
+            -54
           ]
         },
         {
           "id": "a6",
           "slot": "coherent_action",
-          "label": "Small tickets strain the selection edge",
+          "label": "Small tickets strain selection",
           "text": "The one place the action set pulls against itself: many small decisions per dollar lent is exactly where an underwriting advantage is hardest to hold and cheapest for a competitor to approximate, so the down-market push taxes the capability the whole policy rests on.",
           "provenance": "derived",
           "confidence": 0.55,
@@ -1236,8 +1246,8 @@
             "Affirm"
           ],
           "pos": [
-            38,
-            -42
+            60,
+            -54
           ]
         }
       ],
