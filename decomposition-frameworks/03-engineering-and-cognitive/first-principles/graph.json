@@ -85,7 +85,69 @@
       "layout": {
         "mode": "tree",
         "root": "p1",
-        "direction": "down"
+        "direction": "down",
+        "regions": [
+          {
+            "label": "Problem",
+            "x": [
+              -60,
+              60
+            ],
+            "y": [
+              29,
+              47
+            ],
+            "color": "#3987e5"
+          },
+          {
+            "label": "Assumption",
+            "x": [
+              -60,
+              60
+            ],
+            "y": [
+              11,
+              29
+            ],
+            "color": "#c4384a"
+          },
+          {
+            "label": "Fundamental truth",
+            "x": [
+              -60,
+              60
+            ],
+            "y": [
+              -7,
+              11
+            ],
+            "color": "#2f9e63"
+          },
+          {
+            "label": "Derived limit",
+            "x": [
+              -60,
+              60
+            ],
+            "y": [
+              -25,
+              -7
+            ],
+            "color": "#8e6bd9"
+          },
+          {
+            "label": "Rebuilt solution",
+            "x": [
+              -60,
+              60
+            ],
+            "y": [
+              -45,
+              -25
+            ],
+            "color": "#d95926"
+          }
+        ]
       },
       "nodes": [
         {
@@ -96,7 +158,11 @@
           "provenance": "fact",
           "source_quote": "An investor tells a founder that grid-scale energy storage will never be cheap.",
           "source_ref": "sentence 1",
-          "level": 0
+          "level": 0,
+          "pos": [
+            8,
+            38
+          ]
         },
         {
           "id": "a1",
@@ -106,7 +172,11 @@
           "provenance": "fact",
           "source_quote": "The industry number, he says, is settled: battery packs cost about six hundred dollars per kilowatt-hour, they have always cost about that, and there is no reason to expect anything different.",
           "source_ref": "sentence 2",
-          "level": 1
+          "level": 1,
+          "pos": [
+            -20,
+            20
+          ]
         },
         {
           "id": "a2",
@@ -116,7 +186,11 @@
           "provenance": "derived",
           "confidence": 0.8,
           "rationale": "The investor offers price history as his whole argument ('they have always cost about that'), which only works if history bounds the achievable price. He never states that premise; it is what makes his sentence an argument rather than an observation.",
-          "level": 1
+          "level": 1,
+          "pos": [
+            34,
+            20
+          ]
         },
         {
           "id": "t1",
@@ -126,7 +200,11 @@
           "provenance": "fact",
           "source_quote": "It is cobalt, nickel, aluminium, carbon, some polymers for separation, and a steel can.",
           "source_ref": "sentence 5",
-          "level": 2
+          "level": 2,
+          "pos": [
+            -42,
+            2
+          ]
         },
         {
           "id": "t2",
@@ -136,7 +214,11 @@
           "provenance": "fact",
           "source_quote": "She looks up what those materials cost on the London Metal Exchange",
           "source_ref": "sentence 6",
-          "level": 2
+          "level": 2,
+          "pos": [
+            -4,
+            2
+          ]
         },
         {
           "id": "t3",
@@ -146,7 +228,11 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "The scenario's whole move depends on this and never says it. Both the materials list and the exchange lookup are only interesting if the remaining cost is contingent; if some law forced $600, the decomposition would be pointless.",
-          "level": 2
+          "level": 2,
+          "pos": [
+            42,
+            2
+          ]
         },
         {
           "id": "c1",
@@ -156,7 +242,11 @@
           "provenance": "fact",
           "source_quote": "adds them up in the quantities a kilowatt-hour of cell needs, and gets about eighty dollars per kilowatt-hour.",
           "source_ref": "sentence 6",
-          "level": 3
+          "level": 3,
+          "pos": [
+            -40,
+            -12
+          ]
         },
         {
           "id": "c2",
@@ -166,7 +256,11 @@
           "provenance": "derived",
           "confidence": 0.9,
           "rationale": "Direct subtraction of the two stated numbers, $600 minus about $80, and the scenario names the remainder as 'the shape someone has chosen to put the materials in'. The split is forced once both numbers are on the table.",
-          "level": 3
+          "level": 3,
+          "pos": [
+            -2,
+            -16
+          ]
         },
         {
           "id": "c3",
@@ -176,7 +270,11 @@
           "provenance": "derived",
           "confidence": 0.75,
           "rationale": "Follows from what a lower bound is: the materials number is necessary, not sufficient. The scenario never draws the distinction, and the reader who misses it reads the floor as a price prediction, which is the standard misuse of the method.",
-          "level": 3
+          "level": 3,
+          "pos": [
+            42,
+            -12
+          ]
         },
         {
           "id": "r1",
@@ -186,7 +284,11 @@
           "provenance": "fact",
           "source_quote": "If you bought the metals on the exchange and combined them into the shape of a cell, you would have a battery for a fraction of what anyone quotes",
           "source_ref": "sentence 8",
-          "level": 4
+          "level": 4,
+          "pos": [
+            -42,
+            -30
+          ]
         },
         {
           "id": "r2",
@@ -196,7 +298,11 @@
           "provenance": "fact",
           "source_quote": "so the question is not whether cheap storage is possible but which of the steps between the metal and the cell is the one worth attacking",
           "source_ref": "sentence 8",
-          "level": 4
+          "level": 4,
+          "pos": [
+            42,
+            -30
+          ]
         },
         {
           "id": "r3",
@@ -206,7 +312,11 @@
           "provenance": "derived",
           "confidence": 0.7,
           "rationale": "Reads the arithmetic of c2 as a market description rather than a cost breakdown: if the remainder is process, each process step is a place a company can stand. The scenario stops one step short of saying so.",
-          "level": 4
+          "level": 4,
+          "pos": [
+            0,
+            -38
+          ]
         }
       ],
       "edges": [
@@ -399,7 +509,69 @@
       "layout": {
         "mode": "tree",
         "root": "q1",
-        "direction": "down"
+        "direction": "down",
+        "regions": [
+          {
+            "label": "Problem",
+            "x": [
+              -60,
+              60
+            ],
+            "y": [
+              29.5,
+              47.5
+            ],
+            "color": "#3987e5"
+          },
+          {
+            "label": "Assumption",
+            "x": [
+              -60,
+              60
+            ],
+            "y": [
+              11.5,
+              29.5
+            ],
+            "color": "#c4384a"
+          },
+          {
+            "label": "Fundamental truth",
+            "x": [
+              -60,
+              60
+            ],
+            "y": [
+              -6.5,
+              11.5
+            ],
+            "color": "#2f9e63"
+          },
+          {
+            "label": "Derived limit",
+            "x": [
+              -60,
+              60
+            ],
+            "y": [
+              -24.5,
+              -6.5
+            ],
+            "color": "#8e6bd9"
+          },
+          {
+            "label": "Rebuilt solution",
+            "x": [
+              -60,
+              60
+            ],
+            "y": [
+              -46,
+              -24.5
+            ],
+            "color": "#d95926"
+          }
+        ]
       },
       "nodes": [
         {
@@ -411,7 +583,11 @@
           "source_quote": "Why are you so bullish on solar and not maybe less bullish on nuclear? There's a lot of chatter and everyone loves both right now. But why is solar what you've chosen to kind of make your life's work here?",
           "source_ref": "Host, L3230-L3236",
           "entities": [],
-          "level": 0
+          "level": 0,
+          "pos": [
+            -20,
+            38.5
+          ]
         },
         {
           "id": "q2",
@@ -422,18 +598,26 @@
           "source_quote": "Is it solar panels all over in space? Is it solar panels all over the earth?",
           "source_ref": "Host, L3342-L3344",
           "entities": [],
-          "level": 0
+          "level": 0,
+          "pos": [
+            44,
+            38.5
+          ]
         },
         {
           "id": "a1",
           "slot": "assumption",
-          "label": "Nuclear is expensive because of the NRC",
+          "label": "The NRC makes nuclear expensive",
           "text": "The received explanation for nuclear's cost: the regulator and restricted access to enriched uranium. Handmer names it in order to delete it, hypothesising the NRC out of existence and uranium onto Amazon.",
           "provenance": "fact",
           "source_quote": "And that's even if NRC didn't exist tomorrow, right? Even if you could buy enriched uranium on amazon.com,",
           "source_ref": "Casey Handmer, L3262-L3262",
           "entities": [],
-          "level": 1
+          "level": 1,
+          "pos": [
+            -42,
+            24.5
+          ]
         },
         {
           "id": "a2",
@@ -444,18 +628,26 @@
           "source_quote": "So we don't have to theorize about, well, what is it going to take to get to, you know, first of a kind, second of a kind, hundredth of a kind, you know, start getting those economies of scale down in solar that's already happening.",
           "source_ref": "Casey Handmer, L3300-L3304",
           "entities": [],
-          "level": 1
+          "level": 1,
+          "pos": [
+            -22,
+            16.5
+          ]
         },
         {
           "id": "a4",
           "slot": "assumption",
-          "label": "Mirrors and lasers can beam power down",
+          "label": "Mirrors and lasers beam power down",
           "text": "The premise behind space-based solar power, which the host reports as an existing category: companies are building mirrors and lasers to send orbital power to the ground.",
           "provenance": "fact",
           "source_quote": "I've seen a couple of these companies that are using mirrors or lasers.",
           "source_ref": "Host, L3412-L3412",
           "entities": [],
-          "level": 1
+          "level": 1,
+          "pos": [
+            44,
+            24.5
+          ]
         },
         {
           "id": "a5",
@@ -466,7 +658,11 @@
           "confidence": 0.65,
           "rationale": "Nobody states this. It has to be named because the whole answer is a category switch: the question offers uranium against sunlight and the answer compares a turbine hall against a laminated sheet. Without naming the frame, the answer looks like a change of subject rather than a refusal of the premise.",
           "entities": [],
-          "level": 1
+          "level": 1,
+          "pos": [
+            -2,
+            20.5
+          ]
         },
         {
           "id": "t1",
@@ -477,7 +673,11 @@
           "source_quote": "At the end of the day, nuclear reactors are steam engines. And steam engines operate on what's called the Brayton cycle. And there are certain irreducible costs associated with steam turbines and so on that just drive the cost up.",
           "source_ref": "Casey Handmer, L3254-L3258",
           "entities": [],
-          "level": 2
+          "level": 2,
+          "pos": [
+            -48,
+            6.5
+          ]
         },
         {
           "id": "t2",
@@ -488,7 +688,11 @@
           "source_quote": "sunlight rains down on the earth every day for free. There's a fusion reactor up in the sky.",
           "source_ref": "Casey Handmer, L3266-L3266",
           "entities": [],
-          "level": 2
+          "level": 2,
+          "pos": [
+            -16,
+            6.5
+          ]
         },
         {
           "id": "t3",
@@ -499,7 +703,11 @@
           "source_quote": "it is possible to convert that into high grade energy in the form of electricity with a layer of silicon that's thinner than a sheet of paper, considerably thinner than a sheet of paper. The silicon is enormously abundant on the Earth.",
           "source_ref": "Casey Handmer, L3268-L3272",
           "entities": [],
-          "level": 2
+          "level": 2,
+          "pos": [
+            -22,
+            2.5
+          ]
         },
         {
           "id": "t4",
@@ -510,7 +718,11 @@
           "source_quote": "There are factories worldwide now churning out more than a terawatt of solar per year with no signs of slowing down. If anything, production is increasing 30 to 40% per year,",
           "source_ref": "Casey Handmer, L3276-L3282",
           "entities": [],
-          "level": 2
+          "level": 2,
+          "pos": [
+            -36,
+            -1.5
+          ]
         },
         {
           "id": "t5",
@@ -523,7 +735,11 @@
           "entities": [
             "Starlink"
           ],
-          "level": 2
+          "level": 2,
+          "pos": [
+            44,
+            6.5
+          ]
         },
         {
           "id": "t6",
@@ -534,7 +750,11 @@
           "source_quote": "than it being attempting to transmit gigawatts of power down to power plants where we pay 10 cents a kilowatt hours or something like that.",
           "source_ref": "Casey Handmer, L3442-L3446",
           "entities": [],
-          "level": 2
+          "level": 2,
+          "pos": [
+            44,
+            -1.5
+          ]
         },
         {
           "id": "t8",
@@ -545,7 +765,11 @@
           "confidence": 0.85,
           "rationale": "This is the pivot the argument turns on and Handmer never states it: he says a reactor is a steam engine and separately that a panel is a thin sheet of silicon, and leaves the reader to notice that the second one has no turbine in it at all. Without this step the two cost floors look like the same kind of number rather than floors set by different machines.",
           "entities": [],
-          "level": 2
+          "level": 2,
+          "pos": [
+            -4,
+            -1.5
+          ]
         },
         {
           "id": "c1",
@@ -556,7 +780,11 @@
           "source_quote": "it would still be the case that just the steam engine component is going to cost no less than coal.",
           "source_ref": "Casey Handmer, L3262-L3264",
           "entities": [],
-          "level": 3
+          "level": 3,
+          "pos": [
+            -46,
+            -11.5
+          ]
         },
         {
           "id": "c2",
@@ -567,18 +795,26 @@
           "source_quote": "give every man, woman and child on earth the amount of energy we enjoy here in the United States, which is about 20 barrels of oil per person per year, with something like 6% of earth's surface under solar, which is much, much less than we currently use for grazing or for row crops or for forestry.",
           "source_ref": "Casey Handmer, L3360-L3366",
           "entities": [],
-          "level": 3
+          "level": 3,
+          "pos": [
+            -12,
+            -11.5
+          ]
         },
         {
           "id": "c3",
           "slot": "constraint",
-          "label": "Solar land: $100-200k vs $500/acre",
+          "label": "Solar acre $100-200k, farm $500",
           "text": "Land is worth about five hundred dollars an acre per season in agriculture and about one to two hundred thousand dollars an acre per year under solar.",
           "provenance": "fact",
           "source_quote": "What's gonna happen is the net present value of land for agriculture is about 500 bucks per acre per season. But for solar, it's about 100 you know, 100 or 200 thousand dollars per year.",
           "source_ref": "Casey Handmer, L3382-L3386",
           "entities": [],
-          "level": 3
+          "level": 3,
+          "pos": [
+            2,
+            -15.5
+          ]
         },
         {
           "id": "c4",
@@ -589,7 +825,11 @@
           "source_quote": "Now, if that's powering an AI, artificial super intelligence data center, which is a thousand times more economically productive than your terribly poorly evolved human brain, which has to sleep eight hours a day, and, you know, browse Twitter, then obviously, economically speaking, our farmland is ultimately going to get paved over with solar and we're going to starve to death.",
           "source_ref": "Casey Handmer, L3386-L3394",
           "entities": [],
-          "level": 3
+          "level": 3,
+          "pos": [
+            -16,
+            -19.5
+          ]
         },
         {
           "id": "c5",
@@ -600,18 +840,26 @@
           "confidence": 0.9,
           "rationale": "Division of the two figures Handmer states: $100,000 to $200,000 against $500 gives 200x to 400x. The ratio is the operative quantity and he never says it, though every consequence he draws depends on it.",
           "entities": [],
-          "level": 3
+          "level": 3,
+          "pos": [
+            12,
+            -19.5
+          ]
         },
         {
           "id": "c6",
           "slot": "constraint",
-          "label": "Licence reform cannot move the floor",
+          "label": "Licence reform cannot move it",
           "text": "Because the bound comes from the turbine island rather than from the fuel or the licence, no amount of licensing reform or fuel-market liberalisation moves it. Only a converter with no heat cycle in it does, which is what a photovoltaic panel is.",
           "provenance": "derived",
           "confidence": 0.8,
           "rationale": "Combines the stated floor with the stated deletion: Handmer removes the regulator and the fuel constraint and finds the floor still there, which means neither was binding. Naming what would move it, a converter without a thermal cycle, is the step he leaves out.",
           "entities": [],
-          "level": 3
+          "level": 3,
+          "pos": [
+            -38,
+            -15.5
+          ]
         },
         {
           "id": "c7",
@@ -624,18 +872,26 @@
           "entities": [
             "Starlink"
           ],
-          "level": 3
+          "level": 3,
+          "pos": [
+            44,
+            -11.5
+          ]
         },
         {
           "id": "r1",
           "slot": "rebuilt_solution",
-          "label": "Put it on the ground; it makes power",
+          "label": "On the ground, it makes power",
           "text": "A commoditised product with no moving parts, needing no special skills or labour to install and operate, easier than planting corn: put it on the ground and it produces power.",
           "provenance": "fact",
           "source_quote": "It's a commoditized product. It has no moving parts. You don't need any special skills or labor to install and operate it. It's even easier to do than planting corn. You just put it on the ground and it spits out power,",
           "source_ref": "Casey Handmer, L3306-L3314",
           "entities": [],
-          "level": 4
+          "level": 4,
+          "pos": [
+            -36,
+            -28.5
+          ]
         },
         {
           "id": "r3",
@@ -646,7 +902,11 @@
           "source_quote": "We will obviously have a lot of solar in space, but I think mostly it'll be for powering applications in space. I don't think people are going to be beaming power down from space to the earth at any time, anytime soon.",
           "source_ref": "Casey Handmer, L3402-L3408",
           "entities": [],
-          "level": 4
+          "level": 4,
+          "pos": [
+            44,
+            -28.5
+          ]
         },
         {
           "id": "r4",
@@ -658,7 +918,11 @@
           "rationale": "The 200x to 400x gap of c5 exists because farmland is priced on crop yield while generation land is priced on grid access, and the two prices are attached to the same acre. Today only developers cross that gap, one bilateral lease at a time; the gap itself implies a tradable instrument, which nobody in the passage mentions.",
           "idea": "A brokerage for solar and datacentre land options, underwriting interconnection queue position rather than soil quality, would let farmers monetise the conversion option on an acre without selling it, and would put a public price on a 200x gap that is currently arbitraged privately by developers.",
           "entities": [],
-          "level": 4
+          "level": 4,
+          "pos": [
+            14,
+            -38.5
+          ]
         },
         {
           "id": "r5",
@@ -670,7 +934,11 @@
           "rationale": "Handmer states the collision and says it is something we should figure out how to forestall, but names no mechanism. The economics of c4 rule out persuasion: the only thing that stops a 200x bid is another bid, which means either the same acre produces both, or someone pays for it not to convert.",
           "idea": "Agrivoltaic yield measurement and a tradable non-conversion covenant are the missing market infrastructure for the farmland-versus-generation collision, which is currently a one-way, unpriced conversion with no instrument on the food side.",
           "entities": [],
-          "level": 4
+          "level": 4,
+          "pos": [
+            -22,
+            -38.5
+          ]
         },
         {
           "id": "r6",
@@ -682,7 +950,11 @@
           "rationale": "Handmer applies the test once, to space solar, and moves on. Stated generally it disqualifies a category rather than a company, and it is a different test from the one the sector normally runs, which is dollars per kilogram to orbit.",
           "idea": "Revenue per watt, benchmarked against the best competing use of the same watt, is a diligence screen that would disqualify a class of orbital and off-grid hardware pitches before term sheet, and nobody currently sells it as a tool or a dataset.",
           "entities": [],
-          "level": 4
+          "level": 4,
+          "pos": [
+            48,
+            -38.5
+          ]
         }
       ],
       "edges": [
