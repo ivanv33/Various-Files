@@ -37,7 +37,7 @@
       "description": "What a function produces: what crosses the boundary outwards and becomes some other box's input.",
       "typical_provenance": "either",
       "color": "#9085e9",
-      "shape": "cone"
+      "shape": "sphere"
     },
     {
       "id": "contract",
@@ -92,7 +92,7 @@
         "regions": [
           {
             "label": "The box that owns the order",
-            "x": [-52, 58],
+            "x": [-24, 28],
             "y": [17, 33],
             "color": "#9085e9"
           },
@@ -590,14 +590,21 @@
         ],
         "annotations": [
           {
-            "pos": [34, 5],
+            "pos": [29, -9],
             "text": "Closed cooling loop",
             "style": "caption"
           },
           {
-            "pos": [-20, 3],
+            "pos": [-20, -7],
             "text": "The box nobody names",
             "style": "caption"
+          }
+        ],
+        "guides": [
+          {
+            "from": [-20.5, -5.6],
+            "to": [-30, 8.8],
+            "style": "dashed"
           }
         ],
         "camera": {
@@ -644,7 +651,7 @@
           "entities": [
             "Crusoe Energy"
           ],
-          "pos": [-20, 14],
+          "pos": [-34, 14],
           "size": 1.15
         },
         {

@@ -57,12 +57,36 @@
     }
   ],
   "relations": [
-    { "id": "inflow", "label": "inflow", "description": "a flow fills a stock" },
-    { "id": "outflow", "label": "outflow", "description": "a flow drains a stock" },
-    { "id": "influences", "label": "influences", "description": "one quantity influences another; the edge label carries the polarity + or -" },
-    { "id": "part_of_loop", "label": "part of loop", "description": "this node is one link in the named feedback loop" },
-    { "id": "delays", "label": "delays", "description": "a delay sits on the influence into this node" },
-    { "id": "acts_on", "label": "acts on", "description": "a leverage point acts on this node" }
+    {
+      "id": "inflow",
+      "label": "inflow",
+      "description": "a flow fills a stock"
+    },
+    {
+      "id": "outflow",
+      "label": "outflow",
+      "description": "a flow drains a stock"
+    },
+    {
+      "id": "influences",
+      "label": "influences",
+      "description": "one quantity influences another; the edge label carries the polarity + or -"
+    },
+    {
+      "id": "part_of_loop",
+      "label": "part of loop",
+      "description": "this node is one link in the named feedback loop"
+    },
+    {
+      "id": "delays",
+      "label": "delays",
+      "description": "a delay sits on the influence into this node"
+    },
+    {
+      "id": "acts_on",
+      "label": "acts on",
+      "description": "a leverage point acts on this node"
+    }
   ],
   "examples": [
     {
@@ -76,7 +100,9 @@
         "attribution": "After the MIT Beer Distribution Game, developed in Jay Forrester's industrial-dynamics group and popularised by Peter Senge, The Fifth Discipline (1990), and John Sterman, Business Dynamics (2000).",
         "text": "In the Beer Distribution Game, a board game used in management classes since the 1960s, three players run one supply chain for a single brand of beer: a retailer, a wholesaler and a brewery. The retailer sells to customers from a case inventory on the shelf and orders replacements from the wholesaler. The wholesaler ships from its own warehouse inventory and orders from the brewery, and the brewery brews. Every order takes two weeks to reach the player upstream, and every shipment takes two more weeks to arrive, so eight weeks pass between a retailer's order and the beer landing on his shelf. Each player sees only his own inventory, his own incoming orders and his own backlog; nobody sees what the end customer is actually buying. In week five, customer demand doubles once, from four cases a week to eight, and then stays flat at eight for the rest of the game. The retailer's shelf inventory falls for several weeks and he cannot tell whether the rise will continue, so he orders more than he needs, to refill the shelf and to cover the backlog he has already accumulated. When the orders are larger than his own shipments, the wholesaler runs out of warehouse inventory and ships only part of what is asked for, so the retailer's backlog grows and his next order is larger still. The wholesaler sees a large order, reads it as a surge in demand, and orders more than that from the brewery. The brewery adds capacity and brews to the order book it can see. Around week twenty the accumulated orders all arrive at once, inventories across the chain reach many times their starting level, every player cancels, and the brewery is left with beer nobody ordered. Almost every team produces this oscillation and almost every team is surprised by it; the customer demand curve, shown to them afterwards, is a single step."
       },
-      "layout": { "mode": "force" },
+      "layout": {
+        "mode": "force"
+      },
       "nodes": [
         {
           "id": "cs_shelf",
@@ -622,7 +648,49 @@
       },
       "why_this_episode": "A hype cycle is the one kind of business story that actually contains closed loops rather than a causal chain, and this episode is an unusually complete one. The speakers state the return arrow of the circular-financing loop out loud (enthusiasm for Nvidia stock is the backstop for the deals that feed the enthusiasm), state the arms-race loop out loud as an OPEC defection problem, state the supply-elasticity brake out loud (supply comes out of the woodwork), put a long lead time on that brake, and then describe one completed overshoot-and-correct cycle at Microsoft. Almost every influence arrow is quotable; not one of the five loops is named as a loop, which is exactly the split this library is documenting.",
       "idea_bearing_slot": "leverage_point",
-      "layout": { "mode": "force" },
+      "layout": {
+        "mode": "plane",
+        "regions": [
+          {
+            "label": "Leverage points · Meadows' hierarchy",
+            "x": [
+              -38.88,
+              38.88
+            ],
+            "y": [
+              -36.0,
+              -21.6
+            ],
+            "color": "#1d3149"
+          }
+        ],
+        "annotations": [
+          {
+            "pos": [
+              -17.28,
+              30.24
+            ],
+            "text": "FAST RINGS · R1, R2 TURN IN WEEKS",
+            "style": "axis"
+          },
+          {
+            "pos": [
+              21.6,
+              30.24
+            ],
+            "text": "THE BRAKE · B1 TURNS IN TURBINE YEARS",
+            "style": "axis"
+          },
+          {
+            "pos": [
+              31.68,
+              17.28
+            ],
+            "text": "R3 and B1 run through the same two arrows",
+            "style": "caption"
+          }
+        ]
+      },
       "nodes": [
         {
           "id": "s_gpu",
@@ -632,27 +700,53 @@
           "provenance": "fact",
           "source_quote": "use the cash from NVIDIA to buy NVIDIA chips and deploy up to 10 gigawatts of computing power in AI data centers",
           "source_ref": "host reading the news report, L1660-L1666",
-          "entities": ["OpenAI", "NVIDIA"]
+          "entities": [
+            "OpenAI",
+            "NVIDIA"
+          ],
+          "pos": [
+            -1.44,
+            5.76
+          ],
+          "size": 1.0
         },
         {
           "id": "s_commit",
           "slot": "stock",
-          "label": "Committed chip and cloud orders",
+          "label": "Committed orders",
           "text": "The backlog of announced commitments: about $10B to Broadcom, $100B to Nvidia, $300B to Oracle and roughly $20B to CoreWeave. It is OpenAI's obligation and its vendors' revenue at the same time.",
           "provenance": "fact",
           "source_quote": "what's the headline number here it's a hundred billion 10 billion to broadcom a hundred billion to invidia and 300 billion to Oracle 20 billion ish to core weave as well",
           "source_ref": "host, L1682-L1688",
-          "entities": ["OpenAI", "Broadcom", "NVIDIA", "Oracle", "CoreWeave"]
+          "entities": [
+            "OpenAI",
+            "Broadcom",
+            "NVIDIA",
+            "Oracle",
+            "CoreWeave"
+          ],
+          "pos": [
+            -7.2,
+            23.04
+          ],
+          "size": 1.0
         },
         {
           "id": "s_cash",
           "slot": "stock",
-          "label": "Hyperscaler cash on hand",
+          "label": "Hyperscaler cash",
           "text": "The cash pile the buildout is being paid out of. Meta's stood at about $77 billion at the end of last year, the example the speakers use for the whole group.",
           "provenance": "fact",
           "source_quote": "Meta's cash on hand at the end of last year was around $77 billion.",
           "source_ref": "host, L2464",
-          "entities": ["Meta"]
+          "entities": [
+            "Meta"
+          ],
+          "pos": [
+            -25.92,
+            2.88
+          ],
+          "size": 1.0
         },
         {
           "id": "s_slack",
@@ -661,7 +755,12 @@
           "text": "The grid is built for the highest and lowest day, not for 100% production, so average utilisation leaves a large amount of existing capacity unused. It is a stock of power that is already paid for.",
           "provenance": "fact",
           "source_quote": "the grid is actually not built for 100% production. So there's a lot of slack in the grid itself because it's actually built for the highest day and the lowest day",
-          "source_ref": "Doug O'Laughlin, L2302-L2306"
+          "source_ref": "Doug O'Laughlin, L2302-L2306",
+          "pos": [
+            34.56,
+            -5.76
+          ],
+          "size": 1.0
         },
         {
           "id": "s_debt",
@@ -671,7 +770,15 @@
           "provenance": "fact",
           "source_quote": "the thing that's also really interesting is none of the hypers are levered at all",
           "source_ref": "Doug O'Laughlin, L2384",
-          "entities": ["Microsoft", "DoubleLine"]
+          "entities": [
+            "Microsoft",
+            "DoubleLine"
+          ],
+          "pos": [
+            -34.56,
+            -17.28
+          ],
+          "size": 1.0
         },
         {
           "id": "f_vendor",
@@ -681,16 +788,29 @@
           "provenance": "fact",
           "source_quote": "NVIDIA announced that it would invest $100 billion in Open AI over the next decade",
           "source_ref": "host reading the news report, L1658",
-          "entities": ["NVIDIA", "OpenAI"]
+          "entities": [
+            "NVIDIA",
+            "OpenAI"
+          ],
+          "pos": [
+            -28.8,
+            25.92
+          ],
+          "size": 1.0
         },
         {
           "id": "f_fcf",
           "slot": "flow",
-          "label": "Free cash flow, $200-250B a year",
+          "label": "Free cash flow $200-250B",
           "text": "The inflow: roughly $200 to $250 billion a year of hyperscaler free cash flow, which is both the capex budget and the thing that would service any debt raised against it.",
           "provenance": "fact",
           "source_quote": "We're talking quite a bit of capital is available to do this, like a surprising amount. I want to say on an annual basis, something like 250, maybe even, yeah, 200 billion",
-          "source_ref": "Doug O'Laughlin, L2380-L2382"
+          "source_ref": "Doug O'Laughlin, L2380-L2382",
+          "pos": [
+            -37.44,
+            -4.32
+          ],
+          "size": 1.0
         },
         {
           "id": "f_drain",
@@ -700,26 +820,45 @@
           "provenance": "fact",
           "source_quote": "As of the end of June, it was down to $47 billion and just will continue to drop throughout the year",
           "source_ref": "host, L2466",
-          "entities": ["Meta"]
+          "entities": [
+            "Meta"
+          ],
+          "pos": [
+            -27.36,
+            -12.96
+          ],
+          "size": 1.0
         },
         {
           "id": "f_lease",
           "slot": "flow",
-          "label": "Leasing rate: yes, pause, restart",
+          "label": "Leasing rate",
           "text": "The rate at which capacity is committed. Microsoft said yes to every leasing opportunity in 2023, then imposed a top-down pause, and is now having to pick the pieces back up.",
           "provenance": "fact",
           "source_quote": "this giant buildout in 23 where they said yes to every single leasing opportunity possible. And then they, like, there was a top down pause. And now they're starting to pick up the pieces",
           "source_ref": "Doug O'Laughlin, L2560-L2564",
-          "entities": ["Microsoft"]
+          "entities": [
+            "Microsoft"
+          ],
+          "pos": [
+            -18.72,
+            5.76
+          ],
+          "size": 1.0
         },
         {
           "id": "f_gen",
           "slot": "flow",
-          "label": "New generation coming online",
+          "label": "New generation online",
           "text": "Power supply entering the system in response to the demand: gas gen, gas turbines and what the speaker calls clever pockets of energy coming up to fulfil the need.",
           "provenance": "fact",
           "source_quote": "we're starting to see stuff like gas gen, gas turbines, like all these different, like, little clever pockets of energy are coming up to then fulfill the need",
-          "source_ref": "Doug O'Laughlin, L2348-L2350"
+          "source_ref": "Doug O'Laughlin, L2348-L2350",
+          "pos": [
+            18.72,
+            -2.88
+          ],
+          "size": 1.0
         },
         {
           "id": "v_enthusiasm",
@@ -729,17 +868,33 @@
           "provenance": "fact",
           "source_quote": "the market seemingly endless enthusiasm for NVIDIA stock is providing a financial backstop for the entire AI market",
           "source_ref": "host reading the news report, L1664-L1668",
-          "entities": ["NVIDIA"]
+          "entities": [
+            "NVIDIA"
+          ],
+          "pos": [
+            -27.36,
+            12.96
+          ],
+          "size": 1.0
         },
         {
           "id": "v_share",
           "slot": "variable",
-          "label": "Market share lost to the spender",
+          "label": "Market share lost",
           "text": "The share a firm loses when a rival spends. The speaker's prediction is that once Meta and Google get into the game in earnest, the others realise their business model is under attack.",
           "provenance": "fact",
           "source_quote": "all of a sudden they're going to be like whoa this is attacking my business model and I'm losing market share",
           "source_ref": "Doug O'Laughlin, L2588-L2592",
-          "entities": ["Meta", "Google", "Microsoft"]
+          "entities": [
+            "Meta",
+            "Google",
+            "Microsoft"
+          ],
+          "pos": [
+            -20.16,
+            -5.76
+          ],
+          "size": 1.0
         },
         {
           "id": "v_price",
@@ -749,7 +904,15 @@
           "provenance": "fact",
           "source_quote": "We'll come in at a lower lower price. Like I'm just going to lever my entire balance sheet for it",
           "source_ref": "Doug O'Laughlin voicing Oracle, L2572-L2574",
-          "entities": ["Oracle", "Microsoft"]
+          "entities": [
+            "Oracle",
+            "Microsoft"
+          ],
+          "pos": [
+            -1.44,
+            -5.76
+          ],
+          "size": 1.0
         },
         {
           "id": "v_scarcity",
@@ -758,7 +921,12 @@
           "text": "The perceived shortage of power: grids are not keeping up and the speaker says outright that the United States is running out of power.",
           "provenance": "fact",
           "source_quote": "we're running out of power in the United States",
-          "source_ref": "Doug O'Laughlin, L2342"
+          "source_ref": "Doug O'Laughlin, L2342",
+          "pos": [
+            18.72,
+            11.52
+          ],
+          "size": 1.0
         },
         {
           "id": "v_sentiment",
@@ -767,16 +935,26 @@
           "text": "Non-technical public sentiment against AI, showing up as data centres getting blocked and as a roadblock at several stages of the buildout.",
           "provenance": "fact",
           "source_quote": "you're seeing data centers just getting kind of like blocked",
-          "source_ref": "host relaying a chat question, L2676-L2678"
+          "source_ref": "host relaying a chat question, L2676-L2678",
+          "pos": [
+            -10.08,
+            18.0
+          ],
+          "size": 1.0
         },
         {
           "id": "l_r1",
           "slot": "loop",
-          "label": "R1 Circular vendor financing",
+          "label": "R1 Vendor financing",
           "text": "Reinforcing. Nvidia's equity funds OpenAI's purchases (+); the purchases are Nvidia's committed revenue (+); that revenue is what the market is enthusiastic about (+); the enthusiasm is the backstop that funds the next investment (+). No negative links, so the circle amplifies in both directions, including downward.",
           "provenance": "derived",
           "confidence": 0.75,
-          "rationale": "Two of the loop's three arrows are quoted facts (e_vendor_commit and e_enth_vendor), including the return arrow at L1664-L1668 where the enthusiasm is described as the backstop for the market; only e_commit_enth, the step from the committed backlog to the equity enthusiasm, is inferred. What no speaker says is that these statements close on each other. Doug calls the vendor financing circular and scary at L2006 but treats it as a worrying feature rather than as a loop with a sign; the inference is that it is a reinforcing loop, which is why a fall in Nvidia's multiple is not just bad news for Nvidia."
+          "rationale": "Two of the loop's three arrows are quoted facts (e_vendor_commit and e_enth_vendor), including the return arrow at L1664-L1668 where the enthusiasm is described as the backstop for the market; only e_commit_enth, the step from the committed backlog to the equity enthusiasm, is inferred. What no speaker says is that these statements close on each other. Doug calls the vendor financing circular and scary at L2006 but treats it as a worrying feature rather than as a loop with a sign; the inference is that it is a reinforcing loop, which is why a fall in Nvidia's multiple is not just bad news for Nvidia.",
+          "pos": [
+            -20.16,
+            22.32
+          ],
+          "size": 1.3
         },
         {
           "id": "l_r2",
@@ -785,7 +963,12 @@
           "text": "Reinforcing. Capacity committed by one firm (+) lets it undercut on price (+), which costs a rival market share (+), which forces the rival to commit capacity too (+), which puts the first firm's share at risk. The speaker's own analogy is OPEC: the cartel holds until somebody defects, and then nobody can stay out.",
           "provenance": "derived",
           "confidence": 0.8,
-          "rationale": "The speaker states the whole circle in one breath at L2586-L2594, including the return arrow from lost share back to spending. The derived part is reading it as a closed reinforcing loop whose equilibrium is all-in spending rather than as a prediction about two particular companies, and attaching Oracle's price undercut and Microsoft's pause to the same loop as instances of it."
+          "rationale": "The speaker states the whole circle in one breath at L2586-L2594, including the return arrow from lost share back to spending. The derived part is reading it as a closed reinforcing loop whose equilibrium is all-in spending rather than as a prediction about two particular companies, and attaching Oracle's price undercut and Microsoft's pause to the same loop as instances of it.",
+          "pos": [
+            -10.08,
+            1.44
+          ],
+          "size": 1.3
         },
         {
           "id": "l_b1",
@@ -794,16 +977,26 @@
           "text": "Balancing. Compute buildout raises power scarcity (+), scarcity calls forth new generation (+), and new generation relieves the scarcity (-). One negative link, so the loop corrects. B1 has two paths with very different speeds: a fast one that draws on existing grid headroom, which is itself a stock and drains as it is used (e_gen_slack), and a slow one that builds new plant behind the lead time d_lead. It is the loop that limits the boom, and the fast half of it runs out first.",
           "provenance": "derived",
           "confidence": 0.8,
-          "rationale": "Both of the loop's own arrows are stated: L2344-L2346 for scarcity calling forth supply, L2348-L2350 for that supply fulfilling the need, and L2352 restates the principle. The inference is the closure and the polarity, and the consequence that follows from the polarity: a balancing loop with the lead times of L2510 inside it cannot hold the boom in check in the short run."
+          "rationale": "Both of the loop's own arrows are stated: L2344-L2346 for scarcity calling forth supply, L2348-L2350 for that supply fulfilling the need, and L2352 restates the principle. The inference is the closure and the polarity, and the consequence that follows from the polarity: a balancing loop with the lead times of L2510 inside it cannot hold the boom in check in the short run.",
+          "pos": [
+            24.48,
+            1.44
+          ],
+          "size": 1.3
         },
         {
           "id": "l_r3",
           "slot": "loop",
-          "label": "R3 Scarcity builds the grid",
+          "label": "R3 Scarcity builds grid",
           "text": "Reinforcing, and easy to miss because it runs through the same arrows as B1. Deployed compute raises scarcity (+), scarcity calls forth generation (+), and the generation that arrives is what lets the next tranche of committed capacity come online (+). No negative links, so the scramble for power expands the power system, which permits a larger buildout than the one that started the scramble.",
           "provenance": "derived",
           "confidence": 0.65,
-          "rationale": "All three arrows exist in the data (e_gpu_scarcity, e_scarcity_gen, e_gen_gpu), and the speaker states the third one himself when he says behind-the-meter gas is going to be the big driver to get these data centres online. The inference is that they close, and that because the cycle carries no negative link it is reinforcing rather than part of the brake. This is the classic relieve-the-limit pattern: the same supply response that balances scarcity in B1 raises the ceiling the system can grow into. Held at 0.65 because the closure depends on e_gen_gpu, which rests on a pronoun."
+          "rationale": "All three arrows exist in the data (e_gpu_scarcity, e_scarcity_gen, e_gen_gpu), and the speaker states the third one himself when he says behind-the-meter gas is going to be the big driver to get these data centres online. The inference is that they close, and that because the cycle carries no negative link it is reinforcing rather than part of the brake. This is the classic relieve-the-limit pattern: the same supply response that balances scarcity in B1 raises the ceiling the system can grow into. Held at 0.65 because the closure depends on e_gen_gpu, which rests on a pronoun.",
+          "pos": [
+            9.36,
+            3.6
+          ],
+          "size": 1.3
         },
         {
           "id": "l_b2",
@@ -812,7 +1005,12 @@
           "text": "Balancing, and the weakest loop here. The buildout raises public hostility (+), and hostility blocks sites and slows the buildout (-). The speaker expects it to lose, because the administration and everybody else is on board.",
           "provenance": "derived",
           "confidence": 0.55,
-          "rationale": "The return arrow is stated (hostility is already blocking data centres, L2676-L2680); the forward arrow from the scale of the buildout to the hostility is adjacent rather than asserted, and the loop's gain is explicitly doubted by the speaker at L2682-L2692. Kept at low confidence because a balancing loop that is currently weak is still the one a regulator can strengthen, which makes its absence from the picture more misleading than its presence."
+          "rationale": "The return arrow is stated (hostility is already blocking data centres, L2676-L2680); the forward arrow from the scale of the buildout to the hostility is adjacent rather than asserted, and the loop's gain is explicitly doubted by the speaker at L2682-L2692. Kept at low confidence because a balancing loop that is currently weak is still the one a regulator can strengthen, which makes its absence from the picture more misleading than its presence.",
+          "pos": [
+            -10.08,
+            10.8
+          ],
+          "size": 1.3
         },
         {
           "id": "d_lead",
@@ -821,38 +1019,67 @@
           "text": "The lag on the supply side: the long lead time items need both capital and time to arrive, and the speaker expects grids breaking to be a 2026 story.",
           "provenance": "fact",
           "source_quote": "all these long lead time things need so much capital and time to get there",
-          "source_ref": "Doug O'Laughlin, L2510; grids breaking as a 2026 story at L2334-L2338"
+          "source_ref": "Doug O'Laughlin, L2510; grids breaking as a 2026 story at L2334-L2338",
+          "pos": [
+            10.08,
+            -12.96
+          ],
+          "size": 0.85
         },
         {
           "id": "d_overshoot",
           "slot": "delay",
-          "label": "Fast loops, slow brake: overshoot",
+          "label": "Fast loops, slow brake",
           "text": "R1 and R2 act at the speed of a press release; B1 acts at the speed of a gas turbine order. A balancing loop that is slower than the reinforcing loops it is meant to restrain does not prevent the overshoot, it dates it. Microsoft's 2023 yes-to-everything, top-down pause and forced re-entry is one completed cycle of exactly that.",
           "provenance": "derived",
           "confidence": 0.75,
-          "rationale": "Built from three stated facts: the lead times at L2510, the speed at which commitments are being announced, and the Microsoft boom-pause-restart at L2560-L2564. The general result, that a delay inside the only balancing loop converts correction into oscillation, is the framework's and not the speaker's. He predicts a continued boom; this node says a boom of this shape has a characteristic end, which is a stronger claim than anything in the transcript and is priced at 0.75 accordingly."
+          "rationale": "Built from three stated facts: the lead times at L2510, the speed at which commitments are being announced, and the Microsoft boom-pause-restart at L2560-L2564. The general result, that a delay inside the only balancing loop converts correction into oscillation, is the framework's and not the speaker's. He predicts a continued boom; this node says a boom of this shape has a characteristic end, which is a stronger claim than anything in the transcript and is priced at 0.75 accordingly.",
+          "pos": [
+            -31.68,
+            10.08
+          ],
+          "size": 0.85
         },
         {
           "id": "lp_rule",
           "slot": "leverage_point",
-          "label": "Rules: interruptible load contracts",
+          "label": "Rules: interruptible load",
           "text": "Change the contract rather than the hardware. A data centre that is allowed to sip from the grid off-peak and run behind the meter at peak can be served from headroom that already exists, instead of waiting for new generation. The binding constraint moves from megawatts to the interconnection rule.",
           "provenance": "derived",
           "confidence": 0.6,
           "rationale": "Rests on s_slack (the grid is built for the extremes, so average utilisation leaves a lot unused) together with the speaker's own description of sipping from the grid and behind-the-meter gas at L2316-L2322. Rules sit fifth in Meadows' hierarchy, above information flows and far above adding capacity, because this intervention changes who may use the existing stock rather than enlarging it. Held at 0.6 because the transcript gives the physical possibility but nothing about whether the tariffs and interconnection queues would permit it.",
           "idea": "An underwriter and broker for interruptible, load-following compute capacity, financing behind-the-meter generation against the peak-to-off-peak spread that nobody currently prices.",
-          "entities": ["Oklo"]
+          "entities": [
+            "Oklo"
+          ],
+          "pos": [
+            31.68,
+            -25.92
+          ],
+          "size": 1.15
         },
         {
           "id": "lp_info",
           "slot": "leverage_point",
-          "label": "Information: look-through exposure",
+          "label": "Info: look-through exposure",
           "text": "R1 is invisible to the people funding it. A look-through exposure engine that nets out the circular equity, prepayments and offtakes across Nvidia, OpenAI, AMD, Oracle and the neoclouds would put a number on how much of each company's value depends on the same dollar.",
           "provenance": "derived",
           "confidence": 0.7,
           "rationale": "The transcript states the gap explicitly: a host tries to build a DCF for OpenAI, finds he would have to build one for AMD too, and gives up with all these circular transactions (L2206-L2214); Doug answers that it is a little bit of vibe based investing. Information flows are Meadows' sixth-order leverage point, and a reinforcing loop nobody can measure is the canonical case for one, because the loop's gain is what determines how far it unwinds.",
           "idea": "A look-through exposure and counterparty-netting service for circular AI infrastructure deals, sold to credit and equity underwriters who currently cannot price the same dollar appearing on four balance sheets.",
-          "entities": ["NVIDIA", "OpenAI", "AMD", "Oracle", "CoreWeave", "Lambda Labs"]
+          "entities": [
+            "NVIDIA",
+            "OpenAI",
+            "AMD",
+            "Oracle",
+            "CoreWeave",
+            "Lambda Labs"
+          ],
+          "pos": [
+            -31.68,
+            -28.8
+          ],
+          "size": 1.15
         },
         {
           "id": "lp_delay",
@@ -861,7 +1088,12 @@
           "text": "The obvious intervention is to shorten the lag: more turbines, more transformers, more generation. It works, and Meadows ranks it ninth, near the bottom, because it only changes how fast an unchanged structure responds. It is also where all the capital is already going, which is why it is the least interesting of the three.",
           "provenance": "derived",
           "confidence": 0.65,
-          "rationale": "Included as the control case for the hierarchy. The transcript shows the whole market already acting on this lever (gas gen, turbines, recommissioned nuclear, Oklo), and the speaker still says it is going to take a lot of time and that grids are breaking. A leverage point everyone is already pulling is not an opportunity, which is why this node carries no idea field while lp_rule and lp_info do."
+          "rationale": "Included as the control case for the hierarchy. The transcript shows the whole market already acting on this lever (gas gen, turbines, recommissioned nuclear, Oklo), and the speaker still says it is going to take a lot of time and that grids are breaking. A leverage point everyone is already pulling is not an opportunity, which is why this node carries no idea field while lp_rule and lp_info do.",
+          "pos": [
+            10.08,
+            -28.8
+          ],
+          "size": 1.15
         }
       ],
       "edges": [

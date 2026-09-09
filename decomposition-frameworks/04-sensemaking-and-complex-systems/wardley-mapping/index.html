@@ -52,7 +52,7 @@
   #labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
   #labels * { pointer-events: none; }
   .nlabel { font: 12px/1.2 var(--sans); color: var(--ink-2); white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6); }
-  .nlabel .lab { display: inline-block; transform: translateY(11px); }
+  .nlabel .lab { display: inline-block; transform: translateY(11px); background: rgba(26,26,25,.72); padding: 0 4px; border-radius: 3px; }
   .nlabel.derived { color: var(--ink-2); font-style: italic; }
   .nlabel.schema { color: var(--muted); font: 11px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
   .nlabel .g { font-size: 9px; margin-right: 4px; vertical-align: 1px; }
@@ -620,13 +620,13 @@ function renderStats() {
   const st = $('stats'); if (!st) return;
   const ex = GRAPH.examples[state.exampleIndex];
   const nf = ex.nodes.filter(n => n.provenance === 'fact').length, nd = ex.nodes.filter(n => n.provenance === 'derived').length, ns = ex.nodes.filter(n => n.provenance === 'schema').length;
-  const ef = ex.edges.filter(e => e.provenance === 'fact').length, ed = ex.edges.filter(e => e.provenance === 'derived' && e.relation !== 'supported_by').length, eg = ex.edges.filter(e => e.relation === 'supported_by').length;
+  const ef = ex.edges.filter(e => e.provenance === 'fact').length, ed = ex.edges.filter(e => e.provenance === 'derived' && e.relation !== 'supported_by').length, eg = ex.edges.filter(e => e.relation === 'supported_by').length, es = ex.edges.filter(e => e.provenance === 'schema').length;
   const visN = [...state.nodes.values()].filter(r => r.obj.visible).length, visE = state.edges.filter(r => r.grp.visible).length;
   st.replaceChildren();
   const line = (html) => { const d = document.createElement('div'); d.append(...html); st.appendChild(d); };
   const b = (t) => { const x = document.createElement('b'); x.textContent = t; return x; };
   line(['nodes ', b(String(nf)), ' fact · ', b(String(nd)), ' derived', ns ? ` · ${ns} schema` : '']);
-  line(['edges ', b(String(ef)), ' fact · ', b(String(ed)), ' derived · ', b(String(eg)), ' grounding']);
+  line(['edges ', b(String(ef)), ' fact · ', b(String(ed)), ' derived · ', b(String(eg)), ' grounding', es ? ` · ${es} schema` : '']);
   line([`showing ${visN} nodes, ${visE} edges`]);
 }
 function renderNote(ex) {
