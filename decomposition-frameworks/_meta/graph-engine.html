@@ -73,6 +73,9 @@
   #legend h2:first-child { margin-top: 0; }
   .slot-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
   .chip { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .chip.box { border-radius: 2px; }
+  .chip.diamond { border-radius: 2px; transform: rotate(45deg); }
+  .chip.cone { border-radius: 0; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
   .slot-row .n { margin-left: auto; font: 11px var(--mono); color: var(--muted); }
   .slot-row .tp { font: 10px var(--mono); color: var(--muted); }
   .key-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; color: var(--ink-2); }
@@ -370,7 +373,7 @@ function makeNode(n, p) {
     mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.5, metalness: 0.08 }));
   } else if (n.provenance === 'derived') {
     mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.6, metalness: 0.0, transparent: true, opacity: 0.32, depthWrite: false }));
-    halo = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(r * 1.35, 1)), new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.75 }));
+    halo = new THREE.LineSegments(new THREE.WireframeGeometry(GEO[st.shape](r * 1.35)), new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.75 }));
     obj.add(halo);
   } else {
     mesh = new THREE.Mesh(GEO[st.shape === 'sphere' ? 'box' : st.shape](r * 0.8), new THREE.MeshStandardMaterial({ color: new THREE.Color(SCHEMA_COLOR), roughness: 0.9, metalness: 0, transparent: true, opacity: 0.85 }));
@@ -555,7 +558,9 @@ function renderLegend(ex) {
   const counts = new Map(); for (const n of ex.nodes) counts.set(n.slot, (counts.get(n.slot) || 0) + 1);
   for (const s of GRAPH.slots) {
     const row = document.createElement('div'); row.className = 'slot-row';
-    const chip = document.createElement('span'); chip.className = 'chip'; chip.style.background = slotStyle.get(s.id).color; if (s.structural) chip.style.borderRadius = '2px';
+    const chip = document.createElement('span'); const stl = slotStyle.get(s.id);
+    chip.className = 'chip' + (stl.shape && stl.shape !== 'sphere' ? ' ' + stl.shape : ''); chip.style.background = stl.color;
+    if (s.structural) chip.style.borderRadius = '2px';
     const name = document.createElement('span'); name.textContent = s.label;
     const tp = document.createElement('span'); tp.className = 'tp'; tp.textContent = s.structural ? 'schema' : (s.typical_provenance || '');
     const n = document.createElement('span'); n.className = 'n'; n.textContent = String(counts.get(s.id) || 0);
