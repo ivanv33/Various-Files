@@ -11,8 +11,30 @@
     "reconcile": "pending",
     "commit": "pending"
   },
-  "viz_iterations": 0,
-  "viz_reviews": [],
+  "viz_iterations": 1,
+  "viz_reviews": [
+    {
+      "iteration": 1,
+      "verdict": "pass",
+      "scores": {
+        "demonstrates": 5,
+        "provenance": 5,
+        "legibility": 4,
+        "fidelity": 5
+      },
+      "blocking_issues": [],
+      "suggestions": [
+        "classic layout.regions[0] spans x [-52,58] but holds only cf5 at x=2; narrow it to about x [-24,28] so it reads as a box drawn around the sequencing function instead of a large empty stripe in facts-only view.",
+        "tbpn annotations[0] 'Closed cooling loop' at [34,5] renders ~20px above the f_cooling label; move to about [40,-8], inside the quadrilateral it names.",
+        "tbpn annotations[1] 'The box nobody names' at [-20,3] sits ~23px under the f_electrical label and floats with nothing to point at in facts-only; drop to about [-20,-6] or add a dashed guide to f_electrical.",
+        "tbpn electrical chain f_hv [-40,-1] -> f_mv [-27,-16] -> f_switchgear [-12,-26] crosses back under parent f_electrical at [-20,14], reading as a V rather than a descent; move f_electrical to about [-34,14].",
+        "input and output both use cone and differ only in hue; add a direction cue for outputs.",
+        "consider size 1.2-1.3 on cs and sys so the root reads as the whole."
+      ],
+      "summary": "Native shape unambiguous in both examples; the contract band is the page's argument and empties to one node per example when derived is hidden. Metrics clean (0 overlaps, 0 off-screen, 0 under cards, empty console); stats match graph.json exactly. Legibility 4 only for crowding: two tbpn captions within ~20px of node labels and a mostly empty full-width top band in classic.",
+      "at": "2026-09-09T00:00:00Z"
+    }
+  ],
   "updated_at": "2026-09-09T00:00:00Z",
   "notes": "Research: Functional Decomposition as used in systems engineering (MIL-STD-499 / functional flow block diagrams), structured analysis (Yourdon/DeMarco stepwise refinement), and Parnas's information hiding (1972). Slots: system, function, input, output, contract. The contract slot carries the weight: guarantees a black box makes to consumers are essentially never stated in conversation, so they are derived; components and what they consume/produce are usually stated. Classic misuse to guard against: an org chart presented as a functional decomposition. A function is defined by what it guarantees, not by who staffs it. | Scout returned three candidates: (1) Brad Porter/Cobot retail fulfillment chain plus robot capability stack, 2025-06-04; (2) Chase Lockmiller/Crusoe AI factory, 2025-05-29; (3) Kushal Byatnal/Extend document pipeline, 2025-07-03. Chose (2): it is the only one that gives a genuine two-level hierarchy (factory -> energy/electrical/compute/cooling/software -> transformer and cooling sub-stacks) AND stated inputs and outputs for several boxes (the closed water loop is the most literal consumes/produces chain in the corpus), plus the sharpest unowned contract: switchgear and medium-voltage transformers have no financeable delivery date, which is why Crusoe opened its own factories in Tulsa and Denver. Candidate 1 decomposes two different wholes at once; candidate 3 names its pipeline in one sentence rather than walking it. Scout also flagged two passages that look like matches but are the org-chart/vendor-list failure mode (2025-03-08 semiconductor stack mapped only to Chinese company names; 2025-08-05 Intel Foundry reporting lines) - both avoided. | Graph design notes: validate passes with 0 errors and 0 warnings. Deliberate provenance choices: (a) composed_of edges are almost all derived in both examples, because naming boxes is not the same as stating the hierarchy that contains them - this is the framework's central lesson and it is stated in the README; (b) each example carries exactly one FACT contract node (classic cc4 'each step reads only what the step before it wrote', tbpn c_water 'we only fill it one time'), the exception that shows why the rest are derived: a contract gets stated only when somebody is defending against an accusation or writing an access rule, never as a guarantee to a downstream box; (c) one derived FUNCTION node per example (classic cf5 the unnamed sequencer, tbpn f_electrical the unnamed voltage-stepping box) because in both sources the parts are named and the containing function is not.",
   "issues": [],
