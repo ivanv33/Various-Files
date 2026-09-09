@@ -440,8 +440,15 @@ function makeEdge(e, A, B) {
   return { edge: e, grp, line, arrow, label: lab, A, B, grounding, len };
 }
 
-function drawDecor(ex, group, bbox) {
+function drawDecor(ex, parent, bbox, offset) {
   const L = ex.layout || {};
+  // Nodes are re-centred on their bounding box in every mode except plane, but decor coordinates
+  // are authored in the same space as node positions. Shift the decor by the same amount so a
+  // region or axis lines up with its nodes without the author having to centre on the origin.
+  const group = new THREE.Group();
+  group.position.copy(offset).negate();
+  parent.add(group);
+  const shift = (v) => new THREE.Vector3(v.x - offset.x, v.y - offset.y, v.z - offset.z);
   const z = -0.6;
   const lineMat = new THREE.LineBasicMaterial({ color: new THREE.Color(0x4a4a47) });
   const dashMat = new THREE.LineDashedMaterial({ color: new THREE.Color(0x4a4a47), dashSize: 1.2, gapSize: 1.0 });
@@ -454,19 +461,19 @@ function drawDecor(ex, group, bbox) {
     // Caption sits top-centre INSIDE the band. CSS2D centres its box on the position, so anchoring
     // at the corner made every caption straddle the boundary and builders patched it page-side.
     const lab = label2d(r.label, 'rlabel'); lab.position.set((r.x[0] + r.x[1]) / 2, Math.max(r.y[0], r.y[1]) - 3, z); group.add(lab);
-    bbox.expandByPoint(new THREE.Vector3(r.x[0], r.y[0], 0)); bbox.expandByPoint(new THREE.Vector3(r.x[1], r.y[1], 0));
+    bbox.expandByPoint(shift(new THREE.Vector3(r.x[0], r.y[0], 0))); bbox.expandByPoint(shift(new THREE.Vector3(r.x[1], r.y[1], 0)));
   }
   // Free-standing captions. Without this a builder has to fake one with a zero-length guide.
   for (const an of (L.annotations || [])) {
     const lab = label2d(an.text, an.style === 'axis' ? 'axlabel' : an.style === 'region' ? 'rlabel' : 'glabel');
     lab.position.set(an.pos[0], an.pos[1], an.pos[2] ?? z); group.add(lab);
-    bbox.expandByPoint(new THREE.Vector3(an.pos[0], an.pos[1], 0));
+    bbox.expandByPoint(shift(new THREE.Vector3(an.pos[0], an.pos[1], 0)));
   }
   for (const gd of (L.guides || [])) {
     const a = new THREE.Vector3(gd.from[0], gd.from[1], gd.from[2] || z), b = new THREE.Vector3(gd.to[0], gd.to[1], gd.to[2] || z);
     const ln = new THREE.Line(new THREE.BufferGeometry().setFromPoints([a, b]), gd.style === 'dashed' ? dashMat : lineMat); ln.computeLineDistances(); group.add(ln);
     if (gd.label) { const lab = label2d(gd.label, 'glabel'); lab.position.copy(a).lerp(b, 0.5); group.add(lab); }
-    bbox.expandByPoint(a); bbox.expandByPoint(b);
+    bbox.expandByPoint(shift(a)); bbox.expandByPoint(shift(b));
   }
   if (L.axes) {
     const ax = L.axes.x, ay = L.axes.y;
@@ -477,14 +484,14 @@ function drawDecor(ex, group, bbox) {
       group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(xmin, y, z), new THREE.Vector3(xmax, y, z)]), lineMat));
       const lab = label2d(ax.label, 'axlabel'); lab.position.set((xmin + xmax) / 2, y - 7.5, z); group.add(lab);
       for (const t of (ax.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(t.value, y - 1, z), new THREE.Vector3(t.value, y + 1, z)]), lineMat)); const tl = label2d(t.label, 'tick'); tl.position.set(t.value, y - 2.2, z); group.add(tl); }
-      bbox.expandByPoint(new THREE.Vector3(xmin, y - 9, 0)); bbox.expandByPoint(new THREE.Vector3(xmax, y, 0));
+      bbox.expandByPoint(shift(new THREE.Vector3(xmin, y - 9, 0))); bbox.expandByPoint(shift(new THREE.Vector3(xmax, y, 0)));
     }
     if (ay) {
       const x = xmin - pad;
       group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x, ymin, z), new THREE.Vector3(x, ymax, z)]), lineMat));
       const lab = label2d(ay.label, 'axlabel', 'rotate(-90deg)'); lab.position.set(x - 8, (ymin + ymax) / 2, z); group.add(lab);
       for (const t of (ay.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x - 1, t.value, z), new THREE.Vector3(x + 1, t.value, z)]), lineMat)); const tl = label2d(t.label, 'tick', 'translateX(-50%)'); tl.position.set(x - 2.5, t.value, z); group.add(tl); }
-      bbox.expandByPoint(new THREE.Vector3(x - 11, ymin, 0)); bbox.expandByPoint(new THREE.Vector3(x, ymax, 0));
+      bbox.expandByPoint(shift(new THREE.Vector3(x - 11, ymin, 0))); bbox.expandByPoint(shift(new THREE.Vector3(x, ymax, 0)));
     }
   }
 }
@@ -509,6 +516,7 @@ function buildExample(i) {
   const bbox = new THREE.Box3();
   for (const p of positions.values()) bbox.expandByPoint(p);
   const centre = bbox.getCenter(new THREE.Vector3());
+  const decorOffset = ex.layout?.mode !== 'plane' ? centre.clone() : new THREE.Vector3();
   if (ex.layout?.mode !== 'plane') for (const p of positions.values()) p.sub(centre);
   const bbox2 = new THREE.Box3(); for (const p of positions.values()) bbox2.expandByPoint(p);
   for (const n of ex.nodes) { const rec = makeNode(n, positions.get(n.id)); state.nodes.set(n.id, rec); group.add(rec.obj); state.hit.push(rec.hit); }
@@ -516,7 +524,7 @@ function buildExample(i) {
     const A = state.nodes.get(e.from), B = state.nodes.get(e.to); if (!A || !B) continue;
     const rec = makeEdge(e, A, B); state.edges.push(rec); group.add(rec.grp); A.edges.push(rec); B.edges.push(rec);
   }
-  drawDecor(ex, group, bbox2);
+  drawDecor(ex, group, bbox2, decorOffset);
   // camera fit
   const size = bbox2.getSize(new THREE.Vector3()), c = bbox2.getCenter(new THREE.Vector3());
   state.fit = { size, centre: c, mode: ex.layout?.mode || 'force', distance: ex.layout?.camera?.distance };
