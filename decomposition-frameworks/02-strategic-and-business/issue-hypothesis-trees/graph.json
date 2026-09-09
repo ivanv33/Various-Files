@@ -1,0 +1,1146 @@
+{
+  "framework": {
+    "slug": "issue-hypothesis-trees",
+    "name": "Issue & Hypothesis Trees",
+    "category": "02-strategic-and-business",
+    "wikipedia": "https://en.wikipedia.org/wiki/Issue_tree",
+    "one_liner": "Breaks a decision question into MECE sub-questions, hangs a falsifiable candidate answer under each, and makes every hypothesis name the observation that would kill it."
+  },
+  "slots": [
+    {
+      "id": "question",
+      "label": "Question",
+      "description": "The root question: one decision-relevant question, not a topic. Usually stated by someone in the source, which is why it is the one slot that is routinely a fact.",
+      "typical_provenance": "either",
+      "color": "#e0553f",
+      "shape": "box"
+    },
+    {
+      "id": "issue",
+      "label": "Issue",
+      "description": "A sub-question the root decomposes into; siblings should be mutually exclusive and collectively exhaustive, so that no explanation hides between two branches and none is counted twice.",
+      "typical_provenance": "derived",
+      "color": "#5a9bd4",
+      "shape": "diamond"
+    },
+    {
+      "id": "hypothesis",
+      "label": "Hypothesis",
+      "description": "A candidate answer to an issue, stated so that it could be wrong. Fact when a speaker volunteers it, derived when the tree needs the sibling nobody was willing to say out loud.",
+      "typical_provenance": "either",
+      "color": "#67b26f",
+      "shape": "sphere"
+    },
+    {
+      "id": "test",
+      "label": "Test",
+      "description": "The falsification condition: the observation, with its threshold, that would kill the hypothesis. Almost always derived, because sources volunteer explanations and rarely volunteer what would refute their own.",
+      "typical_provenance": "derived",
+      "color": "#a678d8",
+      "shape": "cone"
+    },
+    {
+      "id": "evidence",
+      "label": "Evidence",
+      "description": "An observation already in hand that bears on a hypothesis, or that raised the question in the first place; kept separate from the reading placed on it.",
+      "typical_provenance": "fact",
+      "color": "#3fa8a0",
+      "shape": "box"
+    }
+  ],
+  "relations": [
+    {
+      "id": "decomposes_into",
+      "label": "decomposes into",
+      "description": "a question or issue decomposes into MECE sub-issues"
+    },
+    {
+      "id": "answered_if",
+      "label": "answered if",
+      "description": "the issue (or the root question directly) is answered if the hypothesis holds"
+    },
+    {
+      "id": "falsified_by",
+      "label": "falsified by",
+      "description": "the hypothesis is falsified by the test's observation"
+    },
+    {
+      "id": "bears_on",
+      "label": "bears on",
+      "description": "an observation bears on a hypothesis, or on the question it makes a puzzle; label + or -"
+    }
+  ],
+  "examples": [
+    {
+      "id": "classic",
+      "kind": "classic",
+      "title": "Northline Freight: why did profit fall 22% on flat revenue?",
+      "summary": "The textbook profitability diagnostic. A board is handed one question, five numbers and two volunteered explanations, and nobody at the table proposes a way to tell the explanations apart. The tree supplies the MECE issue structure, the branch nobody raised, and a falsifying test under each candidate answer.",
+      "source": {
+        "type": "text",
+        "title": "Board minute, Northline Freight, March",
+        "text": "Northline Freight hauls palletised goods for grocery wholesalers across four states. At the March board meeting the chief executive put one question on the table: operating profit fell 22 percent last year while revenue was flat, and the board wants to know why before it approves next year's budget.\n\nThe finance pack in front of the directors gave the numbers. Revenue was $214 million, within one percent of the previous year. Loads delivered rose 4 percent, so average revenue per load fell. Driver pay rose 9 percent after the spring wage settlement. Fuel cost per mile was unchanged. Empty miles, meaning miles driven with no freight aboard, rose from 14 percent to 19 percent of total miles.\n\nTwo explanations were offered at the table. The vice-president of sales said the freight market had softened and that Northline had cut rates to hold volume against a new low-cost entrant. The operations director said the problem was the wage settlement, and that no carrier could absorb a 9 percent increase in its largest cost line in one year.\n\nNobody at the table proposed a way to tell the two apart, and the meeting moved on to the budget.",
+        "attribution": "Synthetic case in the standard consulting profitability form (profit = price x volume - unit cost x volume), written so that the volunteered explanations arrive without tests."
+      },
+      "layout": {
+        "mode": "tree",
+        "root": "q",
+        "direction": "down"
+      },
+      "nodes": [
+        {
+          "id": "q",
+          "slot": "question",
+          "label": "Why did profit fall 22%?",
+          "text": "Operating profit fell 22 percent last year while revenue was flat, and the board wants to know why before it approves next year's budget.",
+          "provenance": "fact",
+          "source_quote": "operating profit fell 22 percent last year while revenue was flat, and the board wants to know why before it approves next year's budget",
+          "source_ref": "chief executive, sentence 2",
+          "entities": ["Northline Freight"],
+          "level": 0
+        },
+        {
+          "id": "i_rev",
+          "slot": "issue",
+          "label": "Did revenue per load fall?",
+          "text": "Revenue side: did the company earn less per unit of work delivered? Revenue was flat while loads rose, so revenue per load fell arithmetically; the open question is by how much and on which lanes.",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "Profit equals price per load times loads, minus cost per load times loads. With revenue and loads both stated, the price branch is forced as one of the two top-level places the fall can come from; the direction is arithmetic from e_rev and e_loads.",
+          "level": 1
+        },
+        {
+          "id": "i_cost",
+          "slot": "issue",
+          "label": "Did cost per load rise?",
+          "text": "Cost side: did it cost more to deliver a load than it did the year before? Everything that is not a revenue-per-load effect lands here.",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The mirror of i_rev in the same identity. Together the two are collectively exhaustive for a profit fall on flat revenue and mutually exclusive because one is measured per unit of revenue and the other per unit of cost.",
+          "level": 1
+        },
+        {
+          "id": "i_price",
+          "slot": "issue",
+          "label": "Did input prices rise?",
+          "text": "Cost sub-branch one: did the price of an input go up while the amount consumed stayed the same? Wages, fuel, tolls, insurance.",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Unit cost is a price times a quantity of input consumed, so splitting cost per load into price and consumption is the standard MECE cut and is the split that decides whether the fix is commercial or operational.",
+          "level": 2
+        },
+        {
+          "id": "i_use",
+          "slot": "issue",
+          "label": "Was more input used per load?",
+          "text": "Cost sub-branch two: at unchanged input prices, did each load consume more driver hours, more miles or more equipment time than before?",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The complement of i_price under i_cost. It is the branch the source's own numbers point at, since fuel cost per mile is stated as unchanged while empty miles rose, but nobody at the table opened it.",
+          "level": 2
+        },
+        {
+          "id": "h_rate",
+          "slot": "hypothesis",
+          "label": "Rates were cut to hold volume",
+          "text": "The freight market softened and Northline cut rates to hold volume against a new low-cost entrant, so the same work now earns less.",
+          "provenance": "fact",
+          "source_quote": "The vice-president of sales said the freight market had softened and that Northline had cut rates to hold volume against a new low-cost entrant.",
+          "source_ref": "vice-president of sales, sentence 10",
+          "entities": ["Northline Freight"],
+          "level": 3
+        },
+        {
+          "id": "h_wage",
+          "slot": "hypothesis",
+          "label": "The 9% wage settlement did it",
+          "text": "The spring wage settlement is the cause: no carrier can absorb a 9 percent increase in its largest cost line in a single year.",
+          "provenance": "fact",
+          "source_quote": "The operations director said the problem was the wage settlement, and that no carrier could absorb a 9 percent increase in its largest cost line in one year.",
+          "source_ref": "operations director, sentence 11",
+          "entities": ["Northline Freight"],
+          "level": 3
+        },
+        {
+          "id": "h_empty",
+          "slot": "hypothesis",
+          "label": "Empty miles are eating the margin",
+          "text": "Deadhead is the cause: empty miles went from 14 to 19 percent of the total, so roughly one mile in five now earns nothing while still burning fuel and paid driver hours.",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Nobody at the table raised this. It follows from two stated numbers that point the same way: fuel cost per mile is unchanged, so a rise in total cost per load has to come from miles or hours rather than input prices, and the deadhead share rose five points in the same year.",
+          "level": 3
+        },
+        {
+          "id": "h_mix",
+          "slot": "hypothesis",
+          "label": "The extra loads are worse loads",
+          "text": "The incremental freight is smaller and harder to route: loads rose 4 percent on flat revenue, so the marginal load is cheaper, and small scattered drops raise deadhead at the same time as they cut revenue per load.",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "A single mechanism that would make the rate story and the deadhead story the same story, which is what makes it worth testing before either is accepted. Contestable because the source gives no load-size or lane data at all; it is an inference from the arithmetic of flat revenue on rising volume.",
+          "level": 3
+        },
+        {
+          "id": "t_rate",
+          "slot": "test",
+          "label": "Rate per load, entrant lanes vs not",
+          "text": "Compare revenue per load on lanes where the new entrant bids against Northline with lanes where it does not. If rates fell by the same amount on both, the entrant is not what cut the rates.",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The hypothesis names a specific cause, a competitor, so the falsifier is the natural control group: lanes the competitor does not touch. It is the cheapest observation that can kill the branch, and the data already exists in the rating system.",
+          "level": 4
+        },
+        {
+          "id": "t_wage",
+          "slot": "test",
+          "label": "Restate profit at last year's wage",
+          "text": "Recompute last year's operating profit holding driver pay at the previous rate. If the restated profit is still materially below the prior year, the settlement is not sufficient to explain a 22 percent fall.",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "For a cost-price hypothesis the falsification is arithmetic: hold the price constant and see whether the gap closes. Nearly forced by the structure of the claim, and it settles the branch in an afternoon with data already in the ledger.",
+          "level": 4
+        },
+        {
+          "id": "t_empty",
+          "slot": "test",
+          "label": "Cost per loaded mile, before vs after",
+          "text": "Compute cost per loaded mile in both years, excluding empty miles. If that number is flat, the extra cost is not being created by routing and the deadhead branch is dead.",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Stripping empty miles out of the denominator isolates the claim: if the loaded work costs the same as it did, then the increase lives entirely in the miles that earn nothing, and if it does not, deadhead is not the mechanism.",
+          "level": 4
+        },
+        {
+          "id": "t_mix",
+          "slot": "test",
+          "label": "Split revenue and deadhead by load size",
+          "text": "Split revenue per mile and empty miles per load by load-size decile. If the smallest loads show the same revenue per mile and the same deadhead as the largest, the mix story fails.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The hypothesis claims two effects arise from one cause, so the falsifier has to check both on the same cut of the data. Lower confidence than the other tests because load-size deciles may not be recorded and a proxy would weaken the result.",
+          "level": 4
+        },
+        {
+          "id": "e_rev",
+          "slot": "evidence",
+          "label": "Revenue $214m, flat on the year",
+          "text": "Revenue was $214 million, within one percent of the previous year.",
+          "provenance": "fact",
+          "source_quote": "Revenue was $214 million, within one percent of the previous year.",
+          "source_ref": "finance pack, sentence 4",
+          "entities": ["Northline Freight"],
+          "level": 5
+        },
+        {
+          "id": "e_loads",
+          "slot": "evidence",
+          "label": "Loads delivered rose 4%",
+          "text": "Loads delivered rose 4 percent, so average revenue per load fell.",
+          "provenance": "fact",
+          "source_quote": "Loads delivered rose 4 percent, so average revenue per load fell.",
+          "source_ref": "finance pack, sentence 5",
+          "entities": ["Northline Freight"],
+          "level": 5
+        },
+        {
+          "id": "e_pay",
+          "slot": "evidence",
+          "label": "Driver pay rose 9%",
+          "text": "Driver pay rose 9 percent after the spring wage settlement.",
+          "provenance": "fact",
+          "source_quote": "Driver pay rose 9 percent after the spring wage settlement.",
+          "source_ref": "finance pack, sentence 6",
+          "entities": ["Northline Freight"],
+          "level": 5
+        },
+        {
+          "id": "e_fuel",
+          "slot": "evidence",
+          "label": "Fuel cost per mile unchanged",
+          "text": "Fuel cost per mile was unchanged.",
+          "provenance": "fact",
+          "source_quote": "Fuel cost per mile was unchanged.",
+          "source_ref": "finance pack, sentence 7",
+          "entities": ["Northline Freight"],
+          "level": 5
+        },
+        {
+          "id": "e_dead",
+          "slot": "evidence",
+          "label": "Empty miles rose 14% to 19%",
+          "text": "Empty miles, meaning miles driven with no freight aboard, rose from 14 percent to 19 percent of total miles.",
+          "provenance": "fact",
+          "source_quote": "Empty miles, meaning miles driven with no freight aboard, rose from 14 percent to 19 percent of total miles.",
+          "source_ref": "finance pack, sentence 8",
+          "entities": ["Northline Freight"],
+          "level": 5
+        }
+      ],
+      "edges": [
+        {
+          "id": "c1",
+          "from": "e_rev",
+          "to": "q",
+          "relation": "bears_on",
+          "provenance": "fact",
+          "source_quote": "operating profit fell 22 percent last year while revenue was flat",
+          "source_ref": "chief executive, sentence 2",
+          "rationale": "The question is put in terms of this number: flat revenue is half of what makes the profit fall a puzzle."
+        },
+        {
+          "id": "c2",
+          "from": "q",
+          "to": "h_rate",
+          "relation": "answered_if",
+          "provenance": "fact",
+          "source_quote": "Two explanations were offered at the table. The vice-president of sales said the freight market had softened",
+          "source_ref": "board minute, sentences 9-10"
+        },
+        {
+          "id": "c3",
+          "from": "q",
+          "to": "h_wage",
+          "relation": "answered_if",
+          "provenance": "fact",
+          "source_quote": "The operations director said the problem was the wage settlement",
+          "source_ref": "operations director, sentence 11"
+        },
+        {
+          "id": "c4",
+          "from": "e_pay",
+          "to": "h_wage",
+          "relation": "bears_on",
+          "provenance": "fact",
+          "label": "+",
+          "source_quote": "no carrier could absorb a 9 percent increase in its largest cost line in one year",
+          "source_ref": "operations director, sentence 11"
+        },
+        {
+          "id": "c5",
+          "from": "q",
+          "to": "i_rev",
+          "relation": "decomposes_into",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The revenue half of the profit identity; forced once the question is about profit rather than about a single line."
+        },
+        {
+          "id": "c6",
+          "from": "q",
+          "to": "i_cost",
+          "relation": "decomposes_into",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The cost half of the same identity. With i_rev it exhausts the ways profit can fall."
+        },
+        {
+          "id": "c7",
+          "from": "i_cost",
+          "to": "i_price",
+          "relation": "decomposes_into",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Unit cost splits into the price of the input and the quantity consumed; this is the price side."
+        },
+        {
+          "id": "c8",
+          "from": "i_cost",
+          "to": "i_use",
+          "relation": "decomposes_into",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The consumption side of the same split, and the branch the table skipped."
+        },
+        {
+          "id": "c9",
+          "from": "i_rev",
+          "to": "h_rate",
+          "relation": "answered_if",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The sales explanation is a claim about price per load, so it belongs under the revenue-quality branch rather than under cost."
+        },
+        {
+          "id": "c10",
+          "from": "i_rev",
+          "to": "h_mix",
+          "relation": "answered_if",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "A mix shift toward smaller loads lowers revenue per load without any rate being cut, which is the alternative answer to the same issue."
+        },
+        {
+          "id": "c11",
+          "from": "i_price",
+          "to": "h_wage",
+          "relation": "answered_if",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "A wage settlement is an input price change by definition, so the operations director's claim sits under the price branch."
+        },
+        {
+          "id": "c12",
+          "from": "i_use",
+          "to": "h_empty",
+          "relation": "answered_if",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Deadhead is miles consumed without revenue, which is a consumption effect rather than a price effect."
+        },
+        {
+          "id": "c13",
+          "from": "h_rate",
+          "to": "t_rate",
+          "relation": "falsified_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The hypothesis names a competitor as the cause, so lanes without that competitor are the control that can refute it."
+        },
+        {
+          "id": "c14",
+          "from": "h_wage",
+          "to": "t_wage",
+          "relation": "falsified_by",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "A price-driven cost claim is refuted by restating the same year at the old price and finding the gap still there."
+        },
+        {
+          "id": "c15",
+          "from": "h_empty",
+          "to": "t_empty",
+          "relation": "falsified_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Excluding empty miles from the denominator isolates the claimed mechanism; a flat loaded-mile cost kills it."
+        },
+        {
+          "id": "c16",
+          "from": "h_mix",
+          "to": "t_mix",
+          "relation": "falsified_by",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The claim is that one cause produces two effects, so the falsifier checks both effects on the same cut of the data."
+        },
+        {
+          "id": "c17",
+          "from": "e_dead",
+          "to": "h_empty",
+          "relation": "bears_on",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "label": "+",
+          "rationale": "A five-point rise in the deadhead share is the observation the hypothesis is built on; the source states the number but never draws the inference."
+        },
+        {
+          "id": "c18",
+          "from": "e_fuel",
+          "to": "h_empty",
+          "relation": "bears_on",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "label": "+",
+          "rationale": "Unchanged fuel cost per mile rules out fuel price as the cost driver, which leaves the number of miles as the way fuel spend could still have risen."
+        },
+        {
+          "id": "c19",
+          "from": "e_pay",
+          "to": "h_empty",
+          "relation": "bears_on",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "label": "+",
+          "rationale": "A 9 percent higher driver hour makes every empty mile more expensive than it was, so the wage rise and the deadhead rise compound rather than compete."
+        },
+        {
+          "id": "c20",
+          "from": "e_loads",
+          "to": "h_mix",
+          "relation": "bears_on",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "label": "+",
+          "rationale": "Four percent more loads on flat revenue is exactly the pattern a shift toward smaller freight would produce, though it is equally consistent with an across-the-board rate cut."
+        },
+        {
+          "id": "c21",
+          "from": "e_rev",
+          "to": "h_rate",
+          "relation": "bears_on",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "label": "+",
+          "rationale": "Flat revenue against rising volume is what a rate cut to hold share looks like in aggregate, which is why the sales explanation is plausible on the stated numbers."
+        },
+        {
+          "id": "c22",
+          "from": "e_loads",
+          "to": "h_rate",
+          "relation": "bears_on",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "label": "+",
+          "rationale": "Volume held, and grew, which is the stated goal of the rate cut; the hypothesis would look worse if volume had fallen anyway."
+        },
+        {
+          "id": "c23",
+          "from": "i_use",
+          "to": "e_dead",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The deadhead number is the only stated evidence that any input consumption per load changed, and it is what makes this branch worth opening."
+        },
+        {
+          "id": "c24",
+          "from": "t_empty",
+          "to": "e_dead",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The test is constructed directly from the deadhead measure the finance pack already reports."
+        },
+        {
+          "id": "c25",
+          "from": "t_mix",
+          "to": "e_loads",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "The load count is the quantity the test proposes to cut by size, so the test is only runnable because that number is tracked."
+        }
+      ]
+    },
+    {
+      "id": "tbpn",
+      "kind": "tbpn",
+      "title": "Azure grew 39% and the driver was the non-AI business",
+      "summary": "The hosts hit an anomaly in Microsoft's June quarter, name it as a question out loud, and volunteer five explanations for it across twenty minutes. Not one of the five arrives with a way to tell it from the others; the single falsification condition anyone states is thrown away in a subordinate clause.",
+      "source": {
+        "type": "transcript",
+        "file": "tbpn-transcripts/transcripts/2025-08-09_weekly-recap-gpt-5-apple-sitting-on-100b-disney-enters-the-ai-race-marc-andreessen.md",
+        "date": "2025-08-09",
+        "episode_title": "Weekly Recap: GPT-5, Apple Sitting on $100B, Disney Enters the AI Race, Marc Andreessen"
+      },
+      "why_this_episode": "The hosts pose an explicit diagnostic question about a number that surprised them, announce that there are several competing explanations, and then volunteer five of them in one continuous segment, each with its own stated connective tying it back to the question. It is a hypothesis tree assembled live and left untested: the branches are all fact-provenance, the issue structure above them and the falsifiers below them are entirely absent from the source.",
+      "idea_bearing_slot": "hypothesis",
+      "layout": {
+        "mode": "tree",
+        "root": "q",
+        "direction": "down"
+      },
+      "nodes": [
+        {
+          "id": "q",
+          "slot": "question",
+          "label": "Why is IaaS outgrowing tokens?",
+          "text": "Why is Azure's infrastructure-as-a-service business growing faster than its tokens-as-a-service product, when the expectation was that enterprises buying AI would show up as API revenue?",
+          "provenance": "fact",
+          "source_quote": "so the question is like, why is their infrastructure as a service growing faster than their tokens as a service product?",
+          "source_ref": "host, L264-L266",
+          "entities": ["Microsoft", "Azure IaaS (Infrastructure as a Service)", "Tokens as a Service"],
+          "level": 0
+        },
+        {
+          "id": "i_meas",
+          "slot": "issue",
+          "label": "Is the split measured correctly?",
+          "text": "Measurement branch: does the reported boundary between core infrastructure and AI services track the workload, or only the SKU the customer happened to buy?",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The observation is a ratio between two reported buckets, so before any demand story is entertained the first branch has to be whether the buckets mean what their names say. Two of the volunteered explanations turn out to live here, which is what a MECE cut is supposed to reveal.",
+          "level": 1
+        },
+        {
+          "id": "i_iaas",
+          "slot": "issue",
+          "label": "Did non-AI demand really rise?",
+          "text": "Numerator branch: is something genuinely pulling infrastructure-as-a-service up, independently of anything happening on the AI side?",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "A ratio can move because the numerator rose for reasons of its own. This branch is exclusive of the measurement branch because it concerns real workloads rather than how they are booked.",
+          "level": 1
+        },
+        {
+          "id": "i_supply",
+          "slot": "issue",
+          "label": "Is the AI line capped by supply?",
+          "text": "Denominator branch, supply side: is the tokens business growing slowly because Microsoft cannot serve more, rather than because customers do not want more?",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The other way a ratio moves is that the denominator is held down, and a held-down denominator is either a supply or a demand story. Separating the two is the cut that matters commercially, because one resolves with capital and the other does not.",
+          "level": 1
+        },
+        {
+          "id": "i_demand",
+          "slot": "issue",
+          "label": "Is enterprise AI demand weaker?",
+          "text": "Denominator branch, demand side: is enterprise appetite for bought inference simply smaller than the capex implies, whatever Microsoft is able to serve?",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The complement of the supply branch, and the branch nobody on air was willing to open: across the whole segment five explanations are volunteered and none of them is that the demand is not there. Its emptiness in the source is the strongest evidence that the tree was never made MECE.",
+          "level": 1
+        },
+        {
+          "id": "h_mig",
+          "slot": "hypothesis",
+          "label": "Enterprises are moving to cloud for AI",
+          "text": "Companies decide that AI is going to matter, and the first thing they do about it is get their data and workloads onto the cloud, exactly as companies bought a computer when they heard about the internet.",
+          "provenance": "fact",
+          "source_quote": "and now you could see something you know where companies say hey this AI thing might be big we should get on the cloud",
+          "source_ref": "host, L194-L198",
+          "entities": ["Microsoft"],
+          "level": 2
+        },
+        {
+          "id": "h_comp",
+          "slot": "hypothesis",
+          "label": "AI pulls ordinary IT along with it",
+          "text": "An AI programme is not only inference: the same customer needs more databases, more data in them and more CPU workloads, and Microsoft has no trouble serving any of that.",
+          "provenance": "fact",
+          "source_quote": "Well, we're also going to need more databases. We're going to need more data in those databases. We're going to need more CPU workloads. We're going to need more of everything.",
+          "source_ref": "host, L292-L296",
+          "entities": ["Microsoft"],
+          "level": 2
+        },
+        {
+          "id": "h_gpu",
+          "slot": "hypothesis",
+          "label": "The AI line is GPU supply capped",
+          "text": "Microsoft is massively supply constrained on the GPU side and carries a backlog in the tens or hundreds of billions that it cannot fulfil, so the tokens business cannot grow at the rate demand would allow.",
+          "provenance": "fact",
+          "source_quote": "couldn't the other factor here be that they are massively supply constrained on the GPU side, and they have this, you know, multi-tens of billions or hundreds of billions of dollars of backlog that they can't fulfill.",
+          "source_ref": "host, L272-L276",
+          "entities": ["Microsoft", "H100 GPUs"],
+          "level": 2
+        },
+        {
+          "id": "h_bucket",
+          "slot": "hypothesis",
+          "label": "AI work is booked as core infra",
+          "text": "Plenty of genuine AI activity sits inside the core infrastructure bucket and cannot be seen from outside: a customer renting GPU virtual machines, storage for training data and networking to move it is doing AI, and none of it is booked as an AI service.",
+          "provenance": "fact",
+          "source_quote": "There's also an interesting thing where tons of AI stuff can technically be happening inside the core infrastructure bucket. You just don't necessarily know what's in there.",
+          "source_ref": "host, L300-L304",
+          "entities": ["Microsoft", "H100 GPUs", "Llama 3 (Meta open-source LLM)"],
+          "level": 2
+        },
+        {
+          "id": "h_oai",
+          "slot": "hypothesis",
+          "label": "ChatGPT itself lands in core infra",
+          "text": "OpenAI is not served through the Azure AI API, so ChatGPT's own consumption may be reported as Azure core infrastructure, and the single largest AI workload on the platform would then be counted as non-AI.",
+          "provenance": "fact",
+          "source_quote": "And then I also saw a post that potentially chat GPT count. as Azure core infrastructure, because they're not, they're not serving chat GPT through the Azure AI API.",
+          "source_ref": "host, L324-L328",
+          "entities": ["Microsoft", "OpenAI"],
+          "level": 2
+        },
+        {
+          "id": "h_blind",
+          "slot": "hypothesis",
+          "label": "Nobody can measure AI revenue",
+          "text": "If AI work is billed as storage, networking and raw GPU capacity, then the AI versus non-AI split every hyperscaler reports is an artefact of which SKU the customer bought, and no outside party can separate AI spend from ordinary IT spend at all.",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "This is the sibling the two measurement hypotheses imply but nobody states: h_bucket and h_oai each describe a specific leak, and taken together they say the reported category is not a measurement of anything. Contestable because Microsoft has internal telemetry it simply chooses not to publish, so the problem may be disclosure rather than measurement.",
+          "idea": "Cloud bills cannot currently distinguish AI spend from ordinary IT spend, so an independent workload-attribution layer that reads usage telemetry and reports a defensible AI share is an underserved need for CFOs justifying budgets and for analysts pricing these companies.",
+          "level": 2
+        },
+        {
+          "id": "h_pilot",
+          "slot": "hypothesis",
+          "label": "Enterprise AI is stuck before production",
+          "text": "The tokens line lags because enterprise AI is mostly still pilots that consume very little inference, while the same buyers provision the storage and CPU for programmes they have announced but not shipped.",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "The only candidate answer under the demand branch, constructed because that branch is empty in the source. It reconciles two stated facts that otherwise conflict: infrastructure bought in anticipation of AI, and an AI services line that does not grow with it. Speculative because the source contains no enterprise deployment data whatsoever.",
+          "idea": "The gap between an announced AI programme and inference actually in production is where enterprise budget is stranding, so evaluation, data plumbing and procurement-ready deployment tooling may address a larger near-term market than the model APIs themselves.",
+          "level": 2
+        },
+        {
+          "id": "t_oai",
+          "slot": "test",
+          "label": "Unless the growth is all OpenAI",
+          "text": "The stated falsifier: none of the reassurance about diversified non-AI revenue means anything if all of the growth is coming from OpenAI.",
+          "provenance": "fact",
+          "source_quote": "Of course, none of that means anything if all of the growth is coming from Open AI.",
+          "source_ref": "host, L488-L490",
+          "entities": ["Microsoft", "OpenAI"],
+          "level": 3
+        },
+        {
+          "id": "t_mig",
+          "slot": "test",
+          "label": "Core infra growth by account cohort",
+          "text": "Split core infrastructure growth by customer cohort. If it is concentrated in accounts that were already cloud-native, the story about on-premise enterprises migrating in anticipation of AI is not what is driving the number.",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The hypothesis is specifically about newly migrating enterprises, so the falsifier is the cohort cut that separates them from existing cloud customers expanding. Distinct from t_oai, which kills the same branch only in the extreme single-customer case.",
+          "level": 3
+        },
+        {
+          "id": "t_comp",
+          "slot": "test",
+          "label": "Infra growth in accounts with no AI",
+          "text": "Compare core infrastructure growth in accounts that also buy AI services with growth in accounts that buy none. If the two grow at the same rate, ordinary IT demand is rising for its own reasons and AI is not pulling it.",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The claim is one of complementarity between two purchases, so the falsifier is the account-level split that breaks the pairing. It is the cleanest available observation because it holds the macro environment constant across both groups.",
+          "level": 3
+        },
+        {
+          "id": "t_gpu",
+          "slot": "test",
+          "label": "AI line flat as backlog clears",
+          "text": "Track the AI services line against reported GPU fleet growth and backlog. If the fleet expands and the backlog shrinks while AI revenue growth stays flat, supply was not the binding constraint.",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "A supply-constraint claim predicts that revenue moves when the constraint loosens, so watching revenue while the constraint demonstrably loosens is the direct refutation. Both quantities are disclosed at least qualitatively on the earnings call.",
+          "level": 3
+        },
+        {
+          "id": "t_bucket",
+          "slot": "test",
+          "label": "GPU VM and training storage line",
+          "text": "Ask for the core infrastructure bucket broken out by SKU. If GPU virtual machines and training-adjacent storage are flat while the bucket grows, AI work leaking into core infrastructure is not what is moving it.",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The hypothesis names the exact SKUs through which the leak would occur, so the falsifier is those SKUs holding still while the total rises. The data exists inside Microsoft; only the disclosure is missing.",
+          "level": 3
+        },
+        {
+          "id": "t_disclose",
+          "slot": "test",
+          "label": "Where OpenAI's usage is booked",
+          "text": "One disclosure settles it: if Microsoft states that OpenAI's consumption is reported inside Azure AI services rather than core infrastructure, the hypothesis dies outright.",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "A claim about accounting classification is falsified by the classification itself, so this is a single-question test rather than an analysis. Its confidence is high because the answer is unambiguous once given, which is also why the segment notes it was not given.",
+          "level": 3
+        },
+        {
+          "id": "t_blind",
+          "slot": "test",
+          "label": "Two methods, same AI revenue number",
+          "text": "Have two independent estimates of Azure's AI revenue built by different methods, a customer survey and SKU-level telemetry, land within a few points of each other. If they agree, the category is measurable after all and only the disclosure is missing.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "A claim that a quantity is unmeasurable is refuted by two unrelated measurement routes converging on it. Confidence is held below the arithmetic band because agreement between two methods can also be coincidence at a single point in time.",
+          "level": 3
+        },
+        {
+          "id": "t_pilot",
+          "slot": "test",
+          "label": "Inference vs storage in one account",
+          "text": "Follow the ratio of inference spend to storage spend inside the same enterprise accounts over four quarters. If inference rises in step with storage, the workloads are in production and the pilot-stall reading is wrong.",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "The hypothesis predicts a divergence between two spend lines in the same account, so the falsifier is those lines moving together. Confidence is modest because the ratio would also move if customers ran production inference outside Azure.",
+          "level": 3
+        },
+        {
+          "id": "e_driver",
+          "slot": "evidence",
+          "label": "39% growth, core infra the driver",
+          "text": "Microsoft did not give a comparable AI and non-AI breakdown for the cloud unit's 39 percent growth in the June quarter, but said the core infrastructure business, its term for the non-AI cloud, was the driver.",
+          "provenance": "fact",
+          "source_quote": "While the company didn't give a comparable breakdown, a comparable breakdown of the cloud unit's 39% growth in its June quarter, it said that the core infrastructure business, Microsoft's lingo for its non-AI cloud business, was the driver.",
+          "source_ref": "host reading the Wall Street Journal, L124-L126",
+          "entities": ["Microsoft"],
+          "level": 4
+        },
+        {
+          "id": "e_margin",
+          "slot": "evidence",
+          "label": "Non-AI Azure margin 73% vs 30-40%",
+          "text": "Non-AI gross margins within Azure were around 73 percent, against 30 to 40 percent for AI, because of the cost of setting up AI infrastructure.",
+          "provenance": "fact",
+          "source_quote": "non-AI gross margins within Azure were around 73%. Wow. That compares to 30 to 40% gross margin for AI.",
+          "source_ref": "host reading the Wall Street Journal, L530-L532",
+          "entities": ["Microsoft"],
+          "level": 4
+        },
+        {
+          "id": "e_aws",
+          "slot": "evidence",
+          "label": "AWS grew 17.5% the same quarter",
+          "text": "Amazon said its cloud unit grew at 17.5 percent in the June quarter, less than half Azure's rate in the same three months.",
+          "provenance": "fact",
+          "source_quote": "Amazon on Thursday said its cloud unit grew at 17.5% in the June quarter,",
+          "source_ref": "host reading the Wall Street Journal, L760",
+          "entities": ["Amazon", "Andy Jassy"],
+          "level": 4
+        },
+        {
+          "id": "e_m365",
+          "slot": "evidence",
+          "label": "Microsoft 365 cloud grew 16%",
+          "text": "The Microsoft 365 commercial cloud business, which houses the remotely accessed versions of Word and Excel, grew 16 percent from a year earlier.",
+          "provenance": "fact",
+          "source_quote": "So Microsoft 365 commercial cloud business, which houses remotely access versions of Word, Excel, other productivity software. That grew at 16% from a year earlier.",
+          "source_ref": "host, L406-L408",
+          "entities": ["Microsoft"],
+          "level": 4
+        },
+        {
+          "id": "e_chatgpt",
+          "slot": "evidence",
+          "label": "ChatGPT at about $1bn a month",
+          "text": "ChatGPT is generating something like a billion dollars a month in revenue, everyone uses the app and it is installed everywhere.",
+          "provenance": "fact",
+          "source_quote": "like they're generating what a billion dollars a month in revenue at this point everyone uses the app it's installed everywhere",
+          "source_ref": "host, L492-L494",
+          "entities": ["OpenAI"],
+          "level": 4
+        },
+        {
+          "id": "e_pe",
+          "slot": "evidence",
+          "label": "Stock up 40%, forward P/E over 33",
+          "text": "Microsoft's stock is up nearly 40 percent since the beginning of April, pushing its forward price to earnings multiple above 33.",
+          "provenance": "fact",
+          "source_quote": "The company's stock is up nearly 40% since the beginning of April, pushing its forward price earnings multiple above 33.",
+          "source_ref": "host reading the Wall Street Journal, L788",
+          "entities": ["Microsoft"],
+          "level": 4
+        }
+      ],
+      "edges": [
+        {
+          "id": "x1",
+          "from": "e_driver",
+          "to": "q",
+          "relation": "bears_on",
+          "provenance": "fact",
+          "source_quote": "So this is the key stat from the earnings call that the Wall Street Journal is highlighting, and then we'll kind of dig into this number and what it means because there's a lot of different explanations for what could be going on.",
+          "source_ref": "host, L108-L112",
+          "rationale": "The host names this number as the stat the segment is about and says outright that it admits several explanations."
+        },
+        {
+          "id": "x2",
+          "from": "q",
+          "to": "h_mig",
+          "relation": "answered_if",
+          "provenance": "fact",
+          "source_quote": "And so the integration that comes from being in the Azure ecosystem, that could be a driver.",
+          "source_ref": "host, L218-L220"
+        },
+        {
+          "id": "x3",
+          "from": "q",
+          "to": "h_gpu",
+          "relation": "answered_if",
+          "provenance": "fact",
+          "source_quote": "Meanwhile, they had a, you know, more kind of like predictability on the traditional data center cloud side that they were able to scale up to. So that feels like a potentially like a pretty big driver here.",
+          "source_ref": "host, L278-L282"
+        },
+        {
+          "id": "x4",
+          "from": "q",
+          "to": "h_bucket",
+          "relation": "answered_if",
+          "provenance": "fact",
+          "source_quote": "I'm going to need a bunch of networking to move that data around when I do a training run. So that could be driving core infra up.",
+          "source_ref": "host, L310-L314"
+        },
+        {
+          "id": "x5",
+          "from": "q",
+          "to": "h_oai",
+          "relation": "answered_if",
+          "provenance": "fact",
+          "source_quote": "It's like, opening I just came and said, give us a whole bunch of them. The headline itself ends up becoming pretty misleading.",
+          "source_ref": "hosts, L328-L330"
+        },
+        {
+          "id": "x6",
+          "from": "q",
+          "to": "h_comp",
+          "relation": "answered_if",
+          "provenance": "fact",
+          "source_quote": "And Microsoft's like, yeah, of course, we can definitely get you a whole bunch more hard drives and a whole bunch more CPUs. We're not constrained on that at all. And the KAPX is keeping up so they're able to service that.",
+          "source_ref": "host, L296-L300"
+        },
+        {
+          "id": "x7",
+          "from": "q",
+          "to": "i_meas",
+          "relation": "decomposes_into",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "First branch for any question about a ratio between two reported categories: whether the categories measure what their names claim."
+        },
+        {
+          "id": "x8",
+          "from": "q",
+          "to": "i_iaas",
+          "relation": "decomposes_into",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The numerator branch: the ratio can move because infrastructure demand genuinely rose."
+        },
+        {
+          "id": "x9",
+          "from": "q",
+          "to": "i_supply",
+          "relation": "decomposes_into",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The denominator branch on the supply side: the tokens line may be capped by what can be served."
+        },
+        {
+          "id": "x10",
+          "from": "q",
+          "to": "i_demand",
+          "relation": "decomposes_into",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The denominator branch on the demand side, and the complement that makes the four collectively exhaustive; the source never opens it."
+        },
+        {
+          "id": "x11",
+          "from": "i_meas",
+          "to": "h_bucket",
+          "relation": "answered_if",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "The hypothesis is explicitly about work landing in the wrong bucket, so it answers the measurement issue and nothing else."
+        },
+        {
+          "id": "x12",
+          "from": "i_meas",
+          "to": "h_oai",
+          "relation": "answered_if",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "A claim about where one customer's consumption is booked is a classification claim, so it sits beside h_bucket rather than under a demand branch."
+        },
+        {
+          "id": "x13",
+          "from": "i_meas",
+          "to": "h_blind",
+          "relation": "answered_if",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "The general form of the same branch: not one leak but the category failing to measure anything."
+        },
+        {
+          "id": "x14",
+          "from": "i_iaas",
+          "to": "h_mig",
+          "relation": "answered_if",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Enterprises moving on-premise workloads to the cloud is a real increase in infrastructure demand, which is what this issue asks about."
+        },
+        {
+          "id": "x15",
+          "from": "i_iaas",
+          "to": "h_comp",
+          "relation": "answered_if",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Complementary demand is also a genuine rise in the numerator, distinguished from h_mig by whether the customer is new to the cloud or already on it."
+        },
+        {
+          "id": "x16",
+          "from": "i_supply",
+          "to": "h_gpu",
+          "relation": "answered_if",
+          "provenance": "derived",
+          "confidence": 0.9,
+          "rationale": "A stated GPU constraint with an unfulfillable backlog is precisely the supply-side answer this issue calls for."
+        },
+        {
+          "id": "x17",
+          "from": "i_demand",
+          "to": "h_pilot",
+          "relation": "answered_if",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "The only candidate answer available under the demand branch, and it had to be constructed because no speaker offered one."
+        },
+        {
+          "id": "x18",
+          "from": "h_mig",
+          "to": "t_oai",
+          "relation": "falsified_by",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The speaker states the falsifier but never attaches it to a hypothesis. It kills this branch in the limit: if one AI-native account is the whole of the growth, no enterprise migration is happening in the number."
+        },
+        {
+          "id": "x19",
+          "from": "h_mig",
+          "to": "t_mig",
+          "relation": "falsified_by",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The cohort cut refutes the migration story in the general case, not only in the single-customer extreme t_oai covers."
+        },
+        {
+          "id": "x20",
+          "from": "h_comp",
+          "to": "t_comp",
+          "relation": "falsified_by",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "A complementarity claim is refuted by the two purchases moving independently across accounts."
+        },
+        {
+          "id": "x21",
+          "from": "h_gpu",
+          "to": "t_gpu",
+          "relation": "falsified_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "A binding constraint predicts revenue moves when it loosens; revenue not moving refutes it."
+        },
+        {
+          "id": "x22",
+          "from": "h_bucket",
+          "to": "t_bucket",
+          "relation": "falsified_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The hypothesis names the SKUs the leak runs through, so those SKUs holding flat while the bucket grows refutes it."
+        },
+        {
+          "id": "x23",
+          "from": "h_oai",
+          "to": "t_disclose",
+          "relation": "falsified_by",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "A classification claim is settled by the classification, so a single disclosure is the whole test."
+        },
+        {
+          "id": "x24",
+          "from": "h_blind",
+          "to": "t_blind",
+          "relation": "falsified_by",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "A claim of unmeasurability is refuted by two independent measurement methods agreeing."
+        },
+        {
+          "id": "x25",
+          "from": "h_pilot",
+          "to": "t_pilot",
+          "relation": "falsified_by",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "The hypothesis predicts inference and storage spend diverge inside the same account; them moving together refutes it."
+        },
+        {
+          "id": "x26",
+          "from": "e_aws",
+          "to": "h_mig",
+          "relation": "bears_on",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "label": "-",
+          "rationale": "If a broad enterprise migration to cloud were the driver, the largest infrastructure vendor should be catching the same wave; AWS grew at less than half Azure's rate in the same quarter, which points to something specific to Microsoft."
+        },
+        {
+          "id": "x27",
+          "from": "e_m365",
+          "to": "h_comp",
+          "relation": "bears_on",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "label": "+",
+          "rationale": "Sixteen percent growth in a mature productivity suite is consistent with a broad expansion of every technology line rather than an AI-specific one, which is the mechanism this hypothesis claims."
+        },
+        {
+          "id": "x28",
+          "from": "e_driver",
+          "to": "h_bucket",
+          "relation": "bears_on",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "label": "+",
+          "rationale": "Microsoft declining to give the AI and non-AI breakdown for the quarter is weakly consistent with a boundary that is awkward to defend, though refusing to disclose has many other explanations."
+        },
+        {
+          "id": "x29",
+          "from": "e_chatgpt",
+          "to": "h_oai",
+          "relation": "bears_on",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "label": "+",
+          "rationale": "At roughly a billion dollars a month of consumer revenue, ChatGPT's own infrastructure consumption is large enough that where it is booked materially moves the reported split."
+        },
+        {
+          "id": "x30",
+          "from": "e_chatgpt",
+          "to": "h_pilot",
+          "relation": "bears_on",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "label": "-",
+          "rationale": "Inference demand at that scale is not weak in the market as a whole, so the pilot-stall reading can only be about enterprises, which narrows the hypothesis and lowers what it explains."
+        },
+        {
+          "id": "x31",
+          "from": "e_margin",
+          "to": "h_blind",
+          "relation": "bears_on",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "label": "+",
+          "rationale": "A 73 percent against 30 to 40 percent margin gap means the AI and non-AI mix changes what the business is worth, which turns an inability to measure the split from a definitional quibble into a priced problem."
+        },
+        {
+          "id": "x32",
+          "from": "e_pe",
+          "to": "q",
+          "relation": "bears_on",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The question is decision-relevant because the multiple is being paid for an AI growth story; if the growth is ordinary IT at 33 times forward earnings, the price is set on the wrong driver."
+        },
+        {
+          "id": "x33",
+          "from": "h_blind",
+          "to": "e_driver",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "The refusal to publish a comparable breakdown is the concrete instance of the measurement gap this hypothesis generalises."
+        },
+        {
+          "id": "x34",
+          "from": "h_pilot",
+          "to": "e_m365",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.5,
+          "rationale": "Every ordinary Microsoft line growing while the AI services line lags is the pattern of buyers provisioning for a programme they have not yet put into production."
+        },
+        {
+          "id": "x35",
+          "from": "t_blind",
+          "to": "e_margin",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "The margin gap is what makes an independent estimate worth building, and it is the quantity the two methods would have to reconcile."
+        },
+        {
+          "id": "x36",
+          "from": "t_pilot",
+          "to": "e_chatgpt",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "Consumer inference at scale is the benchmark the enterprise ratio in this test is measured against."
+        }
+      ]
+    }
+  ]
+}
