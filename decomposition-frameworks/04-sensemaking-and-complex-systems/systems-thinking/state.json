@@ -1,0 +1,24 @@
+{
+  "slug": "systems-thinking",
+  "status": "in_progress",
+  "steps": {
+    "research": "done",
+    "scout": "done",
+    "graph": "done",
+    "validate": "done",
+    "readme": "pending",
+    "viz": "pending",
+    "reconcile": "pending",
+    "commit": "pending"
+  },
+  "tbpn_example": {
+    "file": "tbpn-transcripts/transcripts/2025-10-06_openai-amd-deal-devday-reactions-xais-memphis-datacenter-doug-olaughlin-celine-halioua.md",
+    "date": "2025-10-06",
+    "episode_title": "OpenAI AMD Deal, DevDay Reactions, xAI's Memphis Datacenter (Doug O'Laughlin, Celine Halioua)"
+  },
+  "viz_iterations": 0,
+  "viz_reviews": [],
+  "updated_at": "2026-09-09T00:00:00Z",
+  "notes": "Research: Forrester's Industrial Dynamics (1961), Meadows' Thinking in Systems (2008) and her 1999 Leverage Points essay, Senge's Fifth Discipline (1990), Sterman's Business Dynamics (2000). Registry slot ids kept unchanged.\n\nProvenance design decisions. (1) Stocks, flows and variables are mostly facts in both examples: speakers describe accumulations and rates constantly without ever calling them stocks or flows, so the extraction work is recognition, not inference. (2) Every loop node is derived, in both examples, and that is the rule rather than an accident: a closed chain of influence is never stated. In the TBPN example the individual arrows of R1, R2 and B1 are largely quotable (10 of 44 edges are fact edges and they are concentrated on the loops' own links), which makes the point sharply: the data gives you the arrows, the framework gives you the circle and its sign. (3) Edge polarity is carried in the edge `label` field as + or -, per SPEC 4, so a reader can do the sign arithmetic that decides reinforcing vs balancing. (4) Delays are split rather than forced into one provenance: d_lead / cd_order / cd_ship are facts because the speakers state the lags verbatim, while d_overshoot / cd_overshoot are derived, because the claim that a lag inside a balancing loop converts correction into oscillation is the framework's general result and is what explains the observed overshoot. (5) leverage_point is the idea-bearing slot, and lp_delay deliberately carries no `idea` field: it is the low-rank Meadows intervention (9th, delays) that the whole market is already pulling, included as the control case so the hierarchy does visible work against lp_rule (rules, 6th) and lp_info (information flows, 6th), which do carry ideas.\n\nClassic example is the MIT Beer Distribution Game, with a scenario text written for this page so the fact nodes have something verbatim to quote. It was chosen because it is the canonical demonstration that a delay inside a balancing loop produces oscillation, and because its textbook leverage point is literally an information flow, which is Meadows' own argument. R1 there (the shortage spiral) has all four of its arrows quoted from the scenario text and two negative links, so the reinforcing sign is arithmetic rather than taste.\n\nvalidate: 0 errors, 0 warnings on the first run; no warnings to justify.",
+  "issues": []
+}
