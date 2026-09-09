@@ -1,0 +1,1193 @@
+{
+  "$schema": "../../_meta/schema.json",
+  "framework": {
+    "slug": "theory-of-constraints",
+    "name": "Theory of Constraints & Evaporating Cloud",
+    "category": "02-strategic-and-business",
+    "wikipedia": "https://en.wikipedia.org/wiki/Theory_of_constraints",
+    "one_liner": "Finds the single step that sets a system's throughput, then uses the Evaporating Cloud to break the chronic conflict guarding it by invalidating an unstated assumption rather than compromising."
+  },
+  "slots": [
+    {
+      "id": "goal",
+      "label": "Goal",
+      "typical_provenance": "either",
+      "description": "What the system exists to produce; throughput is measured against it, not against local activity.",
+      "color": "#4ec9b0",
+      "shape": "cone"
+    },
+    {
+      "id": "step",
+      "label": "Step",
+      "typical_provenance": "fact",
+      "description": "A stage in the flow of work. Every step but one has spare capacity.",
+      "color": "#569cd6",
+      "shape": "box"
+    },
+    {
+      "id": "constraint",
+      "label": "Constraint",
+      "typical_provenance": "derived",
+      "description": "The single step that limits throughput; an hour lost here is an hour lost for the whole system.",
+      "color": "#f14c4c",
+      "shape": "diamond"
+    },
+    {
+      "id": "objective",
+      "label": "Objective (cloud)",
+      "typical_provenance": "either",
+      "description": "Evaporating Cloud: the shared objective both sides of the conflict want.",
+      "color": "#c586c0",
+      "shape": "box"
+    },
+    {
+      "id": "requirement",
+      "label": "Requirement (cloud)",
+      "typical_provenance": "either",
+      "description": "Evaporating Cloud: a necessary condition for the objective; neither side disputes it.",
+      "color": "#4fc1ff",
+      "shape": "box"
+    },
+    {
+      "id": "prerequisite",
+      "label": "Prerequisite (cloud)",
+      "typical_provenance": "either",
+      "description": "Evaporating Cloud: a wanted action that satisfies a requirement; the two prerequisites conflict.",
+      "color": "#ff9d5c",
+      "shape": "box"
+    },
+    {
+      "id": "assumption",
+      "label": "Assumption",
+      "typical_provenance": "derived",
+      "description": "The unstated belief behind a requirement-prerequisite arrow; the one that is invalid breaks the conflict.",
+      "color": "#b5cea8",
+      "shape": "diamond"
+    },
+    {
+      "id": "injection",
+      "label": "Injection",
+      "typical_provenance": "derived",
+      "description": "The idea that invalidates an assumption and evaporates the cloud instead of compromising between the two sides.",
+      "color": "#ff7ab2",
+      "shape": "sphere"
+    }
+  ],
+  "relations": [
+    {
+      "id": "feeds",
+      "label": "feeds",
+      "description": "step feeds the next step in the flow of work"
+    },
+    {
+      "id": "limits",
+      "label": "limits",
+      "description": "the constraint limits the goal, a requirement, or an action"
+    },
+    {
+      "id": "requires",
+      "label": "requires",
+      "description": "objective requires requirement; requirement requires prerequisite"
+    },
+    {
+      "id": "conflicts_with",
+      "label": "conflicts with",
+      "description": "the two prerequisites cannot both be done"
+    },
+    {
+      "id": "justifies",
+      "label": "justifies",
+      "description": "an assumption justifies a requires arrow"
+    },
+    {
+      "id": "breaks",
+      "label": "breaks",
+      "description": "the injection breaks an assumption and evaporates the cloud"
+    }
+  ],
+  "examples": [
+    {
+      "id": "classic",
+      "kind": "classic",
+      "title": "The Bearington plant: the NCX-10 and the batch-size cloud",
+      "summary": "Goldratt's plant from The Goal: two stations that cannot keep up set the whole plant's output, and the manager is told at once to cut cost per part and cut lead time - a conflict that only exists because the plant runs one batch size for every station.",
+      "source": {
+        "type": "text",
+        "title": "The Bearington plant (scenario)",
+        "text": "UniCo's Bearington plant makes assemblies to order and is three months late on nearly every one. Work flows from the milling machines through the NCX-10, a single computerised machining centre that replaced three older machines, then to heat treat, then to assembly and shipping. The NCX-10 and the heat-treat oven are the only stations that cannot keep up: parts pile up in front of them while every other station has idle time. Plant accounting measures each work centre on its own efficiency, so supervisors run the largest batches they can, and the NCX-10 is often set up for a part that is not needed for weeks. Division has told the plant manager that the plant exists to make money, and that it will be closed in three months unless it ships on time and at cost. He is told two things at once: keep cost per part down, and cut the lead time on late orders. To keep cost per part down he is expected to run large batches, so that setup time is spread over more parts. To cut lead time he must run small batches, because a part waits behind the whole batch before it moves on. The same batch size cannot be both large and small, and nobody at the plant will say which of the two orders takes precedence. Jonah tells him only that an hour lost at the NCX-10 is an hour lost for the whole plant.",
+        "attribution": "After Eliyahu M. Goldratt, The Goal (1984); the scenario text is written for this example so that the fact nodes have something verbatim to quote."
+      },
+      "layout": {
+        "mode": "plane",
+        "regions": [
+          {
+            "label": "Throughput view: flow, constraint, goal",
+            "x": [
+              -60,
+              58
+            ],
+            "y": [
+              14,
+              46
+            ],
+            "color": "#1d3149"
+          },
+          {
+            "label": "Evaporating Cloud",
+            "x": [
+              -56,
+              58
+            ],
+            "y": [
+              -40,
+              12
+            ],
+            "color": "#33224a"
+          }
+        ],
+        "camera": {
+          "distance": 170
+        }
+      },
+      "nodes": [
+        {
+          "id": "cg1",
+          "slot": "goal",
+          "label": "The plant exists to make money",
+          "text": "The plant's goal, as division states it, is to make money; every local measure is only a proxy for it.",
+          "provenance": "fact",
+          "source_quote": "the plant exists to make money",
+          "source_ref": "sentence 5",
+          "entities": [
+            "UniCo"
+          ],
+          "pos": [
+            46,
+            38
+          ],
+          "size": 1.3
+        },
+        {
+          "id": "cs1",
+          "slot": "step",
+          "label": "Milling machines",
+          "text": "Work enters at the milling machines, the first stage of the flow.",
+          "provenance": "fact",
+          "source_quote": "Work flows from the milling machines",
+          "source_ref": "sentence 2",
+          "pos": [
+            -52,
+            38
+          ]
+        },
+        {
+          "id": "cs2",
+          "slot": "step",
+          "label": "NCX-10 machining centre",
+          "text": "The NCX-10, a single computerised machining centre that replaced three older machines, is the second stage.",
+          "provenance": "fact",
+          "source_quote": "the NCX-10, a single computerised machining centre that replaced three older machines",
+          "source_ref": "sentence 2",
+          "pos": [
+            -24,
+            38
+          ]
+        },
+        {
+          "id": "cs3",
+          "slot": "step",
+          "label": "Heat treat",
+          "text": "Parts go from the NCX-10 to the heat-treat oven.",
+          "provenance": "fact",
+          "source_quote": "older machines, then to heat treat",
+          "source_ref": "sentence 2",
+          "pos": [
+            2,
+            38
+          ]
+        },
+        {
+          "id": "cs4",
+          "slot": "step",
+          "label": "Assembly and shipping",
+          "text": "Parts are assembled and shipped; this is where an order becomes revenue.",
+          "provenance": "fact",
+          "source_quote": "then to assembly and shipping",
+          "source_ref": "sentence 2",
+          "pos": [
+            24,
+            38
+          ]
+        },
+        {
+          "id": "cc1",
+          "slot": "constraint",
+          "label": "NCX-10 and heat treat cannot keep up",
+          "text": "The NCX-10 and the heat-treat oven are the only stations that cannot keep up; parts pile up in front of them while every other station has idle time.",
+          "provenance": "fact",
+          "source_quote": "The NCX-10 and the heat-treat oven are the only stations that cannot keep up",
+          "source_ref": "sentence 3",
+          "pos": [
+            -10,
+            22
+          ],
+          "size": 1.5
+        },
+        {
+          "id": "cc2",
+          "slot": "constraint",
+          "label": "An hour lost at the NCX-10",
+          "text": "Jonah's rule: an hour lost at the NCX-10 is an hour lost for the whole plant. It says nothing about an hour lost anywhere else.",
+          "provenance": "fact",
+          "source_quote": "an hour lost at the NCX-10 is an hour lost for the whole plant",
+          "source_ref": "sentence 10",
+          "pos": [
+            22,
+            22
+          ]
+        },
+        {
+          "id": "co1",
+          "slot": "objective",
+          "label": "Ship on time and at cost, or close",
+          "text": "The objective both sides serve: the plant will be closed in three months unless it ships on time and at cost.",
+          "provenance": "fact",
+          "source_quote": "it will be closed in three months unless it ships on time and at cost",
+          "source_ref": "sentence 5",
+          "pos": [
+            -44,
+            -6
+          ],
+          "size": 1.3
+        },
+        {
+          "id": "cb1",
+          "slot": "requirement",
+          "label": "Keep cost per part down",
+          "text": "One of the two things the plant manager is told at once: keep cost per part down.",
+          "provenance": "fact",
+          "source_quote": "keep cost per part down",
+          "source_ref": "sentence 6",
+          "pos": [
+            -16,
+            8
+          ]
+        },
+        {
+          "id": "cb2",
+          "slot": "requirement",
+          "label": "Cut lead time on late orders",
+          "text": "The other thing he is told at once: cut the lead time on late orders.",
+          "provenance": "fact",
+          "source_quote": "cut the lead time on late orders",
+          "source_ref": "sentence 6",
+          "pos": [
+            -16,
+            -20
+          ]
+        },
+        {
+          "id": "cd1",
+          "slot": "prerequisite",
+          "label": "Run large batches",
+          "text": "To keep cost per part down he is expected to run large batches, so that setup time is spread over more parts.",
+          "provenance": "fact",
+          "source_quote": "he is expected to run large batches, so that setup time is spread over more parts",
+          "source_ref": "sentence 7",
+          "pos": [
+            16,
+            8
+          ]
+        },
+        {
+          "id": "cd2",
+          "slot": "prerequisite",
+          "label": "Run small batches",
+          "text": "To cut lead time he must run small batches, because a part waits behind the whole batch before it moves on.",
+          "provenance": "fact",
+          "source_quote": "he must run small batches, because a part waits behind the whole batch before it moves on",
+          "source_ref": "sentence 8",
+          "pos": [
+            16,
+            -20
+          ]
+        },
+        {
+          "id": "ca1",
+          "slot": "assumption",
+          "label": "A setup hour anywhere is lost output",
+          "text": "Large batches lower cost per part only if every setup hour is production capacity the plant loses. That holds at the NCX-10 and at heat treat; at a station with idle time a setup hour costs the plant nothing.",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The text gives the practice (run the largest batches you can) and the accounting that rewards it, but never the belief that makes the practice pay. Sentence 3 says every other station has idle time, and sentence 10 gives the rule only for the NCX-10, so the belief is both unstated and false off the constraint.",
+          "pos": [
+            0,
+            18
+          ]
+        },
+        {
+          "id": "ca2",
+          "slot": "assumption",
+          "label": "Batch size sets lead time everywhere",
+          "text": "Small batches cut lead time only if the queue in front of each station shrinks with the batch. In front of the constraint the queue is set by the constraint's rate, not by the batch size.",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Sentence 8 gives the mechanism (a part waits behind its whole batch) but assumes it dominates at every station. Sentence 3 says parts pile up in front of two stations only, which is what makes the assumption partial rather than simply wrong.",
+          "pos": [
+            0,
+            -30
+          ]
+        },
+        {
+          "id": "ca3",
+          "slot": "assumption",
+          "label": "Local efficiency measures plant cost",
+          "text": "Cost per part measured at a work centre is treated as the plant's cost, so a requirement about plant economics is discharged by a local efficiency number.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Sentence 4 states the accounting practice but not the belief behind it. The step from 'the plant must ship at cost' to 'each work centre must be efficient' is the inference that makes cost per part a requirement at all.",
+          "pos": [
+            -32,
+            2
+          ]
+        },
+        {
+          "id": "ca4",
+          "slot": "assumption",
+          "label": "One batch size for every station",
+          "text": "The conflict exists only because the plant sets a single batch size for the whole flow, so both requirements collide on one decision variable.",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Sentence 9 states that the same batch size cannot be both large and small; it does not ask why there is only one batch size. Once the batch is allowed to differ by station the two prerequisites stop being alternatives.",
+          "pos": [
+            34,
+            -6
+          ]
+        },
+        {
+          "id": "ci1",
+          "slot": "injection",
+          "label": "Batch large at the constraint only",
+          "text": "Set the batch size per station instead of per plant: run large batches at the NCX-10 and heat treat, where a setup hour is an hour of plant output, and split batches everywhere else, where the setup costs idle time the plant was not selling. Both requirements are then met at once.",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Applies Jonah's rule in sentence 10 to the batch-size decision. Because the rule is stated only for the NCX-10 and sentence 3 says every other station has idle time, the plant-wide setup logic in ca1 fails off the constraint, and with ca4 dropped the batch size can vary by station.",
+          "pos": [
+            46,
+            -22
+          ],
+          "size": 1.3
+        }
+      ],
+      "edges": [
+        {
+          "id": "cef1",
+          "from": "cs1",
+          "to": "cs2",
+          "relation": "feeds",
+          "provenance": "fact",
+          "source_quote": "Work flows from the milling machines through the NCX-10",
+          "source_ref": "sentence 2"
+        },
+        {
+          "id": "cef2",
+          "from": "cs2",
+          "to": "cs3",
+          "relation": "feeds",
+          "provenance": "fact",
+          "source_quote": "replaced three older machines, then to heat treat",
+          "source_ref": "sentence 2"
+        },
+        {
+          "id": "cef3",
+          "from": "cs3",
+          "to": "cs4",
+          "relation": "feeds",
+          "provenance": "fact",
+          "source_quote": "then to heat treat, then to assembly and shipping",
+          "source_ref": "sentence 2"
+        },
+        {
+          "id": "cef4",
+          "from": "cs4",
+          "to": "cg1",
+          "relation": "feeds",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Shipping is the point at which an order becomes money. The text names the goal and names shipping but never joins them."
+        },
+        {
+          "id": "cel1",
+          "from": "cc1",
+          "to": "cg1",
+          "relation": "limits",
+          "provenance": "derived",
+          "label": "sets the rate",
+          "confidence": 0.8,
+          "rationale": "Sentence 3 says two stations cannot keep up and sentence 1 says the plant is three months late; that the plant's output is therefore the rate of those two stations is the Theory of Constraints reading, not a statement in the text."
+        },
+        {
+          "id": "cel2",
+          "from": "cc2",
+          "to": "cg1",
+          "relation": "limits",
+          "provenance": "fact",
+          "source_quote": "an hour lost at the NCX-10 is an hour lost for the whole plant",
+          "source_ref": "sentence 10"
+        },
+        {
+          "id": "cer1",
+          "from": "co1",
+          "to": "cb1",
+          "relation": "requires",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Sentence 5 sets the objective and sentence 6 lists the two demands adjacently; that the first demand is a necessary condition for the objective rather than a preference is the cloud's reading."
+        },
+        {
+          "id": "cer2",
+          "from": "co1",
+          "to": "cb2",
+          "relation": "requires",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "Same adjacency as cer1 for the second demand: shipping on time is what the lead-time requirement protects."
+        },
+        {
+          "id": "cer3",
+          "from": "cb1",
+          "to": "cd1",
+          "relation": "requires",
+          "provenance": "fact",
+          "source_quote": "To keep cost per part down he is expected to run large batches",
+          "source_ref": "sentence 7"
+        },
+        {
+          "id": "cer4",
+          "from": "cb2",
+          "to": "cd2",
+          "relation": "requires",
+          "provenance": "fact",
+          "source_quote": "To cut lead time he must run small batches",
+          "source_ref": "sentence 8"
+        },
+        {
+          "id": "cec1",
+          "from": "cd1",
+          "to": "cd2",
+          "relation": "conflicts_with",
+          "provenance": "fact",
+          "label": "cannot both be",
+          "source_quote": "The same batch size cannot be both large and small",
+          "source_ref": "sentence 9"
+        },
+        {
+          "id": "cej1",
+          "from": "ca1",
+          "to": "cd1",
+          "relation": "justifies",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Without the belief that a setup hour anywhere is lost output, running large batches does not follow from keeping cost per part down."
+        },
+        {
+          "id": "cej2",
+          "from": "ca2",
+          "to": "cd2",
+          "relation": "justifies",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Without the belief that batch size governs waiting at every station, small batches do not follow from cutting lead time."
+        },
+        {
+          "id": "cej3",
+          "from": "ca3",
+          "to": "cb1",
+          "relation": "justifies",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The requirement is stated as cost per part; only the local-efficiency belief makes that stand for the plant's cost."
+        },
+        {
+          "id": "cej4",
+          "from": "ca4",
+          "to": "cd1",
+          "relation": "justifies",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "A single plant-wide batch size is what makes large batches an exclusive choice."
+        },
+        {
+          "id": "cej5",
+          "from": "ca4",
+          "to": "cd2",
+          "relation": "justifies",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "The same single batch size is what makes small batches the only alternative."
+        },
+        {
+          "id": "ceb1",
+          "from": "ci1",
+          "to": "ca1",
+          "relation": "breaks",
+          "provenance": "derived",
+          "label": "invalid off NCX-10",
+          "confidence": 0.8,
+          "rationale": "The injection holds exactly where ca1 fails: at a station with idle time the setup hour is not output the plant could have sold."
+        },
+        {
+          "id": "ceb2",
+          "from": "ci1",
+          "to": "ca4",
+          "relation": "breaks",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Batching by station is the direct denial of one batch size for the whole flow."
+        },
+        {
+          "id": "ces1",
+          "from": "ci1",
+          "to": "cc2",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Jonah's rule is the stated fact the injection reads asymmetrically."
+        },
+        {
+          "id": "ces2",
+          "from": "ci1",
+          "to": "cc1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The idle time at every other station is what makes a setup there free."
+        }
+      ]
+    },
+    {
+      "id": "tbpn",
+      "kind": "tbpn",
+      "title": "CoreWeave: the constraint is speculative capital, not power",
+      "summary": "Brian Venturo walks the compute build chain, rules out power, transformers, UPS and labour one by one, names speculative capital as the biggest constraint, and then states the cloud it creates: build ahead from the balance sheet and risk the company, or haircut the demand signal and arrive still constrained.",
+      "source": {
+        "type": "transcript",
+        "file": "tbpn-transcripts/transcripts/2025-07-15_windsurf-chaos-aftermath-nvidia-back-in-china-richard-mille-deep-dive-apple-buying-500m-in-rare-earth-magnets-zak-kukoff-brian-venturo-tyler-cowen-aus.md",
+        "date": "2025-07-15",
+        "episode_title": "Windsurf Chaos Aftermath, Nvidia Back In China, Richard Mille Deep Dive, Apple Buying $500M In Rare Earth Magnets"
+      },
+      "why_this_episode": "An operator names his own binding constraint out loud, eliminates the popular candidates with evidence, and then states the chronic conflict that constraint produces - both halves of this framework, from one speaker, in one interview. The conflict is about the constraint itself, which is the case the Evaporating Cloud was built for.",
+      "idea_bearing_slot": "injection",
+      "layout": {
+        "mode": "plane",
+        "regions": [
+          {
+            "label": "Throughput view: flow, constraint, goal",
+            "x": [
+              -60,
+              58
+            ],
+            "y": [
+              14,
+              46
+            ],
+            "color": "#1d3149"
+          },
+          {
+            "label": "Evaporating Cloud",
+            "x": [
+              -56,
+              58
+            ],
+            "y": [
+              -42,
+              12
+            ],
+            "color": "#33224a"
+          }
+        ],
+        "camera": {
+          "distance": 175
+        }
+      },
+      "nodes": [
+        {
+          "id": "g1",
+          "slot": "goal",
+          "label": "Serve the labs' insatiable compute need",
+          "text": "CoreWeave's first job is serving the customers and partners that got it here: the big AI labs and the hyperscalers, who have an insatiable need for compute infrastructure.",
+          "provenance": "fact",
+          "source_quote": "The first is serving the customers and partners that got us here. That's the big AI labs, it's the hyperscalers. It's the people that have an insatiable need for computer infrastructure.",
+          "source_ref": "Brian Venturo, L3868-L3876",
+          "entities": [
+            "CoreWeave"
+          ],
+          "pos": [
+            46,
+            38
+          ],
+          "size": 1.3
+        },
+        {
+          "id": "g2",
+          "slot": "goal",
+          "label": "Unblock the customers' own growth",
+          "text": "Those customers are blocked from delivering to their next customer and from growing their user base because they do not have any GPUs; throughput here is measured in their unblocked growth.",
+          "provenance": "fact",
+          "source_quote": "They're the ones that are blocked from delivering to their next customer, from growing their user base, because they don't have any GPUs.",
+          "source_ref": "Brian Venturo, L3878-L3884",
+          "entities": [
+            "CoreWeave",
+            "Nvidia"
+          ],
+          "pos": [
+            46,
+            26
+          ]
+        },
+        {
+          "id": "s_power",
+          "slot": "step",
+          "label": "Grid power from base load",
+          "text": "Contrary to the shortage narrative, the data show a tremendous amount of power available from base load and load-following generation.",
+          "provenance": "fact",
+          "source_quote": "Everybody talks about how there's no power left in America. And if you actually look at the data, there's a tremendous amount of power available from base load and load following generation.",
+          "source_ref": "Brian Venturo, L4812-L4816",
+          "pos": [
+            -54,
+            38
+          ]
+        },
+        {
+          "id": "s_transformers",
+          "slot": "step",
+          "label": "Transformers: inside the lead time",
+          "text": "Electrical transformers are a problem, but they are not outside the lead-time window: they can be planned for.",
+          "provenance": "fact",
+          "source_quote": "transformers are a problem, but they're not outside the lead time window",
+          "source_ref": "Brian Venturo, L4858-L4858",
+          "pos": [
+            -36,
+            38
+          ]
+        },
+        {
+          "id": "s_ups",
+          "slot": "step",
+          "label": "UPS: a problem only if needed tomorrow",
+          "text": "Uninterruptible power supplies, like everything else in the build, are only a problem if you need them tomorrow.",
+          "provenance": "fact",
+          "source_quote": "UPS is everything's a problem if you need it tomorrow",
+          "source_ref": "Brian Venturo, L4862-L4862",
+          "pos": [
+            -18,
+            38
+          ]
+        },
+        {
+          "id": "s_labor",
+          "slot": "step",
+          "label": "Not enough electricians",
+          "text": "There are not enough electricians in the world to build these data centres on the timelines the customers need.",
+          "provenance": "fact",
+          "source_quote": "there's not enough electricians in the world to go out and build these things and timelines these people need",
+          "source_ref": "Brian Venturo, L3912-L3912",
+          "pos": [
+            0,
+            38
+          ]
+        },
+        {
+          "id": "s_build",
+          "slot": "step",
+          "label": "Data centre construction",
+          "text": "The data hall itself has to be built, which is why operators are asking how to modularise data centre construction while the planes are already in the air.",
+          "provenance": "fact",
+          "source_quote": "How do you modularize the data center construction?",
+          "source_ref": "Brian Venturo, L3912-L3912",
+          "pos": [
+            18,
+            38
+          ]
+        },
+        {
+          "id": "s_fiber",
+          "slot": "step",
+          "label": "Fiber capacity between metros",
+          "text": "Fiber capacity between metros is going to be an issue, though not necessarily an insurmountable one.",
+          "provenance": "fact",
+          "source_quote": "Fiber capacity between metros is going to be an issue.",
+          "source_ref": "Brian Venturo, L4786-L4786",
+          "pos": [
+            32,
+            38
+          ]
+        },
+        {
+          "id": "c1",
+          "slot": "constraint",
+          "label": "Speculative capital is the constraint",
+          "text": "The biggest constraint is speculative capital to build out to meet demand that is expected but not yet contracted. Every physical input is a problem only against a short enough clock.",
+          "provenance": "fact",
+          "source_quote": "it goes back to my point earlier that the biggest constraint is speculative capital to build out to meet demand that we expect.",
+          "source_ref": "Brian Venturo, L4856-L4856",
+          "entities": [
+            "CoreWeave"
+          ],
+          "pos": [
+            4,
+            22
+          ],
+          "size": 1.7
+        },
+        {
+          "id": "c2",
+          "slot": "constraint",
+          "label": "Break it and the constraint moves back",
+          "text": "If the capital constraint were relieved, the binding step would move back into the physical chain: transformer and UPS lead times, electricians and peak-day power are inside the window only because nobody is building at the unhaircut rate.",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "The fifth focusing step: after a constraint is elevated the next one binds. Venturo says the physical inputs are not outside the lead-time window, which is a statement about today's build rate, not about the rate a fully funded industry would attempt. The step is a standard TOC reading, not something he says.",
+          "pos": [
+            -32,
+            22
+          ]
+        },
+        {
+          "id": "o1",
+          "slot": "objective",
+          "label": "Solve it for them; you don't get both",
+          "text": "Any problem can be solved with enough time or capital, and a lot of the time you do not get both, so the objective is choosing the right path to solve the customers' compute problem.",
+          "provenance": "fact",
+          "source_quote": "I can solve any problem with enough time or capital, right? And a lot of the times you don't get both. So it's choosing, you know, what's the right path to go?",
+          "source_ref": "Brian Venturo, L3916-L3922",
+          "entities": [
+            "CoreWeave"
+          ],
+          "pos": [
+            -46,
+            -6
+          ],
+          "size": 1.3
+        },
+        {
+          "id": "b1",
+          "slot": "requirement",
+          "label": "Build the gigawatts demand calls for",
+          "text": "Everyone on the hyperscale side, and CoreWeave in its own seat, sees that a given number of gigawatts of data centre capacity has to be built; the demand signals are there, and the speculative capital is not.",
+          "provenance": "fact",
+          "source_quote": "we need to build x number of gigawatts data center capacity, right? Like we know the demand signals are there. But the capital and the speculative capital isn't there to do it.",
+          "source_ref": "Brian Venturo, L3938-L3942",
+          "entities": [
+            "CoreWeave"
+          ],
+          "pos": [
+            -16,
+            8
+          ]
+        },
+        {
+          "id": "creq",
+          "slot": "requirement",
+          "label": "Do not put the company at risk",
+          "text": "Building beyond what the balance sheet can carry, if the demand does not show up, puts the entire company at risk; survival bounds how far ahead CoreWeave can build.",
+          "provenance": "fact",
+          "source_quote": "any more than that, and the demand doesn't show up, and I put my entire company at risk.",
+          "source_ref": "Brian Venturo, L3950-L3952",
+          "entities": [
+            "CoreWeave"
+          ],
+          "pos": [
+            -16,
+            -22
+          ]
+        },
+        {
+          "id": "d1",
+          "slot": "prerequisite",
+          "label": "Build ahead from the balance sheet",
+          "text": "CoreWeave can go out and build X gigawatts of capacity for the next two or three years from its own balance sheet.",
+          "provenance": "fact",
+          "source_quote": "I can go out and I can build X gigawatts of capacity for the next two or three years, right? From my balance sheet.",
+          "source_ref": "Brian Venturo, L3944-L3948",
+          "entities": [
+            "CoreWeave"
+          ],
+          "pos": [
+            16,
+            8
+          ]
+        },
+        {
+          "id": "d2",
+          "slot": "prerequisite",
+          "label": "Haircut the demand signals",
+          "text": "CoreWeave haircuts the demand signals it receives and builds only to a part of them, so that by the time the capacity arrives it is in the same constrained position it is in today.",
+          "provenance": "fact",
+          "source_quote": "so we're basically having to haircut the demand signals that we get, and only build to a certain extent of it, and then by the time we get out there, we're in the same constrained position we're in today.",
+          "source_ref": "Brian Venturo, L3956-L3964",
+          "entities": [
+            "CoreWeave"
+          ],
+          "pos": [
+            16,
+            -22
+          ]
+        },
+        {
+          "id": "a1",
+          "slot": "assumption",
+          "label": "Only our own balance sheet can fund it",
+          "text": "Capacity ahead of contracts can only be funded by the developer's own equity, so wanting the gigawatts built means wanting to carry the demand risk yourself.",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Venturo moves from 'we need to build x gigawatts' straight to 'I can build X from my balance sheet' with nothing in between. The step is only valid if no other party will fund speculative capacity, which he never says and which the offtake and debt markets around him partly contradict.",
+          "pos": [
+            0,
+            18
+          ]
+        },
+        {
+          "id": "a2",
+          "slot": "assumption",
+          "label": "Demand risk can only be avoided",
+          "text": "The only lever for protecting the company is how much you build, because demand risk cannot be transferred to anyone else or priced into a contract.",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Haircutting follows from 'don't risk the company' only if building less is the sole way to hold the risk down. Venturo states the haircut as forced ('having to'), which is exactly the shape of an unexamined assumption.",
+          "pos": [
+            0,
+            -32
+          ]
+        },
+        {
+          "id": "a3",
+          "slot": "assumption",
+          "label": "Capacity late is throughput lost",
+          "text": "Capacity that is not standing when the demand arrives is throughput lost rather than deferred: the customer is blocked, goes elsewhere, and does not come back.",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "This is what makes 'build the gigawatts' a necessary condition rather than a preference. Venturo says customers are blocked without GPUs and that demand has grown by an order of magnitude repeatedly, but never that a missed window is lost for good.",
+          "pos": [
+            -34,
+            2
+          ]
+        },
+        {
+          "id": "a4",
+          "slot": "assumption",
+          "label": "Committed capital is exposed capital",
+          "text": "The two courses conflict only because capital committed to speculative capacity is capital exposed to demand that may not arrive; a dollar of capacity is a dollar of risk.",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The conflict is stated as forced ('you don't get both'), so the belief joining the two sides is left implicit. It is the tightest of the four assumptions: it is true of equity-funded capacity and false of capacity funded against a contract.",
+          "pos": [
+            34,
+            -8
+          ]
+        },
+        {
+          "id": "inj1",
+          "slot": "injection",
+          "label": "Sell the capacity forward",
+          "text": "Finance capacity against long-dated take-or-pay offtake from investment-grade buyers rather than against the developer's equity, so building ahead stops being a bet the builder alone carries and the demand signal can be built to unhaircut.",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "Directly denies a1: if the capital funding speculative capacity is repaid from a contract rather than from hoped-for demand, the requirement to build the gigawatts no longer entails putting the balance sheet at risk. Venturo's own facts supply the counterparties: solvent hyperscalers with insatiable, order-of-magnitude demand.",
+          "entities": [
+            "CoreWeave"
+          ],
+          "idea": "A forward market in compute - standardised, tradable GPU-hour contracts underwritten by investment-grade offtakers - is the missing instrument that would let neoclouds build to the unhaircut demand signal.",
+          "pos": [
+            48,
+            16
+          ],
+          "size": 1.4
+        },
+        {
+          "id": "inj2",
+          "slot": "injection",
+          "label": "Price the demand risk, don't avoid it",
+          "text": "Put a price on the risk instead of shrinking the build: shortfall insurance and capacity guarantees on speculative gigawatts, which requires a GPU-hour to become a graded, indexed, deliverable good rather than a bilateral favour.",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "Denies a2: if demand risk can be sold to a party that can diversify it, protecting the company stops requiring a smaller build. It is the weaker injection because nothing in the transcript shows such a market exists; it is the precondition inj1 needs and the reason inj1 has not already happened.",
+          "idea": "Underwriting infrastructure for compute - a quality grade, delivery telemetry and shortfall insurance that make a GPU-hour financeable - is the underserved layer beneath every compute offtake contract.",
+          "pos": [
+            48,
+            -34
+          ],
+          "size": 1.3
+        }
+      ],
+      "edges": [
+        {
+          "id": "ef1",
+          "from": "s_power",
+          "to": "s_transformers",
+          "relation": "feeds",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The physical order of a data centre build: generation, then the transformers that step it down. Venturo lists these as problems, never as a sequence."
+        },
+        {
+          "id": "ef2",
+          "from": "s_transformers",
+          "to": "s_ups",
+          "relation": "feeds",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "UPS sits behind the transformers in the power train; he names both in one breath as lead-time items, not as a chain."
+        },
+        {
+          "id": "ef3",
+          "from": "s_ups",
+          "to": "s_labor",
+          "relation": "feeds",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Electricians are what turn delivered gear into an energised hall. Read from how the build works, not from the transcript."
+        },
+        {
+          "id": "ef4",
+          "from": "s_labor",
+          "to": "s_build",
+          "relation": "feeds",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The labour goes into constructing the data centre; both are named as constraints on the same line, in that order."
+        },
+        {
+          "id": "ef5",
+          "from": "s_build",
+          "to": "s_fiber",
+          "relation": "feeds",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "A built hall still has to be connected between metros to serve a distributed training or inference customer. The weakest link in the chain: the fiber remark comes from a different part of the interview."
+        },
+        {
+          "id": "ef6",
+          "from": "s_fiber",
+          "to": "g1",
+          "relation": "feeds",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The last step delivers compute to the labs, which is the goal. Sequence read from how the business works."
+        },
+        {
+          "id": "el1",
+          "from": "c1",
+          "to": "g1",
+          "relation": "limits",
+          "provenance": "derived",
+          "label": "sets the rate",
+          "confidence": 0.85,
+          "rationale": "Venturo names capital as the biggest constraint on building out to meet expected demand; that this therefore sets the rate at which the labs can be served is the Theory of Constraints step, and it is the whole point of the example."
+        },
+        {
+          "id": "el2",
+          "from": "c1",
+          "to": "g2",
+          "relation": "limits",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "If capital sets the build rate, it also sets how long the customers stay blocked. Two statements from different parts of the interview joined by inference."
+        },
+        {
+          "id": "el3",
+          "from": "c1",
+          "to": "b1",
+          "relation": "limits",
+          "provenance": "fact",
+          "label": "capital isn't there",
+          "source_quote": "we know the demand signals are there. But the capital and the speculative capital isn't there to do it.",
+          "source_ref": "Brian Venturo, L3940-L3942"
+        },
+        {
+          "id": "el4",
+          "from": "c1",
+          "to": "d1",
+          "relation": "limits",
+          "provenance": "fact",
+          "source_quote": "the biggest constraint is speculative capital to build out to meet demand that we expect",
+          "source_ref": "Brian Venturo, L4856-L4856"
+        },
+        {
+          "id": "el5",
+          "from": "c2",
+          "to": "s_power",
+          "relation": "limits",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "Where the constraint moves once capital is relieved: peak-day power and the lead-time items become binding at a build rate nobody is currently attempting."
+        },
+        {
+          "id": "er1",
+          "from": "o1",
+          "to": "b1",
+          "relation": "requires",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Solving the customers' problem is stated as the objective and the gigawatts as what the world misses; that the second is a necessary condition for the first is the cloud's reading, made across two passages."
+        },
+        {
+          "id": "er2",
+          "from": "o1",
+          "to": "creq",
+          "relation": "requires",
+          "provenance": "derived",
+          "confidence": 0.85,
+          "rationale": "A company that has put itself at risk cannot go on solving anything for its customers; survival is the unstated second necessary condition."
+        },
+        {
+          "id": "er3",
+          "from": "b1",
+          "to": "d1",
+          "relation": "requires",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Building from the balance sheet is offered immediately after the gigawatts requirement, as the way it would be met. The connection is adjacency, not a stated 'in order to'."
+        },
+        {
+          "id": "er4",
+          "from": "creq",
+          "to": "d2",
+          "relation": "requires",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "The haircut follows the risk statement as its consequence ('so we're basically having to haircut'), but across a host's interjection, so it is read rather than quoted."
+        },
+        {
+          "id": "ec1",
+          "from": "d1",
+          "to": "d2",
+          "relation": "conflicts_with",
+          "provenance": "derived",
+          "label": "cannot both be",
+          "confidence": 0.85,
+          "rationale": "Building to the full signal and haircutting the signal are the same decision taken two ways. Venturo frames the choice as forced ('you don't get both') without naming the two options as a pair."
+        },
+        {
+          "id": "ec2",
+          "from": "d1",
+          "to": "creq",
+          "relation": "conflicts_with",
+          "provenance": "fact",
+          "label": "risks the company",
+          "source_quote": "From my balance sheet. But any more than that, and the demand doesn't show up, and I put my entire company at risk.",
+          "source_ref": "Brian Venturo, L3948-L3952"
+        },
+        {
+          "id": "ej1",
+          "from": "a1",
+          "to": "d1",
+          "relation": "justifies",
+          "provenance": "derived",
+          "confidence": 0.75,
+          "rationale": "Without the belief that only your own balance sheet can fund speculative capacity, building ahead yourself does not follow from needing the gigawatts."
+        },
+        {
+          "id": "ej2",
+          "from": "a2",
+          "to": "d2",
+          "relation": "justifies",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "Without the belief that demand risk can only be avoided, haircutting does not follow from protecting the company."
+        },
+        {
+          "id": "ej3",
+          "from": "a3",
+          "to": "b1",
+          "relation": "justifies",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "Without the belief that late capacity is throughput lost, building the gigawatts is a preference rather than a necessary condition."
+        },
+        {
+          "id": "ej4",
+          "from": "a4",
+          "to": "d1",
+          "relation": "justifies",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Committed capital being exposed capital is what makes the build-ahead option dangerous at all."
+        },
+        {
+          "id": "ej5",
+          "from": "a4",
+          "to": "d2",
+          "relation": "justifies",
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The same belief is what makes the haircut look like prudence rather than a self-inflicted constraint."
+        },
+        {
+          "id": "eb1",
+          "from": "inj1",
+          "to": "a1",
+          "relation": "breaks",
+          "provenance": "derived",
+          "label": "invalid under offtake",
+          "confidence": 0.6,
+          "rationale": "Contracted revenue is third-party funding for speculative capacity, which is exactly what a1 denies exists."
+        },
+        {
+          "id": "eb2",
+          "from": "inj2",
+          "to": "a2",
+          "relation": "breaks",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "Insurable, priceable demand risk is risk that is neither carried nor avoided, which a2 rules out."
+        },
+        {
+          "id": "es1",
+          "from": "c2",
+          "to": "c1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "The claim that the constraint would move rests on capital being the one that binds today."
+        },
+        {
+          "id": "es2",
+          "from": "c2",
+          "to": "s_transformers",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "'Not outside the lead time window' is the fact the inference re-reads as conditional on the current build rate."
+        },
+        {
+          "id": "es3",
+          "from": "inj1",
+          "to": "c1",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "The injection is aimed at the constraint Venturo names, not at a physical input."
+        },
+        {
+          "id": "es4",
+          "from": "inj1",
+          "to": "d2",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.6,
+          "rationale": "The haircut and the constrained arrival it produces are what the injection is meant to make unnecessary."
+        },
+        {
+          "id": "es5",
+          "from": "inj2",
+          "to": "creq",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.55,
+          "rationale": "The company-risk requirement is the one an insurance or guarantee market would discharge differently."
+        }
+      ]
+    }
+  ]
+}
