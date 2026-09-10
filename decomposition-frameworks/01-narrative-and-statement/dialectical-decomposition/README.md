@@ -102,7 +102,7 @@ Why it fits: a staged debate between two former Founders Fund colleagues over wh
 
 ### Facts (quoted)
 
-Fourteen of the nineteen nodes and six of the thirty-nine edges are facts, none paraphrases. `source_ref` is the speaker plus the line range in the file.
+Fourteen of the nineteen nodes and five of the thirty-nine edges are facts, none paraphrases. `source_ref` is the speaker plus the line range in the file.
 
 Thesis
 
@@ -133,18 +133,17 @@ Core tension
 
 - `t0` **Stated: software or re-industrialisation** [fact] The tension as the show frames it on air: which is the better business, high-margin software or capex-intensive re-industrialisation? This is the question both guests are asked to defend a side of. "We're going to settle it today on the stream. The Slop versus Steel debate, which is better high margin software or capex intensive re-industrialization efforts." (Host, L22-L24)
 
-Fact edges. Six, each joining two fact nodes and quoting the turn where a speaker states the connection.
+Fact edges. Five, each joining two fact nodes and quoting the turn where a speaker states the connection.
 
 - `e1` `an` opposes `th` [fact] "But my sort of counter to you would be, you've made this argument that it seems to imply, hey, you know, things will accrue to the AI application layer" (Delian Asperuhov, L612-L614)
 - `e2` `at3` opposes `an` [fact] "I was going to say that, that basically what Delian said was just wrong, because" (Everett Randall, L636-L636)
 - `e3` `aa5` opposes `th` [fact] "And so far, at least in last 18 months, your thesis is not playing out at all." (Delian Asperuhov, L622-L622)
 - `e4` `at1` argues for `th` [fact] "And so there's a lot of these forms of power that naturally lend themselves to digital products and the scalability of digital products tends to be a lot a lot greater than than physical products" (Everett Randall, L208-L212)
 - `e5` `aa2` argues for `an` [fact] "And because you just have much less of monopoly typically in SaaS, that ends up totally, you know, hurting your ebidot, you know, margin profile." (Delian Asperuhov, L122-L124)
-- `e6` `aa3` argues for `an` [fact] "And so, you know, you know, our one line, our founders fund is competition is for losers." (Delian Asperuhov, L412-L412)
 
 ### Decomposition
 
-Five derived nodes and thirty-three derived edges. Fact nodes are referenced by id.
+Five derived nodes and thirty-four derived edges. Fact nodes are referenced by id.
 
 Argument (all others are facts)
 
@@ -160,8 +159,9 @@ Synthesis
 - `sy1` **Power sits with the scarcest input** [derived 0.60] Both rules are right about their own layer: durable pricing power belongs to whoever controls the scarcest input at the layer they occupy. Everett's cases are ones where distribution and brand are scarce, Delian's are ones where fabrication capability is scarce, and in 2025 the scarcest input moved to frontier inference and the capital behind it, which is why revenue concentrated at the model layer without refuting either rule. Rationale: Preserves what each side established rather than averaging them: it keeps Delian's replication test and Everett's substitution test intact while explaining aa5, the observation that broke the thesis's prediction, as a change in which input is scarce rather than as a verdict on asset class. Supported by `at4`, `at5`, `aa5`, `aa1`. Carries an `idea` field, quoted under "Where the opportunity shows up".
 - `sy2` **Two durability tests, one question** [derived 0.55] The replication test and the substitution test are two instruments measuring one quantity: how much of the customer's willingness to pay survives a well-funded imitator. A business needs to pass one of them, and day-one gross margin predicts neither, which is why the debate's own metric was never the disagreement. Rationale: Both tests as stated by their authors ask what an imitator with capital cannot take away, one from the supply side and one from the demand side. Contestable because the two tests can disagree about the same company, which the sources never test. Supported by `aa3`, `aa4`, `at3`, `aa2`. Carries an `idea` field, quoted under "Where the opportunity shows up".
 
-Derived edges. Eighteen carry a framework relation; the other fifteen are grounding links, listed after them.
+Derived edges. Nineteen carry a framework relation; the other fifteen are grounding links, listed after them.
 
+- `e6` `aa3` argues for `an` [derived 0.75] Rationale: Delian follows the Stanford-grads thought experiment with the Founders Fund slogan 'competition is for losers' (L412) and then 'I think I was a loser for investing in food' (L414). The slogan names a value, not a link between the replication test and the terminal-margin position; that the thought experiment argues for the antithesis is read from its placement inside Delian's own answer, so the edge is a reading of adjacency and not a quoted connective.
 - `e7` `at2` argues for `th` [derived 0.70] Rationale: Everett offers the both-sides observation as the setup for his own claim about form factor in the next breath, so it functions as a premise of the thesis rather than a concession to the antithesis.
 - `e8` `at4` argues for `th` [derived 0.75] Rationale: The two tests are the conditions under which the thesis still holds for a software company; adjacent to the thesis in the same answer but never linked out loud.
 - `e9` `at5` argues for `th` [derived 0.70] Rationale: If most tasks no longer need frontier intelligence, application companies can buy inference cheaply and keep their margin, which is what the thesis requires.
@@ -189,13 +189,13 @@ The instructive thing here is the split inside the tension slot. `t0` is a **fac
 
 `aa6` (0.55) is the only derived node outside the tension and synthesis slots, and it is declared steelmanning: the reply the antithesis needs to `at3` but never gives, that ChatGPT's brand power was bought with the largest compute position in the industry. Its rationale says so in the first clause and `e14` carries the same 0.55. Without it the graph leaves Everett's strongest point unanswered, a fact about the conversation and not about the positions.
 
-Only three of the eleven `argues_for` edges are facts: a speaker rarely says "and this supports my position", he says the next thing. `e10` is derived at 0.85 because its sentence defines terminal EBITDA rather than saying why the position holds. Adjacency is inference however obvious, and the confidence records how close it is: 0.85 same turn, 0.70 for a point made minutes earlier and joined by topic.
+Only two of the eleven `argues_for` edges are facts: a speaker rarely says "and this supports my position", he says the next thing. `e6` is derived at 0.75 because the line that follows the Stanford-grads thought experiment, "competition is for losers", is a slogan rather than a connective. `e10` is derived at 0.85 because its sentence defines terminal EBITDA rather than saying why the position holds. Adjacency is inference however obvious, and the confidence records how close it is: 0.85 same turn, 0.70 for a point made minutes earlier and joined by topic.
 
 ### Where the opportunity shows up
 
 The idea-bearing slot is the synthesis (`idea_bearing_slot: "synthesis"`): a position both sides are entitled to and neither occupies, and in a market a position nobody occupies is either a product that does not exist or a need nobody prices. Both synthesis nodes carry an `idea` field.
 
-- `sy1` **Power sits with the scarcest input**, derived, confidence 0.60. Idea: "If margin now leaks to whoever owns the scarce input, the underserved product is inference tiering and routing that lets an application serve its off-frontier work from cheap models and keep the spread, which is exactly the split Everett describes but nobody sells." Read from the node: Everett names the two conditions (`at4`) and observes that a growing share of tasks has left the frontier (`at5`), while Delian's evidence is that revenue went to the frontier anyway (`aa5`). The gap between what the thesis holder says is possible and what the antithesis holder observes happening is an execution gap, and execution gaps are products.
+- `sy1` **Power sits with the scarcest input**, derived, confidence 0.60. Idea: "If margin now leaks to whoever owns the scarce input, the underserved product is margin-aware inference routing tied to the application's own pricing: model routers exist, but none decides per request which tier a given customer's price point can afford, which is the spread Everett describes and no application company yet captures as a product." Read from the node: Everett names the two conditions (`at4`) and observes that a growing share of tasks has left the frontier (`at5`), while Delian's evidence is that revenue went to the frontier anyway (`aa5`). The gap between what the thesis holder says is possible and what the antithesis holder observes happening is an execution gap, and execution gaps are products.
 - `sy2` **Two durability tests, one question**, derived, confidence 0.55. Idea: "An underwriting and diligence product that scores a company on rebuild cost and on switching cost instead of day-one gross margin would price exactly the thing two of the sharpest investors in the market argue about with anecdotes." Read from the node: the two tests are the only durability instruments either man uses, both are applied as thought experiments and anecdotes (`aa3`, `aa4`, `at3`), and the metric the debate was staged on predicts neither.
 
 Both sit in the 0.50 to 0.65 band, plausible but contestable, for the same reason: each joins two speakers who conceded nothing to one another, and each rests on a synthesis nobody on air proposed. `sy2` is the lower because, as its own rationale says, the two tests can disagree about the same company and the sources never test that. These are candidate ideas whose first job is to be falsified cheaply; the confidence says so.
