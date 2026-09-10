@@ -42,7 +42,10 @@ try {
     // Node labels AND edge labels: an edge label sitting on a node label is the collision class
     // critics kept reporting by eye because the metrics could not see it.
     const vis = (e) => e.style.display !== 'none' && e.offsetParent !== null;
-    const box = (e, kind) => { const r = e.getBoundingClientRect(); return { t: e.textContent.trim(), kind, x: r.left, y: r.top, w: r.width, h: r.height }; };
+    // Measure the inner .lab span when there is one: it carries the translateY plate offset and any
+    // rotation, and getBoundingClientRect on the root ignores both, so the root box sat 11px above
+    // the drawn label and a rotated axis title was measured unrotated.
+    const box = (e, kind) => { const t = e.querySelector('.lab') || e; const r = t.getBoundingClientRect(); return { t: e.textContent.trim(), kind, x: r.left, y: r.top, w: r.width, h: r.height }; };
     const nodeRects = [...document.querySelectorAll('#labels .nlabel')].filter(vis).map(e => box(e, 'node'));
     const edgeRects = [...document.querySelectorAll('#labels .elabel')].filter(vis).map(e => box(e, 'edge'));
     const decorRects = [...document.querySelectorAll('#labels .axlabel, #labels .tick, #labels .rlabel, #labels .glabel')].filter(vis).map(e => box(e, 'decor'));
