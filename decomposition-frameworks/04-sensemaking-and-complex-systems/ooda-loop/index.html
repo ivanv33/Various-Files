@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Framework graph</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --plane: #0d0d0d;      /* page plane */
+    --surface: #1a1a19;    /* chart surface (canvas background) */
+    --card: #202020;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --muted: #898781;
+    --hairline: #2c2c2a;
+    --baseline: #383835;
+    --accent: #3987e5;
+    --schema: #898781;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--plane); color: var(--ink-2); font: 14px/1.45 var(--sans); }
+  a { color: var(--ink-2); }
+  a:hover { color: var(--ink); }
+  kbd { font: 11px var(--mono); color: var(--muted); border: 1px solid var(--hairline); border-radius: 3px; padding: 0 4px; margin-left: 4px; }
+  button, .seg button { font: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  body { display: grid; grid-template-rows: auto auto 1fr; height: 100vh; }
+  header.bar { display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--hairline); background: var(--plane); }
+  .title { display: flex; flex-direction: column; min-width: 220px; }
+  .eyebrow { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-size: 17px; font-weight: 600; margin: 2px 0 0; color: var(--ink); letter-spacing: -.01em; }
+  .links { font-size: 12px; margin-top: 2px; display: flex; gap: 12px; }
+  .links a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--hairline); }
+  .links a:hover { color: var(--ink); border-color: var(--muted); }
+  .seg { display: inline-flex; border: 1px solid var(--hairline); border-radius: 6px; overflow: hidden; }
+  .seg button { background: transparent; color: var(--ink-2); border: 0; padding: 6px 12px; cursor: pointer; }
+  .seg button + button { border-left: 1px solid var(--hairline); }
+  .seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
+  .toggles { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; margin-left: auto; font-size: 13px; }
+  .toggles label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; }
+  .toggles input { accent-color: var(--accent); }
+  .toggles button { background: transparent; color: var(--ink-2); border: 1px solid var(--hairline); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+  .toggles button:hover { color: var(--ink); border-color: var(--muted); }
+
+  main { position: relative; overflow: hidden; background: var(--surface); }
+  #stage { position: absolute; inset: 0; }
+  #stage canvas { display: block; }
+  #labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+  #labels * { pointer-events: none; }
+  .nlabel { font: 12px/1.2 var(--sans); color: var(--ink-2); white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6); }
+  .nlabel .lab { display: inline-block; transform: translateY(11px); background: rgba(26,26,25,.72); padding: 0 4px; border-radius: 3px; }
+  .nlabel.derived { color: var(--ink-2); font-style: italic; }
+  .nlabel.schema { color: var(--muted); font: 11px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .nlabel .g { font-size: 9px; margin-right: 4px; vertical-align: 1px; }
+  .nlabel .idea-star { color: #eda100; margin-right: 3px; }
+  #panel .idea { border-left: 2px solid #eda100; padding: 6px 10px; margin: 8px 0; color: var(--ink); background: rgba(237,161,0,.07); }
+  .elabel { font: 11px var(--mono); color: var(--muted); background: var(--surface); padding: 0 4px; border-radius: 3px; }
+  .axlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .tick { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+  .rlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .glabel { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+
+  #tooltip { position: absolute; pointer-events: none; display: none; max-width: 300px; background: var(--card); border: 1px solid var(--hairline); border-radius: 6px; padding: 8px 10px; font-size: 12px; color: var(--ink-2); box-shadow: 0 6px 20px rgba(0,0,0,.5); z-index: 5; }
+  #tooltip .t-label { color: var(--ink); font-weight: 600; margin-bottom: 2px; }
+  #tooltip .t-meta { font: 11px var(--mono); color: var(--muted); }
+
+  .card { position: absolute; background: rgba(32,32,32,.94); border: 1px solid var(--hairline); border-radius: 8px; backdrop-filter: blur(6px); }
+  #legend { left: 12px; bottom: 12px; width: 240px; max-height: calc(100% - 24px); overflow: auto; padding: 10px 12px; font-size: 12px; }
+  #legend h2 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 8px 0 6px; }
+  #legend h2:first-child { margin-top: 0; }
+  .slot-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
+  .chip { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .chip.box { border-radius: 2px; }
+  .chip.diamond { border-radius: 2px; transform: rotate(45deg); }
+  .chip.cone { border-radius: 0; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .slot-row .n { margin-left: auto; font: 11px var(--mono); color: var(--muted); }
+  .slot-row .tp { font: 10px var(--mono); color: var(--muted); }
+  .key-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; color: var(--ink-2); }
+  .key-row .sym { width: 14px; text-align: center; color: var(--ink); }
+  .stats { font: 11px/1.6 var(--mono); color: var(--muted); border-top: 1px solid var(--hairline); margin-top: 8px; padding-top: 6px; }
+  .stats b { color: var(--ink-2); font-weight: 500; }
+
+  /* example note: a strip under the header, never over the graph */
+  #note { display: grid; grid-template-columns: minmax(160px, 24%) 1fr minmax(160px, 22%); gap: 6px 20px; align-items: baseline; padding: 7px 16px; border-bottom: 1px solid var(--hairline); background: var(--plane); font-size: 12px; }
+  #note h3 { margin: 0; font-size: 13px; color: var(--ink); font-weight: 600; line-height: 1.35; }
+  #note p { margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  #note:hover p, #note:focus-within p { -webkit-line-clamp: unset; }
+  #note .src { font: 11px var(--mono); color: var(--muted); word-break: break-word; text-align: right; }
+
+  #panel { right: 12px; top: 12px; bottom: 12px; width: 340px; padding: 12px 14px; overflow: auto; font-size: 13px; z-index: 4; }
+  #panel[hidden] { display: none; }
+  #panel .p-head { display: flex; align-items: flex-start; gap: 8px; }
+  #panel .p-slot { font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  #panel h3 { margin: 4px 0 6px; font-size: 15px; color: var(--ink); font-weight: 600; line-height: 1.3; }
+  #panel .close { margin-left: auto; background: transparent; border: 1px solid var(--hairline); color: var(--ink-2); border-radius: 6px; width: 28px; height: 28px; cursor: pointer; flex: none; }
+  .badge { display: inline-block; font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; border: 1px solid var(--muted); color: var(--ink); }
+  .badge.fact { background: var(--ink-2); color: var(--plane); border-color: var(--ink-2); }
+  .badge.derived { border-style: dashed; }
+  .badge.schema { color: var(--muted); }
+  #panel p { margin: 8px 0; }
+  #panel blockquote { margin: 8px 0; padding: 6px 10px; border-left: 2px solid var(--muted); color: var(--ink-2); font-style: italic; }
+  #panel .ref, #panel .conf { font: 11px var(--mono); color: var(--muted); }
+  #panel h4 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 12px 0 4px; }
+  #panel ul { margin: 0; padding-left: 16px; }
+  #panel li { margin: 2px 0; }
+  #panel li .rel { font: 11px var(--mono); color: var(--muted); }
+  .confbar { height: 3px; background: var(--hairline); border-radius: 2px; margin: 4px 0 8px; overflow: hidden; }
+  .confbar i { display: block; height: 100%; background: var(--ink-2); }
+
+  #fallback { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--muted); padding: 24px; }
+  #fallback[hidden] { display: none; }
+  #fallback code { font: 12px var(--mono); color: var(--ink-2); }
+
+  @media (max-width: 820px) {
+    #legend { width: min(240px, 60%); max-height: 42%; font-size: 11px; }
+    #note { grid-template-columns: 1fr; }
+    #note .src { text-align: left; }
+    #panel { left: 12px; width: auto; top: auto; max-height: 60%; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<header class="bar">
+  <div class="title">
+    <span class="eyebrow" id="category"></span>
+    <h1 id="name">Framework graph</h1>
+    <div class="links"><a id="readme" href="./README.md">README</a><a id="wiki" href="#" target="_blank" rel="noopener">Wikipedia</a><a id="up" href="../../index.html">All frameworks</a></div>
+  </div>
+  <div class="seg" id="examples" role="group" aria-label="Example"></div>
+  <div class="toggles">
+    <label><input type="checkbox" id="t-derived" checked> LLM-derived<kbd>d</kbd></label>
+    <label><input type="checkbox" id="t-grounding"> grounding links<kbd>g</kbd></label>
+    <label><input type="checkbox" id="t-labels" checked> labels</label>
+    <label><input type="checkbox" id="t-rotate"> auto-rotate</label>
+    <button id="reset" type="button">Reset view<kbd>r</kbd></button>
+  </div>
+</header>
+<div id="note" aria-live="polite" tabindex="0"></div>
+<main>
+  <div id="stage"></div>
+  <div id="labels"></div>
+  <div id="fallback">Loading Three.js from jsDelivr… <br><small>This page needs internet access for <code>three@0.186.0</code>. The data itself is embedded.</small></div>
+  <aside id="legend" class="card" aria-label="Legend"></aside>
+  <aside id="panel" class="card" hidden aria-label="Node details"></aside>
+  <div id="tooltip" role="tooltip"></div>
+</main>
+
+<!--__DATA_START__-->
+<script id="graph-data" type="application/json">{"framework":{"slug":"ooda-loop","name":"OODA Loop","category":"04-sensemaking-and-complex-systems","wikipedia":"https://en.wikipedia.org/wiki/OODA_loop","one_liner":"Breaks a contest into the cycle each side runs, observe, orient, decide, act, and treats Orientation, the unstated model that filters what gets seen, as the hinge; the side whose loop closes first acts on a world its rival has not finished understanding."},"slots":[{"id":"actor","label":"Actor","description":"Who is running the loop. A single loop is a diagram; two loops running against each other is the framework, so every OODA graph names at least two actors and each loop node belongs to one of them.","typical_provenance":"fact","color":"#c44d9b","shape":"box"},{"id":"observation","label":"Observation","description":"What the actor saw, and the aperture through which he could see it. Outside data plus the unfolding consequences of his own earlier actions; the aperture belongs here because it decides what never arrives.","typical_provenance":"fact","color":"#3987e5","shape":"sphere"},{"id":"orientation","label":"Orientation","description":"The mental model, prior bet or cultural conditioning that filters the observation and tells the actor what it means. Boyd's hinge, and almost never stated, because to the people inside it it is not a belief but the way things are.","typical_provenance":"derived","color":"#d95926","shape":"diamond"},{"id":"decision","label":"Decision","description":"What the actor chose: the hypothesis he is about to test. Sometimes stated in a memo or an interview, sometimes only reconstructible from the action that followed.","typical_provenance":"either","color":"#8a6fc4","shape":"cone"},{"id":"action","label":"Action","description":"What the actor did, and the mechanism that let him do it at that speed. Actions are the only part of a rival's loop you can observe directly, which is why they are the best-attested slot and the worst guide to his orientation.","typical_provenance":"fact","color":"#2f9e6e","shape":"box"},{"id":"feedback","label":"Feedback","description":"How the action changed what this actor or his adversary observes next, and at what tempo. This is where the two loops touch and where cycle-time asymmetry shows up as a fact about the contest rather than a slogan about speed.","typical_provenance":"derived","color":"#1fa8c0","shape":"sphere"}],"relations":[{"id":"informs","label":"informs","description":"an input feeds the next stage of the loop: an observation into an orientation, or straight into a decision when there is no time to deliberate"},{"id":"shapes","label":"shapes","description":"an orientation shapes a decision, or in Boyd's implicit-guidance case shapes an action with no decision in between"},{"id":"executes","label":"executes","description":"a decision is executed as an action"},{"id":"feeds_back","label":"feeds back","description":"an action changes what is observed next, by the actor himself or by his adversary"},{"id":"performed_by","label":"performed by","description":"a loop node belongs to this actor's loop"}],"examples":[{"id":"classic","kind":"classic","title":"Korea, 1951: the F-86 Sabre against the MiG-15","summary":"Boyd's own case. The MiG-15 climbs faster, accelerates better and flies higher, and it loses at roughly ten to one, because the Sabre pilot can complete a transition before the MiG pilot has finished answering the last one.","source":{"type":"text","title":"An F-86 and a MiG-15 over the Yalu","attribution":"After John Boyd's reading of Korean air combat, which became Energy-Maneuverability theory and the briefing Patterns of Conflict; the scenario text is written for this example so that the fact nodes have something verbatim to quote.","text":"Over the Yalu in the spring of 1951, an F-86 Sabre and a MiG-15 meet at thirty thousand feet. On paper the MiG is the better fighter: it climbs faster, it accelerates better in a zoom, and its ceiling is several thousand feet above the Sabre's. The Sabre has two things the MiG does not: a full bubble canopy with an unobstructed view, and hydraulically boosted controls that stay light at speed. The MiG pilot sits behind a heavily framed canopy, flies on manual controls that grow heavy as the air loads up, and has been briefed on the ground to fight to a plan. The Sabre pilot sees the MiG first and keeps it in sight through the turn. The MiG pilot picks the Sabre up late, holds it through the first turn, and loses it the moment the Sabre reverses. He knows his aircraft out-climbs the Sabre, so he decides to use the climb to break away upward. The Sabre pilot decides not to match the climb and to force a quick series of reversals instead. He rolls hard one way, and before the MiG has settled into the turn he rolls hard the other way. The MiG pilot hauls his aircraft through the first turn with both hands on the stick and is still in it when the Sabre has already gone the other way. He overshoots, and the Sabre pilot takes the shot from behind him. Across the war Sabres destroyed MiGs at a ratio of roughly ten to one, although the MiG climbed better and flew higher."},"layout":{"mode":"ring","regions":[{"label":"F-86 Sabre's loop","x":[-44,-9],"y":[-20,33],"color":"#c44d9b"},{"label":"MiG-15's loop","x":[9,44],"y":[-20,33],"color":"#c44d9b"}]},"nodes":[{"id":"c_sabre","slot":"actor","label":"F-86 Sabre pilot","text":"The F-86 Sabre pilot: the actor whose loop the left ring traces, flying the aircraft that is worse on paper.","provenance":"fact","source_quote":"an F-86 Sabre and a MiG-15 meet at thirty thousand feet","source_ref":"sentence 1","entities":["F-86 Sabre"],"pos":[-26,1]},{"id":"c_s_ap","slot":"observation","label":"Full bubble canopy","text":"His aperture: a full bubble canopy with an unobstructed view. It decides what can reach him at all, before anything is interpreted.","provenance":"fact","source_quote":"a full bubble canopy with an unobstructed view","source_ref":"sentence 3","entities":["F-86 Sabre"],"pos":[-38.3,-13.3]},{"id":"c_s_see","slot":"observation","label":"Sees the MiG first, keeps it in sight","text":"He sees the MiG before the MiG sees him, and keeps it in sight through the turn.","provenance":"fact","source_quote":"The Sabre pilot sees the MiG first and keeps it in sight through the turn","source_ref":"sentence 5","entities":["F-86 Sabre","MiG-15"],"pos":[-40.9,-2.5]},{"id":"c_s_or1","slot":"orientation","label":"A fight is a series of transitions","text":"The Sabre pilot reads the fight as a sequence of transitions from one state to the next, not as a comparison of top speeds and ceilings. Whoever finishes a transition first is fighting an opponent whose picture is already out of date.","provenance":"derived","confidence":0.75,"rationale":"Nothing in the scenario says how either pilot understands the fight. This reading is forced on us by his decision in sentence 8: a pilot who thought the fight was a contest of envelope would have tried to match the climb, and he explicitly declines to. Boyd's fast-transient idea is the name for the alternative.","entities":["F-86 Sabre"],"pos":[-40.5,7.5]},{"id":"c_s_or2","slot":"orientation","label":"Reversals cost him less than the MiG","text":"He also orients on an asymmetry in price rather than in performance: with boosted controls a reversal costs him a light pull, and on the MiG's manual controls the same reversal costs two hands and a beat of delay.","provenance":"derived","confidence":0.7,"rationale":"Sentence 3 gives his hydraulics and sentence 4 gives the MiG's manual controls, but the scenario never puts the two side by side or says that either pilot noticed. The comparison is the inference, and it is what makes a series of reversals a plan rather than a waste of energy.","entities":["F-86 Sabre","MiG-15"],"pos":[-33.9,22.2]},{"id":"c_s_dec","slot":"decision","label":"Force reversals, not the climb","text":"He decides not to match the climb and to force a quick series of reversals instead.","provenance":"fact","source_quote":"The Sabre pilot decides not to match the climb and to force a quick series of reversals instead","source_ref":"sentence 8","entities":["F-86 Sabre"],"pos":[-25.5,26]},{"id":"c_s_boost","slot":"action","label":"Hydraulic controls stay light","text":"The mechanism that sets his tempo: hydraulically boosted controls that stay light at speed, so one more reversal is nearly free.","provenance":"fact","source_quote":"hydraulically boosted controls that stay light at speed","source_ref":"sentence 3","entities":["F-86 Sabre"],"pos":[-15.4,18.7]},{"id":"c_s_roll","slot":"action","label":"Rolls one way, then the other","text":"He rolls hard one way, and before the MiG has settled into the turn he rolls hard the other way.","provenance":"fact","source_quote":"He rolls hard one way, and before the MiG has settled into the turn he rolls hard the other way","source_ref":"sentence 9","entities":["F-86 Sabre","MiG-15"],"pos":[-11.9,9.6]},{"id":"c_s_shot","slot":"action","label":"Takes the shot from behind","text":"The MiG overshoots and the Sabre pilot takes the shot from behind him.","provenance":"fact","source_quote":"He overshoots, and the Sabre pilot takes the shot from behind him","source_ref":"sentence 11","entities":["F-86 Sabre","MiG-15"],"pos":[-14.9,-15.7]},{"id":"c_s_fb","slot":"feedback","label":"Reversals expire the MiG's picture","text":"The loop closes on the adversary rather than on himself: every reversal makes the observation the MiG pilot is still working from false, so the MiG's orientation never gets to finish.","provenance":"derived","confidence":0.8,"rationale":"Sentence 6 states that the MiG pilot loses the Sabre the moment it reverses and sentence 10 that he is still in the first turn when the Sabre has gone the other way. That the reversal is therefore operating on the MiG's observation, not merely on the geometry of the fight, is the framework's reading of those two facts.","entities":["F-86 Sabre","MiG-15"],"pos":[-1,15.5]},{"id":"c_mig","slot":"actor","label":"MiG-15 pilot","text":"The MiG-15 pilot: the actor with the better aircraft and the slower loop.","provenance":"fact","source_quote":"an F-86 Sabre and a MiG-15 meet at thirty thousand feet","source_ref":"sentence 1","entities":["MiG-15"],"pos":[26,1]},{"id":"c_m_ap","slot":"observation","label":"Framed canopy, manual stick, briefing","text":"His aperture and his script: a heavily framed canopy, manual controls that grow heavy as the air loads up, and a brief given on the ground telling him how the fight should go.","provenance":"fact","source_quote":"The MiG pilot sits behind a heavily framed canopy, flies on manual controls that grow heavy as the air loads up, and has been briefed on the ground to fight to a plan","source_ref":"sentence 4","entities":["MiG-15"],"pos":[16.8,20.7]},{"id":"c_m_env","slot":"observation","label":"Knows he out-climbs the Sabre","text":"What he knows about the envelope: his aircraft out-climbs the Sabre, accelerates better in a zoom and has the higher ceiling.","provenance":"fact","source_quote":"He knows his aircraft out-climbs the Sabre","source_ref":"sentence 7","entities":["MiG-15","F-86 Sabre"],"pos":[30.1,25]},{"id":"c_m_lose","slot":"observation","label":"Late to see, loses him on reversal","text":"He picks the Sabre up late, holds it through the first turn, and loses it the moment the Sabre reverses.","provenance":"fact","source_quote":"The MiG pilot picks the Sabre up late, holds it through the first turn, and loses it the moment the Sabre reverses","source_ref":"sentence 6","entities":["MiG-15","F-86 Sabre"],"pos":[11.7,-6.3]},{"id":"c_m_or","slot":"orientation","label":"The better envelope wins the fight","text":"He orients on the performance envelope and on the plan he was given: the aircraft that climbs higher and faster wins, and the fight should be flown the way it was briefed.","provenance":"derived","confidence":0.75,"rationale":"The scenario never states his beliefs. It states the ground brief (sentence 4) and a decision (sentence 7) that answers a performance question rather than a tempo question. An envelope-plus-doctrine orientation is the model that makes that decision the obvious one, and it is also what leaves him nothing to do when the fight stops being about the envelope.","entities":["MiG-15"],"pos":[40.7,6.2]},{"id":"c_m_dec","slot":"decision","label":"Break away upward on the climb","text":"He decides to use the climb to break away upward.","provenance":"fact","source_quote":"so he decides to use the climb to break away upward","source_ref":"sentence 7","entities":["MiG-15"],"pos":[39,-11.5]},{"id":"c_m_act","slot":"action","label":"Hauls the first turn with two hands","text":"He hauls his aircraft through the first turn with both hands on the stick and is still in it when the Sabre has already gone the other way.","provenance":"fact","source_quote":"The MiG pilot hauls his aircraft through the first turn with both hands on the stick and is still in it when the Sabre has already gone the other way","source_ref":"sentence 10","entities":["MiG-15","F-86 Sabre"],"pos":[13,-11.5]},{"id":"c_m_fb","slot":"feedback","label":"His answers arrive one move late","text":"Each of his actions is a correct answer to the situation that existed when he started it. By the time it arrives, the Sabre has moved, so his loop is spent producing answers to a fight that has already gone.","provenance":"derived","confidence":0.75,"rationale":"Read off sentences 9, 10 and 11: the reversal comes before he has settled, he is still in the turn, and he overshoots. That the overshoot is a timing failure of his loop rather than a flying error is the inference, and it is why the better aircraft loses.","entities":["MiG-15","F-86 Sabre"],"pos":[0,-22]},{"id":"c_ratio","slot":"feedback","label":"Roughly ten to one","text":"The outcome over the war: Sabres destroyed MiGs at a ratio of roughly ten to one, although the MiG climbed better and flew higher.","provenance":"fact","source_quote":"Across the war Sabres destroyed MiGs at a ratio of roughly ten to one, although the MiG climbed better and flew higher","source_ref":"sentence 12","entities":["F-86 Sabre","MiG-15"],"pos":[0,-31]}],"edges":[{"id":"ce01","from":"c_s_ap","to":"c_s_see","relation":"informs","provenance":"derived","confidence":0.8,"rationale":"The canopy (sentence 3) and seeing first (sentence 5) are stated separately; that the one causes the other is the obvious but unstated reading."},{"id":"ce02","from":"c_s_see","to":"c_s_or1","relation":"informs","provenance":"derived","confidence":0.75,"rationale":"Joins a stated observation to an inferred model; the scenario never says what he made of what he saw."},{"id":"ce03","from":"c_s_see","to":"c_s_or2","relation":"informs","provenance":"derived","confidence":0.7,"rationale":"Keeping the MiG in sight through the turn is what lets him price the other man's handling; the link is inferred."},{"id":"ce04","from":"c_s_or1","to":"c_s_dec","relation":"shapes","provenance":"derived","confidence":0.8,"rationale":"The decision in sentence 8 is what the transitions reading predicts; the edge is the framework's claim that the model produced the choice."},{"id":"ce05","from":"c_s_or2","to":"c_s_dec","relation":"shapes","provenance":"derived","confidence":0.7,"rationale":"A series of reversals is only a plan if each one is cheaper for him than for his opponent; that pricing is inferred, not stated."},{"id":"ce06","from":"c_s_dec","to":"c_s_roll","relation":"executes","provenance":"derived","confidence":0.85,"rationale":"Sentences 8 and 9 are adjacent and the action is the decision carried out, but the text states no connective, and a sequence read from narrative order is derived."},{"id":"ce07","from":"c_s_boost","to":"c_s_roll","relation":"informs","provenance":"derived","confidence":0.8,"rationale":"Boosted controls (sentence 3) are what make the second roll arrive before the MiG has settled (sentence 9); the mechanism is never joined to the act in the text."},{"id":"ce08","from":"c_s_roll","to":"c_m_lose","relation":"feeds_back","provenance":"fact","source_quote":"loses it the moment the Sabre reverses","source_ref":"sentence 6","label":"loses sight"},{"id":"ce09","from":"c_m_act","to":"c_s_shot","relation":"feeds_back","provenance":"fact","source_quote":"He overshoots, and the Sabre pilot takes the shot from behind him","source_ref":"sentence 11"},{"id":"ce10","from":"c_s_roll","to":"c_s_fb","relation":"feeds_back","provenance":"derived","confidence":0.8,"rationale":"The reversal is the action; that its effect is on the adversary's observation rather than on the geometry is the inferred part."},{"id":"ce11","from":"c_s_fb","to":"c_m_lose","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"Sentence 6 is the direct evidence that a reversal breaks the MiG pilot's observation."},{"id":"ce12","from":"c_s_fb","to":"c_ratio","relation":"supported_by","provenance":"derived","confidence":0.7,"rationale":"The exchange ratio is the only stated outcome, and it is what the claim about expired pictures has to explain."},{"id":"ce13","from":"c_m_ap","to":"c_m_lose","relation":"informs","provenance":"derived","confidence":0.8,"rationale":"The framed canopy (sentence 4) is the unstated reason he picks the Sabre up late and loses it (sentence 6)."},{"id":"ce14","from":"c_m_ap","to":"c_m_or","relation":"informs","provenance":"derived","confidence":0.75,"rationale":"A brief given on the ground is the clearest evidence of conditioning, but the text does not say it shaped how he read the fight."},{"id":"ce15","from":"c_m_env","to":"c_m_or","relation":"informs","provenance":"derived","confidence":0.75,"rationale":"Knowing he out-climbs the Sabre is the fact an envelope orientation is built from; the step from knowledge to model is inferred."},{"id":"ce16","from":"c_m_env","to":"c_m_dec","relation":"informs","provenance":"fact","source_quote":"He knows his aircraft out-climbs the Sabre, so he decides to use the climb to break away upward","source_ref":"sentence 7","label":"so"},{"id":"ce17","from":"c_m_or","to":"c_m_dec","relation":"shapes","provenance":"derived","confidence":0.75,"rationale":"Sentence 7 gives the observation and the decision but not the model in between; the model is what makes an upward break the answer rather than a tighter turn."},{"id":"ce18","from":"c_m_dec","to":"c_m_act","relation":"executes","provenance":"derived","confidence":0.8,"rationale":"Sentence 10 is the decision being carried out, but the text states no connective between them."},{"id":"ce19","from":"c_m_act","to":"c_m_fb","relation":"feeds_back","provenance":"derived","confidence":0.75,"rationale":"The turn is stated; that it is the point at which his loop falls a move behind is the inference."},{"id":"ce20","from":"c_m_fb","to":"c_m_act","relation":"supported_by","provenance":"derived","confidence":0.75,"rationale":"Sentence 10 is the direct evidence of the lag: he is still in the first turn when the Sabre has reversed."},{"id":"ce21","from":"c_m_fb","to":"c_ratio","relation":"supported_by","provenance":"derived","confidence":0.7,"rationale":"Ten to one against the better aircraft is the outcome the lag claim exists to explain."},{"id":"ce22","from":"c_s_see","to":"c_sabre","relation":"performed_by","provenance":"fact","source_quote":"The Sabre pilot sees the MiG first","source_ref":"sentence 5"},{"id":"ce23","from":"c_s_dec","to":"c_sabre","relation":"performed_by","provenance":"fact","source_quote":"The Sabre pilot decides not to match the climb","source_ref":"sentence 8"},{"id":"ce24","from":"c_s_roll","to":"c_sabre","relation":"performed_by","provenance":"derived","confidence":0.95,"rationale":"Pronoun resolution: the he of sentence 9 is the Sabre pilot named in sentence 8."},{"id":"ce25","from":"c_s_or1","to":"c_sabre","relation":"performed_by","provenance":"derived","confidence":0.9,"rationale":"The orientation is inferred, so its attribution to this actor is inferred with it."},{"id":"ce26","from":"c_m_lose","to":"c_mig","relation":"performed_by","provenance":"fact","source_quote":"The MiG pilot picks the Sabre up late","source_ref":"sentence 6"},{"id":"ce27","from":"c_m_act","to":"c_mig","relation":"performed_by","provenance":"fact","source_quote":"The MiG pilot hauls his aircraft through the first turn with both hands on the stick","source_ref":"sentence 10"},{"id":"ce28","from":"c_m_dec","to":"c_mig","relation":"performed_by","provenance":"derived","confidence":0.95,"rationale":"Pronoun resolution: the he of sentence 7 is the MiG pilot named in sentence 6."},{"id":"ce29","from":"c_m_or","to":"c_mig","relation":"performed_by","provenance":"derived","confidence":0.9,"rationale":"The orientation is inferred, so its attribution to this actor is inferred with it."},{"id":"ce30","from":"c_s_shot","to":"c_ratio","relation":"feeds_back","provenance":"derived","confidence":0.7,"rationale":"One engagement and the war's exchange ratio are stated separately; that this engagement is the pattern behind the number is the generalisation."},{"id":"ce31","from":"c_s_or1","to":"c_s_roll","relation":"shapes","provenance":"derived","confidence":0.6,"rationale":"Boyd's implicit guidance and control: the second roll comes too fast for a fresh decision, so orientation is driving the hand directly. Contestable, and kept because the framework exists to make the path visible."},{"id":"ce32","from":"c_s_or1","to":"c_s_boost","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"The boosted controls are the fact that makes a transitions reading pay rather than a performance reading."},{"id":"ce33","from":"c_s_or2","to":"c_s_boost","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"One half of the price comparison is stated in sentence 3."},{"id":"ce34","from":"c_s_or2","to":"c_m_ap","relation":"supported_by","provenance":"derived","confidence":0.75,"rationale":"The other half of the price comparison, the MiG's manual controls, is stated in sentence 4."},{"id":"ce35","from":"c_m_or","to":"c_m_ap","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"The ground brief is the stated conditioning the orientation is read from."},{"id":"ce36","from":"c_m_or","to":"c_m_env","relation":"supported_by","provenance":"derived","confidence":0.75,"rationale":"The envelope advantage is the stated fact the envelope orientation rests on."}]},{"id":"tbpn","kind":"tbpn","title":"Code red: Gemini 3 lands inside OpenAI's loop","summary":"Two loops closing on each other. Google observed ChatGPT in 2022, spent a decade on its own silicon and shipped Gemini 3; OpenAI observed Gemini 3, watched its own usage fall, and had to answer in weeks with decisions reversing the bet it had been running.","source":{"type":"transcript","file":"tbpn-transcripts/transcripts/2025-12-02_code-red-aws-ceo-joins-tae-kim-tells-all-matt-garman-tae-kim-tarek-mansour-matt-mullenweg-jason-fried.md","date":"2025-12-02","episode_title":"Code Red, AWS CEO Joins, Tae Kim Tells All (Matt Garman, Tae Kim, Tarek Mansour, Matt Mullenweg, Jason Fried)"},"why_this_episode":"It is the only moment in the corpus where both sides of a rivalry are shown closing their loops on each other across two turns: ChatGPT's 2022 launch drives Google's code red, a decade of TPU work and Gemini 3, and Gemini 3 then drives OpenAI's own code red, a usage decline the hosts read off the data, a Slack memo redirecting engineers, and a public promise of models at the same level. The cycle-time asymmetry is stated in units on the record, a decade of silicon against an answer due now, which is the one thing Boyd's framework needs and transcripts rarely give.","idea_bearing_slot":"orientation","layout":{"mode":"ring","regions":[{"label":"Google's loop","x":[-44,-9],"y":[-29,33],"color":"#c44d9b"},{"label":"OpenAI's loop","x":[9,44],"y":[-29,33],"color":"#c44d9b"}]},"nodes":[{"id":"g_actor","slot":"actor","label":"Google","text":"Google, the actor running the faster loop in this round: it answered ChatGPT with a model of its own and struck the first blow of this cycle.","provenance":"fact","source_quote":"So Google strikes back. The first Google blow was Gemini 3","source_ref":"host reading Ben Thompson, L2188-L2188","entities":["Google","Gemini 3"],"pos":[-26,0]},{"id":"g_obs_chatgpt","slot":"observation","label":"2022: ChatGPT launches, Bard pops","text":"The previous turn of Google's loop, which is the one that matters here: at the ChatGPT launch in 2022, with Bard popping, Sundar Pichai was reported to have called a code red of his own. He later said he did not use that exact term.","provenance":"fact","source_quote":"people were claiming that he had used the phrase code red, and he back in 2022 at the chat GPT launch when Bard was popping","source_ref":"host, L2218-L2220","entities":["Google","OpenAI","ChatGPT","Sundar Pichai"],"pos":[-38.7,-13.2]},{"id":"g_obs_compute","slot":"observation","label":"More compute is the deciding factor","text":"What Google reads off its own releases: repeatedly, Gemini reaffirms that the most important factor in catching up or moving ahead is more compute.","provenance":"fact","source_quote":"repeatedly Gemini reaffirms that the most important factor in catching up or moving ahead is more compute","source_ref":"host reading Ben Thompson, L2228-L2228","entities":["Google","Gemini 3"],"pos":[-40.9,3.5]},{"id":"g_obs_split","slot":"observation","label":"Desktop switched, mobile did not","text":"What Google observes after acting: when Gemini 3 launched, people switched to it on desktop but stayed on ChatGPT on mobile.","provenance":"fact","source_quote":"when Gemini 3 launched, they switched to Gemini 3 on desktop, but they stayed using ChatGBTVT on mobile","source_ref":"host, L2666-L2670","entities":["Google","Gemini 3","OpenAI","ChatGPT"],"pos":[-15.4,-17.7]},{"id":"g_orient","slot":"orientation","label":"A model is a feature of an ads machine","text":"Google orients on a stack it owns end to end: its own silicon, its own distribution and a search franchise that has been monetised since the beginning. On that model a frontier model is a feature of a business that already prints money, so being second for a while costs it very little.","provenance":"derived","confidence":0.7,"rationale":"Nobody in the episode states Google's model of the contest. It is read off three facts that are stated: a decade of in-house silicon, search monetised inside two years, and the claim that compute decides the race. Those three only add up to a strategy if the model is a feature of the distribution-and-revenue machine rather than the product being sold.","idea":"Google can afford to run a worse model for years because search revenue pays for the wait, which leaves the attention a subscription-only lab captures almost entirely unmonetised: the gap is an ads and purchase-intent layer for assistant answers, sold to the assistants and agents that will never build their own.","entities":["Google","NVIDIA"],"pos":[-37.5,16.1]},{"id":"g_dec_compute","slot":"decision","label":"Compete on total compute","text":"Google's choice: make the axis of competition sheer size and the total compute behind a model, on silicon it owns, rather than a cleverer training trick.","provenance":"derived","confidence":0.8,"rationale":"Not stated as a decision, but it is the only hypothesis that both the decade of TPU work and Gemini 3's stated advantage, its sheer size and the vast amount of compute that went into it, are instances of. The decision is reconstructed backwards from two actions a decade apart.","entities":["Google","TPU (Tensor Processing Unit / Google Ironwood)"],"pos":[-27.3,24.9]},{"id":"g_act_tpu","slot":"action","label":"Started TPUs a decade ago","text":"The enabling action was taken ten years before the release it enabled: Google started its work on TPUs a decade ago, which is why the host's advice to everyone else is to stick with Nvidia.","provenance":"fact","source_quote":"so Google started its work on TPUs a decade ago","source_ref":"host reading Ben Thompson, L2228-L2228","entities":["Google","TPU (Tensor Processing Unit / Google Ironwood)","NVIDIA"],"pos":[-18.5,21.7]},{"id":"g_act_gemini","slot":"action","label":"Shipped Gemini 3","text":"Google shipped Gemini 3, which scored better than OpenAI's state-of-the-art model on a host of benchmarks, even if real-world usage was a bit more uneven.","provenance":"fact","source_quote":"The first Google blow was Gemini 3, which scored better than OpenAI's state-of-the-art model on a host of benchmarks","source_ref":"host reading Ben Thompson, L2188-L2190","entities":["Google","Gemini 3","OpenAI"],"pos":[-11.1,3.5]},{"id":"g_act_ads","slot":"action","label":"Monetised search in under two years","text":"The precedent behind Google's monetisation reflex: it started monetizing search less than two years after its public launch, and that revenue has underwritten everything since.","provenance":"fact","source_quote":"That Google started monetizing search less than two years after its public launch","source_ref":"host reading Eric Seufert, L2964-L2964","entities":["Google","Eric Seufert"],"pos":[-26,-25]},{"id":"o_actor","slot":"actor","label":"OpenAI","text":"OpenAI, the actor whose loop is now running on the back foot: this, the hosts are told, is why OpenAI is in code red.","provenance":"fact","source_quote":"He says, this is why OpenAI is in code red","source_ref":"host reading Gavin Baker, L1632-L1632","entities":["OpenAI","Gavin Baker"],"pos":[26,0]},{"id":"o_obs_gemini","slot":"observation","label":"Has seen Gemini 3","text":"OpenAI has seen Gemini 3 and is both moved and not.","provenance":"fact","source_quote":"It says OpenAI has seen Gemini 3 and is both moved and not","source_ref":"host reading Ashley Vance, L1186-L1186","entities":["OpenAI","Gemini 3","Ashley Vance"],"pos":[11.1,3.5]},{"id":"o_obs_bench","slot":"observation","label":"On benchmarks, felt quite confident","text":"How the rival's release looked through OpenAI's own instrument: looking purely at the benchmarks, its research chief says, they actually felt quite confident.","provenance":"fact","source_quote":"And just looking purely at the benchmarks, you know, we actually felt quite confident","source_ref":"Mark Chen, L1198-L1198","entities":["OpenAI","Mark Chen"],"pos":[23.9,24.8]},{"id":"o_obs_dau","slot":"observation","label":"ChatGPT daily actives down 6%","text":"The signal the benchmark table does not contain: in the two weeks since Gemini launched, ChatGPT's unique daily active users on a seven-day average are down 6%. Web traffic data, the host notes, to be clear.","provenance":"fact","source_quote":"in the two weeks since the Gemini launched. ChatGPET unique, daily active users, a 7-day average are down 6%","source_ref":"host reading Gavin Baker, L1634-L1638","entities":["OpenAI","ChatGPT","Google","Gavin Baker"],"pos":[14.5,16.1]},{"id":"o_or_stated","slot":"orientation","label":"Focused too much on reasoning","text":"The half of OpenAI's orientation that is said out loud, after the fact: they focused a little too much on reasoning, and their pre-training muscle wasn't there.","provenance":"fact","source_quote":"Mark Chen was talking about how they kind of focused a little too much on reasoning and their pre-training muscle wasn't there","source_ref":"Tae Kim, L4846-L4850","entities":["OpenAI","Mark Chen","Tae Kim"],"pos":[33,22.1]},{"id":"o_or_bench","slot":"orientation","label":"Benchmark parity means no threat","text":"The filter on OpenAI's observation: a rival release is assessed as a benchmark comparison, so a model it can match on benchmarks reads as not a threat, even while the usage numbers move against it.","provenance":"derived","confidence":0.7,"rationale":"Nobody states the filter, and the research chief's own words are evidence of it rather than a statement of it: purely on benchmarks they felt quite confident, while the hosts are reading a 6% decline in daily actives off the same two weeks. The orientation is the thing that makes those two facts compatible inside one company.","idea":"A lab that grades rivals on benchmarks has no instrument for the thing that actually moved, per-surface habit and retention, so the underserved product is independent switching and retention telemetry for assistants, the usage scoreboard that the labs' own eval culture will not build.","entities":["OpenAI","Mark Chen","Gemini 3"],"pos":[38.3,14.3]},{"id":"o_or_subs","slot":"orientation","label":"The business is a subscription","text":"OpenAI's second unstated prior: monetisation is a subscription question. Attention that arrives without a subscription is therefore not revenue, which is how three years pass with no ads product and a degraded experience for most users.","provenance":"derived","confidence":0.6,"rationale":"Inferred from a stated absence and a stated comparison: an insistence on monetizing solely via subscriptions, no ads product three years in, set against Google monetising search inside two years. A prior is the cheapest explanation of an absence that persists while a rival's opposite choice is visible and working; contestable because the episode gives the critique, not the belief.","idea":"Assistant attention is being created far faster than it is being monetised, and the holder of it refuses the obvious instrument: the opening is the neutral demand and measurement layer, attribution and brand safety for answers, which an ads-averse lab will not build and an incumbent will keep for itself.","entities":["OpenAI","ChatGPT","Eric Seufert"],"pos":[40.9,-2.2]},{"id":"o_dec_subs","slot":"decision","label":"Monetise only via subscriptions","text":"The standing decision that the episode calls a dereliction of business duty: no ads product for ChatGPT three years after launch, while the company signs deals for over a trillion dollars of compute.","provenance":"fact","source_quote":"OpenAI's refusal to launch and iterate on an ads product for chat GPT, now three years old, is a dereliction of business duty","source_ref":"host reading Eric Seufert, L2972-L2974","entities":["OpenAI","ChatGPT","Eric Seufert"],"pos":[37.5,-16.1]},{"id":"o_dec_personalize","slot":"decision","label":"Memo: personalise ChatGPT","text":"The first answer, inside the company: in an internal Slack memo Altman directed more employees to focus on improving features of ChatGPT, such as personalizing the chat bot for more than 800 million people.","provenance":"fact","source_quote":"he was directing more employees to focus on improving features of ChatGPT, such as personalizing the chat bot for more than 800 million people","source_ref":"host, L1288-L1292","entities":["OpenAI","Sam Altman","ChatGPT"],"pos":[27.3,-24.9]},{"id":"o_dec_pretrain","slot":"decision","label":"Go back to pre-training","text":"The second answer, and a reversal of the bet it had been running: now they have to go back to pre-training.","provenance":"fact","source_quote":"And now they're like, okay, we have to go back to pre-training","source_ref":"Tae Kim, L4866-L4866","entities":["OpenAI","Tae Kim"],"pos":[18.5,-21.7]},{"id":"o_act_chen","slot":"action","label":"Chen: models at that level, soon","text":"The action taken in public while the internal answer is still being built: OpenAI has models internally that perform at the level of Gemini 3 and is pretty confident it will release them soon, with better successors after.","provenance":"fact","source_quote":"we have models internally that perform at the level of Gemini 3, and we're pretty confident that we will release them soon","source_ref":"Mark Chen, L1200-L1200","entities":["OpenAI","Mark Chen","Gemini 3"],"pos":[13.7,-14.3]},{"id":"f_respond_now","slot":"feedback","label":"Everyone must respond now","text":"One release reset the clock for everybody: everyone needs to respond to Gemini, and they need to respond now, not at some future date when their chips are good enough.","provenance":"fact","source_quote":"everyone needs to respond to Gemini, and they need to respond now, not at some future date when their chips are good enough","source_ref":"host reading Ben Thompson, L2216-L2216","entities":["Google","NVIDIA","Gemini 3"],"pos":[-1,29]},{"id":"f_inside_loop","slot":"feedback","label":"Google is inside OpenAI's loop","text":"The asymmetry that makes this a tempo story and not a model comparison: Google's answer to what it saw in 2022 was a decade of silicon, and OpenAI's answer to what it saw in 2025 is due now. The side whose enabling work is already finished sets the clock the other side has to keep.","provenance":"derived","confidence":0.75,"rationale":"Built from three stated facts: the TPU programme is a decade old, everyone must respond to Gemini now rather than later, and OpenAI's answers arrive inside weeks as a memo, a public promise and a reversal back to pre-training. That this is one side operating inside the other's decision cycle, rather than simply shipping a better model, is Boyd's reading of the pattern and not a claim anyone in the episode makes.","entities":["Google","OpenAI","Gemini 3"],"pos":[0.5,-8]},{"id":"f_mobile","slot":"feedback","label":"The mobile surface did not flip","text":"The blow landed on one surface only. The desktop habit moved and the mobile habit did not, so the release that reset everyone's clock left the incumbent's most defensible ground untouched.","provenance":"derived","confidence":0.6,"rationale":"The split itself is stated; reading it as the limit of the action's effect, rather than as a lag that will close on its own, is the inference. It is the feedback Google's own loop has to absorb next, and the reason a 6% dip is not a rout.","entities":["Google","OpenAI","Gemini 3","ChatGPT"],"pos":[0,-29]}],"edges":[{"id":"te01","from":"g_obs_chatgpt","to":"g_orient","relation":"informs","provenance":"derived","confidence":0.7,"rationale":"The 2022 shock is the stated input; that it hardened into a model of the contest rather than a one-off scramble is inferred."},{"id":"te02","from":"g_obs_compute","to":"g_orient","relation":"informs","provenance":"derived","confidence":0.75,"rationale":"The compute claim is stated as an analyst's reading of Gemini, not as Google's belief; attributing it to Google's orientation is the inference."},{"id":"te03","from":"g_obs_compute","to":"g_dec_compute","relation":"informs","provenance":"derived","confidence":0.85,"rationale":"Close to forced: if the most important factor is more compute, the decision to compete on total compute is a restatement of the observation the framework requires."},{"id":"te04","from":"g_orient","to":"g_dec_compute","relation":"shapes","provenance":"derived","confidence":0.75,"rationale":"Both ends are inferred; the edge is the framework's claim that owning the stack is what made buying compute a strategy rather than an expense."},{"id":"te05","from":"g_dec_compute","to":"g_act_tpu","relation":"executes","provenance":"derived","confidence":0.7,"rationale":"Runs backwards in time, as reconstructed decisions do: the decade-old TPU programme is the earliest action the decision explains, and the episode never dates the decision."},{"id":"te06","from":"g_dec_compute","to":"g_act_gemini","relation":"executes","provenance":"derived","confidence":0.8,"rationale":"Gemini 3's stated advantage is its sheer size and the compute behind it, which is this decision carried out; the connective is not spoken."},{"id":"te07","from":"g_act_tpu","to":"g_act_gemini","relation":"informs","provenance":"derived","confidence":0.8,"label":"a decade earlier","rationale":"Two stated actions, ten years apart, joined by an inference: the silicon is what let the release be the biggest rather than the cleverest."},{"id":"te08","from":"g_act_gemini","to":"g_obs_split","relation":"feeds_back","provenance":"fact","source_quote":"when Gemini 3 launched, they switched to Gemini 3 on desktop, but they stayed using ChatGBTVT on mobile","source_ref":"host, L2666-L2670","label":"desktop only"},{"id":"te09","from":"g_act_gemini","to":"o_obs_gemini","relation":"feeds_back","provenance":"fact","source_quote":"It says OpenAI has seen Gemini 3 and is both moved and not","source_ref":"host reading Ashley Vance, L1186-L1186"},{"id":"te10","from":"g_act_gemini","to":"o_obs_dau","relation":"feeds_back","provenance":"fact","source_quote":"in the two weeks since the Gemini launched. ChatGPET unique, daily active users, a 7-day average are down 6%","source_ref":"host reading Gavin Baker, L1634-L1638","label":"2 weeks, -6%"},{"id":"te11","from":"g_act_gemini","to":"f_respond_now","relation":"feeds_back","provenance":"fact","source_quote":"everyone needs to respond to Gemini, and they need to respond now, not at some future date when their chips are good enough","source_ref":"host reading Ben Thompson, L2216-L2216","label":"respond now"},{"id":"te12","from":"o_obs_gemini","to":"o_obs_bench","relation":"informs","provenance":"derived","confidence":0.8,"rationale":"Two adjacent statements from the same clip: they have seen it, and on benchmarks they felt confident. The step from seeing to measuring is the unstated part."},{"id":"te13","from":"o_obs_bench","to":"o_or_bench","relation":"informs","provenance":"derived","confidence":0.8,"rationale":"The confidence is stated; that it comes from treating the benchmark table as the test of threat is the inference the orientation slot exists for."},{"id":"te14","from":"o_or_stated","to":"o_or_bench","relation":"informs","provenance":"derived","confidence":0.65,"rationale":"Joins the stated half of the orientation to the unstated half: a lab that knows it over-indexed on reasoning is a lab whose scoreboard was the reasoning benchmarks."},{"id":"te15","from":"o_obs_dau","to":"o_dec_personalize","relation":"informs","provenance":"derived","confidence":0.75,"rationale":"The decline and the memo are reported in the same segment and the memo answers retention rather than capability, but no speaker joins them."},{"id":"te16","from":"o_or_bench","to":"o_act_chen","relation":"shapes","provenance":"derived","confidence":0.8,"rationale":"Boyd's implicit guidance and control: the public answer is a benchmark answer, made before any new model exists, which is an orientation reaching the action with no decision in between."},{"id":"te17","from":"o_or_bench","to":"o_dec_pretrain","relation":"shapes","provenance":"derived","confidence":0.65,"rationale":"Contestable: the reversal can be read as evidence that the benchmark filter finally broke, which makes the orientation the thing that shaped the decision by having delayed it."},{"id":"te18","from":"o_or_subs","to":"o_dec_subs","relation":"shapes","provenance":"derived","confidence":0.7,"rationale":"The decision is stated as an absence; the prior is the inferred reason the absence persisted while the rival's opposite choice was visible."},{"id":"te19","from":"o_obs_gemini","to":"o_dec_pretrain","relation":"informs","provenance":"fact","source_quote":"So Open AI knows that pre-training still works because Gemini 3 had great pre-training results and Cloud Opus 4.5 did","source_ref":"Tae Kim, L4868-L4870","label":"because"},{"id":"te20","from":"o_dec_personalize","to":"o_act_chen","relation":"executes","provenance":"derived","confidence":0.55,"rationale":"Speculative, and kept because the action slot needs filling on this side: the only visible output inside the two weeks is a promise, which is what a company executes when the product answer is still being built."},{"id":"te21","from":"o_act_chen","to":"f_inside_loop","relation":"feeds_back","provenance":"derived","confidence":0.65,"rationale":"An answer that is a promise of a future release is the clearest symptom of a loop running behind another's; the reading is the framework's, not the speakers'."},{"id":"te22","from":"g_act_gemini","to":"f_inside_loop","relation":"feeds_back","provenance":"derived","confidence":0.75,"rationale":"The release is stated; that it set the tempo the rival has to keep rather than merely topping a leaderboard is the inference."},{"id":"te23","from":"g_obs_split","to":"f_mobile","relation":"feeds_back","provenance":"derived","confidence":0.75,"rationale":"The split is stated; reading it as the boundary of the action's effect, and as the next thing Google's own loop has to absorb, is inferred."},{"id":"te24","from":"f_mobile","to":"g_obs_split","relation":"supported_by","provenance":"derived","confidence":0.85,"rationale":"The desktop and mobile split is the direct evidence."},{"id":"te25","from":"f_inside_loop","to":"f_respond_now","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"Respond now, not at some future date, is the stated tempo claim the inference rests on."},{"id":"te26","from":"f_inside_loop","to":"g_act_tpu","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"A decade of TPU work is the other half of the asymmetry: the enabling move was finished before the contest began."},{"id":"te27","from":"f_inside_loop","to":"o_dec_pretrain","relation":"supported_by","provenance":"derived","confidence":0.7,"rationale":"A reversal of the central research bet inside weeks of a rival's release is the behaviour of an actor whose loop is being driven from outside."},{"id":"te28","from":"g_orient","to":"g_act_tpu","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"Owning the silicon is the stated fact the orientation is read from."},{"id":"te29","from":"g_orient","to":"g_act_ads","relation":"supported_by","provenance":"derived","confidence":0.75,"rationale":"Search monetised inside two years is the stated fact behind the claim that Google can afford to be second for a while."},{"id":"te30","from":"o_or_bench","to":"o_obs_dau","relation":"supported_by","provenance":"derived","confidence":0.7,"rationale":"The 6% decline is the fact the benchmark filter failed to register, and so the evidence that the filter exists."},{"id":"te31","from":"o_or_subs","to":"o_dec_subs","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"The refusal to launch an ads product three years in is the stated absence the prior explains."},{"id":"te32","from":"o_or_subs","to":"g_act_ads","relation":"supported_by","provenance":"derived","confidence":0.65,"rationale":"The contrast is load-bearing: the same episode states that Google monetised search inside two years, which is what makes a three-year absence a prior rather than a schedule."},{"id":"te33","from":"g_act_gemini","to":"g_actor","relation":"performed_by","provenance":"fact","source_quote":"So Google strikes back. The first Google blow was Gemini 3","source_ref":"host reading Ben Thompson, L2188-L2188"},{"id":"te34","from":"g_act_tpu","to":"g_actor","relation":"performed_by","provenance":"fact","source_quote":"so Google started its work on TPUs a decade ago","source_ref":"host reading Ben Thompson, L2228-L2228"},{"id":"te35","from":"g_act_ads","to":"g_actor","relation":"performed_by","provenance":"fact","source_quote":"That Google started monetizing search less than two years after its public launch","source_ref":"host reading Eric Seufert, L2964-L2964"},{"id":"te36","from":"g_orient","to":"g_actor","relation":"performed_by","provenance":"derived","confidence":0.85,"rationale":"The orientation is inferred, so its attribution to this actor is inferred with it."},{"id":"te37","from":"g_dec_compute","to":"g_actor","relation":"performed_by","provenance":"derived","confidence":0.9,"rationale":"The decision is reconstructed from Google's own actions, so the actor follows."},{"id":"te38","from":"o_obs_dau","to":"o_actor","relation":"performed_by","provenance":"fact","source_quote":"this is why OpenAI is in code red in the two weeks since the Gemini launched","source_ref":"host reading Gavin Baker, L1632-L1634"},{"id":"te39","from":"o_obs_gemini","to":"o_actor","relation":"performed_by","provenance":"fact","source_quote":"It says OpenAI has seen Gemini 3 and is both moved and not","source_ref":"host reading Ashley Vance, L1186-L1186"},{"id":"te40","from":"o_dec_subs","to":"o_actor","relation":"performed_by","provenance":"fact","source_quote":"OpenAI's refusal to launch and iterate on an ads product for chat GPT, now three years old","source_ref":"host reading Eric Seufert, L2972-L2974"},{"id":"te41","from":"o_or_bench","to":"o_actor","relation":"performed_by","provenance":"derived","confidence":0.85,"rationale":"The orientation is inferred, so its attribution to this actor is inferred with it."},{"id":"te42","from":"o_act_chen","to":"o_actor","relation":"performed_by","provenance":"derived","confidence":0.9,"rationale":"Pronoun resolution: the we of the clip is OpenAI, whose research chief is speaking."},{"id":"te43","from":"o_dec_personalize","to":"o_actor","relation":"performed_by","provenance":"derived","confidence":0.9,"rationale":"The he of the memo line is Altman, named earlier in the segment; the company follows."}]}]}</script>
+<!--__DATA_END__-->
+
+<!--__EXT_START__-->
+<!-- Framework-specific visuals go here. Optional. Define:
+     window.__frameworkExtension = (ctx) => { /* ctx: { THREE, scene, group, graph, example, nodesById, positions, api } */ };
+     It is called after each example is laid out; add objects to ctx.group so they are removed on example switch. -->
+<!--__EXT_END__-->
+
+<script>
+  // Fallback notice if the module (and Three.js) never loads.
+  window.__engineReady = false;
+  setTimeout(() => { if (!window.__engineReady) { const f = document.getElementById('fallback'); f.innerHTML = 'Could not load Three.js from jsDelivr.<br><small>Check the network connection, then reload. The graph data is embedded in this file and is not lost.</small>'; } }, 9000);
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
+// ---------- palette (validated categorical slots, dark surface; see _meta and SPEC.md section 5) ----------
+const SLOT_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
+const SCHEMA_COLOR = '#898781';
+const INK = '#ffffff', INK2 = '#c3c2b7', MUTED = '#898781', HAIRLINE = '#2c2c2a', SURFACE = '#1a1a19';
+const IDEA = '#eda100';   // marks a node whose `idea` field names an opportunity
+const NODE_R = 2.2;
+
+// ---------- data ----------
+const $ = (id) => document.getElementById(id);
+let GRAPH;
+try { GRAPH = JSON.parse($('graph-data').textContent); } catch (e) { fatal('The embedded graph data is not valid JSON: ' + e.message); }
+if (!GRAPH || !GRAPH.framework || !Array.isArray(GRAPH.examples) || GRAPH.examples.length === 0) fatal('No graph data embedded yet. Run: node _meta/build.mjs <framework-dir>');
+
+function fatal(msg) { const f = $('fallback'); f.hidden = false; f.textContent = msg; window.__engineReady = true; throw new Error(msg); }
+
+const fw = GRAPH.framework;
+document.title = `${fw.name} · graph`;
+$('name').textContent = fw.name;
+$('category').textContent = (fw.category || '').replace(/^\d+-/, '').replace(/-/g, ' ');
+if (fw.wikipedia) $('wiki').href = fw.wikipedia; else $('wiki').remove();
+
+// slot colours: fixed order over content slots, never cycled; beyond 8, muted
+const slotStyle = new Map();
+let ci = 0;
+for (const s of GRAPH.slots) {
+  if (s.structural) slotStyle.set(s.id, { color: SCHEMA_COLOR, shape: s.shape || 'box', slot: s });
+  else slotStyle.set(s.id, { color: s.color || (ci < SLOT_COLORS.length ? SLOT_COLORS[ci++] : MUTED), shape: s.shape || 'sphere', slot: s });
+}
+const relLabel = new Map((GRAPH.relations || []).map(r => [r.id, r.label || r.id]));
+relLabel.set('supported_by', 'supported by');
+
+// ---------- renderer / scene ----------
+const stage = $('stage');
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false }); } catch (e) { fatal('WebGL is not available in this browser.'); }
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setClearColor(new THREE.Color(SURFACE), 1);
+stage.appendChild(renderer.domElement);
+const labelRenderer = new CSS2DRenderer({ element: $('labels') });
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 5000);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.08; controls.autoRotateSpeed = 0.6;
+scene.add(new THREE.AmbientLight(0xffffff, 1.4));
+const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(40, 80, 120); scene.add(key);
+const fill = new THREE.DirectionalLight(0xffffff, 0.5); fill.position.set(-60, -20, -80); scene.add(fill);
+
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, true); labelRenderer.setSize(w, h);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+// The header and the note strip lay out after the first script pass, so a one-shot resize()
+// leaves the WebGL buffer and the CSS2D label layer disagreeing (labels drift from their nodes).
+// Observing the stage keeps both renderers on its real size, at first paint and on every change.
+let roFrame = 0;
+const ro = new ResizeObserver(() => { cancelAnimationFrame(roFrame); roFrame = requestAnimationFrame(() => { resize(); resetView(); }); });
+ro.observe(stage);
+
+// ---------- state ----------
+const state = { exampleIndex: 0, showDerived: true, showGrounding: false, showLabels: true, group: null, nodes: new Map(), edges: [], hit: [], hover: null, selected: null, fit: null };
+
+// ---------- layouts ----------
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+function forceLayout(nodes, edges, pinned, seed, opts = {}) {
+  const rand = mulberry32(seed);
+  const pos = new Map();
+  const R0 = opts.radius || Math.max(18, nodes.length * 2.2);
+  for (const n of nodes) {
+    if (pinned.has(n.id)) pos.set(n.id, pinned.get(n.id).clone());
+    else pos.set(n.id, new THREE.Vector3((rand() - .5) * 2 * R0, (rand() - .5) * 2 * R0, (rand() - .5) * 2 * R0 * (opts.flat ? 0.15 : 1)));
+  }
+  const ids = nodes.map(n => n.id);
+  const L = opts.rest || 16, K = opts.repulse || 420;
+  const f = new Map(ids.map(id => [id, new THREE.Vector3()]));
+  const d = new THREE.Vector3();
+  for (let it = 0; it < 420; it++) {
+    const alpha = 0.9 * (1 - it / 420) + 0.04;
+    for (const id of ids) f.get(id).set(0, 0, 0);
+    for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) {
+      const a = pos.get(ids[i]), b = pos.get(ids[j]);
+      d.subVectors(a, b); let dist = d.length(); if (dist < 0.5) { d.set(rand() - .5, rand() - .5, rand() - .5); dist = 0.5; }
+      const s = K / (dist * dist); d.normalize().multiplyScalar(s);
+      f.get(ids[i]).add(d); f.get(ids[j]).sub(d);
+    }
+    for (const e of edges) {
+      if (!pos.has(e.from) || !pos.has(e.to)) continue;
+      const a = pos.get(e.from), b = pos.get(e.to);
+      d.subVectors(b, a); const dist = Math.max(d.length(), 0.01);
+      const s = (dist - L) * 0.05; d.normalize().multiplyScalar(s);
+      f.get(e.from).add(d); f.get(e.to).sub(d);
+    }
+    for (const id of ids) {
+      if (pinned.has(id)) continue;
+      const p = pos.get(id), ff = f.get(id);
+      ff.addScaledVector(p, -0.012);
+      if (opts.flat) ff.z -= p.z * 0.2;
+      const len = ff.length(); if (len > 6) ff.multiplyScalar(6 / len);
+      p.addScaledVector(ff, alpha);
+    }
+  }
+  return pos;
+}
+
+function treeLayout(ex) {
+  const nodes = ex.nodes, edges = ex.edges.filter(e => e.relation !== 'supported_by');
+  const level = new Map();
+  const explicit = nodes.every(n => Number.isInteger(n.level));
+  if (explicit) nodes.forEach(n => level.set(n.id, n.level));
+  else {
+    const out = new Map(nodes.map(n => [n.id, []])), und = new Map(nodes.map(n => [n.id, []]));
+    for (const e of edges) { out.get(e.from)?.push(e.to); und.get(e.from)?.push(e.to); und.get(e.to)?.push(e.from); }
+    const root = ex.layout.root && level.has(ex.layout.root) === false ? ex.layout.root : nodes[0].id;
+    const q = [root]; level.set(root, 0);
+    while (q.length) { const id = q.shift(); for (const t of out.get(id) || []) if (!level.has(t)) { level.set(t, level.get(id) + 1); q.push(t); } }
+    // unreachable by direction: attach by undirected distance
+    const q2 = [...level.keys()];
+    while (q2.length) { const id = q2.shift(); for (const t of und.get(id) || []) if (!level.has(t)) { level.set(t, level.get(id) + 1); q2.push(t); } }
+    for (const n of nodes) if (!level.has(n.id)) level.set(n.id, 0);
+    for (const n of nodes) if (Number.isInteger(n.level)) level.set(n.id, n.level);
+  }
+  const layers = new Map();
+  for (const n of nodes) { const l = level.get(n.id); if (!layers.has(l)) layers.set(l, []); layers.get(l).push(n); }
+  const order = [...layers.keys()].sort((a, b) => a - b);
+  const pos = new Map();
+  const right = ex.layout.direction === 'right';
+  const GAP_L = right ? 26 : 18, GAP_S = right ? 9 : 14;
+  // barycentre ordering pass to reduce crossings
+  const parents = new Map(nodes.map(n => [n.id, []]));
+  for (const e of edges) if (level.get(e.to) > level.get(e.from)) parents.get(e.to).push(e.from);
+  const xOf = new Map();
+  for (const l of order) {
+    const arr = layers.get(l);
+    if (l !== order[0]) arr.sort((a, b) => {
+      const pa = parents.get(a.id).filter(p => xOf.has(p)), pb = parents.get(b.id).filter(p => xOf.has(p));
+      const ma = pa.length ? pa.reduce((s, p) => s + xOf.get(p), 0) / pa.length : 0;
+      const mb = pb.length ? pb.reduce((s, p) => s + xOf.get(p), 0) / pb.length : 0;
+      return ma - mb;
+    });
+    arr.forEach((n, i) => {
+      const s = (i - (arr.length - 1) / 2) * GAP_S;
+      xOf.set(n.id, s);
+      pos.set(n.id, right ? new THREE.Vector3(l * GAP_L, -s, 0) : new THREE.Vector3(s, -l * GAP_L, 0));
+    });
+  }
+  for (const n of nodes) if (Array.isArray(n.pos)) pos.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  return pos;
+}
+
+function ringLayout(ex) {
+  const nodes = ex.nodes;
+  const onRing = nodes.filter(n => Number.isInteger(n.order) && !Array.isArray(n.pos));
+  const R = Math.max(22, onRing.length * 4.2);
+  const pinned = new Map();
+  onRing.sort((a, b) => a.order - b.order).forEach((n, i) => { const t = Math.PI / 2 - (i / onRing.length) * Math.PI * 2; pinned.set(n.id, new THREE.Vector3(Math.cos(t) * R, Math.sin(t) * R, 0)); });
+  for (const n of nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  if (pinned.size === nodes.length) return pinned;
+  return forceLayout(nodes, ex.edges, pinned, 7, { radius: R * 0.5, flat: true, rest: 12 });
+}
+
+function planeLayout(ex) {
+  const pinned = new Map();
+  for (const n of ex.nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  if (pinned.size === ex.nodes.length) return pinned;
+  return forceLayout(ex.nodes, ex.edges, pinned, 11, { flat: true, rest: 14 });
+}
+
+function computeLayout(ex) {
+  const mode = ex.layout?.mode || 'force';
+  if (mode === 'tree') return treeLayout(ex);
+  if (mode === 'ring') return ringLayout(ex);
+  if (mode === 'plane') return planeLayout(ex);
+  const pinned = new Map();
+  for (const n of ex.nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  return forceLayout(ex.nodes, ex.edges, pinned, 3);
+}
+
+// ---------- geometry helpers ----------
+const GEO = {
+  sphere: (r) => new THREE.SphereGeometry(r, 28, 20),
+  box: (r) => new THREE.BoxGeometry(r * 1.7, r * 1.7, r * 1.7),
+  diamond: (r) => new THREE.OctahedronGeometry(r * 1.25, 0),
+  cone: (r) => new THREE.ConeGeometry(r * 1.1, r * 2.2, 20),
+};
+function label2d(text, cls, innerTransform) {
+  const el = document.createElement('div'); el.className = cls;
+  if (innerTransform) {
+    const inner = document.createElement('span');
+    inner.className = 'lab'; inner.style.display = 'inline-block'; inner.style.transform = innerTransform;
+    inner.textContent = text; el.appendChild(inner);
+  } else el.textContent = text;
+  return new CSS2DObject(el);
+}
+
+function makeNode(n, p) {
+  const st = slotStyle.get(n.slot) || { color: MUTED, shape: 'sphere' };
+  const r = NODE_R * (n.size || 1);
+  const color = new THREE.Color(st.color);
+  const obj = new THREE.Group(); obj.position.copy(p);
+  let mesh, halo = null;
+  if (n.provenance === 'fact') {
+    mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.5, metalness: 0.08 }));
+  } else if (n.provenance === 'derived') {
+    mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.6, metalness: 0.0, transparent: true, opacity: 0.32, depthWrite: false }));
+    halo = new THREE.LineSegments(new THREE.WireframeGeometry(GEO[st.shape](r * 1.35)), new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.75 }));
+    obj.add(halo);
+  } else {
+    mesh = new THREE.Mesh(GEO[st.shape === 'sphere' ? 'box' : st.shape](r * 0.8), new THREE.MeshStandardMaterial({ color: new THREE.Color(SCHEMA_COLOR), roughness: 0.9, metalness: 0, transparent: true, opacity: 0.85 }));
+  }
+  mesh.userData.nodeId = n.id;
+  obj.add(mesh);
+  const hit = new THREE.Mesh(new THREE.SphereGeometry(r * 1.9, 10, 8), new THREE.MeshBasicMaterial({ visible: false }));
+  hit.userData.nodeId = n.id; obj.add(hit);
+  // A node carrying an `idea` is where this framework surfaces an underserved need or opportunity:
+  // mark it so a reader can find the payoff without opening every panel.
+  if (n.idea) {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(r * 1.6, r * 0.11, 8, 40), new THREE.MeshBasicMaterial({ color: new THREE.Color(IDEA) }));
+    ring.userData.isIdeaRing = true; obj.add(ring);
+  }
+  const glyph = n.provenance === 'fact' ? '●' : n.provenance === 'derived' ? '◌' : '▪';
+  const el = document.createElement('div'); el.className = 'nlabel ' + n.provenance;
+  const g = document.createElement('span'); g.className = 'g'; g.textContent = glyph; g.style.color = n.provenance === 'schema' ? MUTED : st.color;
+  const inner = document.createElement('span'); inner.className = 'lab';
+  inner.appendChild(g);
+  if (n.idea) { const st2 = document.createElement('span'); st2.className = 'idea-star'; st2.textContent = '★'; inner.appendChild(st2); }
+  inner.appendChild(document.createTextNode(n.label || n.id));
+  el.appendChild(inner);
+  // Anchor the label below whatever the node actually draws: a diamond reaches further than a
+  // sphere, a derived node adds a 1.35r halo, and an idea node adds a 1.6r ring. Anchoring at -r
+  // regardless (the old behaviour) made labels collide with their own marker on those nodes.
+  const SHAPE_EXTENT = { sphere: 1.0, box: 0.85, diamond: 1.25, cone: 1.1 };
+  let extent = (SHAPE_EXTENT[st.shape] ?? 1) * r;
+  if (n.provenance === 'derived') extent = Math.max(extent, r * 1.35);
+  if (n.idea) extent = Math.max(extent, r * 1.72);
+  const lab = new CSS2DObject(el); lab.position.set(0, -extent, 0); obj.add(lab);
+  return { node: n, obj, mesh, halo, hit, label: lab, r, color: st.color, edges: [] };
+}
+
+function makeEdge(e, A, B) {
+  const from = A.obj.position, to = B.obj.position;
+  const dir = new THREE.Vector3().subVectors(to, from); const len = dir.length(); dir.normalize();
+  const a = from.clone().addScaledVector(dir, A.r * 1.05), b = to.clone().addScaledVector(dir, -(B.r * 1.05 + (e.relation === 'supported_by' ? 0 : 1.6)));
+  const geom = new THREE.BufferGeometry().setFromPoints([a, b]);
+  let mat, arrow = null;
+  const grounding = e.relation === 'supported_by';
+  if (grounding) mat = new THREE.LineDashedMaterial({ color: new THREE.Color(MUTED), dashSize: 0.5, gapSize: 0.9, transparent: true, opacity: 0.55 });
+  else if (e.provenance === 'derived') mat = new THREE.LineDashedMaterial({ color: new THREE.Color(INK2), dashSize: 1.4, gapSize: 0.9, transparent: true, opacity: 0.8 });
+  else if (e.provenance === 'schema') mat = new THREE.LineBasicMaterial({ color: new THREE.Color(HAIRLINE), transparent: true, opacity: 0.9 });
+  else mat = new THREE.LineBasicMaterial({ color: new THREE.Color(INK2), transparent: true, opacity: 0.85 });
+  const line = new THREE.Line(geom, mat); line.computeLineDistances();
+  const grp = new THREE.Group(); grp.add(line);
+  if (!grounding && e.provenance !== 'schema') {
+    arrow = new THREE.Mesh(new THREE.ConeGeometry(0.75, 2.0, 10), new THREE.MeshBasicMaterial({ color: e.provenance === 'derived' ? new THREE.Color(INK2) : new THREE.Color(INK2), transparent: true, opacity: e.provenance === 'derived' ? 0.7 : 0.95 }));
+    arrow.position.copy(to).addScaledVector(dir, -(B.r * 1.05 + 1.0));
+    arrow.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+    grp.add(arrow);
+  }
+  let lab = null;
+  if (e.label) { lab = label2d(e.label, 'elabel'); lab.position.copy(a).lerp(b, 0.5); grp.add(lab); }
+  return { edge: e, grp, line, arrow, label: lab, A, B, grounding, len };
+}
+
+function drawDecor(ex, parent, bbox, offset) {
+  const L = ex.layout || {};
+  // Nodes are re-centred on their bounding box in every mode except plane, but decor coordinates
+  // are authored in the same space as node positions. Shift the decor by the same amount so a
+  // region or axis lines up with its nodes without the author having to centre on the origin.
+  const group = new THREE.Group();
+  group.position.copy(offset).negate();
+  parent.add(group);
+  const shift = (v) => new THREE.Vector3(v.x - offset.x, v.y - offset.y, v.z - offset.z);
+  const z = -0.6;
+  const lineMat = new THREE.LineBasicMaterial({ color: new THREE.Color(0x4a4a47) });
+  const dashMat = new THREE.LineDashedMaterial({ color: new THREE.Color(0x4a4a47), dashSize: 1.2, gapSize: 1.0 });
+  for (const r of (L.regions || [])) {
+    const w = Math.abs(r.x[1] - r.x[0]), h = Math.abs(r.y[1] - r.y[0]);
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.07, depthWrite: false }));
+    m.position.set((r.x[0] + r.x[1]) / 2, (r.y[0] + r.y[1]) / 2, z - 0.5); group.add(m);
+    const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(w, h)), new THREE.LineBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.25 }));
+    edge.position.copy(m.position); group.add(edge);
+    // Caption sits top-centre INSIDE the band. CSS2D centres its box on the position, so anchoring
+    // at the corner made every caption straddle the boundary and builders patched it page-side.
+    const lab = label2d(r.label, 'rlabel'); lab.position.set((r.x[0] + r.x[1]) / 2, Math.max(r.y[0], r.y[1]) - 3, z); group.add(lab);
+    bbox.expandByPoint(shift(new THREE.Vector3(r.x[0], r.y[0], 0))); bbox.expandByPoint(shift(new THREE.Vector3(r.x[1], r.y[1], 0)));
+  }
+  // Free-standing captions. Without this a builder has to fake one with a zero-length guide.
+  for (const an of (L.annotations || [])) {
+    const lab = label2d(an.text, an.style === 'axis' ? 'axlabel' : an.style === 'region' ? 'rlabel' : 'glabel');
+    lab.position.set(an.pos[0], an.pos[1], an.pos[2] ?? z); group.add(lab);
+    bbox.expandByPoint(shift(new THREE.Vector3(an.pos[0], an.pos[1], 0)));
+  }
+  for (const gd of (L.guides || [])) {
+    const a = new THREE.Vector3(gd.from[0], gd.from[1], gd.from[2] || z), b = new THREE.Vector3(gd.to[0], gd.to[1], gd.to[2] || z);
+    const ln = new THREE.Line(new THREE.BufferGeometry().setFromPoints([a, b]), gd.style === 'dashed' ? dashMat : lineMat); ln.computeLineDistances(); group.add(ln);
+    if (gd.label) { const lab = label2d(gd.label, 'glabel'); lab.position.copy(a).lerp(b, 0.5); group.add(lab); }
+    bbox.expandByPoint(shift(a)); bbox.expandByPoint(shift(b));
+  }
+  if (L.axes) {
+    const ax = L.axes.x, ay = L.axes.y;
+    const xmin = ax ? ax.min : bbox.min.x, xmax = ax ? ax.max : bbox.max.x, ymin = ay ? ay.min : bbox.min.y, ymax = ay ? ay.max : bbox.max.y;
+    const pad = 6;
+    if (ax) {
+      const y = ymin - pad;
+      group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(xmin, y, z), new THREE.Vector3(xmax, y, z)]), lineMat));
+      const lab = label2d(ax.label, 'axlabel'); lab.position.set((xmin + xmax) / 2, y - 7.5, z); group.add(lab);
+      for (const t of (ax.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(t.value, y - 1, z), new THREE.Vector3(t.value, y + 1, z)]), lineMat)); const tl = label2d(t.label, 'tick'); tl.position.set(t.value, y - 2.2, z); group.add(tl); }
+      bbox.expandByPoint(shift(new THREE.Vector3(xmin, y - 9, 0))); bbox.expandByPoint(shift(new THREE.Vector3(xmax, y, 0)));
+    }
+    if (ay) {
+      const x = xmin - pad;
+      group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x, ymin, z), new THREE.Vector3(x, ymax, z)]), lineMat));
+      const lab = label2d(ay.label, 'axlabel', 'rotate(-90deg)'); lab.position.set(x - 8, (ymin + ymax) / 2, z); group.add(lab);
+      for (const t of (ay.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x - 1, t.value, z), new THREE.Vector3(x + 1, t.value, z)]), lineMat)); const tl = label2d(t.label, 'tick', 'translateX(-50%)'); tl.position.set(x - 2.5, t.value, z); group.add(tl); }
+      bbox.expandByPoint(shift(new THREE.Vector3(x - 11, ymin, 0))); bbox.expandByPoint(shift(new THREE.Vector3(x, ymax, 0)));
+    }
+  }
+}
+
+// ---------- build an example ----------
+function clearGroup() {
+  if (!state.group) return;
+  state.group.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) { (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); } if (o.isCSS2DObject && o.element) o.element.remove(); });
+  scene.remove(state.group);
+  $('labels').replaceChildren();
+  state.group = null; state.nodes.clear(); state.edges = []; state.hit = []; state.hover = null; state.selected = null;
+  $('panel').hidden = true;
+}
+
+function buildExample(i) {
+  clearGroup();
+  state.exampleIndex = i;
+  const ex = GRAPH.examples[i];
+  const group = new THREE.Group(); scene.add(group); state.group = group;
+  const positions = computeLayout(ex);
+  // centre
+  const bbox = new THREE.Box3();
+  for (const p of positions.values()) bbox.expandByPoint(p);
+  const centre = bbox.getCenter(new THREE.Vector3());
+  const decorOffset = ex.layout?.mode !== 'plane' ? centre.clone() : new THREE.Vector3();
+  if (ex.layout?.mode !== 'plane') for (const p of positions.values()) p.sub(centre);
+  const bbox2 = new THREE.Box3(); for (const p of positions.values()) bbox2.expandByPoint(p);
+  for (const n of ex.nodes) { const rec = makeNode(n, positions.get(n.id)); state.nodes.set(n.id, rec); group.add(rec.obj); state.hit.push(rec.hit); }
+  for (const e of ex.edges) {
+    const A = state.nodes.get(e.from), B = state.nodes.get(e.to); if (!A || !B) continue;
+    const rec = makeEdge(e, A, B); state.edges.push(rec); group.add(rec.grp); A.edges.push(rec); B.edges.push(rec);
+  }
+  drawDecor(ex, group, bbox2, decorOffset);
+  // camera fit
+  const size = bbox2.getSize(new THREE.Vector3()), c = bbox2.getCenter(new THREE.Vector3());
+  state.fit = { size, centre: c, mode: ex.layout?.mode || 'force', distance: ex.layout?.camera?.distance };
+  renderNote(ex);
+  renderLegend(ex);    // legend first, so the camera fit can measure it
+  resetView();
+  applyVisibility();
+  for (const b of $('examples').children) b.setAttribute('aria-pressed', String(b.dataset.index == i));
+  try { window.__frameworkExtension?.({ THREE, scene, group, graph: GRAPH, example: ex, nodesById: state.nodes, positions, api: { slotStyle, label2d, colors: { INK, INK2, MUTED, HAIRLINE, SURFACE, SLOT_COLORS, SCHEMA_COLOR } } }); } catch (e) { console.error('framework extension failed', e); }
+}
+
+// Fit the graph into the part of the stage not covered by the legend (left) or the open panel (right),
+// so labels are not hidden under the cards at the default view.
+function safeArea(size) {
+  const W = stage.clientWidth, H = stage.clientHeight;
+  const sr = stage.getBoundingClientRect();
+  let left = 0, top = 0, right = 0;
+  const wide = W > 820;
+  const leg = $('legend'); if (wide && leg && leg.offsetParent !== null) { const r = leg.getBoundingClientRect(); left = Math.max(left, r.right - sr.left + 16); }
+  const panel = $('panel'); if (wide && panel && !panel.hidden) { const r = panel.getBoundingClientRect(); right = Math.max(right, sr.right - r.left + 16); }
+  return { W, H, left, top, right, w: Math.max(200, W - left - right), h: Math.max(200, H - top) };
+}
+function resetView() {
+  if (!state.fit) return;
+  const { size, centre, mode } = state.fit;
+  const sa = safeArea(size);
+  const halfFov = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  const bottomPad = 30;                       // px: labels hang below the lowest row of nodes
+  const availH = Math.max(150, sa.h - bottomPad);
+  // distance at which the graph (plus margins) fits the safe area: the vertical FOV spans sa.H pixels
+  const fitH = (size.y / 2 + 8) * sa.H / (halfFov * availH);
+  const sidePad = 110;                       // px: labels are centred under nodes and stick out sideways
+  const fitW = (size.x / 2 + 6) * sa.H / (halfFov * Math.max(200, sa.w - 2 * sidePad));
+  const dist = state.fit.distance || Math.max(50, Math.max(fitH, fitW) * (mode === 'force' ? 1.3 : 1.08) + size.z / 2);
+  // world units per pixel at the target depth; shift the centre so the graph sits in the safe area
+  const wpp = (2 * dist * halfFov) / sa.H;
+  const target = centre.clone().add(new THREE.Vector3(-((sa.left - sa.right) / 2) * wpp, ((sa.top - bottomPad) / 2) * wpp, 0));
+  const camPos = mode === 'force' ? target.clone().add(new THREE.Vector3(dist * 0.3, dist * 0.22, dist * 0.92)) : target.clone().add(new THREE.Vector3(0, 0, dist));
+  camera.position.copy(camPos); controls.target.copy(target);
+  camera.near = 0.1; camera.far = 5000; camera.updateProjectionMatrix(); controls.update();
+}
+
+function applyVisibility() {
+  for (const rec of state.nodes.values()) {
+    const vis = rec.node.provenance !== 'derived' || state.showDerived;
+    rec.obj.visible = vis;
+    rec.label.visible = vis && state.showLabels;
+    rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+  }
+  for (const rec of state.edges) {
+    const endsOk = rec.A.obj.visible && rec.B.obj.visible;
+    // a derived edge is reasoning too: it goes away with the derived nodes, even when both its ends are facts
+    const vis = endsOk && (!rec.grounding || state.showGrounding) && (rec.edge.provenance !== 'derived' || state.showDerived);
+    rec.grp.visible = vis;
+    if (rec.label) rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+  }
+  // The idea key explains a marker; drop it when no idea node is on screen (e.g. the facts-only view).
+  const ideaKey = $('legend')?.querySelector('.key-row.idea-key');
+  if (ideaKey) ideaKey.style.display = [...state.nodes.values()].some(r => r.node.idea && r.obj.visible) ? '' : 'none';
+  renderStats();
+}
+
+// ---------- legend / note / stats ----------
+function renderLegend(ex) {
+  const el = $('legend'); el.replaceChildren();
+  const h = (t) => { const x = document.createElement('h2'); x.textContent = t; return x; };
+  el.appendChild(h('Slots'));
+  const counts = new Map(); for (const n of ex.nodes) counts.set(n.slot, (counts.get(n.slot) || 0) + 1);
+  for (const s of GRAPH.slots) {
+    const row = document.createElement('div'); row.className = 'slot-row';
+    const chip = document.createElement('span'); const stl = slotStyle.get(s.id);
+    chip.className = 'chip' + (stl.shape && stl.shape !== 'sphere' ? ' ' + stl.shape : ''); chip.style.background = stl.color;
+    if (s.structural) chip.style.borderRadius = '2px';
+    const name = document.createElement('span'); name.textContent = s.label;
+    const tp = document.createElement('span'); tp.className = 'tp'; tp.textContent = s.structural ? 'schema' : (s.typical_provenance || '');
+    const n = document.createElement('span'); n.className = 'n'; n.textContent = String(counts.get(s.id) || 0);
+    row.append(chip, name, tp, n); row.title = s.description || ''; el.appendChild(row);
+  }
+  el.appendChild(h('Provenance'));
+  const ideaCount = ex.nodes.filter(n => n.idea).length;
+  const keys = [['●', 'fact: stated in the source (solid)'], ['◌', 'derived: LLM inference (translucent, dashed)'], ['▪', 'schema: framework scaffolding (grey)'], ['→', 'solid edge stated, dashed inferred'], ['⋯', 'grounding link: derived → fact']];
+  if (ideaCount) keys.push(['★', 'gold ring: an opportunity this framework surfaces']);
+  for (const [sym, txt] of keys) {
+    const row = document.createElement('div'); row.className = 'key-row';
+    if (sym === '★') row.classList.add('idea-key');
+    const a = document.createElement('span'); a.className = 'sym'; a.textContent = sym; if (sym === '★') a.style.color = IDEA;
+    const b = document.createElement('span'); b.textContent = txt; row.append(a, b); el.appendChild(row);
+  }
+  const st = document.createElement('div'); st.className = 'stats'; st.id = 'stats'; el.appendChild(st);
+  renderStats();
+}
+function renderStats() {
+  const st = $('stats'); if (!st) return;
+  const ex = GRAPH.examples[state.exampleIndex];
+  const nf = ex.nodes.filter(n => n.provenance === 'fact').length, nd = ex.nodes.filter(n => n.provenance === 'derived').length, ns = ex.nodes.filter(n => n.provenance === 'schema').length;
+  const ef = ex.edges.filter(e => e.provenance === 'fact').length, ed = ex.edges.filter(e => e.provenance === 'derived' && e.relation !== 'supported_by').length, eg = ex.edges.filter(e => e.relation === 'supported_by').length, es = ex.edges.filter(e => e.provenance === 'schema').length;
+  const visN = [...state.nodes.values()].filter(r => r.obj.visible).length, visE = state.edges.filter(r => r.grp.visible).length;
+  st.replaceChildren();
+  const line = (html) => { const d = document.createElement('div'); d.append(...html); st.appendChild(d); };
+  const b = (t) => { const x = document.createElement('b'); x.textContent = t; return x; };
+  line(['nodes ', b(String(nf)), ' fact · ', b(String(nd)), ' derived', ns ? ` · ${ns} schema` : '']);
+  line(['edges ', b(String(ef)), ' fact · ', b(String(ed)), ' derived · ', b(String(eg)), ' grounding', es ? ` · ${es} schema` : '']);
+  line([`showing ${visN} nodes, ${visE} edges`]);
+}
+function renderNote(ex) {
+  const el = $('note'); el.replaceChildren();
+  const h = document.createElement('h3'); h.textContent = ex.title || ex.id; el.appendChild(h);
+  const p = document.createElement('p'); p.textContent = ex.summary || ''; el.appendChild(p);
+  const s = document.createElement('div'); s.className = 'src';
+  if (ex.source?.type === 'transcript') s.textContent = `TBPN ${ex.source.date} · ${ex.source.episode_title || ''}`;
+  else if (ex.source?.type === 'text') s.textContent = `source: ${ex.source.title || 'scenario text'}`;
+  el.appendChild(s);
+}
+
+// ---------- panel ----------
+function openPanel(rec) {
+  const n = rec.node, ex = GRAPH.examples[state.exampleIndex];
+  const panel = $('panel'); panel.replaceChildren(); panel.hidden = false;
+  const head = document.createElement('div'); head.className = 'p-head';
+  const slotEl = document.createElement('div'); slotEl.className = 'p-slot';
+  const chip = document.createElement('span'); chip.className = 'chip'; chip.style.background = rec.color; slotEl.append(chip, document.createTextNode((slotStyle.get(n.slot)?.slot?.label) || n.slot));
+  const close = document.createElement('button'); close.className = 'close'; close.type = 'button'; close.textContent = '×'; close.setAttribute('aria-label', 'Close'); close.onclick = () => { panel.hidden = true; state.selected = null; };
+  head.append(slotEl, close); panel.appendChild(head);
+  const h3 = document.createElement('h3'); h3.textContent = n.label; panel.appendChild(h3);
+  const badge = document.createElement('span'); badge.className = 'badge ' + n.provenance; badge.textContent = n.provenance; panel.appendChild(badge);
+  const text = document.createElement('p'); text.textContent = n.text; panel.appendChild(text);
+  const h4 = (t) => { const x = document.createElement('h4'); x.textContent = t; panel.appendChild(x); };
+  if (n.provenance === 'fact') {
+    h4(n.paraphrase ? 'Paraphrased from the source' : 'Quoted from the source');
+    const q = document.createElement('blockquote'); q.textContent = n.source_quote || ''; panel.appendChild(q);
+    const r = document.createElement('div'); r.className = 'ref'; r.textContent = n.source_ref || ''; panel.appendChild(r);
+  } else if (n.provenance === 'derived') {
+    h4('Confidence');
+    const c = document.createElement('div'); c.className = 'conf'; c.textContent = `${Math.round((n.confidence || 0) * 100)} / 100`; panel.appendChild(c);
+    const bar = document.createElement('div'); bar.className = 'confbar'; const fillEl = document.createElement('i'); fillEl.style.width = `${Math.round((n.confidence || 0) * 100)}%`; bar.appendChild(fillEl); panel.appendChild(bar);
+    h4('Why the LLM infers this'); const r = document.createElement('p'); r.textContent = n.rationale || ''; panel.appendChild(r);
+    if (n.idea) { h4('Opportunity this points to'); const ip = document.createElement('p'); ip.className = 'idea'; ip.textContent = n.idea; panel.appendChild(ip); }
+    const sup = ex.edges.filter(e => e.relation === 'supported_by' && e.from === n.id).map(e => state.nodes.get(e.to)).filter(Boolean);
+    if (sup.length) { h4('Supported by'); const ul = document.createElement('ul'); for (const s of sup) { const li = document.createElement('li'); li.textContent = s.node.label; const q = document.createElement('div'); q.className = 'ref'; q.textContent = (s.node.source_quote || '').slice(0, 140); li.appendChild(q); ul.appendChild(li); } panel.appendChild(ul); }
+  } else {
+    const r = document.createElement('p'); r.className = 'ref'; r.textContent = 'Framework scaffolding: neither a fact nor an inference.'; panel.appendChild(r);
+  }
+  const rels = rec.edges.filter(e => e.edge.relation !== 'supported_by');
+  if (rels.length) {
+    h4('Edges'); const ul = document.createElement('ul');
+    for (const e of rels) { const li = document.createElement('li'); const out = e.edge.from === n.id; const other = out ? e.B.node : e.A.node; const rl = document.createElement('span'); rl.className = 'rel'; rl.textContent = (out ? '→ ' : '← ') + (relLabel.get(e.edge.relation) || e.edge.relation) + (e.edge.provenance === 'derived' ? ' (inferred)' : '') + ' '; li.append(rl, document.createTextNode(other.label)); ul.appendChild(li); }
+    panel.appendChild(ul);
+  }
+  if (Array.isArray(n.entities) && n.entities.length) { h4('Entities'); const p = document.createElement('p'); p.className = 'ref'; p.textContent = n.entities.join(', '); panel.appendChild(p); }
+}
+
+// ---------- interaction ----------
+const raycaster = new THREE.Raycaster(); const pointer = new THREE.Vector2(); const tooltip = $('tooltip');
+function setHover(rec) {
+  if (state.hover === rec) return;
+  if (state.hover) { const h = state.hover; h.mesh.scale.setScalar(1); if (h.mesh.material.emissive) h.mesh.material.emissive.setHex(0x000000); for (const e of h.edges) { e.line.material.color.set(e.grounding ? MUTED : (e.edge.provenance === 'schema' ? HAIRLINE : INK2)); if (e.arrow) e.arrow.material.color.set(INK2); } }
+  state.hover = rec;
+  if (rec) { rec.mesh.scale.setScalar(1.18); if (rec.mesh.material.emissive) rec.mesh.material.emissive.set(rec.color).multiplyScalar(0.35); for (const e of rec.edges) { if (!e.grp.visible) continue; e.line.material.color.set(INK); if (e.arrow) e.arrow.material.color.set(INK); } }
+  renderer.domElement.style.cursor = rec ? 'pointer' : '';
+}
+renderer.domElement.addEventListener('pointermove', (ev) => {
+  const r = renderer.domElement.getBoundingClientRect();
+  pointer.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
+  raycaster.setFromCamera(pointer, camera);
+  const hits = raycaster.intersectObjects(state.hit.filter(h => h.parent.visible), false);
+  const rec = hits.length ? state.nodes.get(hits[0].object.userData.nodeId) : null;
+  setHover(rec);
+  if (rec) {
+    tooltip.replaceChildren();
+    const a = document.createElement('div'); a.className = 't-label'; a.textContent = rec.node.label;
+    const b = document.createElement('div'); b.className = 't-meta'; b.textContent = `${(slotStyle.get(rec.node.slot)?.slot?.label) || rec.node.slot} · ${rec.node.provenance}${rec.node.provenance === 'derived' ? ' ' + Math.round((rec.node.confidence || 0) * 100) + '%' : ''}`;
+    const c = document.createElement('div'); c.textContent = rec.node.text.length > 160 ? rec.node.text.slice(0, 157) + '…' : rec.node.text;
+    tooltip.append(a, b, c);
+    tooltip.style.display = 'block';
+    const mx = ev.clientX - r.left + 14, my = ev.clientY - r.top + 14;
+    tooltip.style.left = Math.min(mx, r.width - 320) + 'px'; tooltip.style.top = Math.min(my, r.height - 120) + 'px';
+  } else tooltip.style.display = 'none';
+});
+renderer.domElement.addEventListener('pointerleave', () => { setHover(null); tooltip.style.display = 'none'; });
+let downAt = null;
+renderer.domElement.addEventListener('pointerdown', (ev) => { downAt = [ev.clientX, ev.clientY]; });
+renderer.domElement.addEventListener('pointerup', (ev) => {
+  if (!downAt || Math.hypot(ev.clientX - downAt[0], ev.clientY - downAt[1]) > 5) return;
+  if (state.hover) { state.selected = state.hover; openPanel(state.hover); } else { $('panel').hidden = true; state.selected = null; }
+});
+document.addEventListener('keydown', (ev) => {
+  if (ev.target && /input|textarea|select/i.test(ev.target.tagName)) return;
+  if (ev.key === 'd') { $('t-derived').checked = !$('t-derived').checked; $('t-derived').dispatchEvent(new Event('change')); }
+  if (ev.key === 'g') { $('t-grounding').checked = !$('t-grounding').checked; $('t-grounding').dispatchEvent(new Event('change')); }
+  if (ev.key === 'r') resetView();
+  if (ev.key === 'Escape') { $('panel').hidden = true; state.selected = null; }
+});
+$('t-derived').addEventListener('change', (e) => { state.showDerived = e.target.checked; applyVisibility(); });
+$('t-grounding').addEventListener('change', (e) => { state.showGrounding = e.target.checked; applyVisibility(); });
+$('t-labels').addEventListener('change', (e) => { state.showLabels = e.target.checked; applyVisibility(); });
+$('t-rotate').addEventListener('change', (e) => { controls.autoRotate = e.target.checked; });
+$('reset').addEventListener('click', resetView);
+
+// example selector
+const seg = $('examples');
+const kindCount = new Map(); for (const ex of GRAPH.examples) kindCount.set(ex.kind, (kindCount.get(ex.kind) || 0) + 1);
+GRAPH.examples.forEach((ex, i) => { const b = document.createElement('button'); b.type = 'button'; b.dataset.index = i; b.textContent = kindCount.get(ex.kind) > 1 ? (ex.title || ex.id) : ex.kind === 'tbpn' ? 'From TBPN' : ex.kind === 'classic' ? 'Classic' : (ex.title || ex.id); b.title = ex.title || ''; b.setAttribute('aria-pressed', 'false'); b.addEventListener('click', () => buildExample(i)); seg.appendChild(b); });
+
+// ---------- go ----------
+// URL parameters set the initial state (deep links, scripted screenshots): ?example=1&derived=0&grounding=1&labels=0&rotate=1
+const q = new URLSearchParams(location.search);
+const flag = (k, def) => q.has(k) ? !['0', 'false', 'off', 'no'].includes(q.get(k).toLowerCase()) : def;
+state.showDerived = flag('derived', true); $('t-derived').checked = state.showDerived;
+state.showGrounding = flag('grounding', false); $('t-grounding').checked = state.showGrounding;
+state.showLabels = flag('labels', true); $('t-labels').checked = state.showLabels;
+controls.autoRotate = flag('rotate', false); $('t-rotate').checked = controls.autoRotate;
+let startIndex = parseInt(q.get('example') || '0', 10);
+if (!(startIndex >= 0 && startIndex < GRAPH.examples.length)) startIndex = Math.max(0, GRAPH.examples.findIndex(x => x.id === q.get('example')));
+resize();
+buildExample(startIndex);
+$('fallback').hidden = true; window.__engineReady = true;
+function loop() {
+  requestAnimationFrame(loop);
+  controls.update();
+  for (const rec of state.nodes.values()) for (const c of rec.obj.children) if (c.userData.isIdeaRing) c.quaternion.copy(camera.quaternion);
+  renderer.render(scene, camera); labelRenderer.render(scene, camera);
+}
+loop();
+</script>
+</body>
+</html>
