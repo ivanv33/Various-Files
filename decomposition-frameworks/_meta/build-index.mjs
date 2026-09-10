@@ -160,11 +160,13 @@ if (fs.existsSync(readmePath)) {
       const g = JSON.parse(fs.readFileSync(gpath, 'utf8'));
       const ex = g.examples.find(e => e.kind === 'tbpn');
       const slot = ex && g.slots.find(s => s.id === ex.idea_bearing_slot);
-      const ideas = ex ? ex.nodes.filter(n => n.slot === ex.idea_bearing_slot && n.provenance === 'derived').map(n => `${mdEsc(n.label)} (${Math.round((n.confidence || 0) * 100)}%)`).join('; ') : '';
+      // The idea sentences are the cross-framework opportunity layer: list every node carrying one,
+      // whatever its slot, with the node it is read from and its confidence.
+      const ideas = ex ? ex.nodes.filter(n => n.idea).map(n => `${mdEsc(n.idea)} <sub>(${mdEsc(n.label)}, ${Math.round((n.confidence || 0) * 100)}%)</sub>`).join('<br>') : '';
       return `| [${mdEsc(f.name)}](${f.category}/${f.slug}/README.md) | ${slot ? mdEsc(slot.label) : ''} | ${ex ? mdEsc(ex.title) : ''} | ${ideas} |`;
     } catch { return `| [${mdEsc(f.name)}](${f.category}/${f.slug}/README.md) | | | |`; }
   });
-  const ideaTable = ['| Framework | Idea-bearing slot | TBPN example | Derived nodes in that slot (confidence) |', '|---|---|---|---|', ...ideaRows].join('\n');
+  const ideaTable = ['| Framework | Idea-bearing slot | TBPN example | Opportunities the graph surfaces (node, confidence) |', '|---|---|---|---|', ...ideaRows].join('\n');
   md = md.replace(/<!-- IDEA_SLOTS_START -->[\s\S]*?<!-- IDEA_SLOTS_END -->/, `<!-- IDEA_SLOTS_START -->\n${ideaTable}\n<!-- IDEA_SLOTS_END -->`);
   fs.writeFileSync(readmePath, md);
 }

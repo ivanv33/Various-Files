@@ -250,7 +250,7 @@ const ro = new ResizeObserver(() => { cancelAnimationFrame(roFrame); roFrame = r
 ro.observe(stage);
 
 // ---------- state ----------
-const state = { exampleIndex: 0, showDerived: true, showGrounding: false, showLabels: true, group: null, nodes: new Map(), edges: [], hit: [], hover: null, selected: null, fit: null };
+const state = { exampleIndex: 0, showDerived: true, showGrounding: false, showLabels: true, group: null, nodes: new Map(), edges: [], hit: [], hover: null, selected: null, fit: null, derivedDecor: [] };
 
 // ---------- layouts ----------
 function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
@@ -479,6 +479,8 @@ function drawDecor(ex, parent, bbox, offset) {
   // Free-standing captions. Without this a builder has to fake one with a zero-length guide.
   for (const an of (L.annotations || [])) {
     const lab = label2d(an.text, an.style === 'axis' ? 'axlabel' : an.style === 'region' ? 'rlabel' : 'glabel');
+    // An annotation that explains inferred structure belongs to the derived layer and follows its toggle.
+    if (an.derived) { lab.element.classList.add('derived-annotation'); state.derivedDecor.push(lab); }
     lab.position.set(an.pos[0], an.pos[1], an.pos[2] ?? z); group.add(lab);
     bbox.expandByPoint(shift(new THREE.Vector3(an.pos[0], an.pos[1], 0)));
   }
@@ -515,7 +517,7 @@ function clearGroup() {
   state.group.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) { (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); } if (o.isCSS2DObject && o.element) o.element.remove(); });
   scene.remove(state.group);
   $('labels').replaceChildren();
-  state.group = null; state.nodes.clear(); state.edges = []; state.hit = []; state.hover = null; state.selected = null;
+  state.group = null; state.nodes.clear(); state.edges = []; state.hit = []; state.hover = null; state.selected = null; state.derivedDecor = [];
   $('panel').hidden = true;
 }
 
@@ -594,6 +596,7 @@ function applyVisibility() {
     rec.grp.visible = vis;
     if (rec.label) rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
   }
+  for (const lab of state.derivedDecor) lab.element.style.display = state.showDerived ? '' : 'none';
   // The idea key explains a marker; drop it when no idea node is on screen (e.g. the facts-only view).
   const ideaKey = $('legend')?.querySelector('.key-row.idea-key');
   if (ideaKey) ideaKey.style.display = [...state.nodes.values()].some(r => r.node.idea && r.obj.visible) ? '' : 'none';
