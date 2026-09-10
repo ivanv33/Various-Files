@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Framework graph</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --plane: #0d0d0d;      /* page plane */
+    --surface: #1a1a19;    /* chart surface (canvas background) */
+    --card: #202020;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --muted: #898781;
+    --hairline: #2c2c2a;
+    --baseline: #383835;
+    --accent: #3987e5;
+    --schema: #898781;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--plane); color: var(--ink-2); font: 14px/1.45 var(--sans); }
+  a { color: var(--ink-2); }
+  a:hover { color: var(--ink); }
+  kbd { font: 11px var(--mono); color: var(--muted); border: 1px solid var(--hairline); border-radius: 3px; padding: 0 4px; margin-left: 4px; }
+  button, .seg button { font: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  body { display: grid; grid-template-rows: auto auto 1fr; height: 100vh; }
+  header.bar { display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--hairline); background: var(--plane); }
+  .title { display: flex; flex-direction: column; min-width: 220px; }
+  .eyebrow { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-size: 17px; font-weight: 600; margin: 2px 0 0; color: var(--ink); letter-spacing: -.01em; }
+  .links { font-size: 12px; margin-top: 2px; display: flex; gap: 12px; }
+  .links a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--hairline); }
+  .links a:hover { color: var(--ink); border-color: var(--muted); }
+  .seg { display: inline-flex; border: 1px solid var(--hairline); border-radius: 6px; overflow: hidden; }
+  .seg button { background: transparent; color: var(--ink-2); border: 0; padding: 6px 12px; cursor: pointer; }
+  .seg button + button { border-left: 1px solid var(--hairline); }
+  .seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
+  .toggles { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; margin-left: auto; font-size: 13px; }
+  .toggles label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; }
+  .toggles input { accent-color: var(--accent); }
+  .toggles button { background: transparent; color: var(--ink-2); border: 1px solid var(--hairline); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+  .toggles button:hover { color: var(--ink); border-color: var(--muted); }
+
+  main { position: relative; overflow: hidden; background: var(--surface); }
+  #stage { position: absolute; inset: 0; }
+  #stage canvas { display: block; }
+  #labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+  #labels * { pointer-events: none; }
+  .nlabel { font: 12px/1.2 var(--sans); color: var(--ink-2); white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6); }
+  .nlabel .lab { display: inline-block; transform: translateY(11px); background: rgba(26,26,25,.72); padding: 0 4px; border-radius: 3px; }
+  .nlabel.derived { color: var(--ink-2); font-style: italic; }
+  .nlabel.schema { color: var(--muted); font: 11px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .nlabel .g { font-size: 9px; margin-right: 4px; vertical-align: 1px; }
+  .nlabel .idea-star { color: #eda100; margin-right: 3px; }
+  #panel .idea { border-left: 2px solid #eda100; padding: 6px 10px; margin: 8px 0; color: var(--ink); background: rgba(237,161,0,.07); }
+  .elabel { font: 11px var(--mono); color: var(--muted); background: var(--surface); padding: 0 4px; border-radius: 3px; }
+  .axlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .tick { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+  .rlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .glabel { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+
+  #tooltip { position: absolute; pointer-events: none; display: none; max-width: 300px; background: var(--card); border: 1px solid var(--hairline); border-radius: 6px; padding: 8px 10px; font-size: 12px; color: var(--ink-2); box-shadow: 0 6px 20px rgba(0,0,0,.5); z-index: 5; }
+  #tooltip .t-label { color: var(--ink); font-weight: 600; margin-bottom: 2px; }
+  #tooltip .t-meta { font: 11px var(--mono); color: var(--muted); }
+
+  .card { position: absolute; background: rgba(32,32,32,.94); border: 1px solid var(--hairline); border-radius: 8px; backdrop-filter: blur(6px); }
+  #legend { left: 12px; bottom: 12px; width: 240px; max-height: calc(100% - 24px); overflow: auto; padding: 10px 12px; font-size: 12px; }
+  #legend h2 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 8px 0 6px; }
+  #legend h2:first-child { margin-top: 0; }
+  .slot-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
+  .chip { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .chip.box { border-radius: 2px; }
+  .chip.diamond { border-radius: 2px; transform: rotate(45deg); }
+  .chip.cone { border-radius: 0; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .slot-row .n { margin-left: auto; font: 11px var(--mono); color: var(--muted); }
+  .slot-row .tp { font: 10px var(--mono); color: var(--muted); }
+  .key-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; color: var(--ink-2); }
+  .key-row .sym { width: 14px; text-align: center; color: var(--ink); }
+  .stats { font: 11px/1.6 var(--mono); color: var(--muted); border-top: 1px solid var(--hairline); margin-top: 8px; padding-top: 6px; }
+  .stats b { color: var(--ink-2); font-weight: 500; }
+
+  /* example note: a strip under the header, never over the graph */
+  #note { display: grid; grid-template-columns: minmax(160px, 24%) 1fr minmax(160px, 22%); gap: 6px 20px; align-items: baseline; padding: 7px 16px; border-bottom: 1px solid var(--hairline); background: var(--plane); font-size: 12px; }
+  #note h3 { margin: 0; font-size: 13px; color: var(--ink); font-weight: 600; line-height: 1.35; }
+  #note p { margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  #note:hover p, #note:focus-within p { -webkit-line-clamp: unset; }
+  #note .src { font: 11px var(--mono); color: var(--muted); word-break: break-word; text-align: right; }
+
+  #panel { right: 12px; top: 12px; bottom: 12px; width: 340px; padding: 12px 14px; overflow: auto; font-size: 13px; z-index: 4; }
+  #panel[hidden] { display: none; }
+  #panel .p-head { display: flex; align-items: flex-start; gap: 8px; }
+  #panel .p-slot { font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  #panel h3 { margin: 4px 0 6px; font-size: 15px; color: var(--ink); font-weight: 600; line-height: 1.3; }
+  #panel .close { margin-left: auto; background: transparent; border: 1px solid var(--hairline); color: var(--ink-2); border-radius: 6px; width: 28px; height: 28px; cursor: pointer; flex: none; }
+  .badge { display: inline-block; font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; border: 1px solid var(--muted); color: var(--ink); }
+  .badge.fact { background: var(--ink-2); color: var(--plane); border-color: var(--ink-2); }
+  .badge.derived { border-style: dashed; }
+  .badge.schema { color: var(--muted); }
+  #panel p { margin: 8px 0; }
+  #panel blockquote { margin: 8px 0; padding: 6px 10px; border-left: 2px solid var(--muted); color: var(--ink-2); font-style: italic; }
+  #panel .ref, #panel .conf { font: 11px var(--mono); color: var(--muted); }
+  #panel h4 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 12px 0 4px; }
+  #panel ul { margin: 0; padding-left: 16px; }
+  #panel li { margin: 2px 0; }
+  #panel li .rel { font: 11px var(--mono); color: var(--muted); }
+  .confbar { height: 3px; background: var(--hairline); border-radius: 2px; margin: 4px 0 8px; overflow: hidden; }
+  .confbar i { display: block; height: 100%; background: var(--ink-2); }
+
+  #fallback { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--muted); padding: 24px; }
+  #fallback[hidden] { display: none; }
+  #fallback code { font: 12px var(--mono); color: var(--ink-2); }
+
+  @media (max-width: 820px) {
+    #legend { width: min(240px, 60%); max-height: 42%; font-size: 11px; }
+    #note { grid-template-columns: 1fr; }
+    #note .src { text-align: left; }
+    #panel { left: 12px; width: auto; top: auto; max-height: 60%; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<header class="bar">
+  <div class="title">
+    <span class="eyebrow" id="category"></span>
+    <h1 id="name">Framework graph</h1>
+    <div class="links"><a id="readme" href="./README.md">README</a><a id="wiki" href="#" target="_blank" rel="noopener">Wikipedia</a><a id="up" href="../../index.html">All frameworks</a></div>
+  </div>
+  <div class="seg" id="examples" role="group" aria-label="Example"></div>
+  <div class="toggles">
+    <label><input type="checkbox" id="t-derived" checked> LLM-derived<kbd>d</kbd></label>
+    <label><input type="checkbox" id="t-grounding"> grounding links<kbd>g</kbd></label>
+    <label><input type="checkbox" id="t-labels" checked> labels</label>
+    <label><input type="checkbox" id="t-rotate"> auto-rotate</label>
+    <button id="reset" type="button">Reset view<kbd>r</kbd></button>
+  </div>
+</header>
+<div id="note" aria-live="polite" tabindex="0"></div>
+<main>
+  <div id="stage"></div>
+  <div id="labels"></div>
+  <div id="fallback">Loading Three.js from jsDelivr… <br><small>This page needs internet access for <code>three@0.186.0</code>. The data itself is embedded.</small></div>
+  <aside id="legend" class="card" aria-label="Legend"></aside>
+  <aside id="panel" class="card" hidden aria-label="Node details"></aside>
+  <div id="tooltip" role="tooltip"></div>
+</main>
+
+<!--__DATA_START__-->
+<script id="graph-data" type="application/json">{"framework":{"slug":"systems-thinking","name":"Systems Thinking","category":"04-sensemaking-and-complex-systems","wikipedia":"https://en.wikipedia.org/wiki/Systems_thinking","one_liner":"Explains behaviour over time from structure: stocks that accumulate, flows that fill and drain them, closed feedback loops that are reinforcing or balancing, and the delays that make a corrected system oscillate."},"slots":[{"id":"stock","label":"Stock","typical_provenance":"either","description":"An accumulation: users, cash, inventory, installed capacity, trust. A stock can only change through its flows, and it is what gives a system memory.","color":"#569cd6","shape":"box"},{"id":"flow","label":"Flow","typical_provenance":"either","description":"A rate that fills or drains a stock: orders per week, capex per quarter, hires per month, churn.","color":"#4ec9b0","shape":"cone"},{"id":"variable","label":"Variable","typical_provenance":"either","description":"An auxiliary quantity that influences a flow without accumulating: price, market share, perceived demand, sentiment.","color":"#4fc1ff","shape":"sphere"},{"id":"loop","label":"Feedback loop","typical_provenance":"derived","description":"A closed chain of influence, reinforcing (R) when it has an even number of negative links and balancing (B) when odd. Almost never stated; this is the framework's real contribution.","color":"#c586c0","shape":"diamond"},{"id":"delay","label":"Delay","typical_provenance":"derived","description":"A lag between cause and effect. A delay inside a balancing loop is what turns correction into oscillation and overshoot.","color":"#ff9d5c","shape":"diamond"},{"id":"leverage_point","label":"Leverage point","typical_provenance":"derived","description":"Where a small intervention changes the system's behaviour. Meadows ranks them: parameters and delays low, stock-and-flow structure, information flows, rules, goals and paradigms high.","color":"#b5cea8","shape":"sphere"}],"relations":[{"id":"inflow","label":"inflow","description":"a flow fills a stock"},{"id":"outflow","label":"outflow","description":"a flow drains a stock"},{"id":"influences","label":"influences","description":"one quantity influences another; the edge label carries the polarity + or -"},{"id":"part_of_loop","label":"part of loop","description":"this node is one link in the named feedback loop"},{"id":"delays","label":"delays","description":"a delay sits on the influence into this node"},{"id":"acts_on","label":"acts on","description":"a leverage point acts on this node"}],"examples":[{"id":"classic","kind":"classic","title":"The Beer Distribution Game: a one-step rise in demand, an eight-week lag, and a glut","summary":"Three tiers of one beer supply chain, each seeing only its own books, respond to a single permanent step up in customer demand. Nobody behaves irrationally, nobody lies, and every team still ends with inventories many times where they started, because the correcting loop is eight weeks long and the accumulation in transit is invisible.","source":{"type":"text","title":"The Beer Distribution Game (scenario text written for this example)","attribution":"After the MIT Beer Distribution Game, developed in Jay Forrester's industrial-dynamics group and popularised by Peter Senge, The Fifth Discipline (1990), and John Sterman, Business Dynamics (2000).","text":"In the Beer Distribution Game, a board game used in management classes since the 1960s, three players run one supply chain for a single brand of beer: a retailer, a wholesaler and a brewery. The retailer sells to customers from a case inventory on the shelf and orders replacements from the wholesaler. The wholesaler ships from its own warehouse inventory and orders from the brewery, and the brewery brews. Every order takes two weeks to reach the player upstream, and every shipment takes two more weeks to arrive, so eight weeks pass between a retailer's order and the beer landing on his shelf. Each player sees only his own inventory, his own incoming orders and his own backlog; nobody sees what the end customer is actually buying. In week five, customer demand doubles once, from four cases a week to eight, and then stays flat at eight for the rest of the game. The retailer's shelf inventory falls for several weeks and he cannot tell whether the rise will continue, so he orders more than he needs, to refill the shelf and to cover the backlog he has already accumulated. When the orders are larger than his own shipments, the wholesaler runs out of warehouse inventory and ships only part of what is asked for, so the retailer's backlog grows and his next order is larger still. The wholesaler sees a large order, reads it as a surge in demand, and orders more than that from the brewery. The brewery adds capacity and brews to the order book it can see. Around week twenty the accumulated orders all arrive at once, inventories across the chain reach many times their starting level, every player cancels, and the brewery is left with beer nobody ordered. Almost every team produces this oscillation and almost every team is surprised by it; the customer demand curve, shown to them afterwards, is a single step."},"layout":{"mode":"plane","regions":[{"label":"Retailer","x":[-70,-4],"y":[-30,54],"color":"#3b6ea5"},{"label":"Wholesaler","x":[-2,44],"y":[-30,54],"color":"#3a8a7a"},{"label":"Brewery","x":[46,70],"y":[-30,54],"color":"#8a6a3a"},{"label":"Leverage points · Meadows' hierarchy","x":[-70,70],"y":[-46,-34],"color":"#b5cea8"}],"annotations":[{"pos":[-68,27],"text":"← SHIPMENTS · PHYSICAL","style":"axis"},{"pos":[-68,-6],"text":"ORDERS · INFORMATION →","style":"axis"}]},"nodes":[{"id":"cs_shelf","slot":"stock","label":"Retailer shelf inventory","text":"The cases standing on the retailer's shelf. Customers are served out of it and replacements arrive into it, so it is the stock whose level the retailer is trying to defend.","provenance":"fact","source_quote":"The retailer sells to customers from a case inventory on the shelf","source_ref":"sentence 2","pos":[-44,20],"size":1},{"id":"cs_ware","slot":"stock","label":"Wholesaler warehouse inventory","text":"The wholesaler's own warehouse stock. He ships the retailer's orders out of it and the brewery's output comes into it.","provenance":"fact","source_quote":"The wholesaler ships from its own warehouse inventory","source_ref":"sentence 3","pos":[24,20],"size":1},{"id":"cs_backlog","slot":"stock","label":"Retailer backlog","text":"Orders the retailer has placed or promised and not yet been able to satisfy. It accumulates while shipments fall short and it is added on top of the next order.","provenance":"fact","source_quote":"to cover the backlog he has already accumulated","source_ref":"sentence 7","pos":[-64,2],"size":1},{"id":"cs_pipeline","slot":"stock","label":"Orders in the pipeline","text":"Beer already ordered and not yet arrived. It is a real accumulation that nobody in the game tracks, which is why the same need is ordered more than once.","provenance":"derived","confidence":0.85,"rationale":"The text gives the two-week order lag, the two-week shipping lag and the fact that around week twenty the accumulated orders all arrive at once. Anything that takes time in transit is by definition accumulating somewhere; naming that accumulation as a stock is the systems reading, and the text never does it.","pos":[20,40],"size":1},{"id":"cs_glut","slot":"stock","label":"Chain-wide inventory glut","text":"The end state: inventories across all three tiers many times their starting level, every player cancelling, and beer at the brewery that nobody ordered.","provenance":"fact","source_quote":"inventories across the chain reach many times their starting level, every player cancels","source_ref":"sentence 11","pos":[60,46],"size":1},{"id":"cf_demand","slot":"flow","label":"Customer demand: 4 to 8 cases","text":"The only exogenous input to the whole game: customer demand doubles once in week five, from four cases a week to eight, and then stays flat.","provenance":"fact","source_quote":"customer demand doubles once, from four cases a week to eight","source_ref":"sentence 6","pos":[-58,40],"size":1},{"id":"cf_order","slot":"flow","label":"Retailer's ordering rate","text":"Cases the retailer orders from the wholesaler each week. He orders more than current sales, because he is refilling the shelf and covering the backlog at the same time.","provenance":"fact","source_quote":"he orders more than he needs, to refill the shelf","source_ref":"sentence 7","pos":[-30,0],"size":1},{"id":"cf_ship","slot":"flow","label":"Shipments reaching the shelf","text":"Cases actually leaving the wholesaler and arriving at the retailer. When the warehouse is empty the wholesaler ships only part of what was asked for.","provenance":"fact","source_quote":"ships only part of what is asked for","source_ref":"sentence 8","pos":[-14,26],"size":1},{"id":"cf_wsorder","slot":"flow","label":"Wholesaler's ordering rate","text":"Cases the wholesaler orders from the brewery. He orders more than the large order he has just received, because he is refilling his own warehouse as well.","provenance":"fact","source_quote":"orders more than that from the brewery","source_ref":"sentence 9","pos":[40,6],"size":1},{"id":"cf_brew","slot":"flow","label":"Brewing rate, capacity added","text":"The brewery's output. It adds capacity and brews to the order book it can see, which is the wholesaler's inflated order and not the customer's eight cases.","provenance":"fact","source_quote":"The brewery adds capacity and brews to the order book it can see","source_ref":"sentence 10","pos":[56,26],"size":1},{"id":"cv_perceived","slot":"variable","label":"Perceived demand upstream","text":"What the wholesaler believes end demand to be. He sees a large order and reads it as a surge in demand, so the retailer's replenishment decision becomes the wholesaler's demand signal.","provenance":"fact","source_quote":"reads it as a surge in demand","source_ref":"sentence 9","pos":[12,-4],"size":1},{"id":"cv_visibility","slot":"variable","label":"Each player sees only his own tier","text":"The information each player has: his own inventory, his own incoming orders, his own backlog. Nobody sees what the end customer is buying.","provenance":"fact","source_quote":"Each player sees only his own inventory, his own incoming orders and his own backlog","source_ref":"sentence 5","pos":[30,-26],"size":1},{"id":"cv_uncertainty","slot":"variable","label":"Is the rise permanent?","text":"The retailer cannot tell whether the rise in demand will continue, so he hedges upward. The uncertainty is about the future, not about the data he has.","provenance":"fact","source_quote":"he cannot tell whether the rise will continue","source_ref":"sentence 7","pos":[-14,-22],"size":1},{"id":"cl_b1","slot":"loop","label":"B1 Retailer refills the shelf","text":"Balancing. Shelf inventory falls, so the retailer orders more (-); more orders pull more shipments (+); shipments refill the shelf (+). One negative link, so the loop corrects a gap instead of widening it. It is the loop the retailer believes he is operating, and it takes eight weeks to close.","provenance":"derived","confidence":0.85,"rationale":"All three links are stated in the text (sentence 7 for falling inventory driving larger orders, sentences 2, 3 and 8 for orders being shipped onto the shelf), but the text never says they form a circle, and the sign arithmetic that makes it balancing rather than reinforcing is the framework's own.","pos":[-28,10],"size":1.3},{"id":"cl_b2","slot":"loop","label":"B2 Chain corrects tier by tier","text":"Balancing, and the slowest loop in the game: the retailer's order becomes the wholesaler's perceived demand (+), which becomes the wholesaler's order (+), which becomes brewing and new capacity (+), which eventually reaches the shelf (+) and relieves the shortage (-). The same corrective loop as B1, running through three sets of books and three sets of lags. Every tier is also running its own small correction on its own stock at the same time (shipments drain the warehouse, which limits shipments), so B2 is a loop of loops and its total lag is the sum of theirs.","provenance":"derived","confidence":0.8,"rationale":"The text walks the chain link by link in sentences 9 and 10 and states that everything arrives at once around week twenty. Recognising the chain as one long feedback loop whose lag is the sum of the tiers' lags, rather than a sequence of separate decisions, is the inference.","pos":[30,13],"size":1.3},{"id":"cl_r1","slot":"loop","label":"R1 Shortage spiral","text":"Reinforcing. Backlog raises the retailer's order (+); the larger order empties the warehouse (-); an empty warehouse means partial shipments (+); partial shipments grow the backlog (-). Two negative links, so the loop amplifies: the shortage produces the ordering behaviour that deepens the shortage. The same four arrows also form a balancing loop whenever the warehouse has stock, because then the larger order simply clears the backlog; R1 dominates only while the wholesaler is short, which is what makes the spiral episodic rather than permanent.","provenance":"derived","confidence":0.85,"rationale":"Sentences 7 and 8 state every one of the four links, including the return arrow from short shipments back to a larger next order. What the text does not say is that these four statements close on each other, nor that two negative links make the circle reinforcing rather than self-limiting.","pos":[-46,-8],"size":1.3},{"id":"cd_order","slot":"delay","label":"Order lag: two weeks per tier","text":"Every order takes two weeks to reach the player upstream, so each tier is acting on information about a fortnight old.","provenance":"fact","source_quote":"Every order takes two weeks to reach the player upstream","source_ref":"sentence 4","pos":[56,-12],"size":0.85},{"id":"cd_ship","slot":"delay","label":"Eight weeks order to shelf","text":"Eight weeks pass between a retailer's order and the beer landing on his shelf: two weeks for each order hop and two more for each shipment.","provenance":"fact","source_quote":"eight weeks pass between a retailer's order and the beer landing on his shelf","source_ref":"sentence 4","pos":[-28,46],"size":0.85},{"id":"cd_overshoot","slot":"delay","label":"Lagged balancing loop oscillates","text":"Because the correction in B1 takes eight weeks and the retailer keeps ordering in the meantime, the loop cannot settle: it overshoots, and the overshoot is then corrected by cancellation, which undershoots. The oscillation is a property of the lag, not of the players.","provenance":"derived","confidence":0.9,"rationale":"The text gives the lag (sentence 4), the continued ordering during it (sentences 7 and 8) and the simultaneous arrival and glut (sentence 11), plus the observation that almost every team produces the same oscillation and is surprised by it. That a balancing loop with a long lag relative to its own response time must oscillate is the general result the example illustrates, and no player in the scenario says it.","pos":[0,4],"size":0.85},{"id":"clp_info","slot":"leverage_point","label":"Show every tier the end demand","text":"Give all three players the customer sell-through number every week. Nothing physical changes: the lags, the capacity and the decision rules all stay as they are, and the amplification in B2 still collapses, because the wholesaler's perceived demand stops being the retailer's replenishment decision.","provenance":"derived","confidence":0.85,"rationale":"Sentence 5 says nobody sees what the end customer is buying and sentence 12 says the demand curve is a single step when shown afterwards. Those two together locate the whole oscillation in a missing information flow rather than in the physical chain, which is Meadows' sixth leverage point and much higher than tinkering with the lags.","pos":[30,-40],"size":1.15},{"id":"clp_rule","slot":"leverage_point","label":"Order against the pipeline","text":"Change the ordering rule so that beer already on its way is subtracted before the next order is placed. The same need is then ordered once instead of four times, which removes the amplification in R1 without removing the delay.","provenance":"derived","confidence":0.8,"rationale":"Follows from cs_pipeline: if orders in transit are a real accumulation and the decision rule ignores them, the same shortfall is ordered repeatedly. The text describes the behaviour (he orders more than he needs, every week, while nothing arrives) but never names the rule that produces it. A decision rule is Meadows' fifth leverage point, above the physical structure of the chain.","pos":[-40,-40],"size":1.15}],"edges":[{"id":"ce_demand_shelf","from":"cf_demand","to":"cs_shelf","relation":"outflow","provenance":"fact","source_quote":"The retailer sells to customers from a case inventory on the shelf","source_ref":"sentence 2"},{"id":"ce_shelf_order","from":"cs_shelf","to":"cf_order","relation":"influences","label":"-","provenance":"fact","source_quote":"The retailer's shelf inventory falls for several weeks and he cannot tell whether the rise will continue, so he orders more than he needs","source_ref":"sentence 7"},{"id":"ce_unc_order","from":"cv_uncertainty","to":"cf_order","relation":"influences","label":"+","provenance":"fact","source_quote":"he cannot tell whether the rise will continue, so he orders more than he needs","source_ref":"sentence 7"},{"id":"ce_backlog_order","from":"cs_backlog","to":"cf_order","relation":"influences","label":"+","provenance":"fact","source_quote":"the retailer's backlog grows and his next order is larger still","source_ref":"sentence 8"},{"id":"ce_order_ware","from":"cf_order","to":"cs_ware","relation":"influences","label":"-","provenance":"fact","source_quote":"When the orders are larger than his own shipments, the wholesaler runs out of warehouse inventory","source_ref":"sentence 8"},{"id":"ce_ware_ship","from":"cs_ware","to":"cf_ship","relation":"influences","label":"+","provenance":"fact","source_quote":"the wholesaler runs out of warehouse inventory and ships only part of what is asked for","source_ref":"sentence 8"},{"id":"ce_ship_backlog","from":"cf_ship","to":"cs_backlog","relation":"influences","label":"-","provenance":"fact","source_quote":"ships only part of what is asked for, so the retailer's backlog grows","source_ref":"sentence 8"},{"id":"ce_order_perceived","from":"cf_order","to":"cv_perceived","relation":"influences","label":"+","provenance":"fact","source_quote":"The wholesaler sees a large order, reads it as a surge in demand","source_ref":"sentence 9"},{"id":"ce_perceived_wsorder","from":"cv_perceived","to":"cf_wsorder","relation":"influences","label":"+","provenance":"fact","source_quote":"reads it as a surge in demand, and orders more than that from the brewery","source_ref":"sentence 9"},{"id":"ce_wsorder_brew","from":"cf_wsorder","to":"cf_brew","relation":"influences","label":"+","provenance":"fact","source_quote":"orders more than that from the brewery. The brewery adds capacity and brews to the order book it can see","source_ref":"sentences 9 to 10"},{"id":"ce_order_ship","from":"cf_order","to":"cf_ship","relation":"influences","label":"+","provenance":"derived","confidence":0.85,"rationale":"The order is the signal the wholesaler ships against: the text says he ships from his warehouse and orders replacements, and that he ships only part of what is asked for, but never joins the order rate to the shipment rate as one influence."},{"id":"ce_ship_shelf","from":"cf_ship","to":"cs_shelf","relation":"inflow","provenance":"derived","confidence":0.9,"rationale":"Sentence 4 says the beer lands on the retailer's shelf; that the shipment flow is the inflow to the shelf stock is the stock-and-flow reading rather than a statement."},{"id":"ce_ship_ware","from":"cf_ship","to":"cs_ware","relation":"outflow","provenance":"derived","confidence":0.85,"rationale":"Standard stock-and-flow accounting: what the wholesaler ships must leave his warehouse. Sentence 3 states he ships from that inventory without naming the shipment as its outflow."},{"id":"ce_brew_ware","from":"cf_brew","to":"cs_ware","relation":"inflow","provenance":"derived","confidence":0.8,"rationale":"The brewery's output has to arrive somewhere, and the only downstream stock in the scenario is the wholesaler's warehouse. The text describes the ordering direction but not the physical inflow."},{"id":"ce_order_pipe","from":"cf_order","to":"cs_pipeline","relation":"inflow","provenance":"derived","confidence":0.85,"rationale":"Every order placed and not yet delivered adds to the in-transit accumulation. This depends on cs_pipeline being recognised as a stock at all, which the text does not do."},{"id":"ce_pipe_ship","from":"cs_pipeline","to":"cf_ship","relation":"influences","label":"+","provenance":"derived","confidence":0.8,"rationale":"What is in the pipeline is what will eventually be shipped onto the shelf; the pipeline drains into the shipment flow after the lag. Inferred from the lags in sentence 4 and the simultaneous arrival in sentence 11."},{"id":"ce_pipe_glut","from":"cs_pipeline","to":"cs_glut","relation":"influences","label":"+","provenance":"derived","confidence":0.85,"rationale":"Sentence 11 says the accumulated orders all arrive at once and inventories reach many times their starting level. The glut is the pipeline emptying itself into the tiers, which is the mechanism the text describes without naming."},{"id":"ce_vis_perceived","from":"cv_visibility","to":"cv_perceived","relation":"influences","label":"-","provenance":"derived","confidence":0.8,"rationale":"Sentence 5 says nobody sees end demand and sentence 9 says the wholesaler reads the retailer's order as a surge. The causal link between the narrow view and the misreading is adjacent in the text but never asserted."},{"id":"ce_dorder_wsorder","from":"cd_order","to":"cf_wsorder","relation":"delays","provenance":"derived","confidence":0.85,"rationale":"The two-week order lag is stated; that it sits specifically on the influence from the retailer's order into the wholesaler's order, delaying the upstream tier's response, is the modelling step."},{"id":"ce_dship_ship","from":"cd_ship","to":"cf_ship","relation":"delays","provenance":"derived","confidence":0.9,"rationale":"Sentence 4 gives the eight weeks from order to shelf; placing that lag on the shipment flow, which is where it acts inside loop B1, is the modelling step."},{"id":"ce_dover_b1","from":"cd_overshoot","to":"cl_b1","relation":"delays","provenance":"derived","confidence":0.85,"rationale":"The oscillation is a property of the delay acting inside the balancing loop, so the delay node is attached to the loop rather than to any single arrow."},{"id":"ce_dover_sup1","from":"cd_overshoot","to":"cd_ship","relation":"supported_by","provenance":"derived","confidence":0.9,"rationale":"The eight-week lag is the stated fact the overshoot claim rests on."},{"id":"ce_dover_sup2","from":"cd_overshoot","to":"cs_glut","relation":"supported_by","provenance":"derived","confidence":0.9,"rationale":"The glut is the observed overshoot: inventories many times their starting level, then cancellation."},{"id":"ce_pl_b1_shelf","from":"cs_shelf","to":"cl_b1","relation":"part_of_loop","provenance":"derived","confidence":0.85,"rationale":"The shelf is the stock B1 is trying to hold at a target level."},{"id":"ce_pl_b1_order","from":"cf_order","to":"cl_b1","relation":"part_of_loop","provenance":"derived","confidence":0.85,"rationale":"The ordering rate is B1's corrective action."},{"id":"ce_pl_b1_ship","from":"cf_ship","to":"cl_b1","relation":"part_of_loop","provenance":"derived","confidence":0.85,"rationale":"The shipment flow closes B1 by returning to the shelf."},{"id":"ce_pl_b2_order","from":"cf_order","to":"cl_b2","relation":"part_of_loop","provenance":"derived","confidence":0.8,"rationale":"The retailer's order is the demand signal that starts the long chain loop."},{"id":"ce_pl_b2_perceived","from":"cv_perceived","to":"cl_b2","relation":"part_of_loop","provenance":"derived","confidence":0.8,"rationale":"Perceived demand is the link in B2 where the signal is amplified as it crosses a tier."},{"id":"ce_pl_b2_brew","from":"cf_brew","to":"cl_b2","relation":"part_of_loop","provenance":"derived","confidence":0.8,"rationale":"Brewing and added capacity are the far end of B2, and where the lag is longest."},{"id":"ce_pl_r1_backlog","from":"cs_backlog","to":"cl_r1","relation":"part_of_loop","provenance":"derived","confidence":0.85,"rationale":"The backlog is the stock whose growth drives R1."},{"id":"ce_pl_r1_order","from":"cf_order","to":"cl_r1","relation":"part_of_loop","provenance":"derived","confidence":0.85,"rationale":"The ordering rate is the link R1 and B1 share, which is why one rule change affects both."},{"id":"ce_pl_r1_ware","from":"cs_ware","to":"cl_r1","relation":"part_of_loop","provenance":"derived","confidence":0.8,"rationale":"The emptied warehouse is the link that turns a large order into a short shipment and closes R1."},{"id":"ce_lp_info_vis","from":"clp_info","to":"cv_visibility","relation":"acts_on","provenance":"derived","confidence":0.85,"rationale":"The intervention is precisely a change to what each player can see."},{"id":"ce_lp_info_perc","from":"clp_info","to":"cv_perceived","relation":"acts_on","provenance":"derived","confidence":0.8,"rationale":"With sell-through published, perceived demand stops tracking the order rate, which is where B2's amplification lives."},{"id":"ce_lp_rule_order","from":"clp_rule","to":"cf_order","relation":"acts_on","provenance":"derived","confidence":0.8,"rationale":"The rule change is a change to how the ordering rate is computed."},{"id":"ce_lp_rule_pipe","from":"clp_rule","to":"cs_pipeline","relation":"acts_on","provenance":"derived","confidence":0.8,"rationale":"The rule works by making the pipeline stock part of the decision instead of invisible."}]},{"id":"tbpn","kind":"tbpn","title":"The AI compute buildout: reinforcing loops against one slow brake","summary":"Semiconductor analyst Doug O'Laughlin walks through the week OpenAI signed about half a trillion dollars of chip and cloud commitments. Between them the speakers state almost every arrow of a boom-and-bust system: vendor equity that comes back as vendor revenue, a capex arms race nobody can unilaterally leave, a power supply that responds but slowly, and a public that is starting to block sites.","source":{"type":"transcript","file":"tbpn-transcripts/transcripts/2025-10-06_openai-amd-deal-devday-reactions-xais-memphis-datacenter-doug-olaughlin-celine-halioua.md","date":"2025-10-06","episode_title":"OpenAI AMD Deal, DevDay Reactions, xAI's Memphis Datacenter (Doug O'Laughlin, Celine Halioua)","url":"https://podscripts.co/podcasts/tbpn-live/openai-amd-deal-devday-reactions-xais-memphis-datacenter-doug-olaughlin-celine-halioua"},"why_this_episode":"A hype cycle is the one kind of business story that actually contains closed loops rather than a causal chain, and this episode is an unusually complete one. The speakers state the return arrow of the circular-financing loop out loud (enthusiasm for Nvidia stock is the backstop for the deals that feed the enthusiasm), state the arms-race loop out loud as an OPEC defection problem, state the supply-elasticity brake out loud (supply comes out of the woodwork), put a long lead time on that brake, and then describe one completed overshoot-and-correct cycle at Microsoft. Almost every influence arrow is quotable; not one of the five loops is named as a loop, which is exactly the split this library is documenting.","idea_bearing_slot":"leverage_point","layout":{"mode":"plane","regions":[{"label":"Leverage points · Meadows' hierarchy","x":[-72,72],"y":[-46,-34],"color":"#1d3149"}],"annotations":[{"pos":[-30,56],"text":"FAST RINGS · R1, R2 TURN IN WEEKS","style":"axis"},{"pos":[50,28],"text":"THE BRAKE · B1 TURNS IN TURBINE YEARS","style":"axis"},{"pos":[48,-12],"text":"R3 and B1 share these two arrows","style":"caption"}]},"nodes":[{"id":"s_gpu","slot":"stock","label":"Compute deployed: 10 GW","text":"Installed AI compute capacity. The Nvidia deal alone is meant to deploy up to 10 gigawatts of it; this is the stock the whole buildout is filling.","provenance":"fact","source_quote":"use the cash from NVIDIA to buy NVIDIA chips and deploy up to 10 gigawatts of computing power in AI data centers","source_ref":"host reading the news report, L1660-L1666","entities":["OpenAI","NVIDIA"],"pos":[2,0],"size":1},{"id":"s_commit","slot":"stock","label":"Committed orders","text":"The backlog of announced commitments: about $10B to Broadcom, $100B to Nvidia, $300B to Oracle and roughly $20B to CoreWeave. It is OpenAI's obligation and its vendors' revenue at the same time.","provenance":"fact","source_quote":"what's the headline number here it's a hundred billion 10 billion to broadcom a hundred billion to invidia and 300 billion to Oracle 20 billion ish to core weave as well","source_ref":"host, L1682-L1688","entities":["OpenAI","Broadcom","NVIDIA","Oracle","CoreWeave"],"pos":[-6,28],"size":1},{"id":"s_cash","slot":"stock","label":"Hyperscaler cash","text":"The cash pile the buildout is being paid out of. Meta's stood at about $77 billion at the end of last year, the example the speakers use for the whole group.","provenance":"fact","source_quote":"Meta's cash on hand at the end of last year was around $77 billion.","source_ref":"host, L2464","entities":["Meta"],"pos":[-48,-10],"size":1},{"id":"s_slack","slot":"stock","label":"Unused grid headroom","text":"The grid is built for the highest and lowest day, not for 100% production, so average utilisation leaves a large amount of existing capacity unused. It is a stock of power that is already paid for.","provenance":"fact","source_quote":"the grid is actually not built for 100% production. So there's a lot of slack in the grid itself because it's actually built for the highest day and the lowest day","source_ref":"Doug O'Laughlin, L2302-L2306","pos":[64,16],"size":1},{"id":"s_debt","slot":"stock","label":"Unused debt capacity","text":"None of the hyperscalers carry meaningful leverage, so their borrowing capacity is an untouched reservoir. Microsoft trades at a five-basis-point premium to Treasuries.","provenance":"fact","source_quote":"the thing that's also really interesting is none of the hypers are levered at all","source_ref":"Doug O'Laughlin, L2384","entities":["Microsoft","DoubleLine"],"pos":[-56,14],"size":1},{"id":"f_vendor","slot":"flow","label":"Nvidia's $100B into OpenAI","text":"Vendor equity flowing into the customer: Nvidia said it would invest $100 billion in OpenAI over the next decade, and OpenAI plans to spend the cash on Nvidia chips.","provenance":"fact","source_quote":"NVIDIA announced that it would invest $100 billion in Open AI over the next decade","source_ref":"host reading the news report, L1658","entities":["NVIDIA","OpenAI"],"pos":[-34,48],"size":1},{"id":"f_fcf","slot":"flow","label":"Free cash flow $200-250B","text":"The inflow: roughly $200 to $250 billion a year of hyperscaler free cash flow, which is both the capex budget and the thing that would service any debt raised against it.","provenance":"fact","source_quote":"We're talking quite a bit of capital is available to do this, like a surprising amount. I want to say on an annual basis, something like 250, maybe even, yeah, 200 billion","source_ref":"Doug O'Laughlin, L2380-L2382","pos":[-62,-22],"size":1},{"id":"f_drain","slot":"flow","label":"Cash draining into capex","text":"The outflow: Meta's cash fell from about $77 billion to $47 billion in six months and is expected to keep dropping through the year.","provenance":"fact","source_quote":"As of the end of June, it was down to $47 billion and just will continue to drop throughout the year","source_ref":"host, L2466","entities":["Meta"],"pos":[-40,-30],"size":1},{"id":"f_lease","slot":"flow","label":"Leasing rate","text":"The rate at which capacity is committed. Microsoft said yes to every leasing opportunity in 2023, then imposed a top-down pause, and is now having to pick the pieces back up.","provenance":"fact","source_quote":"this giant buildout in 23 where they said yes to every single leasing opportunity possible. And then they, like, there was a top down pause. And now they're starting to pick up the pieces","source_ref":"Doug O'Laughlin, L2560-L2564","entities":["Microsoft"],"pos":[-28,0],"size":1},{"id":"f_gen","slot":"flow","label":"New generation online","text":"Power supply entering the system in response to the demand: gas gen, gas turbines and what the speaker calls clever pockets of energy coming up to fulfil the need.","provenance":"fact","source_quote":"we're starting to see stuff like gas gen, gas turbines, like all these different, like, little clever pockets of energy are coming up to then fulfill the need","source_ref":"Doug O'Laughlin, L2348-L2350","pos":[40,-20],"size":1},{"id":"v_enthusiasm","slot":"variable","label":"Nvidia stock enthusiasm","text":"The market's appetite for Nvidia equity, which the reporting describes as the financial backstop for the entire AI market rather than as a consequence of it.","provenance":"fact","source_quote":"the market seemingly endless enthusiasm for NVIDIA stock is providing a financial backstop for the entire AI market","source_ref":"host reading the news report, L1664-L1668","entities":["NVIDIA"],"pos":[-62,28],"size":1},{"id":"v_share","slot":"variable","label":"Market share lost","text":"The share a firm loses when a rival spends. The speaker's prediction is that once Meta and Google get into the game in earnest, the others realise their business model is under attack.","provenance":"fact","source_quote":"all of a sudden they're going to be like whoa this is attacking my business model and I'm losing market share","source_ref":"Doug O'Laughlin, L2588-L2592","entities":["Meta","Google","Microsoft"],"pos":[-28,-20],"size":1},{"id":"v_price","slot":"variable","label":"Oracle undercuts price","text":"Price as a competitive weapon: Oracle comes in at a lower price and levers its whole balance sheet to do it, taking business Microsoft had been conservative about.","provenance":"fact","source_quote":"We'll come in at a lower lower price. Like I'm just going to lever my entire balance sheet for it","source_ref":"Doug O'Laughlin voicing Oracle, L2572-L2574","entities":["Oracle","Microsoft"],"pos":[8,-20],"size":1},{"id":"v_scarcity","slot":"variable","label":"US power scarcity","text":"The perceived shortage of power: grids are not keeping up and the speaker says outright that the United States is running out of power.","provenance":"fact","source_quote":"we're running out of power in the United States","source_ref":"Doug O'Laughlin, L2342","pos":[38,12],"size":1},{"id":"v_sentiment","slot":"variable","label":"Hostility, sites blocked","text":"Non-technical public sentiment against AI, showing up as data centres getting blocked and as a roadblock at several stages of the buildout.","provenance":"fact","source_quote":"you're seeing data centers just getting kind of like blocked","source_ref":"host relaying a chat question, L2676-L2678","pos":[14,20],"size":1},{"id":"l_r1","slot":"loop","label":"R1 Vendor financing","text":"Reinforcing. Nvidia's equity funds OpenAI's purchases (+); the purchases are Nvidia's committed revenue (+); that revenue is what the market is enthusiastic about (+); the enthusiasm is the backstop that funds the next investment (+). No negative links, so the circle amplifies in both directions, including downward.","provenance":"derived","confidence":0.75,"rationale":"Two of the loop's three arrows are quoted facts (e_vendor_commit and e_enth_vendor), including the return arrow at L1664-L1668 where the enthusiasm is described as the backstop for the market; only e_commit_enth, the step from the committed backlog to the equity enthusiasm, is inferred. What no speaker says is that these statements close on each other. Doug calls the vendor financing circular and scary at L2006 but treats it as a worrying feature rather than as a loop with a sign; the inference is that it is a reinforcing loop, which is why a fall in Nvidia's multiple is not just bad news for Nvidia.","pos":[-32,38],"size":1.3},{"id":"l_r2","slot":"loop","label":"R2 Capex arms race","text":"Reinforcing. Capacity committed by one firm (+) lets it undercut on price (+), which costs a rival market share (+), which forces the rival to commit capacity too (+), which puts the first firm's share at risk. The speaker's own analogy is OPEC: the cartel holds until somebody defects, and then nobody can stay out.","provenance":"derived","confidence":0.8,"rationale":"The speaker states the whole circle in one breath at L2586-L2594, including the return arrow from lost share back to spending. The derived part is reading it as a closed reinforcing loop whose equilibrium is all-in spending rather than as a prediction about two particular companies, and attaching Oracle's price undercut and Microsoft's pause to the same loop as instances of it.","pos":[-12,-9],"size":1.3},{"id":"l_b1","slot":"loop","label":"B1 Supply finds a way","text":"Balancing. Compute buildout raises power scarcity (+), scarcity calls forth new generation (+), and new generation relieves the scarcity (-). One negative link, so the loop corrects. B1 has two paths with very different speeds: a fast one that draws on existing grid headroom, which is itself a stock and drains as it is used (e_gen_slack), and a slow one that builds new plant behind the lead time d_lead. It is the loop that limits the boom, and the fast half of it runs out first.","provenance":"derived","confidence":0.8,"rationale":"Both of the loop's own arrows are stated: L2344-L2346 for scarcity calling forth supply, L2348-L2350 for that supply fulfilling the need, and L2352 restates the principle. The inference is the closure and the polarity, and the consequence that follows from the polarity: a balancing loop with the lead times of L2510 inside it cannot hold the boom in check in the short run.","pos":[54,6],"size":1.3},{"id":"l_r3","slot":"loop","label":"R3 Scarcity builds grid","text":"Reinforcing, and easy to miss because it runs through the same arrows as B1. Deployed compute raises scarcity (+), scarcity calls forth generation (+), and the generation that arrives is what lets the next tranche of committed capacity come online (+). No negative links, so the scramble for power expands the power system, which permits a larger buildout than the one that started the scramble.","provenance":"derived","confidence":0.65,"rationale":"All three arrows exist in the data (e_gpu_scarcity, e_scarcity_gen, e_gen_gpu), and the speaker states the third one himself when he says behind-the-meter gas is going to be the big driver to get these data centres online. The inference is that they close, and that because the cycle carries no negative link it is reinforcing rather than part of the brake. This is the classic relieve-the-limit pattern: the same supply response that balances scarcity in B1 raises the ceiling the system can grow into. Held at 0.65 because the closure depends on e_gen_gpu, which rests on a pronoun.","pos":[20,5],"size":1.3},{"id":"l_b2","slot":"loop","label":"B2 Social licence","text":"Balancing, and the weakest loop here. The buildout raises public hostility (+), and hostility blocks sites and slows the buildout (-). The speaker expects it to lose, because the administration and everybody else is on board.","provenance":"derived","confidence":0.55,"rationale":"The return arrow is stated (hostility is already blocking data centres, L2676-L2680); the forward arrow from the scale of the buildout to the hostility is adjacent rather than asserted, and the loop's gain is explicitly doubted by the speaker at L2682-L2692. Kept at low confidence because a balancing loop that is currently weak is still the one a regulator can strengthen, which makes its absence from the picture more misleading than its presence.","pos":[-8,6],"size":1.3},{"id":"d_lead","slot":"delay","label":"Long power lead times","text":"The lag on the supply side: the long lead time items need both capital and time to arrive, and the speaker expects grids breaking to be a 2026 story.","provenance":"fact","source_quote":"all these long lead time things need so much capital and time to get there","source_ref":"Doug O'Laughlin, L2510; grids breaking as a 2026 story at L2334-L2338","pos":[50,-27],"size":0.85},{"id":"d_overshoot","slot":"delay","label":"Fast loops, slow brake","text":"R1 and R2 act at the speed of a press release; B1 acts at the speed of a gas turbine order. A balancing loop that is slower than the reinforcing loops it is meant to restrain does not prevent the overshoot, it dates it. Microsoft's 2023 yes-to-everything, top-down pause and forced re-entry is one completed cycle of exactly that.","provenance":"derived","confidence":0.75,"rationale":"Built from three stated facts: the lead times at L2510, the speed at which commitments are being announced, and the Microsoft boom-pause-restart at L2560-L2564. The general result, that a delay inside the only balancing loop converts correction into oscillation, is the framework's and not the speaker's. He predicts a continued boom; this node says a boom of this shape has a characteristic end, which is a stronger claim than anything in the transcript and is priced at 0.75 accordingly.","pos":[-40,20],"size":0.85},{"id":"lp_rule","slot":"leverage_point","label":"Rules: interruptible load","text":"Change the contract rather than the hardware. A data centre that is allowed to sip from the grid off-peak and run behind the meter at peak can be served from headroom that already exists, instead of waiting for new generation. The binding constraint moves from megawatts to the interconnection rule.","provenance":"derived","confidence":0.6,"rationale":"Rests on s_slack (the grid is built for the extremes, so average utilisation leaves a lot unused) together with the speaker's own description of sipping from the grid and behind-the-meter gas at L2316-L2322. Rules sit fifth in Meadows' hierarchy, above information flows and far above adding capacity, because this intervention changes who may use the existing stock rather than enlarging it. Held at 0.6 because the transcript gives the physical possibility but nothing about whether the tariffs and interconnection queues would permit it.","idea":"An underwriter and broker for interruptible, load-following compute capacity, financing behind-the-meter generation against the peak-to-off-peak spread that nobody currently prices.","entities":["Oklo"],"pos":[66,-40],"size":1.15},{"id":"lp_info","slot":"leverage_point","label":"Info: look-through exposure","text":"R1 is invisible to the people funding it. A look-through exposure engine that nets out the circular equity, prepayments and offtakes across Nvidia, OpenAI, AMD, Oracle and the neoclouds would put a number on how much of each company's value depends on the same dollar.","provenance":"derived","confidence":0.7,"rationale":"The transcript states the gap explicitly: a host tries to build a DCF for OpenAI, finds he would have to build one for AMD too, and gives up with all these circular transactions (L2206-L2214); Doug answers that it is a little bit of vibe based investing. Information flows are Meadows' sixth-order leverage point, and a reinforcing loop nobody can measure is the canonical case for one, because the loop's gain is what determines how far it unwinds.","idea":"A look-through exposure and counterparty-netting service for circular AI infrastructure deals, sold to credit and equity underwriters who currently cannot price the same dollar appearing on four balance sheets.","entities":["NVIDIA","OpenAI","AMD","Oracle","CoreWeave","Lambda Labs"],"pos":[-64,-40],"size":1.15},{"id":"lp_delay","slot":"leverage_point","label":"Delays: build more turbines","text":"The obvious intervention is to shorten the lag: more turbines, more transformers, more generation. It works, and Meadows ranks it ninth, near the bottom, because it only changes how fast an unchanged structure responds. It is also where all the capital is already going, which is why it is the least interesting of the three.","provenance":"derived","confidence":0.65,"rationale":"Included as the control case for the hierarchy. The transcript shows the whole market already acting on this lever (gas gen, turbines, recommissioned nuclear, Oklo), and the speaker still says it is going to take a lot of time and that grids are breaking. A leverage point everyone is already pulling is not an opportunity, which is why this node carries no idea field while lp_rule and lp_info do.","pos":[20,-40],"size":1.15}],"edges":[{"id":"e_vendor_commit","from":"f_vendor","to":"s_commit","relation":"inflow","provenance":"fact","source_quote":"Open AI plans to use the cash from NVIDIA to buy NVIDIA chips","source_ref":"host reading the news report, L1660-L1662"},{"id":"e_commit_gpu","from":"s_commit","to":"s_gpu","relation":"influences","label":"+","provenance":"fact","source_quote":"to buy NVIDIA chips and deploy up to 10 gigawatts of computing power in AI data centers","source_ref":"host reading the news report, L1660-L1666"},{"id":"e_enth_vendor","from":"v_enthusiasm","to":"f_vendor","relation":"influences","label":"+","provenance":"fact","source_quote":"the deal highlighted how the market seemingly endless enthusiasm for NVIDIA stock is providing a financial backstop for the entire AI market","source_ref":"host reading the news report, L1662-L1668"},{"id":"e_drain_cash","from":"f_drain","to":"s_cash","relation":"outflow","provenance":"fact","source_quote":"Meta's cash on hand at the end of last year was around $77 billion. As of the end of June, it was down to $47 billion","source_ref":"host, L2464-L2466"},{"id":"e_fcf_debt","from":"f_fcf","to":"s_debt","relation":"influences","label":"+","provenance":"fact","source_quote":"I was just doing the math on 250 billion in free cash flow. If that's used to service 5% coupon payments, that's $5 trillion in notional debt, like value","source_ref":"host, L2416-L2418"},{"id":"e_price_share","from":"v_price","to":"v_share","relation":"influences","label":"+","provenance":"fact","source_quote":"I'll essentially steal all your business if you let me. We'll come in at a lower lower price","source_ref":"Doug O'Laughlin, L2570-L2574"},{"id":"e_share_lease","from":"v_share","to":"f_lease","relation":"influences","label":"+","provenance":"fact","source_quote":"this is attacking my business model and I'm losing market share. And that's when the other guys come back in a big way","source_ref":"Doug O'Laughlin, L2590-L2594"},{"id":"e_scarcity_gen","from":"v_scarcity","to":"f_gen","relation":"influences","label":"+","provenance":"fact","source_quote":"even though we say we're running out of power, when you have this big demand response, supply comes out of the woodwork","source_ref":"host, L2344-L2346"},{"id":"e_gen_scarcity","from":"f_gen","to":"v_scarcity","relation":"influences","label":"-","provenance":"fact","source_quote":"little clever pockets of energy are coming up to then fulfill the need","source_ref":"Doug O'Laughlin, L2348-L2350"},{"id":"e_sentiment_lease","from":"v_sentiment","to":"f_lease","relation":"influences","label":"-","provenance":"fact","source_quote":"you're seeing data centers just getting kind of like blocked uh that feels like it potentially you know it's certainly going to be a roadblock at a bunch of different stages of this build-out","source_ref":"host relaying a chat question, L2676-L2680"},{"id":"e_commit_enth","from":"s_commit","to":"v_enthusiasm","relation":"influences","label":"+","provenance":"derived","confidence":0.7,"rationale":"The announcements are what the market is reacting to: Lisa Su calls the deal a clear validation of the roadmap worth tens of billions of revenue, and the hosts treat the headline numbers as the news. That the committed backlog drives the equity enthusiasm, rather than merely coinciding with it, is the inference that closes R1."},{"id":"e_fcf_cash","from":"f_fcf","to":"s_cash","relation":"inflow","provenance":"derived","confidence":0.75,"rationale":"Standard stock-and-flow accounting: the annual free cash flow the speaker quantifies is the inflow to the cash pile the hosts then track at Meta. The two are discussed eighty lines apart and never joined."},{"id":"e_cash_lease","from":"s_cash","to":"f_lease","relation":"influences","label":"+","provenance":"derived","confidence":0.65,"rationale":"Cash on hand is what the commitments are made against; the speakers discuss Meta's draining cash and Microsoft's leasing decisions as parts of the same question without linking them, and they are different companies, so the link is a generalisation across speakers and firms."},{"id":"e_debt_lease","from":"s_debt","to":"f_lease","relation":"influences","label":"+","provenance":"derived","confidence":0.7,"rationale":"The speaker says none of the hyperscalers are levered and that this is the next leg, and that Oracle is levering its balance sheet to undercut. Treating unused debt capacity as a reservoir that raises the committable rate is the reading those two statements support."},{"id":"e_lease_drain","from":"f_lease","to":"f_drain","relation":"influences","label":"+","provenance":"derived","confidence":0.75,"rationale":"What is committed has to be paid for, so the commitment rate drives the cash outflow. The transcript gives Meta's drain and the leasing behaviour separately."},{"id":"e_lease_gpu","from":"f_lease","to":"s_gpu","relation":"inflow","provenance":"derived","confidence":0.8,"rationale":"Leases and capacity commitments are the inflow that fills the installed-compute stock. The speakers discuss leasing and gigawatts in the same conversation without naming one as the other's flow."},{"id":"e_gpu_price","from":"s_gpu","to":"v_price","relation":"influences","label":"+","provenance":"derived","confidence":0.6,"rationale":"Capacity built has to be filled, which is what makes undercutting rational. The transcript has Oracle undercutting while levering up and the four-year guide at a hundred billion, but nobody says the capacity is the reason the price falls; this is the contestable link in R2."},{"id":"e_gpu_scarcity","from":"s_gpu","to":"v_scarcity","relation":"influences","label":"+","provenance":"derived","confidence":0.75,"rationale":"The whole power discussion is prompted by asking where the power for these deals comes from, and the speaker says grids are not keeping up and the US is running out of power. That the deployed compute is what is consuming the headroom is implied throughout and stated nowhere in one span."},{"id":"e_gpu_sentiment","from":"s_gpu","to":"v_sentiment","relation":"influences","label":"+","provenance":"derived","confidence":0.6,"rationale":"The chat question ties the hostility to the buildout and to electricity prices, and the speaker answers that until now no one cared because it was a small part of the big picture, which implies scale drives the hostility. Still a cross-speaker inference."},{"id":"e_slack_gen","from":"s_slack","to":"f_gen","relation":"influences","label":"+","provenance":"derived","confidence":0.65,"rationale":"The headroom is the fastest increment of supply: sipping from the grid off-peak delivers power with no new build at all. The speaker describes both the slack and the sipping but does not present the slack as what makes the early supply response possible."},{"id":"e_gen_slack","from":"f_gen","to":"s_slack","relation":"outflow","provenance":"derived","confidence":0.6,"rationale":"Headroom used is headroom gone, so the cheap supply response drains its own source and B1 weakens as it operates. Nothing in the transcript says the slack is finite; this is the stock-and-flow consequence of calling it a stock."},{"id":"e_gen_gpu","from":"f_gen","to":"s_gpu","relation":"influences","label":"+","provenance":"derived","confidence":0.7,"rationale":"The speaker says behind-the-meter gas is going to be the big driver to get these data centres online, so power availability gates how much committed capacity actually becomes deployed compute. The gating relationship is implied by the pronoun rather than stated."},{"id":"e_dlead_gen","from":"d_lead","to":"f_gen","relation":"delays","provenance":"derived","confidence":0.8,"rationale":"The lead time is stated in general terms about long lead time things; placing it specifically on the supply response inside B1, which is where it does its damage, is the modelling step."},{"id":"e_dover_lease","from":"d_overshoot","to":"f_lease","relation":"delays","provenance":"derived","confidence":0.75,"rationale":"The commitment rate is what overshoots: it is set by the fast loops and corrected only when the slow brake finally bites, which is the pattern Microsoft has already been through once."},{"id":"e_dover_sup1","from":"d_overshoot","to":"d_lead","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"The stated lead time is the fact that makes the brake slow."},{"id":"e_dover_sup2","from":"d_overshoot","to":"f_lease","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"Microsoft's yes-to-everything, pause and forced re-entry is one observed instance of the oscillation this node claims is structural."},{"id":"e_pl_r1_vendor","from":"f_vendor","to":"l_r1","relation":"part_of_loop","provenance":"derived","confidence":0.75,"rationale":"The vendor investment is the link that makes R1 circular rather than an ordinary customer relationship."},{"id":"e_pl_r1_enth","from":"v_enthusiasm","to":"l_r1","relation":"part_of_loop","provenance":"derived","confidence":0.75,"rationale":"Equity enthusiasm is R1's return arrow: it funds the next round of the same deal."},{"id":"e_pl_r1_commit","from":"s_commit","to":"l_r1","relation":"part_of_loop","provenance":"derived","confidence":0.7,"rationale":"The committed backlog is simultaneously OpenAI's obligation and the vendors' revenue, which is the link that converts the investment into the enthusiasm."},{"id":"e_pl_r2_lease","from":"f_lease","to":"l_r2","relation":"part_of_loop","provenance":"derived","confidence":0.8,"rationale":"The commitment rate is the action each player takes inside the arms race."},{"id":"e_pl_r2_price","from":"v_price","to":"l_r2","relation":"part_of_loop","provenance":"derived","confidence":0.8,"rationale":"Undercutting is how committed capacity is converted into a rival's share loss."},{"id":"e_pl_r2_share","from":"v_share","to":"l_r2","relation":"part_of_loop","provenance":"derived","confidence":0.8,"rationale":"Lost share is R2's return arrow, and the reason the speaker says the other guys come back in a big way."},{"id":"e_pl_b1_scarcity","from":"v_scarcity","to":"l_b1","relation":"part_of_loop","provenance":"derived","confidence":0.8,"rationale":"Scarcity is the gap B1 senses."},{"id":"e_pl_b1_gen","from":"f_gen","to":"l_b1","relation":"part_of_loop","provenance":"derived","confidence":0.8,"rationale":"New generation is B1's corrective flow, and the one the delay sits on."},{"id":"e_pl_b1_slack","from":"s_slack","to":"l_b1","relation":"part_of_loop","provenance":"derived","confidence":0.7,"rationale":"The grid headroom is B1's fast path, and the one that drains as it is used, which is why the loop weakens while it operates."},{"id":"e_pl_r3_gpu","from":"s_gpu","to":"l_r3","relation":"part_of_loop","provenance":"derived","confidence":0.65,"rationale":"Deployed compute is both what consumes the power and what the relieved limit allows more of, so it appears at both ends of R3."},{"id":"e_pl_r3_gen","from":"f_gen","to":"l_r3","relation":"part_of_loop","provenance":"derived","confidence":0.65,"rationale":"New generation is the link B1 and R3 share: the same flow that relieves scarcity also raises the ceiling, which is why one arrow can belong to a brake and an accelerator at once."},{"id":"e_pl_b2_sent","from":"v_sentiment","to":"l_b2","relation":"part_of_loop","provenance":"derived","confidence":0.55,"rationale":"Public hostility is the sensing link of the social-licence loop."},{"id":"e_pl_b2_lease","from":"f_lease","to":"l_b2","relation":"part_of_loop","provenance":"derived","confidence":0.55,"rationale":"Blocked sites act on the same commitment rate that R2 is driving up, which is why the two loops fight over one variable."},{"id":"e_lp_rule_slack","from":"lp_rule","to":"s_slack","relation":"acts_on","provenance":"derived","confidence":0.6,"rationale":"The intervention works by making the existing grid headroom usable rather than by adding generation."},{"id":"e_lp_rule_b1","from":"lp_rule","to":"l_b1","relation":"acts_on","provenance":"derived","confidence":0.6,"rationale":"It speeds up the only balancing loop in the picture, which is what would reduce the overshoot."},{"id":"e_lp_rule_sup","from":"lp_rule","to":"v_scarcity","relation":"supported_by","provenance":"derived","confidence":0.6,"rationale":"The stated scarcity is the problem the rule change addresses, and the reason anybody would pay for it."},{"id":"e_lp_info_enth","from":"lp_info","to":"v_enthusiasm","relation":"acts_on","provenance":"derived","confidence":0.7,"rationale":"Look-through exposure acts on the equity enthusiasm by making the circularity behind it measurable."},{"id":"e_lp_info_r1","from":"lp_info","to":"l_r1","relation":"acts_on","provenance":"derived","confidence":0.7,"rationale":"An information-flow intervention on a reinforcing loop does not break the loop; it lets the people inside it see its gain."},{"id":"e_lp_info_sup","from":"lp_info","to":"s_commit","relation":"supported_by","provenance":"derived","confidence":0.7,"rationale":"The half-trillion of cross-held commitments is the thing that would have to be netted out, and the reason nobody can build the DCF."},{"id":"e_lp_delay_dlead","from":"lp_delay","to":"d_lead","relation":"acts_on","provenance":"derived","confidence":0.65,"rationale":"The low-leverage intervention acts directly on the lag, which is exactly why Meadows ranks it near the bottom."},{"id":"e_lp_delay_gen","from":"lp_delay","to":"f_gen","relation":"acts_on","provenance":"derived","confidence":0.65,"rationale":"More turbines raise the corrective flow's rate without changing anything about the structure that produced the overshoot."}]}]}</script>
+<!--__DATA_END__-->
+
+<!--__EXT_START__-->
+<!-- Framework-specific visuals go here. Optional. Define:
+     window.__frameworkExtension = (ctx) => { /* ctx: { THREE, scene, group, graph, example, nodesById, positions, api } */ };
+     It is called after each example is laid out; add objects to ctx.group so they are removed on example switch. -->
+<!--__EXT_END__-->
+
+<script>
+  // Fallback notice if the module (and Three.js) never loads.
+  window.__engineReady = false;
+  setTimeout(() => { if (!window.__engineReady) { const f = document.getElementById('fallback'); f.innerHTML = 'Could not load Three.js from jsDelivr.<br><small>Check the network connection, then reload. The graph data is embedded in this file and is not lost.</small>'; } }, 9000);
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
+// ---------- palette (validated categorical slots, dark surface; see _meta and SPEC.md section 5) ----------
+const SLOT_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
+const SCHEMA_COLOR = '#898781';
+const INK = '#ffffff', INK2 = '#c3c2b7', MUTED = '#898781', HAIRLINE = '#2c2c2a', SURFACE = '#1a1a19';
+const IDEA = '#eda100';   // marks a node whose `idea` field names an opportunity
+const NODE_R = 2.2;
+
+// ---------- data ----------
+const $ = (id) => document.getElementById(id);
+let GRAPH;
+try { GRAPH = JSON.parse($('graph-data').textContent); } catch (e) { fatal('The embedded graph data is not valid JSON: ' + e.message); }
+if (!GRAPH || !GRAPH.framework || !Array.isArray(GRAPH.examples) || GRAPH.examples.length === 0) fatal('No graph data embedded yet. Run: node _meta/build.mjs <framework-dir>');
+
+function fatal(msg) { const f = $('fallback'); f.hidden = false; f.textContent = msg; window.__engineReady = true; throw new Error(msg); }
+
+const fw = GRAPH.framework;
+document.title = `${fw.name} · graph`;
+$('name').textContent = fw.name;
+$('category').textContent = (fw.category || '').replace(/^\d+-/, '').replace(/-/g, ' ');
+if (fw.wikipedia) $('wiki').href = fw.wikipedia; else $('wiki').remove();
+
+// slot colours: fixed order over content slots, never cycled; beyond 8, muted
+const slotStyle = new Map();
+let ci = 0;
+for (const s of GRAPH.slots) {
+  if (s.structural) slotStyle.set(s.id, { color: SCHEMA_COLOR, shape: s.shape || 'box', slot: s });
+  else slotStyle.set(s.id, { color: s.color || (ci < SLOT_COLORS.length ? SLOT_COLORS[ci++] : MUTED), shape: s.shape || 'sphere', slot: s });
+}
+const relLabel = new Map((GRAPH.relations || []).map(r => [r.id, r.label || r.id]));
+relLabel.set('supported_by', 'supported by');
+
+// ---------- renderer / scene ----------
+const stage = $('stage');
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false }); } catch (e) { fatal('WebGL is not available in this browser.'); }
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setClearColor(new THREE.Color(SURFACE), 1);
+stage.appendChild(renderer.domElement);
+const labelRenderer = new CSS2DRenderer({ element: $('labels') });
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 5000);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.08; controls.autoRotateSpeed = 0.6;
+scene.add(new THREE.AmbientLight(0xffffff, 1.4));
+const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(40, 80, 120); scene.add(key);
+const fill = new THREE.DirectionalLight(0xffffff, 0.5); fill.position.set(-60, -20, -80); scene.add(fill);
+
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, true); labelRenderer.setSize(w, h);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+// The header and the note strip lay out after the first script pass, so a one-shot resize()
+// leaves the WebGL buffer and the CSS2D label layer disagreeing (labels drift from their nodes).
+// Observing the stage keeps both renderers on its real size, at first paint and on every change.
+let roFrame = 0;
+const ro = new ResizeObserver(() => { cancelAnimationFrame(roFrame); roFrame = requestAnimationFrame(() => { resize(); resetView(); }); });
+ro.observe(stage);
+
+// ---------- state ----------
+const state = { exampleIndex: 0, showDerived: true, showGrounding: false, showLabels: true, group: null, nodes: new Map(), edges: [], hit: [], hover: null, selected: null, fit: null };
+
+// ---------- layouts ----------
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+function forceLayout(nodes, edges, pinned, seed, opts = {}) {
+  const rand = mulberry32(seed);
+  const pos = new Map();
+  const R0 = opts.radius || Math.max(18, nodes.length * 2.2);
+  for (const n of nodes) {
+    if (pinned.has(n.id)) pos.set(n.id, pinned.get(n.id).clone());
+    else pos.set(n.id, new THREE.Vector3((rand() - .5) * 2 * R0, (rand() - .5) * 2 * R0, (rand() - .5) * 2 * R0 * (opts.flat ? 0.15 : 1)));
+  }
+  const ids = nodes.map(n => n.id);
+  const L = opts.rest || 16, K = opts.repulse || 420;
+  const f = new Map(ids.map(id => [id, new THREE.Vector3()]));
+  const d = new THREE.Vector3();
+  for (let it = 0; it < 420; it++) {
+    const alpha = 0.9 * (1 - it / 420) + 0.04;
+    for (const id of ids) f.get(id).set(0, 0, 0);
+    for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) {
+      const a = pos.get(ids[i]), b = pos.get(ids[j]);
+      d.subVectors(a, b); let dist = d.length(); if (dist < 0.5) { d.set(rand() - .5, rand() - .5, rand() - .5); dist = 0.5; }
+      const s = K / (dist * dist); d.normalize().multiplyScalar(s);
+      f.get(ids[i]).add(d); f.get(ids[j]).sub(d);
+    }
+    for (const e of edges) {
+      if (!pos.has(e.from) || !pos.has(e.to)) continue;
+      const a = pos.get(e.from), b = pos.get(e.to);
+      d.subVectors(b, a); const dist = Math.max(d.length(), 0.01);
+      const s = (dist - L) * 0.05; d.normalize().multiplyScalar(s);
+      f.get(e.from).add(d); f.get(e.to).sub(d);
+    }
+    for (const id of ids) {
+      if (pinned.has(id)) continue;
+      const p = pos.get(id), ff = f.get(id);
+      ff.addScaledVector(p, -0.012);
+      if (opts.flat) ff.z -= p.z * 0.2;
+      const len = ff.length(); if (len > 6) ff.multiplyScalar(6 / len);
+      p.addScaledVector(ff, alpha);
+    }
+  }
+  return pos;
+}
+
+function treeLayout(ex) {
+  const nodes = ex.nodes, edges = ex.edges.filter(e => e.relation !== 'supported_by');
+  const level = new Map();
+  const explicit = nodes.every(n => Number.isInteger(n.level));
+  if (explicit) nodes.forEach(n => level.set(n.id, n.level));
+  else {
+    const out = new Map(nodes.map(n => [n.id, []])), und = new Map(nodes.map(n => [n.id, []]));
+    for (const e of edges) { out.get(e.from)?.push(e.to); und.get(e.from)?.push(e.to); und.get(e.to)?.push(e.from); }
+    const root = ex.layout.root && level.has(ex.layout.root) === false ? ex.layout.root : nodes[0].id;
+    const q = [root]; level.set(root, 0);
+    while (q.length) { const id = q.shift(); for (const t of out.get(id) || []) if (!level.has(t)) { level.set(t, level.get(id) + 1); q.push(t); } }
+    // unreachable by direction: attach by undirected distance
+    const q2 = [...level.keys()];
+    while (q2.length) { const id = q2.shift(); for (const t of und.get(id) || []) if (!level.has(t)) { level.set(t, level.get(id) + 1); q2.push(t); } }
+    for (const n of nodes) if (!level.has(n.id)) level.set(n.id, 0);
+    for (const n of nodes) if (Number.isInteger(n.level)) level.set(n.id, n.level);
+  }
+  const layers = new Map();
+  for (const n of nodes) { const l = level.get(n.id); if (!layers.has(l)) layers.set(l, []); layers.get(l).push(n); }
+  const order = [...layers.keys()].sort((a, b) => a - b);
+  const pos = new Map();
+  const right = ex.layout.direction === 'right';
+  const GAP_L = right ? 26 : 18, GAP_S = right ? 9 : 14;
+  // barycentre ordering pass to reduce crossings
+  const parents = new Map(nodes.map(n => [n.id, []]));
+  for (const e of edges) if (level.get(e.to) > level.get(e.from)) parents.get(e.to).push(e.from);
+  const xOf = new Map();
+  for (const l of order) {
+    const arr = layers.get(l);
+    if (l !== order[0]) arr.sort((a, b) => {
+      const pa = parents.get(a.id).filter(p => xOf.has(p)), pb = parents.get(b.id).filter(p => xOf.has(p));
+      const ma = pa.length ? pa.reduce((s, p) => s + xOf.get(p), 0) / pa.length : 0;
+      const mb = pb.length ? pb.reduce((s, p) => s + xOf.get(p), 0) / pb.length : 0;
+      return ma - mb;
+    });
+    arr.forEach((n, i) => {
+      const s = (i - (arr.length - 1) / 2) * GAP_S;
+      xOf.set(n.id, s);
+      pos.set(n.id, right ? new THREE.Vector3(l * GAP_L, -s, 0) : new THREE.Vector3(s, -l * GAP_L, 0));
+    });
+  }
+  for (const n of nodes) if (Array.isArray(n.pos)) pos.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  return pos;
+}
+
+function ringLayout(ex) {
+  const nodes = ex.nodes;
+  const onRing = nodes.filter(n => Number.isInteger(n.order) && !Array.isArray(n.pos));
+  const R = Math.max(22, onRing.length * 4.2);
+  const pinned = new Map();
+  onRing.sort((a, b) => a.order - b.order).forEach((n, i) => { const t = Math.PI / 2 - (i / onRing.length) * Math.PI * 2; pinned.set(n.id, new THREE.Vector3(Math.cos(t) * R, Math.sin(t) * R, 0)); });
+  for (const n of nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  if (pinned.size === nodes.length) return pinned;
+  return forceLayout(nodes, ex.edges, pinned, 7, { radius: R * 0.5, flat: true, rest: 12 });
+}
+
+function planeLayout(ex) {
+  const pinned = new Map();
+  for (const n of ex.nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  if (pinned.size === ex.nodes.length) return pinned;
+  return forceLayout(ex.nodes, ex.edges, pinned, 11, { flat: true, rest: 14 });
+}
+
+function computeLayout(ex) {
+  const mode = ex.layout?.mode || 'force';
+  if (mode === 'tree') return treeLayout(ex);
+  if (mode === 'ring') return ringLayout(ex);
+  if (mode === 'plane') return planeLayout(ex);
+  const pinned = new Map();
+  for (const n of ex.nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  return forceLayout(ex.nodes, ex.edges, pinned, 3);
+}
+
+// ---------- geometry helpers ----------
+const GEO = {
+  sphere: (r) => new THREE.SphereGeometry(r, 28, 20),
+  box: (r) => new THREE.BoxGeometry(r * 1.7, r * 1.7, r * 1.7),
+  diamond: (r) => new THREE.OctahedronGeometry(r * 1.25, 0),
+  cone: (r) => new THREE.ConeGeometry(r * 1.1, r * 2.2, 20),
+};
+function label2d(text, cls, innerTransform) {
+  const el = document.createElement('div'); el.className = cls;
+  if (innerTransform) {
+    const inner = document.createElement('span');
+    inner.className = 'lab'; inner.style.display = 'inline-block'; inner.style.transform = innerTransform;
+    inner.textContent = text; el.appendChild(inner);
+  } else el.textContent = text;
+  return new CSS2DObject(el);
+}
+
+function makeNode(n, p) {
+  const st = slotStyle.get(n.slot) || { color: MUTED, shape: 'sphere' };
+  const r = NODE_R * (n.size || 1);
+  const color = new THREE.Color(st.color);
+  const obj = new THREE.Group(); obj.position.copy(p);
+  let mesh, halo = null;
+  if (n.provenance === 'fact') {
+    mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.5, metalness: 0.08 }));
+  } else if (n.provenance === 'derived') {
+    mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.6, metalness: 0.0, transparent: true, opacity: 0.32, depthWrite: false }));
+    halo = new THREE.LineSegments(new THREE.WireframeGeometry(GEO[st.shape](r * 1.35)), new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.75 }));
+    obj.add(halo);
+  } else {
+    mesh = new THREE.Mesh(GEO[st.shape === 'sphere' ? 'box' : st.shape](r * 0.8), new THREE.MeshStandardMaterial({ color: new THREE.Color(SCHEMA_COLOR), roughness: 0.9, metalness: 0, transparent: true, opacity: 0.85 }));
+  }
+  mesh.userData.nodeId = n.id;
+  obj.add(mesh);
+  const hit = new THREE.Mesh(new THREE.SphereGeometry(r * 1.9, 10, 8), new THREE.MeshBasicMaterial({ visible: false }));
+  hit.userData.nodeId = n.id; obj.add(hit);
+  // A node carrying an `idea` is where this framework surfaces an underserved need or opportunity:
+  // mark it so a reader can find the payoff without opening every panel.
+  if (n.idea) {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(r * 1.6, r * 0.11, 8, 40), new THREE.MeshBasicMaterial({ color: new THREE.Color(IDEA) }));
+    ring.userData.isIdeaRing = true; obj.add(ring);
+  }
+  const glyph = n.provenance === 'fact' ? '●' : n.provenance === 'derived' ? '◌' : '▪';
+  const el = document.createElement('div'); el.className = 'nlabel ' + n.provenance;
+  const g = document.createElement('span'); g.className = 'g'; g.textContent = glyph; g.style.color = n.provenance === 'schema' ? MUTED : st.color;
+  const inner = document.createElement('span'); inner.className = 'lab';
+  inner.appendChild(g);
+  if (n.idea) { const st2 = document.createElement('span'); st2.className = 'idea-star'; st2.textContent = '★'; inner.appendChild(st2); }
+  inner.appendChild(document.createTextNode(n.label || n.id));
+  el.appendChild(inner);
+  // Anchor the label below whatever the node actually draws: a diamond reaches further than a
+  // sphere, a derived node adds a 1.35r halo, and an idea node adds a 1.6r ring. Anchoring at -r
+  // regardless (the old behaviour) made labels collide with their own marker on those nodes.
+  const SHAPE_EXTENT = { sphere: 1.0, box: 0.85, diamond: 1.25, cone: 1.1 };
+  let extent = (SHAPE_EXTENT[st.shape] ?? 1) * r;
+  if (n.provenance === 'derived') extent = Math.max(extent, r * 1.35);
+  if (n.idea) extent = Math.max(extent, r * 1.72);
+  const lab = new CSS2DObject(el); lab.position.set(0, -extent, 0); obj.add(lab);
+  return { node: n, obj, mesh, halo, hit, label: lab, r, color: st.color, edges: [] };
+}
+
+function makeEdge(e, A, B) {
+  const from = A.obj.position, to = B.obj.position;
+  const dir = new THREE.Vector3().subVectors(to, from); const len = dir.length(); dir.normalize();
+  const a = from.clone().addScaledVector(dir, A.r * 1.05), b = to.clone().addScaledVector(dir, -(B.r * 1.05 + (e.relation === 'supported_by' ? 0 : 1.6)));
+  const geom = new THREE.BufferGeometry().setFromPoints([a, b]);
+  let mat, arrow = null;
+  const grounding = e.relation === 'supported_by';
+  if (grounding) mat = new THREE.LineDashedMaterial({ color: new THREE.Color(MUTED), dashSize: 0.5, gapSize: 0.9, transparent: true, opacity: 0.55 });
+  else if (e.provenance === 'derived') mat = new THREE.LineDashedMaterial({ color: new THREE.Color(INK2), dashSize: 1.4, gapSize: 0.9, transparent: true, opacity: 0.8 });
+  else if (e.provenance === 'schema') mat = new THREE.LineBasicMaterial({ color: new THREE.Color(HAIRLINE), transparent: true, opacity: 0.9 });
+  else mat = new THREE.LineBasicMaterial({ color: new THREE.Color(INK2), transparent: true, opacity: 0.85 });
+  const line = new THREE.Line(geom, mat); line.computeLineDistances();
+  const grp = new THREE.Group(); grp.add(line);
+  if (!grounding && e.provenance !== 'schema') {
+    arrow = new THREE.Mesh(new THREE.ConeGeometry(0.75, 2.0, 10), new THREE.MeshBasicMaterial({ color: e.provenance === 'derived' ? new THREE.Color(INK2) : new THREE.Color(INK2), transparent: true, opacity: e.provenance === 'derived' ? 0.7 : 0.95 }));
+    arrow.position.copy(to).addScaledVector(dir, -(B.r * 1.05 + 1.0));
+    arrow.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+    grp.add(arrow);
+  }
+  let lab = null;
+  if (e.label) { lab = label2d(e.label, 'elabel'); lab.position.copy(a).lerp(b, 0.5); grp.add(lab); }
+  return { edge: e, grp, line, arrow, label: lab, A, B, grounding, len };
+}
+
+function drawDecor(ex, parent, bbox, offset) {
+  const L = ex.layout || {};
+  // Nodes are re-centred on their bounding box in every mode except plane, but decor coordinates
+  // are authored in the same space as node positions. Shift the decor by the same amount so a
+  // region or axis lines up with its nodes without the author having to centre on the origin.
+  const group = new THREE.Group();
+  group.position.copy(offset).negate();
+  parent.add(group);
+  const shift = (v) => new THREE.Vector3(v.x - offset.x, v.y - offset.y, v.z - offset.z);
+  const z = -0.6;
+  const lineMat = new THREE.LineBasicMaterial({ color: new THREE.Color(0x4a4a47) });
+  const dashMat = new THREE.LineDashedMaterial({ color: new THREE.Color(0x4a4a47), dashSize: 1.2, gapSize: 1.0 });
+  for (const r of (L.regions || [])) {
+    const w = Math.abs(r.x[1] - r.x[0]), h = Math.abs(r.y[1] - r.y[0]);
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.07, depthWrite: false }));
+    m.position.set((r.x[0] + r.x[1]) / 2, (r.y[0] + r.y[1]) / 2, z - 0.5); group.add(m);
+    const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(w, h)), new THREE.LineBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.25 }));
+    edge.position.copy(m.position); group.add(edge);
+    // Caption sits top-centre INSIDE the band. CSS2D centres its box on the position, so anchoring
+    // at the corner made every caption straddle the boundary and builders patched it page-side.
+    const lab = label2d(r.label, 'rlabel'); lab.position.set((r.x[0] + r.x[1]) / 2, Math.max(r.y[0], r.y[1]) - 3, z); group.add(lab);
+    bbox.expandByPoint(shift(new THREE.Vector3(r.x[0], r.y[0], 0))); bbox.expandByPoint(shift(new THREE.Vector3(r.x[1], r.y[1], 0)));
+  }
+  // Free-standing captions. Without this a builder has to fake one with a zero-length guide.
+  for (const an of (L.annotations || [])) {
+    const lab = label2d(an.text, an.style === 'axis' ? 'axlabel' : an.style === 'region' ? 'rlabel' : 'glabel');
+    lab.position.set(an.pos[0], an.pos[1], an.pos[2] ?? z); group.add(lab);
+    bbox.expandByPoint(shift(new THREE.Vector3(an.pos[0], an.pos[1], 0)));
+  }
+  for (const gd of (L.guides || [])) {
+    const a = new THREE.Vector3(gd.from[0], gd.from[1], gd.from[2] || z), b = new THREE.Vector3(gd.to[0], gd.to[1], gd.to[2] || z);
+    const ln = new THREE.Line(new THREE.BufferGeometry().setFromPoints([a, b]), gd.style === 'dashed' ? dashMat : lineMat); ln.computeLineDistances(); group.add(ln);
+    if (gd.label) { const lab = label2d(gd.label, 'glabel'); lab.position.copy(a).lerp(b, 0.5); group.add(lab); }
+    bbox.expandByPoint(shift(a)); bbox.expandByPoint(shift(b));
+  }
+  if (L.axes) {
+    const ax = L.axes.x, ay = L.axes.y;
+    const xmin = ax ? ax.min : bbox.min.x, xmax = ax ? ax.max : bbox.max.x, ymin = ay ? ay.min : bbox.min.y, ymax = ay ? ay.max : bbox.max.y;
+    const pad = 6;
+    if (ax) {
+      const y = ymin - pad;
+      group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(xmin, y, z), new THREE.Vector3(xmax, y, z)]), lineMat));
+      const lab = label2d(ax.label, 'axlabel'); lab.position.set((xmin + xmax) / 2, y - 7.5, z); group.add(lab);
+      for (const t of (ax.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(t.value, y - 1, z), new THREE.Vector3(t.value, y + 1, z)]), lineMat)); const tl = label2d(t.label, 'tick'); tl.position.set(t.value, y - 2.2, z); group.add(tl); }
+      bbox.expandByPoint(shift(new THREE.Vector3(xmin, y - 9, 0))); bbox.expandByPoint(shift(new THREE.Vector3(xmax, y, 0)));
+    }
+    if (ay) {
+      const x = xmin - pad;
+      group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x, ymin, z), new THREE.Vector3(x, ymax, z)]), lineMat));
+      const lab = label2d(ay.label, 'axlabel', 'rotate(-90deg)'); lab.position.set(x - 8, (ymin + ymax) / 2, z); group.add(lab);
+      for (const t of (ay.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x - 1, t.value, z), new THREE.Vector3(x + 1, t.value, z)]), lineMat)); const tl = label2d(t.label, 'tick', 'translateX(-50%)'); tl.position.set(x - 2.5, t.value, z); group.add(tl); }
+      bbox.expandByPoint(shift(new THREE.Vector3(x - 11, ymin, 0))); bbox.expandByPoint(shift(new THREE.Vector3(x, ymax, 0)));
+    }
+  }
+}
+
+// ---------- build an example ----------
+function clearGroup() {
+  if (!state.group) return;
+  state.group.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) { (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); } if (o.isCSS2DObject && o.element) o.element.remove(); });
+  scene.remove(state.group);
+  $('labels').replaceChildren();
+  state.group = null; state.nodes.clear(); state.edges = []; state.hit = []; state.hover = null; state.selected = null;
+  $('panel').hidden = true;
+}
+
+function buildExample(i) {
+  clearGroup();
+  state.exampleIndex = i;
+  const ex = GRAPH.examples[i];
+  const group = new THREE.Group(); scene.add(group); state.group = group;
+  const positions = computeLayout(ex);
+  // centre
+  const bbox = new THREE.Box3();
+  for (const p of positions.values()) bbox.expandByPoint(p);
+  const centre = bbox.getCenter(new THREE.Vector3());
+  const decorOffset = ex.layout?.mode !== 'plane' ? centre.clone() : new THREE.Vector3();
+  if (ex.layout?.mode !== 'plane') for (const p of positions.values()) p.sub(centre);
+  const bbox2 = new THREE.Box3(); for (const p of positions.values()) bbox2.expandByPoint(p);
+  for (const n of ex.nodes) { const rec = makeNode(n, positions.get(n.id)); state.nodes.set(n.id, rec); group.add(rec.obj); state.hit.push(rec.hit); }
+  for (const e of ex.edges) {
+    const A = state.nodes.get(e.from), B = state.nodes.get(e.to); if (!A || !B) continue;
+    const rec = makeEdge(e, A, B); state.edges.push(rec); group.add(rec.grp); A.edges.push(rec); B.edges.push(rec);
+  }
+  drawDecor(ex, group, bbox2, decorOffset);
+  // camera fit
+  const size = bbox2.getSize(new THREE.Vector3()), c = bbox2.getCenter(new THREE.Vector3());
+  state.fit = { size, centre: c, mode: ex.layout?.mode || 'force', distance: ex.layout?.camera?.distance };
+  renderNote(ex);
+  renderLegend(ex);    // legend first, so the camera fit can measure it
+  resetView();
+  applyVisibility();
+  for (const b of $('examples').children) b.setAttribute('aria-pressed', String(b.dataset.index == i));
+  try { window.__frameworkExtension?.({ THREE, scene, group, graph: GRAPH, example: ex, nodesById: state.nodes, positions, api: { slotStyle, label2d, colors: { INK, INK2, MUTED, HAIRLINE, SURFACE, SLOT_COLORS, SCHEMA_COLOR } } }); } catch (e) { console.error('framework extension failed', e); }
+}
+
+// Fit the graph into the part of the stage not covered by the legend (left) or the open panel (right),
+// so labels are not hidden under the cards at the default view.
+function safeArea(size) {
+  const W = stage.clientWidth, H = stage.clientHeight;
+  const sr = stage.getBoundingClientRect();
+  let left = 0, top = 0, right = 0;
+  const wide = W > 820;
+  const leg = $('legend'); if (wide && leg && leg.offsetParent !== null) { const r = leg.getBoundingClientRect(); left = Math.max(left, r.right - sr.left + 16); }
+  const panel = $('panel'); if (wide && panel && !panel.hidden) { const r = panel.getBoundingClientRect(); right = Math.max(right, sr.right - r.left + 16); }
+  return { W, H, left, top, right, w: Math.max(200, W - left - right), h: Math.max(200, H - top) };
+}
+function resetView() {
+  if (!state.fit) return;
+  const { size, centre, mode } = state.fit;
+  const sa = safeArea(size);
+  const halfFov = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  const bottomPad = 30;                       // px: labels hang below the lowest row of nodes
+  const availH = Math.max(150, sa.h - bottomPad);
+  // distance at which the graph (plus margins) fits the safe area: the vertical FOV spans sa.H pixels
+  const fitH = (size.y / 2 + 8) * sa.H / (halfFov * availH);
+  const sidePad = 110;                       // px: labels are centred under nodes and stick out sideways
+  const fitW = (size.x / 2 + 6) * sa.H / (halfFov * Math.max(200, sa.w - 2 * sidePad));
+  const dist = state.fit.distance || Math.max(50, Math.max(fitH, fitW) * (mode === 'force' ? 1.3 : 1.08) + size.z / 2);
+  // world units per pixel at the target depth; shift the centre so the graph sits in the safe area
+  const wpp = (2 * dist * halfFov) / sa.H;
+  const target = centre.clone().add(new THREE.Vector3(-((sa.left - sa.right) / 2) * wpp, ((sa.top - bottomPad) / 2) * wpp, 0));
+  const camPos = mode === 'force' ? target.clone().add(new THREE.Vector3(dist * 0.3, dist * 0.22, dist * 0.92)) : target.clone().add(new THREE.Vector3(0, 0, dist));
+  camera.position.copy(camPos); controls.target.copy(target);
+  camera.near = 0.1; camera.far = 5000; camera.updateProjectionMatrix(); controls.update();
+}
+
+function applyVisibility() {
+  for (const rec of state.nodes.values()) {
+    const vis = rec.node.provenance !== 'derived' || state.showDerived;
+    rec.obj.visible = vis;
+    rec.label.visible = vis && state.showLabels;
+    rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+  }
+  for (const rec of state.edges) {
+    const endsOk = rec.A.obj.visible && rec.B.obj.visible;
+    // a derived edge is reasoning too: it goes away with the derived nodes, even when both its ends are facts
+    const vis = endsOk && (!rec.grounding || state.showGrounding) && (rec.edge.provenance !== 'derived' || state.showDerived);
+    rec.grp.visible = vis;
+    if (rec.label) rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+  }
+  // The idea key explains a marker; drop it when no idea node is on screen (e.g. the facts-only view).
+  const ideaKey = $('legend')?.querySelector('.key-row.idea-key');
+  if (ideaKey) ideaKey.style.display = [...state.nodes.values()].some(r => r.node.idea && r.obj.visible) ? '' : 'none';
+  renderStats();
+}
+
+// ---------- legend / note / stats ----------
+function renderLegend(ex) {
+  const el = $('legend'); el.replaceChildren();
+  const h = (t) => { const x = document.createElement('h2'); x.textContent = t; return x; };
+  el.appendChild(h('Slots'));
+  const counts = new Map(); for (const n of ex.nodes) counts.set(n.slot, (counts.get(n.slot) || 0) + 1);
+  for (const s of GRAPH.slots) {
+    const row = document.createElement('div'); row.className = 'slot-row';
+    const chip = document.createElement('span'); const stl = slotStyle.get(s.id);
+    chip.className = 'chip' + (stl.shape && stl.shape !== 'sphere' ? ' ' + stl.shape : ''); chip.style.background = stl.color;
+    if (s.structural) chip.style.borderRadius = '2px';
+    const name = document.createElement('span'); name.textContent = s.label;
+    const tp = document.createElement('span'); tp.className = 'tp'; tp.textContent = s.structural ? 'schema' : (s.typical_provenance || '');
+    const n = document.createElement('span'); n.className = 'n'; n.textContent = String(counts.get(s.id) || 0);
+    row.append(chip, name, tp, n); row.title = s.description || ''; el.appendChild(row);
+  }
+  el.appendChild(h('Provenance'));
+  const ideaCount = ex.nodes.filter(n => n.idea).length;
+  const keys = [['●', 'fact: stated in the source (solid)'], ['◌', 'derived: LLM inference (translucent, dashed)'], ['▪', 'schema: framework scaffolding (grey)'], ['→', 'solid edge stated, dashed inferred'], ['⋯', 'grounding link: derived → fact']];
+  if (ideaCount) keys.push(['★', 'gold ring: an opportunity this framework surfaces']);
+  for (const [sym, txt] of keys) {
+    const row = document.createElement('div'); row.className = 'key-row';
+    if (sym === '★') row.classList.add('idea-key');
+    const a = document.createElement('span'); a.className = 'sym'; a.textContent = sym; if (sym === '★') a.style.color = IDEA;
+    const b = document.createElement('span'); b.textContent = txt; row.append(a, b); el.appendChild(row);
+  }
+  const st = document.createElement('div'); st.className = 'stats'; st.id = 'stats'; el.appendChild(st);
+  renderStats();
+}
+function renderStats() {
+  const st = $('stats'); if (!st) return;
+  const ex = GRAPH.examples[state.exampleIndex];
+  const nf = ex.nodes.filter(n => n.provenance === 'fact').length, nd = ex.nodes.filter(n => n.provenance === 'derived').length, ns = ex.nodes.filter(n => n.provenance === 'schema').length;
+  const ef = ex.edges.filter(e => e.provenance === 'fact').length, ed = ex.edges.filter(e => e.provenance === 'derived' && e.relation !== 'supported_by').length, eg = ex.edges.filter(e => e.relation === 'supported_by').length, es = ex.edges.filter(e => e.provenance === 'schema').length;
+  const visN = [...state.nodes.values()].filter(r => r.obj.visible).length, visE = state.edges.filter(r => r.grp.visible).length;
+  st.replaceChildren();
+  const line = (html) => { const d = document.createElement('div'); d.append(...html); st.appendChild(d); };
+  const b = (t) => { const x = document.createElement('b'); x.textContent = t; return x; };
+  line(['nodes ', b(String(nf)), ' fact · ', b(String(nd)), ' derived', ns ? ` · ${ns} schema` : '']);
+  line(['edges ', b(String(ef)), ' fact · ', b(String(ed)), ' derived · ', b(String(eg)), ' grounding', es ? ` · ${es} schema` : '']);
+  line([`showing ${visN} nodes, ${visE} edges`]);
+}
+function renderNote(ex) {
+  const el = $('note'); el.replaceChildren();
+  const h = document.createElement('h3'); h.textContent = ex.title || ex.id; el.appendChild(h);
+  const p = document.createElement('p'); p.textContent = ex.summary || ''; el.appendChild(p);
+  const s = document.createElement('div'); s.className = 'src';
+  if (ex.source?.type === 'transcript') s.textContent = `TBPN ${ex.source.date} · ${ex.source.episode_title || ''}`;
+  else if (ex.source?.type === 'text') s.textContent = `source: ${ex.source.title || 'scenario text'}`;
+  el.appendChild(s);
+}
+
+// ---------- panel ----------
+function openPanel(rec) {
+  const n = rec.node, ex = GRAPH.examples[state.exampleIndex];
+  const panel = $('panel'); panel.replaceChildren(); panel.hidden = false;
+  const head = document.createElement('div'); head.className = 'p-head';
+  const slotEl = document.createElement('div'); slotEl.className = 'p-slot';
+  const chip = document.createElement('span'); chip.className = 'chip'; chip.style.background = rec.color; slotEl.append(chip, document.createTextNode((slotStyle.get(n.slot)?.slot?.label) || n.slot));
+  const close = document.createElement('button'); close.className = 'close'; close.type = 'button'; close.textContent = '×'; close.setAttribute('aria-label', 'Close'); close.onclick = () => { panel.hidden = true; state.selected = null; };
+  head.append(slotEl, close); panel.appendChild(head);
+  const h3 = document.createElement('h3'); h3.textContent = n.label; panel.appendChild(h3);
+  const badge = document.createElement('span'); badge.className = 'badge ' + n.provenance; badge.textContent = n.provenance; panel.appendChild(badge);
+  const text = document.createElement('p'); text.textContent = n.text; panel.appendChild(text);
+  const h4 = (t) => { const x = document.createElement('h4'); x.textContent = t; panel.appendChild(x); };
+  if (n.provenance === 'fact') {
+    h4(n.paraphrase ? 'Paraphrased from the source' : 'Quoted from the source');
+    const q = document.createElement('blockquote'); q.textContent = n.source_quote || ''; panel.appendChild(q);
+    const r = document.createElement('div'); r.className = 'ref'; r.textContent = n.source_ref || ''; panel.appendChild(r);
+  } else if (n.provenance === 'derived') {
+    h4('Confidence');
+    const c = document.createElement('div'); c.className = 'conf'; c.textContent = `${Math.round((n.confidence || 0) * 100)} / 100`; panel.appendChild(c);
+    const bar = document.createElement('div'); bar.className = 'confbar'; const fillEl = document.createElement('i'); fillEl.style.width = `${Math.round((n.confidence || 0) * 100)}%`; bar.appendChild(fillEl); panel.appendChild(bar);
+    h4('Why the LLM infers this'); const r = document.createElement('p'); r.textContent = n.rationale || ''; panel.appendChild(r);
+    if (n.idea) { h4('Opportunity this points to'); const ip = document.createElement('p'); ip.className = 'idea'; ip.textContent = n.idea; panel.appendChild(ip); }
+    const sup = ex.edges.filter(e => e.relation === 'supported_by' && e.from === n.id).map(e => state.nodes.get(e.to)).filter(Boolean);
+    if (sup.length) { h4('Supported by'); const ul = document.createElement('ul'); for (const s of sup) { const li = document.createElement('li'); li.textContent = s.node.label; const q = document.createElement('div'); q.className = 'ref'; q.textContent = (s.node.source_quote || '').slice(0, 140); li.appendChild(q); ul.appendChild(li); } panel.appendChild(ul); }
+  } else {
+    const r = document.createElement('p'); r.className = 'ref'; r.textContent = 'Framework scaffolding: neither a fact nor an inference.'; panel.appendChild(r);
+  }
+  const rels = rec.edges.filter(e => e.edge.relation !== 'supported_by');
+  if (rels.length) {
+    h4('Edges'); const ul = document.createElement('ul');
+    for (const e of rels) { const li = document.createElement('li'); const out = e.edge.from === n.id; const other = out ? e.B.node : e.A.node; const rl = document.createElement('span'); rl.className = 'rel'; rl.textContent = (out ? '→ ' : '← ') + (relLabel.get(e.edge.relation) || e.edge.relation) + (e.edge.provenance === 'derived' ? ' (inferred)' : '') + ' '; li.append(rl, document.createTextNode(other.label)); ul.appendChild(li); }
+    panel.appendChild(ul);
+  }
+  if (Array.isArray(n.entities) && n.entities.length) { h4('Entities'); const p = document.createElement('p'); p.className = 'ref'; p.textContent = n.entities.join(', '); panel.appendChild(p); }
+}
+
+// ---------- interaction ----------
+const raycaster = new THREE.Raycaster(); const pointer = new THREE.Vector2(); const tooltip = $('tooltip');
+function setHover(rec) {
+  if (state.hover === rec) return;
+  if (state.hover) { const h = state.hover; h.mesh.scale.setScalar(1); if (h.mesh.material.emissive) h.mesh.material.emissive.setHex(0x000000); for (const e of h.edges) { e.line.material.color.set(e.grounding ? MUTED : (e.edge.provenance === 'schema' ? HAIRLINE : INK2)); if (e.arrow) e.arrow.material.color.set(INK2); } }
+  state.hover = rec;
+  if (rec) { rec.mesh.scale.setScalar(1.18); if (rec.mesh.material.emissive) rec.mesh.material.emissive.set(rec.color).multiplyScalar(0.35); for (const e of rec.edges) { if (!e.grp.visible) continue; e.line.material.color.set(INK); if (e.arrow) e.arrow.material.color.set(INK); } }
+  renderer.domElement.style.cursor = rec ? 'pointer' : '';
+}
+renderer.domElement.addEventListener('pointermove', (ev) => {
+  const r = renderer.domElement.getBoundingClientRect();
+  pointer.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
+  raycaster.setFromCamera(pointer, camera);
+  const hits = raycaster.intersectObjects(state.hit.filter(h => h.parent.visible), false);
+  const rec = hits.length ? state.nodes.get(hits[0].object.userData.nodeId) : null;
+  setHover(rec);
+  if (rec) {
+    tooltip.replaceChildren();
+    const a = document.createElement('div'); a.className = 't-label'; a.textContent = rec.node.label;
+    const b = document.createElement('div'); b.className = 't-meta'; b.textContent = `${(slotStyle.get(rec.node.slot)?.slot?.label) || rec.node.slot} · ${rec.node.provenance}${rec.node.provenance === 'derived' ? ' ' + Math.round((rec.node.confidence || 0) * 100) + '%' : ''}`;
+    const c = document.createElement('div'); c.textContent = rec.node.text.length > 160 ? rec.node.text.slice(0, 157) + '…' : rec.node.text;
+    tooltip.append(a, b, c);
+    tooltip.style.display = 'block';
+    const mx = ev.clientX - r.left + 14, my = ev.clientY - r.top + 14;
+    tooltip.style.left = Math.min(mx, r.width - 320) + 'px'; tooltip.style.top = Math.min(my, r.height - 120) + 'px';
+  } else tooltip.style.display = 'none';
+});
+renderer.domElement.addEventListener('pointerleave', () => { setHover(null); tooltip.style.display = 'none'; });
+let downAt = null;
+renderer.domElement.addEventListener('pointerdown', (ev) => { downAt = [ev.clientX, ev.clientY]; });
+renderer.domElement.addEventListener('pointerup', (ev) => {
+  if (!downAt || Math.hypot(ev.clientX - downAt[0], ev.clientY - downAt[1]) > 5) return;
+  if (state.hover) { state.selected = state.hover; openPanel(state.hover); } else { $('panel').hidden = true; state.selected = null; }
+});
+document.addEventListener('keydown', (ev) => {
+  if (ev.target && /input|textarea|select/i.test(ev.target.tagName)) return;
+  if (ev.key === 'd') { $('t-derived').checked = !$('t-derived').checked; $('t-derived').dispatchEvent(new Event('change')); }
+  if (ev.key === 'g') { $('t-grounding').checked = !$('t-grounding').checked; $('t-grounding').dispatchEvent(new Event('change')); }
+  if (ev.key === 'r') resetView();
+  if (ev.key === 'Escape') { $('panel').hidden = true; state.selected = null; }
+});
+$('t-derived').addEventListener('change', (e) => { state.showDerived = e.target.checked; applyVisibility(); });
+$('t-grounding').addEventListener('change', (e) => { state.showGrounding = e.target.checked; applyVisibility(); });
+$('t-labels').addEventListener('change', (e) => { state.showLabels = e.target.checked; applyVisibility(); });
+$('t-rotate').addEventListener('change', (e) => { controls.autoRotate = e.target.checked; });
+$('reset').addEventListener('click', resetView);
+
+// example selector
+const seg = $('examples');
+const kindCount = new Map(); for (const ex of GRAPH.examples) kindCount.set(ex.kind, (kindCount.get(ex.kind) || 0) + 1);
+GRAPH.examples.forEach((ex, i) => { const b = document.createElement('button'); b.type = 'button'; b.dataset.index = i; b.textContent = kindCount.get(ex.kind) > 1 ? (ex.title || ex.id) : ex.kind === 'tbpn' ? 'From TBPN' : ex.kind === 'classic' ? 'Classic' : (ex.title || ex.id); b.title = ex.title || ''; b.setAttribute('aria-pressed', 'false'); b.addEventListener('click', () => buildExample(i)); seg.appendChild(b); });
+
+// ---------- go ----------
+// URL parameters set the initial state (deep links, scripted screenshots): ?example=1&derived=0&grounding=1&labels=0&rotate=1
+const q = new URLSearchParams(location.search);
+const flag = (k, def) => q.has(k) ? !['0', 'false', 'off', 'no'].includes(q.get(k).toLowerCase()) : def;
+state.showDerived = flag('derived', true); $('t-derived').checked = state.showDerived;
+state.showGrounding = flag('grounding', false); $('t-grounding').checked = state.showGrounding;
+state.showLabels = flag('labels', true); $('t-labels').checked = state.showLabels;
+controls.autoRotate = flag('rotate', false); $('t-rotate').checked = controls.autoRotate;
+let startIndex = parseInt(q.get('example') || '0', 10);
+if (!(startIndex >= 0 && startIndex < GRAPH.examples.length)) startIndex = Math.max(0, GRAPH.examples.findIndex(x => x.id === q.get('example')));
+resize();
+buildExample(startIndex);
+$('fallback').hidden = true; window.__engineReady = true;
+function loop() {
+  requestAnimationFrame(loop);
+  controls.update();
+  for (const rec of state.nodes.values()) for (const c of rec.obj.children) if (c.userData.isIdeaRing) c.quaternion.copy(camera.quaternion);
+  renderer.render(scene, camera); labelRenderer.render(scene, camera);
+}
+loop();
+</script>
+</body>
+</html>
