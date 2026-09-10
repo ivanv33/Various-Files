@@ -51,6 +51,10 @@ The viewer's "hide LLM-derived" toggle shows what the data alone gives you: it h
 
 The framework's own slot structure (for example that Toulmin has a Warrant slot) is schema, not provenance. Provenance is about the content of a specific node.
 
+Edges touching a schema node may themselves be `schema` when the relationship is definitional rather than judged: a step belonging to a PDCA phase, a cause hanging on its Ishikawa category rib. Where the placement is a judgment (which Cynefin domain a situation falls in, which Wardley stage a component sits at) the edge is `derived` with a confidence. The validator accepts `schema` on an edge only when an endpoint is a schema node.
+
+Registry additions: seven relations and one slot were added by framework agents during the build, each for the same reason (every registry relation for that framework originated at a derived node, so facts could not connect to facts); they are marked `added_during_build` in `_meta/frameworks.json` and are part of the schema.
+
 One narrow exception for scaffolding: some frameworks draw their fixed categories as nodes (the six Ishikawa categories, the four Cynefin domains, Wardley's evolution stages, Pólya's and PDCA's phases). Such a slot is marked `structural: true` in the registry, and its nodes carry `provenance: "schema"`. Schema nodes are neither facts nor inferences; they need no quote, confidence or rationale, they are drawn as neutral grey markers, they stay visible when derived items are hidden, and they are excluded from the fact/derived counts. Only slots flagged structural may use `schema`; content never may.
 
 Why binary and not three-way: a "hybrid" class blurs the rule agents apply. When a slot is partly stated and partly inferred, split it: a fact node for the stated part and a derived node for the inferred part, linked by `supported_by`.

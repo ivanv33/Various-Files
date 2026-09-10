@@ -142,6 +142,12 @@
           "id": "generalizes_to",
           "label": "generalizes to",
           "description": "learning generalizes to a systemic rule"
+        },
+        {
+          "id": "constrains",
+          "label": "constrains",
+          "description": "a context condition bounds what an action can achieve, up to preventing it outright",
+          "added_during_build": true
         }
       ],
       "layout_hint": "tree, direction right: chain Context -> Action -> Result -> Learning -> Rule"
@@ -193,6 +199,12 @@
           "id": "answered_by",
           "label": "answered by",
           "description": "question is answered by the answer"
+        },
+        {
+          "id": "elaborates",
+          "label": "elaborates",
+          "description": "one statement adds detail to another statement in the same slot",
+          "added_during_build": true
         }
       ],
       "layout_hint": "tree, direction right: chain S -> C -> Q -> A"
@@ -408,6 +420,13 @@
           "label": "Overlap",
           "typical_provenance": "derived",
           "description": "An item or concern that lands in two buckets; a partition defect."
+        },
+        {
+          "id": "cut",
+          "label": "Cut",
+          "description": "The single dimension the whole is cut on. Choosing it is the whole of MECE: one cut gives exclusive branches, two cuts at once give overlaps.",
+          "typical_provenance": "derived",
+          "added_during_build": true
         }
       ],
       "relations": [
@@ -430,6 +449,12 @@
           "id": "violates",
           "label": "violates",
           "description": "overlap violates exclusivity between buckets"
+        },
+        {
+          "id": "cut_by",
+          "label": "cut by",
+          "description": "the whole, or a branch of it, is cut by one partitioning dimension",
+          "added_during_build": true
         }
       ],
       "layout_hint": "tree, direction down: whole, buckets, items; gaps drawn as hollow leaves"
@@ -968,6 +993,18 @@
           "id": "generalizes",
           "label": "generalizes",
           "description": "generalization generalizes the plan"
+        },
+        {
+          "id": "states",
+          "label": "states",
+          "description": "the problem as posed states the unknown, the data or the condition",
+          "added_during_build": true
+        },
+        {
+          "id": "uses",
+          "label": "uses",
+          "description": "a step or plan consumes a datum, a quantity from the problem, or the output of an earlier step",
+          "added_during_build": true
         }
       ],
       "layout_hint": "tree, direction right: four phase columns"
@@ -1103,6 +1140,12 @@
           "id": "guarded_by",
           "label": "guarded by",
           "description": "pathway is guarded by a safeguard"
+        },
+        {
+          "id": "rests_on",
+          "label": "rests on",
+          "description": "the source itself ties the plan, or a stated claim about it, to this stated condition, whether as a dependency the plan needs or a constraint it collides with; because the link is asserted rather than inferred, this edge can be a fact edge",
+          "added_during_build": true
         }
       ],
       "layout_hint": "tree, direction down: goal, assumed failure, pathways, causes and safeguards"
@@ -1155,6 +1198,12 @@
           "id": "calls_for",
           "label": "calls for",
           "description": "situation calls for a response"
+        },
+        {
+          "id": "observed_in",
+          "label": "observed in",
+          "description": "An observation belongs to a situation. A fact edge when one span of the source states both; derived when the link has to be inferred across turns.",
+          "added_during_build": true
         }
       ],
       "layout_hint": "plane: four quadrant regions with Disorder in the centre; situations placed inside their domain"
@@ -1386,6 +1435,12 @@
           "id": "restarts",
           "label": "restarts",
           "description": "decision restarts the cycle with a new hypothesis"
+        },
+        {
+          "id": "advances_to",
+          "label": "advances to",
+          "description": "the cycle turns from this phase to the next; the loop's own arrow, part of the framework rather than the source",
+          "added_during_build": true
         }
       ],
       "layout_hint": "ring: the four phases around the circle, content nodes near their phase"
@@ -1468,5 +1523,6 @@
       ],
       "layout_hint": "force, or plane with stocks as boxes and loops drawn as rings"
     }
-  ]
+  ],
+  "build_note": "Seven relations and one slot carry added_during_build: true. Each was added by a framework agent with a stated reason recorded in that folder state.json.notes and README; the common cause was that every registry relation for the framework originated at a derived node, so facts could not connect to facts. They are part of the schema for the merge."
 }
