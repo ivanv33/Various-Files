@@ -162,14 +162,11 @@
 
 <!--__EXT_START__-->
 <script>
-// Pyramid Principle. Two things the data-driven engine cannot express:
-//  1. the three tiers of the pyramid are trapezoids, not rectangles, so `regions` cannot draw
-//     them; the outline is carried by `layout.guides` and this block fills each tier in its slot
-//     colour and writes the tier name in the margin beside it;
-//  2. the node the opportunity is read from (any node carrying an `idea`) gets a gold ring, and
-//     the ring is explained in the legend. The ring is parented to the node's own group, so it
-//     appears and disappears with the node when LLM-derived items are toggled.
-// Tier corners repeat the apex / shoulder / shoulder / base points used by layout.guides.
+// Pyramid Principle. One thing the data-driven engine cannot express: the three tiers of the
+// pyramid are trapezoids, not rectangles, so `regions` cannot draw them; the outline is carried by
+// `layout.guides` and this block fills each tier in its slot colour and writes the tier name in
+// the margin beside it. The idea marking (gold ring, star, legend row, panel section) is the
+// engine's. Tier corners repeat the apex / shoulder / shoulder / base points used by layout.guides.
 window.__PYRAMID_TIERS = {
   classic: {
     apex: [0, 58], shoulders: [[40, 32], [52, 14]], base: [62, -22],
@@ -181,72 +178,40 @@ window.__PYRAMID_TIERS = {
   },
 };
 window.__frameworkExtension = (ctx) => {
-  const { THREE, example, nodesById, group, api } = ctx;
-  const GOLD = '#c98500';
-
-  // ---- the pyramid itself: one filled trapezoid per tier, in the tier's slot colour ----
+  const { THREE, example, group, api } = ctx;
   const tier = window.__PYRAMID_TIERS[example.id];
-  if (tier) {
-    const slots = ['governing_thought', 'key_line', 'support'];
-    const [s1, s2] = tier.shoulders;
-    const rows = [
-      [[tier.apex[0], tier.apex[1]], [tier.apex[0], tier.apex[1]], s1],   // cap: a triangle
-      [[-s1[0], s1[1]], [s1[0], s1[1]], s2],
-      [[-s2[0], s2[1]], [s2[0], s2[1]], tier.base],
-    ];
-    rows.forEach(([tl, tr, bot], i) => {
-      const st = api.slotStyle.get(slots[i]);
-      const shape = new THREE.Shape();
-      shape.moveTo(tl[0], tl[1]);
-      shape.lineTo(tr[0], tr[1]);
-      shape.lineTo(bot[0], bot[1]);
-      shape.lineTo(-bot[0], bot[1]);
-      shape.closePath();
-      const mesh = new THREE.Mesh(
-        new THREE.ShapeGeometry(shape),
-        new THREE.MeshBasicMaterial({
-          color: new THREE.Color((st && st.color) || '#888888'),
-          transparent: true, opacity: 0.085, depthWrite: false, side: THREE.DoubleSide,
-        })
-      );
-      mesh.position.z = -1.4;
-      group.add(mesh);
-    });
-    ['Governing thought', 'Key line', 'Support'].forEach((text, i) => {
-      const p = tier.labels[i];
-      const lab = api.label2d(text, 'rlabel');
-      lab.position.set(p[0], p[1], -0.6);
-      group.add(lab);
-    });
-  }
-
-  let marked = 0;
-  for (const n of example.nodes) {
-    if (!n.idea) continue;
-    const rec = nodesById.get(n.id);
-    if (!rec) continue;
-    marked++;
-    const r = rec.r * 1.75, pts = [];
-    for (let i = 0; i <= 72; i++) { const t = i / 72 * Math.PI * 2; pts.push(new THREE.Vector3(Math.cos(t) * r, Math.sin(t) * r, 0)); }
-    const ring = new THREE.LineLoop(
-      new THREE.BufferGeometry().setFromPoints(pts),
-      new THREE.LineBasicMaterial({ color: new THREE.Color(GOLD), transparent: true, opacity: 0.9 })
+  if (!tier) return;
+  const slots = ['governing_thought', 'key_line', 'support'];
+  const [s1, s2] = tier.shoulders;
+  const rows = [
+    [[tier.apex[0], tier.apex[1]], [tier.apex[0], tier.apex[1]], s1],   // cap: a triangle
+    [[-s1[0], s1[1]], [s1[0], s1[1]], s2],
+    [[-s2[0], s2[1]], [s2[0], s2[1]], tier.base],
+  ];
+  rows.forEach(([tl, tr, bot], i) => {
+    const st = api.slotStyle.get(slots[i]);
+    const shape = new THREE.Shape();
+    shape.moveTo(tl[0], tl[1]);
+    shape.lineTo(tr[0], tr[1]);
+    shape.lineTo(bot[0], bot[1]);
+    shape.lineTo(-bot[0], bot[1]);
+    shape.closePath();
+    const mesh = new THREE.Mesh(
+      new THREE.ShapeGeometry(shape),
+      new THREE.MeshBasicMaterial({
+        color: new THREE.Color((st && st.color) || '#888888'),
+        transparent: true, opacity: 0.085, depthWrite: false, side: THREE.DoubleSide,
+      })
     );
-    rec.obj.add(ring);
-  }
-  if (!marked) return;
-  const leg = document.getElementById('legend');
-  if (!leg || leg.querySelector('[data-idea-key]')) return;
-  const row = document.createElement('div');
-  row.className = 'key-row';
-  row.setAttribute('data-idea-key', '1');
-  const sym = document.createElement('span');
-  sym.className = 'sym'; sym.textContent = '\u25EF'; sym.style.color = GOLD;
-  const txt = document.createElement('span');
-  txt.textContent = 'gold ring: the node the opportunity is read from';
-  row.append(sym, txt);
-  const stats = leg.querySelector('.stats');
-  if (stats) leg.insertBefore(row, stats); else leg.appendChild(row);
+    mesh.position.z = -1.4;
+    group.add(mesh);
+  });
+  ['Governing thought', 'Key line', 'Support'].forEach((text, i) => {
+    const p = tier.labels[i];
+    const lab = api.label2d(text, 'rlabel');
+    lab.position.set(p[0], p[1], -0.6);
+    group.add(lab);
+  });
 };
 </script>
 <!--__EXT_END__-->
