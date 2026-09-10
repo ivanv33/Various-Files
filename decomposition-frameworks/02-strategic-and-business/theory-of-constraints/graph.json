@@ -445,7 +445,7 @@
           "confidence": 0.8,
           "rationale": "Applies Jonah's rule in sentence 10 to the batch-size decision. Because the rule is stated only for the NCX-10 and sentence 3 says every other station has idle time, the plant-wide setup logic in ca1 fails off the constraint, and with ca4 dropped the batch size can vary by station.",
           "pos": [
-            47,
+            50,
             -8
           ],
           "size": 1.3
@@ -681,11 +681,11 @@
         "guides": [
           {
             "from": [
-              -48,
+              -52,
               -22
             ],
             "to": [
-              -47.99,
+              -51.99,
               -22
             ],
             "style": "solid",
@@ -904,7 +904,7 @@
             "CoreWeave"
           ],
           "pos": [
-            -40,
+            -44,
             -22
           ],
           "size": 1.5
@@ -922,7 +922,7 @@
           ],
           "pos": [
             -16,
-            -6
+            -2
           ],
           "size": 1.5
         },
@@ -956,7 +956,7 @@
           ],
           "pos": [
             24,
-            -6
+            -2
           ],
           "size": 1.5
         },
@@ -987,7 +987,7 @@
           "rationale": "Venturo moves from 'we need to build x gigawatts' straight to 'I can build X from my balance sheet' with nothing in between. The step is only valid if no other party will fund speculative capacity, which he never says and which the offtake and debt markets around him partly contradict.",
           "pos": [
             4,
-            -11
+            -9
           ],
           "size": 0.85
         },
@@ -1028,7 +1028,7 @@
           "confidence": 0.8,
           "rationale": "The conflict is stated as forced ('you don't get both'), so the belief joining the two sides is left implicit. It is the tightest of the four assumptions: it is true of equity-funded capacity and false of capacity funded against a contract.",
           "pos": [
-            46,
+            48,
             -23
           ],
           "size": 0.85
@@ -1046,8 +1046,8 @@
           ],
           "idea": "A forward market in compute - standardised, tradable GPU-hour contracts underwritten by investment-grade offtakers - is the missing instrument that would let neoclouds build to the unhaircut demand signal.",
           "pos": [
-            46,
-            -13
+            48,
+            -11
           ],
           "size": 1.3
         },
@@ -1061,7 +1061,7 @@
           "rationale": "Denies a2: if demand risk can be sold to a party that can diversify it, protecting the company stops requiring a smaller build. It is the weaker injection because nothing in the transcript shows such a market exists; it is the precondition inj1 needs and the reason inj1 has not already happened.",
           "idea": "Underwriting infrastructure for compute - a quality grade, delivery telemetry and shortfall insurance that make a GPU-hour financeable - is the underserved layer beneath every compute offtake contract.",
           "pos": [
-            46,
+            48,
             -36
           ],
           "size": 1.3
