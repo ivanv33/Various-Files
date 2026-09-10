@@ -1071,6 +1071,23 @@
           "size": 1.15
         },
         {
+          "id": "d7",
+          "slot": "diagnosis",
+          "label": "Rate exposure is funding-mix exposure",
+          "text": "The obstacle inside the rate criticism is not the level of rates but how fast a move reaches the cost of capital, and that speed is set by the mix and tenor of the funding agreements rather than by the lending model itself.",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "The hosts state the criticism and Levchin, in his reply, describes the mechanism: every funder has a benchmark tied to fed funds, and long-dated contracts make a rate change a slow trickle into cost of capital. Reading those together as the obstacle a funding policy answers, rather than a property of rates, joins two speakers, which puts it in the contestable band.",
+          "entities": [
+            "Affirm"
+          ],
+          "pos": [
+            35,
+            13
+          ],
+          "size": 1.15
+        },
+        {
           "id": "g1",
           "slot": "guiding_policy",
           "label": "No late fees, no compounding",
@@ -1394,6 +1411,15 @@
           "rationale": "Takes the asterisk behaviour to be the industry's revenue mechanism rather than a consumer failing."
         },
         {
+          "id": "te35",
+          "from": "d5",
+          "to": "c1",
+          "relation": "diagnoses",
+          "provenance": "derived",
+          "confidence": 0.7,
+          "rationale": "The warning that the profit is in the fees is the situation d5 reads: if that pool is refused, the obstacle inside the warning is that margin has to come from selection instead."
+        },
+        {
           "id": "te16",
           "from": "d6",
           "to": "c5",
@@ -1450,11 +1476,29 @@
         {
           "id": "te22",
           "from": "g3",
-          "to": "c3",
+          "to": "d7",
           "relation": "addresses",
           "provenance": "derived",
           "confidence": 0.7,
-          "rationale": "Diversified, long-dated sourcing is what turns a rate move into a slow trickle rather than a shock, which is the answer to the hosts' criticism; the transcript never connects the two."
+          "rationale": "Diversified, long-dated sourcing is what turns a rate move into a slow trickle rather than a shock; the policy answers the funding-mix obstacle, not the rate level. The transcript states the policy and the trickle but never connects them to the hosts' criticism."
+        },
+        {
+          "id": "te33",
+          "from": "d7",
+          "to": "c3",
+          "relation": "diagnoses",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "Names the obstacle inside the hosts' criticism: a rate move hurts only as fast as it reaches the cost of capital, which is a funding-book property."
+        },
+        {
+          "id": "te34",
+          "from": "d7",
+          "to": "c3",
+          "relation": "supported_by",
+          "provenance": "derived",
+          "confidence": 0.65,
+          "rationale": "The stated criticism is the situation the diagnosis reads; Levchin's slow-trickle description in reply is the mechanism it names."
         },
         {
           "id": "te23",
