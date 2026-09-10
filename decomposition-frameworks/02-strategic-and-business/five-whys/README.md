@@ -160,14 +160,14 @@ Derived edges. Nine continue the chain below the third why, using facts the spea
 - `t4` `y3` -> `y4` (because) [derived 0.75] Rationale: Armstrong gives the size of the bribes immediately after saying which agents were targeted most, but never states the first as the reason for the second; that the wage gap is what made those agents the ones approached is the standard reading of the two lines together.
 - `t5` `y3` -> `y5` (because) [derived 0.70] Rationale: The 24/7 requirement is given as the reason support cannot simply move to the United States, which implies it is also why the work sits with overseas contractors in the first place. The constraint is stated; this causal step is not.
 - `t6` `y2` -> `y6` (because) [derived 0.70] Rationale: The bribe produced name and address with no system broken into, which only works if the agents can read that data as a matter of routine.
-- `t7` `y6` -> `y8` (because) [derived 0.65]
+- `t7` `y6` -> `y8` (because) [derived 0.65] Rationale: Controls that limit the scope of a breach without removing the access are exactly what standing read access looks like from the inside; joining the admission to the mechanism is the inference.
 - `t8` `y6` -> `y7` (because) [derived 0.60] Rationale: Armstrong says the exposure was not only in Coinbase's own systems. That vendor staff hold the same standing access, and that this is why the vendors had to be pushed, is the reading, not the statement.
-- `t9` `y5` -> `rc` (because) [derived 0.65]
-- `t10` `y8` -> `rc` (because) [derived 0.70]
-- `t11` `y7` -> `rc` (because) [derived 0.60]
-- `t12` `y4` -> `rc` (because) [derived 0.65]
+- `t9` `y5` -> `rc` (because) [derived 0.65] Rationale: The staffing model that 24/7 coverage forces is one of the four conditions the root cause names.
+- `t10` `y8` -> `rc` (because) [derived 0.70] Rationale: Scope-limiting controls that were not enough is the access half of the root cause, stated by the person who owns it.
+- `t11` `y7` -> `rc` (because) [derived 0.60] Rationale: The vendor perimeter extends the same mismatch to people Coinbase does not employ.
+- `t12` `y4` -> `rc` (because) [derived 0.65] Rationale: The bribe-versus-wage economics is the value half of the mismatch: the data is worth far more to the attacker than the custodian is paid.
 
-Four attach a countermeasure: `t16` `y2` -> `c0` (addressed_by, 0.65), rationale "The host offers an all-code CX function in answer to the security question; that it is a countermeasure to bribery specifically, because a code path has nobody to bribe, is the reading of it."; `t17` `rc` -> `c4` (addressed_by, 0.60); `t18` `rc` -> `c5` (addressed_by, 0.60); `t19` `rc` -> `c6` (addressed_by, 0.55). Eleven are grounding links: `ts1`, `ts2` from `y6` to `y2`, `y1` (0.70); `ts3`, `ts4`, `ts5` from `rc` to `y5`, `y8`, `y4` (0.65) and `ts6` from `rc` to `p3` (0.60); `ts7`, `ts8` from `c4` to `y8`, `y1` (0.60); `ts9`, `ts10` from `c5` to `c3`, `c0` (0.65); `ts11` from `c6` to `y7` (0.55).
+Four attach a countermeasure: `t16` `y2` -> `c0` (addressed_by, 0.65), rationale "The host offers an all-code CX function in answer to the security question; that it is a countermeasure to bribery specifically, because a code path has nobody to bribe, is the reading of it."; `t17` `rc` -> `c4` (addressed_by, 0.60), rationale "Removing standing human access to identity data is the only countermeasure that acts on the mismatch itself rather than on its price."; `t18` `rc` -> `c5` (addressed_by, 0.60), rationale "Every inquiry resolved without a human removes a custodian from the population that can be bribed."; `t19` `rc` -> `c6` (addressed_by, 0.55), rationale "The mismatch reaches vendor staff, so a countermeasure that stops at Coinbase's own systems leaves it in place.". Eleven are grounding links: `ts1`, `ts2` from `y6` to `y2`, `y1` (0.70); `ts3`, `ts4`, `ts5` from `rc` to `y5`, `y8`, `y4` (0.65) and `ts6` from `rc` to `p3` (0.60); `ts7`, `ts8` from `c4` to `y8`, `y1` (0.60); `ts9`, `ts10` from `c5` to `c3`, `c0` (0.65); `ts11` from `c6` to `y7` (0.55).
 
 ### What the LLM added
 
