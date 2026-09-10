@@ -53,7 +53,7 @@ Qualifier
 
 Warrant
 
-- `w1` **Born in Bermuda, generally British** [derived 0.90] A person born in Bermuda will generally be a British subject. Rationale: Nowhere stated. It is the general, bridge-like rule that alone carries the step from the birthplace to the nationality claim; the employer's question (why should a birthplace settle nationality) is exactly a demand for it.
+- `w1` **Born in Bermuda, generally British** [derived 0.85] A person born in Bermuda will generally be a British subject. Rationale: Nowhere stated. It is the general, bridge-like rule that alone carries the step from the birthplace to the nationality claim; the employer's question (why should a birthplace settle nationality) is exactly a demand for it.
 
 Backing
 
@@ -74,11 +74,11 @@ Edges. Four are facts, each quoting the scenario's own connective:
 - `ce12` `r1` -> `c` (rebuts) [fact] "the presumption would not hold if both of Harry's parents were aliens" (sentence 4)
 - `ce13` `r2` -> `c` (rebuts) [fact] "or if Harry has since become a naturalised citizen of another country" (sentence 4)
 
-Twelve are derived. Five carry a framework relation: `ce2` `w1` -> `c` (licenses, 0.90), rationale "The rule is the only thing that licenses the birthplace-to-nationality step."; `ce5` `b1` -> `w1` (backs, 0.85), rationale "The clerk offers the statutes in answer to the employer's demand for the rule; the text does not say the statutes contain the rule."; `ce6` `b2` -> `w1` (backs, 0.75); `ce9` `q2` -> `c` (qualifies, 0.60); `ce14` `r4` -> `c` (rebuts, 0.70). The other seven are grounding links: `ce3`, `ce4` from `w1` to `g`, `c` (0.90); `ce7` from `b2` to `b1` (0.75); `ce10`, `ce11` from `q2` to `q1`, `r1` (0.60); `ce15`, `ce16` from `r4` to `r1`, `r3` (0.70).
+Twelve are derived. Five carry a framework relation: `ce2` `w1` -> `c` (licenses, 0.85), rationale "The rule is the only thing that licenses the birthplace-to-nationality step."; `ce5` `b1` -> `w1` (backs, 0.85), rationale "The clerk offers the statutes in answer to the employer's demand for the rule; the text does not say the statutes contain the rule."; `ce6` `b2` -> `w1` (backs, 0.75); `ce9` `q2` -> `c` (qualifies, 0.60); `ce14` `r4` -> `c` (rebuts, 0.70). The other seven are grounding links: `ce3`, `ce4` from `w1` to `g`, `c` (0.90); `ce7` from `b2` to `b1` (0.75); `ce10`, `ce11` from `q2` to `q1`, `r1` (0.60); `ce15`, `ce16` from `r4` to `r1`, `r3` (0.70).
 
 ### What the LLM added and why it helps
 
-With the derived layer hidden the graph is exactly the scenario. `w1` (0.90) is the rule the employer asked for and never got; without it the fact layer holds a birthplace and a nationality with nothing between them. `b2` (0.75) says what the statutes must contain for citing them to be backing rather than appeal to authority. `r4` (0.70) joins exception `r1` to gap `r3`. Derived edges: `licenses` from `w1` (0.90), `backs` from `b1` (0.85: the statutes were offered for the rule, not the claim), and `supported_by` from each inference to its sentence; the fact edges are the text's own "so", "presumably" and "would not hold if". The gain is a decision: the claim stays presumptive because one exception is unexcluded, and the record check would close it.
+With the derived layer hidden the graph is exactly the scenario. `w1` (0.85, the band for the general rule an argument needs) is the rule the employer asked for and never got; without it the fact layer holds a birthplace and a nationality with nothing between them. `b2` (0.75) says what the statutes must contain for citing them to be backing rather than appeal to authority. `r4` (0.70) joins exception `r1` to gap `r3`. Derived edges: `licenses` from `w1` (0.85), `backs` from `b1` (0.85: the statutes were offered for the rule, not the claim), and `supported_by` from each inference to its sentence; the fact edges are the text's own "so", "presumably" and "would not hold if". The gain is a decision: the claim stays presumptive because one exception is unexcluded, and the record check would close it.
 
 ## Example 2: from the TBPN transcripts: Glenn Hutchins: the AI data-center build-out is not the CLEC bubble
 
@@ -86,7 +86,7 @@ Episode "Gemini 3 reactions, Cloudflare outage, the upsides of bubbles (Byrne Ho
 
 ### Facts (quoted)
 
-Fourteen of the twenty nodes and seven of the thirty-two edges are facts, none of them paraphrases. Quotes keep the transcript's errors, such as "CLEX" for CLEC; `source_ref` is the speaker plus the line range in the file.
+Fourteen of the twenty nodes and five of the thirty-two edges are facts, none of them paraphrases. Quotes keep the transcript's errors, such as "CLEX" for CLEC; `source_ref` is the speaker plus the line range in the file.
 
 Claim
 
@@ -120,19 +120,17 @@ Rebuttal
 - `r0` **OpenAI burns capital first** [fact] The host notes how capital-consumptive OpenAI will be before profit or cash flow comes, unlike Google, which threw off cash well before its IPO. "you look at how capital consumptive Open AI will be before profit comes or cash flow comes" (Host, L4898-L4904)
 - `r1` **Older GPUs can be worthless** [fact] A GPU that produces fewer tokens per watt than newer ones can be economically worthless even though it can still do something useful. "if the GPU is producing fewer tokens per watt and that just relative to newer ones, it can be economically worthless, even though it can still actually do something useful." (Byrne Hobart, L3300-L3300)
 
-Fact edges. Seven, each joining two fact nodes and quoting the turn in which Hutchins states the connection itself.
+Fact edges. Five, each joining two fact nodes and quoting the turn in which Hutchins states the connection itself.
 
 - `e1` `g1` -> `c1` (supports) [fact] "but the major difference between that and today is every one of these data centers" (Glenn Hutchins, L4788-L4790)
 - `e2` `g2` -> `c1` (supports) [fact] "the major difference between that and today is every one of these data centers, almost all of them, has a counterparty, a solvent counterparty that is contracted to take all the output. They're built to suit, not if you build it, they will come." (Glenn Hutchins, L4788-L4802)
 - `e3` `g5` -> `c1` (supports) [fact] "The major difference between that, and people use that as analogy today" (Glenn Hutchins, L4782-L4784)
-- `e4` `g3` -> `c1` (supports) [fact] "And the last point I would make and just finish this in a new one is that each of these deals" (Glenn Hutchins, L4826-L4826)
-- `e5` `g4` -> `c1` (supports) [fact] "And then the owner of the GPUs in the data center has an embedded option, on the value of the used GPUs, which will be worth something." (Glenn Hutchins, L4852-L4856)
 - `e6` `w0` -> `c1` (licenses) [fact] "So it's not, it's not analogous." (Glenn Hutchins, L4880-L4880)
 - `e20` `q1` -> `c1` (qualifies) [fact] "I am more in the internet camp which means that of course there will be" (Glenn Hutchins, L4746-L4750)
 
 ### Decomposition
 
-Six derived nodes fill the slots Hutchins left empty, and twenty-five derived edges carry every link he did not state himself. Fact nodes are referenced by id above.
+Six derived nodes fill the slots Hutchins left empty, and twenty-seven derived edges carry every link he did not state himself. Fact nodes are referenced by id above.
 
 Warrant (`w0` is the stated one)
 
@@ -152,8 +150,10 @@ Rebuttal (`r0` and `r1` are the stated ones)
 - `r2` **Unless offtaker credit is weak** [derived 0.65] Unless the contracted counterparty is not Microsoft-grade: a large share of offtake is contracted by OpenAI and other labs that burn capital for years, so the 'solvent counterparty' premise depends on their continued funding. Rationale: The host observes that OpenAI will be capital consumptive before cash flow comes; Hutchins's solvency backing names only Microsoft. If the offtaker cannot pay through a downturn, the warrant's transfer of demand risk fails. Supported by `r0`, `g1`. Carries an `idea` field, quoted under "Where the opportunity shows up".
 - `r3` **Unless used GPUs lose value** [derived 0.55] Unless the residual value of used GPUs is far below what the 2x math assumes: nobody prices the embedded option, and a newer chip that produces more tokens per watt can make an older fleet economically worthless while it still runs. Rationale: Hobart's economic-obsolescence point, made earlier in the same episode, contradicts the iPhone analogy; the deal math Hutchins cites is stated 'so far as I understand it' and depends on this unpriced option. Supported by `r1`, `g4`. Carries an `idea` field, quoted under "Where the opportunity shows up".
 
-Derived edges. Twelve carry a framework relation; the other thirteen are the grounding links listed after them.
+Derived edges. Fourteen carry a framework relation; the other thirteen are the grounding links listed after them.
 
+- `e4` `g3` -> `c1` (supports) [derived 0.80] Rationale: Hutchins introduces the 2x economics as 'the last point I would make' (L4826) and, after the embedded-option aside and two host interjections, closes with 'And so each of the ... contracts and builds right now has a commercial proposition in it' (L4866-L4868) and 'So it's not, it's not analogous' (L4880). The connective spans several turns rather than one clause, so the support is a reading of his ordering, not a quoted statement.
+- `e5` `g4` -> `c1` (supports) [derived 0.80] Rationale: The embedded option is offered in the same run of argument that ends 'And so each of the ... contracts and builds right now has a commercial proposition in it' (L4866-L4868) and 'So it's not, it's not analogous' (L4880), but the quoted span is only g4's own grounds; the step from residual GPU value to the disanalogy is read from the ordering, with host interjections in between.
 - `e7` `w1` -> `c1` (licenses) [derived 0.80]
 - `e8` `w2` -> `c1` (licenses) [derived 0.70]
 - `e14` `b1` -> `w1` (backs) [derived 0.80] Rationale: Hutchins offers Microsoft's credit rating immediately after the counterparty grounds ('If you sign a deal with Microsoft to take the off-put for your data center', L4812-L4812), but the warrant it backs is never stated, so the judgment that it backs w1 is inferred.
@@ -171,7 +171,7 @@ Grounding links, every one a derived `supported_by` edge: `e9`, `e10`, `e11` fro
 
 ### What the LLM added
 
-Inside the argument, `w1` and `w2` state the rules that carry five grounds to the claim (`licenses`, 0.80 and 0.70), `b4` names the project-finance principle that makes a credit rating relevant to a warrant about demand risk (`backs`, 0.70), and `q2` bounds the claim to the population the backing covers (`qualifies`, 0.65). Hidden, they leave a faithful but inert fact layer; shown, each rule can be asked whether it holds for a given data center and offtaker.
+Inside the argument, `w1` and `w2` state the rules that carry five grounds to the claim (`licenses`, 0.80 and 0.70), `b4` names the project-finance principle that makes a credit rating relevant to a warrant about demand risk (`backs`, 0.70), and `q2` bounds the claim to the population the backing covers (`qualifies`, 0.65). Hidden, they leave a faithful but inert fact layer; shown, each rule can be asked whether it holds for a given data center and offtaker. Two of the five `supports` edges into the claim are derived as well (`e4`, `e5`, both 0.80): Hutchins states the 2x economics and the embedded option as grounds and only reaches "So it's not, it's not analogous" several turns later, across host interjections, so no single clause of his states the connection.
 
 The three `backs` edges out of the stated backings are derived as well (`e14` 0.80, `e15` 0.70, `e16` 0.60). Microsoft's rating, the TSMC precedent and the iPhone line are all quoted, but the rules they are offered for are never spoken, so attaching each assurance to a warrant is the LLM's judgment, not the speaker's: a fact edge would need both endpoints stated and the connection quoted. The confidences track how directly the assurance follows its grounds, from Microsoft named in the same breath as the counterparty (0.80) down to the iPhone analogy standing in for the residual value of accelerators (0.60).
 

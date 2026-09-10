@@ -270,7 +270,7 @@
           "label": "Born in Bermuda, generally British",
           "text": "A person born in Bermuda will generally be a British subject.",
           "provenance": "derived",
-          "confidence": 0.9,
+          "confidence": 0.85,
           "rationale": "Nowhere stated. It is the general, bridge-like rule that alone carries the step from the birthplace to the nationality claim; the employer's question (why should a birthplace settle nationality) is exactly a demand for it.",
           "pos": [
             -12,
@@ -373,7 +373,7 @@
           "to": "c",
           "relation": "licenses",
           "provenance": "derived",
-          "confidence": 0.9,
+          "confidence": 0.85,
           "rationale": "The rule is the only thing that licenses the birthplace-to-nationality step."
         },
         {
@@ -973,18 +973,18 @@
           "from": "g3",
           "to": "c1",
           "relation": "supports",
-          "provenance": "fact",
-          "source_quote": "And the last point I would make and just finish this in a new one is that each of these deals",
-          "source_ref": "Glenn Hutchins, L4826-L4826"
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "Hutchins introduces the 2x economics as 'the last point I would make' (L4826) and, after the embedded-option aside and two host interjections, closes with 'And so each of the ... contracts and builds right now has a commercial proposition in it' (L4866-L4868) and 'So it's not, it's not analogous' (L4880). The connective spans several turns rather than one clause, so the support is a reading of his ordering, not a quoted statement."
         },
         {
           "id": "e5",
           "from": "g4",
           "to": "c1",
           "relation": "supports",
-          "provenance": "fact",
-          "source_quote": "And then the owner of the GPUs in the data center has an embedded option, on the value of the used GPUs, which will be worth something.",
-          "source_ref": "Glenn Hutchins, L4852-L4856"
+          "provenance": "derived",
+          "confidence": 0.8,
+          "rationale": "The embedded option is offered in the same run of argument that ends 'And so each of the ... contracts and builds right now has a commercial proposition in it' (L4866-L4868) and 'So it's not, it's not analogous' (L4880), but the quoted span is only g4's own grounds; the step from residual GPU value to the disanalogy is read from the ordering, with host interjections in between."
         },
         {
           "id": "e6",
