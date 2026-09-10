@@ -80,30 +80,30 @@
         "axes": {
           "x": {
             "label": "Causality  ·  unordered  →  ordered",
-            "min": -63,
-            "max": 63,
+            "min": -68,
+            "max": 68,
             "ticks": [
               {
-                "value": -38,
+                "value": -41,
                 "label": "no reliable cause and effect"
               },
               {
-                "value": 38,
+                "value": 41,
                 "label": "cause and effect available"
               }
             ]
           },
           "y": {
             "label": "Protocol  ·  respond now  →  find out first",
-            "min": -46,
-            "max": 46,
+            "min": -54,
+            "max": 54,
             "ticks": [
               {
-                "value": 40,
+                "value": 48,
                 "label": "probe / analyse first"
               },
               {
-                "value": -40,
+                "value": -49,
                 "label": "act / categorise now"
               }
             ]
@@ -113,60 +113,60 @@
           {
             "label": "COMPLEX",
             "x": [
-              -63,
-              -13
+              -68,
+              -14
             ],
             "y": [
-              12,
-              46
+              13,
+              54
             ],
             "color": "#8a5cf5"
           },
           {
             "label": "COMPLICATED",
             "x": [
-              13,
-              63
+              14,
+              68
             ],
             "y": [
-              12,
-              46
+              13,
+              54
             ],
             "color": "#3987e5"
           },
           {
             "label": "CHAOTIC",
             "x": [
-              -63,
-              -13
+              -68,
+              -14
             ],
             "y": [
-              -46,
-              -12
+              -54,
+              -14
             ],
             "color": "#d6453f"
           },
           {
             "label": "CLEAR",
             "x": [
-              13,
-              63
+              14,
+              68
             ],
             "y": [
-              -46,
-              -12
+              -54,
+              -14
             ],
             "color": "#3fa66f"
           },
           {
             "label": "DISORDER",
             "x": [
-              -11,
-              11
+              -13,
+              13
             ],
             "y": [
-              -11,
-              11
+              -12,
+              14
             ],
             "color": "#6f6f6b"
           }
@@ -175,11 +175,11 @@
           {
             "from": [
               0,
-              -46
+              -54
             ],
             "to": [
               0,
-              -12
+              -40
             ],
             "style": "dashed",
             "label": "the cliff"
@@ -189,7 +189,7 @@
           {
             "pos": [
               0,
-              50
+              57.5
             ],
             "text": "dashed 'treated as' edge = the protocol actually applied",
             "style": "caption"
@@ -204,8 +204,8 @@
           "text": "Cause and effect are self-evident and stable, so the right answer is known and written down. Protocol: sense, categorise, respond, applying best practice. Failure mode: the categories outlive the conditions that made them true.",
           "provenance": "schema",
           "pos": [
-            38,
-            -40.382
+            40,
+            -49
           ],
           "size": 1.4
         },
@@ -216,8 +216,8 @@
           "text": "Cause and effect are knowable but not self-evident; expertise or analysis finds the answer, and there may be several defensible answers. Protocol: sense, analyse, respond, applying good practice. Failure mode: expert entrainment, where the analysis only confirms the discipline it came from.",
           "provenance": "schema",
           "pos": [
-            38,
-            41.618
+            52,
+            48
           ],
           "size": 1.4
         },
@@ -228,8 +228,8 @@
           "text": "Cause and effect cohere only in retrospect, so no amount of analysis in advance produces the answer. Protocol: probe with safe-to-fail experiments, sense what emerges, respond. Failure mode: imposing a plan and then treating the first slip as a planning error.",
           "provenance": "schema",
           "pos": [
-            -38,
-            41.618
+            -41,
+            48
           ],
           "size": 1.4
         },
@@ -240,8 +240,8 @@
           "text": "There is no usable cause and effect and the situation moves faster than any analysis of it. Protocol: act to establish order, sense where stability is returning, then respond. Failure mode: waiting for the review the clock does not allow.",
           "provenance": "schema",
           "pos": [
-            -38,
-            -40.382
+            -40,
+            -49
           ],
           "size": 1.4
         },
@@ -253,7 +253,7 @@
           "provenance": "schema",
           "pos": [
             0,
-            5.618
+            7
           ],
           "size": 1.4
         },
@@ -266,8 +266,8 @@
           "source_quote": "About three percent of supplier invoices fail the automated match each week.",
           "source_ref": "sentence 2",
           "pos": [
-            38,
-            -16.8
+            44,
+            -29.5
           ]
         },
         {
@@ -279,8 +279,8 @@
           "source_quote": "The cause is known, the correction is written down in the finance handbook, and a clerk who follows it clears the queue by Wednesday.",
           "source_ref": "sentence 3",
           "pos": [
-            48,
-            -20.25
+            34,
+            -36
           ]
         },
         {
@@ -292,8 +292,8 @@
           "source_quote": "an intermittent fault on packaging line four. The line stops about twice a shift and nobody on site knows why.",
           "source_ref": "sentences 4-5",
           "pos": [
-            34,
-            33.2
+            30,
+            32
           ]
         },
         {
@@ -305,8 +305,8 @@
           "source_quote": "Two of the maintenance engineers disagree about the cause, and the maintenance lead says a week of instrumented testing will settle which of them is right.",
           "source_ref": "sentence 6",
           "pos": [
-            46,
-            29.75
+            44,
+            40
           ]
         },
         {
@@ -318,8 +318,8 @@
           "source_quote": "the plant-based line the company launched in March. Sales are flat in two regions and triple the forecast in a third, and the brand team cannot say why.",
           "source_ref": "sentences 7-8",
           "pos": [
-            -40,
-            29.2
+            -48,
+            30.5
           ]
         },
         {
@@ -331,8 +331,8 @@
           "source_quote": "Shoppers have been using the product in ways nobody designed it for.",
           "source_ref": "sentence 9",
           "pos": [
-            -46,
-            37.75
+            -52,
+            41
           ]
         },
         {
@@ -344,8 +344,8 @@
           "source_quote": "puts each one on a single Gantt chart with a named owner, a fixed milestone and a monthly steering review",
           "source_ref": "sentence 13",
           "pos": [
-            -30,
-            25.75
+            -25,
+            25
           ]
         },
         {
@@ -357,8 +357,8 @@
           "source_quote": "The plant-based plan has slipped three times; each slip produces a replanning exercise and a new forecast, and not one regional test has been run.",
           "source_ref": "sentence 15",
           "pos": [
-            -32,
-            33.75
+            -28,
+            36
           ]
         },
         {
@@ -370,8 +370,8 @@
           "source_quote": "an allergen mislabel found on a pallet that shipped on Friday",
           "source_ref": "sentence 10",
           "pos": [
-            -38,
-            -16.8
+            -20,
+            -27
           ]
         },
         {
@@ -384,7 +384,7 @@
           "source_ref": "sentence 11",
           "pos": [
             -48,
-            -20.25
+            -34
           ]
         },
         {
@@ -396,8 +396,8 @@
           "source_quote": "the team argues about whether the plant-based line needs a better plan or no plan at all, and each manager argues from the kind of problem he is used to",
           "source_ref": "sentence 18",
           "pos": [
-            6,
-            -0.8
+            0,
+            -0.5
           ]
         },
         {
@@ -409,8 +409,8 @@
           "confidence": 0.85,
           "rationale": "The scenario states that the cause is known and the correction documented, which is the defining condition of the Clear domain; sense-categorise-respond follows from the classification, and the expiry question is the failure mode the framework attaches to it.",
           "pos": [
-            34,
-            -24.03
+            36,
+            -22
           ]
         },
         {
@@ -422,8 +422,8 @@
           "confidence": 0.8,
           "rationale": "Expert disagreement that a defined experiment can settle is Cynefin's marker for the Complicated domain rather than the Complex one; the scenario states the price of the analysis but does not draw the conclusion that it is the right spend.",
           "pos": [
-            36,
-            25.97
+            40,
+            23
           ]
         },
         {
@@ -435,8 +435,8 @@
           "confidence": 0.75,
           "rationale": "The scenario reports three slips, no test and an unexplained demand pattern, which is exactly the signature Cynefin predicts when a Complex situation is run on a Complicated protocol; the prescribed probe is the framework's answer and is not in the text.",
           "pos": [
-            -40,
-            21.97
+            -46,
+            19
           ]
         },
         {
@@ -448,8 +448,8 @@
           "confidence": 0.8,
           "rationale": "The scenario reports the director acting before analysing and the outcome holding, and Cynefin prescribes act-sense-respond when the clock is shorter than any possible analysis; the judgment that this was right rather than reckless is the inference.",
           "pos": [
-            -32,
-            -24.03
+            -44,
+            -22
           ]
         },
         {
@@ -461,8 +461,8 @@
           "confidence": 0.65,
           "rationale": "Each manager arguing from his habitual problem type is Cynefin's description of Disorder; the decomposition prescribed here is the framework's remedy and the scenario never performs it.",
           "pos": [
-            -6,
-            -6.03
+            0,
+            -9.5
           ]
         }
       ],
@@ -759,30 +759,30 @@
         "axes": {
           "x": {
             "label": "Causality  ·  unordered  →  ordered",
-            "min": -63,
-            "max": 63,
+            "min": -68,
+            "max": 68,
             "ticks": [
               {
-                "value": -38,
+                "value": -41,
                 "label": "no reliable cause and effect"
               },
               {
-                "value": 38,
+                "value": 41,
                 "label": "cause and effect available"
               }
             ]
           },
           "y": {
             "label": "Protocol  ·  respond now  →  find out first",
-            "min": -46,
-            "max": 46,
+            "min": -54,
+            "max": 54,
             "ticks": [
               {
-                "value": 40,
+                "value": 48,
                 "label": "probe / analyse first"
               },
               {
-                "value": -40,
+                "value": -49,
                 "label": "act / categorise now"
               }
             ]
@@ -792,60 +792,60 @@
           {
             "label": "COMPLEX",
             "x": [
-              -63,
-              -13
+              -68,
+              -14
             ],
             "y": [
-              12,
-              46
+              13,
+              54
             ],
             "color": "#8a5cf5"
           },
           {
             "label": "COMPLICATED",
             "x": [
-              13,
-              63
+              14,
+              68
             ],
             "y": [
-              12,
-              46
+              13,
+              54
             ],
             "color": "#3987e5"
           },
           {
             "label": "CHAOTIC",
             "x": [
-              -63,
-              -13
+              -68,
+              -14
             ],
             "y": [
-              -46,
-              -12
+              -54,
+              -14
             ],
             "color": "#d6453f"
           },
           {
             "label": "CLEAR",
             "x": [
-              13,
-              63
+              14,
+              68
             ],
             "y": [
-              -46,
-              -12
+              -54,
+              -14
             ],
             "color": "#3fa66f"
           },
           {
             "label": "DISORDER",
             "x": [
-              -11,
-              11
+              -13,
+              13
             ],
             "y": [
-              -11,
-              11
+              -12,
+              14
             ],
             "color": "#6f6f6b"
           }
@@ -854,11 +854,11 @@
           {
             "from": [
               0,
-              -46
+              -54
             ],
             "to": [
               0,
-              -12
+              -40
             ],
             "style": "dashed",
             "label": "the cliff"
@@ -868,7 +868,7 @@
           {
             "pos": [
               0,
-              50
+              57.5
             ],
             "text": "three 'treated as' edges cross into CLEAR: the rulebook won",
             "style": "caption"
@@ -883,8 +883,8 @@
           "text": "Cause and effect are self-evident and stable, so the right answer is known and written down. Protocol: sense, categorise, respond, applying best practice. Failure mode: the categories outlive the conditions that made them true.",
           "provenance": "schema",
           "pos": [
-            38,
-            -40.382
+            48,
+            -49
           ],
           "size": 1.4
         },
@@ -895,8 +895,8 @@
           "text": "Cause and effect are knowable but not self-evident; expertise or analysis finds the answer, and there may be several defensible answers. Protocol: sense, analyse, respond, applying good practice. Failure mode: expert entrainment, where the analysis only confirms the discipline it came from.",
           "provenance": "schema",
           "pos": [
-            38,
-            41.618
+            41,
+            48
           ],
           "size": 1.4
         },
@@ -907,8 +907,8 @@
           "text": "Cause and effect cohere only in retrospect, so no amount of analysis in advance produces the answer. Protocol: probe with safe-to-fail experiments, sense what emerges, respond. Failure mode: imposing a plan and then treating the first slip as a planning error.",
           "provenance": "schema",
           "pos": [
-            -38,
-            41.618
+            -41,
+            48
           ],
           "size": 1.4
         },
@@ -919,8 +919,8 @@
           "text": "There is no usable cause and effect and the situation moves faster than any analysis of it. Protocol: act to establish order, sense where stability is returning, then respond. Failure mode: waiting for the review the clock does not allow.",
           "provenance": "schema",
           "pos": [
-            -38,
-            -40.382
+            -46,
+            -49
           ],
           "size": 1.4
         },
@@ -932,7 +932,7 @@
           "provenance": "schema",
           "pos": [
             0,
-            5.618
+            7
           ],
           "size": 1.4
         },
@@ -950,8 +950,8 @@
             "Elon Musk"
           ],
           "pos": [
-            38,
-            -16.8
+            30,
+            -29
           ]
         },
         {
@@ -970,8 +970,8 @@
             "David Senra"
           ],
           "pos": [
-            44,
-            37.2
+            28,
+            31
           ]
         },
         {
@@ -988,8 +988,8 @@
             "David Senra"
           ],
           "pos": [
-            32,
-            33.2
+            28,
+            41
           ]
         },
         {
@@ -1005,8 +1005,8 @@
             "Starship"
           ],
           "pos": [
-            -44,
-            37.2
+            -52,
+            41
           ]
         },
         {
@@ -1023,8 +1023,8 @@
             "David Senra"
           ],
           "pos": [
-            -38,
-            17.2
+            -30,
+            30.5
           ]
         },
         {
@@ -1041,8 +1041,8 @@
             "David Senra"
           ],
           "pos": [
-            -38,
-            -32.8
+            -26,
+            -29.5
           ]
         },
         {
@@ -1058,8 +1058,8 @@
             "Elon Musk"
           ],
           "pos": [
-            6,
-            0.2
+            -6,
+            0.5
           ]
         },
         {
@@ -1075,8 +1075,8 @@
             "Starship"
           ],
           "pos": [
-            -32,
-            33.75
+            -52,
+            36
           ]
         },
         {
@@ -1092,8 +1092,8 @@
             "Starship"
           ],
           "pos": [
-            -44,
-            29.75
+            -52,
+            26
           ]
         },
         {
@@ -1109,8 +1109,8 @@
             "Elon Musk"
           ],
           "pos": [
-            -32,
-            25.75
+            -30,
+            21.5
           ]
         },
         {
@@ -1126,8 +1126,8 @@
             "Falcon 9"
           ],
           "pos": [
-            46,
-            29.75
+            52,
+            36
           ]
         },
         {
@@ -1143,8 +1143,8 @@
             "Elon Musk"
           ],
           "pos": [
-            48,
-            21.75
+            52,
+            27
           ]
         },
         {
@@ -1160,8 +1160,8 @@
             "David Senra"
           ],
           "pos": [
-            -44,
-            -28.25
+            -50,
+            -35
           ]
         },
         {
@@ -1178,8 +1178,8 @@
             "David Senra"
           ],
           "pos": [
-            -32,
-            -24.25
+            -34,
+            -41
           ]
         },
         {
@@ -1195,8 +1195,8 @@
             "Starship"
           ],
           "pos": [
-            38,
-            -24.03
+            30,
+            -22
           ]
         },
         {
@@ -1213,8 +1213,8 @@
             "Falcon 9"
           ],
           "pos": [
-            34,
-            26.784
+            36,
+            20
           ]
         },
         {
@@ -1231,8 +1231,8 @@
             "Elon Musk"
           ],
           "pos": [
-            -44,
-            22.784
+            -50,
+            17
           ]
         },
         {
@@ -1249,8 +1249,8 @@
             "Elon Musk"
           ],
           "pos": [
-            -42,
-            -19.216
+            -38,
+            -22
           ]
         },
         {
@@ -1267,8 +1267,8 @@
             "Starship"
           ],
           "pos": [
-            -6,
-            -3.216
+            -8,
+            -11
           ]
         }
       ],
