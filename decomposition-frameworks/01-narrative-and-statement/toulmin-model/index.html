@@ -163,131 +163,19 @@
 <!--__EXT_START__-->
 <script>
 /* Toulmin Model page extension.
-
-   1. "so": Toulmin prints the connective on the arrow that carries the grounds to the claim
-      (D -> so, Q, C; since W; on account of B; unless R). The engine labels guides and edges that
-      carry a label field, but not a free word beside an arrow, so it is drawn here, one per example.
-
-   2. The idea-bearing slot. graph.json names it per example (idea_bearing_slot) and puts an `idea`
-      sentence on the nodes that carry the opportunity; the engine has no handling for either field.
-      Here: a ring on each such node (a child of the node object, so it hides with it), a star in its
-      label, a caption on that slot's region, a legend row, and the idea sentence in the side panel.
-
-   3. Two page-local patches for defects in the shared engine. Both belong in _meta/graph-engine.html
-      and have been reported; they are patched here so that this page is correct on its own, and
-      idempotently, so that a rebuild or an example switch does not undo them.
-      a. #labels has no z-index while #panel has z-index 4, and CSS2DRenderer writes a large
-         per-element z-index on every label, so scene labels paint over the open side panel.
-         One rule gives #labels its own stacking context underneath the panel.
-      b. resize() runs once, before the first buildExample; rendering the note strip then shortens
-         the stage, so the WebGL canvas keeps a stale drawing buffer (804px tall at 1400x900) that
-         CSS stretches into the shorter box, while the CSS2D labels are still placed for the old
-         one. Markers and their own labels drift apart by a share of the depth down the stage, up to
-         about 45px at the foot of it, and the camera fit is computed for a viewport the renderer is
-         not using. Re-running the engine's own resize handler whenever the stage changes size keeps
-         the two renderers on one viewport.
-*/
-(() => {
-  const IDEA = '#f0b429';
-
-  if (!document.getElementById('toulmin-page-fixes')) {
-    const s = document.createElement('style');
-    s.id = 'toulmin-page-fixes';
-    s.textContent = [
-      '#labels{z-index:1}',
-      '.nlabel .idea{color:' + IDEA + ';font-size:10px;margin-left:5px;vertical-align:1px}',
-      '.idea-cap{color:' + IDEA + ';opacity:.85}',
-      '#legend .idea-row .sym{color:' + IDEA + '}',
-      '#panel h4.idea-h{color:' + IDEA + '}',
-      '#panel p.idea-note{border-left:2px solid ' + IDEA + ';padding:4px 0 4px 10px;margin:4px 0 8px}'
-    ].join('');
-    (document.head || document.documentElement).appendChild(s);
-  }
-
-  let lastSize = '';
-  const syncViewport = () => {
-    const st = document.getElementById('stage');
-    if (!st) return;
-    const k = st.clientWidth + 'x' + st.clientHeight;
-    if (k === lastSize) return;
-    lastSize = k;
-    window.dispatchEvent(new Event('resize'));
-  };
-  const stageEl = document.getElementById('stage');
-  if (stageEl && window.ResizeObserver && !stageEl.dataset.viewportSync) {
-    stageEl.dataset.viewportSync = '1';
-    new ResizeObserver(syncViewport).observe(stageEl);
-  }
-
-  let currentExample = null;
-  const panel = document.getElementById('panel');
-  if (panel && !panel.dataset.ideaHook) {
-    panel.dataset.ideaHook = '1';
-    new MutationObserver(() => {
-      if (panel.hidden || panel.querySelector('.idea-note')) return;
-      const h3 = panel.querySelector('h3');
-      if (!h3) return;
-      const hits = ((currentExample && currentExample.nodes) || []).filter(n => n.idea && n.label === h3.textContent);
-      if (hits.length !== 1) return;
-      const h4 = document.createElement('h4'); h4.className = 'idea-h'; h4.textContent = 'Where the opportunity hides';
-      const p = document.createElement('p'); p.className = 'idea-note'; p.textContent = hits[0].idea;
-      const anchor = panel.querySelector('h4');
-      if (anchor) { panel.insertBefore(h4, anchor); panel.insertBefore(p, anchor); } else { panel.append(h4, p); }
-    }).observe(panel, { childList: true });
-  }
-
-  window.__frameworkExtension = (ctx) => {
-    syncViewport();
-    requestAnimationFrame(syncViewport);
-
-    const THREE = ctx.THREE, ex = ctx.example;
-    currentExample = ex;
-
-    const SO = { classic: [22, 24.6], tbpn: [32, 19.6] };
-    const at = SO[ex.id];
-    if (at) {
-      const lab = ctx.api.label2d('so', 'glabel');
-      lab.position.set(at[0], at[1], -0.6);
-      ctx.group.add(lab);
-    }
-
-    const ideaNodes = ex.nodes.filter(n => n.idea);
-    if (!ideaNodes.length) return;
-
-    for (const n of ideaNodes) {
-      const rec = ctx.nodesById.get(n.id);
-      if (!rec) continue;
-      // open at the bottom, where the node's own label runs, so the ring never crosses the text
-      const ring = new THREE.Mesh(
-        new THREE.RingGeometry(rec.r * 1.55, rec.r * 1.9, 64, 1, -Math.PI / 24, Math.PI * 13 / 12),
-        new THREE.MeshBasicMaterial({ color: new THREE.Color(IDEA), transparent: true, opacity: 0.9, side: THREE.DoubleSide, depthWrite: false })
-      );
-      rec.obj.add(ring);
-      const star = document.createElement('span');
-      star.className = 'idea';
-      star.textContent = '★';
-      rec.label.element.appendChild(star);
-    }
-
-    const slot = (ctx.graph.slots || []).find(s => s.id === ex.idea_bearing_slot);
-    const region = (((ex.layout || {}).regions) || []).find(r => (r.label || '').toLowerCase() === ((slot || {}).label || ' ').toLowerCase());
-    if (region) {
-      const cap = ctx.api.label2d('★ where the opportunity hides', 'glabel idea-cap');
-      cap.position.set((region.x[0] + region.x[1]) / 2, Math.min(region.y[0], region.y[1]) + 2.4, -0.6);
-      ctx.group.add(cap);
-    }
-    const legend = document.getElementById('legend');
-    if (legend && slot) {
-      const row = document.createElement('div'); row.className = 'key-row idea-row';
-      const sym = document.createElement('span'); sym.className = 'sym'; sym.textContent = '★';
-      const txt = document.createElement('span');
-      txt.textContent = 'idea-bearing slot: ' + slot.label + ' — ' + ideaNodes.length + ' nodes carry an opportunity';
-      row.append(sym, txt);
-      const stats = document.getElementById('stats');
-      if (stats) legend.insertBefore(row, stats); else legend.appendChild(row);
-    }
-  };
-})();
+   "so": Toulmin prints the connective on the arrow that carries the grounds to the claim
+   (D -> so, Q, C; since W; on account of B; unless R). The engine labels guides and edges that
+   carry a label field, but not a free word beside an arrow, so it is drawn here, one per example.
+   Everything else (idea ring, star, legend row, panel section, viewport sync, label stacking) is
+   provided by the shared engine. */
+window.__frameworkExtension = (ctx) => {
+  const SO = { classic: [22, 24.6], tbpn: [32, 19.6] };
+  const at = SO[ctx.example.id];
+  if (!at) return;
+  const lab = ctx.api.label2d('so', 'glabel');
+  lab.position.set(at[0], at[1], -0.6);
+  ctx.group.add(lab);
+};
 </script>
 <!--__EXT_END__-->
 
