@@ -147,7 +147,7 @@ Fact edges. Six, each joining two fact nodes and quoting the turn in which a hos
 - `x2` `q` -> `h_mig` (answered_if) [fact] "And so the integration that comes from being in the Azure ecosystem, that could be a driver." (host, L218-L220)
 - `x3` `q` -> `h_gpu` (answered_if) [fact] "Meanwhile, they had a, you know, more kind of like predictability on the traditional data center cloud side that they were able to scale up to. So that feels like a potentially like a pretty big driver here." (host, L278-L282)
 - `x4` `q` -> `h_bucket` (answered_if) [fact] "I'm going to need a bunch of networking to move that data around when I do a training run. So that could be driving core infra up." (host, L310-L314)
-- `x5` `q` -> `h_oai` (answered_if) [fact] "It's like, opening I just came and said, give us a whole bunch of them. The headline itself ends up becoming pretty misleading." (hosts, L328-L330)
+- `x5` `q` -> `h_oai` (answered_if) [fact] "It's like, opening I just came and said, give us a whole bunch of them. The headline itself ends up becoming pretty misleading." (host, L328-L330)
 - `x6` `q` -> `h_comp` (answered_if) [fact] "And Microsoft's like, yeah, of course, we can definitely get you a whole bunch more hard drives and a whole bunch more CPUs. We're not constrained on that at all. And the KAPX is keeping up so they're able to service that." (host, L296-L300)
 
 ### Decomposition
