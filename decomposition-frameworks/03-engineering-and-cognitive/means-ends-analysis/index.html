@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Framework graph</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --plane: #0d0d0d;      /* page plane */
+    --surface: #1a1a19;    /* chart surface (canvas background) */
+    --card: #202020;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --muted: #898781;
+    --hairline: #2c2c2a;
+    --baseline: #383835;
+    --accent: #3987e5;
+    --schema: #898781;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--plane); color: var(--ink-2); font: 14px/1.45 var(--sans); }
+  a { color: var(--ink-2); }
+  a:hover { color: var(--ink); }
+  kbd { font: 11px var(--mono); color: var(--muted); border: 1px solid var(--hairline); border-radius: 3px; padding: 0 4px; margin-left: 4px; }
+  button, .seg button { font: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  body { display: grid; grid-template-rows: auto auto 1fr; height: 100vh; }
+  header.bar { display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--hairline); background: var(--plane); }
+  .title { display: flex; flex-direction: column; min-width: 220px; }
+  .eyebrow { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-size: 17px; font-weight: 600; margin: 2px 0 0; color: var(--ink); letter-spacing: -.01em; }
+  .links { font-size: 12px; margin-top: 2px; display: flex; gap: 12px; }
+  .links a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--hairline); }
+  .links a:hover { color: var(--ink); border-color: var(--muted); }
+  .seg { display: inline-flex; border: 1px solid var(--hairline); border-radius: 6px; overflow: hidden; }
+  .seg button { background: transparent; color: var(--ink-2); border: 0; padding: 6px 12px; cursor: pointer; }
+  .seg button + button { border-left: 1px solid var(--hairline); }
+  .seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
+  .toggles { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; margin-left: auto; font-size: 13px; }
+  .toggles label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; }
+  .toggles input { accent-color: var(--accent); }
+  .toggles button { background: transparent; color: var(--ink-2); border: 1px solid var(--hairline); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+  .toggles button:hover { color: var(--ink); border-color: var(--muted); }
+
+  main { position: relative; overflow: hidden; background: var(--surface); }
+  #stage { position: absolute; inset: 0; }
+  #stage canvas { display: block; }
+  #labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+  #labels * { pointer-events: none; }
+  .nlabel { font: 12px/1.2 var(--sans); color: var(--ink-2); white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.6); }
+  .nlabel .lab { display: inline-block; transform: translateY(11px); background: rgba(26,26,25,.72); padding: 0 4px; border-radius: 3px; }
+  .nlabel.derived { color: var(--ink-2); font-style: italic; }
+  .nlabel.schema { color: var(--muted); font: 11px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .nlabel .g { font-size: 9px; margin-right: 4px; vertical-align: 1px; }
+  .nlabel .idea-star { color: #eda100; margin-right: 3px; }
+  #panel .idea { border-left: 2px solid #eda100; padding: 6px 10px; margin: 8px 0; color: var(--ink); background: rgba(237,161,0,.07); }
+  .elabel { font: 11px var(--mono); color: var(--muted); background: var(--surface); padding: 0 4px; border-radius: 3px; }
+  .axlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .tick { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+  .rlabel { font: 11px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+  .glabel { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+
+  #tooltip { position: absolute; pointer-events: none; display: none; max-width: 300px; background: var(--card); border: 1px solid var(--hairline); border-radius: 6px; padding: 8px 10px; font-size: 12px; color: var(--ink-2); box-shadow: 0 6px 20px rgba(0,0,0,.5); z-index: 5; }
+  #tooltip .t-label { color: var(--ink); font-weight: 600; margin-bottom: 2px; }
+  #tooltip .t-meta { font: 11px var(--mono); color: var(--muted); }
+
+  .card { position: absolute; background: rgba(32,32,32,.94); border: 1px solid var(--hairline); border-radius: 8px; backdrop-filter: blur(6px); }
+  #legend { left: 12px; bottom: 12px; width: 240px; max-height: calc(100% - 24px); overflow: auto; padding: 10px 12px; font-size: 12px; }
+  #legend h2 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 8px 0 6px; }
+  #legend h2:first-child { margin-top: 0; }
+  .slot-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
+  .chip { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .chip.box { border-radius: 2px; }
+  .chip.diamond { border-radius: 2px; transform: rotate(45deg); }
+  .chip.cone { border-radius: 0; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .slot-row .n { margin-left: auto; font: 11px var(--mono); color: var(--muted); }
+  .slot-row .tp { font: 10px var(--mono); color: var(--muted); }
+  .key-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; color: var(--ink-2); }
+  .key-row .sym { width: 14px; text-align: center; color: var(--ink); }
+  .stats { font: 11px/1.6 var(--mono); color: var(--muted); border-top: 1px solid var(--hairline); margin-top: 8px; padding-top: 6px; }
+  .stats b { color: var(--ink-2); font-weight: 500; }
+
+  /* example note: a strip under the header, never over the graph */
+  #note { display: grid; grid-template-columns: minmax(160px, 24%) 1fr minmax(160px, 22%); gap: 6px 20px; align-items: baseline; padding: 7px 16px; border-bottom: 1px solid var(--hairline); background: var(--plane); font-size: 12px; }
+  #note h3 { margin: 0; font-size: 13px; color: var(--ink); font-weight: 600; line-height: 1.35; }
+  #note p { margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  #note:hover p, #note:focus-within p { -webkit-line-clamp: unset; }
+  #note .src { font: 11px var(--mono); color: var(--muted); word-break: break-word; text-align: right; }
+
+  #panel { right: 12px; top: 12px; bottom: 12px; width: 340px; padding: 12px 14px; overflow: auto; font-size: 13px; z-index: 4; }
+  #panel[hidden] { display: none; }
+  #panel .p-head { display: flex; align-items: flex-start; gap: 8px; }
+  #panel .p-slot { font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  #panel h3 { margin: 4px 0 6px; font-size: 15px; color: var(--ink); font-weight: 600; line-height: 1.3; }
+  #panel .close { margin-left: auto; background: transparent; border: 1px solid var(--hairline); color: var(--ink-2); border-radius: 6px; width: 28px; height: 28px; cursor: pointer; flex: none; }
+  .badge { display: inline-block; font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; border: 1px solid var(--muted); color: var(--ink); }
+  .badge.fact { background: var(--ink-2); color: var(--plane); border-color: var(--ink-2); }
+  .badge.derived { border-style: dashed; }
+  .badge.schema { color: var(--muted); }
+  #panel p { margin: 8px 0; }
+  #panel blockquote { margin: 8px 0; padding: 6px 10px; border-left: 2px solid var(--muted); color: var(--ink-2); font-style: italic; }
+  #panel .ref, #panel .conf { font: 11px var(--mono); color: var(--muted); }
+  #panel h4 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 12px 0 4px; }
+  #panel ul { margin: 0; padding-left: 16px; }
+  #panel li { margin: 2px 0; }
+  #panel li .rel { font: 11px var(--mono); color: var(--muted); }
+  .confbar { height: 3px; background: var(--hairline); border-radius: 2px; margin: 4px 0 8px; overflow: hidden; }
+  .confbar i { display: block; height: 100%; background: var(--ink-2); }
+
+  #fallback { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--muted); padding: 24px; }
+  #fallback[hidden] { display: none; }
+  #fallback code { font: 12px var(--mono); color: var(--ink-2); }
+
+  @media (max-width: 820px) {
+    #legend { width: min(240px, 60%); max-height: 42%; font-size: 11px; }
+    #note { grid-template-columns: 1fr; }
+    #note .src { text-align: left; }
+    #panel { left: 12px; width: auto; top: auto; max-height: 60%; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<header class="bar">
+  <div class="title">
+    <span class="eyebrow" id="category"></span>
+    <h1 id="name">Framework graph</h1>
+    <div class="links"><a id="readme" href="./README.md">README</a><a id="wiki" href="#" target="_blank" rel="noopener">Wikipedia</a><a id="up" href="../../index.html">All frameworks</a></div>
+  </div>
+  <div class="seg" id="examples" role="group" aria-label="Example"></div>
+  <div class="toggles">
+    <label><input type="checkbox" id="t-derived" checked> LLM-derived<kbd>d</kbd></label>
+    <label><input type="checkbox" id="t-grounding"> grounding links<kbd>g</kbd></label>
+    <label><input type="checkbox" id="t-labels" checked> labels</label>
+    <label><input type="checkbox" id="t-rotate"> auto-rotate</label>
+    <button id="reset" type="button">Reset view<kbd>r</kbd></button>
+  </div>
+</header>
+<div id="note" aria-live="polite" tabindex="0"></div>
+<main>
+  <div id="stage"></div>
+  <div id="labels"></div>
+  <div id="fallback">Loading Three.js from jsDelivr… <br><small>This page needs internet access for <code>three@0.186.0</code>. The data itself is embedded.</small></div>
+  <aside id="legend" class="card" aria-label="Legend"></aside>
+  <aside id="panel" class="card" hidden aria-label="Node details"></aside>
+  <div id="tooltip" role="tooltip"></div>
+</main>
+
+<!--__DATA_START__-->
+<script id="graph-data" type="application/json">{"framework":{"slug":"means-ends-analysis","name":"Means-Ends Analysis","category":"03-engineering-and-cognitive","wikipedia":"https://en.wikipedia.org/wiki/Means%E2%80%93ends_analysis","one_liner":"Measures the distance between where you are and where you want to be, picks the operator that shrinks the biggest difference, and promotes every unmet precondition into a goal of its own."},"slots":[{"id":"current_state","label":"Current state","description":"Where things are now: the position, the numbers, the inventory of what exists before anything is applied.","typical_provenance":"fact","color":"#6ea8fe","shape":"sphere"},{"id":"goal_state","label":"Goal state","description":"Where things should be, stated precisely enough that you could tell whether you had arrived.","typical_provenance":"either","color":"#4fc3a1","shape":"box"},{"id":"difference","label":"Difference","description":"The gap that matters most between current and goal, named in a way that selects an operator.","typical_provenance":"derived","color":"#ef6f6c","shape":"diamond"},{"id":"operator","label":"Operator","description":"An action known to reduce a difference of that kind.","typical_provenance":"either","color":"#b48ef0","shape":"cone"},{"id":"precondition","label":"Precondition","description":"What must already be true before an operator can be applied at all.","typical_provenance":"derived","color":"#ff9de2","shape":"sphere"},{"id":"subgoal","label":"Sub-goal","description":"An unmet precondition promoted to a goal of its own, which restarts the whole loop one level down.","typical_provenance":"derived","color":"#7fe0c8","shape":"box"}],"relations":[{"id":"differs_by","label":"differs by","description":"current state differs from goal state by a difference"},{"id":"reduced_by","label":"reduced by","description":"difference is reduced by an operator"},{"id":"requires","label":"requires","description":"operator requires a precondition"},{"id":"becomes_subgoal","label":"becomes sub-goal","description":"unmet precondition becomes a sub-goal"},{"id":"transforms","label":"transforms","description":"operator transforms one state into another"}],"examples":[{"id":"classic","kind":"classic","title":"Getting a boy to nursery school","summary":"The textbook means-ends chain: a distance to cover, a car that will not start, a shop that does not know, a telephone. Each unmet precondition becomes a goal one level down, and the same loop runs again.","source":{"type":"text","title":"The nursery-school problem (scenario text)","attribution":"Retold from the nursery-school illustration of means-ends analysis in Newell and Simon, Human Problem Solving (1972), the standard exposition of the General Problem Solver's loop.","text":"A father has to get his four-year-old son to nursery school this morning. He is at home with the boy, the school is three miles away across town, and the session starts in forty minutes. His car is in the driveway and it is the only thing he owns that covers three miles in ten minutes. The car will not start; the battery is dead. The auto repair shop six blocks away stocks batteries and will install one the same day, which is what the car needs to start. Nobody has told the shop anything, so it has no idea that a battery is wanted. To tell the shop anything he has to reach it, and the telephone on the kitchen wall reaches the shop, which opens at eight. He picks up the telephone and dials."},"layout":{"mode":"plane","axes":{"x":{"label":"means → end","min":-96,"max":96,"ticks":[{"value":-64,"label":"current"},{"value":-32,"label":"difference"},{"value":0,"label":"operator"},{"value":32,"label":"precondition"},{"value":64,"label":"goal"}]},"y":{"label":"recursion depth","min":-45,"max":46,"ticks":[{"value":26,"label":"0"},{"value":-4,"label":"1"},{"value":-35,"label":"2"}]}},"regions":[{"label":"level 0 · the original goal","x":[-96,96],"y":[16,46]},{"label":"level 1 · sub-goal: a car that runs","x":[-96,96],"y":[-14,16]},{"label":"level 2 · sub-goal: a shop that knows","x":[-96,96],"y":[-45,-15]}]},"nodes":[{"id":"c1","slot":"current_state","label":"At home, forty minutes left","text":"The father is at home with the boy. The school is three miles away across town and the morning session starts in forty minutes.","provenance":"fact","source_quote":"He is at home with the boy, the school is three miles away across town, and the session starts in forty minutes.","source_ref":"sentence 2","pos":[-64,26]},{"id":"g1","slot":"goal_state","label":"Son at nursery school","text":"The boy is at nursery school this morning. That is the state the whole chain exists to reach.","provenance":"fact","source_quote":"A father has to get his four-year-old son to nursery school this morning.","source_ref":"sentence 1","pos":[64,26]},{"id":"d1","slot":"difference","label":"Three miles of distance","text":"The difference that matters between the two states is distance: three miles a four-year-old cannot cover in the time left. Not money, not permission, not information.","provenance":"derived","confidence":0.9,"rationale":"The scenario gives a position, a destination and a clock, and never names the gap between them. Distance is the reading that makes the car relevant; if the difference were named as information or as money, a different operator would be selected and the rest of the chain would not follow.","pos":[-32,37]},{"id":"o1","slot":"operator","label":"Drive the car across town","text":"Driving the car covers the three miles. It is the only thing the father owns that reduces a difference of this size in the time available.","provenance":"fact","source_quote":"His car is in the driveway and it is the only thing he owns that covers three miles in ten minutes.","source_ref":"sentence 3","pos":[0,26]},{"id":"p1","slot":"precondition","label":"The car has to start","text":"Before the drive operator can be applied the car has to start. The operator is available and not applicable, which are different things.","provenance":"derived","confidence":0.9,"rationale":"Means-ends analysis tests an operator's preconditions before applying it. The dead battery is only a blocker once you have said that driving needs a running car; the scenario states the dead battery and never states the requirement it violates.","pos":[32,37]},{"id":"s1","slot":"subgoal","label":"Sub-goal: a car that runs","text":"The unmet precondition is promoted to a goal in its own right: get the car into a state where it starts. The compare-difference-operator loop now runs on this goal instead.","provenance":"derived","confidence":0.9,"rationale":"This is the recursive step the method is named for, and it is never said out loud: the scenario moves from the dead battery to the repair shop as though no new goal had been created. Without the promotion there is no second level and no explanation of why a repair shop is suddenly relevant to nursery school.","pos":[64,-4]},{"id":"c2","slot":"current_state","label":"The car will not start","text":"The car is in the driveway and it will not start, because the battery is dead.","provenance":"fact","source_quote":"The car will not start; the battery is dead.","source_ref":"sentence 4","pos":[-64,-4]},{"id":"d2","slot":"difference","label":"No cranking current","text":"Between the car as it is and the car the drive operator needs there is one difference: a dead battery delivers no current to the starter.","provenance":"derived","confidence":0.85,"rationale":"The scenario names the dead battery as a state, not as the difference between two states. Reading it as the difference is what makes replacing the battery, rather than pushing the car or calling a taxi, the operator the chain selects.","pos":[-32,7]},{"id":"o2","slot":"operator","label":"Shop fits a new battery","text":"The auto repair shop six blocks away stocks batteries and will install one the same day, which is what the car needs to start.","provenance":"fact","source_quote":"The auto repair shop six blocks away stocks batteries and will install one the same day, which is what the car needs to start.","source_ref":"sentence 5","pos":[0,-4]},{"id":"p2","slot":"precondition","label":"The shop has to know","text":"Before the shop can fit a battery it has to know that one is wanted. The scenario records that it does not; the requirement is what turns that into a blocker.","provenance":"derived","confidence":0.9,"rationale":"An operator that belongs to somebody else carries a precondition of consent or instruction, and the scenario states only the shop's ignorance. Naming the requirement is what produces the third level; reading sentence 6 as a complaint produces nothing.","pos":[32,7]},{"id":"s2","slot":"subgoal","label":"Sub-goal: a shop that knows","text":"The second unmet precondition becomes the second sub-goal, one level deeper: get the fact that a battery is wanted from the father's head into the shop.","provenance":"derived","confidence":0.85,"rationale":"The same promotion as s1, applied to p2. It is worth making explicit because the recursion is the framework's whole claim: the machinery that handled a three-mile drive handles a missing sentence without changing shape.","pos":[64,-35]},{"id":"c3","slot":"current_state","label":"The shop has not been told","text":"The repair shop has been told nothing, so it has no idea that a battery is wanted.","provenance":"fact","source_quote":"Nobody has told the shop anything, so it has no idea that a battery is wanted.","source_ref":"sentence 6","pos":[-64,-35]},{"id":"d3","slot":"difference","label":"A difference of information","text":"Between what the shop knows and what it must know there is a difference of information. It is not a difference of distance or of money, so neither the car nor a cheque reduces it.","provenance":"derived","confidence":0.8,"rationale":"The scenario never classifies the gap. Classifying it as information is what selects a telephone: the same naming step as d1, performed on a gap of a completely different kind, which is how the method keeps working as it descends.","pos":[-32,-24]},{"id":"o3","slot":"operator","label":"Telephone the shop","text":"The telephone on the kitchen wall reaches the shop, which opens at eight. Picking it up applies the operator.","provenance":"fact","source_quote":"the telephone on the kitchen wall reaches the shop, which opens at eight","source_ref":"sentence 7","pos":[0,-35]},{"id":"p3","slot":"precondition","label":"Someone has to pick up","text":"Before the telephone operator can work the shop has to be open and someone has to answer. The scenario says the shop opens at eight and never says what time it is.","provenance":"derived","confidence":0.7,"rationale":"The opening hour is stated as colour, and it is actually a precondition that the text leaves untested: forty minutes before a nursery session may well be before eight. Flagging it is the honest end of the chain, because the method stops at the first precondition it cannot check rather than at the first one it can satisfy.","pos":[32,-24]}],"edges":[{"id":"ce1","from":"c1","to":"d1","relation":"differs_by","provenance":"derived","confidence":0.9,"rationale":"The position and the clock in sentence 2 are what make distance the operative gap."},{"id":"ce2","from":"g1","to":"d1","relation":"differs_by","provenance":"derived","confidence":0.9,"rationale":"A difference is defined by both states; the goal supplies the destination end of the three miles."},{"id":"ce3","from":"d1","to":"o1","relation":"reduced_by","provenance":"derived","confidence":0.85,"rationale":"Sentence 3 says the car covers the distance but never says that the car is therefore the operator for this gap; that selection is the method's step."},{"id":"ce17","from":"o1","to":"g1","relation":"transforms","provenance":"derived","confidence":0.85,"rationale":"Applying the drive operator turns the at-home state into the at-school state. The scenario never completes the drive, so the transformation is inferred from the operator's stated effect."},{"id":"ce4","from":"o1","to":"p1","relation":"requires","provenance":"derived","confidence":0.9,"rationale":"Driving a car requires a car that starts; the requirement is implicit in the operator and is what the dead battery violates."},{"id":"ce5","from":"p1","to":"s1","relation":"becomes_subgoal","provenance":"derived","confidence":0.9,"rationale":"The promotion step: an unmet precondition is re-entered as a goal, which is the only reason the repair shop enters a story about nursery school."},{"id":"ce6","from":"c2","to":"d2","relation":"differs_by","provenance":"derived","confidence":0.85,"rationale":"The dead battery in sentence 4 is the content of the second-level difference."},{"id":"ce7","from":"s1","to":"d2","relation":"differs_by","provenance":"derived","confidence":0.8,"rationale":"The new goal supplies the other end of the second-level gap: a car that starts."},{"id":"ce8","from":"d2","to":"o2","relation":"reduced_by","provenance":"derived","confidence":0.85,"rationale":"Fitting a battery is selected because the difference was classified as a missing battery rather than as a car that is generally broken."},{"id":"ce15","from":"o2","to":"c2","relation":"transforms","provenance":"fact","source_quote":"The auto repair shop six blocks away stocks batteries and will install one the same day, which is what the car needs to start.","source_ref":"sentence 5","label":"fixes"},{"id":"ce9","from":"o2","to":"p2","relation":"requires","provenance":"derived","confidence":0.9,"rationale":"An operator owned by someone else requires that they be instructed; the shop cannot act on a need it has not been told about."},{"id":"ce10","from":"p2","to":"s2","relation":"becomes_subgoal","provenance":"derived","confidence":0.85,"rationale":"The second promotion, identical in form to the first and applied to a gap of a different kind."},{"id":"ce11","from":"c3","to":"d3","relation":"differs_by","provenance":"derived","confidence":0.85,"rationale":"Sentence 6 states the shop's ignorance, which is the content of the third-level difference."},{"id":"ce12","from":"s2","to":"d3","relation":"differs_by","provenance":"derived","confidence":0.8,"rationale":"The third-level goal supplies the other end: a shop that knows."},{"id":"ce13","from":"d3","to":"o3","relation":"reduced_by","provenance":"derived","confidence":0.85,"rationale":"A telephone is the operator for a difference of information, and only for that kind of difference."},{"id":"ce16","from":"o3","to":"c3","relation":"transforms","provenance":"fact","source_quote":"To tell the shop anything he has to reach it, and the telephone on the kitchen wall reaches the shop, which opens at eight.","source_ref":"sentence 7","label":"informs"},{"id":"ce14","from":"o3","to":"p3","relation":"requires","provenance":"derived","confidence":0.7,"rationale":"A telephone call requires an answer at the other end, which the scenario leaves unverified."},{"id":"ce18","from":"p1","to":"c2","relation":"supported_by","provenance":"derived","confidence":0.9,"rationale":"The dead battery is the evidence that this precondition is unmet."},{"id":"ce19","from":"p2","to":"c3","relation":"supported_by","provenance":"derived","confidence":0.9,"rationale":"The shop's stated ignorance is the evidence that this precondition is unmet."},{"id":"ce20","from":"p3","to":"o3","relation":"supported_by","provenance":"derived","confidence":0.7,"rationale":"The opening hour inside sentence 7 is the only evidence bearing on whether the call can be answered."},{"id":"ce21","from":"s1","to":"c2","relation":"supported_by","provenance":"derived","confidence":0.85,"rationale":"The sub-goal exists because of the state sentence 4 reports."},{"id":"ce22","from":"s2","to":"c3","relation":"supported_by","provenance":"derived","confidence":0.85,"rationale":"The sub-goal exists because of the state sentence 6 reports."},{"id":"ce23","from":"d1","to":"c1","relation":"supported_by","provenance":"derived","confidence":0.9,"rationale":"Three miles and forty minutes are the stated quantities the distance reading rests on."}]},{"id":"tbpn","kind":"tbpn","title":"Hadrian: four times the factory, and a workforce money cannot buy","summary":"Chris Power states Hadrian's current state and its goal state with numbers, names five operators, and then names the one thing no operator can buy: the workforce. The preconditions underneath the rest of his plan are never stated, and that is where the openings are.","source":{"type":"transcript","file":"tbpn-transcripts/transcripts/2025-07-17_astronomer-ceo-affair-at-coldplay-concert-juul-approved-by-the-fda-is-ai-causing-historic-crashouts-chris-power-jeremie-eliahou-chris-best-alex-mashra.md","date":"2025-07-17","episode_title":"Astronomer CEO affair at Coldplay concert, Juul approved by the FDA, is AI causing historic crashouts (Chris Power, Jeremie Eliahou, Chris Best, Alex Mashrabov)"},"why_this_episode":"Live from the Reindustrialize summit, Chris Power gives the two states this framework needs in consecutive sentences: Factory 2 in LA with revenue up 10x, and Factory 3 in Arizona at four times the size. He then names the operators that close the gap and, unusually, names one precondition out loud and says that money cannot satisfy it, which is exactly the moment a precondition becomes a sub-goal.","idea_bearing_slot":"precondition","layout":{"mode":"plane","axes":{"x":{"label":"means → end","min":-96,"max":96,"ticks":[{"value":-64,"label":"current"},{"value":-32,"label":"difference"},{"value":0,"label":"operator"},{"value":32,"label":"precondition"},{"value":64,"label":"goal"}]},"y":{"label":"recursion depth","min":-86,"max":80,"ticks":[{"value":45,"label":"0"},{"value":-8,"label":"1"},{"value":-53,"label":"2"},{"value":-74,"label":"3"}]}},"regions":[{"label":"level 0 · the goal: four times the capacity","x":[-96,96],"y":[17,80]},{"label":"level 1 · sub-goal: a workforce, and money for machines","x":[-96,96],"y":[-35,17]},{"label":"level 2 · sub-goal: the workforce","x":[-96,96],"y":[-64,-35]},{"label":"level 3 · open","x":[46,96],"y":[-86,-64]}]},"nodes":[{"id":"cs1","slot":"current_state","label":"Factory 2 in LA, revenue up 10x","text":"Hadrian's second factory is in Los Angeles and scaled revenue tenfold last year, which is why capacity is now the binding issue.","provenance":"fact","source_quote":"So last year in factory two in LA, you know, we scaled revenue 10 X last year.","source_ref":"Chris Power, L3734-L3736","entities":["Hadrian","Chris Power"],"pos":[-64,45]},{"id":"gs1","slot":"goal_state","label":"Factory 3 in Arizona, 4x LA","text":"The goal state is a third factory in Arizona, four times the size of the Los Angeles facility, filled with machines.","provenance":"fact","source_quote":"to buy more machines and put them in factory three in Arizona, which is gonna be four times the size of our facility in LA.","source_ref":"Chris Power, L3740-L3744","entities":["Hadrian"],"pos":[64,45]},{"id":"gs2","slot":"goal_state","label":"A program from one aircraft to 20","text":"The customer-side goal: a new program of record scaling from one aircraft to twenty, with no other supplier able to keep up.","provenance":"fact","source_quote":"we're scaling a new program of record and no one else can keep up. We're going from one aircraft to 20.","source_ref":"Chris Power, L4036-L4040","entities":["Hadrian"],"pos":[64,57]},{"id":"df1","slot":"difference","label":"Obviously need more capacity","text":"Power states the top-level difference himself: after 10x revenue growth the gap between what Factory 2 produces and what demand asks for is capacity.","provenance":"fact","source_quote":"And so obviously need more capacity.","source_ref":"Chris Power, L3736","entities":["Hadrian"],"pos":[-32,52]},{"id":"df2","slot":"difference","label":"4x of floor, 20x of demand","text":"The two numbers never meet in the conversation. Floor space and machines go up four times; the program they serve goes up twenty times. The missing factor of five has to come from output per machine and per person, not from more building.","provenance":"derived","confidence":0.75,"rationale":"Arithmetic on two stated quantities that are fifteen minutes apart in the interview: Factory 3 is 'four times the size of our facility in LA' and the program is 'going from one aircraft to 20'. Nobody divides them. The quotient is what makes automation a requirement rather than a preference, and it is the one number that decides whether the plan closes the gap.","pos":[-32,65]},{"id":"op1","slot":"operator","label":"Scale up machining in Factory 3","text":"The first operator: put the machining capacity of four LA factories on the floor in Arizona, across every machining format.","provenance":"fact","source_quote":"So we'll scale up machining in factory three, four times the size","source_ref":"Chris Power, L3866-L3868","entities":["Hadrian"],"pos":[0,45]},{"id":"op2","slot":"operator","label":"Morgan Stanley capacity instrument","text":"A debt instrument from Morgan Stanley, raised specifically to expand factory capacity rather than to fund the company.","provenance":"fact","source_quote":"And Morgan Stanley is providing us this huge instrument as well to expand factory capacity.","source_ref":"Chris Power, L3718-L3722","entities":["Hadrian","Morgan Stanley"],"pos":[0,30]},{"id":"op3","slot":"operator","label":"A $260M equity round","text":"An equity round of $260 million, led by the investors Power names as Founders Fund and Lux (the transcript garbles the names), announced the morning of the interview.","provenance":"fact","source_quote":"are leading a huge $260 million round into Hadrian.","source_ref":"Chris Power, L3714","entities":["Hadrian","Founders Fund","Chris Power"],"pos":[0,9]},{"id":"pc1","slot":"precondition","label":"Machines bought without equity","text":"Before the floor can be filled at this rate, the capital equipment has to be paid for out of something other than equity, because equity is reserved for headcount and products.","provenance":"derived","confidence":0.85,"rationale":"Power states the allocation rule as a preference ('we don't want to use equity dollars to scale'), not as a gate. Read as a precondition it explains the shape of the whole financing: a 4x factory cannot be bought with dilution at a tolerable price, so a separate machine-financing instrument has to exist before the scale-up operator can run.","entities":["Hadrian","Morgan Stanley"],"pos":[32,52]},{"id":"sg1","slot":"subgoal","label":"Sub-goal: finance the machines","text":"The capital precondition promoted to a goal of its own: find an instrument that buys CapEx without touching equity. This is the one sub-goal in the interview that is already solved.","provenance":"derived","confidence":0.8,"rationale":"The Morgan Stanley instrument only makes sense as the answer to a goal nobody states. Naming the sub-goal is what distinguishes it from the equity round: two operators, two different sub-goals, one of which buys steel and one of which buys people.","entities":["Hadrian","Morgan Stanley"],"pos":[64,-8]},{"id":"cs2","slot":"current_state","label":"Primes' suppliers: 60% on time","text":"A prime contractor spending a billion dollars a year sees its suppliers deliver on time 60% of the time, often three to five months late.","provenance":"fact","source_quote":"a lot of the primes have a billion dollars in spend a year and their suppliers are delivering on time, 60% and they're often three to five months late.","source_ref":"Chris Power, L4046-L4052","entities":["Hadrian"],"pos":[-64,30]},{"id":"df3","slot":"difference","label":"Schedule and capacity, not cost","text":"Power names what customers are actually paying to close: schedule, capacity and stability, rather than unit cost. One missing part stops a line at millions of dollars a day.","provenance":"fact","source_quote":"people are really coming to us for the schedule and the capacity and stability versus cost.","source_ref":"Chris Power, L4056-L4058","entities":["Hadrian"],"pos":[-32,37]},{"id":"cs3","slot":"current_state","label":"No one can find the workforce","text":"In submarines, shipbuilding and munitions the binding constraint is not the cost of the work but that nobody can find people to do it.","provenance":"fact","source_quote":"it's not about automation to make things cheaper. It's just no one can find the workforce.","source_ref":"Chris Power, L3974-L3976","entities":["Hadrian"],"pos":[-64,-25]},{"id":"df4","slot":"difference","label":"No scaled workforce at any price","text":"The difference that no amount of capital reduces: a billion dollars cannot hire two thousand welders, because the scaled workforce no longer exists in the country.","provenance":"fact","source_quote":"because you could give me a billion dollars and say, go hire 2,000 welders, and we can no longer have that scaled workforce in the country.","source_ref":"Chris Power, L3986-L3992","entities":["Hadrian"],"pos":[-32,-1]},{"id":"op4","slot":"operator","label":"Automated factories","text":"Automating the factory is presented not as a way to make parts cheaper but as the only available operator once the labour difference cannot be reduced by hiring.","provenance":"fact","source_quote":"So automated factories are sometimes the only way to win in these critical domains.","source_ref":"Chris Power, L3994-L3996","entities":["Hadrian"],"pos":[0,-8]},{"id":"op5","slot":"operator","label":"Advanced mfg plus new workforce","text":"The compound operator Power actually proposes: Hadrian's model of advanced manufacturing combined with a new industrial workforce, not one or the other.","provenance":"fact","source_quote":"So you have to use our model of advanced manufacturing combined with this new industrial workforce that we're so grateful to work with.","source_ref":"Chris Power, L3978-L3982","entities":["Hadrian"],"pos":[0,-25]},{"id":"pc2","slot":"precondition","label":"A workforce money cannot buy","text":"Both operators require people who can run an advanced factory: machinists, welders, quality inspectors, operators. The precondition is unmet and, by Power's own statement, unbuyable at any price.","provenance":"derived","confidence":0.9,"rationale":"Power states the labour shortage and states the automation response, but never puts the requirement between them: an automated factory still needs trained people, so automation reduces the headcount the operator needs without removing the precondition. Treating it as a precondition rather than as background is what turns it into a goal with an owner.","idea":"A training-and-placement pipeline that delivers machinists, welders and quality inspectors to advanced factories on a contracted schedule is a business whose price is already quoted: primes losing millions of dollars a day to 60% on-time delivery are paying for schedule, not for cheap labour.","entities":["Hadrian"],"pos":[32,0]},{"id":"sg2","slot":"subgoal","label":"Sub-goal: the industrial workforce","text":"The labour precondition promoted to a goal Hadrian pursues itself: build the new industrial workforce, and use equity dollars rather than debt to do it.","provenance":"derived","confidence":0.85,"rationale":"Power's phrasing gives this away twice: the round is 'more importantly' about the new industrial workforce, and equity dollars are earmarked 'to hire more people'. Neither sentence says a sub-goal has been created, but a company that allocates a separate instrument to a precondition has promoted it.","entities":["Hadrian","Chris Power"],"pos":[64,-53]},{"id":"cs4","slot":"current_state","label":"We hollowed out the talent base","text":"The starting state of the workforce sub-goal: the talent base was hollowed out over decades of offshoring, so the skills are not there to be recruited.","provenance":"fact","source_quote":"It is really a we hollowed out the talent base. We don't have a lot of the talent anymore.","source_ref":"Chris Power, L4140-L4142","entities":["Hadrian"],"pos":[-64,9]},{"id":"op6","slot":"operator","label":"Software and robotics for 10x","text":"The operator for the workforce sub-goal: use software and robotics to make the workforce that does exist ten times more productive.","provenance":"fact","source_quote":"And the only way to do that is use software and robotics to enable this workforce to be 10 times more productive.","source_ref":"Chris Power, L4144-L4146","entities":["Hadrian"],"pos":[0,-53]},{"id":"cs5","slot":"current_state","label":"Factory software 30 years behind","text":"Manufacturing software is thirty years behind the rest of Silicon Valley, which Power offers to software engineers as a reason to come and work on it.","provenance":"fact","source_quote":"for software engineers, manufacturing software is 30 years behind the rest of Silicon Valley.","source_ref":"Chris Power, L4180-L4182","entities":["Hadrian"],"pos":[-64,-53]},{"id":"df5","slot":"difference","label":"The tooling gap on the floor","text":"Between the software an automated factory needs and the software the industry actually has there are thirty years. That gap, not the robots, is what stands between the existing workforce and a tenfold gain.","provenance":"derived","confidence":0.7,"rationale":"Power states the thirty-year lag as a recruiting pitch in a different part of the conversation from the 10x productivity claim. Putting them together turns a fact about an industry into the difference that blocks his own operator: you cannot deploy software that is not written.","entities":["Hadrian"],"pos":[-32,-46]},{"id":"pc3","slot":"precondition","label":"Software nobody has written yet","text":"Before software and robotics can make a workforce ten times more productive, that software has to exist for the processes being automated: machining, welding, castings, inspection.","provenance":"derived","confidence":0.7,"rationale":"Follows from the two stated facts, the 10x-productivity operator and the thirty-year software lag, neither of which is presented as bearing on the other. The precondition is what explains why a manufacturing company is hiring software engineers at all.","idea":"Machine-level software for the shop floor is a greenfield category by the operator's own admission: scheduling, tooling, quality and traceability for machining, welding and castings, sold to the factories whose automation plans are all gated on the same missing layer.","entities":["Hadrian"],"pos":[32,-45]},{"id":"sg3","slot":"subgoal","label":"Sub-goal: write the floor software","text":"The software precondition promoted to a goal two levels down from the original one. Hadrian takes it on internally; nobody in the conversation suggests it can be bought.","provenance":"derived","confidence":0.7,"rationale":"The third promotion in the chain, and the one with the weakest stated support: Power advertises the software opportunity to engineers rather than describing a program. Naming it as a sub-goal is what shows how far the original capacity goal has recursed.","idea":"The recursion itself is the market signal: every defence manufacturer scaling capacity hits the same two missing layers, trained operators and floor software, which means these are industry-wide sub-goals being solved separately and expensively inside each company.","entities":["Hadrian"],"pos":[64,-74]}],"edges":[{"id":"fe1","from":"cs1","to":"df1","relation":"differs_by","provenance":"fact","source_quote":"So last year in factory two in LA, you know, we scaled revenue 10 X last year. Wow. And so obviously need more capacity.","source_ref":"Chris Power, L3734-L3736","label":"so"},{"id":"fe2","from":"df1","to":"op1","relation":"reduced_by","provenance":"fact","source_quote":"And so obviously need more capacity. So we're gonna use all of the factory financing capital to buy more machines and put them in factory three in Arizona","source_ref":"Chris Power, L3736-L3742"},{"id":"fe3","from":"df1","to":"op2","relation":"reduced_by","provenance":"fact","source_quote":"And Morgan Stanley is providing us this huge instrument as well to expand factory capacity.","source_ref":"Chris Power, L3718-L3722"},{"id":"fe4","from":"op1","to":"gs1","relation":"transforms","provenance":"fact","source_quote":"So we're gonna use all of the factory financing capital to buy more machines and put them in factory three in Arizona, which is gonna be four times the size of our facility in LA.","source_ref":"Chris Power, L3738-L3744"},{"id":"fe5","from":"cs2","to":"df3","relation":"differs_by","provenance":"fact","source_quote":"they're often three to five months late. So that is less about cost. And that's more about, I want a stable supply chain that I don't want to have to worry about. Cause if you have one part missing, your manufacturing line goes down and then it's millions of dollars a day. Right? So people are really coming to us for the schedule and the capacity and stability versus cost.","source_ref":"Chris Power, L4052-L4058"},{"id":"fe6","from":"cs3","to":"df4","relation":"differs_by","provenance":"fact","source_quote":"It's just no one can find the workforce. So you have to use our model of advanced manufacturing combined with this new industrial workforce that we're so grateful to work with. That's the power, because you could give me a billion dollars and say, go hire 2,000 welders, and we can no longer have that scaled workforce in the country.","source_ref":"Chris Power, L3976-L3992"},{"id":"fe7","from":"df4","to":"op4","relation":"reduced_by","provenance":"fact","source_quote":"because you could give me a billion dollars and say, go hire 2,000 welders, and we can no longer have that scaled workforce in the country. So automated factories are sometimes the only way to win in these critical domains.","source_ref":"Chris Power, L3986-L3996"},{"id":"fe8","from":"df4","to":"op5","relation":"reduced_by","provenance":"fact","source_quote":"So you have to use our model of advanced manufacturing combined with this new industrial workforce that we're so grateful to work with. That's the power, because you could give me a billion dollars and say, go hire 2,000 welders, and we can no longer have that scaled workforce in the country.","source_ref":"Chris Power, L3978-L3992"},{"id":"fe9","from":"op6","to":"cs4","relation":"transforms","provenance":"fact","source_quote":"It is really a we hollowed out the talent base. We don't have a lot of the talent anymore. And the only way to do that is use software and robotics to enable this workforce to be 10 times more productive.","source_ref":"Chris Power, L4140-L4146","label":"the only way"},{"id":"de1","from":"gs2","to":"df2","relation":"differs_by","provenance":"derived","confidence":0.8,"rationale":"The twenty-aircraft figure is one of the two numbers the quotient is taken from."},{"id":"de2","from":"gs1","to":"df2","relation":"differs_by","provenance":"derived","confidence":0.75,"rationale":"The 4x factory is the other number; the difference is the ratio between them."},{"id":"de3","from":"cs1","to":"df2","relation":"differs_by","provenance":"derived","confidence":0.7,"rationale":"Factory 2 is the unit the 4x is measured in, so it sets the baseline the ratio is computed against."},{"id":"de4","from":"df2","to":"op4","relation":"reduced_by","provenance":"derived","confidence":0.75,"rationale":"If floor space grows 4x while demand grows 20x, the remaining factor has to come from output per machine and per person, which is what automation is for. Power never connects the automation argument to the capacity arithmetic; he reaches automation from the labour shortage instead."},{"id":"de5","from":"op1","to":"pc1","relation":"requires","provenance":"derived","confidence":0.85,"rationale":"Filling four times the floor with machines requires the machines to be paid for; the allocation rule Power states makes equity unavailable for it."},{"id":"de6","from":"pc1","to":"sg1","relation":"becomes_subgoal","provenance":"derived","confidence":0.85,"rationale":"The promotion step: a financing requirement becomes a goal with its own operator, which is the Morgan Stanley instrument."},{"id":"de7","from":"op2","to":"sg1","relation":"transforms","provenance":"derived","confidence":0.8,"rationale":"The instrument is the operator that satisfies the financing sub-goal; Power describes what it is for but never frames it as closing a sub-goal."},{"id":"de8","from":"op1","to":"gs2","relation":"transforms","provenance":"derived","confidence":0.7,"rationale":"Scaling machining capacity is what lets the program of record go from one aircraft to twenty; the two are stated fifteen minutes apart and never joined."},{"id":"de9","from":"df3","to":"op1","relation":"reduced_by","provenance":"derived","confidence":0.7,"rationale":"If customers are buying schedule and capacity, more machining capacity is the operator that delivers it. Power states both halves and leaves the link to the listener."},{"id":"de10","from":"df3","to":"op5","relation":"reduced_by","provenance":"derived","confidence":0.7,"rationale":"The compound operator is sold to programs that are behind schedule, so the schedule difference is what it is meant to reduce."},{"id":"de11","from":"cs4","to":"df4","relation":"differs_by","provenance":"derived","confidence":0.8,"rationale":"The hollowed-out talent base is the history behind the workforce difference; Power gives the cause in one passage and the difference in another."},{"id":"de12","from":"op4","to":"pc2","relation":"requires","provenance":"derived","confidence":0.9,"rationale":"An automated factory reduces how many people an operator needs; it does not remove the requirement for trained ones. The requirement is nowhere stated."},{"id":"de13","from":"op5","to":"pc2","relation":"requires","provenance":"derived","confidence":0.85,"rationale":"The compound operator names the workforce as one of its two halves, so it cannot be applied until that half exists."},{"id":"de14","from":"pc2","to":"sg2","relation":"becomes_subgoal","provenance":"derived","confidence":0.9,"rationale":"The promotion that organises the whole interview: Power calls the new industrial workforce the more important half of the announcement, which is what a company does with a precondition it has decided to own."},{"id":"de15","from":"op3","to":"sg2","relation":"transforms","provenance":"derived","confidence":0.7,"rationale":"Equity dollars are earmarked for hiring people rather than for CapEx, which makes the round the operator for the workforce sub-goal: 'We wanna use equity dollars to hire more people to build more products for our customers'."},{"id":"de16","from":"op6","to":"sg2","relation":"transforms","provenance":"derived","confidence":0.8,"rationale":"Making the existing workforce ten times more productive is the other operator on the same sub-goal, and the only one that changes the arithmetic rather than the headcount."},{"id":"de17","from":"sg2","to":"df5","relation":"differs_by","provenance":"derived","confidence":0.65,"rationale":"Once building the workforce is itself the goal, the gap between the existing workforce and a tenfold-productive one is a tooling gap. This is the second recursion step and nothing in the source states it."},{"id":"de18","from":"cs5","to":"df5","relation":"differs_by","provenance":"derived","confidence":0.8,"rationale":"The thirty-year lag is the stated measurement of the tooling gap's size."},{"id":"de19","from":"df5","to":"op6","relation":"reduced_by","provenance":"derived","confidence":0.75,"rationale":"Software and robotics is the operator aimed at the tooling gap, which is why the gap has to be named before the operator makes sense."},{"id":"de20","from":"op6","to":"pc3","relation":"requires","provenance":"derived","confidence":0.7,"rationale":"Deploying software requires the software to exist for these processes, which by the speaker's own account the industry is thirty years short of."},{"id":"de21","from":"pc3","to":"sg3","relation":"becomes_subgoal","provenance":"derived","confidence":0.7,"rationale":"The third promotion: the missing software becomes a goal two levels below the original capacity goal, which is how far this plan has had to recurse."},{"id":"sb1","from":"df2","to":"gs1","relation":"supported_by","provenance":"derived","confidence":0.75,"rationale":"The 4x figure is one of the two quantities the ratio is computed from."},{"id":"sb2","from":"pc1","to":"op2","relation":"supported_by","provenance":"derived","confidence":0.85,"rationale":"The existence of a dedicated machine-financing instrument is the evidence that the capital requirement was treated as a gate."},{"id":"sb3","from":"pc2","to":"df4","relation":"supported_by","provenance":"derived","confidence":0.9,"rationale":"The billion-dollars-and-2,000-welders statement is the direct evidence that this precondition cannot be met by spending."},{"id":"sb4","from":"pc2","to":"cs3","relation":"supported_by","provenance":"derived","confidence":0.85,"rationale":"The stated inability to find a workforce in submarines, shipbuilding and munitions grounds the requirement."},{"id":"sb5","from":"pc3","to":"cs5","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"The thirty-year software lag is the evidence that the software the operator needs has not been written."},{"id":"sb6","from":"sg1","to":"op2","relation":"supported_by","provenance":"derived","confidence":0.8,"rationale":"The instrument is the visible trace of the financing sub-goal."},{"id":"sb7","from":"sg2","to":"op5","relation":"supported_by","provenance":"derived","confidence":0.85,"rationale":"Naming the new industrial workforce as half of the operator is the evidence that Hadrian has taken the precondition on as a goal."},{"id":"sb8","from":"sg3","to":"cs5","relation":"supported_by","provenance":"derived","confidence":0.7,"rationale":"The recruiting pitch to software engineers is the only trace in the source of work on this sub-goal."}]}]}</script>
+<!--__DATA_END__-->
+
+<!--__EXT_START__-->
+<!-- Framework-specific visuals go here. Optional. Define:
+     window.__frameworkExtension = (ctx) => { /* ctx: { THREE, scene, group, graph, example, nodesById, positions, api } */ };
+     It is called after each example is laid out; add objects to ctx.group so they are removed on example switch. -->
+<!--__EXT_END__-->
+
+<script>
+  // Fallback notice if the module (and Three.js) never loads.
+  window.__engineReady = false;
+  setTimeout(() => { if (!window.__engineReady) { const f = document.getElementById('fallback'); f.innerHTML = 'Could not load Three.js from jsDelivr.<br><small>Check the network connection, then reload. The graph data is embedded in this file and is not lost.</small>'; } }, 9000);
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
+// ---------- palette (validated categorical slots, dark surface; see _meta and SPEC.md section 5) ----------
+const SLOT_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'];
+const SCHEMA_COLOR = '#898781';
+const INK = '#ffffff', INK2 = '#c3c2b7', MUTED = '#898781', HAIRLINE = '#2c2c2a', SURFACE = '#1a1a19';
+const IDEA = '#eda100';   // marks a node whose `idea` field names an opportunity
+const NODE_R = 2.2;
+
+// ---------- data ----------
+const $ = (id) => document.getElementById(id);
+let GRAPH;
+try { GRAPH = JSON.parse($('graph-data').textContent); } catch (e) { fatal('The embedded graph data is not valid JSON: ' + e.message); }
+if (!GRAPH || !GRAPH.framework || !Array.isArray(GRAPH.examples) || GRAPH.examples.length === 0) fatal('No graph data embedded yet. Run: node _meta/build.mjs <framework-dir>');
+
+function fatal(msg) { const f = $('fallback'); f.hidden = false; f.textContent = msg; window.__engineReady = true; throw new Error(msg); }
+
+const fw = GRAPH.framework;
+document.title = `${fw.name} · graph`;
+$('name').textContent = fw.name;
+$('category').textContent = (fw.category || '').replace(/^\d+-/, '').replace(/-/g, ' ');
+if (fw.wikipedia) $('wiki').href = fw.wikipedia; else $('wiki').remove();
+
+// slot colours: fixed order over content slots, never cycled; beyond 8, muted
+const slotStyle = new Map();
+let ci = 0;
+for (const s of GRAPH.slots) {
+  if (s.structural) slotStyle.set(s.id, { color: SCHEMA_COLOR, shape: s.shape || 'box', slot: s });
+  else slotStyle.set(s.id, { color: s.color || (ci < SLOT_COLORS.length ? SLOT_COLORS[ci++] : MUTED), shape: s.shape || 'sphere', slot: s });
+}
+const relLabel = new Map((GRAPH.relations || []).map(r => [r.id, r.label || r.id]));
+relLabel.set('supported_by', 'supported by');
+
+// ---------- renderer / scene ----------
+const stage = $('stage');
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false }); } catch (e) { fatal('WebGL is not available in this browser.'); }
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setClearColor(new THREE.Color(SURFACE), 1);
+stage.appendChild(renderer.domElement);
+const labelRenderer = new CSS2DRenderer({ element: $('labels') });
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 5000);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.08; controls.autoRotateSpeed = 0.6;
+scene.add(new THREE.AmbientLight(0xffffff, 1.4));
+const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(40, 80, 120); scene.add(key);
+const fill = new THREE.DirectionalLight(0xffffff, 0.5); fill.position.set(-60, -20, -80); scene.add(fill);
+
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, true); labelRenderer.setSize(w, h);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+// The header and the note strip lay out after the first script pass, so a one-shot resize()
+// leaves the WebGL buffer and the CSS2D label layer disagreeing (labels drift from their nodes).
+// Observing the stage keeps both renderers on its real size, at first paint and on every change.
+let roFrame = 0;
+const ro = new ResizeObserver(() => { cancelAnimationFrame(roFrame); roFrame = requestAnimationFrame(() => { resize(); resetView(); }); });
+ro.observe(stage);
+
+// ---------- state ----------
+const state = { exampleIndex: 0, showDerived: true, showGrounding: false, showLabels: true, group: null, nodes: new Map(), edges: [], hit: [], hover: null, selected: null, fit: null, derivedDecor: [] };
+
+// ---------- layouts ----------
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+function forceLayout(nodes, edges, pinned, seed, opts = {}) {
+  const rand = mulberry32(seed);
+  const pos = new Map();
+  const R0 = opts.radius || Math.max(18, nodes.length * 2.2);
+  for (const n of nodes) {
+    if (pinned.has(n.id)) pos.set(n.id, pinned.get(n.id).clone());
+    else pos.set(n.id, new THREE.Vector3((rand() - .5) * 2 * R0, (rand() - .5) * 2 * R0, (rand() - .5) * 2 * R0 * (opts.flat ? 0.15 : 1)));
+  }
+  const ids = nodes.map(n => n.id);
+  const L = opts.rest || 16, K = opts.repulse || 420;
+  const f = new Map(ids.map(id => [id, new THREE.Vector3()]));
+  const d = new THREE.Vector3();
+  for (let it = 0; it < 420; it++) {
+    const alpha = 0.9 * (1 - it / 420) + 0.04;
+    for (const id of ids) f.get(id).set(0, 0, 0);
+    for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) {
+      const a = pos.get(ids[i]), b = pos.get(ids[j]);
+      d.subVectors(a, b); let dist = d.length(); if (dist < 0.5) { d.set(rand() - .5, rand() - .5, rand() - .5); dist = 0.5; }
+      const s = K / (dist * dist); d.normalize().multiplyScalar(s);
+      f.get(ids[i]).add(d); f.get(ids[j]).sub(d);
+    }
+    for (const e of edges) {
+      if (!pos.has(e.from) || !pos.has(e.to)) continue;
+      const a = pos.get(e.from), b = pos.get(e.to);
+      d.subVectors(b, a); const dist = Math.max(d.length(), 0.01);
+      const s = (dist - L) * 0.05; d.normalize().multiplyScalar(s);
+      f.get(e.from).add(d); f.get(e.to).sub(d);
+    }
+    for (const id of ids) {
+      if (pinned.has(id)) continue;
+      const p = pos.get(id), ff = f.get(id);
+      ff.addScaledVector(p, -0.012);
+      if (opts.flat) ff.z -= p.z * 0.2;
+      const len = ff.length(); if (len > 6) ff.multiplyScalar(6 / len);
+      p.addScaledVector(ff, alpha);
+    }
+  }
+  return pos;
+}
+
+function treeLayout(ex) {
+  const nodes = ex.nodes, edges = ex.edges.filter(e => e.relation !== 'supported_by');
+  const level = new Map();
+  const explicit = nodes.every(n => Number.isInteger(n.level));
+  if (explicit) nodes.forEach(n => level.set(n.id, n.level));
+  else {
+    const out = new Map(nodes.map(n => [n.id, []])), und = new Map(nodes.map(n => [n.id, []]));
+    for (const e of edges) { out.get(e.from)?.push(e.to); und.get(e.from)?.push(e.to); und.get(e.to)?.push(e.from); }
+    const root = ex.layout.root && level.has(ex.layout.root) === false ? ex.layout.root : nodes[0].id;
+    const q = [root]; level.set(root, 0);
+    while (q.length) { const id = q.shift(); for (const t of out.get(id) || []) if (!level.has(t)) { level.set(t, level.get(id) + 1); q.push(t); } }
+    // unreachable by direction: attach by undirected distance
+    const q2 = [...level.keys()];
+    while (q2.length) { const id = q2.shift(); for (const t of und.get(id) || []) if (!level.has(t)) { level.set(t, level.get(id) + 1); q2.push(t); } }
+    for (const n of nodes) if (!level.has(n.id)) level.set(n.id, 0);
+    for (const n of nodes) if (Number.isInteger(n.level)) level.set(n.id, n.level);
+  }
+  const layers = new Map();
+  for (const n of nodes) { const l = level.get(n.id); if (!layers.has(l)) layers.set(l, []); layers.get(l).push(n); }
+  const order = [...layers.keys()].sort((a, b) => a - b);
+  const pos = new Map();
+  const right = ex.layout.direction === 'right';
+  const GAP_L = right ? 26 : 18, GAP_S = right ? 9 : 14;
+  // barycentre ordering pass to reduce crossings
+  const parents = new Map(nodes.map(n => [n.id, []]));
+  for (const e of edges) if (level.get(e.to) > level.get(e.from)) parents.get(e.to).push(e.from);
+  const xOf = new Map();
+  for (const l of order) {
+    const arr = layers.get(l);
+    if (l !== order[0]) arr.sort((a, b) => {
+      const pa = parents.get(a.id).filter(p => xOf.has(p)), pb = parents.get(b.id).filter(p => xOf.has(p));
+      const ma = pa.length ? pa.reduce((s, p) => s + xOf.get(p), 0) / pa.length : 0;
+      const mb = pb.length ? pb.reduce((s, p) => s + xOf.get(p), 0) / pb.length : 0;
+      return ma - mb;
+    });
+    arr.forEach((n, i) => {
+      const s = (i - (arr.length - 1) / 2) * GAP_S;
+      xOf.set(n.id, s);
+      pos.set(n.id, right ? new THREE.Vector3(l * GAP_L, -s, 0) : new THREE.Vector3(s, -l * GAP_L, 0));
+    });
+  }
+  for (const n of nodes) if (Array.isArray(n.pos)) pos.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  return pos;
+}
+
+function ringLayout(ex) {
+  const nodes = ex.nodes;
+  const onRing = nodes.filter(n => Number.isInteger(n.order) && !Array.isArray(n.pos));
+  const R = Math.max(22, onRing.length * 4.2);
+  const pinned = new Map();
+  onRing.sort((a, b) => a.order - b.order).forEach((n, i) => { const t = Math.PI / 2 - (i / onRing.length) * Math.PI * 2; pinned.set(n.id, new THREE.Vector3(Math.cos(t) * R, Math.sin(t) * R, 0)); });
+  for (const n of nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  if (pinned.size === nodes.length) return pinned;
+  return forceLayout(nodes, ex.edges, pinned, 7, { radius: R * 0.5, flat: true, rest: 12 });
+}
+
+function planeLayout(ex) {
+  const pinned = new Map();
+  for (const n of ex.nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  if (pinned.size === ex.nodes.length) return pinned;
+  return forceLayout(ex.nodes, ex.edges, pinned, 11, { flat: true, rest: 14 });
+}
+
+function computeLayout(ex) {
+  const mode = ex.layout?.mode || 'force';
+  if (mode === 'tree') return treeLayout(ex);
+  if (mode === 'ring') return ringLayout(ex);
+  if (mode === 'plane') return planeLayout(ex);
+  const pinned = new Map();
+  for (const n of ex.nodes) if (Array.isArray(n.pos)) pinned.set(n.id, new THREE.Vector3(n.pos[0], n.pos[1], n.pos[2] || 0));
+  return forceLayout(ex.nodes, ex.edges, pinned, 3);
+}
+
+// ---------- geometry helpers ----------
+const GEO = {
+  sphere: (r) => new THREE.SphereGeometry(r, 28, 20),
+  box: (r) => new THREE.BoxGeometry(r * 1.7, r * 1.7, r * 1.7),
+  diamond: (r) => new THREE.OctahedronGeometry(r * 1.25, 0),
+  cone: (r) => new THREE.ConeGeometry(r * 1.1, r * 2.2, 20),
+};
+function label2d(text, cls, innerTransform) {
+  const el = document.createElement('div'); el.className = cls;
+  if (innerTransform) {
+    const inner = document.createElement('span');
+    inner.className = 'lab'; inner.style.display = 'inline-block'; inner.style.transform = innerTransform;
+    inner.textContent = text; el.appendChild(inner);
+  } else el.textContent = text;
+  return new CSS2DObject(el);
+}
+
+function makeNode(n, p) {
+  const st = slotStyle.get(n.slot) || { color: MUTED, shape: 'sphere' };
+  const r = NODE_R * (n.size || 1);
+  const color = new THREE.Color(st.color);
+  const obj = new THREE.Group(); obj.position.copy(p);
+  let mesh, halo = null;
+  if (n.provenance === 'fact') {
+    mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.5, metalness: 0.08 }));
+  } else if (n.provenance === 'derived') {
+    mesh = new THREE.Mesh(GEO[st.shape](r), new THREE.MeshStandardMaterial({ color, roughness: 0.6, metalness: 0.0, transparent: true, opacity: 0.32, depthWrite: false }));
+    halo = new THREE.LineSegments(new THREE.WireframeGeometry(GEO[st.shape](r * 1.35)), new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.75 }));
+    obj.add(halo);
+  } else {
+    mesh = new THREE.Mesh(GEO[st.shape === 'sphere' ? 'box' : st.shape](r * 0.8), new THREE.MeshStandardMaterial({ color: new THREE.Color(SCHEMA_COLOR), roughness: 0.9, metalness: 0, transparent: true, opacity: 0.85 }));
+  }
+  mesh.userData.nodeId = n.id;
+  obj.add(mesh);
+  const hit = new THREE.Mesh(new THREE.SphereGeometry(r * 1.9, 10, 8), new THREE.MeshBasicMaterial({ visible: false }));
+  hit.userData.nodeId = n.id; obj.add(hit);
+  // A node carrying an `idea` is where this framework surfaces an underserved need or opportunity:
+  // mark it so a reader can find the payoff without opening every panel.
+  if (n.idea) {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(r * 1.6, r * 0.11, 8, 40), new THREE.MeshBasicMaterial({ color: new THREE.Color(IDEA) }));
+    ring.userData.isIdeaRing = true; obj.add(ring);
+  }
+  const glyph = n.provenance === 'fact' ? '●' : n.provenance === 'derived' ? '◌' : '▪';
+  const el = document.createElement('div'); el.className = 'nlabel ' + n.provenance;
+  const g = document.createElement('span'); g.className = 'g'; g.textContent = glyph; g.style.color = n.provenance === 'schema' ? MUTED : st.color;
+  const inner = document.createElement('span'); inner.className = 'lab';
+  inner.appendChild(g);
+  if (n.idea) { const st2 = document.createElement('span'); st2.className = 'idea-star'; st2.textContent = '★'; inner.appendChild(st2); }
+  inner.appendChild(document.createTextNode(n.label || n.id));
+  el.appendChild(inner);
+  // Anchor the label below whatever the node actually draws: a diamond reaches further than a
+  // sphere, a derived node adds a 1.35r halo, and an idea node adds a 1.6r ring. Anchoring at -r
+  // regardless (the old behaviour) made labels collide with their own marker on those nodes.
+  const SHAPE_EXTENT = { sphere: 1.0, box: 0.85, diamond: 1.25, cone: 1.1 };
+  let extent = (SHAPE_EXTENT[st.shape] ?? 1) * r;
+  if (n.provenance === 'derived') extent = Math.max(extent, r * 1.35);
+  if (n.idea) extent = Math.max(extent, r * 1.72);
+  const lab = new CSS2DObject(el); lab.position.set(0, -extent, 0); obj.add(lab);
+  return { node: n, obj, mesh, halo, hit, label: lab, r, color: st.color, edges: [] };
+}
+
+function makeEdge(e, A, B) {
+  const from = A.obj.position, to = B.obj.position;
+  const dir = new THREE.Vector3().subVectors(to, from); const len = dir.length(); dir.normalize();
+  const a = from.clone().addScaledVector(dir, A.r * 1.05), b = to.clone().addScaledVector(dir, -(B.r * 1.05 + (e.relation === 'supported_by' ? 0 : 1.6)));
+  const geom = new THREE.BufferGeometry().setFromPoints([a, b]);
+  let mat, arrow = null;
+  const grounding = e.relation === 'supported_by';
+  if (grounding) mat = new THREE.LineDashedMaterial({ color: new THREE.Color(MUTED), dashSize: 0.5, gapSize: 0.9, transparent: true, opacity: 0.55 });
+  else if (e.provenance === 'derived') mat = new THREE.LineDashedMaterial({ color: new THREE.Color(INK2), dashSize: 1.4, gapSize: 0.9, transparent: true, opacity: 0.8 });
+  else if (e.provenance === 'schema') mat = new THREE.LineBasicMaterial({ color: new THREE.Color(HAIRLINE), transparent: true, opacity: 0.9 });
+  else mat = new THREE.LineBasicMaterial({ color: new THREE.Color(INK2), transparent: true, opacity: 0.85 });
+  const line = new THREE.Line(geom, mat); line.computeLineDistances();
+  const grp = new THREE.Group(); grp.add(line);
+  if (!grounding && e.provenance !== 'schema') {
+    arrow = new THREE.Mesh(new THREE.ConeGeometry(0.75, 2.0, 10), new THREE.MeshBasicMaterial({ color: e.provenance === 'derived' ? new THREE.Color(INK2) : new THREE.Color(INK2), transparent: true, opacity: e.provenance === 'derived' ? 0.7 : 0.95 }));
+    arrow.position.copy(to).addScaledVector(dir, -(B.r * 1.05 + 1.0));
+    arrow.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+    grp.add(arrow);
+  }
+  let lab = null;
+  if (e.label) { lab = label2d(e.label, 'elabel'); lab.position.copy(a).lerp(b, 0.5); grp.add(lab); }
+  return { edge: e, grp, line, arrow, label: lab, A, B, grounding, len };
+}
+
+function drawDecor(ex, parent, bbox, offset) {
+  const L = ex.layout || {};
+  // Nodes are re-centred on their bounding box in every mode except plane, but decor coordinates
+  // are authored in the same space as node positions. Shift the decor by the same amount so a
+  // region or axis lines up with its nodes without the author having to centre on the origin.
+  const group = new THREE.Group();
+  group.position.copy(offset).negate();
+  parent.add(group);
+  const shift = (v) => new THREE.Vector3(v.x - offset.x, v.y - offset.y, v.z - offset.z);
+  const z = -0.6;
+  const lineMat = new THREE.LineBasicMaterial({ color: new THREE.Color(0x4a4a47) });
+  const dashMat = new THREE.LineDashedMaterial({ color: new THREE.Color(0x4a4a47), dashSize: 1.2, gapSize: 1.0 });
+  for (const r of (L.regions || [])) {
+    const w = Math.abs(r.x[1] - r.x[0]), h = Math.abs(r.y[1] - r.y[0]);
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.07, depthWrite: false }));
+    m.position.set((r.x[0] + r.x[1]) / 2, (r.y[0] + r.y[1]) / 2, z - 0.5); group.add(m);
+    const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(w, h)), new THREE.LineBasicMaterial({ color: new THREE.Color(r.color || '#3987e5'), transparent: true, opacity: 0.25 }));
+    edge.position.copy(m.position); group.add(edge);
+    // Caption sits top-centre INSIDE the band. CSS2D centres its box on the position, so anchoring
+    // at the corner made every caption straddle the boundary and builders patched it page-side.
+    const lab = label2d(r.label, 'rlabel'); lab.position.set((r.x[0] + r.x[1]) / 2, Math.max(r.y[0], r.y[1]) - 3, z); group.add(lab);
+    bbox.expandByPoint(shift(new THREE.Vector3(r.x[0], r.y[0], 0))); bbox.expandByPoint(shift(new THREE.Vector3(r.x[1], r.y[1], 0)));
+  }
+  // Free-standing captions. Without this a builder has to fake one with a zero-length guide.
+  for (const an of (L.annotations || [])) {
+    const lab = label2d(an.text, an.style === 'axis' ? 'axlabel' : an.style === 'region' ? 'rlabel' : 'glabel');
+    // An annotation that explains inferred structure belongs to the derived layer and follows its toggle.
+    if (an.derived) { lab.element.classList.add('derived-annotation'); state.derivedDecor.push(lab); }
+    lab.position.set(an.pos[0], an.pos[1], an.pos[2] ?? z); group.add(lab);
+    bbox.expandByPoint(shift(new THREE.Vector3(an.pos[0], an.pos[1], 0)));
+  }
+  for (const gd of (L.guides || [])) {
+    const a = new THREE.Vector3(gd.from[0], gd.from[1], gd.from[2] || z), b = new THREE.Vector3(gd.to[0], gd.to[1], gd.to[2] || z);
+    const ln = new THREE.Line(new THREE.BufferGeometry().setFromPoints([a, b]), gd.style === 'dashed' ? dashMat : lineMat); ln.computeLineDistances(); group.add(ln);
+    if (gd.label) { const lab = label2d(gd.label, 'glabel'); lab.position.copy(a).lerp(b, 0.5); group.add(lab); }
+    bbox.expandByPoint(shift(a)); bbox.expandByPoint(shift(b));
+  }
+  if (L.axes) {
+    const ax = L.axes.x, ay = L.axes.y;
+    const xmin = ax ? ax.min : bbox.min.x, xmax = ax ? ax.max : bbox.max.x, ymin = ay ? ay.min : bbox.min.y, ymax = ay ? ay.max : bbox.max.y;
+    const pad = 6;
+    if (ax) {
+      const y = ymin - pad;
+      group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(xmin, y, z), new THREE.Vector3(xmax, y, z)]), lineMat));
+      const lab = label2d(ax.label, 'axlabel'); lab.position.set((xmin + xmax) / 2, y - 7.5, z); group.add(lab);
+      for (const t of (ax.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(t.value, y - 1, z), new THREE.Vector3(t.value, y + 1, z)]), lineMat)); const tl = label2d(t.label, 'tick'); tl.position.set(t.value, y - 2.2, z); group.add(tl); }
+      bbox.expandByPoint(shift(new THREE.Vector3(xmin, y - 9, 0))); bbox.expandByPoint(shift(new THREE.Vector3(xmax, y, 0)));
+    }
+    if (ay) {
+      const x = xmin - pad;
+      group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x, ymin, z), new THREE.Vector3(x, ymax, z)]), lineMat));
+      const lab = label2d(ay.label, 'axlabel', 'rotate(-90deg)'); lab.position.set(x - 8, (ymin + ymax) / 2, z); group.add(lab);
+      for (const t of (ay.ticks || [])) { group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x - 1, t.value, z), new THREE.Vector3(x + 1, t.value, z)]), lineMat)); const tl = label2d(t.label, 'tick', 'translateX(-50%)'); tl.position.set(x - 2.5, t.value, z); group.add(tl); }
+      bbox.expandByPoint(shift(new THREE.Vector3(x - 11, ymin, 0))); bbox.expandByPoint(shift(new THREE.Vector3(x, ymax, 0)));
+    }
+  }
+}
+
+// ---------- build an example ----------
+function clearGroup() {
+  if (!state.group) return;
+  state.group.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) { (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); } if (o.isCSS2DObject && o.element) o.element.remove(); });
+  scene.remove(state.group);
+  $('labels').replaceChildren();
+  state.group = null; state.nodes.clear(); state.edges = []; state.hit = []; state.hover = null; state.selected = null; state.derivedDecor = [];
+  $('panel').hidden = true;
+}
+
+function buildExample(i) {
+  clearGroup();
+  state.exampleIndex = i;
+  const ex = GRAPH.examples[i];
+  const group = new THREE.Group(); scene.add(group); state.group = group;
+  const positions = computeLayout(ex);
+  // centre
+  const bbox = new THREE.Box3();
+  for (const p of positions.values()) bbox.expandByPoint(p);
+  const centre = bbox.getCenter(new THREE.Vector3());
+  const decorOffset = ex.layout?.mode !== 'plane' ? centre.clone() : new THREE.Vector3();
+  if (ex.layout?.mode !== 'plane') for (const p of positions.values()) p.sub(centre);
+  const bbox2 = new THREE.Box3(); for (const p of positions.values()) bbox2.expandByPoint(p);
+  for (const n of ex.nodes) { const rec = makeNode(n, positions.get(n.id)); state.nodes.set(n.id, rec); group.add(rec.obj); state.hit.push(rec.hit); }
+  for (const e of ex.edges) {
+    const A = state.nodes.get(e.from), B = state.nodes.get(e.to); if (!A || !B) continue;
+    const rec = makeEdge(e, A, B); state.edges.push(rec); group.add(rec.grp); A.edges.push(rec); B.edges.push(rec);
+  }
+  drawDecor(ex, group, bbox2, decorOffset);
+  // camera fit
+  const size = bbox2.getSize(new THREE.Vector3()), c = bbox2.getCenter(new THREE.Vector3());
+  state.fit = { size, centre: c, mode: ex.layout?.mode || 'force', distance: ex.layout?.camera?.distance };
+  renderNote(ex);
+  renderLegend(ex);    // legend first, so the camera fit can measure it
+  resetView();
+  applyVisibility();
+  for (const b of $('examples').children) b.setAttribute('aria-pressed', String(b.dataset.index == i));
+  try { window.__frameworkExtension?.({ THREE, scene, group, graph: GRAPH, example: ex, nodesById: state.nodes, positions, api: { slotStyle, label2d, colors: { INK, INK2, MUTED, HAIRLINE, SURFACE, SLOT_COLORS, SCHEMA_COLOR } } }); } catch (e) { console.error('framework extension failed', e); }
+}
+
+// Fit the graph into the part of the stage not covered by the legend (left) or the open panel (right),
+// so labels are not hidden under the cards at the default view.
+function safeArea(size) {
+  const W = stage.clientWidth, H = stage.clientHeight;
+  const sr = stage.getBoundingClientRect();
+  let left = 0, top = 0, right = 0;
+  const wide = W > 820;
+  const leg = $('legend'); if (wide && leg && leg.offsetParent !== null) { const r = leg.getBoundingClientRect(); left = Math.max(left, r.right - sr.left + 16); }
+  const panel = $('panel'); if (wide && panel && !panel.hidden) { const r = panel.getBoundingClientRect(); right = Math.max(right, sr.right - r.left + 16); }
+  return { W, H, left, top, right, w: Math.max(200, W - left - right), h: Math.max(200, H - top) };
+}
+function resetView() {
+  if (!state.fit) return;
+  const { size, centre, mode } = state.fit;
+  const sa = safeArea(size);
+  const halfFov = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  const bottomPad = 30;                       // px: labels hang below the lowest row of nodes
+  const availH = Math.max(150, sa.h - bottomPad);
+  // distance at which the graph (plus margins) fits the safe area: the vertical FOV spans sa.H pixels
+  const fitH = (size.y / 2 + 8) * sa.H / (halfFov * availH);
+  const sidePad = 110;                       // px: labels are centred under nodes and stick out sideways
+  const fitW = (size.x / 2 + 6) * sa.H / (halfFov * Math.max(200, sa.w - 2 * sidePad));
+  const dist = state.fit.distance || Math.max(50, Math.max(fitH, fitW) * (mode === 'force' ? 1.3 : 1.08) + size.z / 2);
+  // world units per pixel at the target depth; shift the centre so the graph sits in the safe area
+  const wpp = (2 * dist * halfFov) / sa.H;
+  const target = centre.clone().add(new THREE.Vector3(-((sa.left - sa.right) / 2) * wpp, ((sa.top - bottomPad) / 2) * wpp, 0));
+  const camPos = mode === 'force' ? target.clone().add(new THREE.Vector3(dist * 0.3, dist * 0.22, dist * 0.92)) : target.clone().add(new THREE.Vector3(0, 0, dist));
+  camera.position.copy(camPos); controls.target.copy(target);
+  camera.near = 0.1; camera.far = 5000; camera.updateProjectionMatrix(); controls.update();
+}
+
+function applyVisibility() {
+  for (const rec of state.nodes.values()) {
+    const vis = rec.node.provenance !== 'derived' || state.showDerived;
+    rec.obj.visible = vis;
+    rec.label.visible = vis && state.showLabels;
+    rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+  }
+  for (const rec of state.edges) {
+    const endsOk = rec.A.obj.visible && rec.B.obj.visible;
+    // a derived edge is reasoning too: it goes away with the derived nodes, even when both its ends are facts
+    const vis = endsOk && (!rec.grounding || state.showGrounding) && (rec.edge.provenance !== 'derived' || state.showDerived);
+    rec.grp.visible = vis;
+    if (rec.label) rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+  }
+  for (const lab of state.derivedDecor) lab.element.style.display = state.showDerived ? '' : 'none';
+  // The idea key explains a marker; drop it when no idea node is on screen (e.g. the facts-only view).
+  const ideaKey = $('legend')?.querySelector('.key-row.idea-key');
+  if (ideaKey) ideaKey.style.display = [...state.nodes.values()].some(r => r.node.idea && r.obj.visible) ? '' : 'none';
+  renderStats();
+}
+
+// ---------- legend / note / stats ----------
+function renderLegend(ex) {
+  const el = $('legend'); el.replaceChildren();
+  const h = (t) => { const x = document.createElement('h2'); x.textContent = t; return x; };
+  el.appendChild(h('Slots'));
+  const counts = new Map(); for (const n of ex.nodes) counts.set(n.slot, (counts.get(n.slot) || 0) + 1);
+  for (const s of GRAPH.slots) {
+    const row = document.createElement('div'); row.className = 'slot-row';
+    const chip = document.createElement('span'); const stl = slotStyle.get(s.id);
+    chip.className = 'chip' + (stl.shape && stl.shape !== 'sphere' ? ' ' + stl.shape : ''); chip.style.background = stl.color;
+    if (s.structural) chip.style.borderRadius = '2px';
+    const name = document.createElement('span'); name.textContent = s.label;
+    const tp = document.createElement('span'); tp.className = 'tp'; tp.textContent = s.structural ? 'schema' : (s.typical_provenance || '');
+    const n = document.createElement('span'); n.className = 'n'; n.textContent = String(counts.get(s.id) || 0);
+    row.append(chip, name, tp, n); row.title = s.description || ''; el.appendChild(row);
+  }
+  el.appendChild(h('Provenance'));
+  const ideaCount = ex.nodes.filter(n => n.idea).length;
+  const keys = [['●', 'fact: stated in the source (solid)'], ['◌', 'derived: LLM inference (translucent, dashed)'], ['▪', 'schema: framework scaffolding (grey)'], ['→', 'solid edge stated, dashed inferred'], ['⋯', 'grounding link: derived → fact']];
+  if (ideaCount) keys.push(['★', 'gold ring: an opportunity this framework surfaces']);
+  for (const [sym, txt] of keys) {
+    const row = document.createElement('div'); row.className = 'key-row';
+    if (sym === '★') row.classList.add('idea-key');
+    const a = document.createElement('span'); a.className = 'sym'; a.textContent = sym; if (sym === '★') a.style.color = IDEA;
+    const b = document.createElement('span'); b.textContent = txt; row.append(a, b); el.appendChild(row);
+  }
+  const st = document.createElement('div'); st.className = 'stats'; st.id = 'stats'; el.appendChild(st);
+  renderStats();
+}
+function renderStats() {
+  const st = $('stats'); if (!st) return;
+  const ex = GRAPH.examples[state.exampleIndex];
+  const nf = ex.nodes.filter(n => n.provenance === 'fact').length, nd = ex.nodes.filter(n => n.provenance === 'derived').length, ns = ex.nodes.filter(n => n.provenance === 'schema').length;
+  const ef = ex.edges.filter(e => e.provenance === 'fact').length, ed = ex.edges.filter(e => e.provenance === 'derived' && e.relation !== 'supported_by').length, eg = ex.edges.filter(e => e.relation === 'supported_by').length, es = ex.edges.filter(e => e.provenance === 'schema').length;
+  const visN = [...state.nodes.values()].filter(r => r.obj.visible).length, visE = state.edges.filter(r => r.grp.visible).length;
+  st.replaceChildren();
+  const line = (html) => { const d = document.createElement('div'); d.append(...html); st.appendChild(d); };
+  const b = (t) => { const x = document.createElement('b'); x.textContent = t; return x; };
+  line(['nodes ', b(String(nf)), ' fact · ', b(String(nd)), ' derived', ns ? ` · ${ns} schema` : '']);
+  line(['edges ', b(String(ef)), ' fact · ', b(String(ed)), ' derived · ', b(String(eg)), ' grounding', es ? ` · ${es} schema` : '']);
+  line([`showing ${visN} nodes, ${visE} edges`]);
+}
+function renderNote(ex) {
+  const el = $('note'); el.replaceChildren();
+  const h = document.createElement('h3'); h.textContent = ex.title || ex.id; el.appendChild(h);
+  const p = document.createElement('p'); p.textContent = ex.summary || ''; el.appendChild(p);
+  const s = document.createElement('div'); s.className = 'src';
+  if (ex.source?.type === 'transcript') s.textContent = `TBPN ${ex.source.date} · ${ex.source.episode_title || ''}`;
+  else if (ex.source?.type === 'text') s.textContent = `source: ${ex.source.title || 'scenario text'}`;
+  el.appendChild(s);
+}
+
+// ---------- panel ----------
+function openPanel(rec) {
+  const n = rec.node, ex = GRAPH.examples[state.exampleIndex];
+  const panel = $('panel'); panel.replaceChildren(); panel.hidden = false;
+  const head = document.createElement('div'); head.className = 'p-head';
+  const slotEl = document.createElement('div'); slotEl.className = 'p-slot';
+  const chip = document.createElement('span'); chip.className = 'chip'; chip.style.background = rec.color; slotEl.append(chip, document.createTextNode((slotStyle.get(n.slot)?.slot?.label) || n.slot));
+  const close = document.createElement('button'); close.className = 'close'; close.type = 'button'; close.textContent = '×'; close.setAttribute('aria-label', 'Close'); close.onclick = () => { panel.hidden = true; state.selected = null; };
+  head.append(slotEl, close); panel.appendChild(head);
+  const h3 = document.createElement('h3'); h3.textContent = n.label; panel.appendChild(h3);
+  const badge = document.createElement('span'); badge.className = 'badge ' + n.provenance; badge.textContent = n.provenance; panel.appendChild(badge);
+  const text = document.createElement('p'); text.textContent = n.text; panel.appendChild(text);
+  const h4 = (t) => { const x = document.createElement('h4'); x.textContent = t; panel.appendChild(x); };
+  if (n.provenance === 'fact') {
+    h4(n.paraphrase ? 'Paraphrased from the source' : 'Quoted from the source');
+    const q = document.createElement('blockquote'); q.textContent = n.source_quote || ''; panel.appendChild(q);
+    const r = document.createElement('div'); r.className = 'ref'; r.textContent = n.source_ref || ''; panel.appendChild(r);
+  } else if (n.provenance === 'derived') {
+    h4('Confidence');
+    const c = document.createElement('div'); c.className = 'conf'; c.textContent = `${Math.round((n.confidence || 0) * 100)} / 100`; panel.appendChild(c);
+    const bar = document.createElement('div'); bar.className = 'confbar'; const fillEl = document.createElement('i'); fillEl.style.width = `${Math.round((n.confidence || 0) * 100)}%`; bar.appendChild(fillEl); panel.appendChild(bar);
+    h4('Why the LLM infers this'); const r = document.createElement('p'); r.textContent = n.rationale || ''; panel.appendChild(r);
+    if (n.idea) { h4('Opportunity this points to'); const ip = document.createElement('p'); ip.className = 'idea'; ip.textContent = n.idea; panel.appendChild(ip); }
+    const sup = ex.edges.filter(e => e.relation === 'supported_by' && e.from === n.id).map(e => state.nodes.get(e.to)).filter(Boolean);
+    if (sup.length) { h4('Supported by'); const ul = document.createElement('ul'); for (const s of sup) { const li = document.createElement('li'); li.textContent = s.node.label; const q = document.createElement('div'); q.className = 'ref'; q.textContent = (s.node.source_quote || '').slice(0, 140); li.appendChild(q); ul.appendChild(li); } panel.appendChild(ul); }
+  } else {
+    const r = document.createElement('p'); r.className = 'ref'; r.textContent = 'Framework scaffolding: neither a fact nor an inference.'; panel.appendChild(r);
+  }
+  const rels = rec.edges.filter(e => e.edge.relation !== 'supported_by');
+  if (rels.length) {
+    h4('Edges'); const ul = document.createElement('ul');
+    for (const e of rels) { const li = document.createElement('li'); const out = e.edge.from === n.id; const other = out ? e.B.node : e.A.node; const rl = document.createElement('span'); rl.className = 'rel'; rl.textContent = (out ? '→ ' : '← ') + (relLabel.get(e.edge.relation) || e.edge.relation) + (e.edge.provenance === 'derived' ? ' (inferred)' : '') + ' '; li.append(rl, document.createTextNode(other.label)); ul.appendChild(li); }
+    panel.appendChild(ul);
+  }
+  if (Array.isArray(n.entities) && n.entities.length) { h4('Entities'); const p = document.createElement('p'); p.className = 'ref'; p.textContent = n.entities.join(', '); panel.appendChild(p); }
+}
+
+// ---------- interaction ----------
+const raycaster = new THREE.Raycaster(); const pointer = new THREE.Vector2(); const tooltip = $('tooltip');
+function setHover(rec) {
+  if (state.hover === rec) return;
+  if (state.hover) { const h = state.hover; h.mesh.scale.setScalar(1); if (h.mesh.material.emissive) h.mesh.material.emissive.setHex(0x000000); for (const e of h.edges) { e.line.material.color.set(e.grounding ? MUTED : (e.edge.provenance === 'schema' ? HAIRLINE : INK2)); if (e.arrow) e.arrow.material.color.set(INK2); } }
+  state.hover = rec;
+  if (rec) { rec.mesh.scale.setScalar(1.18); if (rec.mesh.material.emissive) rec.mesh.material.emissive.set(rec.color).multiplyScalar(0.35); for (const e of rec.edges) { if (!e.grp.visible) continue; e.line.material.color.set(INK); if (e.arrow) e.arrow.material.color.set(INK); } }
+  renderer.domElement.style.cursor = rec ? 'pointer' : '';
+}
+renderer.domElement.addEventListener('pointermove', (ev) => {
+  const r = renderer.domElement.getBoundingClientRect();
+  pointer.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
+  raycaster.setFromCamera(pointer, camera);
+  const hits = raycaster.intersectObjects(state.hit.filter(h => h.parent.visible), false);
+  const rec = hits.length ? state.nodes.get(hits[0].object.userData.nodeId) : null;
+  setHover(rec);
+  if (rec) {
+    tooltip.replaceChildren();
+    const a = document.createElement('div'); a.className = 't-label'; a.textContent = rec.node.label;
+    const b = document.createElement('div'); b.className = 't-meta'; b.textContent = `${(slotStyle.get(rec.node.slot)?.slot?.label) || rec.node.slot} · ${rec.node.provenance}${rec.node.provenance === 'derived' ? ' ' + Math.round((rec.node.confidence || 0) * 100) + '%' : ''}`;
+    const c = document.createElement('div'); c.textContent = rec.node.text.length > 160 ? rec.node.text.slice(0, 157) + '…' : rec.node.text;
+    tooltip.append(a, b, c);
+    tooltip.style.display = 'block';
+    const mx = ev.clientX - r.left + 14, my = ev.clientY - r.top + 14;
+    tooltip.style.left = Math.min(mx, r.width - 320) + 'px'; tooltip.style.top = Math.min(my, r.height - 120) + 'px';
+  } else tooltip.style.display = 'none';
+});
+renderer.domElement.addEventListener('pointerleave', () => { setHover(null); tooltip.style.display = 'none'; });
+let downAt = null;
+renderer.domElement.addEventListener('pointerdown', (ev) => { downAt = [ev.clientX, ev.clientY]; });
+renderer.domElement.addEventListener('pointerup', (ev) => {
+  if (!downAt || Math.hypot(ev.clientX - downAt[0], ev.clientY - downAt[1]) > 5) return;
+  if (state.hover) { state.selected = state.hover; openPanel(state.hover); } else { $('panel').hidden = true; state.selected = null; }
+});
+document.addEventListener('keydown', (ev) => {
+  if (ev.target && /input|textarea|select/i.test(ev.target.tagName)) return;
+  if (ev.key === 'd') { $('t-derived').checked = !$('t-derived').checked; $('t-derived').dispatchEvent(new Event('change')); }
+  if (ev.key === 'g') { $('t-grounding').checked = !$('t-grounding').checked; $('t-grounding').dispatchEvent(new Event('change')); }
+  if (ev.key === 'r') resetView();
+  if (ev.key === 'Escape') { $('panel').hidden = true; state.selected = null; }
+});
+$('t-derived').addEventListener('change', (e) => { state.showDerived = e.target.checked; applyVisibility(); });
+$('t-grounding').addEventListener('change', (e) => { state.showGrounding = e.target.checked; applyVisibility(); });
+$('t-labels').addEventListener('change', (e) => { state.showLabels = e.target.checked; applyVisibility(); });
+$('t-rotate').addEventListener('change', (e) => { controls.autoRotate = e.target.checked; });
+$('reset').addEventListener('click', resetView);
+
+// example selector
+const seg = $('examples');
+const kindCount = new Map(); for (const ex of GRAPH.examples) kindCount.set(ex.kind, (kindCount.get(ex.kind) || 0) + 1);
+GRAPH.examples.forEach((ex, i) => { const b = document.createElement('button'); b.type = 'button'; b.dataset.index = i; b.textContent = kindCount.get(ex.kind) > 1 ? (ex.title || ex.id) : ex.kind === 'tbpn' ? 'From TBPN' : ex.kind === 'classic' ? 'Classic' : (ex.title || ex.id); b.title = ex.title || ''; b.setAttribute('aria-pressed', 'false'); b.addEventListener('click', () => buildExample(i)); seg.appendChild(b); });
+
+// ---------- go ----------
+// URL parameters set the initial state (deep links, scripted screenshots): ?example=1&derived=0&grounding=1&labels=0&rotate=1
+const q = new URLSearchParams(location.search);
+const flag = (k, def) => q.has(k) ? !['0', 'false', 'off', 'no'].includes(q.get(k).toLowerCase()) : def;
+state.showDerived = flag('derived', true); $('t-derived').checked = state.showDerived;
+state.showGrounding = flag('grounding', false); $('t-grounding').checked = state.showGrounding;
+state.showLabels = flag('labels', true); $('t-labels').checked = state.showLabels;
+controls.autoRotate = flag('rotate', false); $('t-rotate').checked = controls.autoRotate;
+let startIndex = parseInt(q.get('example') || '0', 10);
+if (!(startIndex >= 0 && startIndex < GRAPH.examples.length)) startIndex = Math.max(0, GRAPH.examples.findIndex(x => x.id === q.get('example')));
+resize();
+buildExample(startIndex);
+$('fallback').hidden = true; window.__engineReady = true;
+function loop() {
+  requestAnimationFrame(loop);
+  controls.update();
+  for (const rec of state.nodes.values()) for (const c of rec.obj.children) if (c.userData.isIdeaRing) c.quaternion.copy(camera.quaternion);
+  renderer.render(scene, camera); labelRenderer.render(scene, camera);
+}
+loop();
+</script>
+</body>
+</html>

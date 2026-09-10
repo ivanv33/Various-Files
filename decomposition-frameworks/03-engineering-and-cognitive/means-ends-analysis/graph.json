@@ -100,33 +100,32 @@
         "axes": {
           "x": {
             "label": "means → end",
-            "min": -60,
-            "max": 64,
+            "min": -96,
+            "max": 96,
             "ticks": [
-              { "value": -46, "label": "current" },
-              { "value": -18, "label": "difference" },
-              { "value": 10, "label": "operator" },
-              { "value": 34, "label": "precondition" },
-              { "value": 56, "label": "goal" }
+              { "value": -64, "label": "current" },
+              { "value": -32, "label": "difference" },
+              { "value": 0, "label": "operator" },
+              { "value": 32, "label": "precondition" },
+              { "value": 64, "label": "goal" }
             ]
           },
           "y": {
             "label": "recursion depth",
-            "min": -36,
-            "max": 34,
+            "min": -45,
+            "max": 46,
             "ticks": [
-              { "value": 24, "label": "level 0" },
-              { "value": 0, "label": "level 1" },
-              { "value": -24, "label": "level 2" }
+              { "value": 26, "label": "0" },
+              { "value": -4, "label": "1" },
+              { "value": -35, "label": "2" }
             ]
           }
         },
         "regions": [
-          { "label": "the original goal", "x": [-60, 64], "y": [14, 34] },
-          { "label": "sub-goal: a car that runs", "x": [-60, 64], "y": [-10, 10] },
-          { "label": "sub-goal: a shop that knows", "x": [-60, 64], "y": [-36, -14] }
-        ],
-        "camera": { "distance": 150 }
+          { "label": "level 0 · the original goal", "x": [-96, 96], "y": [16, 46] },
+          { "label": "level 1 · sub-goal: a car that runs", "x": [-96, 96], "y": [-14, 16] },
+          { "label": "level 2 · sub-goal: a shop that knows", "x": [-96, 96], "y": [-45, -15] }
+        ]
       },
       "nodes": [
         {
@@ -137,7 +136,7 @@
           "provenance": "fact",
           "source_quote": "He is at home with the boy, the school is three miles away across town, and the session starts in forty minutes.",
           "source_ref": "sentence 2",
-          "pos": [-46, 24]
+          "pos": [-64, 26]
         },
         {
           "id": "g1",
@@ -147,7 +146,7 @@
           "provenance": "fact",
           "source_quote": "A father has to get his four-year-old son to nursery school this morning.",
           "source_ref": "sentence 1",
-          "pos": [56, 24]
+          "pos": [64, 26]
         },
         {
           "id": "d1",
@@ -157,7 +156,7 @@
           "provenance": "derived",
           "confidence": 0.9,
           "rationale": "The scenario gives a position, a destination and a clock, and never names the gap between them. Distance is the reading that makes the car relevant; if the difference were named as information or as money, a different operator would be selected and the rest of the chain would not follow.",
-          "pos": [-18, 24]
+          "pos": [-32, 37]
         },
         {
           "id": "o1",
@@ -167,7 +166,7 @@
           "provenance": "fact",
           "source_quote": "His car is in the driveway and it is the only thing he owns that covers three miles in ten minutes.",
           "source_ref": "sentence 3",
-          "pos": [10, 24]
+          "pos": [0, 26]
         },
         {
           "id": "p1",
@@ -177,7 +176,7 @@
           "provenance": "derived",
           "confidence": 0.9,
           "rationale": "Means-ends analysis tests an operator's preconditions before applying it. The dead battery is only a blocker once you have said that driving needs a running car; the scenario states the dead battery and never states the requirement it violates.",
-          "pos": [34, 24]
+          "pos": [32, 37]
         },
         {
           "id": "s1",
@@ -187,7 +186,7 @@
           "provenance": "derived",
           "confidence": 0.9,
           "rationale": "This is the recursive step the method is named for, and it is never said out loud: the scenario moves from the dead battery to the repair shop as though no new goal had been created. Without the promotion there is no second level and no explanation of why a repair shop is suddenly relevant to nursery school.",
-          "pos": [56, 0]
+          "pos": [64, -4]
         },
         {
           "id": "c2",
@@ -197,7 +196,7 @@
           "provenance": "fact",
           "source_quote": "The car will not start; the battery is dead.",
           "source_ref": "sentence 4",
-          "pos": [-46, 0]
+          "pos": [-64, -4]
         },
         {
           "id": "d2",
@@ -207,7 +206,7 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "The scenario names the dead battery as a state, not as the difference between two states. Reading it as the difference is what makes replacing the battery, rather than pushing the car or calling a taxi, the operator the chain selects.",
-          "pos": [-18, 0]
+          "pos": [-32, 7]
         },
         {
           "id": "o2",
@@ -217,7 +216,7 @@
           "provenance": "fact",
           "source_quote": "The auto repair shop six blocks away stocks batteries and will install one the same day, which is what the car needs to start.",
           "source_ref": "sentence 5",
-          "pos": [10, 0]
+          "pos": [0, -4]
         },
         {
           "id": "p2",
@@ -227,7 +226,7 @@
           "provenance": "derived",
           "confidence": 0.9,
           "rationale": "An operator that belongs to somebody else carries a precondition of consent or instruction, and the scenario states only the shop's ignorance. Naming the requirement is what produces the third level; reading sentence 6 as a complaint produces nothing.",
-          "pos": [34, 0]
+          "pos": [32, 7]
         },
         {
           "id": "s2",
@@ -237,7 +236,7 @@
           "provenance": "derived",
           "confidence": 0.85,
           "rationale": "The same promotion as s1, applied to p2. It is worth making explicit because the recursion is the framework's whole claim: the machinery that handled a three-mile drive handles a missing sentence without changing shape.",
-          "pos": [56, -24]
+          "pos": [64, -35]
         },
         {
           "id": "c3",
@@ -247,7 +246,7 @@
           "provenance": "fact",
           "source_quote": "Nobody has told the shop anything, so it has no idea that a battery is wanted.",
           "source_ref": "sentence 6",
-          "pos": [-46, -24]
+          "pos": [-64, -35]
         },
         {
           "id": "d3",
@@ -257,7 +256,7 @@
           "provenance": "derived",
           "confidence": 0.8,
           "rationale": "The scenario never classifies the gap. Classifying it as information is what selects a telephone: the same naming step as d1, performed on a gap of a completely different kind, which is how the method keeps working as it descends.",
-          "pos": [-18, -24]
+          "pos": [-32, -24]
         },
         {
           "id": "o3",
@@ -267,7 +266,7 @@
           "provenance": "fact",
           "source_quote": "the telephone on the kitchen wall reaches the shop, which opens at eight",
           "source_ref": "sentence 7",
-          "pos": [10, -24]
+          "pos": [0, -35]
         },
         {
           "id": "p3",
@@ -277,7 +276,7 @@
           "provenance": "derived",
           "confidence": 0.7,
           "rationale": "The opening hour is stated as colour, and it is actually a precondition that the text leaves untested: forty minutes before a nursery session may well be before eight. Flagging it is the honest end of the chain, because the method stops at the first precondition it cannot check rather than at the first one it can satisfy.",
-          "pos": [34, -24]
+          "pos": [32, -24]
         }
       ],
       "edges": [
@@ -510,33 +509,34 @@
         "axes": {
           "x": {
             "label": "means → end",
-            "min": -62,
-            "max": 66,
+            "min": -96,
+            "max": 96,
             "ticks": [
-              { "value": -48, "label": "current" },
-              { "value": -20, "label": "difference" },
-              { "value": 8, "label": "operator" },
-              { "value": 34, "label": "precondition" },
-              { "value": 58, "label": "goal" }
+              { "value": -64, "label": "current" },
+              { "value": -32, "label": "difference" },
+              { "value": 0, "label": "operator" },
+              { "value": 32, "label": "precondition" },
+              { "value": 64, "label": "goal" }
             ]
           },
           "y": {
             "label": "recursion depth",
-            "min": -40,
-            "max": 38,
+            "min": -86,
+            "max": 80,
             "ticks": [
-              { "value": 26, "label": "level 0" },
-              { "value": 2, "label": "level 1" },
-              { "value": -26, "label": "level 2" }
+              { "value": 45, "label": "0" },
+              { "value": -8, "label": "1" },
+              { "value": -53, "label": "2" },
+              { "value": -74, "label": "3" }
             ]
           }
         },
         "regions": [
-          { "label": "the goal: four times the capacity", "x": [-62, 66], "y": [12, 38] },
-          { "label": "sub-goal: a workforce, and the money for machines", "x": [-62, 66], "y": [-14, 10] },
-          { "label": "sub-goal: software nobody has written", "x": [-62, 66], "y": [-40, -16] }
-        ],
-        "camera": { "distance": 170 }
+          { "label": "level 0 · the goal: four times the capacity", "x": [-96, 96], "y": [17, 80] },
+          { "label": "level 1 · sub-goal: a workforce, and money for machines", "x": [-96, 96], "y": [-35, 17] },
+          { "label": "level 2 · sub-goal: the workforce", "x": [-96, 96], "y": [-64, -35] },
+          { "label": "level 3 · open", "x": [46, 96], "y": [-86, -64] }
+        ]
       },
       "nodes": [
         {
@@ -548,7 +548,7 @@
           "source_quote": "So last year in factory two in LA, you know, we scaled revenue 10 X last year.",
           "source_ref": "Chris Power, L3734-L3736",
           "entities": ["Hadrian", "Chris Power"],
-          "pos": [-48, 26]
+          "pos": [-64, 45]
         },
         {
           "id": "gs1",
@@ -559,7 +559,7 @@
           "source_quote": "to buy more machines and put them in factory three in Arizona, which is gonna be four times the size of our facility in LA.",
           "source_ref": "Chris Power, L3740-L3744",
           "entities": ["Hadrian"],
-          "pos": [58, 26]
+          "pos": [64, 45]
         },
         {
           "id": "gs2",
@@ -570,7 +570,7 @@
           "source_quote": "we're scaling a new program of record and no one else can keep up. We're going from one aircraft to 20.",
           "source_ref": "Chris Power, L4036-L4040",
           "entities": ["Hadrian"],
-          "pos": [58, 38]
+          "pos": [64, 57]
         },
         {
           "id": "df1",
@@ -581,7 +581,7 @@
           "source_quote": "And so obviously need more capacity.",
           "source_ref": "Chris Power, L3736",
           "entities": ["Hadrian"],
-          "pos": [-20, 26]
+          "pos": [-32, 52]
         },
         {
           "id": "df2",
@@ -591,7 +591,7 @@
           "provenance": "derived",
           "confidence": 0.75,
           "rationale": "Arithmetic on two stated quantities that are fifteen minutes apart in the interview: Factory 3 is 'four times the size of our facility in LA' and the program is 'going from one aircraft to 20'. Nobody divides them. The quotient is what makes automation a requirement rather than a preference, and it is the one number that decides whether the plan closes the gap.",
-          "pos": [-20, 38]
+          "pos": [-32, 65]
         },
         {
           "id": "op1",
@@ -602,7 +602,7 @@
           "source_quote": "So we'll scale up machining in factory three, four times the size",
           "source_ref": "Chris Power, L3866-L3868",
           "entities": ["Hadrian"],
-          "pos": [8, 26]
+          "pos": [0, 45]
         },
         {
           "id": "op2",
@@ -613,7 +613,7 @@
           "source_quote": "And Morgan Stanley is providing us this huge instrument as well to expand factory capacity.",
           "source_ref": "Chris Power, L3718-L3722",
           "entities": ["Hadrian", "Morgan Stanley"],
-          "pos": [8, 14]
+          "pos": [0, 30]
         },
         {
           "id": "op3",
@@ -624,7 +624,7 @@
           "source_quote": "are leading a huge $260 million round into Hadrian.",
           "source_ref": "Chris Power, L3714",
           "entities": ["Hadrian", "Founders Fund", "Chris Power"],
-          "pos": [8, 2]
+          "pos": [0, 9]
         },
         {
           "id": "pc1",
@@ -635,7 +635,7 @@
           "confidence": 0.85,
           "rationale": "Power states the allocation rule as a preference ('we don't want to use equity dollars to scale'), not as a gate. Read as a precondition it explains the shape of the whole financing: a 4x factory cannot be bought with dilution at a tolerable price, so a separate machine-financing instrument has to exist before the scale-up operator can run.",
           "entities": ["Hadrian", "Morgan Stanley"],
-          "pos": [34, 26]
+          "pos": [32, 52]
         },
         {
           "id": "sg1",
@@ -646,7 +646,7 @@
           "confidence": 0.8,
           "rationale": "The Morgan Stanley instrument only makes sense as the answer to a goal nobody states. Naming the sub-goal is what distinguishes it from the equity round: two operators, two different sub-goals, one of which buys steel and one of which buys people.",
           "entities": ["Hadrian", "Morgan Stanley"],
-          "pos": [58, 2]
+          "pos": [64, -8]
         },
         {
           "id": "cs2",
@@ -657,7 +657,7 @@
           "source_quote": "a lot of the primes have a billion dollars in spend a year and their suppliers are delivering on time, 60% and they're often three to five months late.",
           "source_ref": "Chris Power, L4046-L4052",
           "entities": ["Hadrian"],
-          "pos": [-48, 14]
+          "pos": [-64, 30]
         },
         {
           "id": "df3",
@@ -668,7 +668,7 @@
           "source_quote": "people are really coming to us for the schedule and the capacity and stability versus cost.",
           "source_ref": "Chris Power, L4056-L4058",
           "entities": ["Hadrian"],
-          "pos": [-20, 14]
+          "pos": [-32, 37]
         },
         {
           "id": "cs3",
@@ -679,7 +679,7 @@
           "source_quote": "it's not about automation to make things cheaper. It's just no one can find the workforce.",
           "source_ref": "Chris Power, L3974-L3976",
           "entities": ["Hadrian"],
-          "pos": [-48, 2]
+          "pos": [-64, -25]
         },
         {
           "id": "df4",
@@ -690,7 +690,7 @@
           "source_quote": "because you could give me a billion dollars and say, go hire 2,000 welders, and we can no longer have that scaled workforce in the country.",
           "source_ref": "Chris Power, L3986-L3992",
           "entities": ["Hadrian"],
-          "pos": [-20, 2]
+          "pos": [-32, -1]
         },
         {
           "id": "op4",
@@ -701,7 +701,7 @@
           "source_quote": "So automated factories are sometimes the only way to win in these critical domains.",
           "source_ref": "Chris Power, L3994-L3996",
           "entities": ["Hadrian"],
-          "pos": [8, -10]
+          "pos": [0, -8]
         },
         {
           "id": "op5",
@@ -712,7 +712,7 @@
           "source_quote": "So you have to use our model of advanced manufacturing combined with this new industrial workforce that we're so grateful to work with.",
           "source_ref": "Chris Power, L3978-L3982",
           "entities": ["Hadrian"],
-          "pos": [8, -22]
+          "pos": [0, -25]
         },
         {
           "id": "pc2",
@@ -724,7 +724,7 @@
           "rationale": "Power states the labour shortage and states the automation response, but never puts the requirement between them: an automated factory still needs trained people, so automation reduces the headcount the operator needs without removing the precondition. Treating it as a precondition rather than as background is what turns it into a goal with an owner.",
           "idea": "A training-and-placement pipeline that delivers machinists, welders and quality inspectors to advanced factories on a contracted schedule is a business whose price is already quoted: primes losing millions of dollars a day to 60% on-time delivery are paying for schedule, not for cheap labour.",
           "entities": ["Hadrian"],
-          "pos": [34, 2]
+          "pos": [32, 0]
         },
         {
           "id": "sg2",
@@ -735,7 +735,7 @@
           "confidence": 0.85,
           "rationale": "Power's phrasing gives this away twice: the round is 'more importantly' about the new industrial workforce, and equity dollars are earmarked 'to hire more people'. Neither sentence says a sub-goal has been created, but a company that allocates a separate instrument to a precondition has promoted it.",
           "entities": ["Hadrian", "Chris Power"],
-          "pos": [58, -26]
+          "pos": [64, -53]
         },
         {
           "id": "cs4",
@@ -746,7 +746,7 @@
           "source_quote": "It is really a we hollowed out the talent base. We don't have a lot of the talent anymore.",
           "source_ref": "Chris Power, L4140-L4142",
           "entities": ["Hadrian"],
-          "pos": [-48, -10]
+          "pos": [-64, 9]
         },
         {
           "id": "op6",
@@ -757,7 +757,7 @@
           "source_quote": "And the only way to do that is use software and robotics to enable this workforce to be 10 times more productive.",
           "source_ref": "Chris Power, L4144-L4146",
           "entities": ["Hadrian"],
-          "pos": [8, -34]
+          "pos": [0, -53]
         },
         {
           "id": "cs5",
@@ -768,7 +768,7 @@
           "source_quote": "for software engineers, manufacturing software is 30 years behind the rest of Silicon Valley.",
           "source_ref": "Chris Power, L4180-L4182",
           "entities": ["Hadrian"],
-          "pos": [-48, -26]
+          "pos": [-64, -53]
         },
         {
           "id": "df5",
@@ -779,7 +779,7 @@
           "confidence": 0.7,
           "rationale": "Power states the thirty-year lag as a recruiting pitch in a different part of the conversation from the 10x productivity claim. Putting them together turns a fact about an industry into the difference that blocks his own operator: you cannot deploy software that is not written.",
           "entities": ["Hadrian"],
-          "pos": [-20, -26]
+          "pos": [-32, -46]
         },
         {
           "id": "pc3",
@@ -791,7 +791,7 @@
           "rationale": "Follows from the two stated facts, the 10x-productivity operator and the thirty-year software lag, neither of which is presented as bearing on the other. The precondition is what explains why a manufacturing company is hiring software engineers at all.",
           "idea": "Machine-level software for the shop floor is a greenfield category by the operator's own admission: scheduling, tooling, quality and traceability for machining, welding and castings, sold to the factories whose automation plans are all gated on the same missing layer.",
           "entities": ["Hadrian"],
-          "pos": [34, -26]
+          "pos": [32, -45]
         },
         {
           "id": "sg3",
@@ -803,7 +803,7 @@
           "rationale": "The third promotion in the chain, and the one with the weakest stated support: Power advertises the software opportunity to engineers rather than describing a program. Naming it as a sub-goal is what shows how far the original capacity goal has recursed.",
           "idea": "The recursion itself is the market signal: every defence manufacturer scaling capacity hits the same two missing layers, trained operators and floor software, which means these are industry-wide sub-goals being solved separately and expensively inside each company.",
           "entities": ["Hadrian"],
-          "pos": [58, -38]
+          "pos": [64, -74]
         }
       ],
       "edges": [
