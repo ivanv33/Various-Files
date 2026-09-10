@@ -161,68 +161,6 @@
 <!--__DATA_END__-->
 
 <!--__EXT_START__-->
-<script>
-  /* Framework extension: name the idea-bearing slot inside its own band and print the idea there.
-     The engine marks the node that carries an `idea` (gold ring, star, panel section), but nothing
-     on the plane says WHICH slot of the framework is where the opportunity surfaces, and the idea
-     sentence itself is only visible after a click. STAR's Task band is the slot that holds the
-     objective the actor never stated, so in the TBPN example it is nearly empty: this caption fills
-     that space with the reading it exists to carry. Data-driven: it draws only for an example that
-     declares idea_bearing_slot and has nodes carrying `idea` (so the classic example gets nothing),
-     it is added to ctx.group so the engine disposes it on example switch, and it hides with the
-     LLM-derived and labels toggles because the idea is itself an inference. */
-  window.__frameworkExtension = (ctx) => {
-    const notes = [];
-    window.__ideaNotes = notes;
-    const ex = ctx && ctx.example;
-    if (!ex || !ex.layout || !ctx.api || typeof ctx.api.label2d !== 'function') return;
-    const ideas = (ex.nodes || []).filter((n) => typeof n.idea === 'string' && n.idea.trim());
-    const slot = (ctx.graph.slots || []).find((s) => s.id === ex.idea_bearing_slot);
-    const region = slot && (ex.layout.regions || []).find((r) => r.label === slot.label);
-    if (!ideas.length || !region) return;
-
-    const GOLD = '#eda100';
-    const head = document.createElement('div');
-    head.textContent = '\u2605 idea-bearing slot: ' + slot.label;
-    head.style.cssText = 'font:10px/1.3 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.08em; '
-      + 'text-transform:uppercase; color:' + GOLD + '; margin-bottom:4px;';
-    const body = document.createElement('div');
-    body.textContent = ideas.map((n) => n.idea.trim()).join(' ');
-    body.style.cssText = 'font:10px/1.35 ui-sans-serif,-apple-system,Segoe UI,Roboto,sans-serif; '
-      + 'color:#a8a49c; border-left:2px solid rgba(237,161,0,.55); padding-left:7px;';
-    // The CSS2D anchor sits at the centre of its element, so a block whose height depends on the
-    // idea's length would drift down into the nodes below. Give the anchor zero size and hang a
-    // fixed-width box off it: the caption then starts a fixed distance under the band's top edge
-    // and grows downward, whatever the text.
-    const box = document.createElement('div');
-    box.style.cssText = 'position:absolute; left:-102px; top:0; width:205px; text-align:left; white-space:normal;';
-    box.append(head, body);
-    const note = ctx.api.label2d('', 'idea-note');
-    note.element.replaceChildren(box);
-    // keep the renderer's own position/transform styles: set properties, never cssText
-    note.element.style.width = '0';
-    note.element.style.height = '0';
-    note.element.style.pointerEvents = 'none';
-    const cx = (region.x[0] + region.x[1]) / 2;
-    const top = Math.max(region.y[0], region.y[1]);
-    note.position.set(cx - 3, top - 3, 0);
-    ctx.group.add(note);
-    notes.push(note);
-
-    const derived = document.getElementById('t-derived');
-    const labels = document.getElementById('t-labels');
-    const sync = () => {
-      const on = (!derived || derived.checked) && (!labels || labels.checked);
-      for (const n of (window.__ideaNotes || [])) n.visible = on;
-    };
-    if (!window.__ideaNoteHooked) {
-      window.__ideaNoteHooked = true;
-      if (derived) derived.addEventListener('change', sync);
-      if (labels) labels.addEventListener('change', sync);
-    }
-    sync();
-  };
-</script>
 <!--__EXT_END__-->
 
 <script>
