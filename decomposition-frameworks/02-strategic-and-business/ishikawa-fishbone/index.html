@@ -171,10 +171,12 @@
         grey is the engine's colour for that.
      2. A head to point at. Schema edges carry no arrowhead, so nothing terminates the spine.
         The head outline, its faint fill and the arrow into it are drawn here.
-     3. Label clearance. The engine parks every label one mesh-radius below its node, which is
-        right for a sphere and wrong for a wireframe halo (r*1.35), a diamond (r*1.25) or the
-        gold idea ring (r*1.71) - the label lands on top of its own node. Each label is moved to
-        the outward side of its bone by its node's real drawn extent.
+     3. Label side. The engine anchors every label below its node, clear of the node's real
+        drawn extent (shape, wireframe halo, gold idea ring). On a fishbone that puts the labels
+        of the causes above the spine onto their own ribs and stacks all six category labels
+        along the spine, where they collide. Each label is moved instead to the outward side of
+        its bone, by the same drawn extent the engine uses; the idea marking itself (ring, star,
+        legend row, panel section) is the engine's and is not touched here.
    All geometry is read from layout.guides / node positions, so moving a node in graph.json moves
    its bone with it. */
 window.__frameworkExtension = (ctx) => {
