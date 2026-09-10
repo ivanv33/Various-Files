@@ -42,35 +42,35 @@ Written for this library as a behavioural-interview answer; company and figures 
 
 **Situation**
 
-- `s1` [fact] A billing update shipped in March double-charged about four hundred customers. "we shipped a billing update in March that double-charged about four hundred customers" (sentence 1)
-- `s2` [fact] Within two days, complaints about the charge pushed the open-ticket queue from a normal sixty to over nine hundred. "complaints about the charge had pushed the ticket queue from a normal sixty open tickets to over nine hundred" (sentence 2)
-- `s3` [fact] Average first response time went from four hours to three days. "our average first response time went from four hours to three days" (sentence 2)
-- `s4` [fact] Two of the six support agents were on leave that month. "Two of my six agents were on leave that month" (sentence 3)
-- `s5` [derived 0.90] Ticket volume rose roughly fifteen-fold while the team ran at two-thirds of its normal capacity. Rationale: Arithmetic on stated figures (900 against 60 tickets, four of six agents); the speaker never states the ratio, but it is what makes the situation critical rather than merely busy.
+- `s1` [fact] **Billing update double-charged ~400**: A billing update shipped in March double-charged about four hundred customers. "we shipped a billing update in March that double-charged about four hundred customers" (sentence 1)
+- `s2` [fact] **Queue: 60 to over 900 in two days**: Within two days, complaints about the charge pushed the open-ticket queue from a normal sixty to over nine hundred. "complaints about the charge had pushed the ticket queue from a normal sixty open tickets to over nine hundred" (sentence 2)
+- `s3` [fact] **First response: 4 hours to 3 days**: Average first response time went from four hours to three days. "our average first response time went from four hours to three days" (sentence 2)
+- `s4` [fact] **Two of six agents on leave**: Two of the six support agents were on leave that month. "Two of my six agents were on leave that month" (sentence 3)
+- `s5` [derived 0.90] **Demand 15x, capacity two-thirds**: Ticket volume rose roughly fifteen-fold while the team ran at two-thirds of its normal capacity. Rationale: Arithmetic on stated figures (900 against 60 tickets, four of six agents); the speaker never states the ratio, but it is what makes the situation critical rather than merely busy.
 
 **Task**
 
-- `t1` [fact] The lead was asked to get the queue back under control before the quarterly renewals in April. "I was asked to get the queue back under control before the quarterly renewals in April" (sentence 4)
-- `t2` [derived 0.80] The underlying objective was to protect April renewal revenue from the affected customers, not merely to shrink the queue. Rationale: The deadline is tied to renewals and the speaker reports the renewal rate as a result; the text never states retention as the goal, only the queue.
+- `t1` [fact] **Control the queue before renewals**: The lead was asked to get the queue back under control before the quarterly renewals in April. "I was asked to get the queue back under control before the quarterly renewals in April" (sentence 4)
+- `t2` [derived 0.80] **Real objective: protect renewals**: The underlying objective was to protect April renewal revenue from the affected customers, not merely to shrink the queue. Rationale: The deadline is tied to renewals and the speaker reports the renewal rate as a result; the text never states retention as the goal, only the queue.
 
 **Problem (PAR)**
 
-- `p1` [derived 0.80] PAR compression: a self-inflicted billing incident flooded a short-staffed support team a few weeks before quarterly renewals. Rationale: PAR collapses Situation and Task into one problem statement; choosing which facts constitute the problem (the incident, the staffing gap, the renewal deadline) is the analyst's framing, not the speaker's words. 0.80 is the 0.70-0.85 band of the shared confidence scale and means: not that this compression is the only possible one, but that most careful readers given these sentences would draw the problem boundary here.
+- `p1` [derived 0.80] **Incident, short staff, renewals**: PAR compression: a self-inflicted billing incident flooded a short-staffed support team a few weeks before quarterly renewals. Rationale: PAR collapses Situation and Task into one problem statement; choosing which facts constitute the problem (the incident, the staffing gap, the renewal deadline) is the analyst's framing, not the speaker's words. 0.80 is the 0.70-0.85 band of the shared confidence scale and means: not that this compression is the only possible one, but that most careful readers given these sentences would draw the problem boundary here.
 
 **Action**
 
-- `a1` [fact] Wrote a one-page macro explaining the bug and the refund timeline and had it sent proactively to all four hundred affected accounts before they wrote in. "I wrote a one-page macro that explained the bug and the refund timeline, and I had it sent proactively to all four hundred affected accounts before they wrote in" (sentence 5)
-- `a2` [fact] Split the queue so that the two most experienced agents took only refund cases and the rest handled everything else. "I split the queue so that the two most experienced agents took only refund cases and the rest handled everything else" (sentence 6)
-- `a3` [fact] Asked finance to process the refunds in one batch instead of case by case. "I asked finance to process the refunds in one batch instead of case by case" (sentence 7)
+- `a1` [fact] **Macro sent proactively to 400 accounts**: Wrote a one-page macro explaining the bug and the refund timeline and had it sent proactively to all four hundred affected accounts before they wrote in. "I wrote a one-page macro that explained the bug and the refund timeline, and I had it sent proactively to all four hundred affected accounts before they wrote in" (sentence 5)
+- `a2` [fact] **Split queue: experts take refunds**: Split the queue so that the two most experienced agents took only refund cases and the rest handled everything else. "I split the queue so that the two most experienced agents took only refund cases and the rest handled everything else" (sentence 6)
+- `a3` [fact] **Asked finance to batch refunds**: Asked finance to process the refunds in one batch instead of case by case. "I asked finance to process the refunds in one batch instead of case by case" (sentence 7)
 
 **Result**
 
-- `r0` [fact] New tickets fell by half the day after the proactive notice went out. "new tickets fell by half the next day" (sentence 5)
-- `r1` [fact] By the end of the third week the queue was back under eighty tickets. "By the end of the third week the queue was back under eighty tickets" (sentence 8)
-- `r2` [fact] By the end of the third week the first response time was under five hours. "the first response time was under five hours" (sentence 8)
-- `r3` [fact] The renewal rate in April was 94 percent, one point higher than the previous quarter. "Our renewal rate in April was 94 percent, one point higher than the previous quarter" (sentence 9)
-- `r4` [fact] The proactive notice became a standard step for any billing incident. "we made the proactive notice a standard step for any billing incident" (sentence 10)
-- `r5` [derived 0.40] The part of the April renewal uplift that the incident response produced, if any; the attribution is the speaker's implication, not a stated measurement. Rationale: The speaker places the renewal figure after the actions, inviting the listener to credit them, but gives no base rate or comparison; a one-point move could be normal quarter-to-quarter noise.
+- `r0` [fact] **New tickets halved next day**: New tickets fell by half the day after the proactive notice went out. "new tickets fell by half the next day" (sentence 5)
+- `r1` [fact] **Queue under 80 by week three**: By the end of the third week the queue was back under eighty tickets. "By the end of the third week the queue was back under eighty tickets" (sentence 8)
+- `r2` [fact] **First response under five hours**: By the end of the third week the first response time was under five hours. "the first response time was under five hours" (sentence 8)
+- `r3` [fact] **April renewals 94%, up one point**: The renewal rate in April was 94 percent, one point higher than the previous quarter. "Our renewal rate in April was 94 percent, one point higher than the previous quarter" (sentence 9)
+- `r4` [fact] **Proactive notice made standard**: The proactive notice became a standard step for any billing incident. "we made the proactive notice a standard step for any billing incident" (sentence 10)
+- `r5` [derived 0.40] **Uplift attributable to response?**: The part of the April renewal uplift that the incident response produced, if any; the attribution is the speaker's implication, not a stated measurement. Rationale: The speaker places the renewal figure after the actions, inviting the listener to credit them, but gives no base rate or comparison; a one-point move could be normal quarter-to-quarter noise. Kept below 0.50 because STAR requires every Result to be attributed to an Action, so the slot has to be filled even where the answer leaves the attribution speculative.
 
 Fact edges. An edge is a fact only when both endpoints are facts and the speaker states the connection in one span, quoted here with the sentence it comes from:
 
@@ -84,7 +84,7 @@ Fact edges. An edge is a fact only when both endpoints are facts and the speaker
 
 ### What the LLM added and why it helps
 
-Derived nodes: the capacity arithmetic `s5` (0.90), the real objective `t2` (0.80), the PAR compression `p1` (0.80) and the doubtful renewal attribution `r5` (0.40). Derived edges: s3 sets up t1 (0.70), s5 sets up t1 (0.60), s4 causes a2 (0.50), t2 motivates a1 (0.65), p1 motivates a1 (0.70), r0 causes r1 (0.75), a2 produces r2 (0.60), a3 produces r1 (0.50), a1 produces r5 (0.40); eight `supported_by` edges ground the derived nodes.
+Derived nodes: the capacity arithmetic `s5` (0.90), the real objective `t2` (0.80), the PAR compression `p1` (0.80) and the doubtful renewal attribution `r5` (0.40). Derived edges: s3 sets up t1 (0.70), s5 sets up t1 (0.60), s4 causes a2 (0.50), t2 motivates a1 (0.65), p1 motivates a1 (0.70), r0 causes r1 (0.75), a2 produces r2 (0.60), a3 produces r1 (0.50), a1 produces r5 (0.40, kept below the 0.50 floor because the framework requires the Result attributed to an Action, as its rationale says); eight `supported_by` edges ground the derived nodes.
 
 The gain is explicit attribution. The speaker links only the macro to a result (inbound halved, practice made standard); the week-three queue, the response time and the renewal rate have no stated cause. The graph proposes one candidate cause per result with a confidence, and the 0.40 on `r5` marks where an interviewer should ask a follow-up rather than accept the implication.
 

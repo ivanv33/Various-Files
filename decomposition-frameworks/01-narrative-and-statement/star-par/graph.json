@@ -64,7 +64,7 @@
         { "id": "r2", "slot": "result", "label": "First response under five hours", "text": "By the end of the third week the first response time was under five hours.", "provenance": "fact", "source_quote": "the first response time was under five hours", "source_ref": "sentence 8", "pos": [84, -48] },
         { "id": "r3", "slot": "result", "label": "April renewals 94%, up one point", "text": "The renewal rate in April was 94 percent, one point higher than the previous quarter.", "provenance": "fact", "source_quote": "Our renewal rate in April was 94 percent, one point higher than the previous quarter", "source_ref": "sentence 9", "pos": [84, 29] },
         { "id": "r4", "slot": "result", "label": "Proactive notice made standard", "text": "The proactive notice became a standard step for any billing incident.", "provenance": "fact", "source_quote": "we made the proactive notice a standard step for any billing incident", "source_ref": "sentence 10", "pos": [84, 40] },
-        { "id": "r5", "slot": "result", "label": "Uplift attributable to response?", "text": "The part of the April renewal uplift that the incident response produced, if any; the attribution is the speaker's implication, not a stated measurement.", "provenance": "derived", "confidence": 0.4, "rationale": "The speaker places the renewal figure after the actions, inviting the listener to credit them, but gives no base rate or comparison; a one-point move could be normal quarter-to-quarter noise.", "pos": [84, -31] }
+        { "id": "r5", "slot": "result", "label": "Uplift attributable to response?", "text": "The part of the April renewal uplift that the incident response produced, if any; the attribution is the speaker's implication, not a stated measurement.", "provenance": "derived", "confidence": 0.4, "rationale": "The speaker places the renewal figure after the actions, inviting the listener to credit them, but gives no base rate or comparison; a one-point move could be normal quarter-to-quarter noise. Kept below 0.50 because STAR requires every Result to be attributed to an Action, so the slot has to be filled even where the answer leaves the attribution speculative.", "pos": [84, -31] }
       ],
       "edges": [
         { "id": "c1", "from": "s1", "to": "s2", "relation": "causes", "provenance": "fact", "source_quote": "complaints about the charge had pushed the ticket queue", "source_ref": "sentence 2" },
@@ -82,7 +82,7 @@
         { "id": "c13", "from": "r0", "to": "r1", "relation": "causes", "provenance": "derived", "confidence": 0.75, "rationale": "Halving inbound is the largest lever on the backlog; the text credits no single action with the week-three figure." },
         { "id": "c14", "from": "a2", "to": "r2", "relation": "produces", "provenance": "derived", "confidence": 0.6, "rationale": "Specialising the experienced agents on refund cases plausibly cut handling time; the speaker lists the action without attributing the response-time result to it." },
         { "id": "c15", "from": "a3", "to": "r1", "relation": "produces", "provenance": "derived", "confidence": 0.5, "rationale": "A single refund batch closes the refund tickets together; no result is attributed to it in the text." },
-        { "id": "c16", "from": "a1", "to": "r5", "relation": "produces", "provenance": "derived", "confidence": 0.4, "rationale": "Of the three actions, the proactive notice is the one most plausibly felt by renewing customers." },
+        { "id": "c16", "from": "a1", "to": "r5", "relation": "produces", "provenance": "derived", "confidence": 0.4, "rationale": "Of the three actions, the proactive notice is the one most plausibly felt by renewing customers. Kept below 0.50 because the framework requires the Result slot to be attributed to an Action; the low figure marks the attribution as the speaker's implication, not a stated link." },
         { "id": "c17", "from": "s5", "to": "s2", "relation": "supported_by", "provenance": "derived", "confidence": 0.9 },
         { "id": "c18", "from": "s5", "to": "s4", "relation": "supported_by", "provenance": "derived", "confidence": 0.9 },
         { "id": "c19", "from": "t2", "to": "t1", "relation": "supported_by", "provenance": "derived", "confidence": 0.8 },
@@ -90,7 +90,7 @@
         { "id": "c21", "from": "p1", "to": "s1", "relation": "supported_by", "provenance": "derived", "confidence": 0.85 },
         { "id": "c22", "from": "p1", "to": "s4", "relation": "supported_by", "provenance": "derived", "confidence": 0.85 },
         { "id": "c23", "from": "p1", "to": "t1", "relation": "supported_by", "provenance": "derived", "confidence": 0.85 },
-        { "id": "c24", "from": "r5", "to": "r3", "relation": "supported_by", "provenance": "derived", "confidence": 0.4 }
+        { "id": "c24", "from": "r5", "to": "r3", "relation": "supported_by", "provenance": "derived", "confidence": 0.4, "rationale": "The renewal figure is the only fact r5 can rest on; kept below 0.50, matching r5, because the framework requires the attribution slot filled." }
       ]
     },
     {
