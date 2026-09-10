@@ -16,8 +16,31 @@
     "date": "2025-10-06",
     "episode_title": "OpenAI AMD Deal, DevDay Reactions, xAI's Memphis Datacenter (Doug O'Laughlin, Celine Halioua)"
   },
-  "viz_iterations": 0,
-  "viz_reviews": [],
+  "viz_iterations": 1,
+  "viz_reviews": [
+    {
+      "iteration": 1,
+      "verdict": "revise",
+      "scores": {
+        "demonstrates": 4,
+        "provenance": 5,
+        "legibility": 3,
+        "fidelity": 5
+      },
+      "blocking_issues": [
+        "tbpn: lp_delay (pos [20,-40]) sits on top of the region title 'LEVERAGE POINTS · MEADOWS' HIERARCHY', hiding 'HIERARCHY'. Move lp_delay right to about [36,-40].",
+        "tbpn: the label 'B2 Social licence' (l_b2 at [-8,6]) runs into the box glyph of s_gpu at [2,0]. Move l_b2 up to about [-10,12] or left to [-16,8]."
+      ],
+      "suggestions": [
+        "tbpn: caption 'R3 and B1 share these two arrows' at [48,-12] strikes through the s_gpu->f_gen and v_scarcity->f_gen edges and their +/- labels; nudge to about [60,-8].",
+        "tbpn: the one counted overlap is the coincident +/- labels on v_scarcity<->f_gen; engine limit.",
+        "classic: cs_pipeline at [20,40] has two dashed arrowheads under its label; move to about [22,44].",
+        "classic: cf_wsorder label hugs its cone; drop to [40,8]."
+      ],
+      "summary": "Slots cleanly distinguished by shape and colour; Beer Game tiers and axes recognisable; facts-only view is a plain causal chain that closes into loops only when derived diamonds appear. Stats match graph.json, panels correct, console clean. Two node-over-text collisions in the TBPN example keep legibility below 4.",
+      "at": "2026-09-10T00:00:00Z"
+    }
+  ],
   "updated_at": "2026-09-10T00:00:00Z",
   "notes": "Research: Forrester's Industrial Dynamics (1961), Meadows' Thinking in Systems (2008) and her 1999 Leverage Points essay, Senge's Fifth Discipline (1990), Sterman's Business Dynamics (2000). Registry slot ids kept unchanged.\n\nProvenance design decisions. (1) Stocks, flows and variables are mostly facts in both examples: speakers describe accumulations and rates constantly without ever calling them stocks or flows, so the extraction work is recognition, not inference. (2) Every loop node is derived, in both examples, and that is the rule rather than an accident: a closed chain of influence is never stated. In the TBPN example the individual arrows of R1, R2 and B1 are largely quotable (10 of 44 edges are fact edges and they are concentrated on the loops' own links), which makes the point sharply: the data gives you the arrows, the framework gives you the circle and its sign. (3) Edge polarity is carried in the edge `label` field as + or -, per SPEC 4, so a reader can do the sign arithmetic that decides reinforcing vs balancing. (4) Delays are split rather than forced into one provenance: d_lead / cd_order / cd_ship are facts because the speakers state the lags verbatim, while d_overshoot / cd_overshoot are derived, because the claim that a lag inside a balancing loop converts correction into oscillation is the framework's general result and is what explains the observed overshoot. (5) leverage_point is the idea-bearing slot, and lp_delay deliberately carries no `idea` field: it is the low-rank Meadows intervention (9th, delays) that the whole market is already pulling, included as the control case so the hierarchy does visible work against lp_rule (rules, 6th) and lp_info (information flows, 6th), which do carry ideas.\n\nClassic example is the MIT Beer Distribution Game, with a scenario text written for this page so the fact nodes have something verbatim to quote. It was chosen because it is the canonical demonstration that a delay inside a balancing loop produces oscillation, and because its textbook leverage point is literally an information flow, which is Meadows' own argument. R1 there (the shortage spiral) has all four of its arrows quoted from the scenario text and two negative links, so the reinforcing sign is arithmetic rather than taste.\n\nvalidate: 0 errors, 0 warnings on the first run; no warnings to justify.\n\nResume 2026-09-10: previous agent was cut off while launching the viz builder. Its uncommitted graph.json diff (vs content commit 2f7c93f) was checked with the reconcile jq filter and is layout, annotations and shortened labels only, so it is kept as the starting point of viz iteration 1 rather than reset. README was committed at 17be292 but steps.readme was still pending; corrected.",
   "issues": []
