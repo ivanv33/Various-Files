@@ -7,7 +7,7 @@
     "graph": "done",
     "validate": "done",
     "readme": "done",
-    "viz": "pending",
+    "viz": "done",
     "reconcile": "pending",
     "commit": "pending"
   },
@@ -16,7 +16,7 @@
     "date": "2025-10-06",
     "episode_title": "OpenAI AMD Deal, DevDay Reactions, xAI's Memphis Datacenter (Doug O'Laughlin, Celine Halioua)"
   },
-  "viz_iterations": 2,
+  "viz_iterations": 3,
   "viz_reviews": [
     {
       "iteration": 1,
@@ -61,6 +61,25 @@
         "Both: part_of_loop spokes are the main clutter; an extension drawing each loop as a ring through its members would let the diamonds carry only R/B."
       ],
       "summary": "Plane causal-loop diagram with polarity signs, stock boxes, flow cones, tier regions and a Meadows band; stats, panels, gold idea rings and console all correct; facts-only leaves a coherent skeleton. Fails on legibility: three overlapping pairs per example at default, one loop node pinned on a fact edge, one flow node inside a loop label.",
+      "at": "2026-09-10T00:00:00Z"
+    },
+    {
+      "iteration": 3,
+      "verdict": "pass",
+      "scores": {
+        "demonstrates": 4,
+        "provenance": 5,
+        "legibility": 4,
+        "fidelity": 5
+      },
+      "blocking_issues": [],
+      "suggestions": [
+        "Classic: cs_backlog at x=-66 hangs its label left of the Retailer region border; [-60,-4] would keep it inside.",
+        "TBPN: f_vendor->s_commit edge crosses the 'Nvidia's $100B into OpenAI' label; f_vendor to about [-40,50] or s_commit to [-8,28] would clear it.",
+        "Optional extension-block ring through each loop's members.",
+        "TBPN's single overlap is the coincident +/- on v_scarcity<->f_gen, engine limit."
+      ],
+      "summary": "Both examples render as a plane causal-loop / stock-and-flow diagram with polarity labels; classic carries tier regions and shipments-vs-orders axes, TBPN carries fast-rings vs brake annotations and a leverage strip with gold-ringed idea nodes. Facts-only leaves a coherent quoted skeleton; derived adds the loops, the overshoot delay and the leverage points. Stats match graph.json, console clean, panels correct. Metrics: classic 0 overlaps, TBPN 1 (engine limit), 0 off-screen, 0 under cards.",
       "at": "2026-09-10T00:00:00Z"
     }
   ],
