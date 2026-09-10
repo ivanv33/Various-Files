@@ -162,37 +162,18 @@
 
 <!--__EXT_START__-->
 <script>
-// Minto SCQA — one thing the data-driven engine cannot express, and one guide that follows the
-// LLM-derived toggle.
-//
-// 1. Label offsets. A node's label is anchored at exactly one radius below its centre. That is the
-//    bottom of a solid fact sphere, but the Question slot is a diamond, whose lower vertex is at
-//    1.25r, and every derived node carries a wireframe halo at 1.35x the mesh while an `idea` node
-//    carries a gold ring at 1.6r plus its tube. Push each label below whatever its own node actually
-//    reaches, using the engine's geometry table, so no text is read through a mesh. Nodes the
-//    default already clears (spheres, boxes) keep the engine's placement untouched.
-//
-// Everything else about an `idea` node — the gold ring, the star in the label, the legend row and the
-// "Opportunity this points to" panel section — is the engine's, and is left alone here.
+// Minto SCQA — one guide that follows the LLM-derived toggle.
 //
 // The one guide that annotates inferred edges (the arrow under q1, which says that the host's spoken
 // question is answered by two more Complication facts and not by the Answer) belongs to the derived
 // layer: it is hidden with it, so the facts-only view says nothing the source does not say.
+// Label anchoring by shape, halo and idea-ring extent, and the whole idea treatment (gold ring, star,
+// legend row, panel section), are the engine's.
 window.__frameworkExtension = (ctx) => {
-  const { group, example, nodesById, api } = ctx;
+  const { group } = ctx;
 
   const inferredDecor = group.children.filter(o => o.isCSS2DObject
-    && o.element.classList.contains('glabel') && o.element.textContent.startsWith('\u2190'));
-
-  const HALF = { sphere: 1, box: 0.85, diamond: 1.25, cone: 1.1 };   // mesh half-height, per GEO
-  for (const n of example.nodes) {
-    const rec = nodesById.get(n.id);
-    if (!rec) continue;
-    let reach = rec.r * (HALF[(api.slotStyle.get(n.slot) || {}).shape] || 1);
-    if (n.provenance === 'derived') reach *= 1.35;              // wireframe halo
-    if (n.idea) reach = Math.max(reach, rec.r * 1.71);          // gold ring plus its tube
-    if (reach > rec.r) rec.label.position.set(0, -(reach + 1.25), 0);
-  }
+    && o.element.classList.contains('glabel') && o.element.textContent.startsWith('←'));
 
   const derivedOn = document.getElementById('t-derived');
   if (!inferredDecor.length || !derivedOn) return;
