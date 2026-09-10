@@ -181,23 +181,6 @@
 window.__frameworkExtension = (ctx) => {
   const { THREE, nodesById } = ctx;
 
-  // Re-sync the two renderers. Both are sized once, before the note block has taken its
-  // height, so the WebGL canvas keeps projecting at the taller size while `#stage canvas`
-  // stretches it to the real stage height: everything drawn in 3D then sits a few percent
-  // higher than the CSS2D labels, which at the bottom of a tall plane is ~35px of drift
-  // between a node and its own label. The engine's own resize handler fixes both, so ask
-  // for it once the example is laid out. It is a no-op when the sizes already agree.
-  requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
-
-  // Region captions: the engine anchors each one at (x0 + 2, y1 - 2), but a CSS2D element is
-  // centred on its anchor, so a caption hangs half its own width out past the left edge of the
-  // rectangle it names and reads as if it belonged to whatever sits to the left of that box.
-  // Re-anchor them by their top-left corner so every caption sits inside its own region.
-  // CSS2DObject.center is read by the renderer every frame, so this survives orbit and resize.
-  ctx.group.traverse(o => {
-    if (o.isCSS2DObject && o.element && o.element.classList.contains('rlabel')) o.center.set(0, 0);
-  });
-
   const DAYLIGHT = 2.4;                            // world units of clear space wanted around a node
   const OFFSETS = [0, 3, 5, 7, 9, 11, 13, 16, 20]; // candidate mid-arc offsets, smallest bow wins
   const SAMPLES = 28;
