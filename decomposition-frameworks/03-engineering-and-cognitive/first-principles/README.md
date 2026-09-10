@@ -268,7 +268,7 @@ Afterwards: `node _meta/validate.mjs <dir>` for quotes, the paraphrase cap and d
 
 - [Functional Decomposition](../functional-decomposition/README.md): takes a system apart into parts and interface contracts, once you know what to build; first principles takes a price or a limit apart, to decide whether the incumbent's floor applies to you at all.
 - [Inversion & Pre-Mortem](../inversion-premortem/README.md): the sibling deletion method, deleting success and asking what killed it. Inversion when the plan exists, first principles when it is inherited.
-- [Theory of Constraints](../../02-strategic-and-business/theory-of-constraints/README.md): also organised around a binding limit, but it finds the bottleneck inside an existing system and exploits it, where first principles asks whether the limit is real or conventional.
+- [Theory of Constraints & Evaporating Cloud](../../02-strategic-and-business/theory-of-constraints/README.md): also organised around a binding limit, but it finds the bottleneck inside an existing system and exploits it, where first principles asks whether the limit is real or conventional.
 - [5 Whys](../../02-strategic-and-business/five-whys/README.md): descends from an observed failure to a cause somebody owns and could change. Both have a stopping rule: 5 Whys stops at a changeable structure, first principles at something non-negotiable.
 
 [Library root](../../README.md).
