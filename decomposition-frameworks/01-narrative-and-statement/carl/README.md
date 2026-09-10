@@ -87,11 +87,11 @@ Fact edges. Three, each joining two fact nodes with a connective the account sta
 
 Derived edges. Ten carry a framework relation:
 
-- `ce1` `c2` motivates `a1` [derived 0.90] Rationale: The prescription is what sent her to the cupboard; the account gives the two in sequence without stating the link.
+- `ce1` `c2` motivates `a1` [derived 0.85] Rationale: The prescription is what sent her to the cupboard; the account gives the two in sequence without stating the link.
 - `ce2` `c1` motivates `a2` [derived 0.60] Rationale: With no second registered nurse on the ward the check could only fall to the agency nurse; the account states the staffing and the request but never connects them.
 - `ce3` `c3` constrains `a1` [derived 0.80] Rationale: Taking the wrong strength was possible because both sit in one drawer in almost identical boxes; the arrangement is stated separately from the act.
-- `ce4` `a2` produces `r1` [derived 0.90] Rationale: The catch follows the request to check in the next sentence, but no connective is stated; narrative order is doing the work.
-- `ce5` `r1` produces `r2` [derived 0.90] Rationale: Nothing reaching the patient is the consequence of the ampoule being stopped; the two are reported as separate facts.
+- `ce4` `a2` produces `r1` [derived 0.85] Rationale: The catch follows the request to check in the next sentence, but no connective is stated; narrative order is doing the work.
+- `ce5` `r1` produces `r2` [derived 0.85] Rationale: Nothing reaching the patient is the consequence of the ampoule being stopped; the two are reported as separate facts.
 - `ce6` `a3` motivates `a4` [derived 0.70] Rationale: The logged near miss is what put the event on the team meeting's agenda; the account states both without joining them.
 - `ce10` `r3` teaches `l2` [derived 0.85] Rationale: Reading the recurrence as evidence about the system rather than about three careless individuals is the inference the ward acted on but the author does not write down.
 - `ce11` `l1` generalizes to `l2` [derived 0.70] Rationale: The single-loop resolution is superseded rather than confirmed once the recurrence is known; the account keeps both without ranking them.
@@ -106,7 +106,7 @@ Hide the derived layer and what remains is the written account: twelve fact node
 
 The four derived nodes fill that gap. `c4` (0.85) states the hazard the storage arrangement creates. `r4` (0.80) credits the save to the check rather than to the author's care, the attribution she declines to make about herself. `l2` (0.85) is the pivot: it sits in the Learning slot beside her resolution `l1` and contradicts it, and `ce11` (0.70) records the relation as `generalizes_to` rather than agreement, so the graph carries the superseded lesson and its replacement instead of dropping one. `u2` (0.80) names the governing rule the ward acted on without stating, which lets the lesson reach every other look-alike pair rather than morphine alone.
 
-The derived edges do the narrative work: `ce1` and `ce4` (0.90) turn adjacency into sequence, `ce3` (0.80) makes the storage arrangement a constraint on the act rather than background, `ce2` (0.60) is the weakest link and says so, and `ce12` and `ce13` (0.80, 0.85) route the ward's change through the diagnosis rather than straight from the recurrence. The reader gains a claim the account only implies: the barrier that held was the second person, the barrier installed was the separation, and neither is what the author resolved to do.
+The derived edges do the narrative work: `ce1`, `ce4` and `ce5` (0.85, the cap for a sequence read from narrative order) turn adjacency into sequence, `ce3` (0.80) makes the storage arrangement a constraint on the act rather than background, `ce2` (0.60) is the weakest link and says so, and `ce12` and `ce13` (0.80, 0.85) route the ward's change through the diagnosis rather than straight from the recurrence. The reader gains a claim the account only implies: the barrier that held was the second person, the barrier installed was the separation, and neither is what the author resolved to do.
 
 ## Example 2: from the TBPN transcripts: Cala: profitable restaurants, terminal structure
 
@@ -194,8 +194,8 @@ Derived edges. Thirteen carry a framework relation:
 - `te1` `ct1` motivates `a1` [derived 0.85] Rationale: The mission is what the eight years of operating pursued; the speaker states them in sequence rather than as a cause.
 - `te3` `a1` produces `r2` [derived 0.80] Rationale: Retention and satisfaction are offered as the numbers behind the profitable restaurants, but the attribution to the eight years of operating is not made in a single span.
 - `te6` `ct3` motivates `a3` [derived 0.80] Rationale: He describes hitting the funding wall and then the attempt to restructure to a break-even business; the link is adjacent in the narrative but never stated.
-- `te8` `a3` produces `r4` [derived 0.85] Rationale: The severance liability is what the restructuring ran into; he names the regulation and then the liability in consecutive sentences without joining them.
-- `te10` `r4` produces `r5` [derived 0.85] Rationale: The liability exceeding cash is why the shutdown was unavoidable, but the two are separated in his account by the attempt to find a workaround.
+- `te8` `a3` produces `r4` [derived 0.80] Rationale: The severance liability is what the restructuring ran into; he names the regulation and then the liability in consecutive sentences without joining them.
+- `te10` `r4` produces `r5` [derived 0.80] Rationale: The liability exceeding cash is why the shutdown was unavoidable, but the two are separated in his account by the attempt to find a workaround.
 - `te13` `l2` generalizes to `l3` [derived 0.75] Rationale: Being more conservative about structuring is a step towards the diagnosis but stops short of it; naming the governing structure as the thing that failed is the analyst's move.
 - `te14` `l1` generalizes to `u4` [derived 0.80] Rationale: The new company's first store is in New York; reading that as acting on the France lesson is a link the speaker leaves the listener to make, though he states the two minutes apart.
 - `te15` `l2` generalizes to `u1` [derived 0.85] Rationale: The financing strategy is offered as the key lesson from the collapse, but the step from being more conservative to combining VC with retail private equity is a generalisation.
@@ -215,7 +215,7 @@ The derived nodes supply those. `r7` (0.80) is the mechanism: insolvency protect
 
 The rule slot behaves unusually here: four of its six nodes are facts, against a typical provenance of derived. Richard is not reflecting in the abstract, he is incorporating the next company, so his corrections are already decisions: venture capital plus retail private equity (`u1`), a lean HQ (`u2`), franchising rather than owning (`u3`), New York (`u4`). Each is a specific change and none is a rule. `u5` (0.75) generalises over all four; `u6` (0.60) is the widest step in the graph.
 
-The `generalizes_to` edges are where the loops separate. `te15` and `te16` (0.85, 0.80) run from his own lesson `l2` to the corrections he states; `te17`, `te18` and `te19` (0.70, 0.75, 0.60) run from the derived diagnosis `l3` to the rules that follow only once execution has been ruled out. Two links a careless extraction would mark as facts are derived: `te8` and `te10` (both 0.85), where he names the regulation, the liability, the search for a workaround and the shutdown in that order and never in one causal span.
+The `generalizes_to` edges are where the loops separate. `te15` and `te16` (0.85, 0.80) run from his own lesson `l2` to the corrections he states; `te17`, `te18` and `te19` (0.70, 0.75, 0.60) run from the derived diagnosis `l3` to the rules that follow only once execution has been ruled out. Two links a careless extraction would mark as facts are derived: `te8` and `te10` (both 0.80), where he names the regulation, the liability, the search for a workaround and the shutdown in that order and never in one causal span.
 
 ### Where the opportunity shows up
 
@@ -289,7 +289,7 @@ Afterwards: `node _meta/validate.mjs <dir>` checks quotes, the paraphrase cap, c
 | Learning restates the Result | "The lesson is that we had to shut down." | A learning node must be writable as "next time, do X instead of Y"; if the result's words alone suffice, it is a result. |
 | Single-loop resolution in the rule slot | "Be more careful", "read every label twice". | The rule must name a governing variable someone could change without the actor present, and must hold even if the actor is careless. `l1` stays in Learning. |
 | Rule with no episode under it | A general principle supported by nothing in the source. | Every rule node needs a `supported_by` path to a fact (`u5` to `u1`, `u4`). |
-| Hindsight causation marked as fact | The shutdown chain read back as one causal statement. | Fact edges need both endpoints stated and the connective quoted; `te8` and `te10` are derived at 0.85 because the chain spans four sentences. |
+| Hindsight causation marked as fact | The shutdown chain read back as one causal statement. | Fact edges need both endpoints stated and the connective quoted; `te8` and `te10` are derived at 0.80 because the chain spans four sentences. |
 | Blaming the environment | "France is bad for startups" as the systemic rule. | That is a Learning (`l1`, and a fact). The rule is what the actor changes in response: jurisdiction, financing mix, ownership model. |
 | Over-confident generalisation | A market-level claim from one episode at 0.85. | The 0.50-0.65 band, with grounding confidences to match (`u6`, `te33`, `te34`, all 0.60). |
 | Success story run through CARL | The rule slot fills with self-congratulation. | Require an outcome the actor calls a mistake, or two stated results that contradict each other; otherwise leave the slot empty and record that. |
