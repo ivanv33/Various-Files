@@ -1139,10 +1139,10 @@
           "id": "l_b1",
           "slot": "loop",
           "label": "B1 Supply finds a way",
-          "text": "Balancing. Compute buildout raises power scarcity (+), scarcity calls forth new generation (+), and new generation relieves the scarcity (-). One negative link, so the loop corrects. B1 has two paths with very different speeds: a fast one that draws on existing grid headroom, which is itself a stock and drains as it is used (e_gen_slack), and a slow one that builds new plant behind the lead time d_lead. It is the loop that limits the boom, and the fast half of it runs out first.",
+          "text": "Balancing. Compute buildout raises power scarcity (+), scarcity calls forth new generation (+), and new generation relieves the scarcity (-): the main cycle is e_scarcity_gen then e_gen_scarcity, one negative link, so the loop corrects. B1 has two paths with very different speeds, and the fast one is a two-edge sub-loop hung off f_gen rather than part of the main cycle: existing grid headroom feeds generation (e_slack_gen) and generation drains that headroom (e_gen_slack), which is why s_slack is listed as a member; the slow path builds new plant behind the lead time d_lead. It is the loop that limits the boom, and the fast half of it runs out first.",
           "provenance": "derived",
           "confidence": 0.8,
-          "rationale": "Both of the loop's own arrows are stated: L2344-L2346 for scarcity calling forth supply, L2348-L2350 for that supply fulfilling the need, and L2352 restates the principle. The inference is the closure and the polarity, and the consequence that follows from the polarity: a balancing loop with the lead times of L2510 inside it cannot hold the boom in check in the short run.",
+          "rationale": "Both of the loop's own arrows are stated: L2344-L2346 for scarcity calling forth supply, L2348-L2350 for that supply fulfilling the need, and L2352 restates the principle. The inference is the closure and the polarity, and the consequence that follows from the polarity: a balancing loop with the lead times of L2510 inside it cannot hold the boom in check in the short run. Written as edge lists the loop is two cycles, v_scarcity -> f_gen -> v_scarcity (e_scarcity_gen, e_gen_scarcity) and the sub-loop f_gen -> s_slack -> f_gen (e_gen_slack, e_slack_gen); s_slack belongs to B1 through the second, and e_pl_b1_slack is kept at a lower confidence for that reason.",
           "pos": [
             60,
             -8
