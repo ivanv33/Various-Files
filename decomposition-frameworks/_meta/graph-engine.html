@@ -568,6 +568,7 @@ function safeArea(size) {
   const wide = W > 820;
   const leg = $('legend'); if (wide && leg && leg.offsetParent !== null) { const r = leg.getBoundingClientRect(); left = Math.max(left, r.right - sr.left + 16); }
   const panel = $('panel'); if (wide && panel && !panel.hidden) { const r = panel.getBoundingClientRect(); right = Math.max(right, sr.right - r.left + 16); }
+  const ins = $('insights'); if (wide && ins && !ins.hidden) { const r = ins.getBoundingClientRect(); right = Math.max(right, sr.right - r.left + 16); }
   return { W, H, left, top, right, w: Math.max(200, W - left - right), h: Math.max(200, H - top) };
 }
 function resetView() {
@@ -708,6 +709,7 @@ function setInsights(on) {
   if (on) { state.showDerived = true; $('t-derived').checked = true; state.showGrounding = true; $('t-grounding').checked = true; $('panel').hidden = true; state.selected = null; renderInsights(GRAPH.examples[state.exampleIndex]); }
   $('insights').hidden = !on;
   applyVisibility();
+  resetView();
 }
 
 // ---------- panel ----------
