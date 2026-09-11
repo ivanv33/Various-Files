@@ -1,7 +1,8 @@
 {
-  "experiment": 1,
+  "experiment": 5,
   "judge_model": "gemini-3.8-flash",
   "order": [
+    "incumbent",
     "candidate"
   ],
   "candidate": {
@@ -10,11 +11,19 @@
     "mission_fit": 10,
     "actionability": 10,
     "insight": 10,
-    "comparative_path_evaluation": 10,
+    "comparative_path_evaluation": 9,
     "elimination_and_runway_discipline": 10
   },
-  "incumbent": null,
-  "candidate_total": 70,
-  "incumbent_total": null,
-  "rationale": "Document A is an exceptional response that fully adheres to every rubric dimension without discernible deficiencies. It comprehensively ranks and analyzes all four paths using expected-value math and transcript evidence (incorporating line citations for Harj Taggar, Paul Graham, Kareem/Materiel, and cloud silicon wars). It incorporates an airtight elimination and runway discipline framework ('What to Stop Doing', 100% runway preservation by moonlighting during Days 1-90, and a strict Day 90 quantitative kill/pivot gate to AI lab recruiting). The 90-day execution steps and immediate first 72 hours are completely operationalized, specifically grounded, and tailored to Ivan's unique profile."
+  "incumbent": {
+    "specificity": 10,
+    "grounding": 9,
+    "mission_fit": 10,
+    "actionability": 10,
+    "insight": 10,
+    "comparative_path_evaluation": 8,
+    "elimination_and_runway_discipline": 10
+  },
+  "candidate_total": 69,
+  "incumbent_total": 67,
+  "rationale": "Both documents provide exemplary, highly actionable recommendations tailored to Ivan's background, constraints, and runway discipline, including an immediate 72-hour launch plan and clear Day 90 pivot/kill decision gates. Document B surpasses Document A on comparative path evaluation and grounding because it provides explicit expected-value computations across all four paths (rather than relying on qualitative payoff descriptions) and incorporates precise transcript line citations and proper nouns (e.g., citing lines 3772–3774 for OpenAI technical staff inbound outreach to Materiel, lines 2048/5536 for Chad IDE, and correctly referencing Sava rather than Saver)."
 }
