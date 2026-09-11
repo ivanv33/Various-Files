@@ -12,12 +12,14 @@ import os
 from pathlib import Path
 
 import pytest
+from langchain_core.language_models.fake_chat_models import GenericFakeChatModel
+from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 
 from engine.catalog import load_seed_catalog
 from engine.tasks import decompose, propose, recommend
 from engine.tasks.log import HEADER, LogRow, append_row
 from engine.tasks.rubric import CORE_DIMENSIONS, render_rubric
-from engine.tasks.steps import LIMITS, brief_header, run_step
+from engine.tasks.steps import LIMITS, brief_header, default_agent_factory, run_step
 from engine.workspace import Workspace
 
 SLUG = "demo"
@@ -137,6 +139,34 @@ def test_run_step_reports_missing_or_empty_output_as_error(tmp_path: Path):
 
 def test_limits_match_refinement_6():
     assert LIMITS == {"propose": 60, "decompose": 150, "recommend": 80}
+
+
+class ToolCallingFake(GenericFakeChatModel):
+    """`GenericFakeChatModel` that accepts `bind_tools` so a real deep agent can run its scripted tool calls."""
+
+    def bind_tools(self, tools, **kwargs):
+        return self
+
+
+def test_default_agent_factory_denies_the_git_dir(tmp_path: Path):
+    """Belt and braces for the credential hygiene: even if something leaked into `.git/`, agents cannot read it."""
+    ws = make_session(tmp_path)
+    (ws.root / ".git").mkdir()
+    (ws.root / ".git" / "config").write_text('[remote "origin"]\n\turl = https://x:SECRET@h/r.git\n')
+    calls = [
+        AIMessage(content="", tool_calls=[{"name": "read_file", "args": {"file_path": "/.git/config"}, "id": "c1"}]),
+        AIMessage(content="", tool_calls=[{"name": "ls", "args": {"path": "/.git"}, "id": "c2"}]),
+        AIMessage(content="", tool_calls=[{"name": "write_file", "args": {"file_path": "/.git/hooks/pre-commit", "content": "x"}, "id": "c3"}]),
+        AIMessage(content="", tool_calls=[{"name": "read_file", "args": {"file_path": f"/{SESSION_REL}/metadata.json"}, "id": "c4"}]),
+        AIMessage(content="done"),
+    ]
+    agent = default_agent_factory(model=ToolCallingFake(messages=iter(calls)), root=str(ws.root), system_prompt="x")
+    out = agent.invoke({"messages": [HumanMessage(content="go")]}, config={"recursion_limit": 20})
+    tool_msgs = {m.tool_call_id: str(m.content) for m in out["messages"] if isinstance(m, ToolMessage)}
+    assert "permission denied" in tool_msgs["c1"] and "SECRET" not in tool_msgs["c1"]
+    assert "SECRET" not in tool_msgs["c2"] and "config" not in tool_msgs["c2"]
+    assert "permission denied" in tool_msgs["c3"] and not (ws.root / ".git" / "hooks").exists()
+    assert MISSION in tool_msgs["c4"]  # everything else stays readable
 
 
 # --- propose ---------------------------------------------------------------------

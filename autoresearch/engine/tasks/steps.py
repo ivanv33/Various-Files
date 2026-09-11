@@ -32,10 +32,15 @@ class StepError(RuntimeError):
     """Programming error in a step call (bad arguments); agent failures are returned, not raised."""
 
 
+DENIED_PATHS = ("/.git", "/.git/**")
+"""Virtual paths no agent (or subagent) may read or write: the clone's git metadata. Agents never run git, and
+`git_ops.split_remote` keeps the remote token out of `.git/config`; this rule is the second layer."""
+
+
 def default_agent_factory(*, model: Any, root: str, system_prompt: str, subagents: Sequence[Any] | None = None) -> Any:
     """A `deepagents` deep agent over the clone. `checkpointer=False`: the step is a cached `@task`,
     so the agent's own state must not be persisted under the loop's thread."""
-    from deepagents import create_deep_agent
+    from deepagents import FilesystemPermission, create_deep_agent
     from deepagents.backends import FilesystemBackend
 
     return create_deep_agent(
@@ -43,6 +48,7 @@ def default_agent_factory(*, model: Any, root: str, system_prompt: str, subagent
         backend=FilesystemBackend(root_dir=root, virtual_mode=True),
         system_prompt=system_prompt,
         subagents=list(subagents) if subagents else None,
+        permissions=[FilesystemPermission(operations=["read", "write"], paths=list(DENIED_PATHS), mode="deny")],
         checkpointer=False,
     )
 

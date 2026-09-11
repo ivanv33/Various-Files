@@ -1,3 +1,5 @@
+import base64
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -10,7 +12,9 @@ from engine.tasks.git_ops import (
     ensure_workspace,
     merge_experiments_tsv,
     pull,
+    redact,
     revert_stray_changes,
+    split_remote,
     stage_allowlist,
 )
 from engine.tasks.log import HEADER, LogRow, append_row, read_rows
@@ -49,6 +53,104 @@ def test_merge_experiments_tsv_union_sorted_dedupe():
 
 def test_allowlist_matches_spec():
     assert set(ALLOWLIST) == {"experiments.tsv", "notes.md", "proposals", "best", "rubric.md", "catalog.json"}
+
+
+# --- credentials ----------------------------------------------------------
+
+TOKENISED = "https://x-access-token:SECRET@github.com/o/r.git"
+BASIC = base64.b64encode(b"x-access-token:SECRET").decode()
+
+
+def test_split_remote_moves_the_token_from_the_url_into_a_per_command_header():
+    url, env = split_remote(TOKENISED)
+    assert url == "https://github.com/o/r.git"
+    assert env == {"GIT_CONFIG_COUNT": "1", "GIT_CONFIG_KEY_0": "http.extraHeader", "GIT_CONFIG_VALUE_0": f"Authorization: Basic {BASIC}"}
+    assert split_remote("https://x-access-token:SE%2FCRET@github.com/o/r.git")[1]["GIT_CONFIG_VALUE_0"].endswith(
+        base64.b64encode(b"x-access-token:SE/CRET").decode()
+    )
+    for plain in ("file:///tmp/origin.git", "https://github.com/o/r.git", "ssh://git@github.com/o/r.git", "git@github.com:o/r.git"):
+        assert split_remote(plain) == (plain, {})
+
+
+def test_redact_strips_userinfo_and_basic_auth_values_and_git_errors_use_it():
+    assert redact(f"git clone {TOKENISED} failed") == "git clone https://github.com/o/r.git failed"
+    assert redact(f"Authorization: Basic {BASIC} rejected") == "Authorization: Basic [redacted] rejected"
+    assert redact("nothing to hide") == "nothing to hide"
+    err = GitError(f"git push {TOKENISED} failed: Authorization: Basic {BASIC}")
+    assert "SECRET" not in str(err) and BASIC not in str(err) and "github.com/o/r.git" in str(err)
+
+
+class OfflineGit:
+    """Wraps `git_ops._run`: records every call; network subcommands never leave the machine.
+
+    `clone` really clones from `origin` (the recorded argv keeps the URL the engine asked for); `fetch`, `pull`,
+    `push` and `ls-remote` return success without running. Everything else runs for real.
+    """
+
+    NETWORK = {"fetch", "pull", "push", "ls-remote"}
+
+    def __init__(self, real, origin: str):
+        self.real, self.origin, self.calls = real, origin, []
+
+    def __call__(self, root, *args, env=None):
+        self.calls.append((list(args), dict(env or {})))
+        if args and args[0] == "clone":
+            args = tuple(self.origin if a.startswith("http") else a for a in args)
+            return self.real(root, *args, env=env)
+        if args and args[0] in self.NETWORK:
+            return subprocess.CompletedProcess(["git", *args], 0, "", "")
+        return self.real(root, *args, env=env)
+
+    def argv(self, subcommand: str) -> list[list[str]]:
+        return [a for a, _env in self.calls if a and a[0] == subcommand]
+
+    def env(self, subcommand: str) -> list[dict[str, str]]:
+        return [env for a, env in self.calls if a and a[0] == subcommand]
+
+
+def test_ensure_workspace_never_writes_the_token_into_the_clone(settings, session_branch, monkeypatch):
+    from engine.config import Settings
+    from engine.tasks import git_ops
+
+    spy = OfflineGit(git_ops._run, settings.git_remote)
+    monkeypatch.setattr(git_ops, "_run", spy)
+    tokenised = Settings(git_remote=TOKENISED, workdir=settings.workdir, author_name=settings.author_name, author_email=settings.author_email)
+    header = {"GIT_CONFIG_COUNT": "1", "GIT_CONFIG_KEY_0": "http.extraHeader", "GIT_CONFIG_VALUE_0": f"Authorization: Basic {BASIC}"}
+
+    ws = ensure_workspace(BRANCH, tokenised)  # fresh clone
+    assert spy.argv("clone") and "https://github.com/o/r.git" in spy.argv("clone")[0]
+    assert spy.env("clone") == [header]
+
+    ws.write("attempts/1/x.md", "scratch\n")
+    ws2 = ensure_workspace(BRANCH, tokenised)  # existing clone: set-url + fetch + reset
+    assert ws2.root == ws.root
+    assert git(ws.root, "config", "remote.origin.url") == "https://github.com/o/r.git"
+    assert spy.env("fetch") == [header]
+
+    config = (ws.root / ".git" / "config").read_text()
+    assert "SECRET" not in config and BASIC not in config and "@" not in git(ws.root, "config", "remote.origin.url")
+    for argv, _env in spy.calls:
+        assert "SECRET" not in " ".join(argv) and BASIC not in " ".join(argv)
+
+
+def test_pull_and_commit_push_send_the_header_per_command(settings, session_branch, monkeypatch):
+    from engine.config import Settings
+    from engine.tasks import git_ops
+
+    ws = ensure_workspace(BRANCH, settings)
+    spy = OfflineGit(git_ops._run, settings.git_remote)
+    monkeypatch.setattr(git_ops, "_run", spy)
+    monkeypatch.setenv("GIT_REMOTE", TOKENISED)  # what the loop's tasks see
+    tokenised = Settings.from_env()
+    header = {"GIT_CONFIG_COUNT": "1", "GIT_CONFIG_KEY_0": "http.extraHeader", "GIT_CONFIG_VALUE_0": f"Authorization: Basic {BASIC}"}
+
+    pull(ws.root, BRANCH, tokenised)
+    assert spy.env("pull") == [header]
+    append_row(ws.root, SESSION_REL, LogRow(n=1, frameworks=["a"], candidate_total=30, kept="1", note="x"))
+    assert commit_push(ws.root, BRANCH, "exp 1: KEEP 30 vs -") == git(ws.root, "rev-parse", "HEAD")  # settings from env
+    assert spy.env("push") == [header]
+    for argv, _env in spy.calls:
+        assert "SECRET" not in " ".join(argv) and BASIC not in " ".join(argv)
 
 
 # --- ensure_workspace -----------------------------------------------------

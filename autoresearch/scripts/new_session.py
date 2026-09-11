@@ -26,23 +26,19 @@ if __package__ in (None, ""):  # `python scripts/new_session.py`
 
 from engine.catalog import load_seed_catalog  # noqa: E402
 from engine.config import DEFAULT_AUTHOR_EMAIL, DEFAULT_AUTHOR_NAME, DEFAULT_WORKDIR, load_env  # noqa: E402
-from engine.tasks.git_ops import GitError, git  # noqa: E402
+from engine.tasks.git_ops import GitError, git, redact, split_remote  # noqa: E402
 from engine.tasks.log import HEADER  # noqa: E402
 from engine.workspace import BRANCH_PREFIX, SESSIONS_REL  # noqa: E402
 
 DEFAULT_BASE = "master"
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 NOTES_SKELETON = "# Notes\n\n## Insights\n\n## Human steering\n"
-_USERINFO = re.compile(r"//[^/@]+@")
+
+__all__ = ["SessionError", "create_session", "main", "redact", "session_files", "validate_slug"]
 
 
 class SessionError(RuntimeError):
     """Bad arguments, or a remote state that makes the session impossible to create."""
-
-
-def redact(remote: str) -> str:
-    """Drop `user:token@` from a URL so it can be printed."""
-    return _USERINFO.sub("//", remote)
 
 
 def validate_slug(slug: str) -> str:
@@ -64,8 +60,8 @@ def session_files(
     }
 
 
-def _branch_exists(cwd: Path, remote: str, branch: str) -> bool:
-    return bool(git(cwd, "ls-remote", "--heads", remote, f"refs/heads/{branch}"))
+def _branch_exists(cwd: Path, url: str, branch: str, env: dict[str, str]) -> bool:
+    return bool(git(cwd, "ls-remote", "--heads", url, f"refs/heads/{branch}", env=env))
 
 
 def create_session(
@@ -111,11 +107,12 @@ def create_session(
     clone = workdir / f"new-session__{slug}"
     if clone.exists():
         shutil.rmtree(clone)
+    url, env = split_remote(remote)  # the token is sent per command, never written to the clone
 
     try:
-        if _branch_exists(workdir, remote, branch):
-            raise SessionError(f"branch {branch!r} already exists on {redact(remote)}")
-        git(workdir, "clone", "-q", "--depth", "1", "--single-branch", "--branch", base, remote, str(clone))
+        if _branch_exists(workdir, url, branch, env):
+            raise SessionError(f"branch {branch!r} already exists on {url}")
+        git(workdir, "clone", "-q", "--depth", "1", "--single-branch", "--branch", base, url, str(clone), env=env)
         transcript = clone / transcript_path
         if not (transcript.is_file() and transcript.stat().st_size > 0):
             raise SessionError(f"transcript not found or empty on {base!r}: {transcript_path!r}")
@@ -131,7 +128,7 @@ def create_session(
             (session / name).write_text(text, encoding="utf-8")
         git(clone, "add", "-A", "--", session_rel)
         git(clone, "commit", "-q", "-m", f"session {slug}: bootstrap")
-        git(clone, "push", "-q", "origin", f"HEAD:refs/heads/{branch}")
+        git(clone, "push", "-q", "origin", f"HEAD:refs/heads/{branch}", env=env)
         sha = git(clone, "rev-parse", "HEAD")
     except GitError as exc:
         raise SessionError(redact(str(exc))) from exc

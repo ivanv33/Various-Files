@@ -56,7 +56,7 @@ Variables (all read from the environment; `langgraph dev` loads `.env` through `
 | `GOOGLE_API_KEY` | yes | Gemini |
 | `GEMINI_MODEL` | no | model id for every role (default `gemini-3.8-flash`) |
 | `GIT_REMOTE` | yes | where sessions are cloned from and pushed to; local dev: `file:///tmp/autoresearch-origin.git`, deploy: `https://x-access-token:${GITHUB_TOKEN}@github.com/ivanv33/Various-Files.git` |
-| `GITHUB_TOKEN` | deploy | fine-grained PAT, `contents: write` on `ivanv33/Various-Files`; only used inside `GIT_REMOTE` |
+| `GITHUB_TOKEN` | deploy | fine-grained PAT, `contents: write` on `ivanv33/Various-Files`; only used inside `GIT_REMOTE`. The engine strips it from the URL and sends it per git command as an `Authorization` header, so no clone ever stores it (`.git/config` keeps the tokenless URL) and deep agents are denied `/.git` anyway |
 | `GIT_AUTHOR_NAME`, `GIT_AUTHOR_EMAIL` | no | commit identity (defaults `autoresearch-bot`, `autoresearch-bot@users.noreply.github.com`) |
 | `AUTORESEARCH_WORKDIR` | no | where clones live (default `/tmp/autoresearch-ws`; one subdir per branch for the loop, `<branch>--review` for the reviewer, which never shares the loop's clone) |
 | `LANGSMITH_API_KEY`, `LANGSMITH_TRACING`, `LANGSMITH_PROJECT` | no | tracing; `LANGSMITH_API_KEY` also authenticates `langgraph deploy` |

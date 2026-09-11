@@ -7,10 +7,13 @@ Agents never run git; only these functions do.
 
 from __future__ import annotations
 
+import base64
 import os
+import re
 import shutil
 import subprocess
 from pathlib import Path
+from urllib.parse import unquote
 
 from engine.config import Settings
 from engine.tasks import log as log_mod
@@ -20,9 +23,40 @@ from engine.workspace import SESSIONS_REL, Workspace, slug_from_branch
 ALLOWLIST = ("experiments.tsv", "notes.md", "proposals", "best", "rubric.md", "catalog.json")
 SCRATCH = ("attempts",)
 
+_USERINFO = re.compile(r"//([^/@]+)@")
+_BASIC_AUTH = re.compile(r"(Authorization:\s*Basic\s+)\S+", re.I)
+
+
+def redact(text: str) -> str:
+    """Drop `user:token@` from URLs and the value of any Basic-auth header so the text can be printed or raised."""
+    return _BASIC_AUTH.sub(r"\1[redacted]", _USERINFO.sub("//", text))
+
+
+def split_remote(remote: str) -> tuple[str, dict[str, str]]:
+    """`(tokenless URL, env for git)` for `GIT_REMOTE`.
+
+    `https://user:token@host/...` becomes the bare URL plus an `http.extraHeader` Basic-auth config injected
+    through git's `GIT_CONFIG_*` environment, so the credential reaches each command without being written to
+    the clone (`.git/config` keeps the tokenless URL; deep agents can read the clone) or appearing in argv.
+    `file://`, ssh and tokenless URLs pass through unchanged with an empty env.
+    """
+    m = _USERINFO.search(remote)
+    if not m or not remote.lower().startswith("http") or ":" not in m.group(1):
+        return remote, {}
+    header = "Authorization: Basic " + base64.b64encode(unquote(m.group(1)).encode("utf-8")).decode("ascii")
+    env = {"GIT_CONFIG_COUNT": "1", "GIT_CONFIG_KEY_0": "http.extraHeader", "GIT_CONFIG_VALUE_0": header}
+    return _USERINFO.sub("//", remote, count=1), env
+
+
+def _remote_env(settings: Settings | None) -> dict[str, str]:
+    return split_remote((settings or Settings.from_env()).git_remote)[1]
+
 
 class GitError(RuntimeError):
-    """A git command failed in a way the loop cannot recover from."""
+    """A git command failed in a way the loop cannot recover from. The message is redacted (see `redact`)."""
+
+    def __init__(self, message: object = ""):
+        super().__init__(redact(str(message)))
 
 
 def _run(root: Path | str, *args: str, env: dict[str, str] | None = None) -> subprocess.CompletedProcess:
@@ -34,9 +68,9 @@ def _run(root: Path | str, *args: str, env: dict[str, str] | None = None) -> sub
     )
 
 
-def git(root: Path | str, *args: str) -> str:
-    """Run git, raise `GitError` on failure, return stripped stdout."""
-    proc = _run(root, *args)
+def git(root: Path | str, *args: str, env: dict[str, str] | None = None) -> str:
+    """Run git, raise `GitError` on failure, return stripped stdout. `env` carries the remote credential (`split_remote`)."""
+    proc = _run(root, *args, env=env)
     if proc.returncode != 0:
         raise GitError(f"git {' '.join(args)} failed ({proc.returncode}): {proc.stderr.strip() or proc.stdout.strip()}")
     return proc.stdout.strip()
@@ -67,29 +101,19 @@ def ensure_workspace(branch: str, settings: Settings | None = None, *, role: str
     `role` selects the clone (see `clone_path`); the reviewer passes `role="review"`.
     """
     settings = settings or Settings.from_env()
+    url, env = split_remote(settings.git_remote)  # the token never enters the clone
     root = clone_path(settings.workdir, branch, role)
     if not (root / ".git").exists():
         if root.exists():
             shutil.rmtree(root)  # leftovers of an interrupted clone
         root.parent.mkdir(parents=True, exist_ok=True)
-        git(
-            root.parent,
-            "clone",
-            "-q",
-            "--single-branch",
-            "--branch",
-            branch,
-            "--depth",
-            "50",
-            settings.git_remote,
-            str(root),
-        )
+        git(root.parent, "clone", "-q", "--single-branch", "--branch", branch, "--depth", "50", url, str(root), env=env)
     else:
-        git(root, "remote", "set-url", "origin", settings.git_remote)
+        git(root, "remote", "set-url", "origin", url)
         for marker in ("rebase-merge", "rebase-apply"):
             if (root / ".git" / marker).exists():
                 _run(root, "rebase", "--abort")
-        git(root, "fetch", "-q", "origin", branch)
+        git(root, "fetch", "-q", "origin", branch, env=env)
         git(root, "reset", "-q", "--hard")
         git(root, "checkout", "-q", "-B", branch, f"origin/{branch}")
         git(root, "reset", "-q", "--hard", f"origin/{branch}")
@@ -101,10 +125,10 @@ def ensure_workspace(branch: str, settings: Settings | None = None, *, role: str
     return ws
 
 
-def pull(root: Path | str, branch: str | None = None) -> str:
+def pull(root: Path | str, branch: str | None = None, settings: Settings | None = None) -> str:
     """`git pull --rebase` from origin; returns the new HEAD sha."""
     branch = branch or git(root, "rev-parse", "--abbrev-ref", "HEAD")
-    git(root, "pull", "-q", "--rebase", "--autostash", "origin", branch)
+    git(root, "pull", "-q", "--rebase", "--autostash", "origin", branch, env=_remote_env(settings))
     return git(root, "rev-parse", "HEAD")
 
 
@@ -188,8 +212,8 @@ def merge_experiments_tsv(ours: str, theirs: str) -> str:
     return log_mod.render_tsv([rows[n] for n in sorted(rows)])
 
 
-def _try_push(root: Path, branch: str) -> bool:
-    proc = _run(root, "push", "-q", "origin", f"HEAD:refs/heads/{branch}")
+def _try_push(root: Path, branch: str, env: dict[str, str]) -> bool:
+    proc = _run(root, "push", "-q", "origin", f"HEAD:refs/heads/{branch}", env=env)
     if proc.returncode == 0:
         return True
     err = proc.stderr
@@ -202,10 +226,10 @@ def _show_stage(root: Path, stage: int, path: str) -> str:
     return _run(root, "show", f":{stage}:{path}").stdout
 
 
-def _rebase_onto_origin(root: Path, branch: str, session_rel: str) -> None:
+def _rebase_onto_origin(root: Path, branch: str, session_rel: str, env: dict[str, str]) -> None:
     """Rebase local commits onto origin; the only conflict allowed is `experiments.tsv` (union-merged)."""
     tsv = f"{session_rel}/{log_mod.TSV_NAME}"
-    git(root, "fetch", "-q", "origin", branch)
+    git(root, "fetch", "-q", "origin", branch, env=env)
     proc = _run(root, "rebase", f"origin/{branch}")
     while proc.returncode != 0:
         conflicted = _run(root, "diff", "--name-only", "--diff-filter=U").stdout.split()
@@ -224,17 +248,24 @@ def _rebase_onto_origin(root: Path, branch: str, session_rel: str) -> None:
         proc = _run(root, "rebase", "--continue", env={"GIT_EDITOR": "true"})
 
 
-def commit_push(root: Path | str, branch: str, message: str, session_rel: str | None = None) -> str | None:
-    """Stage the allowlist, revert strays, commit, push (rebase + retry once). Returns sha or None."""
+def commit_push(
+    root: Path | str, branch: str, message: str, session_rel: str | None = None, settings: Settings | None = None
+) -> str | None:
+    """Stage the allowlist, revert strays, commit, push (rebase + retry once). Returns sha or None.
+
+    The remote credential comes from `settings` (default: `GIT_REMOTE` in the environment) per command; it is
+    never read from the clone.
+    """
     root = Path(root)
+    env = _remote_env(settings)
     session_rel = session_rel or f"{SESSIONS_REL}/{slug_from_branch(branch)}"
     stage_allowlist(root, session_rel)
     revert_stray_changes(root, session_rel)
     if _run(root, "diff", "--cached", "--quiet").returncode == 0:
         return None
     git(root, "commit", "-q", "-m", message)
-    if not _try_push(root, branch):
-        _rebase_onto_origin(root, branch, session_rel)
-        if not _try_push(root, branch):
+    if not _try_push(root, branch, env):
+        _rebase_onto_origin(root, branch, session_rel, env)
+        if not _try_push(root, branch, env):
             raise GitError(f"push to origin/{branch} rejected again after rebase")
     return git(root, "rev-parse", "HEAD")
