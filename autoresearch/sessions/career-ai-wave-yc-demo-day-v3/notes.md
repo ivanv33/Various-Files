@@ -1,12 +1,12 @@
 # Notes
 
 ## Insights
-- Triplet strategy (Exp 2: Rumelt + Means-Ends Analysis + Inversion Pre-Mortem) surged to 78/80 with 10/10 across Grounding, Mission Fit, Insight, Comparative Path Ranking, Runway Risk Discipline, and Subtractive Focus.
-- Grounding & Discipline: Tethering every path ranking, tripwire, and milestone to verbatim line-numbered quotes (Taggar, Graham, Materiel, Crunch) maintains perfect grounding. Enforcing an explicit $12,500/mo Brooklyn liquid burn and $75k cash reserve floor eliminates runway insolvency.
-- Subtractive Focus: Must shed both external Lyft commitments (cross-functional committees, hiring panels; cap SLA maintenance at 25 hrs/wk) and 10-year Google Staff habits (ban 25-page RFCs, multi-team consensus, speculative abstractions).
-- Two remaining deficiencies targeted for Exp 3 (Specificity: 9, Actionability: 9):
-  - Specificity fix: Lab outreach cannot use generic alumni introductions. Must name exact frontier lab teams (OpenAI Triton/Inference Optimization, Anthropic Model Serving & Reliability, DeepMind NYC Systems & Infrastructure) and specific internal alumni conduits (ex-Google Brain/DeepMind distributed systems peers, ex-Lyft Autonomous ML infrastructure leads).
-  - Actionability fix: Pilot cash collection by Day 90 stalls if vendor onboarding starts only at Day 75 contract execution due to 30–45 day AP/accounting setup lags. Vendor onboarding paperwork (W-9, ACH profiles, vendor portal registration) must be initiated concurrently at Day 45–50 prototype kickoff, coupled with discretionary corporate card pricing (<$25k) and a 10% prompt-pay discount.
+- Baseline & Strategy: Exp 3 achieved a perfect 80/80 (10/10 across all 8 rubric dimensions). Exp 4 incorporates Theory of Constraints to formalize subtractive subordination and the runway Evaporating Cloud alongside Rumelt macro-ranking and Means-Ends execution.
+- Comparative Path Ranking: Systematically rank Path (b) vertical AI startup at Rank 1 (1,000x equity upside, step-function enterprise expansion), Path (d) wealth/optionality at Rank 2 (benchmarked against illiquid private shares with secondary transfer bans and counterparty risk), Path (a) frontier lab at Rank 3 ($600k–$850k liquidity hedge unlocked by open-source systems gravity), and Path (c) research track at Rank 4 / strictly eliminated (compute cost barriers, foundation model convergence).
+- Subtractive Subordination: In TOC, optimizing non-bottlenecks damages throughput. Ivan must shed Lyft commitments (cross-functional roadmaps, interview panels; cap SLA maintenance at 25 hrs/wk) and unlearn 10-year Google Staff habits (ban 25-page RFCs, speculative multi-tenant abstractions, consensus seeking).
+- Runway Discipline & Evaporating Cloud: Resolve the stay-at-Lyft vs. leave-for-startup conflict through a staged transition. Enforce a $12,500/mo Brooklyn liquid burn and $75,000 reserve floor; tie resignation strictly to a Day-60 revenue gate ($10,000/mo MRR or $75,000 upfront pilot deposits).
+- Specificity in Lab Outreach: Avoid generic applications. Route low-level PyTorch inference harnesses directly to named teams (OpenAI Triton/Inference, Anthropic Model Serving, DeepMind NYC Systems) via named Google/Lyft alumni conduits.
+- Actionability & Procurement Sequencing: Eliminate the 30–45 day AP settlement lag by initiating vendor onboarding (W-9, ACH profiles, zero-retention addendum) concurrently during prototype deployment on Day 45–50, paired with sub-$25k discretionary corporate card pricing and a 10% prompt-pay discount to guarantee Day-90 cash collection.
 
 ## Human steering
 
