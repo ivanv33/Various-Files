@@ -2,6 +2,12 @@
 
 > Measures the distance between where you are and where you want to be, picks the operator that shrinks the biggest difference, and promotes every unmet precondition into a goal of its own. Category: Engineering & Cognitive Problem Solving. Reference: [Means–ends analysis](https://en.wikipedia.org/wiki/Means%E2%80%93ends_analysis). [Open the 3D graph](./index.html) (needs internet for Three.js; on GitHub open via Pages or clone).
 
+## What this graph derived
+
+Given Chris Power's account of Hadrian on TBPN (17 July 2025), where revenue grew tenfold, the next factory is four times bigger, a program goes from one aircraft to twenty, and a billion dollars could not hire two thousand welders, applying Means-Ends Analysis we derived that floor space grows four times against demand growing twenty, so the rest must come from output per person; that automation and hiring both require a trained workforce nobody can buy; and that tenfold productivity is gated on shop-floor software not yet written. The opportunity that falls out is a contracted training-and-placement pipeline for machinists, welders and inspectors, and shop-floor software for machining, welding and castings for every factory gated on the same missing layer.
+
+Given the nursery-school scenario from Newell and Simon, where a father has forty minutes to get his son to a school three miles away, the car's battery is dead, the repair shop has been told nothing, and the kitchen telephone reaches a shop that opens at eight, applying Means-Ends Analysis we derived that the gap is distance, not money or information, so the car is the operator; that driving requires a running car, never stated, which becomes a sub-goal; and that the shop's ignorance becomes a second sub-goal, an information gap a telephone reduces. What the reader gains is the untested precondition ending the chain: the shop opens at eight and the scenario never says what time it is.
+
 ## What it decomposes
 
 Newell, Shaw and Simon built the loop into the General Problem Solver in 1957 and set it out in *Human Problem Solving* (1972): compare the current state with the goal state, name the difference, select an operator known to reduce a difference of that kind, test the operator's preconditions, and when one fails, make that precondition a goal and run the same loop on it. The object is neither an argument nor a system nor a failure but a route between two described states, which puts the framework in planning rather than explanation.
