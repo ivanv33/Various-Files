@@ -1,5 +1,5 @@
 {
-  "experiment": 5,
+  "experiment": 6,
   "judge_model": "gemini-3.8-flash",
   "order": [
     "incumbent",
@@ -11,19 +11,19 @@
     "mission_fit": 10,
     "actionability": 10,
     "insight": 10,
-    "comparative_path_evaluation": 9,
+    "comparative_path_evaluation": 10,
     "elimination_and_runway_discipline": 10
   },
   "incumbent": {
     "specificity": 10,
-    "grounding": 9,
+    "grounding": 10,
     "mission_fit": 10,
     "actionability": 10,
     "insight": 10,
-    "comparative_path_evaluation": 8,
+    "comparative_path_evaluation": 9,
     "elimination_and_runway_discipline": 10
   },
-  "candidate_total": 69,
-  "incumbent_total": 67,
-  "rationale": "Both documents provide exemplary, highly actionable recommendations tailored to Ivan's background, constraints, and runway discipline, including an immediate 72-hour launch plan and clear Day 90 pivot/kill decision gates. Document B surpasses Document A on comparative path evaluation and grounding because it provides explicit expected-value computations across all four paths (rather than relying on qualitative payoff descriptions) and incorporates precise transcript line citations and proper nouns (e.g., citing lines 3772–3774 for OpenAI technical staff inbound outreach to Materiel, lines 2048/5536 for Chad IDE, and correctly referencing Sava rather than Saver)."
+  "candidate_total": 70,
+  "incumbent_total": 69,
+  "rationale": "Both documents provide an exemplary, runnable 90-day plan that is deeply grounded in the transcript, rigorously tailored to Ivan's background, and disciplined around runway preservation and clear kill/pivot gates. They differ solely on comparative_path_evaluation: Document A conflates the standalone Path (b) startup track with the compound salaried sprint under Rank 1, attributing zero ruin risk directly to Path (b). In contrast, Document B rigorously decomposes each option, explicitly evaluating standalone Path (b) (highlighting its 30% ruin risk due to enterprise procurement latency vs personal runway) alongside Path (a), Path (c), and Path (d) in a standardized comparison table before establishing the mathematical dominance of the compound dual-use sprint."
 }
