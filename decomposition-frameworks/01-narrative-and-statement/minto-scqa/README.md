@@ -2,6 +2,12 @@
 
 > Frames a problem statement as Situation, Complication, Question and Answer, so that the audience arrives at the main point already holding the question that the point answers. Category: Narrative & Statement Decomposition. Reference: [Barbara Minto](https://en.wikipedia.org/wiki/Barbara_Minto). [Open the 3D graph](./index.html) (needs internet for Three.js; on GitHub open via Pages or clone).
 
+## What this graph derived
+
+Given that Poseidon founder David Zagaynov told TBPN that logistics has gone a hundred years unchanged, that the Soviet ekranoplan's old blockers are now solved, and that ground-effect craft are certified by the Coast Guard rather than the FAA, so what he is building are flying boats, applying Minto SCQA we derived the question the pitch never asks (the cheapest way to move coastal and island freight by a boat-certified craft), the unstated design rule (let the certification boundary set the specification) and the constraint's move from physics to paperwork; the opportunity that falls out is the booking, insurance and dockside handling Poseidon is not building, and a screen for hard-tech markets a cheaper certifier already governs.
+
+Given a Fielding Instruments division head's memo to a board that already accepts ten years of direct field selling, reporting that the twenty largest customers moved to a marketplace the force does not serve and a field visit now costs double, and opening with the point that the division should stop selling through the field force alone, applying Minto SCQA we derived the question the memo never writes (what should the division do about its route to market), the compound complication that makes the force a shrinking asset, and the next question the answer raises (how to move half the budget without losing accounts); the reader gains the empty slot made explicit: the question the answer was written to answer.
+
 ## What it decomposes
 
 Barbara Minto taught the pattern at McKinsey from the early 1970s and published it in *The Pyramid Principle* (1987). Its object is small and specific: the introduction, the few sentences before the argument begins. Its job is to leave the audience holding a question, so that the main point lands as an answer rather than an assertion, and Minto's claim is that this takes three moves and no more. Here is what you already accept (Situation), here is what happened to it (Complication), and therefore here is the question you are now asking (Question). The Answer is the governing thought that resolves it, and in the finished document it goes first.
