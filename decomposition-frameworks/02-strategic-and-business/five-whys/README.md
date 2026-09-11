@@ -2,6 +2,12 @@
 
 > Traces one observed failure down successive layers of cause until the answer is a standard, an incentive or a structure rather than a person, then names the countermeasure that removes it. Category: Strategic & Business Decomposition. Reference: [Five whys](https://en.wikipedia.org/wiki/Five_whys). [Open the 3D graph](./index.html) (needs internet for Three.js; on GitHub open via Pages or clone).
 
+## What this graph derived
+
+Given Brian Armstrong's Crypto Day account of the Coinbase breach, where attackers bribed overseas support contractors for customer data, phished a handful of customers and demanded $20 million, applying 5 Whys we derived that agents hold standing access to identity data so a bribe buys a lookup, that the root cause is data worth far more than its holder's wage in a 24/7 outsourced function, and that the 60% AI resolution rate is a security control; the opportunity is a PII-redacting agent console, AI support sold as an insider-threat control, and continuous vendor-access attestation.
+
+Given Taiichi Ohno's machine that stopped mid-shift, where a blown fuse traced through a dry bearing and a worn pump shaft to a missing strainer, with a one-item maintenance sheet shared by five machines and two earlier fuse replacements, applying 5 Whys we derived that the routine could never see filtration, that the root cause is the standard rather than the part, and that the fuse swaps were two earlier stops at the first why; the reader gains the slot the story leaves empty, a countermeasure that rewrites the sheet, checks strainers at acceptance and audits the four sibling machines.
+
 ## What it decomposes
 
 Sakichi Toyoda's question, made a standing habit by Taiichi Ohno and written down in *Toyota Production System* (1978), takes apart one observed failure: a single event with a date and a witness, not a class of failure and not a topic. The structure is a chain. Each layer answers "why did the layer above happen?", the chain ends in a root cause, and a countermeasure hangs off the layer it actually removes. Depth is the whole of the shape; the framework has no way to say "and also", which is its cost and the reason its cousins exist.
