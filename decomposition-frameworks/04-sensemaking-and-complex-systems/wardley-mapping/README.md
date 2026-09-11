@@ -2,6 +2,12 @@
 
 > Anchors on a user, runs their need down a value chain, and spreads that chain across an evolution axis, so a component sitting at the wrong stage becomes a move you can see. Category: Sensemaking & Complex Systems. Reference: [Wardley map](https://en.wikipedia.org/wiki/Wardley_map). [Open the 3D graph](./index.html) (needs internet for Three.js; on GitHub open via Pages or clone).
 
+## What this graph derived
+
+Given that Poolside's Eiso Kant told TBPN on 16 October 2025 that frontier intelligence is a commodity sold as tokens behind an API, that his defense customers need it running in air-gapped, ATO-bound sites, and that at 250 megawatts of powered data-centre shell there is no one left to call, applying Wardley Mapping we derived that intelligence is finishing its slide into a metered utility, that the powered shell is the one component stuck at custom-built while demand outruns supply, and that Poolside's truckable skid is a first repeatable unit; the opportunity that falls out is selling factory-built data-hall skids as a standard product, and a vendor-neutral layer taking any frontier model into air-gapped and edge environments.
+
+Given a tea shop owner's notes that customers want a good cup of tea served fast, that tea, cups and power are bought in for pennies, and that staff still spend the first hour of every morning boiling and descaling kettles identical to every rival's, applying Wardley Mapping we derived that hot water is the one component the shop still makes by hand while everything beneath it is already bought in, that the kettle has become an undifferentiated commodity, and that hot water is heading for metered utility; what the reader gains is the exposed assumption that the morning ritual is unavoidable, and two plays: buy hot water on tap, and compete on the tea, the blend and the room.
+
 ## What it decomposes
 
 Simon Wardley's map takes apart a business, a product or a stack. Its object is the chain of things that must exist for one user to get one need met, plus a verdict on how industrialised each is. The vertical axis is the value chain: the higher a component sits, the more visible it is to the user. The horizontal axis is evolution, in four stages — Genesis, Custom-built, Product (including rental), Commodity (including utility) — along which a component travels left to right, from a one-off nobody knows how to build to something metered and bought without thought.
