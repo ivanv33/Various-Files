@@ -1,7 +1,17 @@
 {
-  "experiment": 2,
+  "experiment": 3,
   "judge_model": "gemini-3.8-flash",
   "candidate": {
+    "specificity": 10,
+    "grounding": 10,
+    "mission_fit": 10,
+    "actionability": 10,
+    "insight": 10,
+    "comparative_path_ranking": 10,
+    "runway_risk_discipline": 10,
+    "subtractive_focus": 10
+  },
+  "incumbent": {
     "specificity": 9,
     "grounding": 10,
     "mission_fit": 10,
@@ -11,27 +21,17 @@
     "runway_risk_discipline": 10,
     "subtractive_focus": 10
   },
-  "incumbent": {
-    "specificity": 9,
-    "grounding": 10,
-    "mission_fit": 9,
-    "actionability": 9,
-    "insight": 9,
-    "comparative_path_ranking": 9,
-    "runway_risk_discipline": 9,
-    "subtractive_focus": 9
-  },
-  "candidate_total": 78,
-  "incumbent_total": 73,
+  "candidate_total": 80,
+  "incumbent_total": 78,
   "deficiencies": [
-    "specificity: In Step 7, the resource specification lists 'warm introductions via Google/Lyft alumni to frontier lab engineering directors' without specifying concrete target research groups or named internal alumni conduits at OpenAI, Anthropic, or DeepMind.",
-    "grounding: none — Every step and path evaluation is tied directly to verbatim quotations, specific lines, and speakers from the transcript (e.g., Taggar lines 1613–1635, Grimm line 1436, Materiel lines 3770–3774, Michael at Crunch lines 4120–4232, Maru lines 4406–4412, Ho line 2425, Graham lines 5464–6206).",
-    "mission_fit: none — The recommendations directly align with Ivan's profile (10 years Google, Lyft Staff Engineer, Brooklyn NYC, LangGraph/GCP/PyTorch), address his lack of public presence and research track record, and adhere to the 12-month timeline and 6-to-12-month runway constraint.",
-    "actionability: In Step 6, closing and collecting two $10k–$20k pilots between Day 75 and Day 90 requires procurement vendor onboarding which, even under discretionary credit card limits, often faces corporate accounting delay if initiated only at Day 75.",
-    "insight: none — The candidate delivers strong non-obvious insights including the dual subtractive focus (unlearning 10-year Google Staff RFC/consensus habits), exploiting discretionary corporate AI buyer expense thresholds (<$25k) to bypass procurement, and resolving the Brooklyn vs. SF geographic tension via temporary YC residency funded by the batch check.",
-    "comparative_path_ranking: none — All four paths are systematically evaluated, contrasted, and ranked against Ivan's specific background and constraints, incorporating concrete transcript evidence on secondary market illiquidity/Anduril bylaws for Path (d), hardware pre-training capital barriers for Path (c), and lemons market dynamics for Path (a).",
-    "runway_risk_discipline: none — The candidate rigorously quantifies Ivan's Brooklyn living burn ($12,500/month), establishes a strict $75,000 cash reserve floor, sets unambiguous Day-60 conversion gates ($10k/month recurring or $75k upfront deposits) before resigning from Lyft, and details an automatic fallback pivot.",
-    "subtractive_focus: none — The candidate details specific internal Lyft responsibilities to shed (dropping cross-functional architecture forums, stepping down from promotion/hiring panels, capping SLA work at 25 hours/week) as well as cognitive Google engineering habits to eliminate (banning multi-page RFCs, consensus reviews, and speculative multi-tenant abstractions)."
+    "specificity: none — every step explicitly identifies an operational owner, precise first calendar deadline, highly specific technical/commercial objects, and concrete organizational targets, including named frontier lab groups (OpenAI Triton Compiler / Inference Optimization, Anthropic Model Serving & Reliability, DeepMind NYC Systems at 111 8th Ave), named alumni conduits, exact pilot pricing, and specific vendor onboarding instruments (W-9, ACH profile, zero-retention addendum).",
+    "grounding: none — all recommendations and comparative path evaluations are comprehensively grounded in specific transcript quotes and line citations across multiple speakers (Taggar lines 1613–1635, 1696–1698, 1884–1887; Graham lines 5464–5472, 5654, 5841, 5873–5876, 5988–5990, 6162–6184, 6202–6206; Karpathy line 1137; Dermott lines 5316–5318; Michael at Crunch lines 4120–4133, 4172–4175, 4224–4232; Maru lines 4406–4412; Ho line 2425; Grimm lines 1436, 1471; Ben lines 4676–4679; David line 3540).",
+    "mission_fit: none — the plan precisely maps to Ivan's unique profile (10 years at Google, Staff Engineer at Lyft, Brooklyn NYC resident, GCP and PyTorch strengths, zero public presence, no prior research results) and directly optimizes the 6-to-12-month runway constraint by sequencing commercial validation before salaried resignation.",
+    "actionability: none — execution dependencies are chronologically ordered with complete operational feasibility; the plan eliminates the standard 30-to-45-day accounts payable delay by initiating corporate vendor onboarding concurrently during prototype kickoff on Day 45–50 and providing a 10% prompt-payment credit card discount to guarantee cash settlement within the 90-day window, paired with an unambiguous First 72 Hours protocol.",
+    "insight: none — surfaces non-obvious operational leverage points, including unlearning 10-year Google Staff habits (banning long RFCs and premature abstraction), augmenting spreadsheet templates rather than selling rip-and-replace SaaS, preemptively clearing procurement friction beneath corporate discretionary expense limits, and positioning a low-level systems benchmark to serve simultaneously as startup verification and an inbound frontier lab recruiting bat-signal.",
+    "comparative_path_ranking: none — systematically analyzes, contrasts, and ranks all four required paths (Path b vertical startup at Rank 1, Path d wealth/optionality at Rank 2, Path a AI lab role at Rank 3, Path c research track at Rank 4) against Ivan's runway limit and technical profile with transcript-backed justifications prior to detailing the sequential action plan.",
+    "runway_risk_discipline: none — directly enforces a granular financial risk model reflecting Ivan's Brooklyn living costs ($12,500/month liquid burn, $75,000 cash reserve floor), binds resignation from Lyft strictly to a Day-60 go/no-go milestone ($10,000/month recurring pilot revenue or $75,000 upfront pilot deposits with verified product usage), and guarantees upfront cash collection through sub-$25,000 discretionary pricing.",
+    "subtractive_focus: none — explicitly defines subtractive commitments at Lyft (declining 3 cross-functional architecture committees, stepping down from 2 interview panels, enforcing a strict 5:30 PM departure, capping SLA work at 25 hours/week) while systematically deprecating Big Tech engineering behaviors (writing 25-page design docs, speculative multi-tenant abstractions, and multi-team consensus-seeking)."
   ],
-  "rationale": "The Candidate matches the Reference's top marks on grounding (10) while improving upon it across several key rubric dimensions. In comparative_path_ranking (10 vs Reference 9), the Candidate elevates the evaluation of Path (d) by incorporating transcript evidence on private secondary market counterparty risk and transfer restrictions (Matt Grimm, Anduril bylaws) alongside W-2 tax friction. In runway_risk_discipline (10 vs Reference 9), it quantifies Ivan's exact monthly burn in Brooklyn ($12,500/mo), institutes an inviolable $75,000 liquid cash floor, and establishes tighter quantitative pilot revenue milestones before allowing resignation. In subtractive_focus (10 vs Reference 9), it uniquely adds an engineering culture subtraction—explicitly unlearning 10 years of Google Staff habits (banning multi-page RFCs, multi-team consensus rounds, and speculative abstractions) alongside shedding Lyft committee duties. In insight (10 vs Reference 9), it successfully resolves the NYC-versus-SF geographic friction and details discretionary spending thresholds to bypass corporate vendor procurement. Specificity (9) and actionability (9) carry minor, fixable deficiencies around named alumni routing and procurement invoicing lag, remaining on par with the Reference."
+  "rationale": "Compared to the Reference, the Candidate is stronger on specificity (10 vs. 9) and actionability (10 vs. 9), while remaining equal on grounding (10), mission fit (10), insight (10), comparative path ranking (10), runway risk discipline (10), and subtractive focus (10). On specificity, the Candidate eliminates the minor vagueness present in the Reference by naming exact frontier lab teams (OpenAI Triton Compiler / Inference Optimization, Anthropic Claude Model Serving & Reliability, Google DeepMind NYC at 111 8th Ave), named Google/Lyft alumni conduits, and specific procurement instruments (W-9, ACH profiles, zero-retention addenda). On actionability, the Candidate resolves the subtle invoice settlement lag of the Reference plan by scheduling vendor onboarding paperwork concurrently during initial prototype deployment on Day 45–50 and introducing a 10% prompt-payment credit card discount under discretionary spend thresholds, ensuring that cash is physically collected in Ivan's account before Day 90 without dependency gaps."
 }

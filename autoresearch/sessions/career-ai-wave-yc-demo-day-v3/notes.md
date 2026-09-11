@@ -1,16 +1,12 @@
 # Notes
 
 ## Insights
-- Baseline (Exp 1: Rumelt + Means-Ends Analysis) scored 73/80 with 10/10 on transcript grounding. Tethering every path ranking, tripwire, and milestone to line-numbered transcript quotes (Taggar, Graham, Materiel, Crunch) is strictly required to preserve full grounding.
-- Identified blind spots from Exp 1 deductions across the other seven rubric dimensions:
-  - Specificity: Customer discovery must name exact operational sub-niches (fund administration, RIA compliance) and explicit buyer titles (VP Operations, CCO, Controller), not generic "financial operators".
-  - Actionability & Sequencing: Enterprise pilot-to-cash conversions require realistic timelines (30–45 days, not 15 days) and pricing below discretionary thresholds ($10k–$20k) to bypass procurement freezes.
-  - Runway Risk Discipline: Must quantify Ivan's exact monthly liquid burn in Brooklyn NYC (~$12k–$14k/mo) to define a hard dollar runway floor (minimum $75k liquid reserve).
-  - Subtractive Focus: Must shed both corporate Lyft meetings/committees and 10-year Google Staff engineering habits (25-page architecture design docs, consensus-seeking, test over-engineering).
-  - Frontier Lab Insight: Frontier labs view high-level wrappers (LangGraph) as toy abstractions; open-source artifacts must showcase low-level PyTorch systems, latency/error benchmarks, and GCP streaming data reliability.
-  - Comparative Path Ranking: Path (d) must be evaluated against independent liquid wealth vehicles (late-stage pre-IPO unicorns, quant ML infrastructure) rather than collapsed purely into startup equity.
-  - Mission Fit: Address geographic friction between NYC enterprise discovery/living costs and YC's mandatory in-person SF batch requirement.
-- Triplet strategy (Exp 2: Rumelt + Means-Ends Analysis + Inversion Pre-Mortem): Inversion prospective hindsight ("assume Ivan is broke with zero revenue and zero offers in 12 months") directly dismantles optimism bias and engineers mandatory safeguards for every rubric deduction.
+- Triplet strategy (Exp 2: Rumelt + Means-Ends Analysis + Inversion Pre-Mortem) surged to 78/80 with 10/10 across Grounding, Mission Fit, Insight, Comparative Path Ranking, Runway Risk Discipline, and Subtractive Focus.
+- Grounding & Discipline: Tethering every path ranking, tripwire, and milestone to verbatim line-numbered quotes (Taggar, Graham, Materiel, Crunch) maintains perfect grounding. Enforcing an explicit $12,500/mo Brooklyn liquid burn and $75k cash reserve floor eliminates runway insolvency.
+- Subtractive Focus: Must shed both external Lyft commitments (cross-functional committees, hiring panels; cap SLA maintenance at 25 hrs/wk) and 10-year Google Staff habits (ban 25-page RFCs, multi-team consensus, speculative abstractions).
+- Two remaining deficiencies targeted for Exp 3 (Specificity: 9, Actionability: 9):
+  - Specificity fix: Lab outreach cannot use generic alumni introductions. Must name exact frontier lab teams (OpenAI Triton/Inference Optimization, Anthropic Model Serving & Reliability, DeepMind NYC Systems & Infrastructure) and specific internal alumni conduits (ex-Google Brain/DeepMind distributed systems peers, ex-Lyft Autonomous ML infrastructure leads).
+  - Actionability fix: Pilot cash collection by Day 90 stalls if vendor onboarding starts only at Day 75 contract execution due to 30–45 day AP/accounting setup lags. Vendor onboarding paperwork (W-9, ACH profiles, vendor portal registration) must be initiated concurrently at Day 45–50 prototype kickoff, coupled with discretionary corporate card pricing (<$25k) and a 10% prompt-pay discount.
 
 ## Human steering
 
