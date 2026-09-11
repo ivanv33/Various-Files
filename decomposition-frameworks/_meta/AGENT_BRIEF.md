@@ -163,6 +163,8 @@ The point of the library is the insight the graph yields, not the framework. Eac
 
 Placeholders: {{SLUG}}, {{NAME}}, {{CATEGORY}}, {{REPO}}; DF = {{REPO}}/decomposition-frameworks; your folder = DF/{{CATEGORY}}/{{SLUG}}.
 
+Scratch files: the session scratchpad is shared by every agent running at once, so prefix any temp file with your slug (`{{SLUG}}-draft.json`), never a generic name.
+
 Read first: DF/SPEC.md sections 3 and 6; your graph.json in full (both examples, every derived node's text, rationale, confidence and idea; the fact nodes so you can summarise them truthfully); your README.md.
 
 Write, for each example in graph.json, an `insights` object with two strings:
