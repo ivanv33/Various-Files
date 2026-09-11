@@ -86,6 +86,23 @@ def test_ensure_workspace_resets_dirty_clone_and_fetches_remote(settings, sessio
     assert git(ws2.root, "status", "--porcelain") == ""
 
 
+def test_reviewer_workspace_is_a_separate_clone_that_leaves_the_loop_clone_alone(settings, session_branch):
+    loop_ws = ensure_workspace(BRANCH, settings)
+    loop_ws.write("attempts/1/x.md", "half-written scratch\n")
+    loop_ws.write("notes.md", "# Notes\n\n## Insights\n- half-written\n")
+
+    review_ws = ensure_workspace(BRANCH, settings, role="review")
+    assert clone_path(settings.workdir, BRANCH) == settings.workdir / "autoresearch__demo"
+    assert clone_path(settings.workdir, BRANCH, role="review") == settings.workdir / "autoresearch__demo--review"
+    assert review_ws.root == clone_path(settings.workdir, BRANCH, role="review") != loop_ws.root
+    assert review_ws.branch == BRANCH and git(review_ws.root, "rev-parse", "HEAD") == origin_head(settings.git_remote)
+    assert git(review_ws.root, "status", "--porcelain") == ""
+    assert not review_ws.has("attempts/1/x.md")
+    # the loop's clone is untouched: scratch and its unfinished edit are still there
+    assert loop_ws.read("attempts/1/x.md") == "half-written scratch\n"
+    assert "half-written" in loop_ws.read("notes.md")
+
+
 def test_ensure_workspace_fails_clearly_on_bad_metadata(settings, session_branch, tmp_path):
     other = other_clone(settings.git_remote, tmp_path)
     (other / SESSION_REL / "metadata.json").write_text('{"mission": "m"}')

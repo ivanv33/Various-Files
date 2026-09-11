@@ -42,21 +42,32 @@ def git(root: Path | str, *args: str) -> str:
     return proc.stdout.strip()
 
 
-def clone_path(workdir: Path | str, branch: str) -> Path:
-    return Path(workdir) / branch.replace("/", "__")
+LOOP_ROLE = "loop"
+
+
+def clone_path(workdir: Path | str, branch: str, role: str = LOOP_ROLE) -> Path:
+    """`<workdir>/<branch with / -> __>` for the loop; any other role gets its own `--<role>` clone.
+
+    The reviewer runs while the loop may be mid-experiment, and `ensure_workspace` hard-resets and
+    cleans its clone, so the two graphs must never share one directory. Session slugs allow single
+    hyphens only, so `--<role>` cannot collide with another branch's path.
+    """
+    name = branch.replace("/", "__")
+    return Path(workdir) / (name if role == LOOP_ROLE else f"{name}--{role}")
 
 
 # --- workspace ------------------------------------------------------------
 
 
-def ensure_workspace(branch: str, settings: Settings | None = None) -> Workspace:
+def ensure_workspace(branch: str, settings: Settings | None = None, *, role: str = LOOP_ROLE) -> Workspace:
     """Clone `<GIT_REMOTE>` at `branch` (shallow, single-branch) or hard-reset an existing clone.
 
     Idempotent and safe to call on every (re)invocation of the entrypoint. Local commits, tracked
     edits and untracked files (including `attempts/`) are discarded; origin is the only truth.
+    `role` selects the clone (see `clone_path`); the reviewer passes `role="review"`.
     """
     settings = settings or Settings.from_env()
-    root = clone_path(settings.workdir, branch)
+    root = clone_path(settings.workdir, branch, role)
     if not (root / ".git").exists():
         if root.exists():
             shutil.rmtree(root)  # leftovers of an interrupted clone

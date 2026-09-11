@@ -1,6 +1,8 @@
 """`review_proposals`: the reviewer graph (spec 5), run on demand from Studio or the API.
 
-`ensure_workspace(branch)` (plain), then for each `proposals/*.md` with `status: open`, in name order: one
+`ensure_workspace(branch, role="review")` (plain; its own clone, so a review while the loop is mid-experiment
+never resets the loop's clone or stages its half-written files), then for each `proposals/*.md` with
+`status: open`, in name order: one
 structured accept/reject decision (`decide_step`, a model call unless a deterministic check settles it) and
 its application (`apply_step`: catalog entry, or rubric re-render + `## Rubric changes` note, plus the
 proposal's frontmatter). One commit for the whole review. A proposal whose decision failed stays open and
@@ -16,6 +18,9 @@ from langgraph.func import entrypoint, task
 from engine.config import Settings, make_model
 from engine.tasks import git_ops, proposals
 from engine.workspace import Workspace
+
+REVIEW_ROLE = "review"
+"""`clone_path` role: the reviewer's clone is `<workdir>/<branch>--review`, never the loop's."""
 
 
 @task
@@ -41,7 +46,7 @@ def commit_subject(n: int, accepted: int, rejected: int, errors: int) -> str:
 
 def run_review(inputs: dict[str, Any]) -> dict[str, Any]:
     branch = str(inputs["branch"])
-    ws = git_ops.ensure_workspace(branch, Settings.from_env())
+    ws = git_ops.ensure_workspace(branch, Settings.from_env(), role=REVIEW_ROLE)
     root = str(ws.root)
     open_, _decided = proposals.list_proposals(ws)
     decisions: list[dict[str, Any]] = []

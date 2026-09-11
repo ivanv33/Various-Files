@@ -184,6 +184,27 @@ def test_reject_changes_only_the_frontmatter(reviewer, origin, session_branch, t
     assert subjects(origin, session_branch)[-1] == "review: 1 proposal (0 accepted, 1 rejected)"
 
 
+def test_review_mid_experiment_does_not_touch_the_loop_clone(reviewer, settings, origin, session_branch, tmp_path):
+    """The reviewer must never reset the loop's clone or stage the loop's half-written files (its own clone, see git_ops.clone_path)."""
+    from engine.tasks.git_ops import ensure_workspace
+
+    push_files(origin, session_branch, tmp_path, {"rubric.md": RUBRIC, "proposals/new-framework-jobs-to-be-done.md": FRAMEWORK_OPEN})
+    loop_ws = ensure_workspace(session_branch, settings)  # the loop is mid-experiment
+    loop_ws.write("attempts/1/decomposition.md", "half-written scratch\n")
+    loop_ws.write("notes.md", NOTES + "- half-written insight\n")
+
+    graph, _model = reviewer([ACCEPT_FW])
+    out = graph.invoke({"branch": session_branch})
+    assert (out["accepted"], out["rejected"], out["errors"]) == (1, 0, 0)
+
+    assert loop_ws.read("attempts/1/decomposition.md") == "half-written scratch\n"
+    assert "half-written insight" in loop_ws.read("notes.md")
+    assert props.parse_frontmatter(loop_ws.read("proposals/new-framework-jobs-to-be-done.md"))[0]["status"] == "open"
+    committed = git(bare(origin), "show", "--name-only", "--format=", head(origin, session_branch)).splitlines()
+    assert sorted(committed) == [f"{SESSION_REL}/catalog.json", rel("new-framework-jobs-to-be-done.md")]
+    assert "half-written insight" not in show(origin, session_branch, "notes.md")
+
+
 def test_no_open_proposals_means_no_model_call_and_no_commit(reviewer, origin, session_branch, tmp_path):
     push_files(origin, session_branch, tmp_path, {"proposals/rubric-change-bar.md": DECIDED})
     before = head(origin, session_branch)
