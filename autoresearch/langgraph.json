@@ -1,0 +1,12 @@
+{
+  "python_version": "3.13",
+  "dependencies": ["."],
+  "graphs": {
+    "autoresearch_session": "./engine/loop.py:autoresearch_session",
+    "review_proposals": "./engine/review.py:review_proposals"
+  },
+  "env": ".env",
+  "dockerfile_lines": [
+    "RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*"
+  ]
+}
