@@ -2,6 +2,12 @@
 
 > Takes a completed episode apart into the Context it happened in, the Action taken, the Result that followed and the Learning drawn from it, then forces a fifth question: which governing rule has to change so that the failure class cannot recur. Category: Narrative & Statement Decomposition. Reference: [Double-loop learning](https://en.wikipedia.org/wiki/Double-loop_learning). [Open the 3D graph](./index.html) (needs internet for Three.js; on GitHub open via Pages or clone).
 
+## What this graph derived
+
+Given Ylan Richard's account on TBPN of closing Cala, whose robotic restaurants were profitable with proven payback yet died when Europe's Series A to B funding cliff blocked scaling and French severance law priced the restructure out, applying CARL we derived that no single-loop fix could have saved it, that regulation made a solvable cost problem unsolvable, and that jurisdiction, financing and ownership are design variables chosen at incorporation; the opportunities are a formation tool pricing wind-down cost, and a growth vehicle for proven physical businesses across Europe's A to B gap.
+
+Given a ward nurse's reflective account of a near miss in which she drew up 10 mg of morphine instead of 1 mg from look-alike ampoules kept in one drawer and was stopped by an agency nurse's check, applying CARL we derived that the barrier that held was the check, not her care, that vigilance was not what failed once two other nurses had made the same swap, and that the governing rule moves from reading carefully to designing the ambiguity out of storage; what the reader gains is the hidden assumption exposed: reading every label twice holds fixed the arrangement that produced the error.
+
 ## What it decomposes
 
 CARL takes apart a completed episode that somebody is looking back on: a nurse's written reflection on a shift, a competency-interview answer, a founder's account of why the company closed. The four letters are Context, Action, Result, Learning. It is a teaching device from nursing and allied-health reflective practice, taught beside Gibbs's cycle and Rolfe's what / so what / now what, and used in competency interviews where the point is what an episode taught rather than what it earned. It is STAR with a different fourth question: Task checks that the actor owned the objective, Learning checks that they took something away.
