@@ -2,6 +2,12 @@
 
 > Deletes the precedent and the analogy a question arrives with, keeps only what physics, arithmetic or a market price forces, and asks what the surviving limits allow you to build. Category: Engineering & Cognitive Problem Solving. Reference: [First principle](https://en.wikipedia.org/wiki/First_principle). [Open the 3D graph](./index.html) (needs internet for Three.js; on GitHub open via Pages or clone).
 
+## What this graph derived
+
+Given Casey Handmer's answer on TBPN, asked why solar not nuclear and whether panels belong in orbit, that a reactor is a steam engine costing no less than coal even without the NRC, that an acre earns $500 farming or $100,000 to $200,000 under solar, and that an orbital watt earns a billion times more as internet than as beamed power, applying First Principles Thinking we derived that nuclear's floor is the turbine, beyond licence reform, that the land gap is 200x to 400x, and that orbit's watt goes to the highest bidder; the opportunities are a brokerage for an acre's conversion option, a paid covenant so food can bid for the acre, and revenue per watt as diligence screen.
+
+Given an investor telling a founder that grid storage will never be cheap because packs have always cost about $600 per kilowatt-hour, and the founder's reply that a pack is only cobalt, nickel, aluminium, carbon, polymers and steel, priced on the exchange at about $80, applying First Principles Thinking we derived the hidden premise that past price bounds future price, that no law fixes a pack's cost so only the matter is irreducible, that $520 of the $600 is process not material, and that a floor is not a forecast; the reader gains a map, not a business idea: every step between metal and cell owns a slice of that $520, and the question becomes which step to attack.
+
 ## What it decomposes
 
 Aristotle's *arche* is the first basis from which a thing is known, a proposition not deduced from any other; Descartes' method of doubt is the modern ancestor. The engineering version reasons from physics, arithmetic and unit prices rather than from analogy and what the industry has always charged.
