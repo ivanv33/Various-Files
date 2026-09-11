@@ -6,7 +6,6 @@ find `GOOGLE_API_KEY`; offline tests override `GIT_REMOTE` / `AUTORESEARCH_WORKD
 
 from __future__ import annotations
 
-import json
 import os
 import subprocess
 from pathlib import Path
@@ -80,30 +79,20 @@ def seed_session(
     transcript_path: str = TRANSCRIPT_REL,
     max_experiments: int = 3,
 ) -> str:
-    """Create `autoresearch/<slug>` from master with the session skeleton; push it. Returns branch."""
-    from engine.tasks.log import HEADER
+    """Create `autoresearch/<slug>` from master with the session skeleton; push it. Returns branch.
 
-    branch = f"autoresearch/{slug}"
-    session_rel = f"autoresearch/sessions/{slug}"
-    clone = work / f"seed-{slug}"
-    git(work, "clone", "-q", "--branch", "master", remote, str(clone))
-    git(clone, "checkout", "-q", "-b", branch)
-    session = clone / session_rel
-    session.mkdir(parents=True)
-    (session / "metadata.json").write_text(
-        json.dumps(
-            {"mission": mission, "transcript_path": transcript_path, "max_experiments": max_experiments},
-            indent=2,
-        )
-        + "\n"
-    )
-    (session / "experiments.tsv").write_text(HEADER + "\n")
-    (session / "notes.md").write_text("# Notes\n\n## Insights\n\n## Human steering\n")
-    (session / "catalog.json").write_text("[]\n")
-    git(clone, "add", "-A")
-    git(clone, "commit", "-q", "-m", f"session {slug}: bootstrap")
-    git(clone, "push", "-q", "origin", branch)
-    return branch
+    Delegates to the real `scripts/new_session.py` so fixtures and production sessions never drift.
+    """
+    from scripts.new_session import create_session
+
+    return create_session(
+        slug,
+        mission=mission,
+        transcript_path=transcript_path,
+        max_experiments=max_experiments,
+        remote=remote,
+        workdir=work / "new-session",
+    )["branch"]
 
 
 @pytest.fixture
