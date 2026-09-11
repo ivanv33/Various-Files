@@ -31,12 +31,15 @@ function card(f) {
   const done = r.status === 'done';
   const status = r.status || 'pending';
   const ex = r.tbpn_example ? `<div class="ex"><span class="ex-k">TBPN</span> ${esc(r.tbpn_example.date || '')} ${esc(r.tbpn_example.episode_title || '')}</div>` : `<div class="ex ex-none">transcript example: not chosen yet</div>`;
+  // the insight is the point: lead the card with what the graph derived
+  let insight = '';
+  try { const g = JSON.parse(fs.readFileSync(path.join(DF, dir, 'graph.json'), 'utf8')); const t = g.examples.find(e => e.kind === 'tbpn'); if (t?.insights?.short) insight = `<p class="insight">${esc(t.insights.short)}</p>`; } catch {}
   const links = done || (r.files || []).includes('index.html')
     ? `<a class="btn" href="${dir}/index.html">Open graph</a><a class="btn ghost" href="${dir}/README.md">README</a>`
     : `<span class="btn disabled">Graph</span><span class="btn ghost disabled">README</span>`;
   return `<article class="card ${status}">
   <div class="card-top"><h3>${esc(f.name)}</h3><span class="status ${status}">${esc(status.replace('_', ' '))}</span></div>
-  <p>${esc(f.blurb)}</p>
+  ${insight || `<p>${esc(f.blurb)}</p>`}
   ${strip(f)}
   ${ex}
   <div class="links">${links}<a class="wiki" href="${esc(f.wikipedia)}" target="_blank" rel="noopener">Wikipedia</a></div>
@@ -66,6 +69,7 @@ const html = `<!DOCTYPE html>
   main { max-width: 1180px; margin: 0 auto; padding: 40px 24px 80px; }
   .hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr); gap: 40px; align-items: start; padding-bottom: 32px; border-bottom: 1px solid var(--hairline); margin-bottom: 40px; }
   .eyebrow { font: 12px/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  kbd { font: 12px var(--mono); border: 1px solid var(--hairline); border-radius: 3px; padding: 0 5px; color: var(--ink); }
   h1 { font-size: 34px; line-height: 1.1; letter-spacing: -.02em; color: var(--ink); margin: 8px 0 14px; font-weight: 650; }
   .hero p { margin: 0 0 12px; max-width: 60ch; }
   .key { background: var(--surface); border: 1px solid var(--hairline); border-radius: 10px; padding: 16px 18px; font-size: 14px; }
@@ -84,6 +88,7 @@ const html = `<!DOCTYPE html>
   .card-top { display: flex; align-items: flex-start; gap: 10px; }
   .card h3 { margin: 0; font-size: 16px; color: var(--ink); font-weight: 600; line-height: 1.3; }
   .card p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+  .card p.insight { font-size: 13px; line-height: 1.5; border-left: 2px solid #eda100; padding-left: 10px; }
   .status { margin-left: auto; flex: none; font: 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 4px 7px; border-radius: 4px; border: 1px solid var(--hairline); color: var(--muted); }
   .status.done { color: var(--ink); border-color: var(--muted); }
   .status.in_progress { color: var(--accent); border-color: var(--accent); }
@@ -117,7 +122,7 @@ const html = `<!DOCTYPE html>
     <div>
       <div class="eyebrow">Reference library · 22 frameworks · 4 categories</div>
       <h1>Decomposition frameworks as knowledge-graph schemas</h1>
-      <p>Each framework page shows the framework taken apart into its slots, worked through on one classic example and one moment from the TBPN transcript corpus, and rendered as an interactive graph. Every node and edge is marked as either a <strong>fact</strong> stated in the source or an <strong>inference</strong> the LLM added.</p>
+      <p>Each card below leads with what its graph derived: given the facts of one TBPN episode, applying one framework, these are the inferences and the opportunity that fell out. Open a graph and press <kbd>i</kbd> for Insights mode, which ghosts the evidence and lights the inference layer. Every node and edge is marked as either a <strong>fact</strong> stated in the source or an <strong>inference</strong> the LLM added.</p>
       <p>The point of the exercise: when these frameworks are later run over the transcripts to surface underserved markets and startup ideas, the reader can always see which part of a graph is evidence and which part is reasoning.</p>
       <p><a href="README.md">Read the README</a> for the provenance rules, the idea-bearing slot per framework, and how to resume the build.</p>
     </div>

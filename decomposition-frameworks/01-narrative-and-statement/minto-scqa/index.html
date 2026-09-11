@@ -703,7 +703,13 @@ function renderInsights(ex) {
   const close = document.createElement('button'); close.className = 'close'; close.type = 'button'; close.textContent = '×'; close.setAttribute('aria-label', 'Close'); close.onclick = () => { $('t-insights').checked = false; $('t-insights').dispatchEvent(new Event('change')); };
   head.append(eb, close); el.appendChild(head);
   const h3 = document.createElement('h3'); h3.textContent = ex.title || ex.id; el.appendChild(h3);
-  if (ex.insights?.long) { const f = document.createElement('p'); f.className = 'formula'; f.textContent = ex.insights.long; el.appendChild(f); }
+  if (ex.insights?.long) {
+    // three paragraphs (the facts, the method, what we derived): keep them as paragraphs
+    const box = document.createElement('div'); box.className = 'formula';
+    for (const para of ex.insights.long.split(/\n\s*\n/)) { const pp = document.createElement('p'); pp.textContent = para.trim(); pp.style.margin = '0 0 8px'; box.appendChild(pp); }
+    box.lastChild && (box.lastChild.style.margin = '0');
+    el.appendChild(box);
+  }
   const derived = ex.nodes.filter(n => n.provenance === 'derived');
   const bySlot = new Map();
   for (const n of derived) { if (!bySlot.has(n.slot)) bySlot.set(n.slot, []); bySlot.get(n.slot).push(n); }
