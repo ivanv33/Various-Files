@@ -2,6 +2,12 @@
 
 > Turns a change into an experiment: a prediction written before the work, a trial small enough to be wrong in, a comparison against the prediction, and a decision to standardise or turn the cycle again. Category: Sensemaking & Complex Systems. Reference: [PDCA](https://en.wikipedia.org/wiki/PDCA). [Open the 3D graph](./index.html) (needs internet for Three.js; on GitHub open via Pages or clone).
 
+## What this graph derived
+
+Given Alex Shevchenko and Alex Stauffer's account on TBPN of how Ramp Labs built Ramp Sheets, where automations mined from the finance team's videos were refused as too black box, a sample of their Loom recordings showed a spreadsheet 99 per cent of the time, and the public release drew two million impressions and demand from founders with no finance team, applying PDCA / Deming Cycle we derived the predictions neither turn stated, the undeclared measures each pilot was read against, and a second Check no number could have failed; the opportunity that falls out is finance AI sold as a spreadsheet that writes the model, and an instant model layer for people who will never hire an analyst.
+
+Given a packing department's note where twelve per cent of Line 2's cartons failed the seal test, the engineer predicted fifteen more degrees would cut failures under three per cent, a five-day night-shift trial reached 2.1 per cent while scorching rose one to four per ten thousand, and the team standardised on Line 2 and scheduled Line 5, applying PDCA / Deming Cycle we derived that standardising traded a fourfold rise in scorching for a sixfold cut in failures, that the mechanism named a fast line while the trial ran the slow shift, and that Line 5 carries an unwritten prediction; the reader gains the trade the memo never weighs and the speed assumption a clean cycle hides.
+
 ## What it decomposes
 
 PDCA takes apart a change. Not a problem, not an argument, not a system: one deliberate alteration to a process or a product, and the question of whether anybody learned anything from making it. It splits that change into four things which are easy to confuse when they arrive as one story — what was expected to happen and why, what was actually run and on whom, what the result was read against, and what was decided as a result. Each is separately checkable, and the framework's value is that it makes the missing one visible.
