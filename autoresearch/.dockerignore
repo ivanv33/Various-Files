@@ -1,14 +1,15 @@
 # Build context for `langgraph build` / `langgraph deploy` is this directory and the generated
 # Dockerfile does `ADD . /deps/autoresearch`. Keep secrets, the venv and local scratch out of the image.
+# Docker's .dockerignore matches a bare pattern at the context root only; `**/` makes it apply at any depth.
 .env
 .env.*
 !.env.example
 .venv/
 .langgraph_api/
-__pycache__/
-*.pyc
+**/__pycache__/
+**/*.pyc
 .pytest_cache/
-*.egg-info/
+**/*.egg-info/
 .git/
 tests/
 dev/

@@ -72,3 +72,7 @@ def test_dockerignore_keeps_secrets_and_scratch_out_of_the_image():
     }
     for required in (".env", ".venv/", ".langgraph_api/", "tests/", "dev/"):
         assert required in patterns, f".dockerignore must list {required}"
+    # Docker matches a bare `__pycache__/` or `*.pyc` at the context root only (Go filepath.Match); the
+    # `**/` prefix is what keeps the host's engine/**/__pycache__ bytecode out of the image.
+    for nested in ("**/__pycache__/", "**/*.pyc", "**/*.egg-info/"):
+        assert nested in patterns, f".dockerignore must list {nested} (root-only without **/)"
