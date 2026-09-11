@@ -243,7 +243,10 @@ def run_session(inputs: dict[str, Any]) -> dict[str, Any]:
     while state["n_experiments"] < state["max_experiments"]:
         pull_step(root, branch).result()
         n = state["n_experiments"] + 1
-        combo = (use_seed_step(root, branch, n) if n == 1 else propose_step(root, branch, n, False)).result()
+        # experiment 1 uses the committed seed; if the seed draft failed at checkpoint 0 (e.g. recursion limit),
+        # propose fresh instead of burning the experiment on an error row
+        use_seed = n == 1 and Workspace(root, branch).has(propose_mod.SEED_REL)
+        combo = (use_seed_step(root, branch, n) if use_seed else propose_step(root, branch, n, False)).result()
         decomp = decompose_step(root, branch, n, combo).result()
         recs = recommend_step(root, branch, n, decomp).result()
         judged = judge_step(root, branch, n, recs, settings.gemini_model).result()

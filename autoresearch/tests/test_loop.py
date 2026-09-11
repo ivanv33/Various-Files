@@ -298,3 +298,23 @@ def test_module_exports_a_graph_without_a_checkpointer():
 
     assert isinstance(loop.autoresearch_session, Pregel)
     assert loop.autoresearch_session.checkpointer is None
+
+
+def test_seed_draft_failure_falls_back_to_a_fresh_proposal_for_experiment_1(harness, origin, tmp_path):
+    """The checkpoint 0 seed draft can fail (recursion limit); experiment 1 must then propose, not log an error row."""
+    branch = seed_session(origin, tmp_path, max_experiments=1)
+    graph, agents, model = harness(
+        combos={1: ["mece"]},
+        judge_outputs=[answer(5, None)],
+        fail={("combination", 0)},
+    )
+    c = cfg("t-seed-fallback")
+    out = graph.invoke({"branch": branch}, c)
+    p = out["__interrupt__"][0].value
+    assert p["kind"] == "checkpoint0" and p["seed"]["frameworks"] == [] and p["seed"]["error"]
+    assert "best/combination-with-explanations.md" not in files(origin, branch)
+    out = graph.invoke(Command(resume={"action": "continue"}), c)
+    assert out["__interrupt__"][0].value["kind"] == "new_best"
+    rows = parse_tsv(show(origin, branch, "experiments.tsv"))
+    assert rows[0].n == 1 and rows[0].kept == "1" and rows[0].frameworks == ["mece"] and rows[0].candidate_total == 30
+    assert agents.kinds[:2] == [("combination", 0), ("combination", 1)]

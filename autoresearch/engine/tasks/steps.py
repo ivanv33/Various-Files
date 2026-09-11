@@ -18,7 +18,7 @@ from langchain_core.messages import HumanMessage
 from engine.prompts import load_prompt
 from engine.workspace import Workspace
 
-LIMITS: dict[str, int] = {"propose": 60, "decompose": 150, "recommend": 80}
+LIMITS: dict[str, int] = {"propose": 120, "decompose": 150, "recommend": 80}
 """`recursion_limit` per step (refinement 6)."""
 
 TAIL_ROWS = 12

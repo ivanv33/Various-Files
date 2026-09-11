@@ -153,7 +153,7 @@ def test_run_step_reports_missing_or_empty_output_as_error(tmp_path: Path, stub_
 
 
 def test_limits_match_refinement_6():
-    assert LIMITS == {"propose": 60, "decompose": 150, "recommend": 80}
+    assert LIMITS == {"propose": 120, "decompose": 150, "recommend": 80}  # propose raised from 60 after two live recursion-limit failures
 
 
 class ToolCallingFake(GenericFakeChatModel):
