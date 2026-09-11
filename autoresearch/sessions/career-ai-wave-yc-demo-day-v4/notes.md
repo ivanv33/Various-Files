@@ -1,6 +1,10 @@
 # Notes
 
 ## Insights
+- Strategic landscape: YC Demo Day shows market evolution from horizontal agent infrastructure to applied vertical agents in unsexy operational domains (logistics, customer support, auditing) with rapid monetization velocity.
+- Compute disparity: Frontier pretraining requires massive silicon investment (TPUs, Traneums, GPUs), while applied enterprise integration suffers from capability gaps in complex knowledge work—creating prime demand for production agent engineers.
+- Path EV Ranking: For a Staff Engineer with 10y Google infra experience and 6–12m runway, Path (c) (from-scratch research) has lowest EV; Path (d) and Path (a) offer maximum immediate wealth/leverage without runway risk; Path (b) (unsexy vertical startup) is viable only if staged via customer discovery before resigning.
+- Execution discipline: 90-day planning must chain backward from target inbound/revenue to concrete 30/60/90-day gates; runway discipline requires strict negative constraints ("what to stop doing") and pre-mortem failure prevention.
 
 ## Human steering
 - 2026-09-11 (seeded before experiment 1 from the v2/v3 sessions on this transcript; obey literally)
