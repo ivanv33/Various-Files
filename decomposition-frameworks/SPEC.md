@@ -92,6 +92,7 @@ Normative structure is in `_meta/schema.json`; this section explains it.
       "source": { "type": "transcript", "file": "tbpn-transcripts/transcripts/<file>.md", "date": "YYYY-MM-DD", "episode_title", "url"? },
       "why_this_episode": "...",
       "idea_bearing_slot": "<slot id>",                          // where the opportunity/idea surfaces in this framework
+      "insights": { "short": "...", "long": "..." },             // the formula, spelled out; short heads the README and the page, long heads the Insights card
       "layout": { ... }, "nodes": [ ... ], "edges": [ ... ]
     }
   ]
@@ -161,6 +162,9 @@ Sections in this order. Headings are fixed; prose is the author's.
 ```
 # <Framework name>
 > One-line definition. Category: <category name>. Reference: <wikipedia link>. [Open the 3D graph](./index.html) (needs internet for Three.js; on GitHub open via Pages or clone).
+
+## What this graph derived
+Two paragraphs, the transcript example first, then the classic: each is that example's `insights.short` verbatim, the formula spelled out: given these facts, applying this method, we derived these things, and the opportunity that falls out. See `_meta/AGENT_BRIEF.md` Part G. The library exists for this paragraph; everything below it is how the paragraph was earned.
 
 ## What it decomposes
 Two or three paragraphs: what kind of object the framework takes apart, what it forces you to make explicit, what goes wrong without it.

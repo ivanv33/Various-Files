@@ -210,6 +210,8 @@ export function validateDir(dir) {
     }
     const factEdges = edges.filter(e => e.provenance === 'fact').length;
     if (factCount + factEdges > 0 && paraCount / (factCount + factEdges) > PARAPHRASE_CAP) E(`${tag}: ${paraCount}/${factCount + factEdges} facts (nodes + edges) are paraphrases; cap is ${Math.round(PARAPHRASE_CAP * 100)}%`);
+    if (!ex.insights || !ex.insights.short || !ex.insights.long) W(`${tag}: no insights {short, long}; the example does not yet lead with what it derived`);
+    else { const sw = ex.insights.short.trim().split(/\s+/).length, lw = ex.insights.long.trim().split(/\s+/).length; if (sw < 50 || sw > 140) W(`${tag}: insights.short is ${sw} words (60-120 expected)`); if (lw < 150 || lw > 400) W(`${tag}: insights.long is ${lw} words (180-350 expected)`); }
     if (ex.kind === 'tbpn' && ex.idea_bearing_slot && !list.some(n => n.slot === ex.idea_bearing_slot && n.provenance === 'derived' && n.idea)) W(`${tag}: no derived node in the idea-bearing slot "${ex.idea_bearing_slot}" carries an idea field`);
     if (edges.length < list.length - 1) W(`${tag}: ${edges.length} edges for ${list.length} nodes; graph is probably disconnected`);
     for (const n of nodes.values()) if (n.provenance === 'derived' && !touchesFact.has(n.id)) W(`${tag} node ${n.id}: derived node has no edge to any fact (add supported_by)`);

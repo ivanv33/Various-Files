@@ -156,3 +156,34 @@ Review these framework folders under DF = {{REPO}}/decomposition-frameworks agai
 For each folder read README.md, graph.json, state.json; run `node DF/_meta/validate.mjs <folder>`. Check: README matches graph.json (texts, provenance, confidences, quotes); the section template of SPEC 6 is followed; links resolve; the mermaid diagram exists; the knowledge-graph section has real rules of thumb, a usable extraction recipe and failure modes with guards; the TBPN example actually exhibits the framework's structure (not just its vocabulary); the idea-bearing slot reading is plausible; the classic example is a recognisable textbook case; the viz loop ended in pass (state.json.viz_reviews) and the final page metrics are within the pass rule.
 Report per folder: pass, or issues with severity (blocking / should-fix / nit), location, and the fix. Then cross-folder notes: inconsistencies in style, slot usage, or provenance judgments that a reader comparing frameworks would notice.
 ```
+
+## Part G: insights pass (one agent per framework, no children)
+
+The point of the library is the insight the graph yields, not the framework. Each example now leads with a paragraph that spells out the formula: **given these facts, applying this method, we derived these things.** You write it for both examples of one framework, from the graph as it stands. You do not change nodes, edges, provenance or confidences.
+
+Placeholders: {{SLUG}}, {{NAME}}, {{CATEGORY}}, {{REPO}}; DF = {{REPO}}/decomposition-frameworks; your folder = DF/{{CATEGORY}}/{{SLUG}}.
+
+Read first: DF/SPEC.md sections 3 and 6; your graph.json in full (both examples, every derived node's text, rationale, confidence and idea; the fact nodes so you can summarise them truthfully); your README.md.
+
+Write, for each example in graph.json, an `insights` object with two strings:
+
+- `short` (the README and the page header; 60 to 120 words, one paragraph). The formula in one breath, in this order and with these joints kept visible: "Given <the facts: who said what, in one sentence a stranger could follow>, applying <framework name> we derived <the two to four inferences that matter most, named plainly>; the opportunity that falls out is <the idea, or ideas, in a clause each>." Name the speaker and the episode's subject. Do not use the words "graph", "node" or "LLM" here; say what was found.
+- `long` (the page's Insights card; 180 to 350 words, three short paragraphs). Paragraph 1, "The facts": what the source stated, two or three sentences, speaker named, the strongest quoted claim paraphrased. Paragraph 2, "The method": one or two sentences on what this framework forces into the open, and which of its slots the source left empty or thin (that emptiness is often the finding). Paragraph 3, "What we derived": every derived contribution worth a reader's time, in prose, each with its confidence in parentheses as a percentage, the ideas last and each introduced with the word "Opportunity:". Confidences and idea sentences must match graph.json exactly.
+
+Rules. Every claim in both strings must be traceable to a node in that example; do not add a finding the graph does not contain. Prefer the derived nodes with the highest confidence and every node carrying an `idea`. If the classic example has no business idea, its "opportunity" clause names what the reader gains instead (the hidden assumption exposed, the empty slot revealed). Plain sentences, no headers inside the strings, no markdown.
+
+README.md: add a new section immediately after the title blockquote and before "## What it decomposes":
+
+```
+## What this graph derived
+
+<tbpn insights.short, verbatim>
+
+<classic insights.short, verbatim>
+```
+
+Introduce the two paragraphs with nothing; the first is the transcript example, the second the classic, and the reader can tell from the content. Do not change any other section.
+
+Then: `node DF/_meta/validate.mjs <folder>` (0 errors), `node DF/_meta/build.mjs <folder>`, `node DF/_meta/snap.mjs <folder>` and read the two `*-insights.png` files with the Read tool to confirm the card shows your long text at the top and the derived list under it, and that the header strip shows the short text. Append one line to state.json.notes. Commit through `DF/_meta/commit-framework.sh <folder> "content({{SLUG}}): insights paragraphs" "<body: the tbpn short paragraph>"`.
+
+No child agents. Never ask questions. Write only inside your folder. Report in six lines: slug, tbpn short (verbatim), classic short (first sentence), word counts of the four strings, validate result, commit hash.
