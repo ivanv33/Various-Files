@@ -13,6 +13,19 @@ containers.
 Runtime: LangGraph Functional API (`@entrypoint` / `@task`), `deepagents` for the creative steps, Gemini for
 every role, served by `langgraph dev` locally and LangSmith Deployment in production.
 
+## Quick start (/mission-lab)
+
+Say `/mission-lab` in Claude Code, or "start a mission lab" / "run autoresearch on <transcript> toward
+<mission>". The skill (`.claude/skills/mission-lab/SKILL.md`) is a playbook, not a script: the agent settles
+transcript, mission, slug and base ref with you (one round of questions), then a subagent creates and pushes
+`autoresearch/<slug>` with the same skeleton `scripts/new_session.py` writes, starts `langgraph dev` on port
+2024 if it is not up, and starts the run. You get the branch URL, the thread id and the LangSmith Studio link
+`https://smith.langchain.com/studio/thread/<thread_id>?baseUrl=http://127.0.0.1:2024`. At each pause resume in
+Studio with `{"action":"continue","steer":"<optional>"}` or `{"action":"stop"}`; `/mission-lab status`,
+`resume`, `steer`, `stop` do the same through curl. Preconditions: `.env` filled in; `GIT_REMOTE` may be the
+tokenless `https://github.com/ivanv33/Various-Files.git` because the server runs as you and your git credential
+helper pushes. Docker `langgraph up` (port 8123, durable checkpointer) is a TODO in the skill.
+
 ## Layout
 
 ```

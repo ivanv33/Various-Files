@@ -197,3 +197,14 @@ Session start (manual): `python scripts/new_session.py <slug> --mission "..." --
 - Push-triggered session start (GitHub Action → LangSmith API).
 - Plateau or every-K pauses.
 - Different models per role.
+
+## 10. Local start skill (`/mission-lab`) — owner-requested 2026-09-11
+
+A Claude Code project skill, `.claude/skills/mission-lab/SKILL.md`, starts and steers a session without a new
+script. The agent settles the fuzzy inputs with the owner (which transcript, mission wording, slug, base ref,
+steering text) and delegates the start to a subagent; the deterministic steps are existing commands: `git`
+writes and pushes the §2.2 skeleton (byte-identical to `new_session.py`'s), `langgraph dev` serves the graphs on
+port 2024, `curl` creates the thread and run and resumes it with the §3 payload. Watching and steering happen in
+LangSmith Studio through `?baseUrl=http://127.0.0.1:2024`. A new case (another base branch, another corpus) is
+a wording change in the playbook, never a code change. Docker `langgraph up` (port 8123, durable checkpointer,
+token inside `GIT_REMOTE` because pushes run in the container) is a TODO in the skill and plan milestone M10.
