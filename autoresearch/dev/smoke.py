@@ -52,6 +52,7 @@ DEFAULT_MISSION = (
 )
 SECRET_MARKERS = ("KEY", "TOKEN", "SECRET", "PASSWORD")
 _EXP_SUBJECT = re.compile(r"^exp (\d+): ")
+_BOOTSTRAP_SUBJECT = re.compile(r"^session [a-z0-9-]+: bootstrap$")  # written by scripts/new_session.py
 
 Log = Callable[[str], None]
 
@@ -116,8 +117,13 @@ def drive(client: Any, branch: str, *, max_resumes: int = 10, log: Log = print) 
 def check_origin(
     bare: Path | str, branch: str, session_rel: str, expected_experiments: int, *, allow_errors: bool = False
 ) -> dict[str, Any]:
-    """What a healthy session leaves on origin; raises `SmokeError` on the first missing piece."""
-    subjects = git(bare, "log", "--reverse", "--format=%s", branch).splitlines()
+    """What a healthy session leaves on origin; raises `SmokeError` on the first missing piece.
+
+    `subjects` are the session's own commits (from its bootstrap commit on), not the base branch's history.
+    """
+    history = git(bare, "log", "--reverse", "--format=%s", branch).splitlines()
+    first = next((i for i, s in enumerate(history) if _BOOTSTRAP_SUBJECT.match(s)), 0)
+    subjects = history[first:]
     exp_subjects = [s for s in subjects if _EXP_SUBJECT.match(s)]
     checkpoint_subjects = [s for s in subjects if s.startswith("checkpoint 0")]
     if len(exp_subjects) != expected_experiments:

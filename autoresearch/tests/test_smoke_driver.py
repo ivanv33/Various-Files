@@ -120,6 +120,7 @@ def test_check_origin_passes_on_a_healthy_two_experiment_history(origin, session
     push_session_history(origin, tmp_path, tsv=TSV)
     bare = Path(origin.removeprefix("file://"))
     facts = smoke.check_origin(bare, BRANCH, SESSION_REL, 2)
+    assert facts["subjects"][0] == "session demo: bootstrap" and len(facts["subjects"]) == 5  # not master's history
     assert facts["exp_subjects"] == ["exp 1: KEEP 40 vs -", "exp 2: discard 30 vs 40"]
     assert facts["checkpoint_subjects"] == ["checkpoint 0 draft: seed combination", "checkpoint 0: rubric approved"]
     assert [r.kept for r in facts["rows"]] == ["1", "0"]
