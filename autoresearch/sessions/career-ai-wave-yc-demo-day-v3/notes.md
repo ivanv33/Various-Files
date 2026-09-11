@@ -1,7 +1,16 @@
 # Notes
 
 ## Insights
-- Seed combination established: Rumelt's Strategic Kernel paired with Means-Ends Analysis. Rumelt strips market fluff to diagnose real defensibility and rank career paths against transcript evidence; Means-Ends Analysis chains recursive operators and sub-goals to bridge Ivan's zero-public-presence baseline to high-leverage outcomes within the 6–12 month runway limit.
+- Baseline (Exp 1: Rumelt + Means-Ends Analysis) scored 73/80 with 10/10 on transcript grounding. Tethering every path ranking, tripwire, and milestone to line-numbered transcript quotes (Taggar, Graham, Materiel, Crunch) is strictly required to preserve full grounding.
+- Identified blind spots from Exp 1 deductions across the other seven rubric dimensions:
+  - Specificity: Customer discovery must name exact operational sub-niches (fund administration, RIA compliance) and explicit buyer titles (VP Operations, CCO, Controller), not generic "financial operators".
+  - Actionability & Sequencing: Enterprise pilot-to-cash conversions require realistic timelines (30–45 days, not 15 days) and pricing below discretionary thresholds ($10k–$20k) to bypass procurement freezes.
+  - Runway Risk Discipline: Must quantify Ivan's exact monthly liquid burn in Brooklyn NYC (~$12k–$14k/mo) to define a hard dollar runway floor (minimum $75k liquid reserve).
+  - Subtractive Focus: Must shed both corporate Lyft meetings/committees and 10-year Google Staff engineering habits (25-page architecture design docs, consensus-seeking, test over-engineering).
+  - Frontier Lab Insight: Frontier labs view high-level wrappers (LangGraph) as toy abstractions; open-source artifacts must showcase low-level PyTorch systems, latency/error benchmarks, and GCP streaming data reliability.
+  - Comparative Path Ranking: Path (d) must be evaluated against independent liquid wealth vehicles (late-stage pre-IPO unicorns, quant ML infrastructure) rather than collapsed purely into startup equity.
+  - Mission Fit: Address geographic friction between NYC enterprise discovery/living costs and YC's mandatory in-person SF batch requirement.
+- Triplet strategy (Exp 2: Rumelt + Means-Ends Analysis + Inversion Pre-Mortem): Inversion prospective hindsight ("assume Ivan is broke with zero revenue and zero offers in 12 months") directly dismantles optimism bias and engineers mandatory safeguards for every rubric deduction.
 
 ## Human steering
 
