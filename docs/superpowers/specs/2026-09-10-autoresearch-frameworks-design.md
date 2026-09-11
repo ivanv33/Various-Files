@@ -122,7 +122,7 @@ Seed experiment: at checkpoint 0 the seed combination is written to `best/combin
 
 ### 4.2 Judge
 
-One structured-output call per experiment. Input: rubric, mission, candidate `recommendations.md`, incumbent `best/recommendations.md` (absent on experiment 1). Order of candidate/incumbent is randomized per call and recorded in `score.json`. Output schema: per-dimension integer scores for both documents, totals, one-paragraph rationale. Grading the incumbent alongside the candidate every time controls score drift across calls.
+One structured-output call per experiment. Input: rubric, mission, candidate `recommendations.md`, and, from experiment 2 on, the incumbent `best/recommendations.md` together with the per-dimension scores it received when it was kept (`best/score.json`). Only the candidate is graded. The incumbent's scores are frozen and shown as a calibration reference: the judge must score the candidate lower, equal or higher than the reference on each dimension according to the relative weight of their deficiencies. Output schema: at least one deficiency entry per dimension (a `none:` entry with evidence is required for a 10), per-dimension integer scores for the candidate, one-paragraph rationale. Kept iff the candidate total strictly exceeds the frozen incumbent total. Because a document's score never changes after it is kept, totals are comparable across experiments and `experiments.tsv` is a leaderboard. (Earlier design: both documents re-graded side by side in random order; dropped because the same document swung by up to 7 points between calls, making rows incomparable.)
 
 ### 4.3 Write discipline
 
@@ -139,7 +139,7 @@ Second graph, `@entrypoint review_proposals(inputs: {"branch": str})`, run on de
 - `ensure_workspace(branch)`, read `proposals/*.md` with `status: open`.
 - One structured-output call per proposal: `accept | reject` plus reason, given mission, rubric, catalog, and the log.
 - Accept `new-framework`: append an entry to session `catalog.json` with `source: proposal:<file>`.
-- Accept `rubric-change`: edit `rubric.md` and append a timestamped line under `## Rubric changes` in `notes.md` naming the proposal file. No row is added to `experiments.tsv` (rows are experiments only). Scores before and after are not comparable; the judge's fresh incumbent grading absorbs this.
+- Accept `rubric-change`: edit `rubric.md` and append a timestamped line under `## Rubric changes` in `notes.md` naming the proposal file. No row is added to `experiments.tsv` (rows are experiments only). Scores before and after are not comparable. With the frozen anchor (4.2) a rubric change that adds or removes a dimension makes the stored best scores incomplete and the judge raises `JudgeError` until `best/score.json` is re-graded; the reviewer therefore only edits dimension descriptions, never the set of ids.
 - Write decision and reason into the proposal's frontmatter (`status`, `decision_reason`), commit, push.
 
 The main loop never blocks on proposals.

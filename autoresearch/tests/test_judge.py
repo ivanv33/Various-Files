@@ -1,14 +1,13 @@
-"""`engine/tasks/judge.py`: structured-output verdict with randomized, recorded document order."""
+"""`engine/tasks/judge.py`: structured-output verdict for the candidate against a frozen-score reference."""
 
 from __future__ import annotations
 
 import json
 import os
-import random
 
 import pytest
 
-from engine.tasks.judge import DocScore, JudgeAnswer, JudgeError, Verdict, judge
+from engine.tasks.judge import CANDIDATE_LABEL, REFERENCE_LABEL, DimScore, JudgeAnswer, JudgeError, Verdict, judge
 from engine.tasks.rubric import CORE_DIMENSIONS, Dimension, render_rubric
 
 DIMS = [
@@ -19,21 +18,16 @@ DIMS = [
 MISSION = "Find the underserved vertical"
 CANDIDATE = "CANDIDATE-DOC: 1. Call three restaurant chains this week."
 INCUMBENT = "INCUMBENT-DOC: 1. Think about markets."
+FROZEN = {"specificity": 4, "grounding": 5, "speed": 3}  # 12
 
 
-class FixedRng:
-    def __init__(self, value: float):
-        self.value = value
-
-    def random(self) -> float:
-        return self.value
-
-
-def _answer(a: dict[str, int], b: dict[str, int] | None = None, rationale: str = "A is sharper.") -> JudgeAnswer:
+def _answer(scores: dict[str, int], deficiencies: list[str] | None = None, rationale: str = "Sharper than the reference.") -> JudgeAnswer:
+    """A well-formed answer: one entry per dimension, `none:` entries wherever the score is 10."""
+    if deficiencies is None:
+        deficiencies = [f"{k}: none — every step meets it" if v == 10 else f"{k}: step 1 is thin" for k, v in scores.items()]
     return JudgeAnswer(
-        deficiencies_a=[],
-        deficiencies_b=None if b is None else [],
-        scores=[DocScore(dimension_id=k, a=v, b=None if b is None else b[k]) for k, v in a.items()],
+        deficiencies=deficiencies,
+        scores=[DimScore(dimension_id=k, score=v) for k, v in scores.items()],
         rationale=rationale,
     )
 
@@ -43,73 +37,76 @@ def _flat(prompt_input) -> str:
 
 
 def _body(prompt_input) -> str:
-    """The human turn: mission, the labelled documents, closing line (the system prompt also names the labels)."""
+    """The human turn: mission, the candidate, the reference block, closing line."""
     return str(prompt_input[1].content)
 
 
-def test_judge_maps_document_a_b_back_to_candidate_incumbent_when_candidate_is_first(structured_fake):
-    model = structured_fake([_answer({"specificity": 8, "grounding": 7, "speed": 9}, {"specificity": 4, "grounding": 5, "speed": 3})])
-    v = judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, experiment=3, judge_model="fake", rng=FixedRng(0.1))
+def test_judge_grades_the_candidate_and_copies_the_frozen_reference_scores(structured_fake):
+    model = structured_fake([_answer({"specificity": 8, "grounding": 7, "speed": 9})])
+    v = judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, FROZEN, experiment=3, judge_model="fake")
     assert isinstance(v, Verdict)
-    assert v.order == ["candidate", "incumbent"]
     assert v.candidate == {"specificity": 8, "grounding": 7, "speed": 9}
-    assert v.incumbent == {"specificity": 4, "grounding": 5, "speed": 3}
+    assert v.incumbent == FROZEN
     assert (v.candidate_total, v.incumbent_total) == (24, 12)
     assert v.kept is True
-    assert v.rationale == "A is sharper."
+    assert v.rationale == "Sharper than the reference."
     assert (v.experiment, v.judge_model) == (3, "fake")
     schema, prompt_input = model.calls[0]
     assert schema is JudgeAnswer
     flat = _flat(prompt_input)
     assert MISSION in flat and "Specificity" in flat and "Weeks, not years." in flat
     body = _body(prompt_input)
-    assert body.index("Document A") < body.index(CANDIDATE) < body.index("Document B") < body.index(INCUMBENT)
+    assert body.index(CANDIDATE_LABEL) < body.index(CANDIDATE) < body.index(REFERENCE_LABEL) < body.index(INCUMBENT)
+    assert "- `specificity`: 4" in body and "- total: 12" in body  # frozen scores shown, not asked for
+    assert "has_reference=True" in str(prompt_input[0].content)
 
 
-def test_judge_reverses_mapping_when_incumbent_is_first(structured_fake):
-    # the model scores A (= incumbent) low and B (= candidate) high
-    model = structured_fake([_answer({"specificity": 4, "grounding": 5, "speed": 3}, {"specificity": 8, "grounding": 7, "speed": 9})])
-    v = judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, rng=FixedRng(0.9))
-    assert v.order == ["incumbent", "candidate"]
-    assert v.candidate == {"specificity": 8, "grounding": 7, "speed": 9}
-    assert v.incumbent == {"specificity": 4, "grounding": 5, "speed": 3}
-    assert (v.candidate_total, v.incumbent_total) == (24, 12)
-    body = _body(model.calls[0][1])
-    assert body.index("Document A") < body.index(INCUMBENT) < body.index("Document B") < body.index(CANDIDATE)
-
-
-def test_judge_without_rng_randomizes_order_across_calls(structured_fake):
-    orders = set()
-    for _ in range(40):
-        model = structured_fake([_answer({"specificity": 5, "grounding": 5, "speed": 5}, {"specificity": 5, "grounding": 5, "speed": 5})])
-        orders.add(tuple(judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT).order))
-    assert orders == {("candidate", "incumbent"), ("incumbent", "candidate")}
+def test_judge_frozen_scores_are_never_regraded(structured_fake):
+    """The model returns only candidate scores; whatever it says, the incumbent total is the stored one."""
+    model = structured_fake([_answer({"specificity": 4, "grounding": 5, "speed": 3})])
+    v = judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, {"specificity": 9, "grounding": 9, "speed": 9})
+    assert v.incumbent_total == 27 and v.candidate_total == 12
+    assert v.kept is False
 
 
 def test_judge_equal_totals_is_not_kept(structured_fake):
-    model = structured_fake([_answer({"specificity": 5, "grounding": 5, "speed": 5}, {"specificity": 5, "grounding": 5, "speed": 5})])
-    v = judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, rng=FixedRng(0.1))
+    model = structured_fake([_answer({"specificity": 5, "grounding": 5, "speed": 5})])
+    v = judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, {"specificity": 5, "grounding": 5, "speed": 5})
     assert v.candidate_total == v.incumbent_total == 15
     assert v.kept is False
 
 
-def test_judge_without_incumbent_scores_only_document_a(structured_fake):
+def test_judge_without_incumbent_grades_alone(structured_fake):
     model = structured_fake([_answer({"specificity": 6, "grounding": 7, "speed": 8})])
-    v = judge(model, DIMS, MISSION, CANDIDATE, None, experiment=1, rng=FixedRng(0.9))
-    assert v.order == ["candidate"]
+    v = judge(model, DIMS, MISSION, CANDIDATE, None, None, experiment=1)
     assert v.candidate == {"specificity": 6, "grounding": 7, "speed": 8}
     assert v.incumbent is None and v.incumbent_total is None
     assert v.candidate_total == 21
     assert v.kept is True
     body = _body(model.calls[0][1])
-    assert "Document A" in body and "Document B" not in body
+    assert CANDIDATE_LABEL in body and REFERENCE_LABEL not in body
+    assert "has_reference=False" in str(model.calls[0][1][0].content)
+
+
+def test_judge_requires_incumbent_text_and_scores_together(structured_fake):
+    model = structured_fake([_answer({"specificity": 6, "grounding": 7, "speed": 8})])
+    with pytest.raises(JudgeError, match="together"):
+        judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, None)
+    with pytest.raises(JudgeError, match="together"):
+        judge(model, DIMS, MISSION, CANDIDATE, None, FROZEN)
+
+
+def test_judge_rejects_frozen_scores_that_lack_a_rubric_dimension(structured_fake):
+    model = structured_fake([_answer({"specificity": 6, "grounding": 7, "speed": 8})])
+    with pytest.raises(JudgeError, match="speed"):
+        judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, {"specificity": 4, "grounding": 5})
 
 
 def test_judge_accepts_rubric_markdown(structured_fake):
     text = render_rubric(CORE_DIMENSIONS, DIMS[2:])
     ids = [d.id for d in CORE_DIMENSIONS] + ["speed"]
-    model = structured_fake([_answer({i: 5 for i in ids}, {i: 4 for i in ids})])
-    v = judge(model, text, MISSION, CANDIDATE, INCUMBENT, rng=FixedRng(0.1))
+    model = structured_fake([_answer({i: 5 for i in ids})])
+    v = judge(model, text, MISSION, CANDIDATE, INCUMBENT, {i: 4 for i in ids})
     assert list(v.candidate) == ids
     assert v.candidate_total == 5 * len(ids)
 
@@ -117,27 +114,35 @@ def test_judge_accepts_rubric_markdown(structured_fake):
 @pytest.mark.parametrize(
     "bad, reason",
     [
-        (_answer({"specificity": 8, "grounding": 7}, {"specificity": 4, "grounding": 5}), "speed"),  # missing dimension
-        (_answer({"specificity": 11, "grounding": 7, "speed": 9}, {"specificity": 4, "grounding": 5, "speed": 3}), "11"),  # out of range
-        (_answer({"specificity": 8, "grounding": 7, "speed": 9}), "Document B"),  # incumbent present but b omitted
-        (_answer({"specificity": 8, "grounding": 7, "speed": 9, "bogus": 5}, {"specificity": 4, "grounding": 5, "speed": 3, "bogus": 5}), "bogus"),
+        (_answer({"specificity": 8, "grounding": 7}), "speed"),  # missing dimension
+        (_answer({"specificity": 11, "grounding": 7, "speed": 9}), "11"),  # out of range
+        (_answer({"specificity": 8, "grounding": 7, "speed": 9, "bogus": 5}), "bogus"),
+        (_answer({"specificity": 8, "grounding": 7, "speed": 9}, deficiencies=["specificity: thin"]), "grounding"),  # no entry per dimension
+        (_answer({"specificity": 10, "grounding": 7, "speed": 9}, deficiencies=["specificity: step 2 is vague", "grounding: x", "speed: y"]), "none"),  # 10 next to a deficiency
         (ValueError("provider exploded"), "provider exploded"),
     ],
 )
 def test_judge_repairs_once_and_explains_the_problem(structured_fake, bad, reason):
-    good = _answer({"specificity": 8, "grounding": 7, "speed": 9}, {"specificity": 4, "grounding": 5, "speed": 3})
+    good = _answer({"specificity": 8, "grounding": 7, "speed": 9})
     model = structured_fake([bad, good])
-    v = judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, rng=FixedRng(0.1))
+    v = judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, FROZEN)
     assert v.candidate_total == 24
     assert len(model.calls) == 2
     assert reason in _flat(model.calls[1][1])
 
 
+def test_judge_accepts_a_ten_backed_by_a_none_entry(structured_fake):
+    model = structured_fake([_answer({"specificity": 10, "grounding": 7, "speed": 9}, deficiencies=["specificity: none — steps 1-3 name owner and date", "grounding: step 2 cites nothing", "speed: step 3 says 'soon'"])])
+    v = judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, FROZEN)
+    assert v.candidate["specificity"] == 10 and len(model.calls) == 1
+    assert v.deficiencies[0].startswith("specificity: none")
+
+
 def test_judge_gives_up_after_one_repair(structured_fake):
-    bad = _answer({"specificity": 8}, {"specificity": 4})
+    bad = _answer({"specificity": 8})
     model = structured_fake([bad, bad])
     with pytest.raises(JudgeError, match="repair"):
-        judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, rng=FixedRng(0.1))
+        judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, FROZEN)
     assert len(model.calls) == 2
 
 
@@ -145,16 +150,65 @@ def test_verdict_dumps_to_score_json_shape():
     v = Verdict(
         experiment=2,
         judge_model="gemini-x",
-        order=["incumbent", "candidate"],
         candidate={"specificity": 8},
         incumbent={"specificity": 4},
         candidate_total=8,
         incumbent_total=4,
+        deficiencies=["specificity: step 1 is thin"],
         rationale="r",
     )
     data = json.loads(json.dumps(v.model_dump(mode="json")))
-    assert set(data) == {"experiment", "judge_model", "order", "candidate", "incumbent", "candidate_total", "incumbent_total", "rationale"}
-    assert data["order"] == ["incumbent", "candidate"]
+    assert set(data) == {"experiment", "judge_model", "candidate", "incumbent", "candidate_total", "incumbent_total", "deficiencies", "rationale"}
+
+
+def test_verdict_reads_score_json_written_before_deficiencies_existed():
+    data = {"experiment": 1, "judge_model": "g", "candidate": {"specificity": 8}, "incumbent": None, "candidate_total": 8, "incumbent_total": None, "rationale": "r"}
+    v = Verdict.model_validate(data)
+    assert v.deficiencies == [] and v.kept is True
+
+
+def test_judge_answer_schema_asks_for_deficiencies_before_scores():
+    """The field order is the mechanism (structured output is generated in schema order), so it is the contract;
+    the prompt's wording is not pinned."""
+    assert list(JudgeAnswer.model_fields)[:2] == ["deficiencies", "scores"]
+
+
+def test_loop_judge_step_passes_the_frozen_best_scores(structured_fake, tmp_path, monkeypatch):
+    """The live path reads `best/score.json` and hands its candidate scores to the judge as the frozen anchor."""
+    from engine import loop
+    from engine.workspace import Workspace
+
+    branch = "autoresearch/demo"
+    ws = Workspace(tmp_path, branch)
+    ws.write("metadata.json", json.dumps({"mission": MISSION, "transcript_path": "t.md", "max_experiments": 3}))
+    ws.write("rubric.md", render_rubric(CORE_DIMENSIONS, DIMS[2:]))
+    ids = [d.id for d in CORE_DIMENSIONS] + ["speed"]
+    ws.write("best/recommendations.md", INCUMBENT)
+    ws.write("best/score.json", json.dumps({"experiment": 1, "candidate": {i: 6 for i in ids}, "candidate_total": 6 * len(ids), "rationale": "r"}))
+    model = structured_fake([_answer({i: 7 for i in ids})])
+    monkeypatch.setattr(loop, "make_model", lambda *a, **k: model)
+    out = loop.judge_step.func(str(tmp_path), branch, 2, {"path": "attempts/2/recommendations.md", "content": CANDIDATE}, "fake")
+    assert out["error"] is None
+    assert out["verdict"]["incumbent"] == {i: 6 for i in ids}
+    assert out["verdict"]["incumbent_total"] == 6 * len(ids)
+    assert out["verdict"]["candidate_total"] == 7 * len(ids)
+    assert "- total: " + str(6 * len(ids)) in _body(model.calls[0][1])
+
+
+def test_loop_judge_step_without_a_best_grades_alone(structured_fake, tmp_path, monkeypatch):
+    from engine import loop
+    from engine.workspace import Workspace
+
+    branch = "autoresearch/demo"
+    ws = Workspace(tmp_path, branch)
+    ws.write("metadata.json", json.dumps({"mission": MISSION, "transcript_path": "t.md", "max_experiments": 3}))
+    ws.write("rubric.md", render_rubric(CORE_DIMENSIONS, DIMS[2:]))
+    ids = [d.id for d in CORE_DIMENSIONS] + ["speed"]
+    model = structured_fake([_answer({i: 7 for i in ids})])
+    monkeypatch.setattr(loop, "make_model", lambda *a, **k: model)
+    out = loop.judge_step.func(str(tmp_path), branch, 1, {"path": "attempts/1/recommendations.md", "content": CANDIDATE}, "fake")
+    assert out["error"] is None and out["verdict"]["incumbent"] is None
+    assert REFERENCE_LABEL not in _body(model.calls[0][1])
 
 
 @pytest.mark.live
@@ -172,12 +226,14 @@ def test_judge_live_prefers_the_obviously_better_document():
         "3. Kill the sales-enablement idea: the transcript calls that branch crowded with no winner."
     )
     weak = "Think about markets. Consider AI. Talk to people. Build something good."
-    v = judge(make_model(), CORE_DIMENSIONS, MISSION, good, weak, experiment=1, judge_model=os.environ.get("GEMINI_MODEL", ""))
-    assert set(v.candidate) == {d.id for d in CORE_DIMENSIONS}
-    assert all(1 <= s <= 10 for s in v.candidate.values())
-    assert v.incumbent is not None and all(1 <= s <= 10 for s in v.incumbent.values())
-    assert v.candidate_total > v.incumbent_total
-    assert v.rationale.strip()
+    model = make_model()
+    weak_v = judge(model, CORE_DIMENSIONS, MISSION, weak, None, None, experiment=1)
+    good_v = judge(model, CORE_DIMENSIONS, MISSION, good, weak, weak_v.candidate, experiment=2)
+    assert set(good_v.candidate) == {d.id for d in CORE_DIMENSIONS}
+    assert all(1 <= s <= 10 for s in good_v.candidate.values())
+    assert good_v.incumbent_total == weak_v.candidate_total
+    assert good_v.candidate_total > good_v.incumbent_total
+    assert good_v.rationale.strip()
 
 
 SAME_DOC = """# Recommendations
@@ -198,96 +254,16 @@ SAME_DOC = """# Recommendations
 
 
 @pytest.mark.live
-def test_judge_live_scores_the_same_document_alike_in_both_positions():
-    """Symmetry control for spec 4.2: one document shown as both candidate and incumbent, once per order."""
+def test_judge_live_scores_the_same_document_alike_against_its_own_frozen_scores():
+    """Comparability control: a document graded alone, then graded again as candidate with itself as the frozen
+    reference, must land within a point of its frozen total (so a copy of the best never beats the best)."""
     if not os.environ.get("GOOGLE_API_KEY"):
         pytest.skip("GOOGLE_API_KEY not set")
     from engine.config import make_model
 
     model = make_model()
-    verdicts = [judge(model, CORE_DIMENSIONS, MISSION, SAME_DOC, SAME_DOC, rng=FixedRng(value)) for value in (0.1, 0.9)]
-    orders = {tuple(v.order) for v in verdicts}
-    for v in verdicts:
-        print(f"\norder={v.order} candidate={v.candidate_total} incumbent={v.incumbent_total} per-dim c={v.candidate} i={v.incumbent}")
-    assert orders == {("candidate", "incumbent"), ("incumbent", "candidate")}
-    for v in verdicts:
-        assert abs(v.candidate_total - v.incumbent_total) <= 1, (v.order, v.candidate, v.incumbent)
-
-
-VAGUE_DOC = """# Recommendations
-
-1. Talk to some restaurant-supply distributors about their software needs.
-2. Think about pricing per route instead of per seat.
-3. Avoid the crowded sales-enablement space.
-"""
-
-
-@pytest.mark.live
-def test_judge_live_ranks_two_documents_the_same_in_both_orders():
-    """Position-bias probe: the same pair in both orders must give the same winner and stable per-document totals."""
-    if not os.environ.get("GOOGLE_API_KEY"):
-        pytest.skip("GOOGLE_API_KEY not set")
-    from engine.config import make_model
-
-    model = make_model()
-    verdicts = [judge(model, CORE_DIMENSIONS, MISSION, SAME_DOC, VAGUE_DOC, rng=FixedRng(value)) for value in (0.1, 0.9)]
-    for v in verdicts:
-        print(f"\norder={v.order} strong={v.candidate_total} vague={v.incumbent_total} per-dim strong={v.candidate} vague={v.incumbent}")
-    assert {tuple(v.order) for v in verdicts} == {("candidate", "incumbent"), ("incumbent", "candidate")}
-    for v in verdicts:
-        assert v.candidate_total > v.incumbent_total
-    assert abs(verdicts[0].candidate_total - verdicts[1].candidate_total) <= 3
-    assert abs(verdicts[0].incumbent_total - verdicts[1].incumbent_total) <= 3
-
-
-def test_judge_answer_schema_asks_for_deficiencies_before_scores():
-    """The field order is the mechanism (structured output is generated in schema order), so it is the contract;
-    the prompt's wording is not pinned."""
-    assert list(JudgeAnswer.model_fields)[:3] == ["deficiencies_a", "deficiencies_b", "scores"]
-
-
-def test_judge_repairs_a_missing_second_deficiency_list(structured_fake):
-    bad = _answer({"specificity": 8, "grounding": 7, "speed": 9}, {"specificity": 4, "grounding": 5, "speed": 3})
-    bad.deficiencies_b = None
-    good = _answer({"specificity": 8, "grounding": 7, "speed": 9}, {"specificity": 4, "grounding": 5, "speed": 3})
-    model = structured_fake([bad, good])
-    v = judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, rng=FixedRng(0.1))
-    assert v.candidate_total == 24 and len(model.calls) == 2
-    assert "deficiency list" in _flat(model.calls[1][1])
-
-
-def test_loop_judge_step_defers_order_to_the_unseeded_module_rng(structured_fake, tmp_path, monkeypatch):
-    """The live path (`loop.judge_step`) passes no rng: it consults `judge.random` once per call, and with the real
-    module (nothing in the engine or its imports seeds it) both orders occur."""
-    from engine import loop
-    from engine.tasks import judge as judge_mod
-    from engine.workspace import Workspace
-
-    branch = "autoresearch/demo"
-    ws = Workspace(tmp_path, branch)
-    ws.write("metadata.json", json.dumps({"mission": MISSION, "transcript_path": "t.md", "max_experiments": 3}))
-    ws.write("rubric.md", render_rubric(CORE_DIMENSIONS, DIMS[2:]))
-    ws.write("best/recommendations.md", INCUMBENT)
-    ids = [d.id for d in CORE_DIMENSIONS] + ["speed"]
-    fresh = lambda *a, **k: structured_fake([_answer({i: 5 for i in ids}, {i: 6 for i in ids})])  # noqa: E731
-    monkeypatch.setattr(loop, "make_model", fresh)
-
-    class Recorder:
-        calls = 0
-
-        def random(self) -> float:
-            Recorder.calls += 1
-            return 0.9
-
-    monkeypatch.setattr(judge_mod, "random", Recorder())
-    out = loop.judge_step.func(str(tmp_path), branch, 2, {"path": "attempts/2/recommendations.md", "content": CANDIDATE}, "fake")
-    assert out["error"] is None and Recorder.calls == 1
-    assert out["verdict"]["order"] == ["incumbent", "candidate"]
-    assert out["verdict"]["candidate_total"] == 6 * len(ids)  # Document B was the candidate
-
-    monkeypatch.setattr(judge_mod, "random", random)
-    orders = set()
-    for _ in range(40):
-        out = loop.judge_step.func(str(tmp_path), branch, 2, {"path": "attempts/2/recommendations.md", "content": CANDIDATE}, "fake")
-        orders.add(tuple(out["verdict"]["order"]))
-    assert orders == {("candidate", "incumbent"), ("incumbent", "candidate")}
+    alone = judge(model, CORE_DIMENSIONS, MISSION, SAME_DOC, None, None)
+    again = judge(model, CORE_DIMENSIONS, MISSION, SAME_DOC, SAME_DOC, alone.candidate)
+    print(f"\nalone={alone.candidate_total} again={again.candidate_total} per-dim alone={alone.candidate} again={again.candidate}")
+    assert abs(again.candidate_total - alone.candidate_total) <= 1, (alone.candidate, again.candidate)
+    assert again.kept is False

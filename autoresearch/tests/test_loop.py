@@ -16,9 +16,8 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.types import Command
 
 from engine import loop
-from engine.tasks import judge as judge_mod
 from engine.tasks import steps as steps_mod
-from engine.tasks.judge import DocScore, JudgeAnswer
+from engine.tasks.judge import DimScore, JudgeAnswer
 from engine.tasks.log import parse_tsv
 from engine.tasks.rubric import CORE_DIMENSIONS, ExtraDimension, RubricExtras
 from tests.conftest import BOOTSTRAP, SESSION_REL, bare, git, head, seed_session, show, subjects
@@ -29,13 +28,6 @@ DIM_IDS = [d.id for d in CORE_DIMENSIONS] + ["vertical_focus"]
 _TARGET = re.compile(r"Write the (combination|merged decomposition|recommendations) to: (\S+)")
 _ATTEMPT = re.compile(r"/attempts/(\d+)/")
 
-
-class FixedRng:
-    def __init__(self, value: float):
-        self.value = value
-
-    def random(self) -> float:
-        return self.value
 
 
 class ScriptedAgents:
@@ -86,11 +78,11 @@ class _Agent:
 
 
 def answer(candidate: int, incumbent: int | None) -> JudgeAnswer:
-    """Same score on every dimension; with the fixed rng Document A is always the candidate."""
+    """Same candidate score on every dimension; the incumbent's frozen scores come from best/score.json, so
+    `incumbent` is accepted for the call sites' readability and ignored."""
     return JudgeAnswer(
-        deficiencies_a=[],
-        deficiencies_b=None if incumbent is None else [],
-        scores=[DocScore(dimension_id=i, a=candidate, b=incumbent) for i in DIM_IDS],
+        deficiencies=[f"{i}: none — scripted" if candidate == 10 else f"{i}: scripted" for i in DIM_IDS],
+        scores=[DimScore(dimension_id=i, score=candidate) for i in DIM_IDS],
         rationale="scripted",
     )
 
@@ -108,7 +100,6 @@ def harness(settings, structured_fake, monkeypatch):
         model = structured_fake([RubricExtras(dimensions=[EXTRA]), *judge_outputs])
         monkeypatch.setattr(steps_mod, "default_agent_factory", agents)
         monkeypatch.setattr(loop, "make_model", lambda *a, **k: model)
-        monkeypatch.setattr(judge_mod, "random", FixedRng(0.1))
         return loop.build_graph(checkpointer=MemorySaver()), agents, model
 
     return make
@@ -166,7 +157,7 @@ def test_keep_discard_steer_cap_and_no_replayed_steps(harness, origin, tmp_path)
     p = out["__interrupt__"][0].value
     assert p["kind"] == "new_best" and p["n"] == 1
     assert p["verdict"]["candidate_total"] == 36 and p["verdict"]["incumbent_total"] is None
-    assert p["verdict"]["order"] == ["candidate"]
+    assert p["verdict"]["incumbent"] is None
     assert p["trend"] == [{"n": 1, "candidate_total": 36, "incumbent_total": None, "kept": "1"}]
     assert subjects(origin, branch) == [
         "checkpoint 0 draft: seed combination",
@@ -180,7 +171,7 @@ def test_keep_discard_steer_cap_and_no_replayed_steps(harness, origin, tmp_path)
     p = out["__interrupt__"][0].value
     assert p["kind"] == "new_best" and p["n"] == 3
     assert p["verdict"]["candidate_total"] == 48 and p["verdict"]["incumbent_total"] == 36
-    assert p["verdict"]["order"] == ["candidate", "incumbent"]
+    assert p["verdict"]["incumbent"] == {i: 6 for i in DIM_IDS}
 
     # continue with nothing to say -> cap reached -> summary
     out = graph.invoke(Command(resume={"action": "continue"}), c)

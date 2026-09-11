@@ -85,7 +85,11 @@ def judge_step(root: str, branch: str, n: int, recommendations: dict[str, Any], 
     if recommendations.get("error") or not str(recommendations.get("content", "")).strip():
         return {"verdict": None, "error": f"nothing to judge: {recommendations.get('error') or 'empty recommendations'}"}
     ws = Workspace(root, branch)
-    incumbent = ws.read(BEST_RECOMMENDATIONS) if ws.has(BEST_RECOMMENDATIONS) else None
+    incumbent = incumbent_scores = None
+    if ws.has(BEST_RECOMMENDATIONS) and ws.has(f"best/{SCORE_NAME}"):
+        # frozen anchor: the best's own scores from when it was kept; never re-graded
+        incumbent = ws.read(BEST_RECOMMENDATIONS)
+        incumbent_scores = Verdict.model_validate_json(ws.read(f"best/{SCORE_NAME}")).candidate
     try:
         verdict = judge(
             make_model(),
@@ -93,6 +97,7 @@ def judge_step(root: str, branch: str, n: int, recommendations: dict[str, Any], 
             ws.mission,
             str(recommendations["content"]),
             incumbent,
+            incumbent_scores,
             experiment=n,
             judge_model=judge_model,
         )

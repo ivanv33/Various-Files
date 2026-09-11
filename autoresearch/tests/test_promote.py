@@ -23,7 +23,6 @@ def verdict(n: int = 2) -> Verdict:
     return Verdict(
         experiment=n,
         judge_model="fake",
-        order=["incumbent", "candidate"],
         candidate={"specificity": 8, "grounding": 7},
         incumbent={"specificity": 4, "grounding": 5},
         candidate_total=15,
@@ -51,7 +50,7 @@ def test_promote_copies_the_required_files_and_writes_score_json(tmp_path: Path)
     assert not ws.path("best/decomposition-swot.md").exists()
     score = json.loads(ws.read("best/score.json"))
     assert score == verdict(2).model_dump(mode="json")
-    assert score["order"] == ["incumbent", "candidate"] and score["experiment"] == 2 and score["judge_model"] == "fake"
+    assert score["experiment"] == 2 and score["judge_model"] == "fake"
     assert score["candidate_total"] == 15 and score["incumbent_total"] == 9
     # attempts/ is left in place (scratch; the loop never stages it)
     assert ws.has("attempts/2/recommendations.md")
@@ -60,7 +59,7 @@ def test_promote_copies_the_required_files_and_writes_score_json(tmp_path: Path)
 def test_promote_without_incumbent_writes_null_incumbent_fields(tmp_path: Path):
     ws = Workspace(tmp_path / "clone", BRANCH)
     fill_attempt(ws, 1)
-    promote(ws, 1, Verdict(order=["candidate"], candidate={"specificity": 6}, candidate_total=6, rationale="only one"))
+    promote(ws, 1, Verdict(candidate={"specificity": 6}, candidate_total=6, rationale="only one"))
     score = json.loads(ws.read("best/score.json"))
     assert score["incumbent"] is None and score["incumbent_total"] is None and score["candidate_total"] == 6
 

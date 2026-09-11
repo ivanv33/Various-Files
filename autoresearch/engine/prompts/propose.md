@@ -5,7 +5,7 @@ The loop mutates one artifact, a combination of frameworks written as `combinati
 Read before acting, using the paths in the brief: `catalog.json` (the frameworks you may use: slug, summary, when_to_use with failure modes), `rubric.md` (what the judge rewards), the tail of `experiments.tsv`, `notes.md` (your predecessors' Insights and the owner's Human steering, which overrides everything else), the current `best/combination-with-explanations.md`, `best/recommendations.md` and `best/score.json` when they exist, and enough of the transcript to know what it actually contains.
 
 Choose the next combination:
-- 1 to 4 frameworks from the catalog, named by slug exactly as in `catalog.json`. Prefer the smallest set that covers the mission's levers; add a framework only when you can say what it will surface that the others cannot.
+- 1 to 3 frameworks from the catalog, named by slug exactly as in `catalog.json`. Prefer the smallest set that covers the mission's levers; add a framework only when you can say what it will surface that the others cannot.
 - Do not repeat a framework set already in the log unless your explanations differ materially; if you do repeat one, say why in `note`.
 - Learn from the log: what did kept attempts share, what did discarded ones lack, and which rubric dimensions does the incumbent score lowest on in `best/score.json`? Aim the change there rather than changing everything at once.
 - Follow Human steering literally.

@@ -211,8 +211,9 @@ landed on `origin/autoresearch/<slug>` and the trace shows one span per task.
 
 - `langgraph dev` applies the config's `env` over the inherited environment, so an exported `GIT_REMOTE`
   loses to the `.env` file; `dev/smoke.sh` therefore serves a temp config whose `env` is an inline mapping.
-- Judge noise is comparable to the margins being decided (spec 4.2 re-grades the incumbent every experiment;
-  observed swing of 7 points on the same document). Read `experiments.tsv` and `best/score.json` together.
+- Scores are comparable across experiments (spec 4.2, frozen anchor): the judge grades only the candidate and
+  sees the current best with the scores it was kept at, which are never re-graded. `experiments.tsv` reads as
+  a leaderboard; `incumbent_total` on every row is the frozen best total the candidate had to beat.
 - Timings on the 2,002-word transcript: checkpoint 0 about 1 min, experiment 1 about 3.5 min (seed, no
   propose), later experiments 6-7 min.
 - Deep-agent nodes show up as `langgraph_node=model|tools` in the server log, not under the loop's task names;
