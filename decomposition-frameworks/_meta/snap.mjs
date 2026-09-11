@@ -75,6 +75,12 @@ try {
     await page.click('#t-derived'); await page.click('#t-grounding'); await new Promise(r => setTimeout(r, 400));
     await shot('grounding');
     await page.click('#t-grounding');
+    // insights mode: facts ghosted, derived lit, the card open
+    await page.click('#t-insights'); await new Promise(r => setTimeout(r, 500));
+    rec.metrics_insights = await metrics();
+    await shot('insights');
+    rec.insights_card = await page.evaluate(() => { const c = document.getElementById('insights'); if (!c || c.hidden) return null; return { has_formula: !!c.querySelector('.formula'), items: c.querySelectorAll('.i-item').length, starred: c.querySelectorAll('.i-item.starred').length }; });
+    await page.click('#t-insights'); await new Promise(r => setTimeout(r, 300));
     // click the first node to show the panel
     const clicked = await page.evaluate(() => { const c = document.querySelector('#stage canvas'); if (!c) return false; return true; });
     if (clicked) {

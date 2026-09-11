@@ -92,6 +92,24 @@
   #note .src { font: 11px var(--mono); color: var(--muted); word-break: break-word; text-align: right; }
 
   #panel { right: 12px; top: 12px; bottom: 12px; width: 340px; padding: 12px 14px; overflow: auto; font-size: 13px; z-index: 4; }
+  /* Insights: the LLM layer on its own. Facts ghost, inferences stay lit, and a card lists what was derived. */
+  #insights { right: 12px; top: 12px; bottom: 12px; width: 360px; padding: 14px 16px; overflow: auto; font-size: 13px; z-index: 3; }
+  #insights[hidden] { display: none; }
+  #insights .i-head { display: flex; align-items: flex-start; gap: 8px; }
+  #insights .eyebrow { color: #eda100; }
+  #insights h3 { margin: 4px 0 8px; font-size: 15px; color: var(--ink); font-weight: 600; line-height: 1.3; }
+  #insights .close { margin-left: auto; background: transparent; border: 1px solid var(--hairline); color: var(--ink-2); border-radius: 6px; width: 28px; height: 28px; cursor: pointer; flex: none; }
+  #insights .formula { margin: 0 0 12px; padding: 10px 12px; border-left: 2px solid #eda100; background: rgba(237,161,0,.06); color: var(--ink); line-height: 1.5; }
+  #insights h4 { font: 11px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 14px 0 6px; display: flex; align-items: center; gap: 6px; }
+  #insights h4 .chip { width: 9px; height: 9px; border-radius: 50%; }
+  #insights .i-item { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; padding: 6px 0; border-top: 1px solid var(--hairline); cursor: pointer; }
+  #insights .i-item:hover { background: rgba(255,255,255,.03); }
+  #insights .i-item .t { color: var(--ink); }
+  #insights .i-item .idea { grid-column: 1 / -1; color: #eda100; font-size: 12px; }
+  #insights .i-item .c { font: 11px var(--mono); color: var(--muted); align-self: start; }
+  #insights .i-item.starred .t::before { content: "★ "; color: #eda100; }
+  .ghost { opacity: .18 !important; }
+  .nlabel.ghost .lab { background: transparent; text-shadow: none; }
   #panel[hidden] { display: none; }
   #panel .p-head { display: flex; align-items: flex-start; gap: 8px; }
   #panel .p-slot { font: 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 6px; }
@@ -141,6 +159,7 @@
   <div class="toggles">
     <label><input type="checkbox" id="t-derived" checked> LLM-derived<kbd>d</kbd></label>
     <label><input type="checkbox" id="t-grounding"> grounding links<kbd>g</kbd></label>
+    <label title="Ghost the evidence, light the inferences, list what was derived"><input type="checkbox" id="t-insights"> insights<kbd>i</kbd></label>
     <label><input type="checkbox" id="t-labels" checked> labels</label>
     <label><input type="checkbox" id="t-rotate"> auto-rotate</label>
     <button id="reset" type="button">Reset view<kbd>r</kbd></button>
@@ -153,6 +172,7 @@
   <div id="fallback">Loading Three.js from jsDelivr… <br><small>This page needs internet access for <code>three@0.186.0</code>. The data itself is embedded.</small></div>
   <aside id="legend" class="card" aria-label="Legend"></aside>
   <aside id="panel" class="card" hidden aria-label="Node details"></aside>
+  <aside id="insights" class="card" hidden aria-label="What the LLM derived"></aside>
   <div id="tooltip" role="tooltip"></div>
 </main>
 
@@ -237,7 +257,7 @@ const ro = new ResizeObserver(() => { cancelAnimationFrame(roFrame); roFrame = r
 ro.observe(stage);
 
 // ---------- state ----------
-const state = { exampleIndex: 0, showDerived: true, showGrounding: false, showLabels: true, group: null, nodes: new Map(), edges: [], hit: [], hover: null, selected: null, fit: null, derivedDecor: [] };
+const state = { exampleIndex: 0, showDerived: true, showGrounding: false, showLabels: true, insights: false, group: null, nodes: new Map(), edges: [], hit: [], hover: null, selected: null, fit: null, derivedDecor: [] };
 
 // ---------- layouts ----------
 function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
@@ -532,6 +552,7 @@ function buildExample(i) {
   state.fit = { size, centre: c, mode: ex.layout?.mode || 'force', distance: ex.layout?.camera?.distance };
   renderNote(ex);
   renderLegend(ex);    // legend first, so the camera fit can measure it
+  if (state.insights) renderInsights(ex);
   resetView();
   applyVisibility();
   for (const b of $('examples').children) b.setAttribute('aria-pressed', String(b.dataset.index == i));
@@ -575,6 +596,11 @@ function applyVisibility() {
     rec.obj.visible = vis;
     rec.label.visible = vis && state.showLabels;
     rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+    // Insights mode: evidence recedes to a faint outline so each inference can still be traced to
+    // what it rests on, while the derived layer keeps full strength.
+    const ghost = state.insights && rec.node.provenance !== 'derived';
+    rec.label.element.classList.toggle('ghost', ghost);
+    rec.obj.traverse(o => { if (o.material && !o.userData.isIdeaRing) { if (o.userData.baseOpacity === undefined) o.userData.baseOpacity = o.material.opacity; o.material.transparent = ghost || o.userData.baseOpacity < 1; o.material.opacity = ghost ? Math.min(0.18, o.userData.baseOpacity) : o.userData.baseOpacity; } });
   }
   for (const rec of state.edges) {
     const endsOk = rec.A.obj.visible && rec.B.obj.visible;
@@ -582,6 +608,9 @@ function applyVisibility() {
     const vis = endsOk && (!rec.grounding || state.showGrounding) && (rec.edge.provenance !== 'derived' || state.showDerived);
     rec.grp.visible = vis;
     if (rec.label) rec.label.element.style.display = (vis && state.showLabels) ? '' : 'none';
+    const ghostE = state.insights && rec.edge.provenance !== 'derived';
+    rec.grp.traverse(o => { if (o.material) { if (o.userData.baseOpacity === undefined) o.userData.baseOpacity = o.material.opacity; o.material.transparent = true; o.material.opacity = ghostE ? Math.min(0.15, o.userData.baseOpacity) : o.userData.baseOpacity; } });
+    if (rec.label) rec.label.element.classList.toggle('ghost', ghostE);
   }
   for (const lab of state.derivedDecor) lab.element.style.display = state.showDerived ? '' : 'none';
   // The idea key explains a marker; drop it when no idea node is on screen (e.g. the facts-only view).
@@ -635,17 +664,56 @@ function renderStats() {
 function renderNote(ex) {
   const el = $('note'); el.replaceChildren();
   const h = document.createElement('h3'); h.textContent = ex.title || ex.id; el.appendChild(h);
-  const p = document.createElement('p'); p.textContent = ex.summary || ''; el.appendChild(p);
+  const p = document.createElement('p'); p.textContent = ex.insights?.short || ex.summary || ''; el.appendChild(p);
   const s = document.createElement('div'); s.className = 'src';
   if (ex.source?.type === 'transcript') s.textContent = `TBPN ${ex.source.date} · ${ex.source.episode_title || ''}`;
   else if (ex.source?.type === 'text') s.textContent = `source: ${ex.source.title || 'scenario text'}`;
   el.appendChild(s);
 }
 
+// ---------- insights card ----------
+function renderInsights(ex) {
+  const el = $('insights'); el.replaceChildren();
+  const head = document.createElement('div'); head.className = 'i-head';
+  const eb = document.createElement('div'); eb.className = 'eyebrow'; eb.textContent = 'What the LLM derived';
+  const close = document.createElement('button'); close.className = 'close'; close.type = 'button'; close.textContent = '×'; close.setAttribute('aria-label', 'Close'); close.onclick = () => { $('t-insights').checked = false; $('t-insights').dispatchEvent(new Event('change')); };
+  head.append(eb, close); el.appendChild(head);
+  const h3 = document.createElement('h3'); h3.textContent = ex.title || ex.id; el.appendChild(h3);
+  if (ex.insights?.long) { const f = document.createElement('p'); f.className = 'formula'; f.textContent = ex.insights.long; el.appendChild(f); }
+  const derived = ex.nodes.filter(n => n.provenance === 'derived');
+  const bySlot = new Map();
+  for (const n of derived) { if (!bySlot.has(n.slot)) bySlot.set(n.slot, []); bySlot.get(n.slot).push(n); }
+  // ideas first, then the idea-bearing slot, then the rest in registry order
+  const order = [...GRAPH.slots.map(s => s.id)].filter(id => bySlot.has(id));
+  if (ex.idea_bearing_slot && order.includes(ex.idea_bearing_slot)) { order.splice(order.indexOf(ex.idea_bearing_slot), 1); order.unshift(ex.idea_bearing_slot); }
+  for (const slotId of order) {
+    const st = slotStyle.get(slotId); const items = bySlot.get(slotId).slice().sort((a, b) => (b.idea ? 1 : 0) - (a.idea ? 1 : 0) || (b.confidence || 0) - (a.confidence || 0));
+    const h4 = document.createElement('h4'); const chip = document.createElement('span'); chip.className = 'chip'; chip.style.background = st?.color || MUTED; h4.append(chip, document.createTextNode((st?.slot?.label || slotId) + (slotId === ex.idea_bearing_slot ? ' · idea-bearing slot' : ''))); el.appendChild(h4);
+    for (const n of items) {
+      const it = document.createElement('div'); it.className = 'i-item' + (n.idea ? ' starred' : ''); it.tabIndex = 0;
+      const t = document.createElement('div'); t.className = 't'; t.textContent = n.text;
+      const c = document.createElement('div'); c.className = 'c'; c.textContent = Math.round((n.confidence || 0) * 100) + '%';
+      it.append(t, c);
+      if (n.idea) { const id = document.createElement('div'); id.className = 'idea'; id.textContent = n.idea; it.appendChild(id); }
+      const open = () => { const rec = state.nodes.get(n.id); if (rec) { state.selected = rec; openPanel(rec); } };
+      it.onclick = open; it.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } };
+      el.appendChild(it);
+    }
+  }
+  const foot = document.createElement('p'); foot.className = 'ref'; foot.style.marginTop = '14px'; foot.style.font = '11px var(--mono)'; foot.style.color = 'var(--muted)';
+  foot.textContent = `${derived.length} inferences · ${derived.filter(n => n.idea).length} carry an opportunity · click one to see the facts it rests on`; el.appendChild(foot);
+}
+function setInsights(on) {
+  state.insights = on;
+  if (on) { state.showDerived = true; $('t-derived').checked = true; state.showGrounding = true; $('t-grounding').checked = true; $('panel').hidden = true; state.selected = null; renderInsights(GRAPH.examples[state.exampleIndex]); }
+  $('insights').hidden = !on;
+  applyVisibility();
+}
+
 // ---------- panel ----------
 function openPanel(rec) {
   const n = rec.node, ex = GRAPH.examples[state.exampleIndex];
-  const panel = $('panel'); panel.replaceChildren(); panel.hidden = false;
+  const panel = $('panel'); panel.replaceChildren(); panel.hidden = false; panel.style.zIndex = '5';
   const head = document.createElement('div'); head.className = 'p-head';
   const slotEl = document.createElement('div'); slotEl.className = 'p-slot';
   const chip = document.createElement('span'); chip.className = 'chip'; chip.style.background = rec.color; slotEl.append(chip, document.createTextNode((slotStyle.get(n.slot)?.slot?.label) || n.slot));
@@ -717,11 +785,13 @@ document.addEventListener('keydown', (ev) => {
   if (ev.target && /input|textarea|select/i.test(ev.target.tagName)) return;
   if (ev.key === 'd') { $('t-derived').checked = !$('t-derived').checked; $('t-derived').dispatchEvent(new Event('change')); }
   if (ev.key === 'g') { $('t-grounding').checked = !$('t-grounding').checked; $('t-grounding').dispatchEvent(new Event('change')); }
+  if (ev.key === 'i') { $('t-insights').checked = !$('t-insights').checked; $('t-insights').dispatchEvent(new Event('change')); }
   if (ev.key === 'r') resetView();
   if (ev.key === 'Escape') { $('panel').hidden = true; state.selected = null; }
 });
-$('t-derived').addEventListener('change', (e) => { state.showDerived = e.target.checked; applyVisibility(); });
+$('t-derived').addEventListener('change', (e) => { state.showDerived = e.target.checked; if (!state.showDerived && state.insights) { $('t-insights').checked = false; setInsights(false); return; } applyVisibility(); });
 $('t-grounding').addEventListener('change', (e) => { state.showGrounding = e.target.checked; applyVisibility(); });
+$('t-insights').addEventListener('change', (e) => setInsights(e.target.checked));
 $('t-labels').addEventListener('change', (e) => { state.showLabels = e.target.checked; applyVisibility(); });
 $('t-rotate').addEventListener('change', (e) => { controls.autoRotate = e.target.checked; });
 $('reset').addEventListener('click', resetView);
@@ -739,10 +809,12 @@ state.showDerived = flag('derived', true); $('t-derived').checked = state.showDe
 state.showGrounding = flag('grounding', false); $('t-grounding').checked = state.showGrounding;
 state.showLabels = flag('labels', true); $('t-labels').checked = state.showLabels;
 controls.autoRotate = flag('rotate', false); $('t-rotate').checked = controls.autoRotate;
+const wantInsights = flag('insights', false);
 let startIndex = parseInt(q.get('example') || '0', 10);
 if (!(startIndex >= 0 && startIndex < GRAPH.examples.length)) startIndex = Math.max(0, GRAPH.examples.findIndex(x => x.id === q.get('example')));
 resize();
 buildExample(startIndex);
+if (wantInsights) { $('t-insights').checked = true; setInsights(true); }
 $('fallback').hidden = true; window.__engineReady = true;
 function loop() {
   requestAnimationFrame(loop);
