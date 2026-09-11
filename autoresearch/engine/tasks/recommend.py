@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from engine.tasks.propose import COMBINATION_NAME
-from engine.tasks.steps import LIMITS, AgentFactory, brief_header, failure, run_step
+from engine.tasks.steps import LIMITS, brief_header, failure, run_step
 from engine.workspace import Workspace
 
 RECOMMENDATIONS_NAME = "recommendations.md"
@@ -17,7 +17,6 @@ def run(
     n: int,
     decomposition: dict[str, Any],
     *,
-    agent_factory: AgentFactory | None = None,
     recursion_limit: int = LIMITS["recommend"],
 ) -> dict[str, Any]:
     """`decomposition` is `decompose.run`'s result; returns `{"path", "content", "error"}`."""
@@ -43,5 +42,4 @@ def run(
         brief=brief,
         output_rel=output_rel,
         recursion_limit=recursion_limit,
-        agent_factory=agent_factory,
     )

@@ -2,7 +2,8 @@
 
 The stub stands in for `create_deep_agent`: it records the system prompt, subagents, brief and
 config it was given and writes whatever files the test asks for, so every contract of the steps
-(paths, briefs, recursion limits, error handling, frontmatter parsing) is checked offline.
+(paths, briefs, recursion limits, error handling, frontmatter parsing) is checked offline. It is
+installed through the one seam every step shares, `steps.default_agent_factory` (as `test_loop.py` does).
 """
 
 from __future__ import annotations
@@ -16,7 +17,7 @@ from langchain_core.language_models.fake_chat_models import GenericFakeChatModel
 from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 
 from engine.catalog import load_seed_catalog
-from engine.tasks import decompose, propose, recommend
+from engine.tasks import decompose, propose, recommend, steps
 from engine.tasks.log import HEADER, LogRow, append_row
 from engine.tasks.rubric import CORE_DIMENSIONS, render_rubric
 from engine.tasks.steps import LIMITS, brief_header, default_agent_factory, run_step
@@ -94,6 +95,18 @@ class StubFactory:
         return self.agents[-1].calls[-1][1] or {}
 
 
+@pytest.fixture
+def stub_factory(monkeypatch):
+    """`stub_factory(writes, raise_exc) -> StubFactory` installed as `steps.default_agent_factory`."""
+
+    def install(writes: dict[str, str] | None = None, raise_exc: Exception | None = None) -> StubFactory:
+        factory = StubFactory(writes, raise_exc)
+        monkeypatch.setattr(steps, "default_agent_factory", factory)
+        return factory
+
+    return install
+
+
 # --- shared plumbing -------------------------------------------------------------
 
 
@@ -107,11 +120,11 @@ def test_brief_header_names_mission_and_virtual_paths(tmp_path: Path):
     assert "experiments.tsv" in header and "notes.md" in header
 
 
-def test_run_step_returns_path_content_and_no_error_on_success(tmp_path: Path):
+def test_run_step_returns_path_content_and_no_error_on_success(tmp_path: Path, stub_factory):
     ws = make_session(tmp_path)
     out = ws.attempt_rel(1, "thing.md")
-    factory = StubFactory({f"/{out}": "hello\n"})
-    result = run_step("model", ws, prompt_name="recommend", prompt_vars={}, brief="do it", output_rel=out, recursion_limit=7, agent_factory=factory)
+    factory = stub_factory({f"/{out}": "hello\n"})
+    result = run_step("model", ws, prompt_name="recommend", prompt_vars={}, brief="do it", output_rel=out, recursion_limit=7)
     assert result == {"path": out, "content": "hello\n", "error": None}
     assert factory.created[0]["model"] == "model"
     assert factory.created[0]["root"] == str(ws.root)
@@ -119,21 +132,23 @@ def test_run_step_returns_path_content_and_no_error_on_success(tmp_path: Path):
     assert factory.brief == "do it"
 
 
-def test_run_step_reports_agent_exception_as_error(tmp_path: Path):
+def test_run_step_reports_agent_exception_as_error(tmp_path: Path, stub_factory):
     ws = make_session(tmp_path)
     out = ws.attempt_rel(1, "thing.md")
-    factory = StubFactory(raise_exc=RuntimeError("recursion limit of 7 reached"))
-    result = run_step("model", ws, prompt_name="recommend", prompt_vars={}, brief="b", output_rel=out, recursion_limit=7, agent_factory=factory)
+    stub_factory(raise_exc=RuntimeError("recursion limit of 7 reached"))
+    result = run_step("model", ws, prompt_name="recommend", prompt_vars={}, brief="b", output_rel=out, recursion_limit=7)
     assert result["path"] == out and result["content"] == ""
     assert "RuntimeError" in result["error"] and "recursion limit of 7 reached" in result["error"]
 
 
-def test_run_step_reports_missing_or_empty_output_as_error(tmp_path: Path):
+def test_run_step_reports_missing_or_empty_output_as_error(tmp_path: Path, stub_factory):
     ws = make_session(tmp_path)
     out = ws.attempt_rel(1, "thing.md")
-    missing = run_step("m", ws, prompt_name="recommend", prompt_vars={}, brief="b", output_rel=out, recursion_limit=7, agent_factory=StubFactory({}))
+    stub_factory({})
+    missing = run_step("m", ws, prompt_name="recommend", prompt_vars={}, brief="b", output_rel=out, recursion_limit=7)
     assert missing["error"] and "missing or empty" in missing["error"] and out in missing["error"]
-    empty = run_step("m", ws, prompt_name="recommend", prompt_vars={}, brief="b", output_rel=out, recursion_limit=7, agent_factory=StubFactory({f"/{out}": "  \n"}))
+    stub_factory({f"/{out}": "  \n"})
+    empty = run_step("m", ws, prompt_name="recommend", prompt_vars={}, brief="b", output_rel=out, recursion_limit=7)
     assert empty["error"] and "missing or empty" in empty["error"]
 
 
@@ -192,11 +207,11 @@ def test_parse_combination_joins_block_scalar_notes():
     assert propose.parse_combination("---\nframeworks: [swot]\nnote: 'a > b'\n---\n") == (["swot"], "a > b")
 
 
-def test_propose_seed_writes_best_combination_and_parses_frontmatter(tmp_path: Path):
+def test_propose_seed_writes_best_combination_and_parses_frontmatter(tmp_path: Path, stub_factory):
     ws = make_session(tmp_path)
     out = ws.rel("best/combination-with-explanations.md")
-    factory = StubFactory({f"/{out}": SEED_COMBO})
-    result = propose.run("model", ws, None, seed=True, agent_factory=factory)
+    factory = stub_factory({f"/{out}": SEED_COMBO})
+    result = propose.run("model", ws, None, seed=True)
     assert result["path"] == out and result["content"] == SEED_COMBO and result["error"] is None
     assert result["frameworks"] == ["star-par", "five-whys"]
     assert result["note"] == "start from narrative plus causal digging"
@@ -209,13 +224,13 @@ def test_propose_seed_writes_best_combination_and_parses_frontmatter(tmp_path: P
     assert factory.created[0]["subagents"] in (None, [])
 
 
-def test_propose_experiment_n_targets_attempt_dir_and_lists_tried_sets(tmp_path: Path):
+def test_propose_experiment_n_targets_attempt_dir_and_lists_tried_sets(tmp_path: Path, stub_factory):
     ws = make_session(tmp_path)
     ws.write("best/combination-with-explanations.md", SEED_COMBO)
     append_row(ws.root, ws.session_rel, LogRow(n=1, frameworks=["star-par", "five-whys"], candidate_total=30, kept="1", note="seed"))
     out = ws.attempt_rel(2, "combination-with-explanations.md")
-    factory = StubFactory({f"/{out}": "---\nframeworks: [swot]\nnote: try a single lens\n---\n# SWOT only\n"})
-    result = propose.run("model", ws, 2, agent_factory=factory)
+    factory = stub_factory({f"/{out}": "---\nframeworks: [swot]\nnote: try a single lens\n---\n# SWOT only\n"})
+    result = propose.run("model", ws, 2)
     assert result["path"] == out and result["frameworks"] == ["swot"] and result["note"] == "try a single lens"
     brief = factory.brief
     assert f"/{out}" in brief
@@ -224,23 +239,26 @@ def test_propose_experiment_n_targets_attempt_dir_and_lists_tried_sets(tmp_path:
     assert "seed combination" not in brief.lower()  # not seed mode
 
 
-def test_propose_requires_n_unless_seed(tmp_path: Path):
+def test_propose_requires_n_unless_seed(tmp_path: Path, stub_factory):
     ws = make_session(tmp_path)
+    stub_factory()
     with pytest.raises(ValueError):
-        propose.run("model", ws, None, agent_factory=StubFactory())
+        propose.run("model", ws, None)
 
 
-def test_propose_without_frameworks_frontmatter_is_an_error(tmp_path: Path):
+def test_propose_without_frameworks_frontmatter_is_an_error(tmp_path: Path, stub_factory):
     ws = make_session(tmp_path)
     out = ws.attempt_rel(1, "combination-with-explanations.md")
-    result = propose.run("model", ws, 1, agent_factory=StubFactory({f"/{out}": "# Combination\n\nno frontmatter\n"}))
+    stub_factory({f"/{out}": "# Combination\n\nno frontmatter\n"})
+    result = propose.run("model", ws, 1)
     assert result["error"] and "frameworks" in result["error"]
     assert result["frameworks"] == [] and result["content"]  # content kept for inspection
 
 
-def test_propose_agent_failure_is_an_error_result(tmp_path: Path):
+def test_propose_agent_failure_is_an_error_result(tmp_path: Path, stub_factory):
     ws = make_session(tmp_path)
-    result = propose.run("model", ws, 1, agent_factory=StubFactory(raise_exc=TimeoutError("slow")))
+    stub_factory(raise_exc=TimeoutError("slow"))
+    result = propose.run("model", ws, 1)
     assert result["error"] and "TimeoutError" in result["error"]
     assert result["frameworks"] == [] and result["note"] == ""
 
@@ -264,12 +282,12 @@ def test_use_seed_without_seed_is_an_error_result(tmp_path: Path):
 # --- decompose -------------------------------------------------------------------
 
 
-def test_decompose_materializes_combination_and_fans_out_with_subagent(tmp_path: Path):
+def test_decompose_materializes_combination_and_fans_out_with_subagent(tmp_path: Path, stub_factory):
     ws = make_session(tmp_path)
     combo = {"path": ws.attempt_rel(1, "combination-with-explanations.md"), "content": SEED_COMBO, "error": None}
     out = ws.attempt_rel(1, "decomposition.md")
-    factory = StubFactory({f"/{out}": "# Decomposition\n\n## star-par\n..."})
-    result = decompose.run("model", ws, 1, combo, agent_factory=factory)
+    factory = stub_factory({f"/{out}": "# Decomposition\n\n## star-par\n..."})
+    result = decompose.run("model", ws, 1, combo)
     assert result == {"path": out, "content": "# Decomposition\n\n## star-par\n...", "error": None}
     # the cached combination was written to disk before the agent ran
     assert (ws.root / combo["path"]).read_text() == SEED_COMBO
@@ -283,22 +301,24 @@ def test_decompose_materializes_combination_and_fans_out_with_subagent(tmp_path:
     assert "framework-decomposer" in factory.created[0]["system_prompt"]
 
 
-def test_decompose_refuses_a_failed_combination(tmp_path: Path):
+def test_decompose_refuses_a_failed_combination(tmp_path: Path, stub_factory):
     ws = make_session(tmp_path)
     combo = {"path": ws.attempt_rel(1, "combination-with-explanations.md"), "content": "", "error": "boom"}
-    result = decompose.run("model", ws, 1, combo, agent_factory=StubFactory())
+    factory = stub_factory()
+    result = decompose.run("model", ws, 1, combo)
+    assert factory.created == []  # refused before any agent was built
     assert result["error"] and "combination" in result["error"] and "boom" in result["error"]
 
 
 # --- recommend -------------------------------------------------------------------
 
 
-def test_recommend_materializes_decomposition_and_writes_recommendations(tmp_path: Path):
+def test_recommend_materializes_decomposition_and_writes_recommendations(tmp_path: Path, stub_factory):
     ws = make_session(tmp_path)
     decomp = {"path": ws.attempt_rel(1, "decomposition.md"), "content": "# Decomposition\n\nfindings\n", "error": None}
     out = ws.attempt_rel(1, "recommendations.md")
-    factory = StubFactory({f"/{out}": "# Recommendations\n\n1. Call three chains.\n"})
-    result = recommend.run("model", ws, 1, decomp, agent_factory=factory)
+    factory = stub_factory({f"/{out}": "# Recommendations\n\n1. Call three chains.\n"})
+    result = recommend.run("model", ws, 1, decomp)
     assert result == {"path": out, "content": "# Recommendations\n\n1. Call three chains.\n", "error": None}
     assert (ws.root / decomp["path"]).read_text() == decomp["content"]
     assert factory.config["recursion_limit"] == LIMITS["recommend"]
@@ -308,10 +328,12 @@ def test_recommend_materializes_decomposition_and_writes_recommendations(tmp_pat
     assert factory.created[0]["subagents"] in (None, [])
 
 
-def test_recommend_refuses_a_failed_decomposition(tmp_path: Path):
+def test_recommend_refuses_a_failed_decomposition(tmp_path: Path, stub_factory):
     ws = make_session(tmp_path)
     decomp = {"path": ws.attempt_rel(1, "decomposition.md"), "content": "", "error": "limit"}
-    result = recommend.run("model", ws, 1, decomp, agent_factory=StubFactory())
+    factory = stub_factory()
+    result = recommend.run("model", ws, 1, decomp)
+    assert factory.created == []  # refused before any agent was built
     assert result["error"] and "decomposition" in result["error"] and "limit" in result["error"]
 
 

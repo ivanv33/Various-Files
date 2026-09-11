@@ -125,9 +125,8 @@ def ensure_workspace(branch: str, settings: Settings | None = None, *, role: str
     return ws
 
 
-def pull(root: Path | str, branch: str | None = None, settings: Settings | None = None) -> str:
+def pull(root: Path | str, branch: str, settings: Settings | None = None) -> str:
     """`git pull --rebase` from origin; returns the new HEAD sha."""
-    branch = branch or git(root, "rev-parse", "--abbrev-ref", "HEAD")
     git(root, "pull", "-q", "--rebase", "--autostash", "origin", branch, env=_remote_env(settings))
     return git(root, "rev-parse", "HEAD")
 
@@ -248,9 +247,7 @@ def _rebase_onto_origin(root: Path, branch: str, session_rel: str, env: dict[str
         proc = _run(root, "rebase", "--continue", env={"GIT_EDITOR": "true"})
 
 
-def commit_push(
-    root: Path | str, branch: str, message: str, session_rel: str | None = None, settings: Settings | None = None
-) -> str | None:
+def commit_push(root: Path | str, branch: str, message: str, settings: Settings | None = None) -> str | None:
     """Stage the allowlist, revert strays, commit, push (rebase + retry once). Returns sha or None.
 
     The remote credential comes from `settings` (default: `GIT_REMOTE` in the environment) per command; it is
@@ -258,7 +255,7 @@ def commit_push(
     """
     root = Path(root)
     env = _remote_env(settings)
-    session_rel = session_rel or f"{SESSIONS_REL}/{slug_from_branch(branch)}"
+    session_rel = f"{SESSIONS_REL}/{slug_from_branch(branch)}"
     stage_allowlist(root, session_rel)
     revert_stray_changes(root, session_rel)
     if _run(root, "diff", "--cached", "--quiet").returncode == 0:

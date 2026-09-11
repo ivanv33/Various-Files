@@ -57,11 +57,10 @@ def test_promote_copies_the_required_files_and_writes_score_json(tmp_path: Path)
     assert ws.has("attempts/2/recommendations.md")
 
 
-def test_promote_accepts_a_serialized_verdict_dict(tmp_path: Path):
+def test_promote_without_incumbent_writes_null_incumbent_fields(tmp_path: Path):
     ws = Workspace(tmp_path / "clone", BRANCH)
     fill_attempt(ws, 1)
-    v = Verdict(order=["candidate"], candidate={"specificity": 6}, candidate_total=6, rationale="only one")
-    promote(ws, 1, v.model_dump(mode="json"))
+    promote(ws, 1, Verdict(order=["candidate"], candidate={"specificity": 6}, candidate_total=6, rationale="only one"))
     score = json.loads(ws.read("best/score.json"))
     assert score["incumbent"] is None and score["incumbent_total"] is None and score["candidate_total"] == 6
 

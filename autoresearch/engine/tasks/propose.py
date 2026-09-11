@@ -12,7 +12,7 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from engine.tasks.steps import LIMITS, AgentFactory, brief_header, failure, log_tail, run_step
+from engine.tasks.steps import LIMITS, brief_header, failure, log_tail, run_step
 from engine.workspace import Workspace
 
 COMBINATION_NAME = "combination-with-explanations.md"
@@ -106,7 +106,6 @@ def run(
     n: int | None,
     *,
     seed: bool = False,
-    agent_factory: AgentFactory | None = None,
     recursion_limit: int = LIMITS["propose"],
 ) -> dict[str, Any]:
     """Return `{"path", "content", "error", "frameworks", "note"}` for the new combination."""
@@ -124,7 +123,6 @@ def run(
         brief=_brief(ws, n, seed, output_rel),
         output_rel=output_rel,
         recursion_limit=recursion_limit,
-        agent_factory=agent_factory,
     )
     return _with_combination(result)
 

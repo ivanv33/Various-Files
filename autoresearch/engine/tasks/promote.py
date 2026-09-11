@@ -11,9 +11,6 @@ from __future__ import annotations
 
 import json
 import shutil
-from typing import Any
-
-from pydantic import BaseModel
 
 from engine.tasks.judge import Verdict
 from engine.workspace import Workspace
@@ -26,7 +23,7 @@ class PromoteError(RuntimeError):
     """The attempt directory is missing one of the judged files; nothing was written."""
 
 
-def promote(ws: Workspace, n: int, verdict: Verdict | BaseModel | dict[str, Any]) -> list[str]:
+def promote(ws: Workspace, n: int, verdict: Verdict) -> list[str]:
     """Copy `REQUIRED` from `attempts/<n>/` into `best/` and write `best/score.json`; return repo-relative paths written."""
     src = ws.attempt_dir(n)
     if not src.is_dir():
@@ -34,10 +31,7 @@ def promote(ws: Workspace, n: int, verdict: Verdict | BaseModel | dict[str, Any]
     missing = [name for name in REQUIRED if not ws.has(f"attempts/{n}/{name}")]
     if missing:
         raise PromoteError(f"attempt {n} lacks {', '.join(missing)}")
-    if isinstance(verdict, BaseModel):
-        score = verdict.model_dump(mode="json")
-    else:
-        score = Verdict.model_validate(verdict).model_dump(mode="json")
+    score = verdict.model_dump(mode="json")
 
     best = ws.path("best")
     if best.exists():

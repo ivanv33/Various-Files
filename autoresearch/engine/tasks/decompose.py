@@ -10,7 +10,7 @@ from typing import Any
 
 from engine.prompts import load_prompt
 from engine.tasks.propose import parse_combination
-from engine.tasks.steps import LIMITS, AgentFactory, brief_header, failure, run_step
+from engine.tasks.steps import LIMITS, brief_header, failure, run_step
 from engine.workspace import Workspace
 
 DECOMPOSITION_NAME = "decomposition.md"
@@ -36,7 +36,6 @@ def run(
     n: int,
     combination: dict[str, Any],
     *,
-    agent_factory: AgentFactory | None = None,
     recursion_limit: int = LIMITS["decompose"],
 ) -> dict[str, Any]:
     """`combination` is `propose.run` / `use_seed`'s result; returns `{"path", "content", "error"}`."""
@@ -66,5 +65,4 @@ def run(
         output_rel=output_rel,
         recursion_limit=recursion_limit,
         subagents=[framework_decomposer_subagent()],
-        agent_factory=agent_factory,
     )

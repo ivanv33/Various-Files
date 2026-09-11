@@ -347,6 +347,6 @@ def test_pull_picks_up_remote_changes(settings, session_branch, tmp_path):
     other = other_clone(settings.git_remote, tmp_path)
     (other / SESSION_REL / "rubric.md").write_text("# Rubric edited by owner\n")
     remote_sha = push_from_other(other, "owner rubric")
-    assert pull(ws.root) == remote_sha
+    assert pull(ws.root, BRANCH) == remote_sha
     assert ws.read("rubric.md") == "# Rubric edited by owner\n"
     assert git(ws.root, "rev-parse", "HEAD") == remote_sha

@@ -9,7 +9,7 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Mapping
 
 from langchain.chat_models import init_chat_model
 
@@ -56,10 +56,10 @@ def load_env(path: Path | None = None) -> None:
     load_dotenv(path or Path(__file__).resolve().parents[1] / ".env", override=False)
 
 
-def make_model(settings: Settings | None = None, **kwargs: Any):
+def make_model(settings: Settings | None = None):
     """One chat model for every role: `google_genai:<GEMINI_MODEL>`."""
     if settings is None:
         model_id = (os.environ.get("GEMINI_MODEL") or DEFAULT_GEMINI_MODEL).strip()
     else:
         model_id = settings.gemini_model
-    return init_chat_model(f"google_genai:{model_id}", **kwargs)
+    return init_chat_model(f"google_genai:{model_id}")

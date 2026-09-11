@@ -34,9 +34,6 @@ class Workspace:
         self.branch = branch
         self.slug = slug_from_branch(branch)
 
-    def __repr__(self) -> str:
-        return f"Workspace(root={str(self.root)!r}, branch={self.branch!r})"
-
     # --- paths ----------------------------------------------------------
     @property
     def session_rel(self) -> str:

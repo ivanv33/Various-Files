@@ -11,7 +11,7 @@ are `{"path", "content", "error": None}`; the loop re-materializes `content` whe
 
 from __future__ import annotations
 
-from typing import Any, Callable, Mapping, Sequence
+from typing import Any, Mapping, Sequence
 
 from langchain_core.messages import HumanMessage
 
@@ -24,14 +24,6 @@ LIMITS: dict[str, int] = {"propose": 60, "decompose": 150, "recommend": 80}
 TAIL_ROWS = 12
 """How many recent `experiments.tsv` rows a brief spells out inline."""
 
-AgentFactory = Callable[..., Any]
-"""`factory(*, model, root: str, system_prompt: str, subagents) -> agent` with `.invoke(input, config)`."""
-
-
-class StepError(RuntimeError):
-    """Programming error in a step call (bad arguments); agent failures are returned, not raised."""
-
-
 DENIED_PATHS = ("/.git", "/.git/**")
 """Virtual paths no agent (or subagent) may read or write: the clone's git metadata. Agents never run git, and
 `git_ops.split_remote` keeps the remote token out of `.git/config`; this rule is the second layer."""
@@ -39,7 +31,10 @@ DENIED_PATHS = ("/.git", "/.git/**")
 
 def default_agent_factory(*, model: Any, root: str, system_prompt: str, subagents: Sequence[Any] | None = None) -> Any:
     """A `deepagents` deep agent over the clone. `checkpointer=False`: the step is a cached `@task`,
-    so the agent's own state must not be persisted under the loop's thread."""
+    so the agent's own state must not be persisted under the loop's thread.
+
+    `run_step` looks this name up at call time, so tests replace it with `monkeypatch.setattr(steps,
+    "default_agent_factory", stub)` -- the one seam for every step."""
     from deepagents import FilesystemPermission, create_deep_agent
     from deepagents.backends import FilesystemBackend
 
@@ -101,13 +96,11 @@ def run_step(
     output_rel: str,
     recursion_limit: int,
     subagents: Sequence[Any] | None = None,
-    agent_factory: AgentFactory | None = None,
 ) -> dict[str, Any]:
     """Build the agent from `prompts/<prompt_name>.md`, run it once on `brief`, check `output_rel`."""
     system_prompt = load_prompt(prompt_name).format(**prompt_vars)
-    factory = agent_factory or default_agent_factory
     try:
-        agent = factory(model=model, root=str(ws.root), system_prompt=system_prompt, subagents=subagents)
+        agent = default_agent_factory(model=model, root=str(ws.root), system_prompt=system_prompt, subagents=subagents)
         agent.invoke({"messages": [HumanMessage(content=brief)]}, config={"recursion_limit": recursion_limit})
     except Exception as exc:  # recursion limit, provider errors, tool errors: the attempt becomes kept=error
         return failure(output_rel, describe(exc))
