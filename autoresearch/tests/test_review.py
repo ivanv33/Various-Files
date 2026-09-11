@@ -94,6 +94,16 @@ def test_frontmatter_parse_and_set():
     assert props.proposal_status(DECIDED) == "accepted" and props.proposal_status("no frontmatter") == "open"
 
 
+def test_frontmatter_tolerates_leading_whitespace_before_the_first_fence():
+    """A proposal that starts with a blank line still has one frontmatter block after `set_frontmatter`, not two."""
+    text = "\n\n---\nstatus: open\nexperiment: 2\n---\n# body\n"
+    assert props.parse_frontmatter(text) == ({"status": "open", "experiment": "2"}, "# body\n")
+    assert props.proposal_status(text) == "open"
+    updated = props.set_frontmatter(text, status="accepted", decision_reason="ok")
+    assert updated == "---\nstatus: accepted\nexperiment: 2\ndecision_reason: ok\n---\n# body\n"
+    assert props.parse_frontmatter(updated)[0]["status"] == "accepted"
+
+
 def test_proposal_kind_from_file_name():
     assert props.proposal_kind(rel("new-framework-jobs-to-be-done.md")) == ("new-framework", "jobs-to-be-done")
     assert props.proposal_kind("proposals/rubric-change-ttfd.md") == ("rubric-change", "ttfd")

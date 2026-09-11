@@ -182,6 +182,16 @@ def test_parse_combination_reads_frontmatter_forms():
     assert propose.parse_combination("# no frontmatter\n") == ([], "")
 
 
+def test_parse_combination_joins_block_scalar_notes():
+    """`note: >` / `note: |` (what a YAML-minded agent writes for a long note) is the indented text, not the literal `>`."""
+    folded = "---\nframeworks: [swot]\nnote: >\n  first line of the note,\n  with a colon: kept\n---\nbody\n"
+    assert propose.parse_combination(folded) == (["swot"], "first line of the note, with a colon: kept")
+    literal = "---\nnote: |-\n  one\n  two\nframeworks: [mece]\n---\n"
+    assert propose.parse_combination(literal) == (["mece"], "one two")
+    assert propose.parse_combination("---\nframeworks: [swot]\nnote: >\n---\n") == (["swot"], "")
+    assert propose.parse_combination("---\nframeworks: [swot]\nnote: 'a > b'\n---\n") == (["swot"], "a > b")
+
+
 def test_propose_seed_writes_best_combination_and_parses_frontmatter(tmp_path: Path):
     ws = make_session(tmp_path)
     out = ws.rel("best/combination-with-explanations.md")

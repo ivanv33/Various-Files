@@ -21,6 +21,7 @@ INSIGHTS_LINE_BUDGET = 40
 
 _FRONTMATTER = re.compile(r"\A\s*---[ \t]*\n(.*?)\n---[ \t]*(?:\n|\Z)", re.S)
 _SPLIT = re.compile(r"[+,\s]+")
+_BLOCK_SCALAR = re.compile(r"^[>|][+-]?\d?$")  # YAML `>` / `|` with optional chomping and indent indicators
 
 
 def _unquote(value: str) -> str:
@@ -39,21 +40,24 @@ def parse_combination(text: str) -> tuple[list[str], str]:
     """`(frameworks, note)` from the frontmatter; `([], "")` when there is none.
 
     Accepts `frameworks: [a, b]`, `frameworks: a + b`, `frameworks: a, b` and a dash list on the
-    following lines; `note:` may be quoted.
+    following lines; `note:` may be quoted or a block scalar (`note: >` / `note: |` followed by
+    indented lines, joined into one line).
     """
     m = _FRONTMATTER.match(text)
     if not m:
         return [], ""
     frameworks: list[str] = []
-    note = ""
+    note_parts: list[str] = []
     key: str | None = None
     for raw in m.group(1).splitlines():
         if not raw.strip():
             continue
-        if raw[0] in " \t-" and key == "frameworks":
+        if raw[0] in " \t-":  # continuation of the current key
             item = raw.strip()
-            if item.startswith("-"):
+            if key == "frameworks" and item.startswith("-"):
                 frameworks += _slugs(item[1:])
+            elif key == "note" and raw[0] != "-":
+                note_parts.append(item)
             continue
         k, sep, v = raw.partition(":")
         if not sep:
@@ -62,8 +66,9 @@ def parse_combination(text: str) -> tuple[list[str], str]:
         if key == "frameworks":
             frameworks = _slugs(v)
         elif key == "note":
-            note = " ".join(_unquote(v).split())
-    return frameworks, note
+            v = v.strip()
+            note_parts = [] if _BLOCK_SCALAR.match(v) else [_unquote(v)]
+    return frameworks, " ".join(" ".join(note_parts).split())
 
 
 def _with_combination(result: dict[str, Any]) -> dict[str, Any]:

@@ -43,7 +43,7 @@ KIND_FRAMEWORK, KIND_RUBRIC, KIND_UNKNOWN = "new-framework", "rubric-change", "u
 STATUS_OPEN, STATUS_ACCEPTED, STATUS_REJECTED = "open", "accepted", "rejected"
 ENTRY_FIELDS = ("name", "category", "summary", "when_to_use")
 
-_FRONTMATTER = re.compile(r"\A---[ \t]*\n((?:.*\n)*?)---[ \t]*(?:\n|\Z)")
+_FRONTMATTER = re.compile(r"\A\s*---[ \t]*\n((?:.*\n)*?)---[ \t]*(?:\n|\Z)")  # leading blank lines tolerated
 _FIELD = re.compile(r"^([A-Za-z_][\w-]*):\s*(.*?)\s*$")
 _KIND = re.compile(rf"^({KIND_FRAMEWORK}|{KIND_RUBRIC})-([a-z0-9][a-z0-9-]*)\.md$")
 
