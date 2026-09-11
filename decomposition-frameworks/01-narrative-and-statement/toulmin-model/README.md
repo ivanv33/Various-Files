@@ -2,6 +2,12 @@
 
 > Takes one argument apart into claim, grounds, warrant, backing, qualifier and rebuttal, so that the unstated rule carrying the evidence to the conclusion, and the conditions under which it fails, are made explicit. Category: Narrative & Statement Decomposition. Reference: [Stephen Toulmin](https://en.wikipedia.org/wiki/Stephen_Toulmin). [Open the 3D graph](./index.html) (needs internet for Three.js; on GitHub open via Pages or clone).
 
+## What this graph derived
+
+Given Glenn Hutchins's case, on the TBPN bubbles episode, that the AI data-center build-out is not the dot-com CLEC overbuild because almost every data center has a solvent counterparty contracted for all its output, returns about 2x over a four-to-five-year deal and leaves an option on the used GPUs, applying the Toulmin Model we derived the rule he never states, that contracted offtake moves demand risk onto the buyer's balance sheet; a qualifier he does not draw, that it weakens for capital-burning labs; and two rebuttals nobody connected on air, weak offtaker credit and used GPUs losing value. The opportunities are a counterparty-risk rating or insurance product for compute offtake contracts, and a priced residual-value benchmark for used accelerators.
+
+Given Toulmin's passport-office scenario, in which a clerk reasons from one fact on file, that Harry was born in Bermuda, to the note 'so, presumably, Harry is a British subject', cites the statutes when asked why birthplace settles nationality, and names two exceptions, alien parents or naturalisation elsewhere, applying the Toulmin Model we derived the rule the clerk never states, that a person born in Bermuda is generally a British subject; that the statutes count as backing only because they are inferred to confer nationality by birth; and that the alien-parents exception is live because nobody has checked the parents. The reader gains an unstated warrant carrying the whole step, and a 'presumably' whose strength tracks two unverified exceptions.
+
 ## What it decomposes
 
 Toulmin's *The Uses of Argument* (1958) describes how practical arguments run, as against the syllogism. Its object is one argument: a claim and the case made for it. Grounds are the facts appealed to; the warrant is the general rule licensing the step from grounds to claim; backing is the field-specific assurance behind the warrant; the qualifier is how strongly the claim is held; the rebuttal is the conditions under which the warrant does not carry the claim.
