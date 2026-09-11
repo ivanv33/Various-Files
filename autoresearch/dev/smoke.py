@@ -53,6 +53,7 @@ DEFAULT_MISSION = (
 SECRET_MARKERS = ("KEY", "TOKEN", "SECRET", "PASSWORD")
 _EXP_SUBJECT = re.compile(r"^exp (\d+): ")
 _BOOTSTRAP_SUBJECT = re.compile(r"^session [a-z0-9-]+: bootstrap$")  # written by scripts/new_session.py
+BOOT_TIMEOUT_S = 120.0  # `langgraph dev` answers /ok in ~5 s locally
 
 Log = Callable[[str], None]
 
@@ -266,8 +267,6 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--port", type=int, default=2024)
     parser.add_argument("--root", default=DEFAULT_ROOT, help=f"scratch root, wiped on start (default {DEFAULT_ROOT})")
     parser.add_argument("--allow-errors", action="store_true", help="pass even if some rows are kept=error")
-    parser.add_argument("--max-resumes", type=int, default=10)
-    parser.add_argument("--boot-timeout", type=float, default=120.0, help="seconds to wait for langgraph dev")
     args = parser.parse_args(argv)
 
     root = Path(args.root)
@@ -318,14 +317,14 @@ def main(argv: list[str] | None = None) -> int:
 
         server = start_server(config_path, args.port, server_log)
         log(f"langgraph dev pid {server.pid}; log {server_log}")
-        wait_for_server(server, url, server_log, args.boot_timeout, log)
+        wait_for_server(server, url, server_log, BOOT_TIMEOUT_S, log)
 
         import httpx
         from langgraph_sdk import get_sync_client
 
         # An experiment is ~5-6 min of Gemini time on the short transcript; never time out a wait.
         client = get_sync_client(url=url, timeout=httpx.Timeout(connect=10.0, read=None, write=60.0, pool=10.0))
-        summary, interrupts = drive(client, branch, max_resumes=args.max_resumes, log=log)
+        summary, interrupts = drive(client, branch, log=log)
         facts = check_origin(origin, branch, session_rel, args.max_experiments, allow_errors=args.allow_errors)
         report(summary, interrupts, facts, root, log)
         return 0
