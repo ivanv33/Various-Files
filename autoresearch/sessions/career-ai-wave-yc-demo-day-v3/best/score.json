@@ -1,0 +1,28 @@
+{
+  "experiment": 1,
+  "judge_model": "gemini-3.8-flash",
+  "candidate": {
+    "specificity": 9,
+    "grounding": 10,
+    "mission_fit": 9,
+    "actionability": 9,
+    "insight": 9,
+    "comparative_path_ranking": 9,
+    "runway_risk_discipline": 9,
+    "subtractive_focus": 9
+  },
+  "incumbent": null,
+  "candidate_total": 73,
+  "incumbent_total": null,
+  "deficiencies": [
+    "specificity: In Step 3, the customer discovery target is defined broadly as 'boutique financial, trust, and compliance operators across New York City' without specifying target operational sub-niches (such as fund administration vs. RIA compliance) or exact buyer job titles.",
+    "grounding: none — Every single step, path ranking, and risk tripwire is directly linked to specific transcript quotes and line numbers, including Harj Taggar on enterprise contracts and incumbent stagnation (lines 1613–1635, 1696–1716, 1884–1909), Paul Graham on lemons markets, bureaucrat AI buyers, and hiring discipline (lines 5464–5472, 5765, 6114–6140, 6203–6208), Materiel's open-source traction (lines 3770–3774, 3817–3820), and Crunch's template-augmentation playbook (lines 4058–4132).",
+    "mission_fit: In Step 7, applying to YC and running AI lab loops simultaneously at Day 90 does not address the operational friction between YC's mandatory in-person San Francisco batch requirements and Ivan's life and discovery network rooted in Brooklyn NYC.",
+    "actionability: Step 6 allocates only 15 days (Day 60 to Day 75) to transition from an initial pilot draft to collecting a $20,000–$50,000 paid contract, which represents an overly compressed timeline for enterprise vendor onboarding and direct deposit setup.",
+    "insight: In Step 2, building an open-source LangGraph evaluation harness assumes LangGraph is the high-status agent framework across frontier labs, missing that top research labs often build proprietary or lower-level C++/PyTorch orchestration harnesses rather than high-level LangChain ecosystem abstractions.",
+    "comparative_path_ranking: Path (d) (wealth and leverage) is treated primarily as a downstream meta-strategy resulting from Path (b) rather than being comparatively evaluated against independent standalone wealth-maximization options (such as joining late-stage pre-IPO unicorns or high-compensation quantitative trading systems).",
+    "runway_risk_discipline: While Step 5 creates an explicit Day-60 go/no-go gate and Step 6 targets $20k–$50k pilots to bypass procurement, the plan never quantifies Ivan's actual monthly liquid burn rate in Brooklyn NYC to establish an exact dollar-denominated runway floor.",
+    "subtractive_focus: While Step 1 and the First 72 Hours effectively cut Lyft committees, meetings, and cross-team forums, they omit specific Staff-level engineering habits Ivan must break (such as perfectionist architecture docs, test suite over-engineering, or prolonged design consensus loops typical of a 10-year Google veteran)."
+  ],
+  "rationale": "The candidate is exceptionally strong across the board, earning a perfect 10 on grounding because every recommendation, path ranking, and risk tripwire is tethered to verifiable transcript line ranges and direct quotes. The points deducted across the other seven dimensions stem from minor, fixable omissions: actionability suffers slightly from an aggressive 15-day timeline between pilot draft and cash collection (Step 6); runway discipline establishes an exemplary Day-60 gate but omits Ivan's exact monthly dollar burn in Brooklyn; subtractive focus removes organizational Lyft overhead but leaves out personal Google-bred over-engineering habits; comparative ranking absorbs Path (d) into Path (b) rather than evaluating standalone late-stage wealth vehicles; mission fit overlooks the geographical tension between YC's SF batch and NYC living; specificity leaves the discovery interview cohort slightly broad; and insight overlooks frontier labs' skepticism toward LangGraph abstractions."
+}
