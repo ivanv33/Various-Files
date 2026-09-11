@@ -122,3 +122,35 @@ def fake_model():
         return GenericFakeChatModel(messages=iter(AIMessage(content=r) for r in replies))
 
     return make
+
+
+@pytest.fixture
+def structured_fake():
+    """Factory for a model whose `with_structured_output(Schema)` yields queued outputs.
+
+    `structured_fake([obj, ValueError("boom"), obj2])`: each `invoke` pops the next item; an
+    `Exception` instance is raised instead of returned; a `dict` is validated into `Schema`.
+    `model.calls` records `(schema, input)` per invoke so tests can inspect prompts and retries.
+    """
+    from langchain_core.runnables import RunnableLambda
+
+    class StructuredFake:
+        def __init__(self, outputs):
+            self.outputs = list(outputs)
+            self.calls: list[tuple[type, object]] = []
+
+        def with_structured_output(self, schema, **_kwargs):
+            def run(inp):
+                self.calls.append((schema, inp))
+                if not self.outputs:
+                    raise AssertionError("structured_fake ran out of queued outputs")
+                out = self.outputs.pop(0)
+                if isinstance(out, Exception):
+                    raise out
+                if isinstance(out, dict):
+                    return schema.model_validate(out)
+                return out
+
+            return RunnableLambda(run)
+
+    return StructuredFake
