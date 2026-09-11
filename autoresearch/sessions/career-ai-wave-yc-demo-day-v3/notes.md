@@ -2,12 +2,11 @@
 
 ## Insights
 - Baseline & Strategy: Rumelt + Inversion Pre-Mortem forms the indispensable strategic core. Exp 3 and Exp 5 scored 80/80 by combining macro path ranking with failure de-risking and subtractive discipline.
-- Value Chain & Wardley Evolution: Foundation models and custom compute silicon (TPUs, Trainium 3) are rapidly industrializing into commodity utilities. Building custom wrappers or pre-training from scratch (Path c) is fatal. Defensible power-law value sits in the Custom-to-Product layer: unsexy, error-intolerant vertical operational workflows.
 - Comparative Path Ranking: Rank Path (b) vertical AI startup #1 (1,000x equity upside, step-function contract growth), Path (d) wealth/optionality #2 (benchmarked against illiquid private shares with secondary transfer bans and counterparty risk), Path (a) frontier lab #3 ($600k–$850k liquidity floor unlocked by open-source systems gravity), and Path (c) research track #4 / eliminated (compute cost barriers, base model convergence).
-- Subtractive Focus: Unlearn 10 years of Big Tech Staff habits (ban 25-page RFCs, multi-tenant abstractions, consensus seeking). Shed Lyft overhead: decline 3 committees, step down from 2 interview panels, cap SLA maintenance at 25 hrs/wk, and enforce a 5:30 PM departure.
-- Runway Discipline: Enforce Ivan's $12,500/mo Brooklyn liquid burn and $75,000 reserve floor; tie resignation strictly to a Day-60 gate ($10,000/mo MRR or $75,000 upfront pilot cash).
-- Actionability & Procurement De-risking: Eliminate the 30–45 day enterprise AP settlement lag by initiating vendor onboarding (W-9, ACH profile, zero-retention addendum) concurrently during prototype deployment on Day 45–50, paired with sub-$25k discretionary corporate card pricing and a 10% prompt-pay discount.
-- Specificity in Lab Outreach: Route low-level PyTorch deterministic inference harnesses directly to named teams (OpenAI Triton/Inference, Anthropic Model Serving, DeepMind NYC Systems at 111 8th Ave) via named Google/Lyft alumni conduits.
+- Dynamic Stocks, Flows & Delays: Runway is a finite stock ($75k liquid reserve floor, $12,500/mo Brooklyn burn). Inflows suffer a fatal 30–45 day enterprise AP settlement delay unless compressed via parallel vendor onboarding at Day 45–50 prototype kickoff and sub-$25k discretionary spend card pricing.
+- Feedback Loops & Subtractive Focus: Unlearn 10 years of Google Staff habits (ban 25-page RFCs, premature abstractions, consensus seeking) to sever the corporate balancing loop draining bandwidth. Shed Lyft load: decline 3 committees, step down from 2 interview panels, cap SLA work at 25 hrs/wk, enforce 5:30 PM departure.
+- Value Chain & Moats: Foundation models and custom compute silicon (TPUs, Trainium 3) are commoditizing. Defensible power-law value sits in unsexy, error-intolerant vertical operational workflows (fund admin, RIA compliance) via spreadsheet augmentation (The Crunch Playbook).
+- Specificity in Lab Outreach: Route low-level PyTorch deterministic inference harnesses directly to named teams (OpenAI Triton/Inference, Anthropic Model Serving, DeepMind NYC Systems at 111 8th Ave) via named Google/Lyft alumni conduits to bypass recruiter filters.
 
 ## Human steering
 
