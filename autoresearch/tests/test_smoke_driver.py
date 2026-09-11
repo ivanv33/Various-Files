@@ -13,19 +13,38 @@ from tests.conftest import BRANCH, SESSION_REL, git
 # --- smoke_config ---------------------------------------------------------------
 
 
-def test_smoke_config_replaces_env_with_a_dict_and_keeps_the_rest():
-    base = {
-        "python_version": "3.13",
-        "dependencies": ["."],
-        "graphs": {"autoresearch_session": "./engine/loop.py:autoresearch_session"},
-        "env": ".env",
-        "dockerfile_lines": ["RUN true"],
+BASE_CONFIG = {
+    "python_version": "3.13",
+    "dependencies": ["."],
+    "graphs": {
+        "autoresearch_session": "./engine/loop.py:autoresearch_session",
+        "review_proposals": "./engine/review.py:review_proposals",
+    },
+    "env": ".env",
+    "dockerfile_lines": ["RUN true"],
+}
+ENV = {"GIT_REMOTE": "file:///tmp/o.git", "AUTORESEARCH_WORKDIR": "/tmp/ws"}
+
+
+def test_smoke_config_replaces_env_and_anchors_paths_so_the_server_can_run_from_the_scratch_root():
+    """`langgraph dev` resolves `dependencies` and `graphs` against its cwd, and its cwd is where the in-memory
+    runtime keeps `.langgraph_api/`; absolute paths let the smoke run the server from the wiped scratch root."""
+    out = smoke.smoke_config(BASE_CONFIG, ENV, anchor=Path("/abs/autoresearch"))
+    assert out["env"] == ENV
+    assert out["dependencies"] == ["/abs/autoresearch"]
+    assert out["graphs"] == {
+        "autoresearch_session": "/abs/autoresearch/engine/loop.py:autoresearch_session",
+        "review_proposals": "/abs/autoresearch/engine/review.py:review_proposals",
     }
-    env = {"GIT_REMOTE": "file:///tmp/o.git", "AUTORESEARCH_WORKDIR": "/tmp/ws"}
-    out = smoke.smoke_config(base, env)
-    assert out["env"] == env
-    assert {k: v for k, v in out.items() if k != "env"} == {k: v for k, v in base.items() if k != "env"}
-    assert base["env"] == ".env"  # input untouched
+    assert out["python_version"] == "3.13" and out["dockerfile_lines"] == ["RUN true"]
+    assert BASE_CONFIG["env"] == ".env" and BASE_CONFIG["dependencies"] == ["."]  # input untouched
+
+
+def test_smoke_config_anchors_at_the_autoresearch_dir_by_default():
+    out = smoke.smoke_config(BASE_CONFIG, ENV)
+    assert out["dependencies"] == [str(smoke.AUTORESEARCH_DIR)]
+    assert out["graphs"]["autoresearch_session"] == f"{smoke.AUTORESEARCH_DIR}/engine/loop.py:autoresearch_session"
+    assert (smoke.AUTORESEARCH_DIR / "engine" / "loop.py").is_file()
 
 
 def test_smoke_config_refuses_secret_keys_in_the_dict():

@@ -6,11 +6,14 @@
    process environment and are inherited by the server; they are never written to disk by this script.
 2. `git clone --bare` this worktree to `<root>/origin.git`; create the session branch there with
    `scripts/new_session.py` (short transcript, `max_experiments` small).
-3. Start `langgraph dev --no-browser --no-reload --config <root>/langgraph.json`. The temp config is the real
-   `langgraph.json` with `env` replaced by the mapping `{GIT_REMOTE, AUTORESEARCH_WORKDIR}`: `langgraph dev`
-   applies the config's env *over* the inherited environment (`patch_environment` sets unconditionally), so an
-   exported `GIT_REMOTE` would lose to the `.env` file the real config points at. `dependencies: ["."]` is
-   resolved against the server's cwd, which is `autoresearch/`.
+3. Start `langgraph dev --no-browser --no-reload --config <root>/langgraph.json` from `<root>`. The temp config
+   is the real `langgraph.json` with `env` replaced by the mapping `{GIT_REMOTE, AUTORESEARCH_WORKDIR}` (`langgraph
+   dev` applies the config's env *over* the inherited environment, so an exported `GIT_REMOTE` would lose to the
+   `.env` file the real config points at) and with `dependencies` / `graphs` anchored at `autoresearch/` by
+   absolute path: `langgraph dev` resolves both against its cwd, and the cwd is also where the in-memory runtime
+   keeps `.langgraph_api/` (runs, threads, checkpoints; loaded on boot). Running from the wiped scratch root
+   keeps a killed earlier smoke's pending run from being replayed against the fresh origin (seen in M9 as a
+   duplicate `checkpoint 0 draft` commit) and leaves the developer's own `autoresearch/.langgraph_api/` alone.
 4. Drive `autoresearch_session` through the SDK: create a thread, run, resume `{"action": "continue"}` at every
    interrupt (checkpoint 0, each new best) until the summary comes back.
 5. Verify the bare origin: one `exp n:` commit and one tsv row per experiment, no error rows unless
@@ -65,16 +68,22 @@ class SmokeError(RuntimeError):
 # --- pure helpers ---------------------------------------------------------------
 
 
-def smoke_config(base: dict[str, Any], env: dict[str, str]) -> dict[str, Any]:
-    """The real `langgraph.json` with `env` replaced by an inline mapping (no secrets allowed in it).
-
-    The dev server still writes its checkpoints to `autoresearch/.langgraph_api/` (gitignored): CLI 0.4.31
-    drops a `disable_persistence` key in `validate_config`, so there is no way to turn that off from here.
-    """
+def smoke_config(base: dict[str, Any], env: dict[str, str], anchor: Path = AUTORESEARCH_DIR) -> dict[str, Any]:
+    """The real `langgraph.json` with `env` replaced by an inline mapping (no secrets allowed in it) and
+    `dependencies` / `graphs` anchored at `anchor` by absolute path, so the server can run from any cwd."""
     secrets = [k for k in env if any(marker in k.upper() for marker in SECRET_MARKERS)]
     if secrets:
         raise SmokeError(f"refusing to write secrets into the temp langgraph.json: {', '.join(sorted(secrets))}")
-    return {**base, "env": dict(env)}
+    graphs: dict[str, str] = {}
+    for name, spec in base.get("graphs", {}).items():
+        module, _, attr = str(spec).rpartition(":")
+        graphs[name] = f"{anchor / module}:{attr}"
+    return {
+        **base,
+        "dependencies": [str(anchor / dep) for dep in base.get("dependencies", [])],
+        "graphs": graphs,
+        "env": dict(env),
+    }
 
 
 def describe_interrupt(value: Any) -> str:
@@ -171,12 +180,13 @@ def _http(url: str, payload: dict[str, Any] | None = None, timeout: float = 5.0)
         return json.loads(resp.read() or b"null")
 
 
-def start_server(config_path: Path, port: int, server_log: Path) -> subprocess.Popen:
+def start_server(config_path: Path, port: int, server_log: Path, cwd: Path) -> subprocess.Popen:
+    """`langgraph dev` with `cwd` as its working directory: the in-memory runtime's `.langgraph_api/` lands there."""
     exe = Path(sys.executable).parent / "langgraph"
     cmd = [str(exe), "dev", "--no-browser", "--no-reload", "--port", str(port), "--config", str(config_path)]
     return subprocess.Popen(
         cmd,
-        cwd=AUTORESEARCH_DIR,
+        cwd=cwd,
         stdout=server_log.open("ab"),
         stderr=subprocess.STDOUT,
         start_new_session=True,  # its own process group, so stop_server can take down every child too
@@ -315,7 +325,7 @@ def main(argv: list[str] | None = None) -> int:
         config_path = root / "langgraph.json"
         config_path.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
 
-        server = start_server(config_path, args.port, server_log)
+        server = start_server(config_path, args.port, server_log, cwd=root)
         log(f"langgraph dev pid {server.pid}; log {server_log}")
         wait_for_server(server, url, server_log, BOOT_TIMEOUT_S, log)
 
