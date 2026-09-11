@@ -2,6 +2,12 @@
 
 > Files every candidate cause of one named effect onto six fixed ribs - Methods, Machines, Materials, Measurements, Milieu, Manpower - so a team searches the whole space of causes instead of the corner it already knows. Category: Strategic & Business Decomposition. Reference: [Ishikawa diagram](https://en.wikipedia.org/wiki/Ishikawa_diagram). [Open the 3D graph](./index.html) (needs internet for Three.js; on GitHub open via Pages or clone).
 
+## What this graph derived
+
+Given that Chris Power of Hadrian, on TBPN's Defense Tech Day, said the United States has no industrial base left and named a cause on every front - machinists aging out, 1950s plant, no domestic CNC makers, CAM tools that emit bad code, no public process data, offshoring, export control - applying the Ishikawa diagram we derived that the missing factories and the missing workforce keep each other missing, that the process data is not absent but locked inside running factories, and that nobody sells a retrofit for the old plant; the opportunities are a retrofit layer for computerless machine tools, a domestic machine-tool builder or allied-equipment leasing vehicle, and the instrumented operation as the moat in export-controlled verticals.
+
+Given a moulding department's quality circle, where scrap on the Line 3 housings rose from two to nine per cent with the same cloudy streak at the gate on every reject, and five departments each offered a cause - halved drying time, an uncalibrated gauge, untraced resin lots, a second supplier, a humid store, operators trained by shadowing - applying the Ishikawa diagram we derived that moisture in the resin at the gate is the one variable three causes all push, that part of the rise may be gauge drift, and that shadowing is the normal onboarding; what the reader gains is the bare Machines rib: the mould tool was never examined because nobody from maintenance came.
+
 ## What it decomposes
 
 Kaoru Ishikawa taught this diagram to quality circles at Kawasaki Heavy Industries in the 1960s, and its object is narrow on purpose: one named effect. Not a plan, not an argument, not a system - a single observed bad outcome, stated as what was measured rather than as a diagnosis ("the scrap rate went from two per cent to nine per cent", not "the resin is wet"). What it takes apart is the space of that effect's possible causes, partitioned six ways before anyone has said anything about this particular problem. Causes hang on ribs, finer causes hang on causes, and every arrow runs toward the head of the fish.
