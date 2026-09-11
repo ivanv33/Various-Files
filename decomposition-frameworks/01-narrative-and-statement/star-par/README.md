@@ -2,6 +2,12 @@
 
 > Takes a completed event apart into the Situation the actor faced, the Task they owned, the Actions they took and the Result those actions produced, so that agency and causal attribution have to be stated rather than implied. Category: Narrative & Statement Decomposition. Reference: [Situation, task, action, result](https://en.wikipedia.org/wiki/Situation,_task,_action,_result). [Open the 3D graph](./index.html) (needs internet for Three.js; on GitHub open via Pages or clone).
 
+## What this graph derived
+
+Given that interim CEO Jeff Wang and Cognition CEO Scott Wu told TBPN how Windsurf, its founders hired away by Google DeepMind and rivals circling the go-to-market team left behind, was sold to Cognition over one weekend, applying STAR / PAR we derived that Wang's real objective was to find the whole company a home before its sales staff took those offers, that closing within days is what kept that team from leaving, and that the problem was a company with product, customers and a commercial team but no founders and no time; the opportunity that falls out is a two-sided market: engineer-heavy AI labs buying a commercial organisation whole, and default protection for employees a founder-only hire strands.
+
+Given a support lead's interview answer that a billing update double-charged four hundred customers and pushed the ticket queue from sixty to over nine hundred while a third of her agents were on leave, and that she was told to control the queue before April renewals, which she did with a proactive notice, a split queue and batched refunds, applying STAR / PAR we derived that demand rose fifteen-fold while capacity fell to two-thirds, that the real objective was protecting renewal revenue rather than shrinking the queue, and that the 94 percent renewal rate is attributed by the speaker to no action; the reader gains the hidden assumption a textbook STAR answer rests on: that results listed after actions were produced by them.
+
 ## What it decomposes
 
 STAR takes apart a completed event with an actor: an interview answer, a resume bullet, a post-mortem, a founder telling how a deal got done. It forces four things to be stated separately: the state of the world before the actor moved (Situation), the objective the actor owned (Task), what the actor personally did, in order (Action), and what changed afterwards and which action gets the credit (Result). PAR, the resume form, folds Situation and Task into one Problem.
