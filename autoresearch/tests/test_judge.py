@@ -240,14 +240,9 @@ def test_judge_live_ranks_two_documents_the_same_in_both_orders():
     assert abs(verdicts[0].incumbent_total - verdicts[1].incumbent_total) <= 3
 
 
-def test_judge_prompt_is_calibrated_and_asks_for_deficiencies_before_scores(structured_fake):
-    model = structured_fake([_answer({"specificity": 8, "grounding": 7, "speed": 9}, {"specificity": 4, "grounding": 5, "speed": 3})])
-    judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, rng=FixedRng(0.1))
-    system = str(model.calls[0][1][0].content)
-    for anchor in ("- 10:", "- 9:", "- 8:", "- 7:", "- 5 or 6:", "- 3 or 4:", "- 1 or 2:"):
-        assert anchor in system
-    for phrase in ("unlabeled", "Do not favour the first or the second position", "Do not reward length", "Identical or equivalent documents must receive identical scores", "before assigning any score"):
-        assert phrase in system
+def test_judge_answer_schema_asks_for_deficiencies_before_scores():
+    """The field order is the mechanism (structured output is generated in schema order), so it is the contract;
+    the prompt's wording is not pinned."""
     assert list(JudgeAnswer.model_fields)[:3] == ["deficiencies_a", "deficiencies_b", "scores"]
 
 

@@ -274,6 +274,34 @@ def test_failed_step_logs_an_error_row_and_the_loop_continues(harness, origin, t
     assert out["stopped"] == "stop" and out["attempts"] == 2 and out["kept"] == 1 and out["best_total"] == 30
 
 
+def test_judge_failure_after_its_repair_retry_logs_an_error_row_and_the_loop_continues(harness, origin, tmp_path):
+    """Spec 7: malformed / failing judge output gets one repair turn, then the attempt is `kept=error` and the loop goes on."""
+    branch = seed_session(origin, tmp_path, max_experiments=2)
+    graph, agents, model = harness(
+        combos={0: ["swot"], 2: ["mece"]},
+        judge_outputs=[RuntimeError("judge exploded"), RuntimeError("judge exploded again"), answer(5, None)],
+    )
+    c = cfg("t4")
+    graph.invoke({"branch": branch}, c)
+    out = graph.invoke(Command(resume={"action": "continue"}), c)
+    p = out["__interrupt__"][0].value
+    assert p["kind"] == "new_best" and p["n"] == 2  # experiment 1 errored without a pause; experiment 2 ran
+
+    rows = parse_tsv(show(origin, branch, "experiments.tsv"))
+    assert [(r.n, r.frameworks, r.kept, r.candidate_total, r.incumbent_total) for r in rows] == [
+        (1, ["swot"], "error", None, None),
+        (2, ["mece"], "1", 30, None),
+    ]
+    assert "JudgeError" in rows[0].note and "judge exploded again" in rows[0].note
+    subj = subjects(origin, branch)
+    assert subj[2].startswith("exp 1: ERROR JudgeError") and len(subj[2]) <= len("exp 1: ERROR ") + loop.ERROR_SUBJECT_CHARS
+    assert subj[3] == "exp 2: KEEP 30 vs -"
+    assert json.loads(show(origin, branch, "best/score.json"))["experiment"] == 2
+    assert len(model.calls) == 4  # extras + experiment 1's judge call and its repair turn + experiment 2's judge
+    assert "rejected" in str(model.calls[2][1][-1].content).lower() or "previous" in str(model.calls[2][1][-1].content).lower()
+    assert [k for k in agents.kinds if k[1] == 1] == [("merged decomposition", 1), ("recommendations", 1)]  # the attempt was fully built
+
+
 def test_module_exports_a_graph_without_a_checkpointer():
     from langgraph.pregel import Pregel
 
