@@ -2,6 +2,12 @@
 
 > Cuts a whole into branches on one dimension so that nothing overlaps and nothing is left out; the branch that comes back empty is the underserved market. Category: Strategic & Business Decomposition. Reference: [MECE principle](https://en.wikipedia.org/wiki/MECE_principle). [Open the 3D graph](./index.html) (needs internet for Three.js; on GitHub open via Pages or clone).
 
+## What this graph derived
+
+Given that Elad Gil, asked on TBPN on 10 October 2025 about AI companies in vertical markets, named the finalists in foundation models, coding and healthcare, called financial tooling, sales enablement and accounting crowded with no winner, and sized the services economy AI can enter at about $5 trillion, applying the MECE Principle we derived that the labs sit inside every vertical bucket, that the named verticals cover a sliver of the whole, that labor spend sits in no branch, and that a crowded branch is not an empty one; the opportunity that falls out is the service lines nobody can name, screened for near-zero software spend and high payroll, priced as work delivered rather than seats.
+
+Given that a bottled-drinks company's finance director read out 4.1 million cases shipped last year across supermarkets, convenience stores, the company's own website, vending operators and a German wholesaler booked by country, and the head of marketing noted the ledger has never had a line for restaurants, canteens or hotels, applying the MECE Principle we derived that channel is the one dimension to cut on, that 0.6 million cases, one in seven, sit in no branch at all, that the German line smuggles a second dimension into the cut and breaks exclusivity, and that on-premise is the branch the partition requires and nobody has opened; the reader gains the empty branch made visible: no number, no salesperson, no ledger line.
+
 ## What it decomposes
 
 MECE — mutually exclusive, collectively exhaustive — is Barbara Minto's grouping test, worked out at McKinsey in the 1960s and 70s as the discipline underneath the Pyramid Principle. Its object is a whole with a size: a revenue base, a cost line, a population, a market. It splits that whole into branches under two conditions. Mutually exclusive: no member falls in two branches. Collectively exhaustive: every member falls in one.
