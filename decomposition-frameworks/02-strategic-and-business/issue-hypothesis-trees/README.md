@@ -2,6 +2,12 @@
 
 > Breaks a decision question into MECE sub-questions, hangs a falsifiable candidate answer under each, and makes every hypothesis name the observation that would kill it. Category: Strategic & Business Decomposition. Reference: [Issue tree](https://en.wikipedia.org/wiki/Issue_tree). [Open the 3D graph](./index.html) (needs internet for Three.js; on GitHub open via Pages or clone).
 
+## What this graph derived
+
+Given that TBPN's hosts, on the 2025-08-09 recap, relayed the Wall Street Journal's report that Azure grew 39 percent with non-AI core infrastructure as the driver and volunteered five explanations for why infrastructure is outgrowing tokens-as-a-service, applying Issue & Hypothesis Trees we derived that two of those explanations really say the AI versus non-AI split is mismeasured, that a demand-side branch exists which nobody on air opened, and that four of the five came without the observation that would kill them; the opportunity that falls out is a workload-attribution layer reporting a defensible AI share from usage telemetry, and deployment tooling for the gap between announced enterprise AI programmes and inference in production.
+
+Given that Northline Freight's chief executive asked the March board why operating profit fell 22 percent on flat revenue, with loads up, driver pay up 9 percent and empty miles up from 14 to 19 percent, and that sales blamed rate cuts against a new entrant while operations blamed the wage settlement, applying Issue & Hypothesis Trees we derived that the fall can only have come through revenue per load or cost per load, that a third explanation nobody raised fits the numbers best, deadhead eating the margin, and that each explanation can be killed by one cheap calculation; the reader gains the hypothesis the room never said and the tests it never proposed.
+
 ## What it decomposes
 
 The object is one decision-relevant question, not a topic. The issue tree, also called a logic tree or a diagnostic tree, splits that question into sub-questions that are mutually exclusive and collectively exhaustive, and those into finer ones, until the leaves are things you could go and find out. It is the same MECE grouping Barbara Minto arranges top-down as an assertion, read instead as a question; Ethan Rasiel's *The McKinsey Way* popularised it and Conn and McLean's *Bulletproof Problem Solving* gives it its modern textbook form.
