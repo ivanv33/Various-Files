@@ -14,7 +14,6 @@ where they may already have changed). Everything else follows spec 3 literally.
 
 from __future__ import annotations
 
-import re
 from typing import Any
 
 from langgraph.func import entrypoint, task
@@ -27,6 +26,7 @@ from engine.tasks import propose as propose_mod
 from engine.tasks import recommend as recommend_mod
 from engine.tasks.judge import Verdict, judge
 from engine.tasks.log import LogRow, append_row, digest, utc_now
+from engine.tasks.notes import append_under_heading
 from engine.tasks.promote import SCORE_NAME, promote
 from engine.tasks.rubric import CORE_DIMENSIONS, Dimension, draft_extras, render_rubric
 from engine.tasks.steps import describe
@@ -37,8 +37,6 @@ NOTES_NAME = "notes.md"
 STEERING_HEADING = "## Human steering"
 BEST_RECOMMENDATIONS = "best/recommendations.md"
 ERROR_SUBJECT_CHARS = 80
-
-_HEADING = re.compile(r"^## ", re.M)
 
 
 # --- tasks ---------------------------------------------------------------------
@@ -153,17 +151,9 @@ def commit_push_step(root: str, branch: str, message: str) -> str | None:
 
 
 def add_steering(notes: str, steer: str, timestamp: str | None = None) -> str:
-    """Insert a timestamped entry at the end of the `## Human steering` section (created if missing)."""
+    """Append a timestamped entry at the end of the `## Human steering` section (created if missing)."""
     body = "\n  ".join(steer.strip().splitlines())
-    entry = f"- {timestamp or utc_now()}: {body}\n"
-    start = notes.find(STEERING_HEADING)
-    if start < 0:
-        return notes.rstrip("\n") + f"\n\n{STEERING_HEADING}\n\n{entry}"
-    after = start + len(STEERING_HEADING)
-    nxt = _HEADING.search(notes, after)
-    end = nxt.start() if nxt else len(notes)
-    section = notes[after:end].rstrip("\n")
-    return notes[:after] + section + "\n\n" + entry + ("\n" if nxt else "") + notes[end:]
+    return append_under_heading(notes, STEERING_HEADING, f"- {timestamp or utc_now()}: {body}\n")
 
 
 def parse_reply(reply: Any) -> tuple[str, str]:

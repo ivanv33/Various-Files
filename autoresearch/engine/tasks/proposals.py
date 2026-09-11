@@ -20,6 +20,7 @@ from pydantic import BaseModel, Field
 
 from engine.prompts import load_prompt
 from engine.tasks.log import utc_now
+from engine.tasks.notes import append_under_heading
 from engine.tasks.rubric import (
     CORE_DIMENSIONS,
     Dimension,
@@ -45,8 +46,6 @@ ENTRY_FIELDS = ("name", "category", "summary", "when_to_use")
 _FRONTMATTER = re.compile(r"\A---[ \t]*\n((?:.*\n)*?)---[ \t]*(?:\n|\Z)")
 _FIELD = re.compile(r"^([A-Za-z_][\w-]*):\s*(.*?)\s*$")
 _KIND = re.compile(rf"^({KIND_FRAMEWORK}|{KIND_RUBRIC})-([a-z0-9][a-z0-9-]*)\.md$")
-_HEADING = re.compile(r"^## ", re.M)
-_CHANGES_HEADING = re.compile(rf"^{re.escape(RUBRIC_CHANGES_HEADING)}[ \t]*$", re.M)
 
 
 class ReviewError(RuntimeError):
@@ -122,16 +121,7 @@ def list_proposals(ws: Workspace) -> tuple[list[str], list[str]]:
 
 def add_rubric_change_note(notes: str, text: str, timestamp: str | None = None) -> str:
     """Append a timestamped list item at the end of `## Rubric changes` (created at the end of the notes if missing)."""
-    entry = f"- {timestamp or utc_now()}: {one_line(text)}\n"
-    m = _CHANGES_HEADING.search(notes)
-    if not m:
-        return notes.rstrip("\n") + f"\n\n{RUBRIC_CHANGES_HEADING}\n\n{entry}"
-    after = m.end()
-    nxt = _HEADING.search(notes, after)
-    end = nxt.start() if nxt else len(notes)
-    section = notes[after:end].rstrip("\n")
-    joined = section + "\n" + entry if section.strip() else "\n\n" + entry
-    return notes[:after] + joined + ("\n" if nxt else "") + notes[end:]
+    return append_under_heading(notes, RUBRIC_CHANGES_HEADING, f"- {timestamp or utc_now()}: {one_line(text)}\n")
 
 
 # --- session views ---------------------------------------------------------------------
