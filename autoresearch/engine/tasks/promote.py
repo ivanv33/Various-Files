@@ -1,7 +1,10 @@
-"""Promote a kept attempt: `attempts/<n>/*` -> `best/`, plus `best/score.json` (refinement 7 shape).
+"""Promote a kept attempt: the three judged files from `attempts/<n>/` -> `best/`, plus `best/score.json`.
 
-`best/` is replaced wholesale so files from an earlier best cannot linger; `attempts/` is left
-alone (scratch, never staged). Plain function; the loop wraps it in a `@task`.
+`best/` holds exactly the four files of spec 2.2 (`combination-with-explanations.md`, `decomposition.md`,
+`recommendations.md`, `score.json` in the refinement-7 shape); per-framework scratch such as
+`decomposition-<slug>.md` stays in `attempts/`. `best/` is replaced wholesale so files from an earlier
+best cannot linger; `attempts/` is left alone (scratch, never staged). Plain function; the loop wraps
+it in a `@task`.
 """
 
 from __future__ import annotations
@@ -24,7 +27,7 @@ class PromoteError(RuntimeError):
 
 
 def promote(ws: Workspace, n: int, verdict: Verdict | BaseModel | dict[str, Any]) -> list[str]:
-    """Copy every file in `attempts/<n>/` into `best/` and write `best/score.json`; return repo-relative paths written."""
+    """Copy `REQUIRED` from `attempts/<n>/` into `best/` and write `best/score.json`; return repo-relative paths written."""
     src = ws.attempt_dir(n)
     if not src.is_dir():
         raise PromoteError(f"no attempt directory: {ws.attempt_rel(n, '')}")
@@ -41,10 +44,9 @@ def promote(ws: Workspace, n: int, verdict: Verdict | BaseModel | dict[str, Any]
         shutil.rmtree(best)
     best.mkdir(parents=True)
     written: list[str] = []
-    for p in sorted(src.iterdir()):
-        if p.is_file():
-            shutil.copyfile(p, best / p.name)
-            written.append(ws.rel(f"best/{p.name}"))
+    for name in REQUIRED:
+        shutil.copyfile(src / name, best / name)
+        written.append(ws.rel(f"best/{name}"))
     ws.write(f"best/{SCORE_NAME}", json.dumps(score, indent=2, ensure_ascii=False) + "\n")
     written.append(ws.rel(f"best/{SCORE_NAME}"))
     return written

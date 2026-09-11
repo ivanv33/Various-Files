@@ -37,15 +37,18 @@ def fill_attempt(ws: Workspace, n: int) -> None:
         ws.write(f"attempts/{n}/{name}", text)
 
 
-def test_promote_copies_attempt_files_and_writes_score_json(tmp_path: Path):
+def test_promote_copies_the_required_files_and_writes_score_json(tmp_path: Path):
     ws = Workspace(tmp_path / "clone", BRANCH)
     fill_attempt(ws, 2)
+    ws.write("attempts/2/decomposition-swot.md", "per-framework scratch\n")  # subagent output, never promoted
     ws.write("best/recommendations.md", "# old best\n")
     ws.write("best/score.json", "{}")
     written = promote(ws, 2, verdict(2))
     assert sorted(written) == sorted(ws.rel(f"best/{name}") for name in [*FILES, "score.json"])
     for name, text in FILES.items():
         assert ws.read(f"best/{name}") == text
+    assert sorted(p.name for p in ws.path("best").iterdir()) == sorted([*FILES, "score.json"])
+    assert not ws.path("best/decomposition-swot.md").exists()
     score = json.loads(ws.read("best/score.json"))
     assert score == verdict(2).model_dump(mode="json")
     assert score["order"] == ["incumbent", "candidate"] and score["experiment"] == 2 and score["judge_model"] == "fake"
