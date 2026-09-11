@@ -94,11 +94,10 @@ class LogRow(BaseModel):
 
 
 def parse_tsv(text: str) -> list[LogRow]:
+    """Data rows of an `experiments.tsv`; blank lines and header lines (first cell `n`) are skipped wherever they are."""
     rows: list[LogRow] = []
-    for i, line in enumerate(text.splitlines()):
-        if not line.strip():
-            continue
-        if i == 0 and line.split("\t")[0] == "n":
+    for line in text.splitlines():
+        if not line.strip() or line.split("\t")[0].strip() == COLUMNS[0]:
             continue
         rows.append(LogRow.from_tsv_line(line))
     return rows

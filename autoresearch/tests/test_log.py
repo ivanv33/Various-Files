@@ -87,6 +87,14 @@ def test_parse_and_render_skip_blank_lines():
     assert render_tsv(rows) == HEADER + "\n1\t2026\ta\t5\t\t1\tn\n"
 
 
+def test_parse_skips_the_header_after_a_leading_blank_line_and_when_repeated():
+    """A hand-edited tsv may start with a blank line or carry a second header after a merge; neither is a row."""
+    text = "\n" + HEADER + "\n1\t2026\ta\t5\t\t1\tn\n" + HEADER + "\n2\t2026\tb\t4\t5\t0\tm\n"
+    assert [(r.n, r.kept) for r in parse_tsv(text)] == [(1, "1"), (2, "0")]
+    assert parse_tsv("\n\n" + HEADER + "\n") == []
+    assert parse_tsv("  \n" + HEADER + "  \n") == []
+
+
 def test_digest_is_plain_serializable_dict():
     row = LogRow(n=1, frameworks=["a"], kept="1", note="")
     d = digest("new_best", n=1, row=row, path=Path("/x"), trend=[{"n": 1}])
