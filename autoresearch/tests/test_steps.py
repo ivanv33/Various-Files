@@ -55,16 +55,20 @@ def make_session(tmp_path: Path, *, transcript: str = "Speaker A: restaurants ne
 class StubAgent:
     """Writes `writes` (virtual path -> text) under `root` on invoke; optionally raises first."""
 
-    def __init__(self, root: str, writes: dict[str, str], raise_exc: Exception | None = None):
+    def __init__(self, root: str, writes: dict[str, str], raise_exc: Exception | None = None, empty_replies: int = 0):
         self.root = Path(root)
         self.writes = writes
         self.raise_exc = raise_exc
+        self.empty_replies = empty_replies  # the first N invokes end with an empty AI reply and write nothing (the Gemini flake)
         self.calls: list[tuple[dict, dict | None]] = []
 
     def invoke(self, inputs, config=None):
         self.calls.append((inputs, config))
         if self.raise_exc is not None:
             raise self.raise_exc
+        if self.empty_replies > 0:
+            self.empty_replies -= 1
+            return {"messages": list(inputs["messages"]) + [AIMessage(content="")]}
         for vpath, text in self.writes.items():
             p = self.root / vpath.lstrip("/")
             p.parent.mkdir(parents=True, exist_ok=True)
@@ -73,15 +77,16 @@ class StubAgent:
 
 
 class StubFactory:
-    def __init__(self, writes: dict[str, str] | None = None, raise_exc: Exception | None = None):
+    def __init__(self, writes: dict[str, str] | None = None, raise_exc: Exception | None = None, empty_replies: int = 0):
         self.writes = writes or {}
         self.raise_exc = raise_exc
+        self.empty_replies = empty_replies
         self.created: list[dict] = []
         self.agents: list[StubAgent] = []
 
     def __call__(self, *, model, root, system_prompt, subagents=None):
         self.created.append({"model": model, "root": root, "system_prompt": system_prompt, "subagents": subagents})
-        agent = StubAgent(root, self.writes, self.raise_exc)
+        agent = StubAgent(root, self.writes, self.raise_exc, self.empty_replies)
         self.agents.append(agent)
         return agent
 
@@ -99,8 +104,8 @@ class StubFactory:
 def stub_factory(monkeypatch):
     """`stub_factory(writes, raise_exc) -> StubFactory` installed as `steps.default_agent_factory`."""
 
-    def install(writes: dict[str, str] | None = None, raise_exc: Exception | None = None) -> StubFactory:
-        factory = StubFactory(writes, raise_exc)
+    def install(writes: dict[str, str] | None = None, raise_exc: Exception | None = None, empty_replies: int = 0) -> StubFactory:
+        factory = StubFactory(writes, raise_exc, empty_replies)
         monkeypatch.setattr(steps, "default_agent_factory", factory)
         return factory
 
@@ -150,6 +155,40 @@ def test_run_step_reports_missing_or_empty_output_as_error(tmp_path: Path, stub_
     stub_factory({f"/{out}": "  \n"})
     empty = run_step("m", ws, prompt_name="recommend", prompt_vars={}, brief="b", output_rel=out, recursion_limit=7)
     assert empty["error"] and "missing or empty" in empty["error"]
+
+
+def test_run_step_does_not_retry_when_the_agent_ended_normally_without_output(tmp_path: Path, stub_factory):
+    ws = make_session(tmp_path)
+    out = ws.attempt_rel(1, "thing.md")
+    factory = stub_factory({})
+    run_step("m", ws, prompt_name="recommend", prompt_vars={}, brief="b", output_rel=out, recursion_limit=7)
+    assert len(factory.agents) == 1 and len(factory.agents[0].calls) == 1
+
+
+def test_run_step_retries_once_with_the_history_when_the_agent_ends_with_an_empty_reply(tmp_path: Path, stub_factory):
+    """Gemini sometimes ends a turn with `finish_reason STOP`, empty content and no tool call before writing the
+    output (exp 4 of the v3 career session). The step nudges the same conversation once instead of losing the attempt."""
+    ws = make_session(tmp_path)
+    out = ws.attempt_rel(1, "thing.md")
+    factory = stub_factory({f"/{out}": "written on the retry\n"}, empty_replies=1)
+    result = run_step("m", ws, prompt_name="recommend", prompt_vars={}, brief="the brief", output_rel=out, recursion_limit=7)
+    assert result == {"path": out, "content": "written on the retry\n", "error": None}
+    assert len(factory.agents) == 1  # same agent, no rebuild
+    calls = factory.agents[0].calls
+    assert len(calls) == 2
+    retry = calls[1][0]["messages"]
+    assert retry[0].content == "the brief"  # the agent has no checkpointer, so the history is carried explicitly
+    assert isinstance(retry[-1], HumanMessage) and "empty" in retry[-1].content.lower() and out in retry[-1].content
+    assert calls[1][1]["recursion_limit"] == 7
+
+
+def test_run_step_gives_up_after_one_empty_reply_retry(tmp_path: Path, stub_factory):
+    ws = make_session(tmp_path)
+    out = ws.attempt_rel(1, "thing.md")
+    factory = stub_factory({}, empty_replies=2)
+    result = run_step("m", ws, prompt_name="recommend", prompt_vars={}, brief="b", output_rel=out, recursion_limit=7)
+    assert result["content"] == "" and "missing or empty" in result["error"] and "empty reply" in result["error"]
+    assert len(factory.agents[0].calls) == 2
 
 
 def test_limits_match_refinement_6():

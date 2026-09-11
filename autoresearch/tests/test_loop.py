@@ -80,8 +80,10 @@ class _Agent:
 def answer(candidate: int, incumbent: int | None) -> JudgeAnswer:
     """Same candidate score on every dimension; the incumbent's frozen scores come from best/score.json, so
     `incumbent` is accepted for the call sites' readability and ignored."""
+    above = incumbent is not None and candidate > incumbent
     return JudgeAnswer(
         deficiencies=[f"{i}: none — scripted" if candidate == 10 else f"{i}: scripted" for i in DIM_IDS],
+        gains=[f"{i}: scripted gain" for i in DIM_IDS] if above else [],
         scores=[DimScore(dimension_id=i, score=candidate) for i in DIM_IDS],
         rationale="scripted",
     )

@@ -21,12 +21,21 @@ INCUMBENT = "INCUMBENT-DOC: 1. Think about markets."
 FROZEN = {"specificity": 4, "grounding": 5, "speed": 3}  # 12
 
 
-def _answer(scores: dict[str, int], deficiencies: list[str] | None = None, rationale: str = "Sharper than the reference.") -> JudgeAnswer:
-    """A well-formed answer: one entry per dimension, `none:` entries wherever the score is 10."""
+def _answer(
+    scores: dict[str, int],
+    deficiencies: list[str] | None = None,
+    rationale: str = "Sharper than the reference.",
+    gains: list[str] | None = None,
+) -> JudgeAnswer:
+    """A well-formed answer: one deficiency entry per dimension, `none:` entries wherever the score is 10, and (unless
+    given) a gains entry per dimension so any score above the frozen reference is justified."""
     if deficiencies is None:
         deficiencies = [f"{k}: none — every step meets it" if v == 10 else f"{k}: step 1 is thin" for k, v in scores.items()]
+    if gains is None:
+        gains = [f"{k}: quotes 'Call three restaurant chains this week' where the reference only says 'think about markets'" for k in scores]
     return JudgeAnswer(
         deficiencies=deficiencies,
+        gains=gains,
         scores=[DimScore(dimension_id=k, score=v) for k, v in scores.items()],
         rationale=rationale,
     )
@@ -138,6 +147,50 @@ def test_judge_accepts_a_ten_backed_by_a_none_entry(structured_fake):
     assert v.deficiencies[0].startswith("specificity: none")
 
 
+def test_judge_requires_a_gains_entry_for_every_dimension_scored_above_the_reference(structured_fake):
+    """Equal by default: a score above the frozen reference must quote what the candidate adds (v3 saturated at 80/80
+    because raises came free)."""
+    unjustified = _answer({"specificity": 8, "grounding": 5, "speed": 3}, gains=[])
+    justified = _answer({"specificity": 8, "grounding": 5, "speed": 3}, gains=["specificity: quotes 'three restaurant chains this week' vs the reference's 'think about markets'"])
+    model = structured_fake([unjustified, justified])
+    v = judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, FROZEN)
+    assert v.candidate_total == 16 and len(model.calls) == 2
+    repair = _flat(model.calls[1][1])
+    assert "gains" in repair and "specificity" in repair and "grounding" not in repair.split("gains", 1)[1][:200]
+    assert v.gains == justified.gains
+
+
+def test_judge_scores_at_or_below_the_reference_need_no_gains_entry(structured_fake):
+    model = structured_fake([_answer({"specificity": 4, "grounding": 3, "speed": 3}, gains=[])])
+    v = judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, FROZEN)
+    assert v.candidate_total == 10 and len(model.calls) == 1 and v.gains == []
+
+
+def test_judge_without_a_reference_ignores_gains(structured_fake):
+    model = structured_fake([_answer({"specificity": 8, "grounding": 7, "speed": 9}, gains=[])])
+    v = judge(model, DIMS, MISSION, CANDIDATE)
+    assert v.candidate_total == 24 and len(model.calls) == 1
+
+
+def test_judge_rejects_more_than_max_tens(structured_fake):
+    from engine.tasks.judge import MAX_TENS
+
+    assert MAX_TENS == 2
+    three_tens = _answer({"specificity": 10, "grounding": 10, "speed": 10})
+    two_tens = _answer({"specificity": 10, "grounding": 10, "speed": 9})
+    model = structured_fake([three_tens, two_tens])
+    v = judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, FROZEN)
+    assert v.candidate_total == 29 and len(model.calls) == 2
+    assert "at most 2" in _flat(model.calls[1][1])
+
+
+def test_judge_prompt_states_the_tens_cap_and_equal_by_default(structured_fake):
+    model = structured_fake([_answer({"specificity": 4, "grounding": 5, "speed": 3}, gains=[])])
+    judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, FROZEN)
+    system = str(model.calls[0][1][0].content)
+    assert "at most 2" in system and "gains" in system
+
+
 def test_judge_gives_up_after_one_repair(structured_fake):
     bad = _answer({"specificity": 8})
     model = structured_fake([bad, bad])
@@ -158,19 +211,19 @@ def test_verdict_dumps_to_score_json_shape():
         rationale="r",
     )
     data = json.loads(json.dumps(v.model_dump(mode="json")))
-    assert set(data) == {"experiment", "judge_model", "candidate", "incumbent", "candidate_total", "incumbent_total", "deficiencies", "rationale"}
+    assert set(data) == {"experiment", "judge_model", "candidate", "incumbent", "candidate_total", "incumbent_total", "deficiencies", "gains", "rationale"}
 
 
 def test_verdict_reads_score_json_written_before_deficiencies_existed():
     data = {"experiment": 1, "judge_model": "g", "candidate": {"specificity": 8}, "incumbent": None, "candidate_total": 8, "incumbent_total": None, "rationale": "r"}
     v = Verdict.model_validate(data)
-    assert v.deficiencies == [] and v.kept is True
+    assert v.deficiencies == [] and v.gains == [] and v.kept is True
 
 
-def test_judge_answer_schema_asks_for_deficiencies_before_scores():
+def test_judge_answer_schema_asks_for_deficiencies_and_gains_before_scores():
     """The field order is the mechanism (structured output is generated in schema order), so it is the contract;
     the prompt's wording is not pinned."""
-    assert list(JudgeAnswer.model_fields)[:2] == ["deficiencies", "scores"]
+    assert list(JudgeAnswer.model_fields)[:3] == ["deficiencies", "gains", "scores"]
 
 
 def test_loop_judge_step_passes_the_frozen_best_scores(structured_fake, tmp_path, monkeypatch):

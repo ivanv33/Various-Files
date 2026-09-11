@@ -4,8 +4,10 @@ Only the candidate is graded. The incumbent (`best/recommendations.md`) is shown
 with the per-dimension scores it received when it was kept (`best/score.json`); those scores are frozen and
 are never re-graded, so every total in `experiments.tsv` is on one scale and the log reads as a leaderboard.
 The reference calibrates the judge: a candidate weaker than the reference on a dimension must score lower
-there, one equally good the same, one stronger higher. Malformed output gets one repair turn carrying the
-validation error; then `JudgeError` (the loop logs `kept=error`).
+there, one equally good the same, one stronger higher. Two rules keep the scale from saturating (the v3 career
+session hit 80/80 by experiment 3 and every later attempt tied): a score above the reference's frozen score needs a
+`gains` entry quoting what the candidate adds, and at most `MAX_TENS` dimensions may score the maximum. Malformed
+output gets one repair turn carrying the validation error; then `JudgeError` (the loop logs `kept=error`).
 """
 
 from __future__ import annotations
@@ -17,6 +19,9 @@ from pydantic import BaseModel, Field, ValidationError
 
 from engine.prompts import load_prompt
 from engine.tasks.rubric import SCORE_MAX, SCORE_MIN, Dimension, parse_rubric
+
+MAX_TENS = 2
+"""How many dimensions may score `SCORE_MAX` in one verdict; more is rejected and repaired."""
 
 CANDIDATE_LABEL = "Candidate"
 REFERENCE_LABEL = "Reference (current best, frozen scores)"
@@ -40,7 +45,11 @@ class JudgeAnswer(BaseModel):
     deficiencies: list[str] = Field(
         description="the candidate's concrete deficiencies, at least one entry per rubric dimension: each starts with the dimension id and either quotes the passage that shows the deficiency, names exactly what is missing, or states 'none:' followed by the evidence that nothing is missing on that dimension"
     )
-    scores: list[DimScore] = Field(description="exactly one entry per rubric dimension, derived from the deficiency list")
+    gains: list[str] = Field(
+        default_factory=list,
+        description="only when a Reference is provided: one entry for each dimension where the candidate will score above the Reference's frozen score, starting with the dimension id, quoting the candidate passage that removes a deficiency the Reference carries and naming that Reference deficiency; empty when no dimension scores above the Reference",
+    )
+    scores: list[DimScore] = Field(description="exactly one entry per rubric dimension, derived from the deficiency list; above the Reference's frozen score only where a gains entry exists")
     rationale: str = Field(
         description="one paragraph: where the candidate is weaker, equal and stronger than the reference (if any), citing entries from the deficiency list"
     )
@@ -57,6 +66,7 @@ class Verdict(BaseModel):
     candidate_total: int
     incumbent_total: int | None = None
     deficiencies: list[str] = []
+    gains: list[str] = []
     rationale: str
 
     @property
@@ -75,8 +85,12 @@ def _check_range(value: int, dimension_id: str) -> None:
         )
 
 
-def _validate_answer(answer: JudgeAnswer | dict[str, Any], dims: Sequence[Dimension]) -> tuple[dict[str, int], list[str], str]:
-    """Return `(scores, deficiencies, rationale)` in rubric order, or raise `JudgeError` with the reason."""
+def _validate_answer(
+    answer: JudgeAnswer | dict[str, Any], dims: Sequence[Dimension], frozen: dict[str, int] | None = None
+) -> tuple[dict[str, int], list[str], list[str], str]:
+    """Return `(scores, deficiencies, gains, rationale)` in rubric order, or raise `JudgeError` with the reason.
+
+    With `frozen` (the reference's scores), every dimension scored above its frozen score needs a `gains` entry."""
     if isinstance(answer, dict):
         try:
             answer = JudgeAnswer.model_validate(answer)
@@ -112,7 +126,22 @@ def _validate_answer(answer: JudgeAnswer | dict[str, Any], dims: Sequence[Dimens
                 f"a {SCORE_MAX} requires an empty deficiency list on that dimension"
             )
         scores[dimension_id] = value
-    return scores, deficiencies, " ".join(answer.rationale.split())
+    tens = [i for i, v in scores.items() if v == SCORE_MAX]
+    if len(tens) > MAX_TENS:
+        raise JudgeError(
+            f"{len(tens)} dimensions scored {SCORE_MAX} ({tens}); at most {MAX_TENS} may in one document. "
+            f"Keep {SCORE_MAX} only where nothing at all is missing; on the others name the deficiency and score it"
+        )
+    gains = [" ".join(g.split()) for g in answer.gains if g.strip()]
+    if frozen is not None:
+        unjustified = [i for i in expected if scores[i] > frozen.get(i, SCORE_MAX) and not any(g.startswith(i) for g in gains)]
+        if unjustified:
+            raise JudgeError(
+                f"scored above the Reference's frozen score on {unjustified} without a gains entry for each; "
+                "either add a gains entry starting with the dimension id that quotes the Candidate passage removing a "
+                "Reference deficiency, or score the dimension equal to the Reference"
+            )
+    return scores, deficiencies, gains, " ".join(answer.rationale.split())
 
 
 # --- the call -------------------------------------------------------------------
@@ -161,12 +190,20 @@ def judge(
         frozen = {d.id: int(incumbent_scores[d.id]) for d in dims}
 
     system = load_prompt("judge").format(
-        rubric=_rubric_listing(dims), score_min=SCORE_MIN, score_max=SCORE_MAX, has_reference=incumbent is not None
+        rubric=_rubric_listing(dims),
+        score_min=SCORE_MIN,
+        score_max=SCORE_MAX,
+        max_tens=MAX_TENS,
+        has_reference=incumbent is not None,
     )
     parts = [f"Mission: {mission.strip()}", f"## {CANDIDATE_LABEL}\n\n{candidate.strip()}"]
     if incumbent is not None and frozen is not None:
         parts.append(_reference_block(incumbent, frozen, dims))
-        closing = "Grade the Candidate only. The Reference is already graded; use its frozen scores to place the Candidate on the same scale."
+        closing = (
+            "Grade the Candidate only. The Reference is already graded; use its frozen scores to place the Candidate on the same scale. "
+            "Start every dimension at the Reference's frozen score: lower it where the Candidate carries a heavier deficiency, "
+            "raise it only with a gains entry quoting what the Candidate adds. Restated, reordered or re-labelled Reference content is equal, not stronger."
+        )
     else:
         closing = "No reference exists yet: grade the Candidate against the scale anchors alone."
     parts.append(closing)
@@ -179,7 +216,7 @@ def judge(
             HumanMessage(content=f"Your previous answer was rejected: {error}\nReturn a corrected answer.")
         ]
         try:
-            scores, deficiencies, rationale = _validate_answer(structured.invoke(turn), dims)
+            scores, deficiencies, gains, rationale = _validate_answer(structured.invoke(turn), dims, frozen)
         except Exception as exc:  # provider errors, schema errors, our own JudgeError
             error = " ".join(str(exc).split())
             continue
@@ -191,6 +228,7 @@ def judge(
             candidate_total=sum(scores.values()),
             incumbent_total=None if frozen is None else sum(frozen.values()),
             deficiencies=deficiencies,
+            gains=gains,
             rationale=rationale,
         )
     raise JudgeError(f"could not get a valid verdict after one repair: {error}")

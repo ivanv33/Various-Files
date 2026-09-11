@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from typing import Any, Mapping, Sequence
 
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import AIMessage, HumanMessage
 
 from engine.prompts import load_prompt
 from engine.workspace import Workspace
@@ -23,6 +23,16 @@ LIMITS: dict[str, int] = {"propose": 120, "decompose": 150, "recommend": 80}
 
 TAIL_ROWS = 12
 """How many recent `experiments.tsv` rows a brief spells out inline."""
+
+EMPTY_REPLY_RETRIES = 1
+"""How many times a step nudges the agent when its turn ends with an empty reply and no output file. Gemini
+occasionally returns `finish_reason STOP` with empty content and no tool call mid-task; without the nudge the
+attempt is lost as `kept=error`."""
+
+EMPTY_REPLY_NUDGE = (
+    "Your last reply was empty and the output file {output} does not exist or is blank. "
+    "Continue from where you stopped and finish by writing the complete output file at that path with your file tools."
+)
 
 DENIED_PATHS = ("/.git", "/.git/**")
 """Virtual paths no agent (or subagent) may read or write: the clone's git metadata. Agents never run git, and
@@ -97,14 +107,41 @@ def run_step(
     recursion_limit: int,
     subagents: Sequence[Any] | None = None,
 ) -> dict[str, Any]:
-    """Build the agent from `prompts/<prompt_name>.md`, run it once on `brief`, check `output_rel`."""
+    """Build the agent from `prompts/<prompt_name>.md`, run it once on `brief`, check `output_rel`.
+
+    When the run ends with an empty AI reply (no content, no tool call) and the output is still missing, the same
+    conversation is re-invoked up to `EMPTY_REPLY_RETRIES` times with a nudge; the agent has no checkpointer, so the
+    history is carried explicitly."""
     system_prompt = load_prompt(prompt_name).format(**prompt_vars)
+    config = {"recursion_limit": recursion_limit}
+    empty_replies = 0
     try:
         agent = default_agent_factory(model=model, root=str(ws.root), system_prompt=system_prompt, subagents=subagents)
-        agent.invoke({"messages": [HumanMessage(content=brief)]}, config={"recursion_limit": recursion_limit})
+        state = agent.invoke({"messages": [HumanMessage(content=brief)]}, config=config)
+        while finish(ws, output_rel)["error"] and ended_with_empty_reply(state) and empty_replies < EMPTY_REPLY_RETRIES:
+            empty_replies += 1
+            history = list(state["messages"]) + [HumanMessage(content=EMPTY_REPLY_NUDGE.format(output=output_rel))]
+            state = agent.invoke({"messages": history}, config=config)
     except Exception as exc:  # recursion limit, provider errors, tool errors: the attempt becomes kept=error
         return failure(output_rel, describe(exc))
-    return finish(ws, output_rel)
+    result = finish(ws, output_rel)
+    if result["error"] and empty_replies:
+        result = failure(output_rel, f"{result['error']} (agent ended with an empty reply {empty_replies + 1} times)")
+    return result
+
+
+def ended_with_empty_reply(state: Any) -> bool:
+    """True when the agent's final message is an AI turn with no content and no tool call."""
+    try:
+        last = state["messages"][-1]
+    except (KeyError, IndexError, TypeError):
+        return False
+    if not isinstance(last, AIMessage) or getattr(last, "tool_calls", None):
+        return False
+    content = last.content
+    if isinstance(content, list):
+        content = " ".join(part.get("text", "") if isinstance(part, dict) else str(part) for part in content)
+    return not str(content).strip()
 
 
 def finish(ws: Workspace, output_rel: str) -> dict[str, Any]:
