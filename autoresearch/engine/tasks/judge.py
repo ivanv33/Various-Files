@@ -37,8 +37,16 @@ class DocScore(BaseModel):
 
 
 class JudgeAnswer(BaseModel):
-    scores: list[DocScore] = Field(description="exactly one entry per rubric dimension")
-    rationale: str = Field(description="one paragraph naming the dimensions on which the documents differ and why")
+    """Field order is the grading order: deficiencies with evidence for every document first, then scores."""
+
+    deficiencies_a: list[str] = Field(
+        description="the first document's concrete deficiencies, one per entry, each starting with the dimension id and quoting the passage that shows it or naming exactly what is missing; empty only if nothing is wrong on any dimension"
+    )
+    deficiencies_b: list[str] | None = Field(
+        description="the same for the second document; null when only one document is provided"
+    )
+    scores: list[DocScore] = Field(description="exactly one entry per rubric dimension, derived from the deficiency lists")
+    rationale: str = Field(description="one paragraph naming the dimensions on which the documents differ and why, citing the deficiency lists")
 
 
 # --- what the loop records (best/score.json) -----------------------------------
@@ -79,6 +87,8 @@ def _validate_answer(
             answer = JudgeAnswer.model_validate(answer)
         except ValidationError as exc:
             raise JudgeError(f"answer does not match the JudgeAnswer schema: {exc}") from exc
+    if has_b and answer.deficiencies_b is None:
+        raise JudgeError(f"{LABELS[1]} is present but has no deficiency list; list its deficiencies (an empty list if none) before scoring")
     expected = [d.id for d in dims]
     seen: dict[str, DocScore] = {}
     for score in answer.scores:

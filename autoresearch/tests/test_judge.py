@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import random
 
 import pytest
 
@@ -30,6 +31,8 @@ class FixedRng:
 
 def _answer(a: dict[str, int], b: dict[str, int] | None = None, rationale: str = "A is sharper.") -> JudgeAnswer:
     return JudgeAnswer(
+        deficiencies_a=[],
+        deficiencies_b=None if b is None else [],
         scores=[DocScore(dimension_id=k, a=v, b=None if b is None else b[k]) for k, v in a.items()],
         rationale=rationale,
     )
@@ -37,6 +40,11 @@ def _answer(a: dict[str, int], b: dict[str, int] | None = None, rationale: str =
 
 def _flat(prompt_input) -> str:
     return str(prompt_input)
+
+
+def _body(prompt_input) -> str:
+    """The human turn: mission, the labelled documents, closing line (the system prompt also names the labels)."""
+    return str(prompt_input[1].content)
 
 
 def test_judge_maps_document_a_b_back_to_candidate_incumbent_when_candidate_is_first(structured_fake):
@@ -54,7 +62,8 @@ def test_judge_maps_document_a_b_back_to_candidate_incumbent_when_candidate_is_f
     assert schema is JudgeAnswer
     flat = _flat(prompt_input)
     assert MISSION in flat and "Specificity" in flat and "Weeks, not years." in flat
-    assert flat.index("Document A") < flat.index(CANDIDATE) < flat.index("Document B") < flat.index(INCUMBENT)
+    body = _body(prompt_input)
+    assert body.index("Document A") < body.index(CANDIDATE) < body.index("Document B") < body.index(INCUMBENT)
 
 
 def test_judge_reverses_mapping_when_incumbent_is_first(structured_fake):
@@ -65,8 +74,8 @@ def test_judge_reverses_mapping_when_incumbent_is_first(structured_fake):
     assert v.candidate == {"specificity": 8, "grounding": 7, "speed": 9}
     assert v.incumbent == {"specificity": 4, "grounding": 5, "speed": 3}
     assert (v.candidate_total, v.incumbent_total) == (24, 12)
-    flat = _flat(model.calls[0][1])
-    assert flat.index("Document A") < flat.index(INCUMBENT) < flat.index("Document B") < flat.index(CANDIDATE)
+    body = _body(model.calls[0][1])
+    assert body.index("Document A") < body.index(INCUMBENT) < body.index("Document B") < body.index(CANDIDATE)
 
 
 def test_judge_without_rng_randomizes_order_across_calls(structured_fake):
@@ -92,8 +101,8 @@ def test_judge_without_incumbent_scores_only_document_a(structured_fake):
     assert v.incumbent is None and v.incumbent_total is None
     assert v.candidate_total == 21
     assert v.kept is True
-    flat = _flat(model.calls[0][1])
-    assert "Document A" in flat and "Document B" not in flat
+    body = _body(model.calls[0][1])
+    assert "Document A" in body and "Document B" not in body
 
 
 def test_judge_accepts_rubric_markdown(structured_fake):
@@ -169,3 +178,121 @@ def test_judge_live_prefers_the_obviously_better_document():
     assert v.incumbent is not None and all(1 <= s <= 10 for s in v.incumbent.values())
     assert v.candidate_total > v.incumbent_total
     assert v.rationale.strip()
+
+
+SAME_DOC = """# Recommendations
+
+1. This week, call the three regional restaurant-supply distributors the guest named (the Sysco regional rival and
+   the two family firms) and ask each for its software spend per branch; the transcript's claim that "nobody sells
+   to on-premise" is the gap to verify. Owner: founder. Due Friday.
+2. Draft a one-page pricing sheet priced per delivery route rather than per seat, following the guest's "$5 trillion
+   of services" remark; owner: founder; due Friday.
+3. Kill the sales-enablement idea: the hosts call that branch "crowded with no winner" at minute 14.
+4. Run a two-week pilot with one distributor branch: instrument route planning only, measure hours saved per
+   dispatcher, and stop if the saving is under two hours a week.
+5. Hire nobody until the pilot reports; the guest's line that early teams "die of payroll before they die of
+   product" sets the constraint.
+6. Write the pilot's definition of done before the first call and share it with the branch manager, so the exit
+   criterion is agreed rather than argued.
+"""
+
+
+@pytest.mark.live
+def test_judge_live_scores_the_same_document_alike_in_both_positions():
+    """Symmetry control for spec 4.2: one document shown as both candidate and incumbent, once per order."""
+    if not os.environ.get("GOOGLE_API_KEY"):
+        pytest.skip("GOOGLE_API_KEY not set")
+    from engine.config import make_model
+
+    model = make_model()
+    verdicts = [judge(model, CORE_DIMENSIONS, MISSION, SAME_DOC, SAME_DOC, rng=FixedRng(value)) for value in (0.1, 0.9)]
+    orders = {tuple(v.order) for v in verdicts}
+    for v in verdicts:
+        print(f"\norder={v.order} candidate={v.candidate_total} incumbent={v.incumbent_total} per-dim c={v.candidate} i={v.incumbent}")
+    assert orders == {("candidate", "incumbent"), ("incumbent", "candidate")}
+    for v in verdicts:
+        assert abs(v.candidate_total - v.incumbent_total) <= 1, (v.order, v.candidate, v.incumbent)
+
+
+VAGUE_DOC = """# Recommendations
+
+1. Talk to some restaurant-supply distributors about their software needs.
+2. Think about pricing per route instead of per seat.
+3. Avoid the crowded sales-enablement space.
+"""
+
+
+@pytest.mark.live
+def test_judge_live_ranks_two_documents_the_same_in_both_orders():
+    """Position-bias probe: the same pair in both orders must give the same winner and stable per-document totals."""
+    if not os.environ.get("GOOGLE_API_KEY"):
+        pytest.skip("GOOGLE_API_KEY not set")
+    from engine.config import make_model
+
+    model = make_model()
+    verdicts = [judge(model, CORE_DIMENSIONS, MISSION, SAME_DOC, VAGUE_DOC, rng=FixedRng(value)) for value in (0.1, 0.9)]
+    for v in verdicts:
+        print(f"\norder={v.order} strong={v.candidate_total} vague={v.incumbent_total} per-dim strong={v.candidate} vague={v.incumbent}")
+    assert {tuple(v.order) for v in verdicts} == {("candidate", "incumbent"), ("incumbent", "candidate")}
+    for v in verdicts:
+        assert v.candidate_total > v.incumbent_total
+    assert abs(verdicts[0].candidate_total - verdicts[1].candidate_total) <= 3
+    assert abs(verdicts[0].incumbent_total - verdicts[1].incumbent_total) <= 3
+
+
+def test_judge_prompt_is_calibrated_and_asks_for_deficiencies_before_scores(structured_fake):
+    model = structured_fake([_answer({"specificity": 8, "grounding": 7, "speed": 9}, {"specificity": 4, "grounding": 5, "speed": 3})])
+    judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, rng=FixedRng(0.1))
+    system = str(model.calls[0][1][0].content)
+    for anchor in ("- 10:", "- 9:", "- 8:", "- 7:", "- 5 or 6:", "- 3 or 4:", "- 1 or 2:"):
+        assert anchor in system
+    for phrase in ("unlabeled", "Do not favour the first or the second position", "Do not reward length", "Identical or equivalent documents must receive identical scores", "before assigning any score"):
+        assert phrase in system
+    assert list(JudgeAnswer.model_fields)[:3] == ["deficiencies_a", "deficiencies_b", "scores"]
+
+
+def test_judge_repairs_a_missing_second_deficiency_list(structured_fake):
+    bad = _answer({"specificity": 8, "grounding": 7, "speed": 9}, {"specificity": 4, "grounding": 5, "speed": 3})
+    bad.deficiencies_b = None
+    good = _answer({"specificity": 8, "grounding": 7, "speed": 9}, {"specificity": 4, "grounding": 5, "speed": 3})
+    model = structured_fake([bad, good])
+    v = judge(model, DIMS, MISSION, CANDIDATE, INCUMBENT, rng=FixedRng(0.1))
+    assert v.candidate_total == 24 and len(model.calls) == 2
+    assert "deficiency list" in _flat(model.calls[1][1])
+
+
+def test_loop_judge_step_defers_order_to_the_unseeded_module_rng(structured_fake, tmp_path, monkeypatch):
+    """The live path (`loop.judge_step`) passes no rng: it consults `judge.random` once per call, and with the real
+    module (nothing in the engine or its imports seeds it) both orders occur."""
+    from engine import loop
+    from engine.tasks import judge as judge_mod
+    from engine.workspace import Workspace
+
+    branch = "autoresearch/demo"
+    ws = Workspace(tmp_path, branch)
+    ws.write("metadata.json", json.dumps({"mission": MISSION, "transcript_path": "t.md", "max_experiments": 3}))
+    ws.write("rubric.md", render_rubric(CORE_DIMENSIONS, DIMS[2:]))
+    ws.write("best/recommendations.md", INCUMBENT)
+    ids = [d.id for d in CORE_DIMENSIONS] + ["speed"]
+    fresh = lambda *a, **k: structured_fake([_answer({i: 5 for i in ids}, {i: 6 for i in ids})])  # noqa: E731
+    monkeypatch.setattr(loop, "make_model", fresh)
+
+    class Recorder:
+        calls = 0
+
+        def random(self) -> float:
+            Recorder.calls += 1
+            return 0.9
+
+    monkeypatch.setattr(judge_mod, "random", Recorder())
+    out = loop.judge_step.func(str(tmp_path), branch, 2, {"path": "attempts/2/recommendations.md", "content": CANDIDATE}, "fake")
+    assert out["error"] is None and Recorder.calls == 1
+    assert out["verdict"]["order"] == ["incumbent", "candidate"]
+    assert out["verdict"]["candidate_total"] == 6 * len(ids)  # Document B was the candidate
+
+    monkeypatch.setattr(judge_mod, "random", random)
+    orders = set()
+    for _ in range(40):
+        out = loop.judge_step.func(str(tmp_path), branch, 2, {"path": "attempts/2/recommendations.md", "content": CANDIDATE}, "fake")
+        orders.add(tuple(out["verdict"]["order"]))
+    assert orders == {("candidate", "incumbent"), ("incumbent", "candidate")}

@@ -88,7 +88,12 @@ class _Agent:
 
 def answer(candidate: int, incumbent: int | None) -> JudgeAnswer:
     """Same score on every dimension; with the fixed rng Document A is always the candidate."""
-    return JudgeAnswer(scores=[DocScore(dimension_id=i, a=candidate, b=incumbent) for i in DIM_IDS], rationale="scripted")
+    return JudgeAnswer(
+        deficiencies_a=[],
+        deficiencies_b=None if incumbent is None else [],
+        scores=[DocScore(dimension_id=i, a=candidate, b=incumbent) for i in DIM_IDS],
+        rationale="scripted",
+    )
 
 
 def cfg(thread: str) -> dict:
