@@ -78,10 +78,11 @@ Keep files small and single-purpose; split when one grows past ~300 lines.
 - [ ] **M6 Local end-to-end** — `dev/smoke.sh`: bare origin from this worktree, `new_session.py` on the short transcript with `max_experiments=2`, `langgraph dev --no-browser`, drive the run through the SDK (create thread, run, resume `continue` at each interrupt), assert commits landed on the bare origin and `best/score.json` exists. Real Gemini.
 - [ ] **M7 Reviewer** — `review.py` per spec §5 with tests (accept new-framework → catalog entry; accept rubric-change → rubric edited + notes line; frontmatter updated; commit).
 - [ ] **M8 Deploy readiness** — `langgraph build` (or `langgraph dockerfile`) succeeds locally; README in `autoresearch/` with run/deploy instructions; `langgraph deploy` smoke is owner-gated (needs GitHub PAT) — document the exact command and env instead of running it.
+- [ ] **M9 Observe and simplify** — after M1–M8 are done and verified, do 2–3 real runs of a session (short transcript, `max_experiments` 2–3, real Gemini), reading traces, commits, `experiments.tsv`, `notes.md` and the agents' outputs. Then simplify: remove anything over-engineered, unused, or that the observed behaviour shows is unnecessary (extra abstractions, dead options, redundant prompts/instructions, tests that only pin implementation details). Keep the spec's behaviour and the offline suite green; each simplification is its own commit with a one-line rationale in the Progress log. Update the definition of done: M9 complete with at least one observed run after the simplifications.
 
 ## Definition of done
 
-`autoresearch/.venv/bin/python -m pytest -m "not live"` green; `dev/smoke.sh` completes two experiments against a local origin with real Gemini; `langgraph dev` serves both graphs; `langgraph build -t autoresearch:dev` succeeds; all milestones ticked; Progress log has a final entry.
+`autoresearch/.venv/bin/python -m pytest -m "not live"` green; `dev/smoke.sh` completes two experiments against a local origin with real Gemini; `langgraph dev` serves both graphs; `langgraph build -t autoresearch:dev` succeeds; M9 complete with at least one observed run after the simplifications; all milestones ticked; Progress log has a final entry.
 
 ## Progress log
 
