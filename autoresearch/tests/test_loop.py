@@ -21,11 +21,10 @@ from engine.tasks import steps as steps_mod
 from engine.tasks.judge import DocScore, JudgeAnswer
 from engine.tasks.log import parse_tsv
 from engine.tasks.rubric import CORE_DIMENSIONS, ExtraDimension, RubricExtras
-from tests.conftest import SESSION_REL, git, seed_session
+from tests.conftest import BOOTSTRAP, SESSION_REL, bare, git, head, seed_session, show, subjects
 
 EXTRA = ExtraDimension(name="Vertical focus", description="Names one concrete customer segment and stays with it.")
 DIM_IDS = [d.id for d in CORE_DIMENSIONS] + ["vertical_focus"]
-BOOTSTRAP = "session demo: bootstrap"
 
 _TARGET = re.compile(r"Write the (combination|merged decomposition|recommendations) to: (\S+)")
 _ATTEMPT = re.compile(r"/attempts/(\d+)/")
@@ -118,27 +117,9 @@ def harness(settings, structured_fake, monkeypatch):
 # --- origin inspection -------------------------------------------------------------
 
 
-def bare(origin: str) -> Path:
-    return Path(origin.removeprefix("file://"))
-
-
-def subjects(origin: str, branch: str) -> list[str]:
-    """Commit subjects on origin after the bootstrap commit, oldest first."""
-    log = git(bare(origin), "log", "--reverse", "--format=%s", branch).splitlines()
-    return log[log.index(BOOTSTRAP) + 1 :]
-
-
 def files(origin: str, branch: str) -> set[str]:
     out = git(bare(origin), "ls-tree", "-r", "--name-only", branch, "--", SESSION_REL)
     return {p.removeprefix(SESSION_REL + "/") for p in out.splitlines()}
-
-
-def show(origin: str, branch: str, name: str) -> str:
-    return git(bare(origin), "show", f"{branch}:{SESSION_REL}/{name}")
-
-
-def head(origin: str, branch: str) -> str:
-    return git(bare(origin), "rev-parse", branch)
 
 
 # --- tests -------------------------------------------------------------------------

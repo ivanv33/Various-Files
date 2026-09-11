@@ -17,12 +17,11 @@ import pytest
 from engine.tasks import proposals as props
 from engine.tasks.log import HEADER, parse_tsv
 from engine.tasks.rubric import CORE_DIMENSIONS, Dimension, ExtraDimension, parse_rubric, render_rubric
-from tests.conftest import SESSION_REL, git
+from tests.conftest import SESSION_REL, bare, git, head, show, subjects
 
 EXTRA = Dimension(id="vertical_focus", name="Vertical focus", description="Names one customer segment and stays with it.", kind="extra")
 RUBRIC = render_rubric(CORE_DIMENSIONS, [EXTRA])
 NOTES = "# Notes\n\n## Insights\n\n- none yet\n\n## Human steering\n\n- 2026-09-10T00:00:00Z: stay concrete\n"
-BOOTSTRAP = "session demo: bootstrap"
 
 FRAMEWORK_OPEN = (
     "---\nstatus: open\nexperiment: 2\ntitle: Add Jobs-to-be-Done\n---\n"
@@ -47,23 +46,6 @@ ACCEPT_RUBRIC = props.RubricDecision(accept=True, reason="Kept attempts all name
 
 
 # --- origin helpers ------------------------------------------------------------------
-
-
-def bare(origin: str) -> Path:
-    return Path(origin.removeprefix("file://"))
-
-
-def subjects(origin: str, branch: str) -> list[str]:
-    log = git(bare(origin), "log", "--reverse", "--format=%s", branch).splitlines()
-    return log[log.index(BOOTSTRAP) + 1 :]
-
-
-def show(origin: str, branch: str, name: str) -> str:
-    return git(bare(origin), "show", f"{branch}:{SESSION_REL}/{name}")
-
-
-def head(origin: str, branch: str) -> str:
-    return git(bare(origin), "rev-parse", branch)
 
 
 def push_files(origin: str, branch: str, work: Path, files: dict[str, str]) -> None:

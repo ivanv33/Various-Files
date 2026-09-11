@@ -20,6 +20,7 @@ TRANSCRIPT_REL = "tbpn-transcripts/transcripts/short.md"
 SLUG = "demo"
 BRANCH = f"autoresearch/{SLUG}"
 SESSION_REL = f"autoresearch/sessions/{SLUG}"
+BOOTSTRAP = f"session {SLUG}: bootstrap"  # subject of the commit scripts/new_session.py makes
 
 TEST_GIT_ENV = {
     "GIT_AUTHOR_NAME": "test-author",
@@ -154,3 +155,24 @@ def structured_fake():
             return RunnableLambda(run)
 
     return StructuredFake
+
+
+# --- origin inspection (shared by the loop / review tests) ------------------------
+
+
+def bare(origin: str) -> Path:
+    return Path(origin.removeprefix("file://"))
+
+
+def subjects(origin: str, branch: str) -> list[str]:
+    """Commit subjects on origin after the bootstrap commit, oldest first."""
+    log = git(bare(origin), "log", "--reverse", "--format=%s", branch).splitlines()
+    return log[log.index(BOOTSTRAP) + 1 :]
+
+
+def show(origin: str, branch: str, name: str) -> str:
+    return git(bare(origin), "show", f"{branch}:{SESSION_REL}/{name}")
+
+
+def head(origin: str, branch: str) -> str:
+    return git(bare(origin), "rev-parse", branch)
