@@ -3,22 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
 <title>Law &amp; Order Trivia</title>
 <style>
   :root {
     --ground: #0b0b0d;
-    --panel: #141418;
-    --panel-2: #1c1c22;
-    --rule: #2a2a32;
-    --ink: #ede8dc;
-    --ink-dim: #a39e93;
-    --brass: #c9a24a;
+    --panel: #15151a;
+    --panel-2: #1e1e25;
+    --rule: #2b2b34;
+    --ink: #efeadf;
+    --ink-dim: #a8a297;
+    --brass: #cfa64b;
     --brass-deep: #8f6f2a;
     --steel: #8fa3b8;
-    --guilty: #b5342b;
-    --acquit: #4e9a6a;
+    --guilty: #c23c31;
+    --acquit: #4fa370;
     --display: "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
     --body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --sat: env(safe-area-inset-top, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+    --barh: 88px;
     color-scheme: dark;
   }
   * { box-sizing: border-box; }
@@ -27,242 +34,267 @@
     margin: 0;
     background: var(--ground);
     color: var(--ink);
-    font: 18px/1.5 var(--body);
-    padding-inline: 16px;
-    padding-block: 20px 40px;
+    font: 18px/1.4 var(--body);
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    overscroll-behavior: none;
+    -webkit-user-select: none; user-select: none;
   }
-  .wrap { max-width: 720px; margin: 0 auto; }
+  button { font-family: inherit; }
+  [hidden] { display: none !important; }
 
-  /* Title-card typography: white on black, uppercase, tracked */
-  .card-title {
-    font-family: var(--display);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    text-wrap: balance;
-    margin: 0;
+  /* ---------- App shell: slim top bar, scrolling main, fixed thumb bar ---------- */
+  .app { height: 100%; display: flex; flex-direction: column; }
+  .top {
+    flex: 0 0 auto;
+    padding: calc(var(--sat) + 10px) 16px 10px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--ground);
   }
-  .eyebrow {
-    font-family: var(--body);
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--brass);
-    margin: 0 0 8px;
+  .top .brand { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 16px; margin: 0; white-space: nowrap; flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .top .brand span { color: var(--brass); }
+  .top .status { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim); font-variant-numeric: tabular-nums; white-space: nowrap; margin-left: auto; flex: 0 0 auto; }
+  .top .status b { color: var(--brass); font-weight: 600; }
+  .iconbtn {
+    background: none; border: 1px solid var(--rule); color: var(--ink-dim); border-radius: 999px;
+    width: 44px; height: 44px; display: grid; place-items: center; cursor: pointer; flex: 0 0 auto;
   }
-  .rule { border: 0; border-top: 1px solid var(--rule); margin: 20px 0; }
-  .rule.brass { border-top: 2px solid var(--brass); }
+  .iconbtn[aria-pressed="true"] { color: var(--brass); border-color: var(--brass-deep); }
+  .iconbtn:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+  .iconbtn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-  header.masthead {
-    display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;
-    padding-bottom: 14px; border-bottom: 2px solid var(--brass);
-    margin-bottom: 24px;
-  }
-  header.masthead h1 { font-size: clamp(24px, 6vw, 34px); line-height: 1.1; }
-  header.masthead .sub { color: var(--ink-dim); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 4px; }
-  .sound-toggle {
-    background: none; border: 1px solid var(--rule); color: var(--ink-dim);
-    font: 13px/1 var(--body); letter-spacing: 0.14em; text-transform: uppercase;
-    padding: 14px 16px; min-height: 48px; cursor: pointer; white-space: nowrap;
-  }
-  .sound-toggle[aria-pressed="true"] { color: var(--brass); border-color: var(--brass-deep); }
+  .track { height: 4px; background: var(--rule); flex: 0 0 auto; }
+  .track > div { height: 100%; background: var(--brass); width: 0; transition: width .25s ease; }
 
-  .screen[hidden] { display: none; }
-
-  /* Intro */
-  .narration {
-    font-family: var(--display);
-    font-size: clamp(20px, 4.5vw, 24px);
-    line-height: 1.5;
-    color: var(--ink);
-    max-width: 60ch;
-    margin: 0 0 24px;
+  main {
+    flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch;
+    padding: 18px 16px calc(var(--barh) + var(--sab) + 16px);
   }
+  .inner { max-width: 640px; margin: 0 auto; }
+
+  .bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+    padding: 12px 16px calc(var(--sab) + 12px);
+    background: linear-gradient(to top, var(--ground) 70%, rgba(11,11,13,0));
+  }
+  .bar .inner { display: flex; gap: 10px; }
+  .btn {
+    flex: 1 1 0; min-height: 64px; border: 0; cursor: pointer; border-radius: 14px;
+    background: var(--brass); color: #171106;
+    font: 700 17px/1 var(--body); letter-spacing: 0.12em; text-transform: uppercase;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 0 18px;
+  }
+  .btn:active { transform: scale(.98); }
+  .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .btn.ghost { background: var(--panel-2); color: var(--ink); flex: 0 0 auto; padding: 0 20px; }
+  .btn.ghost.icon { width: 64px; padding: 0; }
+  .btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ---------- Home ---------- */
+  .eyebrow { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brass); margin: 0 0 10px; }
+  .narration { font-family: var(--display); font-size: clamp(21px, 5.2vw, 26px); line-height: 1.4; margin: 0 0 22px; text-wrap: balance; }
   .narration em { font-style: italic; color: var(--brass); }
 
-  .modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 12px; }
-  .mode {
-    background: var(--panel); border: 1px solid var(--rule); border-top: 3px solid var(--brass-deep);
-    color: var(--ink); text-align: left; padding: 20px 18px; min-height: 96px; cursor: pointer;
-    font-family: var(--body); display: flex; flex-direction: column; gap: 6px;
+  .resume {
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px;
+    background: var(--panel); border: 1px solid var(--brass-deep); border-radius: 16px; padding: 14px 16px; margin-bottom: 18px;
+    cursor: pointer; color: var(--ink); text-align: left; width: 100%;
   }
-  .mode:hover, .mode:focus-visible { border-top-color: var(--brass); background: var(--panel-2); outline: none; }
-  .mode:focus-visible { box-shadow: 0 0 0 2px var(--brass); }
-  .mode .name { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 19px; }
-  .mode .meta { color: var(--ink-dim); font-size: 15px; }
-  .mode .count { color: var(--steel); font-size: 14px; font-variant-numeric: tabular-nums; letter-spacing: 0.08em; }
+  .resume .t { font-weight: 600; }
+  .resume .s { color: var(--ink-dim); font-size: 14px; }
+  .resume .go { color: var(--brass); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; }
 
-  .record { margin-top: 28px; color: var(--ink-dim); font-size: 15px; }
-  .record b { color: var(--brass); font-variant-numeric: tabular-nums; }
-
-  /* Quiz */
-  .docket {
-    display: flex; justify-content: space-between; align-items: center; gap: 12px;
-    font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim);
-    font-variant-numeric: tabular-nums;
+  .quick { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 26px; }
+  .quick button {
+    min-height: 112px; border-radius: 18px; border: 0; cursor: pointer;
+    background: var(--panel-2); color: var(--ink); text-align: left; padding: 16px;
+    display: flex; flex-direction: column; justify-content: space-between;
   }
-  .docket .score { color: var(--brass); }
-  .progress { height: 5px; background: var(--rule); margin: 10px 0 24px; }
-  .progress > div { height: 100%; background: var(--brass); width: 0; transition: width .3s ease; }
+  .quick button.primary { background: var(--brass); color: #171106; }
+  .quick .n { font-family: var(--display); font-weight: 700; font-size: 44px; line-height: 1; font-variant-numeric: tabular-nums; }
+  .quick .l { font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; opacity: .85; }
+  .quick button:active { transform: scale(.98); }
+  .quick button:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
 
-  .qcard { background: var(--panel); border: 1px solid var(--rule); padding: 22px 18px 20px; }
-  .qcard .cat { color: var(--steel); }
-  .question { font-family: var(--display); font-size: clamp(23px, 5.5vw, 28px); line-height: 1.3; margin: 0 0 22px; text-wrap: balance; }
+  .cats { display: grid; gap: 10px; }
+  .cat {
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px;
+    min-height: 68px; border-radius: 14px; border: 1px solid var(--rule); background: var(--panel);
+    color: var(--ink); text-align: left; padding: 12px 16px; cursor: pointer;
+  }
+  .cat .name { font-weight: 600; font-size: 17px; }
+  .cat .best { color: var(--ink-dim); font-size: 13px; font-variant-numeric: tabular-nums; margin-top: 2px; }
+  .cat .chev { color: var(--brass); }
+  .cat:active { background: var(--panel-2); }
+  .cat:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+  .home-foot { color: var(--ink-dim); font-size: 13px; margin-top: 22px; line-height: 1.5; }
+
+  /* ---------- Question ---------- */
+  .meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .chip { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--steel); border: 1px solid var(--rule); border-radius: 999px; padding: 6px 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .streak { color: var(--brass); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; white-space: nowrap; }
+  .question { font-family: var(--display); font-size: clamp(23px, 6vw, 30px); line-height: 1.28; margin: 0 0 20px; text-wrap: balance; }
 
   .choices { display: grid; gap: 12px; }
   .choice {
-    display: grid; grid-template-columns: 32px 1fr; align-items: center; gap: 14px;
-    background: var(--panel-2); border: 2px solid var(--rule); color: var(--ink);
-    padding: 16px 16px; min-height: 64px; text-align: left; cursor: pointer; font: 19px/1.35 var(--body);
+    display: grid; grid-template-columns: 40px 1fr; align-items: center; gap: 12px;
+    min-height: 72px; border-radius: 16px; border: 2px solid var(--rule); background: var(--panel-2);
+    color: var(--ink); text-align: left; padding: 14px 16px 14px 12px; cursor: pointer; font-size: 19px; line-height: 1.3;
+    transition: transform .08s;
   }
-  .choice .key { font-family: var(--display); font-weight: 700; color: var(--brass); font-size: 20px; }
-  .choice:hover:not([disabled]), .choice:focus-visible { border-color: var(--brass-deep); outline: none; }
-  .choice:active:not([disabled]) { background: var(--rule); }
-  .choice:focus-visible { box-shadow: 0 0 0 2px var(--brass); }
-  .choice[disabled] { cursor: default; }
-  .choice.correct { border-color: var(--acquit); background: rgba(78,154,106,.14); }
-  .choice.wrong { border-color: var(--guilty); background: rgba(181,52,43,.16); }
-  .choice.wrong .key { color: var(--guilty); }
-  .choice.correct .key { color: var(--acquit); }
-
-  .ruling { margin-top: 18px; display: grid; gap: 8px; }
-  .ruling .stamp {
-    font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; font-size: 18px;
-    padding: 8px 14px; border: 2px solid currentColor; display: inline-block; justify-self: start;
-    transform: rotate(-2deg);
+  .choice .key {
+    width: 40px; height: 40px; border-radius: 999px; display: grid; place-items: center;
+    background: var(--panel); color: var(--brass); font-family: var(--display); font-weight: 700; font-size: 19px;
   }
-  .ruling .stamp.good { color: var(--acquit); }
-  .ruling .stamp.bad { color: var(--guilty); }
-  .ruling p { margin: 0; color: var(--ink-dim); font-size: 17px; line-height: 1.5; max-width: 62ch; }
+  .choice:active:not([disabled]) { transform: scale(.985); }
+  .choice:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+  .choice[disabled] { cursor: default; opacity: .55; }
+  .choice.correct, .choice.wrong { opacity: 1; }
+  .choice.correct { border-color: var(--acquit); background: rgba(79,163,112,.16); }
+  .choice.correct .key { background: var(--acquit); color: #08140c; }
+  .choice.wrong { border-color: var(--guilty); background: rgba(194,60,49,.16); }
+  .choice.wrong .key { background: var(--guilty); color: #fff; }
 
-  .actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 22px; }
-  .actions .btn { flex: 1 1 0; }
-  .btn {
-    background: var(--brass); color: #141008; border: 0; cursor: pointer;
-    font: 700 16px/1 var(--body); letter-spacing: 0.14em; text-transform: uppercase; padding: 20px 22px; min-height: 60px;
+  /* Ruling sheet slides up from the thumb bar after an answer */
+  .sheet {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 6;
+    background: var(--panel); border-top: 1px solid var(--rule); border-radius: 22px 22px 0 0;
+    padding: 14px 16px calc(var(--sab) + 12px);
+    transform: translateY(105%); transition: transform .28s cubic-bezier(.2,.8,.2,1);
+    box-shadow: 0 -12px 40px rgba(0,0,0,.5);
   }
-  .btn:hover, .btn:focus-visible { background: #dcb65e; outline: none; }
-  .btn:focus-visible { box-shadow: 0 0 0 2px var(--ink); }
-  .btn.ghost { background: none; color: var(--ink-dim); border: 1px solid var(--rule); }
-  .btn.ghost:hover { color: var(--ink); border-color: var(--ink-dim); }
+  .sheet.on { transform: translateY(0); }
+  .sheet .grip { width: 44px; height: 4px; border-radius: 4px; background: var(--rule); margin: 0 auto 12px; }
+  .sheet .head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .stamp {
+    font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; font-size: 16px;
+    padding: 6px 12px; border: 2px solid currentColor; border-radius: 6px; transform: rotate(-2deg);
+  }
+  .stamp.good { color: var(--acquit); } .stamp.bad { color: var(--guilty); }
+  .sheet .ans { color: var(--ink-dim); font-size: 14px; }
+  .sheet .ans b { color: var(--ink); font-weight: 600; }
+  .sheet p.ex { margin: 0 0 14px; color: var(--ink-dim); font-size: 16px; line-height: 1.5; max-height: 30vh; overflow-y: auto; }
+  .sheet .inner { display: flex; gap: 10px; }
 
-  /* Verdict */
-  .verdict-card { text-align: center; padding: 32px 16px; border: 1px solid var(--rule); background: var(--panel); }
-  .verdict-card .big { font-family: var(--display); font-weight: 700; font-size: clamp(44px, 12vw, 72px); line-height: 1; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; color: var(--brass); }
-  .verdict-card .of { color: var(--ink-dim); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; margin-top: 6px; }
-  .verdict-card .rank { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.18em; font-size: clamp(16px, 4vw, 22px); margin-top: 20px; }
-  .verdict-card .note { color: var(--ink-dim); margin: 10px auto 0; max-width: 46ch; font-size: 17px; }
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 20px; }
-  .stats div { background: var(--panel); padding: 12px 8px; text-align: center; }
-  .stats .v { font-family: var(--display); font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; }
-  .stats .l { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); }
-  .review { margin-top: 24px; }
-  .review h3 { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.14em; font-size: 14px; margin: 0 0 10px; color: var(--ink-dim); }
-  .review ol { margin: 0; padding-left: 22px; display: grid; gap: 14px; font-size: 17px; }
-  .review li b { color: var(--ink); font-weight: 600; }
+  /* ---------- Verdict ---------- */
+  .verdict { text-align: center; padding-top: 6px; }
+  .ring { width: 190px; height: 190px; margin: 0 auto 14px; position: relative; }
+  .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .ring circle { fill: none; stroke-width: 12; }
+  .ring .bg { stroke: var(--rule); }
+  .ring .fg { stroke: var(--brass); stroke-linecap: round; transition: stroke-dashoffset .9s ease; }
+  .ring .num { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 54px; font-variant-numeric: tabular-nums; }
+  .ring .num small { display: block; font-family: var(--body); font-weight: 400; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); margin-top: -4px; }
+  .rank { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.16em; font-size: clamp(18px, 5vw, 24px); margin: 0; color: var(--brass); }
+  .note { color: var(--ink-dim); margin: 8px auto 18px; max-width: 40ch; font-size: 16px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .stats div { background: var(--panel); border-radius: 14px; padding: 12px 6px; }
+  .stats .v { font-family: var(--display); font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .stats .l { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); }
+  .review { text-align: left; margin-top: 24px; }
+  .review h3 { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-dim); margin: 0 0 10px; }
+  .review ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .review li { background: var(--panel); border-radius: 14px; padding: 12px 14px; font-size: 15px; }
+  .review li b { display: block; font-weight: 600; margin-bottom: 4px; }
   .review li span { color: var(--ink-dim); }
+  .review li span em { font-style: normal; color: var(--acquit); }
 
-  /* Scene transition: black card that flashes between questions */
-  .clang {
-    position: fixed; inset: 0; background: var(--ground); display: grid; place-items: center;
-    opacity: 0; pointer-events: none; z-index: 10; transition: opacity .12s;
-  }
+  /* ---------- Title-card transition ---------- */
+  .clang { position: fixed; inset: 0; background: var(--ground); display: grid; place-items: center; opacity: 0; pointer-events: none; z-index: 20; transition: opacity .12s; }
   .clang.on { opacity: 1; }
-  .clang p { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.3em; color: var(--ink); font-size: clamp(14px, 3vw, 18px); text-align: center; padding: 0 16px; }
+  .clang p { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.3em; font-size: 17px; text-align: center; padding: 0 24px; margin: 0; }
 
-  footer { margin-top: 32px; color: var(--ink-dim); font-size: 14px; letter-spacing: 0.06em; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .progress > div, .clang { transition: none; }
-  }
-  @media (max-width: 480px) {
-    header.masthead { flex-direction: row; align-items: center; }
-    header.masthead .sub { display: none; }
-    .stats { grid-template-columns: 1fr 1fr 1fr; }
-    .actions { flex-direction: column-reverse; }
-    .btn.ghost { min-height: 52px; padding: 14px; }
-  }
+  @media (prefers-reduced-motion: reduce) { .sheet, .clang, .track > div, .ring .fg { transition: none; } }
+  @media (min-width: 700px) { .quick .n { font-size: 52px; } }
+  @media (max-width: 420px) { .top .brand { font-size: 14px; letter-spacing: 0.08em; } }
+  @media (max-height: 620px) { .question { font-size: 21px; margin-bottom: 14px; } .choice { min-height: 60px; } .ring { width: 140px; height: 140px; } .ring .num { font-size: 40px; } }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="masthead">
-    <div>
-      <h1 class="card-title">Law &amp; Order Trivia</h1>
-      <div class="sub">The People v. Your Memory</div>
-    </div>
-    <button class="sound-toggle" id="soundToggle" aria-pressed="true" type="button">Sound: On</button>
+<div class="app">
+  <header class="top">
+    <h1 class="brand">Law <span>&amp;</span> Order Trivia</h1>
+    <div class="status" id="status"></div>
+    <button class="iconbtn" id="soundToggle" type="button" aria-pressed="true" aria-label="Sound on">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="wave" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>
+    </button>
   </header>
+  <div class="track"><div id="bar"></div></div>
 
-  <!-- INTRO -->
-  <section class="screen" id="intro">
-    <p class="eyebrow">Opening statement</p>
-    <p class="narration">In the criminal justice system, the people are represented by two separate yet equally important groups: the fans who watched every episode, and the fans who <em>think</em> they did. These are their questions.</p>
-    <p class="eyebrow">Choose your docket</p>
-    <div class="modes" id="modes"></div>
-    <p class="record" id="record"></p>
-  </section>
+  <main id="main">
+    <!-- HOME -->
+    <section class="inner" id="home">
+      <p class="eyebrow">Opening statement</p>
+      <p class="narration">In the criminal justice system, the people are represented by two groups: the fans who watched every episode, and the fans who <em>think</em> they did. These are their questions.</p>
+      <button class="resume" id="resume" type="button" hidden>
+        <span><span class="t" id="resumeT"></span><br><span class="s" id="resumeS"></span></span>
+        <span class="go">Resume</span>
+      </button>
+      <p class="eyebrow">Quick play</p>
+      <div class="quick">
+        <button type="button" class="primary" data-mode="q5"><span class="n">5</span><span class="l">Cases · 2 min</span></button>
+        <button type="button" data-mode="q10"><span class="n">10</span><span class="l">Cases · 5 min</span></button>
+      </div>
+      <p class="eyebrow">By category</p>
+      <div class="cats" id="cats"></div>
+      <p class="home-foot" id="homeFoot"></p>
+    </section>
 
-  <!-- QUIZ -->
-  <section class="screen" id="quiz" hidden>
-    <div class="docket">
-      <span id="counter">Case 1 of 10</span>
-      <span id="streak"></span>
-      <span class="score" id="score">Score 0</span>
-    </div>
-    <div class="progress"><div id="bar"></div></div>
-    <div class="qcard">
-      <p class="eyebrow cat" id="qcat"></p>
+    <!-- QUESTION -->
+    <section class="inner" id="play" hidden>
+      <div class="meta"><span class="chip" id="qcat"></span><span class="streak" id="streak"></span></div>
       <h2 class="question" id="qtext"></h2>
       <div class="choices" id="choices"></div>
-      <div class="ruling" id="ruling" hidden>
-        <span class="stamp" id="stamp"></span>
-        <p id="explain"></p>
-      </div>
-      <div class="actions">
-        <button class="btn ghost" id="quitBtn" type="button">Dismiss case</button>
-        <button class="btn" id="nextBtn" type="button" hidden>Next case</button>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- VERDICT -->
-  <section class="screen" id="verdict" hidden>
-    <p class="eyebrow">The jury has reached a verdict</p>
-    <div class="verdict-card">
-      <div class="big" id="finalScore">0</div>
-      <div class="of" id="finalOf">out of 10 correct</div>
-      <div class="rank" id="rank"></div>
+    <!-- VERDICT -->
+    <section class="inner verdict" id="verdict" hidden>
+      <div class="ring">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" id="ringFg" cx="60" cy="60" r="52"/></svg>
+        <div class="num"><div><span id="finalScore">0</span><small id="finalOf">of 10</small></div></div>
+      </div>
+      <p class="rank" id="rank"></p>
       <p class="note" id="rankNote"></p>
       <div class="stats">
         <div><div class="v" id="stPct">0%</div><div class="l">Conviction rate</div></div>
         <div><div class="v" id="stStreak">0</div><div class="l">Best streak</div></div>
         <div><div class="v" id="stBest">0</div><div class="l">Personal best</div></div>
       </div>
-    </div>
-    <div class="review" id="review" hidden>
-      <h3>Cases you lost</h3>
-      <ol id="reviewList"></ol>
-    </div>
-    <div class="actions">
-      <button class="btn ghost" id="homeBtn" type="button">New docket</button>
-      <button class="btn" id="againBtn" type="button">Retry this docket</button>
-    </div>
-  </section>
+      <div class="review" id="review" hidden>
+        <h3>Cases you lost</h3>
+        <ol id="reviewList"></ol>
+      </div>
+    </section>
+  </main>
 
-  <footer>Runs entirely in this file. No internet connection required. Fan-made and unaffiliated with NBC or Wolf Entertainment.</footer>
+  <!-- Thumb bar -->
+  <div class="bar" id="barHome" hidden>
+    <div class="inner"><button class="btn" id="fullBtn" type="button">Full docket · 60 cases</button></div>
+  </div>
+  <div class="bar" id="barPlay" hidden>
+    <div class="inner"><button class="btn ghost" id="quitBtn" type="button">Save &amp; exit</button><button class="btn" id="skipBtn" type="button">Skip</button></div>
+  </div>
+  <div class="bar" id="barVerdict" hidden>
+    <div class="inner"><button class="btn ghost" id="homeBtn" type="button">Home</button><button class="btn" id="againBtn" type="button">Play again</button></div>
+  </div>
+
+  <!-- Ruling sheet -->
+  <div class="sheet" id="sheet" role="dialog" aria-live="polite">
+    <div class="grip"></div>
+    <div class="head"><span class="stamp" id="stamp"></span><span class="ans" id="ans"></span></div>
+    <p class="ex" id="explain"></p>
+    <div class="inner"><button class="btn" id="nextBtn" type="button">Next case</button></div>
+  </div>
 </div>
 
-<div class="clang" id="clang" aria-hidden="true"><p id="clangText">Manhattan</p></div>
+<div class="clang" id="clang" aria-hidden="true"><p id="clangText"></p></div>
 
 <script>
 (function () {
   'use strict';
 
-  // ---------- QUESTION BANK ----------
-  // q: question, c: choices, a: index of correct choice, e: explanation
   const BANK = {
     "The Original Series": [
       { q: "In what year did the original Law & Order premiere on NBC?", c: ["1988", "1990", "1992", "1994"], a: 1, e: "The first episode, \"Prescription for Death,\" aired September 13, 1990." },
@@ -336,29 +368,23 @@
     ],
   };
 
-  // ---------- SOUND: a synthesized "dun dun" ----------
-  let audioCtx = null;
-  let soundOn = true;
+  // ---------- Sound: synthesized "dun dun" ----------
+  let audioCtx = null, soundOn = true;
+  try { soundOn = localStorage.getItem('lo-sound') !== 'off'; } catch (e) {}
   function thud(ctx, t, freq, dur) {
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    const noise = ctx.createBufferSource();
-    const buf = ctx.createBuffer(1, ctx.sampleRate * 0.12, ctx.sampleRate);
-    const data = buf.getChannelData(0);
-    for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 3);
-    noise.buffer = buf;
+    const osc = ctx.createOscillator(), gain = ctx.createGain();
+    const buf = ctx.createBuffer(1, Math.floor(ctx.sampleRate * 0.12), ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 3);
+    const noise = ctx.createBufferSource(); noise.buffer = buf;
     const nGain = ctx.createGain();
-    nGain.gain.setValueAtTime(0.25, t);
-    nGain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+    nGain.gain.setValueAtTime(0.25, t); nGain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
     noise.connect(nGain).connect(ctx.destination);
     osc.type = 'triangle';
-    osc.frequency.setValueAtTime(freq, t);
-    osc.frequency.exponentialRampToValueAtTime(freq * 0.55, t + dur);
-    gain.gain.setValueAtTime(0.6, t);
-    gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
+    osc.frequency.setValueAtTime(freq, t); osc.frequency.exponentialRampToValueAtTime(freq * 0.55, t + dur);
+    gain.gain.setValueAtTime(0.6, t); gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
     osc.connect(gain).connect(ctx.destination);
-    osc.start(t); osc.stop(t + dur);
-    noise.start(t);
+    osc.start(t); osc.stop(t + dur); noise.start(t);
   }
   function dunDun() {
     if (!soundOn) return;
@@ -366,198 +392,217 @@
       audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
       if (audioCtx.state === 'suspended') audioCtx.resume();
       const t = audioCtx.currentTime + 0.02;
-      thud(audioCtx, t, 110, 0.35);
-      thud(audioCtx, t + 0.32, 98, 0.6);
-    } catch (e) { /* audio unavailable */ }
+      thud(audioCtx, t, 110, 0.35); thud(audioCtx, t + 0.32, 98, 0.6);
+    } catch (e) {}
   }
+  function buzz(ms) { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) {} }
 
-  // ---------- STATE ----------
+  // ---------- State ----------
   const $ = (id) => document.getElementById(id);
-  const screens = { intro: $('intro'), quiz: $('quiz'), verdict: $('verdict') };
   const KEYS = ['A', 'B', 'C', 'D'];
-  let game = null;   // { mode, questions, i, score, streak, best, misses }
-  let best = {};
-  try { best = JSON.parse(localStorage.getItem('lo-trivia-best') || '{}') || {}; } catch (e) { best = {}; }
+  const CATS = Object.keys(BANK);
+  const ALL = CATS.flatMap((cat) => BANK[cat].map((q, i) => Object.assign({ id: cat + '#' + i, cat }, q)));
+  const byId = Object.fromEntries(ALL.map((q) => [q.id, q]));
+  let game = null, best = {};
+  try { best = JSON.parse(localStorage.getItem('lo-trivia-best') || '{}') || {}; } catch (e) {}
+  function save(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} }
+  function load(key) { try { return JSON.parse(localStorage.getItem(key)); } catch (e) { return null; } }
 
-  function shuffle(arr) {
-    const a = arr.slice();
-    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
-    return a;
+  function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+  function modeLabel(id) { return id === 'q5' ? 'Quick 5' : id === 'q10' ? 'Quick 10' : id === 'full' ? 'Full docket' : id.slice(4); }
+  function pickFor(id) {
+    if (id === 'q5') return shuffle(ALL).slice(0, 5);
+    if (id === 'q10') return shuffle(ALL).slice(0, 10);
+    if (id === 'full') return shuffle(ALL);
+    return shuffle(ALL.filter((q) => q.cat === id.slice(4)));
   }
-  function allQuestions() {
-    return Object.keys(BANK).flatMap(cat => BANK[cat].map(q => Object.assign({ cat }, q)));
-  }
-  const MODES = [
-    { id: 'quick', name: 'Quick arraignment', meta: 'Ten random cases from every category.', pick: () => shuffle(allQuestions()).slice(0, 10) },
-    { id: 'full', name: 'Full docket', meta: 'Every question in the file, shuffled.', pick: () => shuffle(allQuestions()) },
-    ...Object.keys(BANK).map(cat => ({ id: 'cat:' + cat, name: cat, meta: 'Every case in this category.', pick: () => shuffle(BANK[cat].map(q => Object.assign({ cat }, q))) })),
-  ];
-  function modeCount(m) { return m.id === 'quick' ? 10 : m.id === 'full' ? allQuestions().length : BANK[m.id.slice(4)].length; }
 
+  // ---------- Screens ----------
+  const screens = ['home', 'play', 'verdict'];
+  const bars = { home: 'barHome', play: 'barPlay', verdict: 'barVerdict' };
   function show(name) {
-    Object.keys(screens).forEach(k => { screens[k].hidden = k !== name; });
-    window.scrollTo(0, 0);
+    screens.forEach((s) => { $(s).hidden = s !== name; $(bars[s]).hidden = s !== name; });
+    $('sheet').classList.remove('on');
+    $('main').scrollTop = 0;
   }
+  function setStatus(html) { $('status').innerHTML = html; }
 
-  // ---------- INTRO ----------
-  function renderIntro() {
-    const box = $('modes');
-    box.innerHTML = '';
-    MODES.forEach(m => {
+  // ---------- Home ----------
+  function renderHome() {
+    const saved = load('lo-trivia-game');
+    const r = $('resume');
+    if (saved && saved.order && saved.i < saved.order.length) {
+      r.hidden = false;
+      $('resumeT').textContent = modeLabel(saved.mode) + ' in progress';
+      $('resumeS').textContent = 'Case ' + (saved.i + 1) + ' of ' + saved.order.length + ' · score ' + saved.score;
+    } else { r.hidden = true; }
+    const box = $('cats'); box.innerHTML = '';
+    CATS.forEach((cat) => {
       const b = document.createElement('button');
-      b.type = 'button'; b.className = 'mode';
-      b.innerHTML = '<span class="name"></span><span class="meta"></span><span class="count"></span>';
-      b.querySelector('.name').textContent = m.name;
-      b.querySelector('.meta').textContent = m.meta;
-      const n = modeCount(m);
-      b.querySelector('.count').textContent = n + ' cases' + (best[m.id] != null ? ' · best ' + best[m.id] + '/' + n : '');
-      b.addEventListener('click', () => start(m));
+      b.type = 'button'; b.className = 'cat'; b.dataset.mode = 'cat:' + cat;
+      const n = BANK[cat].length, bs = best['cat:' + cat];
+      b.innerHTML = '<span><span class="name"></span><br><span class="best"></span></span><span class="chev"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>';
+      b.querySelector('.name').textContent = cat;
+      b.querySelector('.best').textContent = n + ' cases' + (bs != null ? ' · best ' + bs + '/' + n : '');
+      b.addEventListener('click', () => start('cat:' + cat));
       box.appendChild(b);
     });
-    const total = allQuestions().length;
-    $('record').innerHTML = 'Question bank: <b>' + total + '</b> cases across <b>' + Object.keys(BANK).length + '</b> categories. Your best scores are saved in this browser.';
+    const parts = [];
+    if (best.q5 != null) parts.push('Quick 5 best ' + best.q5 + '/5');
+    if (best.q10 != null) parts.push('Quick 10 best ' + best.q10 + '/10');
+    if (best.full != null) parts.push('Full docket best ' + best.full + '/' + ALL.length);
+    $('homeFoot').textContent = (parts.length ? parts.join(' · ') + '. ' : '') + 'Works with no connection. Add it to your home screen to play like an app.';
+    setStatus(ALL.length + ' cases');
+    show('home');
   }
 
-  // ---------- QUIZ ----------
+  // ---------- Play ----------
   function start(mode) {
-    game = { mode, questions: mode.pick(), i: 0, score: 0, streak: 0, bestStreak: 0, misses: [] };
-    show('quiz');
-    transition(() => renderQuestion(), true);
+    game = { mode, order: pickFor(mode).map((q) => q.id), i: 0, score: 0, streak: 0, bestStreak: 0, misses: [] };
+    persist();
+    show('play');
+    transition(() => renderQuestion(), 'Manhattan, New York');
   }
+  function resume() {
+    const saved = load('lo-trivia-game');
+    if (!saved) return renderHome();
+    game = saved;
+    show('play');
+    transition(() => renderQuestion(), 'Case resumed');
+  }
+  function persist() { if (game) save('lo-trivia-game', game); }
+  function clearSaved() { try { localStorage.removeItem('lo-trivia-game'); } catch (e) {} }
 
-  function transition(fn, first) {
+  function transition(fn, text) {
     const el = $('clang');
-    const q = game.questions[game.i];
-    $('clangText').textContent = first ? 'Manhattan, New York' : (q ? q.cat : 'Manhattan, New York');
-    el.classList.add('on');
-    dunDun();
-    setTimeout(() => { fn(); setTimeout(() => el.classList.remove('on'), 380); }, 520);
+    $('clangText').textContent = text;
+    el.classList.add('on'); dunDun();
+    setTimeout(() => { fn(); setTimeout(() => el.classList.remove('on'), 360); }, 480);
   }
 
   function renderQuestion() {
-    const q = game.questions[game.i];
-    const n = game.questions.length;
-    $('counter').textContent = 'Case ' + (game.i + 1) + ' of ' + n;
-    $('score').textContent = 'Score ' + game.score;
-    $('streak').textContent = game.streak >= 3 ? 'Streak ' + game.streak : '';
+    const q = byId[game.order[game.i]], n = game.order.length;
+    setStatus('<b>' + (game.i + 1) + '</b>/' + n + ' · <b>' + game.score + '</b> pts');
     $('bar').style.width = (game.i / n * 100) + '%';
     $('qcat').textContent = q.cat;
+    $('streak').textContent = game.streak >= 3 ? game.streak + ' straight' : '';
     $('qtext').textContent = q.q;
-    $('ruling').hidden = true;
-    $('nextBtn').hidden = true;
-
-    // Shuffle the displayed order of choices while tracking the correct one
-    const order = shuffle(q.c.map((_, idx) => idx));
-    const box = $('choices');
-    box.innerHTML = '';
-    order.forEach((origIdx, pos) => {
+    $('sheet').classList.remove('on');
+    $('skipBtn').disabled = false;
+    game.answered = false;
+    const order = shuffle(q.c.map((_, i) => i));
+    const box = $('choices'); box.innerHTML = '';
+    order.forEach((orig, pos) => {
       const b = document.createElement('button');
-      b.type = 'button'; b.className = 'choice';
-      b.dataset.orig = origIdx;
+      b.type = 'button'; b.className = 'choice'; b.dataset.orig = orig;
       b.innerHTML = '<span class="key"></span><span class="txt"></span>';
       b.querySelector('.key').textContent = KEYS[pos];
-      b.querySelector('.txt').textContent = q.c[origIdx];
-      b.addEventListener('click', () => answer(origIdx));
+      b.querySelector('.txt').textContent = q.c[orig];
+      b.addEventListener('click', () => answer(orig));
       box.appendChild(b);
     });
-    box.querySelector('.choice').focus();
+    $('main').scrollTop = 0;
   }
 
   function answer(idx) {
-    const q = game.questions[game.i];
+    const q = byId[game.order[game.i]];
     const correct = idx === q.a;
-    const buttons = Array.from($('choices').children);
-    buttons.forEach(b => {
+    Array.from($('choices').children).forEach((b) => {
       b.disabled = true;
       const o = Number(b.dataset.orig);
-      if (o === q.a) b.classList.add('correct');
-      else if (o === idx) b.classList.add('wrong');
+      if (o === q.a) b.classList.add('correct'); else if (o === idx) b.classList.add('wrong');
     });
-    if (correct) { game.score++; game.streak++; game.bestStreak = Math.max(game.bestStreak, game.streak); }
-    else { game.streak = 0; game.misses.push({ q, picked: q.c[idx] }); }
-    const stamp = $('stamp');
-    stamp.textContent = correct ? 'Sustained' : 'Overruled';
-    stamp.className = 'stamp ' + (correct ? 'good' : 'bad');
+    if (correct) { game.score++; game.streak++; game.bestStreak = Math.max(game.bestStreak, game.streak); buzz(20); }
+    else { game.streak = 0; game.misses.push({ id: q.id, picked: idx }); buzz([40, 40, 40]); }
+    game.answered = true;
+    $('skipBtn').disabled = true;
+    const st = $('stamp');
+    st.textContent = correct ? 'Sustained' : idx === -1 ? 'Skipped' : 'Overruled';
+    st.className = 'stamp ' + (correct ? 'good' : 'bad');
+    $('ans').innerHTML = correct ? '' : 'Answer: <b></b>';
+    if (!correct) $('ans').querySelector('b').textContent = q.c[q.a];
     $('explain').textContent = q.e;
-    $('ruling').hidden = false;
-    $('score').textContent = 'Score ' + game.score;
-    $('streak').textContent = game.streak >= 3 ? 'Streak ' + game.streak : '';
-    const next = $('nextBtn');
-    next.textContent = game.i + 1 < game.questions.length ? 'Next case' : 'Hear the verdict';
-    next.hidden = false;
-    next.focus();
+    setStatus('<b>' + (game.i + 1) + '</b>/' + game.order.length + ' · <b>' + game.score + '</b> pts');
+    $('streak').textContent = game.streak >= 3 ? game.streak + ' straight' : '';
+    $('nextBtn').textContent = game.i + 1 < game.order.length ? 'Next case' : 'Hear the verdict';
+    requestAnimationFrame(() => $('sheet').classList.add('on'));
+    $('nextBtn').focus({ preventScroll: true });
   }
 
   function next() {
-    game.i++;
-    if (game.i >= game.questions.length) { finish(); return; }
-    transition(() => renderQuestion(), false);
+    game.i++; game.answered = false;
+    if (game.i >= game.order.length) { finish(); return; }
+    persist();
+    const q = byId[game.order[game.i]];
+    transition(() => renderQuestion(), q.cat);
   }
 
-  // ---------- VERDICT ----------
+  // ---------- Verdict ----------
   const RANKS = [
     [1.0, 'District Attorney', 'A perfect docket. Jack McCoy would let you deliver the closing.'],
-    [0.9, 'Executive ADA', 'Near-flawless. You have clearly watched the marathons, plural.'],
+    [0.9, 'Executive ADA', 'Near-flawless. You have watched the marathons, plural.'],
     [0.75, 'Detective, First Grade', 'Solid casework. Briscoe would buy you a street-cart coffee.'],
-    [0.6, 'Detective, Third Grade', 'You know the squad room, but the courtroom half still needs work.'],
-    [0.4, 'Uniform at the Crime Scene', 'You have seen enough episodes to point at the body. Keep watching.'],
-    [0.0, 'Juror Number Six', 'The verdict is in: start from Season 1. These are your stories now.'],
+    [0.6, 'Detective, Third Grade', 'You know the squad room. The courtroom half needs work.'],
+    [0.4, 'Uniform at the Scene', 'Enough episodes to point at the body. Keep watching.'],
+    [0.0, 'Juror Number Six', 'Start from Season 1. These are your stories now.'],
   ];
   function finish() {
-    const n = game.questions.length;
-    const pct = game.score / n;
-    const rank = RANKS.find(r => pct >= r[0]);
-    const prev = best[game.mode.id];
-    if (prev == null || game.score > prev) {
-      best[game.mode.id] = game.score;
-      try { localStorage.setItem('lo-trivia-best', JSON.stringify(best)); } catch (e) { /* ignore */ }
-    }
+    clearSaved();
+    const n = game.order.length, pct = game.score / n;
+    const rank = RANKS.find((r) => pct >= r[0]);
+    if (best[game.mode] == null || game.score > best[game.mode]) { best[game.mode] = game.score; save('lo-trivia-best', best); }
     $('finalScore').textContent = game.score;
-    $('finalOf').textContent = 'out of ' + n + ' correct';
+    $('finalOf').textContent = 'of ' + n;
     $('rank').textContent = rank[1];
     $('rankNote').textContent = rank[2];
     $('stPct').textContent = Math.round(pct * 100) + '%';
     $('stStreak').textContent = game.bestStreak;
-    $('stBest').textContent = best[game.mode.id] + '/' + n;
-    const list = $('reviewList');
-    list.innerHTML = '';
-    game.misses.forEach(m => {
+    $('stBest').textContent = best[game.mode] + '/' + n;
+    const list = $('reviewList'); list.innerHTML = '';
+    game.misses.forEach((m) => {
+      const q = byId[m.id];
       const li = document.createElement('li');
-      li.innerHTML = '<b></b><br><span></span>';
-      li.querySelector('b').textContent = m.q.q;
-      li.querySelector('span').textContent = 'You said ' + m.picked + '. Correct answer: ' + m.q.c[m.q.a] + '.';
+      li.innerHTML = '<b></b><span></span>';
+      li.querySelector('b').textContent = q.q;
+      const sp = li.querySelector('span');
+      sp.innerHTML = (m.picked === -1 ? 'Skipped. ' : 'You said ' + '<u></u>. ') + 'Answer: <em></em>';
+      if (m.picked !== -1) sp.querySelector('u').textContent = q.c[m.picked];
+      sp.querySelector('em').textContent = q.c[q.a];
       list.appendChild(li);
     });
     $('review').hidden = game.misses.length === 0;
     $('bar').style.width = '100%';
+    setStatus('Verdict');
     show('verdict');
+    const C = 2 * Math.PI * 52;
+    const fg = $('ringFg');
+    fg.style.strokeDasharray = C; fg.style.strokeDashoffset = C;
+    requestAnimationFrame(() => requestAnimationFrame(() => { fg.style.strokeDashoffset = C * (1 - pct); }));
     dunDun();
   }
 
-  // ---------- WIRING ----------
+  // ---------- Wiring ----------
+  document.querySelectorAll('.quick button').forEach((b) => b.addEventListener('click', () => start(b.dataset.mode)));
+  $('fullBtn').addEventListener('click', () => start('full'));
+  $('resume').addEventListener('click', resume);
   $('nextBtn').addEventListener('click', next);
-  $('quitBtn').addEventListener('click', () => { renderIntro(); show('intro'); });
-  $('homeBtn').addEventListener('click', () => { renderIntro(); show('intro'); });
+  $('skipBtn').addEventListener('click', () => { if (!game.answered) answer(-1); });
+  $('quitBtn').addEventListener('click', () => { if (game.answered) { game.i++; game.answered = false; } if (game.i >= game.order.length) clearSaved(); else persist(); renderHome(); });
+  $('homeBtn').addEventListener('click', renderHome);
   $('againBtn').addEventListener('click', () => start(game.mode));
-  $('soundToggle').addEventListener('click', (e) => {
-    soundOn = !soundOn;
-    e.currentTarget.setAttribute('aria-pressed', String(soundOn));
-    e.currentTarget.textContent = 'Sound: ' + (soundOn ? 'On' : 'Off');
-  });
+  const st = $('soundToggle');
+  function paintSound() { st.setAttribute('aria-pressed', String(soundOn)); st.setAttribute('aria-label', soundOn ? 'Sound on' : 'Sound off'); st.querySelector('.wave').style.display = soundOn ? '' : 'none'; }
+  st.addEventListener('click', () => { soundOn = !soundOn; try { localStorage.setItem('lo-sound', soundOn ? 'on' : 'off'); } catch (e) {} paintSound(); if (soundOn) dunDun(); });
+  paintSound();
   document.addEventListener('keydown', (e) => {
-    if (screens.quiz.hidden) return;
-    const k = e.key.toUpperCase();
-    const pos = KEYS.indexOf(k);
-    if (pos !== -1) {
-      const b = $('choices').children[pos];
-      if (b && !b.disabled) b.click();
-    } else if ((e.key === 'Enter' || e.key === ' ') && !$('nextBtn').hidden && document.activeElement.tagName !== 'BUTTON') {
-      e.preventDefault(); next();
-    }
+    if ($('play').hidden) return;
+    const pos = KEYS.indexOf(e.key.toUpperCase());
+    if (pos !== -1 && !game.answered) { const b = $('choices').children[pos]; if (b) b.click(); }
+    else if (e.key === 'Enter' && game.answered) { e.preventDefault(); next(); }
   });
+  window.addEventListener('pagehide', persist);
 
-  renderIntro();
-  show('intro');
+  renderHome();
 })();
 </script>
 </body>
