@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Law &amp; Order Trivia</title>
+<style>
+  :root {
+    --ground: #0b0b0d;
+    --panel: #141418;
+    --panel-2: #1c1c22;
+    --rule: #2a2a32;
+    --ink: #ede8dc;
+    --ink-dim: #a39e93;
+    --brass: #c9a24a;
+    --brass-deep: #8f6f2a;
+    --steel: #8fa3b8;
+    --guilty: #b5342b;
+    --acquit: #4e9a6a;
+    --display: "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font: 16px/1.5 var(--body);
+    padding-inline: 16px;
+    padding-block: 24px 40px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+
+  /* Title-card typography: white on black, uppercase, tracked */
+  .card-title {
+    font-family: var(--display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    text-wrap: balance;
+    margin: 0;
+  }
+  .eyebrow {
+    font-family: var(--body);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 0 0 8px;
+  }
+  .rule { border: 0; border-top: 1px solid var(--rule); margin: 20px 0; }
+  .rule.brass { border-top: 2px solid var(--brass); }
+
+  header.masthead {
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;
+    padding-bottom: 14px; border-bottom: 2px solid var(--brass);
+    margin-bottom: 24px;
+  }
+  header.masthead h1 { font-size: clamp(20px, 5vw, 30px); line-height: 1.1; }
+  header.masthead .sub { color: var(--ink-dim); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 4px; }
+  .sound-toggle {
+    background: none; border: 1px solid var(--rule); color: var(--ink-dim);
+    font: 11px/1 var(--body); letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 9px 12px; cursor: pointer; white-space: nowrap;
+  }
+  .sound-toggle[aria-pressed="true"] { color: var(--brass); border-color: var(--brass-deep); }
+
+  .screen[hidden] { display: none; }
+
+  /* Intro */
+  .narration {
+    font-family: var(--display);
+    font-size: clamp(18px, 3.4vw, 22px);
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 60ch;
+    margin: 0 0 24px;
+  }
+  .narration em { font-style: italic; color: var(--brass); }
+
+  .modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
+  .mode {
+    background: var(--panel); border: 1px solid var(--rule); border-top: 3px solid var(--brass-deep);
+    color: var(--ink); text-align: left; padding: 16px; cursor: pointer;
+    font-family: var(--body); display: flex; flex-direction: column; gap: 6px;
+  }
+  .mode:hover, .mode:focus-visible { border-top-color: var(--brass); background: var(--panel-2); outline: none; }
+  .mode:focus-visible { box-shadow: 0 0 0 2px var(--brass); }
+  .mode .name { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 15px; }
+  .mode .meta { color: var(--ink-dim); font-size: 13px; }
+  .mode .count { color: var(--steel); font-size: 12px; font-variant-numeric: tabular-nums; letter-spacing: 0.08em; }
+
+  .record { margin-top: 28px; color: var(--ink-dim); font-size: 13px; }
+  .record b { color: var(--brass); font-variant-numeric: tabular-nums; }
+
+  /* Quiz */
+  .docket {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim);
+    font-variant-numeric: tabular-nums;
+  }
+  .docket .score { color: var(--brass); }
+  .progress { height: 3px; background: var(--rule); margin: 10px 0 24px; }
+  .progress > div { height: 100%; background: var(--brass); width: 0; transition: width .3s ease; }
+
+  .qcard { background: var(--panel); border: 1px solid var(--rule); padding: 22px 20px 20px; }
+  .qcard .cat { color: var(--steel); }
+  .question { font-family: var(--display); font-size: clamp(19px, 3.6vw, 24px); line-height: 1.35; margin: 0 0 20px; text-wrap: balance; }
+
+  .choices { display: grid; gap: 10px; }
+  .choice {
+    display: grid; grid-template-columns: 28px 1fr; align-items: start; gap: 12px;
+    background: var(--panel-2); border: 1px solid var(--rule); color: var(--ink);
+    padding: 12px 14px; text-align: left; cursor: pointer; font: 15px/1.4 var(--body);
+  }
+  .choice .key { font-family: var(--display); font-weight: 700; color: var(--brass); font-size: 15px; }
+  .choice:hover:not([disabled]), .choice:focus-visible { border-color: var(--brass-deep); outline: none; }
+  .choice:focus-visible { box-shadow: 0 0 0 2px var(--brass); }
+  .choice[disabled] { cursor: default; }
+  .choice.correct { border-color: var(--acquit); background: rgba(78,154,106,.14); }
+  .choice.wrong { border-color: var(--guilty); background: rgba(181,52,43,.16); }
+  .choice.wrong .key { color: var(--guilty); }
+  .choice.correct .key { color: var(--acquit); }
+
+  .ruling { margin-top: 18px; display: grid; gap: 8px; }
+  .ruling .stamp {
+    font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; font-size: 14px;
+    padding: 6px 10px; border: 2px solid currentColor; display: inline-block; justify-self: start;
+    transform: rotate(-2deg);
+  }
+  .ruling .stamp.good { color: var(--acquit); }
+  .ruling .stamp.bad { color: var(--guilty); }
+  .ruling p { margin: 0; color: var(--ink-dim); font-size: 14px; max-width: 62ch; }
+
+  .actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
+  .btn {
+    background: var(--brass); color: #141008; border: 0; cursor: pointer;
+    font: 700 13px/1 var(--body); letter-spacing: 0.16em; text-transform: uppercase; padding: 13px 20px;
+  }
+  .btn:hover, .btn:focus-visible { background: #dcb65e; outline: none; }
+  .btn:focus-visible { box-shadow: 0 0 0 2px var(--ink); }
+  .btn.ghost { background: none; color: var(--ink-dim); border: 1px solid var(--rule); }
+  .btn.ghost:hover { color: var(--ink); border-color: var(--ink-dim); }
+
+  /* Verdict */
+  .verdict-card { text-align: center; padding: 32px 16px; border: 1px solid var(--rule); background: var(--panel); }
+  .verdict-card .big { font-family: var(--display); font-weight: 700; font-size: clamp(44px, 12vw, 72px); line-height: 1; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; color: var(--brass); }
+  .verdict-card .of { color: var(--ink-dim); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; margin-top: 6px; }
+  .verdict-card .rank { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.18em; font-size: clamp(16px, 4vw, 22px); margin-top: 20px; }
+  .verdict-card .note { color: var(--ink-dim); margin: 8px auto 0; max-width: 46ch; font-size: 14px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 20px; }
+  .stats div { background: var(--panel); padding: 12px 8px; text-align: center; }
+  .stats .v { font-family: var(--display); font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .stats .l { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); }
+  .review { margin-top: 24px; }
+  .review h3 { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.14em; font-size: 14px; margin: 0 0 10px; color: var(--ink-dim); }
+  .review ol { margin: 0; padding-left: 20px; display: grid; gap: 10px; font-size: 14px; }
+  .review li b { color: var(--ink); font-weight: 600; }
+  .review li span { color: var(--ink-dim); }
+
+  /* Scene transition: black card that flashes between questions */
+  .clang {
+    position: fixed; inset: 0; background: var(--ground); display: grid; place-items: center;
+    opacity: 0; pointer-events: none; z-index: 10; transition: opacity .12s;
+  }
+  .clang.on { opacity: 1; }
+  .clang p { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.3em; color: var(--ink); font-size: clamp(14px, 3vw, 18px); text-align: center; padding: 0 16px; }
+
+  footer { margin-top: 32px; color: var(--ink-dim); font-size: 12px; letter-spacing: 0.06em; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .progress > div, .clang { transition: none; }
+  }
+  @media (max-width: 480px) {
+    header.masthead { flex-direction: column; align-items: flex-start; }
+    .stats { grid-template-columns: 1fr 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div>
+      <h1 class="card-title">Law &amp; Order Trivia</h1>
+      <div class="sub">The People v. Your Memory</div>
+    </div>
+    <button class="sound-toggle" id="soundToggle" aria-pressed="true" type="button">Sound: On</button>
+  </header>
+
+  <!-- INTRO -->
+  <section class="screen" id="intro">
+    <p class="eyebrow">Opening statement</p>
+    <p class="narration">In the criminal justice system, the people are represented by two separate yet equally important groups: the fans who watched every episode, and the fans who <em>think</em> they did. These are their questions.</p>
+    <p class="eyebrow">Choose your docket</p>
+    <div class="modes" id="modes"></div>
+    <p class="record" id="record"></p>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="screen" id="quiz" hidden>
+    <div class="docket">
+      <span id="counter">Case 1 of 10</span>
+      <span id="streak"></span>
+      <span class="score" id="score">Score 0</span>
+    </div>
+    <div class="progress"><div id="bar"></div></div>
+    <div class="qcard">
+      <p class="eyebrow cat" id="qcat"></p>
+      <h2 class="question" id="qtext"></h2>
+      <div class="choices" id="choices"></div>
+      <div class="ruling" id="ruling" hidden>
+        <span class="stamp" id="stamp"></span>
+        <p id="explain"></p>
+      </div>
+      <div class="actions">
+        <button class="btn ghost" id="quitBtn" type="button">Dismiss case</button>
+        <button class="btn" id="nextBtn" type="button" hidden>Next case</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERDICT -->
+  <section class="screen" id="verdict" hidden>
+    <p class="eyebrow">The jury has reached a verdict</p>
+    <div class="verdict-card">
+      <div class="big" id="finalScore">0</div>
+      <div class="of" id="finalOf">out of 10 correct</div>
+      <div class="rank" id="rank"></div>
+      <p class="note" id="rankNote"></p>
+      <div class="stats">
+        <div><div class="v" id="stPct">0%</div><div class="l">Conviction rate</div></div>
+        <div><div class="v" id="stStreak">0</div><div class="l">Best streak</div></div>
+        <div><div class="v" id="stBest">0</div><div class="l">Personal best</div></div>
+      </div>
+    </div>
+    <div class="review" id="review" hidden>
+      <h3>Cases you lost</h3>
+      <ol id="reviewList"></ol>
+    </div>
+    <div class="actions">
+      <button class="btn ghost" id="homeBtn" type="button">New docket</button>
+      <button class="btn" id="againBtn" type="button">Retry this docket</button>
+    </div>
+  </section>
+
+  <footer>Runs entirely in this file. No internet connection required. Fan-made and unaffiliated with NBC or Wolf Entertainment.</footer>
+</div>
+
+<div class="clang" id="clang" aria-hidden="true"><p id="clangText">Manhattan</p></div>
+
+<script>
+(function () {
+  'use strict';
+
+  // ---------- QUESTION BANK ----------
+  // q: question, c: choices, a: index of correct choice, e: explanation
+  const BANK = {
+    "The Original Series": [
+      { q: "In what year did the original Law & Order premiere on NBC?", c: ["1988", "1990", "1992", "1994"], a: 1, e: "The first episode, \"Prescription for Death,\" aired September 13, 1990." },
+      { q: "Who created Law & Order?", c: ["Steven Bochco", "David E. Kelley", "Dick Wolf", "Aaron Spelling"], a: 2, e: "Dick Wolf, a former writer on Hill Street Blues and Miami Vice, created the franchise." },
+      { q: "Which network originally commissioned the pilot before passing on the show?", c: ["ABC", "CBS", "Fox", "HBO"], a: 1, e: "CBS commissioned the pilot \"Everybody's Favorite Bagman\" in 1988, then passed. Fox also passed before NBC picked it up." },
+      { q: "Which precinct do the original series detectives work out of?", c: ["The 16th", "The 27th", "The 12th", "The 55th"], a: 1, e: "The 27th Precinct in Manhattan. SVU's squad works out of the 16th." },
+      { q: "How many seasons did the original run last before its 2010 cancellation?", c: ["15", "18", "20", "22"], a: 2, e: "Twenty seasons, tying Gunsmoke's record for a live-action primetime drama at the time. The show returned in 2022." },
+      { q: "Who narrates the famous opening, \"In the criminal justice system...\"?", c: ["Dick Wolf", "Steven Zirnkilton", "Sam Waterston", "Jerry Orbach"], a: 1, e: "Voice actor Steven Zirnkilton has narrated the openings across the franchise since 1990." },
+      { q: "Which Season 6 finale ends with the death of ADA Claire Kincaid?", c: ["Aftershock", "Pride", "Old Friends", "Refuge"], a: 0, e: "In \"Aftershock,\" the cast witnesses an execution, and Kincaid is killed in a car crash while driving a drunk Briscoe home." },
+      { q: "In what year did the original series win the Emmy for Outstanding Drama Series?", c: ["1993", "1997", "2001", "2005"], a: 1, e: "Its lone win in the category came in 1997, after years of nominations." },
+      { q: "Where in New York was the original series primarily filmed?", c: ["Silvercup Studios", "Kaufman Astoria", "Chelsea Piers", "Steiner Studios"], a: 2, e: "The show's soundstages were at Chelsea Piers on Manhattan's west side, with heavy location shooting around the city." },
+      { q: "The original Law & Order shared three crossover events with which other series?", c: ["NYPD Blue", "Homicide: Life on the Street", "Hill Street Blues", "The Practice"], a: 1, e: "The Homicide crossovers brought John Munch into the Law & Order universe years before SVU." },
+      { q: "Which episode-writing hook became the franchise's unofficial slogan?", c: ["Based on a true story", "Ripped from the headlines", "Names have been changed", "Just the facts"], a: 1, e: "\"Ripped from the headlines\" describes the show's habit of fictionalizing real cases." },
+      { q: "In the 2022 revival, who replaced Sam Waterston as District Attorney when he left in 2024?", c: ["Jeffrey Donovan", "Hugh Dancy", "Tony Goldwyn", "Mehcad Brooks"], a: 2, e: "Tony Goldwyn joined as DA Nicholas Baxter. Donovan and Brooks play detectives, and Dancy plays EADA Nolan Price." },
+    ],
+    "Detectives & Prosecutors": [
+      { q: "Who played Detective Lennie Briscoe?", c: ["George Dzundza", "Paul Sorvino", "Jerry Orbach", "Dennis Farina"], a: 2, e: "Jerry Orbach played Briscoe from 1992 to 2004. He was also a Broadway star and the voice of Lumière in Beauty and the Beast." },
+      { q: "Which actor played Executive ADA Ben Stone in the first four seasons?", c: ["Michael Moriarty", "Sam Waterston", "Steven Hill", "Chris Noth"], a: 0, e: "Michael Moriarty left in 1994 during a public feud with Attorney General Janet Reno over TV violence." },
+      { q: "In which season did Sam Waterston's Jack McCoy first appear?", c: ["Season 1", "Season 3", "Season 5", "Season 7"], a: 2, e: "McCoy arrived in the Season 5 premiere in 1994 and stayed through 2024." },
+      { q: "Who played Lieutenant Anita Van Buren, the longest-serving cast member of the original?", c: ["Tamara Tunie", "S. Epatha Merkerson", "Alfre Woodard", "CCH Pounder"], a: 1, e: "Merkerson led the squad from 1993 to 2010, seventeen seasons." },
+      { q: "Which detective, played by Chris Noth, was written out after punching a city councilman?", c: ["Mike Logan", "Rey Curtis", "Ed Green", "Max Greevey"], a: 0, e: "Logan was exiled to Staten Island in the Season 5 finale \"Pride.\" Noth later returned in Criminal Intent." },
+      { q: "Who took over as District Attorney after Adam Schiff and was played by a two-time Oscar winner?", c: ["Nora Lewin", "Arthur Branch", "Jamie Ross", "Abbie Carmichael"], a: 0, e: "Dianne Wiest played DA Nora Lewin from 2000 to 2002." },
+      { q: "DA Arthur Branch was played by an actor who was also a real U.S. Senator. Who?", c: ["Fred Thompson", "Al Franken", "Ben Jones", "Fred Grandy"], a: 0, e: "Fred Thompson, a Republican senator from Tennessee, played Branch from 2002 to 2007 and left to run for president." },
+      { q: "Which Briscoe partner was played by Jesse L. Martin, who originated Tom Collins in Rent?", c: ["Rey Curtis", "Ed Green", "Cyrus Lupo", "Kevin Bernard"], a: 1, e: "Ed Green partnered with Briscoe from 1999 to 2004 and stayed until 2008." },
+      { q: "Dennis Farina, who played Detective Joe Fontana, had which previous career?", c: ["Prosecutor", "Chicago police officer", "Firefighter", "Pro boxer"], a: 1, e: "Farina spent eighteen years with the Chicago Police Department before acting." },
+      { q: "Which ADA, played by Elisabeth Röhm, exited with the infamous line \"Is this because I'm a lesbian?\"", c: ["Claire Kincaid", "Abbie Carmichael", "Serena Southerlyn", "Alexandra Borgia"], a: 2, e: "Southerlyn's 2005 exit revealed her sexuality in the final seconds of her last episode." },
+      { q: "Who played DA Adam Schiff, the show's original District Attorney?", c: ["Steven Hill", "Sam Waterston", "Hal Holbrook", "Eli Wallach"], a: 0, e: "Steven Hill played Schiff for the first ten seasons, from 1990 to 2000." },
+      { q: "Benjamin Bratt's Detective Rey Curtis partnered with Briscoe for how many seasons?", c: ["Two", "Four", "Six", "Eight"], a: 1, e: "Curtis worked the 2-7 from 1995 to 1999, Seasons 6 through 9." },
+    ],
+    "Special Victims Unit": [
+      { q: "In what year did Law & Order: Special Victims Unit premiere?", c: ["1997", "1999", "2001", "2003"], a: 1, e: "SVU debuted September 20, 1999, the first spin-off in the franchise." },
+      { q: "Who plays Olivia Benson?", c: ["Stephanie March", "Kelli Giddish", "Mariska Hargitay", "Diane Neal"], a: 2, e: "Mariska Hargitay has played Benson since the pilot and won the Emmy for Outstanding Lead Actress in a Drama in 2006." },
+      { q: "Mariska Hargitay is the daughter of which Hollywood star?", c: ["Jayne Mansfield", "Marilyn Monroe", "Mamie Van Doren", "Kim Novak"], a: 0, e: "Her mother was 1950s screen icon Jayne Mansfield. Her father was bodybuilder and actor Mickey Hargitay." },
+      { q: "After which season did Christopher Meloni's Elliot Stabler leave SVU?", c: ["Season 8", "Season 10", "Season 12", "Season 14"], a: 2, e: "Stabler left after Season 12 in 2011 and returned a decade later in Law & Order: Organized Crime." },
+      { q: "What is Fin Tutuola's rarely used first name?", c: ["Odafin", "Olumide", "Osric", "Obadiah"], a: 0, e: "Odafin \"Fin\" Tutuola, played by Ice-T since Season 2." },
+      { q: "On which series did Richard Belzer's Detective John Munch originate?", c: ["NYPD Blue", "Homicide: Life on the Street", "The Wire", "Miami Vice"], a: 1, e: "Munch started on Homicide in 1993 and became one of TV's most widely crossed-over characters." },
+      { q: "Which SVU ADA was placed in witness protection after her death was faked?", c: ["Casey Novak", "Kim Greylek", "Alexandra Cabot", "Sonya Paxton"], a: 2, e: "Cabot (Stephanie March) was \"killed\" by a cartel in the Season 5 episode \"Loss\" and later returned." },
+      { q: "Which actor won an Emmy nomination for the 2008 SVU episode \"Authority\"?", c: ["Robin Williams", "Martin Short", "Bradley Cooper", "Cynthia Nixon"], a: 0, e: "Robin Williams played Merritt Rook, a radio-drama engineer who manipulates people with obedience experiments." },
+      { q: "Who plays ADA Rafael Barba?", c: ["Peter Scanavino", "Raúl Esparza", "Danny Pino", "B.D. Wong"], a: 1, e: "Broadway veteran Raúl Esparza played Barba from 2012 to 2018." },
+      { q: "Which rank did Olivia Benson reach in Season 21?", c: ["Sergeant", "Lieutenant", "Captain", "Deputy Chief"], a: 2, e: "Benson rose from detective to sergeant, lieutenant, and then captain of the squad." },
+      { q: "Dr. George Huang, the squad's FBI forensic psychiatrist, was played by whom?", c: ["B.D. Wong", "Daniel Dae Kim", "Ken Leung", "Randall Park"], a: 0, e: "B.D. Wong played Huang from 2001 to 2011." },
+      { q: "In 2019, SVU surpassed which show as the longest-running primetime live-action series in U.S. history?", c: ["The Simpsons", "Gunsmoke", "Bonanza", "ER"], a: 1, e: "Its Season 21 renewal broke the twenty-season record shared by Gunsmoke and the original Law & Order." },
+    ],
+    "Criminal Intent & Spin-offs": [
+      { q: "Who plays Detective Robert Goren in Law & Order: Criminal Intent?", c: ["Chris Noth", "Jeff Goldblum", "Vincent D'Onofrio", "Eric Bogosian"], a: 2, e: "D'Onofrio's intense, off-kilter Goren anchored the show from 2001 to 2011." },
+      { q: "Who was Goren's longtime partner?", c: ["Megan Wheeler", "Alexandra Eames", "Carolyn Barek", "Serena Stevens"], a: 1, e: "Kathryn Erbe played Eames for the full run of the series." },
+      { q: "Which squad do the Criminal Intent detectives belong to?", c: ["Major Case Squad", "Special Victims Unit", "Organized Crime Control Bureau", "Homicide South"], a: 0, e: "Its opening narration: \"In New York City's war on crime, the worst criminal offenders are pursued by the detectives of the Major Case Squad.\"" },
+      { q: "Who played Nicole Wallace, Goren's recurring nemesis?", c: ["Olivia d'Abo", "Julianne Nicholson", "Saffron Burrows", "Annabella Sciorra"], a: 0, e: "The murderous academic appeared across several seasons before her own murder in Season 7." },
+      { q: "Which Oscar-nominated actor joined Criminal Intent in 2009 as Detective Zack Nichols?", c: ["Jeff Goldblum", "John Malkovich", "Willem Dafoe", "Stanley Tucci"], a: 0, e: "Goldblum starred for Seasons 8 and 9 after the show had moved to the USA Network." },
+      { q: "Law & Order: Trial by Jury (2005) was headlined by which Broadway veteran?", c: ["Bernadette Peters", "Bebe Neuwirth", "Patti LuPone", "Kristin Chenoweth"], a: 1, e: "Neuwirth played ADA Tracey Kibre. The single-season show also featured Jerry Orbach's final work." },
+      { q: "In Law & Order: LA, which star's character was killed off midway through the only season?", c: ["Alfred Molina", "Terrence Howard", "Skeet Ulrich", "Corey Stoll"], a: 2, e: "Ulrich's Detective Rex Winters was shot dead when the show retooled in 2011." },
+      { q: "Law & Order: UK starred which former Doctor Who companion as a junior prosecutor?", c: ["Billie Piper", "Karen Gillan", "Freema Agyeman", "Jenna Coleman"], a: 2, e: "Agyeman played Alesha Phillips alongside Bradley Walsh and Jamie Bamber, in episodes adapted from original U.S. scripts." },
+      { q: "Law & Order True Crime (2017) dramatized which case, with Edie Falco as the defense attorney?", c: ["The O.J. Simpson trial", "The Menendez murders", "The Central Park Five", "The Amy Fisher case"], a: 1, e: "Falco played Leslie Abramson, who defended Lyle and Erik Menendez." },
+      { q: "Law & Order: Organized Crime premiered in what year?", c: ["2019", "2020", "2021", "2022"], a: 2, e: "It launched April 1, 2021 with a crossover that brought Stabler back and killed off his wife, Kathy." },
+      { q: "Which actor played Richard Wheatley, Stabler's first-season antagonist in Organized Crime?", c: ["Dylan McDermott", "Denis Leary", "Michael Imperioli", "Aidan Quinn"], a: 0, e: "McDermott played the crime boss across the first two seasons." },
+      { q: "Which Criminal Intent captain was murdered in the Season 9 premiere?", c: ["James Deakins", "Danny Ross", "Joseph Hannah", "Don Cragen"], a: 1, e: "Eric Bogosian's Captain Ross was killed while undercover, setting up Goren and Eames's exit." },
+    ],
+    "Behind the Scenes": [
+      { q: "Who composed the Law & Order theme and the famous \"dun dun\" sound?", c: ["Danny Elfman", "Mike Post", "Hans Zimmer", "Jan Hammer"], a: 1, e: "Post, also behind the Hill Street Blues and NYPD Blue themes, built the scene-transition sound himself." },
+      { q: "What does Mike Post call the \"dun dun\" sound?", c: ["The Gavel", "The Clang", "The Slam", "The Chung"], a: 1, e: "Post says \"The Clang\" is a composite that includes the sound of about 500 Japanese men stomping on a wooden floor." },
+      { q: "What structure does a classic Law & Order episode follow?", c: ["Three acts of investigation", "Half police, half prosecution", "One act per suspect", "Trial first, flashbacks second"], a: 1, e: "The first half follows the detectives, the second half follows the DAs, a format Dick Wolf pitched as \"two shows in one.\"" },
+      { q: "Jerry Orbach originated which role in the original Broadway production of Chicago?", c: ["Amos Hart", "Billy Flynn", "Fred Casely", "Mary Sunshine"], a: 1, e: "Orbach was the first Billy Flynn in 1975. He also originated El Gallo in The Fantasticks." },
+      { q: "Chris Noth, who played Mike Logan, is also famous for which role?", c: ["Mr. Big in Sex and the City", "Ross in Friends", "Sipowicz in NYPD Blue", "Crockett in Miami Vice"], a: 0, e: "Noth played Mr. Big while the Logan character was still appearing in Law & Order TV movies and Criminal Intent." },
+      { q: "Which other franchise did Dick Wolf launch with Chicago Fire in 2012?", c: ["CSI", "One Chicago", "NCIS", "FBI"], a: 1, e: "One Chicago grew to include Chicago P.D. and Chicago Med. Wolf later launched the FBI franchise on CBS." },
+      { q: "Which cast member appeared as Captain Don Cragen on both the original series and SVU?", c: ["Dann Florek", "Richard Belzer", "Dean Winters", "Michael Moriarty"], a: 0, e: "Florek was cut from the original after Season 3, then anchored SVU from 1999 to 2014." },
+      { q: "In which SVU season did Ice-T's Fin Tutuola join the squad?", c: ["Season 1", "Season 2", "Season 3", "Season 5"], a: 1, e: "Fin arrived in the Season 2 premiere in 2000 as Munch's new partner and has been there ever since." },
+      { q: "Who plays the original series' medical examiner Dr. Elizabeth Rodgers, seen across multiple spin-offs?", c: ["Leslie Hendrix", "Tamara Tunie", "Carolyn McCormick", "Annie Parisse"], a: 0, e: "Hendrix has played Rodgers since 1992 on the original, Criminal Intent, SVU, and Trial by Jury." },
+      { q: "Which Oscar-winning actor played police psychiatrist Dr. Emil Skoda?", c: ["Kevin Spacey", "J.K. Simmons", "Chris Cooper", "Jeremy Irons"], a: 1, e: "Simmons played Skoda from 1997 to 2004, long before his Whiplash Oscar." },
+      { q: "Where do the Law & Order detectives usually pick up their coffee, according to years of running jokes?", c: ["From a cart on the street", "In the squad's break room", "At a diner booth", "From the DA's office"], a: 0, e: "The detectives interview witnesses over street-cart coffee and hot dogs so often that fans count it as a signature of the show." },
+      { q: "Which foundation did Mariska Hargitay create to support survivors of sexual assault?", c: ["The Joyful Heart Foundation", "The Benson Project", "RAINN", "The Survivor's Fund"], a: 0, e: "She founded the Joyful Heart Foundation in 2004, inspired by letters from viewers." },
+    ],
+  };
+
+  // ---------- SOUND: a synthesized "dun dun" ----------
+  let audioCtx = null;
+  let soundOn = true;
+  function thud(ctx, t, freq, dur) {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const noise = ctx.createBufferSource();
+    const buf = ctx.createBuffer(1, ctx.sampleRate * 0.12, ctx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 3);
+    noise.buffer = buf;
+    const nGain = ctx.createGain();
+    nGain.gain.setValueAtTime(0.25, t);
+    nGain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+    noise.connect(nGain).connect(ctx.destination);
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(freq, t);
+    osc.frequency.exponentialRampToValueAtTime(freq * 0.55, t + dur);
+    gain.gain.setValueAtTime(0.6, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
+    osc.connect(gain).connect(ctx.destination);
+    osc.start(t); osc.stop(t + dur);
+    noise.start(t);
+  }
+  function dunDun() {
+    if (!soundOn) return;
+    try {
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const t = audioCtx.currentTime + 0.02;
+      thud(audioCtx, t, 110, 0.35);
+      thud(audioCtx, t + 0.32, 98, 0.6);
+    } catch (e) { /* audio unavailable */ }
+  }
+
+  // ---------- STATE ----------
+  const $ = (id) => document.getElementById(id);
+  const screens = { intro: $('intro'), quiz: $('quiz'), verdict: $('verdict') };
+  const KEYS = ['A', 'B', 'C', 'D'];
+  let game = null;   // { mode, questions, i, score, streak, best, misses }
+  let best = {};
+  try { best = JSON.parse(localStorage.getItem('lo-trivia-best') || '{}') || {}; } catch (e) { best = {}; }
+
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+  }
+  function allQuestions() {
+    return Object.keys(BANK).flatMap(cat => BANK[cat].map(q => Object.assign({ cat }, q)));
+  }
+  const MODES = [
+    { id: 'quick', name: 'Quick arraignment', meta: 'Ten random cases from every category.', pick: () => shuffle(allQuestions()).slice(0, 10) },
+    { id: 'full', name: 'Full docket', meta: 'Every question in the file, shuffled.', pick: () => shuffle(allQuestions()) },
+    ...Object.keys(BANK).map(cat => ({ id: 'cat:' + cat, name: cat, meta: 'Every case in this category.', pick: () => shuffle(BANK[cat].map(q => Object.assign({ cat }, q))) })),
+  ];
+  function modeCount(m) { return m.id === 'quick' ? 10 : m.id === 'full' ? allQuestions().length : BANK[m.id.slice(4)].length; }
+
+  function show(name) {
+    Object.keys(screens).forEach(k => { screens[k].hidden = k !== name; });
+    window.scrollTo(0, 0);
+  }
+
+  // ---------- INTRO ----------
+  function renderIntro() {
+    const box = $('modes');
+    box.innerHTML = '';
+    MODES.forEach(m => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'mode';
+      b.innerHTML = '<span class="name"></span><span class="meta"></span><span class="count"></span>';
+      b.querySelector('.name').textContent = m.name;
+      b.querySelector('.meta').textContent = m.meta;
+      const n = modeCount(m);
+      b.querySelector('.count').textContent = n + ' cases' + (best[m.id] != null ? ' · best ' + best[m.id] + '/' + n : '');
+      b.addEventListener('click', () => start(m));
+      box.appendChild(b);
+    });
+    const total = allQuestions().length;
+    $('record').innerHTML = 'Question bank: <b>' + total + '</b> cases across <b>' + Object.keys(BANK).length + '</b> categories. Your best scores are saved in this browser.';
+  }
+
+  // ---------- QUIZ ----------
+  function start(mode) {
+    game = { mode, questions: mode.pick(), i: 0, score: 0, streak: 0, bestStreak: 0, misses: [] };
+    show('quiz');
+    transition(() => renderQuestion(), true);
+  }
+
+  function transition(fn, first) {
+    const el = $('clang');
+    const q = game.questions[game.i];
+    $('clangText').textContent = first ? 'Manhattan, New York' : (q ? q.cat : 'Manhattan, New York');
+    el.classList.add('on');
+    dunDun();
+    setTimeout(() => { fn(); setTimeout(() => el.classList.remove('on'), 380); }, 520);
+  }
+
+  function renderQuestion() {
+    const q = game.questions[game.i];
+    const n = game.questions.length;
+    $('counter').textContent = 'Case ' + (game.i + 1) + ' of ' + n;
+    $('score').textContent = 'Score ' + game.score;
+    $('streak').textContent = game.streak >= 3 ? 'Streak ' + game.streak : '';
+    $('bar').style.width = (game.i / n * 100) + '%';
+    $('qcat').textContent = q.cat;
+    $('qtext').textContent = q.q;
+    $('ruling').hidden = true;
+    $('nextBtn').hidden = true;
+
+    // Shuffle the displayed order of choices while tracking the correct one
+    const order = shuffle(q.c.map((_, idx) => idx));
+    const box = $('choices');
+    box.innerHTML = '';
+    order.forEach((origIdx, pos) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'choice';
+      b.dataset.orig = origIdx;
+      b.innerHTML = '<span class="key"></span><span class="txt"></span>';
+      b.querySelector('.key').textContent = KEYS[pos];
+      b.querySelector('.txt').textContent = q.c[origIdx];
+      b.addEventListener('click', () => answer(origIdx));
+      box.appendChild(b);
+    });
+    box.querySelector('.choice').focus();
+  }
+
+  function answer(idx) {
+    const q = game.questions[game.i];
+    const correct = idx === q.a;
+    const buttons = Array.from($('choices').children);
+    buttons.forEach(b => {
+      b.disabled = true;
+      const o = Number(b.dataset.orig);
+      if (o === q.a) b.classList.add('correct');
+      else if (o === idx) b.classList.add('wrong');
+    });
+    if (correct) { game.score++; game.streak++; game.bestStreak = Math.max(game.bestStreak, game.streak); }
+    else { game.streak = 0; game.misses.push({ q, picked: q.c[idx] }); }
+    const stamp = $('stamp');
+    stamp.textContent = correct ? 'Sustained' : 'Overruled';
+    stamp.className = 'stamp ' + (correct ? 'good' : 'bad');
+    $('explain').textContent = q.e;
+    $('ruling').hidden = false;
+    $('score').textContent = 'Score ' + game.score;
+    $('streak').textContent = game.streak >= 3 ? 'Streak ' + game.streak : '';
+    const next = $('nextBtn');
+    next.textContent = game.i + 1 < game.questions.length ? 'Next case' : 'Hear the verdict';
+    next.hidden = false;
+    next.focus();
+  }
+
+  function next() {
+    game.i++;
+    if (game.i >= game.questions.length) { finish(); return; }
+    transition(() => renderQuestion(), false);
+  }
+
+  // ---------- VERDICT ----------
+  const RANKS = [
+    [1.0, 'District Attorney', 'A perfect docket. Jack McCoy would let you deliver the closing.'],
+    [0.9, 'Executive ADA', 'Near-flawless. You have clearly watched the marathons, plural.'],
+    [0.75, 'Detective, First Grade', 'Solid casework. Briscoe would buy you a street-cart coffee.'],
+    [0.6, 'Detective, Third Grade', 'You know the squad room, but the courtroom half still needs work.'],
+    [0.4, 'Uniform at the Crime Scene', 'You have seen enough episodes to point at the body. Keep watching.'],
+    [0.0, 'Juror Number Six', 'The verdict is in: start from Season 1. These are your stories now.'],
+  ];
+  function finish() {
+    const n = game.questions.length;
+    const pct = game.score / n;
+    const rank = RANKS.find(r => pct >= r[0]);
+    const prev = best[game.mode.id];
+    if (prev == null || game.score > prev) {
+      best[game.mode.id] = game.score;
+      try { localStorage.setItem('lo-trivia-best', JSON.stringify(best)); } catch (e) { /* ignore */ }
+    }
+    $('finalScore').textContent = game.score;
+    $('finalOf').textContent = 'out of ' + n + ' correct';
+    $('rank').textContent = rank[1];
+    $('rankNote').textContent = rank[2];
+    $('stPct').textContent = Math.round(pct * 100) + '%';
+    $('stStreak').textContent = game.bestStreak;
+    $('stBest').textContent = best[game.mode.id] + '/' + n;
+    const list = $('reviewList');
+    list.innerHTML = '';
+    game.misses.forEach(m => {
+      const li = document.createElement('li');
+      li.innerHTML = '<b></b><br><span></span>';
+      li.querySelector('b').textContent = m.q.q;
+      li.querySelector('span').textContent = 'You said ' + m.picked + '. Correct answer: ' + m.q.c[m.q.a] + '.';
+      list.appendChild(li);
+    });
+    $('review').hidden = game.misses.length === 0;
+    $('bar').style.width = '100%';
+    show('verdict');
+    dunDun();
+  }
+
+  // ---------- WIRING ----------
+  $('nextBtn').addEventListener('click', next);
+  $('quitBtn').addEventListener('click', () => { renderIntro(); show('intro'); });
+  $('homeBtn').addEventListener('click', () => { renderIntro(); show('intro'); });
+  $('againBtn').addEventListener('click', () => start(game.mode));
+  $('soundToggle').addEventListener('click', (e) => {
+    soundOn = !soundOn;
+    e.currentTarget.setAttribute('aria-pressed', String(soundOn));
+    e.currentTarget.textContent = 'Sound: ' + (soundOn ? 'On' : 'Off');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (screens.quiz.hidden) return;
+    const k = e.key.toUpperCase();
+    const pos = KEYS.indexOf(k);
+    if (pos !== -1) {
+      const b = $('choices').children[pos];
+      if (b && !b.disabled) b.click();
+    } else if ((e.key === 'Enter' || e.key === ' ') && !$('nextBtn').hidden && document.activeElement.tagName !== 'BUTTON') {
+      e.preventDefault(); next();
+    }
+  });
+
+  renderIntro();
+  show('intro');
+})();
+</script>
+</body>
+</html>
