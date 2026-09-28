@@ -1483,7 +1483,7 @@ interface GraphProps {
   onLinkRightClick: (dependencyId: string, dependentId: string) => void
 }
 
-const idOf = (end: GraphLink['source']) => (typeof end === 'string' ? end : (end as GraphNode).id)
+const idOf = (end: unknown) => (typeof end === 'string' ? end : (end as GraphNode).id)
 
 export default function Graph({ plan, selectedId, onSelect, onLinkRightClick }: GraphProps) {
   const cache = useRef(new Map<string, GraphNode>())
