@@ -1,4 +1,4 @@
-import { createHash } from 'node:crypto'
+import { createHash, randomBytes } from 'node:crypto'
 import { mkdir, readdir, readFile, rename, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { ID_RE, serializePlan, slugify, validatePlan, type Plan } from '@/lib/schema'
@@ -45,10 +45,10 @@ export async function writePlan(slug: string, plan: Plan, dir = plansDir()): Pro
   const text = serializePlan(plan)
   await mkdir(dir, { recursive: true })
   const target = fileFor(slug, dir)
-  const tmp = `${target}.tmp`
+  const tmp = `${target}.${process.pid}-${randomBytes(4).toString('hex')}.tmp`
   await writeFile(tmp, text, 'utf8')
-  hashes.set(slug, hashOf(text))
   await rename(tmp, target)
+  hashes.set(slug, hashOf(text))
   return JSON.parse(text) as Plan
 }
 
@@ -63,7 +63,13 @@ export async function listPlans(dir = plansDir()): Promise<PlanSummary[]> {
   const slugs = files.filter(f => f.endsWith('.json')).map(f => f.slice(0, -5)).filter(s => ID_RE.test(s)).sort()
   const out: PlanSummary[] = []
   for (const slug of slugs) {
-    const plan = await readPlan(slug, dir)
+    let plan: Plan | null
+    try {
+      plan = await readPlan(slug, dir)
+    } catch (e) {
+      if (e instanceof SyntaxError) continue // skip corrupt / half-edited files
+      throw e
+    }
     if (plan) out.push({ slug, name: plan.name, nodeCount: plan.nodes.length })
   }
   return out

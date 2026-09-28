@@ -64,6 +64,11 @@ describe('listPlans', () => {
       { slug: 'zeta', name: 'Test', nodeCount: 2 },
     ])
   })
+  it('skips files that are not valid JSON', async () => {
+    await writePlan('good', plan, dir)
+    await writeFile(path.join(dir, 'broken.json'), '{ not json')
+    expect((await listPlans(dir)).map(p => p.slug)).toEqual(['good'])
+  })
   it('returns [] when the dir does not exist', async () => {
     expect(await listPlans(path.join(dir, 'missing'))).toEqual([])
   })
