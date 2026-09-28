@@ -2181,3 +2181,136 @@ git commit -m "depgraph: visual polish, playwright smoke test, README
 
 Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
 ```
+
+---
+
+## Revision 2026-09-28: TDD vertical slices for the remaining work
+
+Tasks 1–7 are committed (last: 8bcc7d3). Per owner direction, the rest is executed as **vertical slices, test-first**. Each slice: write the failing test, run it and record the failure, write minimal code, run green, commit. Component code blocks in Tasks 8 and 9 above remain the reference implementation; slices say which blocks to use. Task 7's review findings are fixed in Slice 1.
+
+Every slice's report must include the RED run output (the failing assertion) and the GREEN run output.
+
+### Slice 1: Harden `usePlan` (unit TDD)
+
+**Files:** Create `depgraph/src/hooks/usePlan.test.tsx`; modify `depgraph/src/hooks/usePlan.ts`, `depgraph/vitest.config.mts`, `depgraph/package.json`.
+
+**Setup:** `npm i -D jsdom @testing-library/react` (from `depgraph/`). In vitest config change `include` to `['src/**/*.test.{ts,tsx}']`; keep `environment: 'node'` and put `// @vitest-environment jsdom` at the top of the hook test.
+
+**Test doubles (unavoidable: network):** stub `globalThis.fetch` with a hand-written fake that records calls and lets the test resolve each response manually (return a `{ promise, resolve }` per call); stub `globalThis.EventSource` with a minimal class exposing `listeners` and `close()` so a test can fire `changed`. Use `vi.useFakeTimers()` for the debounce. Use `renderHook` + `act` from `@testing-library/react`.
+
+Base plan for tests: `{ name: 'P', nodes: [ {id:'a',title:'A',description:'',status:'todo',tags:[],depends_on:[]}, {id:'b',title:'B',description:'',status:'todo',tags:[],depends_on:['a']} ] }`.
+
+Tests, one RED/GREEN cycle each, in this order:
+
+1. `apply returns validation errors and leaves plan untouched` — mutate makes `a` depend on `b` (cycle); expect returned errors `[0]` to match `/^cycle:/`, `result.current.plan` unchanged, and no PUT issued after advancing timers. (Passes already: verify it is green, keep it as the regression guard. This is the only test allowed to pass on first run.)
+2. `edits within the debounce window coalesce into one PUT` — two `apply` calls 100ms apart, advance 300ms, expect exactly one PUT whose body has both edits.
+3. `unmount clears the pending save` — `apply`, unmount before 300ms, advance timers, expect no PUT. (Expected RED: one PUT recorded.)
+4. `changing slug clears the pending save for the old slug` — `apply` on `alpha`, rerender with `beta`, resolve beta's GET, advance timers, expect no PUT to `/api/plans/alpha`. (Expected RED: PUT to alpha with beta's plan.)
+5. `a reload response that lands after a local edit does not overwrite it` — trigger `changed` on the EventSource (GET starts, unresolved), `apply` an edit (title 'A2'), then resolve the GET with the original plan; expect `plan.nodes[0].title === 'A2'` and the subsequent PUT body to contain 'A2'. (Expected RED: title reverts to 'A'.)
+6. `a GET for the previous slug is ignored after switching` — render `alpha` (GET unresolved), rerender `beta`, resolve beta's GET with plan named 'Beta', then resolve alpha's GET with plan named 'Alpha'; expect `plan.name === 'Beta'`. (Expected RED: 'Alpha'.)
+7. `slug change clears loadError` — resolve alpha's GET as 404 `{errors:['not found']}`, expect `loadError` set; rerender `beta`, expect `loadError` null before beta's GET resolves.
+
+**Implementation shape (minimal):** a `gen = useRef(0)` request token incremented on slug change; `reload` captures `const g = gen.current` and after `await` bails if `g !== gen.current || dirty.current`; the slug effect cleanup clears `timer.current`; the effect sets `setLoadError(null)`. Keep `flush`'s failure path as is (Minor finding, not in scope).
+
+**Commit:** `depgraph: harden usePlan — cancel pending saves on slug change/unmount, ignore stale reloads`
+
+### Slice 2: Playwright harness, Toolbar, Toast, add node (e2e TDD)
+
+**Files:** Create `depgraph/playwright.config.ts` (Task 9 Step 2 block, verbatim), `depgraph/e2e/smoke.spec.ts`, `depgraph/src/components/Toolbar.tsx` (Task 8 Step 2 block), `depgraph/src/components/Toast.tsx` (Task 8 Step 1 block); modify `depgraph/src/app/page.tsx`, `depgraph/.gitignore` (add `e2e/plans/`, `test-results/`, `playwright-report/`).
+
+**RED:** `e2e/smoke.spec.ts` with the `beforeEach` from Task 9 Step 3 and this single test:
+
+```ts
+test('add a node: count increments, file gains the node, survives reload', async ({ page }) => {
+  await page.goto('/?plan=example')
+  await expect(page.getByTestId('node-count')).toHaveText('8 nodes')
+  await page.getByRole('button', { name: 'Add node' }).click()
+  await expect(page.getByTestId('node-count')).toHaveText('9 nodes')
+  await expect(page.getByTestId('save-indicator')).toHaveAttribute('data-state', 'saved')
+  const text = await readFile('e2e/plans/example.json', 'utf8')
+  expect(text).toContain('"id": "untitled"')
+  await page.reload()
+  await expect(page.getByTestId('node-count')).toHaveText('9 nodes')
+})
+```
+
+Run `npm run test:e2e`; expected failure: `getByRole('button', { name: 'Add node' })` times out. If WebGL fails to init in headless Chromium, add `launchOptions: { args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] }` under `use`.
+
+**GREEN:** wire Toolbar + Toast into `page.tsx` per Task 8 Step 5, but only the parts this test needs plus the plan switcher and New plan button (they come with the Toolbar block): `onAddNode` calls `apply(p => addNode(p))` and selects the new node id; `onNewPlan` prompts for a name, POSTs `/api/plans`, navigates to the new slug (409 → toast). Keep `data-testid="node-count"` inside the Toolbar. Link mode button renders but `onToggleLinkMode` is a no-op until Slice 4.
+
+**Commit:** `depgraph: playwright harness, toolbar, toast, add node`
+
+### Slice 3: NodePanel edit and delete (e2e TDD)
+
+**Files:** Create `depgraph/src/components/NodePanel.tsx` (Task 8 Step 3 block); modify `page.tsx`, `e2e/smoke.spec.ts`.
+
+**RED:** add test:
+
+```ts
+test('edit the new node in the panel, then delete it', async ({ page }) => {
+  await page.goto('/?plan=example')
+  await page.getByRole('button', { name: 'Add node' }).click()
+  await expect(page.getByTestId('node-panel')).toBeVisible()
+  await page.getByLabel('Title').fill('Smoke node')
+  await page.getByLabel('Status').selectOption('doing')
+  await page.getByRole('checkbox', { name: 'schema' }).check()
+  await expect(page.getByTestId('save-indicator')).toHaveAttribute('data-state', 'saved')
+  const text = await readFile('e2e/plans/example.json', 'utf8')
+  expect(text).toContain('"title": "Smoke node"')
+  expect(text).toContain('"status": "doing"')
+  expect(text).toMatch(/"depends_on": \[\s*"schema"\s*\]/)
+  await page.getByRole('button', { name: 'Delete node' }).click()
+  await expect(page.getByTestId('node-panel')).toBeHidden()
+  await expect(page.getByTestId('node-count')).toHaveText('8 nodes')
+})
+```
+
+Expected failure: `node-panel` never visible. The `save-indicator` assertion may flap between `saving` and `saved`; use `toHaveAttribute('data-state', 'saved')` with the default retry, it settles.
+
+**GREEN:** render `NodePanel` when `selectedId` is set (Task 8 Step 5 wiring: `onChange` → `apply(p => updateNode(p, id, patch))`, `onDelete` → `apply(p => deleteNode(p, id))` then `setSelectedId(null)`, `onClose` → `setSelectedId(null)`). Checkbox labels in the dependency list must be the node id (accessible name), and the delete button's accessible name must be `Delete node`.
+
+**Commit:** `depgraph: node panel — edit fields, dependencies, delete`
+
+### Slice 4: Link mode (unit TDD on a pure state machine + e2e toggle)
+
+**Files:** Create `depgraph/src/lib/linkMode.ts`, `depgraph/src/lib/linkMode.test.ts`; modify `depgraph/src/components/Graph.tsx` (Task 8 Step 4: `linkMode` prop → crosshair cursor), `page.tsx`, `e2e/smoke.spec.ts`.
+
+**Pure API:**
+
+```ts
+export type LinkModeState = { active: boolean; pendingId: string | null }
+export type LinkModeEffect =
+  | { type: 'none' }
+  | { type: 'toast'; message: string }
+  | { type: 'link'; dependencyId: string; dependentId: string }
+export function linkModeStep(state: LinkModeState, clickedId: string | null): { state: LinkModeState; effect: LinkModeEffect }
+```
+
+Rules (one RED/GREEN each): inactive → click passes through (`state` unchanged, effect `none`); active + first click on node → `pendingId` set, toast `pick the node that depends on <id>`; active + second click on a different node → effect `link` with dependency = first, dependent = second, `pendingId` cleared; active + same node twice → toast `pick a different node`, pending cleared; active + background click (null) → pending cleared, effect `none`.
+
+**Page wiring (GREEN):** `onSelect` from Graph goes through `linkModeStep` first; `link` effect → `apply(p => addDependency(p, dep, dependent))`; errors → toast with `errors[0]`. Toggle button has `aria-pressed`. Esc key leaves link mode.
+
+**e2e (RED first):**
+
+```ts
+test('link mode toggles and hints', async ({ page }) => {
+  await page.goto('/?plan=example')
+  const btn = page.getByRole('button', { name: 'Link mode' })
+  await expect(btn).toHaveAttribute('aria-pressed', 'false')
+  await btn.click()
+  await expect(btn).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.getByTestId('toast')).toContainText('click the dependency')
+  await page.keyboard.press('Escape')
+  await expect(btn).toHaveAttribute('aria-pressed', 'false')
+})
+```
+
+The Toast root gets `data-testid="toast"`.
+
+**Commit:** `depgraph: link mode — pure state machine, crosshair, toast hints`
+
+### Slice 5: Visual polish, README, full verification
+
+Task 9 Steps 1, 5, 6 as written (frontend-design skill for Step 1; `data-testid`s and accessible names from Slices 2–4 must stay). The e2e suite from Slices 2–4 is the regression net: run `npm run test`, `npx tsc --noEmit`, `npm run test:e2e` before commit. Cycle refusal through the API (Task 9's second test) is added here as one more e2e test.
+
+**Commit:** `depgraph: visual polish, README`
