@@ -35,7 +35,7 @@ export default function NodePanel({ plan, nodeId, onChange, onDelete, onClose }:
   return (
     <aside
       data-testid="node-panel"
-      className="fixed right-4 top-4 bottom-4 flex w-80 flex-col gap-3 overflow-y-auto rounded-lg border border-white/10 bg-black/50 p-4 backdrop-blur"
+      className="fixed right-4 top-4 bottom-4 flex w-80 flex-col gap-3 overflow-y-auto glass rounded-xl p-4"
     >
       <div className="flex items-center justify-between">
         <span className="font-mono text-xs text-white/50">{node.id}</span>

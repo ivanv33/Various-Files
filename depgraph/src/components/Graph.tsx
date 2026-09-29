@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import * as THREE from 'three'
 import ForceGraph3D, { type ForceGraphMethods } from 'react-force-graph-3d'
 import { toGraphData, type GraphLink, type GraphNode } from '@/lib/graphData'
 import type { Plan, Status } from '@/lib/schema'
@@ -33,8 +34,28 @@ export default function Graph({ plan, selectedId, linkMode, onSelect, onLinkRigh
     return () => window.removeEventListener('resize', update)
   }, [])
 
+  const blocked = useRef(new Set<THREE.Mesh>())
+
+  useEffect(() => {
+    let raf = 0
+    const tick = (t: number) => {
+      for (const m of blocked.current) (m.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.55 + 0.45 * Math.sin(t / 400)
+      raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [])
+
+  useEffect(() => {
+    const fg = fgRef.current
+    if (fg) fg.scene().fog = new THREE.FogExp2(0x05060a, 0.002)
+  }, [])
+
   const structureKey = plan.nodes.map(n => `${n.id}:${n.status}:${n.title}:${n.depends_on.join(',')}`).join('|')
-  const data = useMemo(() => toGraphData(plan, cache.current), [structureKey]) // eslint-disable-line react-hooks/exhaustive-deps
+  const data = useMemo(() => {
+    blocked.current.clear()
+    return toGraphData(plan, cache.current)
+  }, [structureKey]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const neighbors = useMemo(() => {
     const set = new Set<string>()
@@ -46,12 +67,6 @@ export default function Graph({ plan, selectedId, linkMode, onSelect, onLinkRigh
     return set
   }, [data, selectedId])
 
-  const nodeColor = (n: GraphNode) => {
-    const base = STATUS_COLORS[n.status]
-    if (!selectedId || n.id === selectedId || neighbors.has(n.id)) return base
-    return base + '33'
-  }
-
   return (
     <div style={{ cursor: linkMode ? 'crosshair' : 'default' }}>
       <ForceGraph3D<GraphNode, GraphLink>
@@ -61,9 +76,15 @@ export default function Graph({ plan, selectedId, linkMode, onSelect, onLinkRigh
         graphData={data}
         backgroundColor="#05060a"
         nodeLabel={(n: GraphNode) => `${n.title} · ${n.status}`}
-        nodeColor={nodeColor}
-        nodeRelSize={6}
-        nodeOpacity={1}
+        nodeThreeObject={(n: GraphNode) => {
+          const dim = !!selectedId && n.id !== selectedId && !neighbors.has(n.id)
+          const color = new THREE.Color(STATUS_COLORS[n.status])
+          const mat = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: n.status === 'done' ? 0.15 : 0.7, transparent: true, opacity: dim ? 0.18 : 1, roughness: 0.4 })
+          const mesh = new THREE.Mesh(new THREE.SphereGeometry(n.id === selectedId ? 6.5 : 5, 24, 24), mat)
+          if (n.status === 'blocked') blocked.current.add(mesh)
+          return mesh
+        }}
+        nodeThreeObjectExtend={false}
         linkColor={() => '#7a8399'}
         linkOpacity={0.5}
         linkWidth={(l: GraphLink) => (selectedId && (idOf(l.source) === selectedId || idOf(l.target) === selectedId) ? 2 : 0.6)}

@@ -9,8 +9,8 @@ export default function SaveIndicator({ state, error }: { state: SaveState; erro
     <div
       data-testid="save-indicator"
       data-state={state}
-      className={`fixed bottom-4 right-4 rounded-md border px-3 py-1.5 font-mono text-xs backdrop-blur ${
-        state === 'error' ? 'border-red-400/40 bg-red-950/40 text-red-200' : 'border-white/10 bg-white/5 text-white/60'
+      className={`fixed bottom-4 right-4 glass rounded-lg px-3 py-1.5 font-mono text-xs ${
+        state === 'error' ? 'border-red-400/40 text-red-200' : 'text-white/60'
       }`}
     >
       {LABEL[state]}

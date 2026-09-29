@@ -45,3 +45,25 @@ test('link mode toggles and hints', async ({ page }) => {
   await page.keyboard.press('Escape')
   await expect(btn).toHaveAttribute('aria-pressed', 'false')
 })
+
+test('cycle is refused with an error', async ({ page }) => {
+  await page.goto('/?plan=example')
+  // Select "schema" via the URL-less route: open panel by adding a node, then use dependency list on it.
+  await page.getByRole('button', { name: 'Add node' }).click()
+  await page.getByLabel('Title').fill('Cycle probe')
+  // untitled depends on api-routes; then make api-routes depend on untitled through the file is not possible from UI,
+  // so instead: check "api-routes" then confirm no error, then verify a self-referencing edit is impossible by API.
+  await page.getByRole('checkbox').first().check()
+  await expect(page.getByTestId('save-indicator')).toHaveAttribute('data-state', 'saved')
+  const res = await page.request.put('/api/plans/example', {
+    data: {
+      name: 'x',
+      nodes: [
+        { id: 'a', title: 'A', depends_on: ['b'] },
+        { id: 'b', title: 'B', depends_on: ['a'] },
+      ],
+    },
+  })
+  expect(res.status()).toBe(400)
+  expect((await res.json()).errors[0]).toMatch(/^cycle:/)
+})
