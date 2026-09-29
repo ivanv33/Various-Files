@@ -32,9 +32,7 @@ function Workspace() {
       })
   }, [slug, router])
 
-  useEffect(() => {
-    if (plan && selectedId && !plan.nodes.some(n => n.id === selectedId)) setSelectedId(null)
-  }, [plan, selectedId])
+  const activeId = plan?.nodes.some(n => n.id === selectedId) ? selectedId : null
 
   const report = (errors: string[]) => {
     if (errors.length) toast.show(errors.join('; '))
@@ -101,7 +99,7 @@ function Workspace() {
     <>
       <Graph
         plan={plan}
-        selectedId={link.pendingId ?? selectedId}
+        selectedId={link.pendingId ?? activeId}
         linkMode={link.active}
         onSelect={handleSelect}
         onLinkRightClick={(dep, dependent) => report(apply(p => removeDependency(p, dep, dependent)))}
@@ -116,13 +114,13 @@ function Workspace() {
         onAddNode={handleAddNode}
         onNewPlan={handleNewPlan}
       />
-      {selectedId && !link.active && (
+      {activeId && !link.active && (
         <NodePanel
           plan={plan}
-          nodeId={selectedId}
-          onChange={patch => apply(p => updateNode(p, selectedId, patch))}
+          nodeId={activeId}
+          onChange={patch => apply(p => updateNode(p, activeId, patch))}
           onDelete={() => {
-            report(apply(p => deleteNode(p, selectedId)))
+            report(apply(p => deleteNode(p, activeId)))
             setSelectedId(null)
           }}
           onClose={() => setSelectedId(null)}

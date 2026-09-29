@@ -78,6 +78,7 @@ export function usePlan(slug: string | null) {
   useEffect(() => {
     gen.current += 1
     planRef.current = null
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- state reset is tied to the gen/ref reset for the new slug subscription
     setPlan(null)
     setLoadError(null)
     setSaveState('idle')

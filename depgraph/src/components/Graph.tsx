@@ -24,7 +24,7 @@ interface GraphProps {
 const idOf = (end: unknown) => (typeof end === 'string' ? end : (end as GraphNode).id)
 
 export default function Graph({ plan, selectedId, linkMode, onSelect, onLinkRightClick }: GraphProps) {
-  const cache = useRef(new Map<string, GraphNode>())
+  const [cache] = useState(() => new Map<string, GraphNode>())
   const fgRef = useRef<ForceGraphMethods<GraphNode, GraphLink> | undefined>(undefined)
   const [size, setSize] = useState({ w: 800, h: 600 })
 
@@ -54,7 +54,7 @@ export default function Graph({ plan, selectedId, linkMode, onSelect, onLinkRigh
 
   const structureKey = plan.nodes.map(n => `${n.id}:${n.status}:${n.title}:${n.depends_on.join(',')}`).join('|')
   const data = useMemo(() => {
-    return toGraphData(plan, cache.current)
+    return toGraphData(plan, cache)
   }, [structureKey]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const neighbors = useMemo(() => {
