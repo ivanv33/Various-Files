@@ -2,13 +2,15 @@
 import dynamic from 'next/dynamic'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
-import SaveIndicator from '@/components/SaveIndicator'
+import NodeHud from '@/components/NodeHud'
 import NodePanel from '@/components/NodePanel'
+import SaveIndicator from '@/components/SaveIndicator'
 import Toast, { useToast } from '@/components/Toast'
 import Toolbar from '@/components/Toolbar'
+import { useHotkeys } from '@/hooks/useHotkeys'
 import { usePlan } from '@/hooks/usePlan'
-import { linkModeStep, type LinkModeState } from '@/lib/linkMode'
 import { addDependency, addNode, deleteNode, removeDependency, updateNode } from '@/lib/mutations'
+import { initialSelection, selectionStep, type SelectionEvent, type SelectionState } from '@/lib/selection'
 import type { PlanSummary } from '@/lib/store'
 
 const Graph = dynamic(() => import('@/components/Graph'), { ssr: false })
@@ -18,8 +20,7 @@ function Workspace() {
   const router = useRouter()
   const slug = params.get('plan')
   const [plans, setPlans] = useState<PlanSummary[]>([])
-  const [selectedId, setSelectedId] = useState<string | null>(null)
-  const [link, setLink] = useState<LinkModeState>({ active: false, pendingId: null })
+  const [selection, setSelection] = useState<SelectionState>(initialSelection)
   const toast = useToast()
   const { plan, loadError, saveState, saveError, apply } = usePlan(slug)
 
@@ -32,47 +33,37 @@ function Workspace() {
       })
   }, [slug, router])
 
-  const activeId = plan?.nodes.some(n => n.id === selectedId) ? selectedId : null
+  const activeNode = plan?.nodes.find(n => n.id === selection.selectedId) ?? null
+  const activeId = activeNode?.id ?? null
+  const armed = selection.arming && activeId !== null
 
   const report = (errors: string[]) => {
     if (errors.length) toast.show(errors.join('; '))
   }
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setLink({ active: false, pendingId: null })
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [])
-
-  const handleSelect = (id: string | null) => {
-    if (!link.active) {
-      setSelectedId(id)
-      return
-    }
-    const { state, effect } = linkModeStep(link, id)
-    setLink(state)
+  const dispatch = (event: SelectionEvent) => {
+    const { state, effect } = selectionStep({ selectedId: activeId, arming: armed }, event)
+    setSelection(state)
     if (effect.type === 'toast') toast.show(effect.message)
     if (effect.type === 'link') report(apply(p => addDependency(p, effect.dependencyId, effect.dependentId)))
   }
 
-  const handleToggleLinkMode = () => {
-    const next = !link.active
-    setLink({ active: next, pendingId: null })
-    if (next) toast.show('link mode: click the dependency first')
-  }
+  const toggleLink = () => dispatch(armed ? { type: 'disarm' } : { type: 'armLink' })
+
+  useHotkeys({
+    l: toggleLink,
+    escape: () => dispatch({ type: 'escape' }),
+  })
 
   const handleAddNode = () => {
     let newId = ''
-    report(
-      apply(p => {
-        const r = addNode(p)
-        newId = r.id
-        return r.plan
-      }),
-    )
-    if (newId) setSelectedId(newId)
+    const errors = apply(p => {
+      const r = addNode(p)
+      newId = r.id
+      return r.plan
+    })
+    report(errors)
+    if (!errors.length && newId) setSelection({ selectedId: newId, arming: false })
   }
 
   const handleNewPlan = async () => {
@@ -99,9 +90,9 @@ function Workspace() {
     <>
       <Graph
         plan={plan}
-        selectedId={link.pendingId ?? activeId}
-        linkMode={link.active}
-        onSelect={handleSelect}
+        selectedId={activeId}
+        arming={armed}
+        onSelect={id => dispatch(id ? { type: 'selectNode', id } : { type: 'background' })}
         onLinkRightClick={(dep, dependent) => report(apply(p => removeDependency(p, dep, dependent)))}
       />
       <Toolbar
@@ -109,12 +100,10 @@ function Workspace() {
         slug={slug}
         planName={plan.name}
         nodeCount={plan.nodes.length}
-        linkMode={link.active}
-        onToggleLinkMode={handleToggleLinkMode}
         onAddNode={handleAddNode}
         onNewPlan={handleNewPlan}
       />
-      {activeId && !link.active && (
+      {activeId && !armed && (
         <NodePanel
           key={activeId}
           plan={plan}
@@ -122,10 +111,13 @@ function Workspace() {
           onChange={patch => apply(p => updateNode(p, activeId, patch))}
           onDelete={() => {
             report(apply(p => deleteNode(p, activeId)))
-            setSelectedId(null)
+            dispatch({ type: 'clear' })
           }}
-          onClose={() => setSelectedId(null)}
+          onClose={() => dispatch({ type: 'clear' })}
         />
+      )}
+      {activeNode && (
+        <NodeHud node={activeNode} armed={armed} onToggleLink={toggleLink} onClose={() => dispatch({ type: 'clear' })} />
       )}
       <Toast message={toast.message} />
       <SaveIndicator state={saveState} error={saveError} />

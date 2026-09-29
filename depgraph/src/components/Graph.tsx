@@ -18,14 +18,14 @@ export const STATUS_COLORS: Record<Status, string> = {
 interface GraphProps {
   plan: Plan
   selectedId: string | null
-  linkMode: boolean
+  arming: boolean
   onSelect: (id: string | null) => void
   onLinkRightClick: (dependencyId: string, dependentId: string) => void
 }
 
 const idOf = (end: unknown) => (typeof end === 'string' ? end : (end as GraphNode).id)
 
-export default function Graph({ plan, selectedId, linkMode, onSelect, onLinkRightClick }: GraphProps) {
+export default function Graph({ plan, selectedId, arming, onSelect, onLinkRightClick }: GraphProps) {
   const [cache] = useState(() => new Map<string, GraphNode>())
   const [labels] = useState(() => new Map<string, HTMLDivElement>())
   const [extraRenderers] = useState(() => [new CSS2DRenderer()])
@@ -92,7 +92,7 @@ export default function Graph({ plan, selectedId, linkMode, onSelect, onLinkRigh
   }, [labels, plan, selectedId, neighbors, onPick])
 
   return (
-    <div style={{ cursor: linkMode ? 'crosshair' : 'default' }}>
+    <div data-arming={arming} style={{ cursor: arming ? 'crosshair' : 'default' }}>
       <ForceGraph3D<GraphNode, GraphLink>
         ref={fgRef}
         width={size.w}

@@ -37,23 +37,35 @@ test('edit the new node in the panel, then delete it', async ({ page }) => {
   await expect(page.getByTestId('node-count')).toHaveText('8 nodes')
 })
 
-test('link mode toggles and hints', async ({ page }) => {
+test('Add dependency arms, Esc disarms', async ({ page }) => {
   await page.goto('/?plan=example')
-  const btn = page.getByRole('button', { name: 'Link mode' })
-  await expect(btn).toHaveAttribute('aria-pressed', 'false')
-  await btn.click()
-  await expect(btn).toHaveAttribute('aria-pressed', 'true')
-  await expect(page.getByTestId('toast')).toContainText('click the dependency')
+  await label(page, 'api-routes').click()
+  const hud = page.getByTestId('node-hud')
+  const arm = page.getByRole('button', { name: 'Add dependency', exact: true })
+  await expect(hud).toBeVisible()
+  await expect(arm).toHaveAttribute('aria-pressed', 'false')
+  await arm.click()
+  await expect(arm).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.getByTestId('link-hint')).toHaveText('Pick what Write API routes needs')
   await page.keyboard.press('Escape')
-  await expect(btn).toHaveAttribute('aria-pressed', 'false')
+  await expect(arm).toHaveAttribute('aria-pressed', 'false')
+  await expect(page.getByTestId('link-hint')).toBeHidden()
+  await expect(hud).toBeVisible()
+  await page.keyboard.press('l')
+  await expect(arm).toHaveAttribute('aria-pressed', 'true')
+  await page.keyboard.press('Escape')
+  await page.keyboard.press('Escape')
+  await expect(hud).toBeHidden()
 })
 
 test('cycle is refused with an error', async ({ page }) => {
   await page.goto('/?plan=example')
-  await page.getByRole('button', { name: 'Add node' }).click()
-  await page.getByLabel('Title', { exact: true }).fill('Cycle probe')
-  await page.getByRole('checkbox').first().check()
-  await expect(page.getByTestId('save-indicator')).toHaveAttribute('data-state', 'saved')
+  await label(page, 'schema').click()
+  await page.getByRole('button', { name: 'Add dependency', exact: true }).click()
+  await label(page, 'api-routes').click()
+  await expect(page.getByTestId('toast')).toContainText('cycle:')
+  const text = await readFile('e2e/plans/example.json', 'utf8')
+  expect(text).toMatch(/"id": "schema"[\s\S]*?"depends_on": \[\s*"design-spec"\s*\]/)
   const res = await page.request.put('/api/plans/example', {
     data: {
       name: 'x',
