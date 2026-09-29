@@ -1,69 +1,333 @@
 {
-  "name": "Example: ship the visualizer",
+  "name": "Example: growth data agent",
   "nodes": [
     {
-      "id": "api-routes",
-      "title": "Write API routes",
-      "description": "GET/PUT plan files through Next route handlers.",
-      "status": "doing",
-      "tags": ["server"],
-      "depends_on": ["schema", "store"]
+      "id": "clarify-default",
+      "title": "Clarify-or-default behaviour",
+      "description": "Ask when window, segment or metric is ambiguous; on Slack proceed with the stated default after 10 minutes.",
+      "status": "todo",
+      "tags": [
+        "agent",
+        "v1"
+      ],
+      "depends_on": [
+        "v0-launch"
+      ]
     },
     {
-      "id": "design-spec",
-      "title": "Approve design spec",
-      "description": "",
+      "id": "corpus-parse",
+      "title": "Parse the historical SQL corpus into intents",
+      "description": "sqlglot over the warehouse query log: tables, columns, filters, aggregates per query, clustered into intents.",
       "status": "done",
-      "tags": ["planning"],
+      "tags": [
+        "evals"
+      ],
       "depends_on": []
     },
     {
-      "id": "e2e",
-      "title": "Playwright smoke test",
-      "description": "Add a node, reload, it persists.",
+      "id": "correction-loop",
+      "title": "Corrections become doc-fix PRs and candidate evals",
+      "description": "A scheduled job reads 👎 and correction language, drafts a one-line doc fix tagged to the domain owner. No silent memory.",
       "status": "todo",
-      "tags": ["testing"],
-      "depends_on": ["node-panel", "graph-view"]
+      "tags": [
+        "loop",
+        "v1"
+      ],
+      "depends_on": [
+        "eval-ci",
+        "slack-surface"
+      ]
     },
     {
-      "id": "graph-view",
-      "title": "3D force graph view",
-      "description": "react-force-graph-3d wrapper with status colors.",
+      "id": "domain-owners",
+      "title": "Name an analyst owner and review cadence per domain",
+      "description": "",
       "status": "todo",
-      "tags": ["client"],
-      "depends_on": ["api-routes"]
+      "tags": [
+        "process",
+        "v1"
+      ],
+      "depends_on": [
+        "domain-readme"
+      ]
     },
     {
-      "id": "node-panel",
-      "title": "Node edit panel",
-      "description": "Title, description, status, tags, dependencies.",
+      "id": "domain-readme",
+      "title": "Incentives domain quick reference",
+      "description": "Business context, entity grain, standard hygiene filter, dashboards to check first.",
+      "status": "todo",
+      "tags": [
+        "context",
+        "v0"
+      ],
+      "depends_on": [
+        "table-docs"
+      ]
+    },
+    {
+      "id": "eval-ci",
+      "title": "Run the evals in CI on every context PR",
+      "description": "A PR touching metrics/, domains/ or runbooks/ re-runs the affected slice; two graders, execution match and analyst rubric.",
+      "status": "todo",
+      "tags": [
+        "evals",
+        "v0"
+      ],
+      "depends_on": [
+        "gold-set"
+      ]
+    },
+    {
+      "id": "freshness-check",
+      "title": "Weekly schema diff opens issues for drift",
+      "description": "Diff the metastore against domains/*/tables/; fail data-model PRs that change a documented table without a doc change.",
+      "status": "todo",
+      "tags": [
+        "loop",
+        "v1"
+      ],
+      "depends_on": [
+        "table-docs"
+      ]
+    },
+    {
+      "id": "gold-set",
+      "title": "Distill 50–100 atomic evals plus dashboard evals",
+      "description": "Pin gold SQL to snapshot dates. Analysts mark each pair canonical or idiosyncratic; only canonical pairs become examples/.",
+      "status": "todo",
+      "tags": [
+        "evals",
+        "v0"
+      ],
+      "depends_on": [
+        "corpus-parse",
+        "metric-files"
+      ]
+    },
+    {
+      "id": "mcp-surface",
+      "title": "Expose execute_sql over MCP",
+      "description": "Two tools in v0: the file tools the coding agent already has, and execute_sql behind the gate.",
+      "status": "todo",
+      "tags": [
+        "agent",
+        "v0"
+      ],
+      "depends_on": [
+        "sql-gate"
+      ]
+    },
+    {
+      "id": "metric-files",
+      "title": "Write 15–25 analyst-owned metric files",
+      "description": "Definition, grain, canonical parameterized SQL, always-on filters, pitfalls, owner, example questions. Human-written; LLM-generated definitions were net-negative elsewhere.",
+      "status": "doing",
+      "tags": [
+        "context",
+        "v0"
+      ],
+      "depends_on": [
+        "repo-layout"
+      ]
+    },
+    {
+      "id": "provenance",
+      "title": "Provenance footer on every answer",
+      "description": "Source · Verified yes/no · Reviewed · Freshness (MAX(ds)) · Owner · Query ID.",
+      "status": "todo",
+      "tags": [
+        "agent",
+        "v1"
+      ],
+      "depends_on": [
+        "router"
+      ]
+    },
+    {
+      "id": "query-logging",
+      "title": "Log every query with surface, user and conversation",
+      "description": "",
+      "status": "todo",
+      "tags": [
+        "safety",
+        "v0"
+      ],
+      "depends_on": [
+        "sql-gate"
+      ]
+    },
+    {
+      "id": "repo-layout",
+      "title": "Lay out the knowledge repo",
+      "description": "metrics/, domains/, runbooks/, examples/, context/, evals/ plus a thin CLAUDE.md router.",
+      "status": "done",
+      "tags": [
+        "repo",
+        "v0"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "router",
+      "title": "Thin router with a fixed source order",
+      "description": "metrics/ first (verified), then domain docs (unverified), then examples/, then context/. Never raw query history.",
+      "status": "todo",
+      "tags": [
+        "agent",
+        "v0"
+      ],
+      "depends_on": [
+        "metric-files",
+        "runbooks",
+        "table-docs"
+      ]
+    },
+    {
+      "id": "rubric-evals",
+      "title": "Analyst-rubric evals on 20 runbook outputs",
+      "description": "",
+      "status": "todo",
+      "tags": [
+        "evals",
+        "v2"
+      ],
+      "depends_on": [
+        "stats-runbooks"
+      ]
+    },
+    {
+      "id": "runbooks",
+      "title": "Write 3–4 runbooks",
+      "description": "Campaign readout, regional drop, funnel, cohort compare. Procedural knowledge, separate from the metric files.",
+      "status": "todo",
+      "tags": [
+        "context",
+        "v0"
+      ],
+      "depends_on": [
+        "metric-files"
+      ]
+    },
+    {
+      "id": "sandboxed-python",
+      "title": "Sandboxed run_code tool",
+      "description": "",
+      "status": "todo",
+      "tags": [
+        "agent",
+        "v2"
+      ],
+      "depends_on": [
+        "v1-launch"
+      ]
+    },
+    {
+      "id": "slack-surface",
+      "title": "Slack surface for PMs and ops",
+      "description": "Waiting on the Slack app approval. Reviewer is mandatory for stakeholder-facing and spend-related answers.",
       "status": "blocked",
-      "tags": ["client"],
-      "depends_on": ["graph-view"]
+      "tags": [
+        "surface",
+        "v1"
+      ],
+      "depends_on": [
+        "clarify-default",
+        "provenance",
+        "sql-reviewer"
+      ]
     },
     {
-      "id": "schema",
-      "title": "Schema + validator",
-      "description": "Types, cycle detection, normalization.",
-      "status": "done",
-      "tags": ["core"],
-      "depends_on": ["design-spec"]
+      "id": "sql-gate",
+      "title": "Pre-tool-use SQL gate",
+      "description": "SELECT only, allowed schemas, mandatory ds filter, LIMIT injected on raw pulls, scan estimate under 500 GB. Deny reasons go back to the model as text.",
+      "status": "doing",
+      "tags": [
+        "safety",
+        "v0"
+      ],
+      "depends_on": []
     },
     {
-      "id": "store",
-      "title": "File store",
-      "description": "Atomic writes, hash of last write.",
-      "status": "done",
-      "tags": ["server"],
-      "depends_on": ["schema"]
-    },
-    {
-      "id": "watcher",
-      "title": "File watcher + SSE",
-      "description": "Refresh the browser when the file changes on disk.",
+      "id": "sql-reviewer",
+      "title": "Adversarial sql-reviewer sub-agent",
+      "description": "Same model tier. Checks grain, hygiene filters, join cardinality, window boundaries, and whether a metric file should have been used.",
       "status": "todo",
-      "tags": ["server"],
-      "depends_on": ["store"]
+      "tags": [
+        "agent",
+        "v1"
+      ],
+      "depends_on": [
+        "router"
+      ]
+    },
+    {
+      "id": "stats-runbooks",
+      "title": "Incrementality and synthetic-control runbooks",
+      "description": "Statistical guardrails: pre-period fit, placebo tests, minimum n. Until then, answer cohort questions with data plus a proposed analysis plan.",
+      "status": "todo",
+      "tags": [
+        "context",
+        "v2"
+      ],
+      "depends_on": [
+        "sandboxed-python"
+      ]
+    },
+    {
+      "id": "table-docs",
+      "title": "Document the top ~20 growth tables",
+      "description": "Purpose, grain, partition, low-cardinality values, joins, \"differs from\", gotchas, certification.",
+      "status": "doing",
+      "tags": [
+        "context",
+        "v0"
+      ],
+      "depends_on": [
+        "repo-layout"
+      ]
+    },
+    {
+      "id": "v0-launch",
+      "title": "v0: growth analysts via Claude Code, incentives only",
+      "description": "Exit: ≥ 90% on the incentives eval slice, metric-file hit rate measured, time-saved estimate on 20 real questions.",
+      "status": "todo",
+      "tags": [
+        "milestone"
+      ],
+      "depends_on": [
+        "domain-readme",
+        "eval-ci",
+        "mcp-surface",
+        "query-logging",
+        "router"
+      ]
+    },
+    {
+      "id": "v1-launch",
+      "title": "v1: Slack rollout, every domain gated at ≥ 90%",
+      "description": "Exit: correction and 👎 rates tracked weekly; ≥ 70% of Slack answers Verified.",
+      "status": "todo",
+      "tags": [
+        "milestone"
+      ],
+      "depends_on": [
+        "correction-loop",
+        "domain-owners",
+        "freshness-check",
+        "slack-surface"
+      ]
+    },
+    {
+      "id": "v2-launch",
+      "title": "v2: analysis runbooks in production",
+      "description": "Exit: analyst sign-off on 20 runbook outputs; canaries stable for 4 weeks.",
+      "status": "todo",
+      "tags": [
+        "milestone"
+      ],
+      "depends_on": [
+        "rubric-evals"
+      ]
     }
   ]
 }

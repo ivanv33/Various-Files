@@ -6,7 +6,7 @@ const planText = () => readFile('e2e/plans/example.json', 'utf8')
 
 test.beforeEach(async () => {
   await mkdir('e2e/plans', { recursive: true })
-  await copyFile('plans/example.json', 'e2e/plans/example.json')
+  await copyFile('e2e/fixtures/example.json', 'e2e/plans/example.json')
 })
 
 test('add a node: count increments, file gains the node, survives reload', async ({ page }) => {
