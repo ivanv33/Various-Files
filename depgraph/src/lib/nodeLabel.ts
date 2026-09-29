@@ -78,3 +78,21 @@ export function syncLabels(labels: Map<string, HTMLDivElement>, nodes: LabelNode
   }
   for (const n of nodes) renderLabel(labelFor(labels, n.id, onPick), n)
 }
+
+export const SHAKE_MS = 600
+
+const shakeTimers = new WeakMap<HTMLElement, ReturnType<typeof setTimeout>>()
+
+export function shakeLabel(el: HTMLElement, ms = SHAKE_MS): void {
+  clearTimeout(shakeTimers.get(el))
+  delete el.dataset.shake
+  el.getBoundingClientRect() // force a reflow so the CSS animation restarts
+  el.dataset.shake = 'true'
+  shakeTimers.set(
+    el,
+    setTimeout(() => {
+      delete el.dataset.shake
+      shakeTimers.delete(el)
+    }, ms),
+  )
+}

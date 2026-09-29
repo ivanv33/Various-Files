@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, expect, it, vi } from 'vitest'
-import { LABEL_MAX, createLabelElement, labelFor, renderLabel, syncLabels, truncateTitle } from './nodeLabel'
+import { LABEL_MAX, SHAKE_MS, createLabelElement, labelFor, renderLabel, shakeLabel, syncLabels, truncateTitle } from './nodeLabel'
 
 describe('truncateTitle', () => {
   it('keeps titles of up to 24 characters', () => {
@@ -93,5 +93,25 @@ describe('labelFor / syncLabels', () => {
     expect([...labels.keys()]).toEqual(['a'])
     expect(overlay.children).toHaveLength(1)
     expect(labels.get('a')!.getAttribute('aria-label')).toBe('A2')
+  })
+})
+
+describe('shakeLabel', () => {
+  it('sets data-shake for 600 ms and restarts when repeated', () => {
+    vi.useFakeTimers()
+    try {
+      expect(SHAKE_MS).toBe(600)
+      const el = createLabelElement('a', () => {})
+      shakeLabel(el)
+      expect(el.dataset.shake).toBe('true')
+      vi.advanceTimersByTime(400)
+      shakeLabel(el)
+      vi.advanceTimersByTime(400)
+      expect(el.dataset.shake).toBe('true')
+      vi.advanceTimersByTime(200)
+      expect(el.dataset.shake).toBeUndefined()
+    } finally {
+      vi.useRealTimers()
+    }
   })
 })
