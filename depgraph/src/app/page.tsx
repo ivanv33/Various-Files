@@ -38,11 +38,15 @@ function Workspace() {
 
   useEffect(() => {
     fetch('/api/plans', { cache: 'no-store' })
-      .then(r => r.json())
+      .then(r => {
+        if (!r.ok) throw new Error(r.statusText)
+        return r.json()
+      })
       .then((list: PlanSummary[]) => {
         setPlans(list)
         if (!slug && list[0]) router.replace(`/?plan=${list[0].slug}`)
       })
+      .catch(() => setPlans([]))
   }, [slug, router])
 
   const activeNode = plan?.nodes.find(n => n.id === selection.selectedId) ?? null

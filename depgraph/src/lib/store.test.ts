@@ -69,6 +69,13 @@ describe('listPlans', () => {
     await writeFile(path.join(dir, 'broken.json'), '{ not json')
     expect((await listPlans(dir)).map(p => p.slug)).toEqual(['good'])
   })
+  it('skips valid JSON that is not a plan', async () => {
+    await writePlan('good', plan, dir)
+    await writeFile(path.join(dir, 'odd.json'), '{"name":"x"}')
+    await writeFile(path.join(dir, 'arr.json'), '[]')
+    await writeFile(path.join(dir, 'nul.json'), 'null')
+    expect((await listPlans(dir)).map(p => p.slug)).toEqual(['good'])
+  })
   it('returns [] when the dir does not exist', async () => {
     expect(await listPlans(path.join(dir, 'missing'))).toEqual([])
   })

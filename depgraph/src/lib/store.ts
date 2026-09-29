@@ -70,7 +70,7 @@ export async function listPlans(dir = plansDir()): Promise<PlanSummary[]> {
       if (e instanceof SyntaxError) continue // skip corrupt / half-edited files
       throw e
     }
-    if (plan) out.push({ slug, name: plan.name, nodeCount: plan.nodes.length })
+    if (plan && Array.isArray(plan.nodes)) out.push({ slug, name: plan.name, nodeCount: plan.nodes.length })
   }
   return out
 }
