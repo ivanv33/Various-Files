@@ -3,10 +3,12 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { CSS2DObject, CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js'
 import ForceGraph3D, { type ForceGraphMethods } from 'react-force-graph-3d'
+import { cameraFor } from '@/lib/camera'
 import { toGraphData, type GraphLink, type GraphNode } from '@/lib/graphData'
 import { labelFor, syncLabels } from '@/lib/nodeLabel'
 import type { Plan, Status } from '@/lib/schema'
 import { pulseBlocked, type Pulsable } from '@/lib/pulse'
+import type { NodeSignal } from '@/lib/selection'
 
 export const STATUS_COLORS: Record<Status, string> = {
   todo: '#8b95a7',
@@ -19,13 +21,14 @@ interface GraphProps {
   plan: Plan
   selectedId: string | null
   arming: boolean
+  flyTo: NodeSignal | null
   onSelect: (id: string | null) => void
   onLinkRightClick: (dependencyId: string, dependentId: string) => void
 }
 
 const idOf = (end: unknown) => (typeof end === 'string' ? end : (end as GraphNode).id)
 
-export default function Graph({ plan, selectedId, arming, onSelect, onLinkRightClick }: GraphProps) {
+export default function Graph({ plan, selectedId, arming, flyTo, onSelect, onLinkRightClick }: GraphProps) {
   const [cache] = useState(() => new Map<string, GraphNode>())
   const [labels] = useState(() => new Map<string, HTMLDivElement>())
   const [extraRenderers] = useState(() => [new CSS2DRenderer()])
@@ -90,6 +93,14 @@ export default function Graph({ plan, selectedId, arming, onSelect, onLinkRightC
       onPick,
     )
   }, [labels, plan, selectedId, neighbors, onPick])
+
+  useEffect(() => {
+    const fg = fgRef.current
+    const node = flyTo ? cache.get(flyTo.id) : undefined
+    if (!fg || !node) return
+    const { position, lookAt } = cameraFor(node)
+    fg.cameraPosition(position, lookAt, 800)
+  }, [flyTo, cache])
 
   return (
     <div data-arming={arming} style={{ cursor: arming ? 'crosshair' : 'default' }}>

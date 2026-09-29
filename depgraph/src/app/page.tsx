@@ -3,14 +3,22 @@ import dynamic from 'next/dynamic'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
 import NodeHud from '@/components/NodeHud'
-import NodePanel from '@/components/NodePanel'
 import SaveIndicator from '@/components/SaveIndicator'
 import Toast, { useToast } from '@/components/Toast'
 import Toolbar from '@/components/Toolbar'
+import { useConfirm } from '@/hooks/useConfirm'
 import { useHotkeys } from '@/hooks/useHotkeys'
 import { usePlan } from '@/hooks/usePlan'
 import { addDependency, addNode, deleteNode, removeDependency, updateNode } from '@/lib/mutations'
-import { initialSelection, selectionStep, type SelectionEvent, type SelectionState } from '@/lib/selection'
+import type { Plan } from '@/lib/schema'
+import {
+  initialSelection,
+  nextSignal,
+  selectionStep,
+  type NodeSignal,
+  type SelectionEvent,
+  type SelectionState,
+} from '@/lib/selection'
 import type { PlanSummary } from '@/lib/store'
 
 const Graph = dynamic(() => import('@/components/Graph'), { ssr: false })
@@ -21,7 +29,10 @@ function Workspace() {
   const slug = params.get('plan')
   const [plans, setPlans] = useState<PlanSummary[]>([])
   const [selection, setSelection] = useState<SelectionState>(initialSelection)
+  const [editTitleFor, setEditTitleFor] = useState<string | null>(null)
+  const [fly, setFly] = useState<NodeSignal | null>(null)
   const toast = useToast()
+  const confirmDelete = useConfirm(3000)
   const { plan, loadError, saveState, saveError, apply } = usePlan(slug)
 
   useEffect(() => {
@@ -44,27 +55,46 @@ function Workspace() {
   const dispatch = (event: SelectionEvent) => {
     const { state, effect } = selectionStep({ selectedId: activeId, arming: armed }, event)
     setSelection(state)
+    if (state.selectedId !== activeId) setEditTitleFor(null)
     if (effect.type === 'toast') toast.show(effect.message)
     if (effect.type === 'link') report(apply(p => addDependency(p, effect.dependencyId, effect.dependentId)))
   }
 
   const toggleLink = () => dispatch(armed ? { type: 'disarm' } : { type: 'armLink' })
 
-  useHotkeys({
-    l: toggleLink,
-    escape: () => dispatch({ type: 'escape' }),
-  })
+  const focusNode = (id: string) => {
+    dispatch({ type: 'focusNode', id })
+    setFly(f => nextSignal(f, id))
+  }
 
-  const handleAddNode = () => {
+  const addAndEdit = (make: (p: Plan) => { plan: Plan; id: string }) => {
     let newId = ''
     const errors = apply(p => {
-      const r = addNode(p)
+      const r = make(p)
       newId = r.id
       return r.plan
     })
     report(errors)
-    if (!errors.length && newId) setSelection({ selectedId: newId, arming: false })
+    if (errors.length || !newId) return
+    setSelection({ selectedId: newId, arming: false })
+    setEditTitleFor(newId)
   }
+
+  const handleAddNode = () => addAndEdit(p => addNode(p))
+
+  const handleDelete = () => {
+    if (!activeId) return
+    const id = activeId
+    confirmDelete.press(id, () => {
+      report(apply(p => deleteNode(p, id)))
+      dispatch({ type: 'clear' })
+    })
+  }
+
+  useHotkeys({
+    l: toggleLink,
+    escape: () => dispatch({ type: 'escape' }),
+  })
 
   const handleNewPlan = async () => {
     const name = window.prompt('Plan name')
@@ -92,6 +122,7 @@ function Workspace() {
         plan={plan}
         selectedId={activeId}
         arming={armed}
+        flyTo={fly}
         onSelect={id => dispatch(id ? { type: 'selectNode', id } : { type: 'background' })}
         onLinkRightClick={(dep, dependent) => report(apply(p => removeDependency(p, dep, dependent)))}
       />
@@ -103,21 +134,21 @@ function Workspace() {
         onAddNode={handleAddNode}
         onNewPlan={handleNewPlan}
       />
-      {activeId && !armed && (
-        <NodePanel
-          key={activeId}
+      {activeNode && (
+        <NodeHud
+          key={activeNode.id}
           plan={plan}
-          nodeId={activeId}
-          onChange={patch => apply(p => updateNode(p, activeId, patch))}
-          onDelete={() => {
-            report(apply(p => deleteNode(p, activeId)))
-            dispatch({ type: 'clear' })
-          }}
+          node={activeNode}
+          armed={armed}
+          editTitle={editTitleFor === activeNode.id}
+          deleteArmed={confirmDelete.isArmed(activeNode.id)}
+          onChange={patch => report(apply(p => updateNode(p, activeNode.id, patch)))}
+          onToggleLink={toggleLink}
+          onFocusNode={focusNode}
+          onRemoveDependency={dep => report(apply(p => removeDependency(p, dep, activeNode.id)))}
+          onDelete={handleDelete}
           onClose={() => dispatch({ type: 'clear' })}
         />
-      )}
-      {activeNode && (
-        <NodeHud node={activeNode} armed={armed} onToggleLink={toggleLink} onClose={() => dispatch({ type: 'clear' })} />
       )}
       <Toast message={toast.message} />
       <SaveIndicator state={saveState} error={saveError} />

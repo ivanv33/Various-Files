@@ -2,6 +2,7 @@ import { expect, test, type Page } from '@playwright/test'
 import { copyFile, mkdir, readFile } from 'node:fs/promises'
 
 const label = (page: Page, id: string) => page.locator(`[data-testid="node-label"][data-node-id="${id}"]`)
+const planText = () => readFile('e2e/plans/example.json', 'utf8')
 
 test.beforeEach(async () => {
   await mkdir('e2e/plans', { recursive: true })
@@ -20,20 +21,31 @@ test('add a node: count increments, file gains the node, survives reload', async
   await expect(page.getByTestId('node-count')).toHaveText('9 nodes')
 })
 
-test('edit the new node in the panel, then delete it', async ({ page }) => {
+test('edit the new node in the HUD, link it by clicking a label, then delete it', async ({ page }) => {
   await page.goto('/?plan=example')
-  await page.getByRole('button', { name: 'Add node' }).click()
-  await expect(page.getByTestId('node-panel')).toBeVisible()
-  await page.getByLabel('Title', { exact: true }).fill('Smoke node')
-  await page.getByLabel('Status').selectOption('doing')
-  await page.getByRole('checkbox', { name: 'schema' }).check()
-  await expect(page.getByTestId('save-indicator')).toHaveAttribute('data-state', 'saved')
-  const text = await readFile('e2e/plans/example.json', 'utf8')
+  await page.getByRole('button', { name: 'Add node', exact: true }).click()
+  const hud = page.getByTestId('node-hud')
+  await expect(hud).toBeVisible()
+  const title = page.getByRole('textbox', { name: 'Title', exact: true })
+  await expect(title).toBeFocused()
+  await title.fill('Smoke node')
+  await title.press('Enter')
+  await expect(page.getByRole('button', { name: 'Rename', exact: true })).toContainText('Smoke node')
+  await page.getByRole('radio', { name: 'doing', exact: true }).click()
+  await expect(page.getByTestId('status-pip-doing')).toHaveAttribute('aria-checked', 'true')
+  await page.getByRole('button', { name: 'Add dependency', exact: true }).click()
+  await label(page, 'schema').click()
+  await expect(page.getByTestId('dep-schema')).toBeVisible()
+  await expect.poll(planText).toMatch(/"id": "untitled"[\s\S]*?"depends_on": \[\s*"schema"\s*\]/)
+  const text = await planText()
   expect(text).toContain('"title": "Smoke node"')
-  expect(text).toContain('"status": "doing"')
-  expect(text).toMatch(/"depends_on": \[\s*"schema"\s*\]/)
-  await page.getByRole('button', { name: 'Delete node' }).click()
-  await expect(page.getByTestId('node-panel')).toBeHidden()
+  expect(text).toMatch(/"id": "untitled"[\s\S]*?"status": "doing"/)
+  const del = page.getByTestId('delete-node')
+  await expect(del).toHaveAccessibleName('Delete node')
+  await del.click()
+  await expect(del).toHaveAccessibleName('Confirm delete')
+  await del.click()
+  await expect(hud).toBeHidden()
   await expect(page.getByTestId('node-count')).toHaveText('8 nodes')
 })
 
@@ -88,12 +100,15 @@ test('all 8 labels are visible on load', async ({ page }) => {
   await expect(label(page, 'node-panel')).toHaveAttribute('data-status', 'blocked')
 })
 
-test('clicking a label selects the node', async ({ page }) => {
+test('clicking a label selects the node; a needs chip jumps to the dependency', async ({ page }) => {
   await page.goto('/?plan=example')
   await label(page, 'schema').click()
-  await expect(page.getByTestId('node-panel')).toBeVisible()
-  await expect(page.getByRole('textbox', { name: 'Title', exact: true })).toHaveValue('Schema + validator')
+  await expect(page.getByRole('region', { name: 'Selected node' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Rename', exact: true })).toContainText('Schema + validator')
   await expect(label(page, 'schema')).toHaveAttribute('data-selected', 'true')
   await expect(label(page, 'store')).toHaveAttribute('data-dim', 'false')
   await expect(label(page, 'watcher')).toHaveAttribute('data-dim', 'true')
+  await page.getByTestId('dep-design-spec').getByRole('button', { name: 'Approve design spec', exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Rename', exact: true })).toContainText('Approve design spec')
+  await expect(label(page, 'design-spec')).toHaveAttribute('data-selected', 'true')
 })
