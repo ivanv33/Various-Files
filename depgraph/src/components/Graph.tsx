@@ -5,6 +5,7 @@ import ForceGraph3D, { type ForceGraphMethods } from 'react-force-graph-3d'
 import { toGraphData, type GraphLink, type GraphNode } from '@/lib/graphData'
 import type { Plan, Status } from '@/lib/schema'
 import { pulseBlocked, type Pulsable } from '@/lib/pulse'
+import { escapeHtml } from '@/lib/escapeHtml'
 
 export const STATUS_COLORS: Record<Status, string> = {
   todo: '#8b95a7',
@@ -75,7 +76,7 @@ export default function Graph({ plan, selectedId, linkMode, onSelect, onLinkRigh
         height={size.h}
         graphData={data}
         backgroundColor="#05060a"
-        nodeLabel={(n: GraphNode) => `${n.title} · ${n.status}`}
+        nodeLabel={(n: GraphNode) => `${escapeHtml(n.title)} · ${escapeHtml(n.status)}`}
         nodeThreeObject={(n: GraphNode) => {
           const dim = !!selectedId && n.id !== selectedId && !neighbors.has(n.id)
           const color = new THREE.Color(STATUS_COLORS[n.status])
