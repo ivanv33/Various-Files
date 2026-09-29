@@ -4,6 +4,7 @@ import * as THREE from 'three'
 import { CSS2DObject, CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js'
 import ForceGraph3D, { type ForceGraphMethods } from 'react-force-graph-3d'
 import { cameraFor } from '@/lib/camera'
+import { applyTreeForces, fitOnce, TREE } from '@/lib/treeLayout'
 import { burstFrame, prefersReducedMotion, takeNewlyDone } from '@/lib/effects'
 import { toGraphData, type GraphLink, type GraphNode } from '@/lib/graphData'
 import { labelFor, shakeLabel, syncLabels } from '@/lib/nodeLabel'
@@ -65,7 +66,44 @@ export default function Graph({ plan, selectedId, arming, flyTo, shake, onSelect
 
   useEffect(() => {
     const fg = fgRef.current
-    if (fg) fg.scene().fog = new THREE.FogExp2(0x05060a, 0.002)
+    // Light haze only: the framed tree sits ~600 units out, where the old 0.002 density hid every edge.
+    if (fg) fg.scene().fog = new THREE.FogExp2(0x05060a, 0.0005)
+  }, [])
+
+  // The plan lives on the z = 0 plane and is viewed straight on: no orbiting, only pan (any drag) and zoom (wheel).
+  useEffect(() => {
+    const fg = fgRef.current
+    if (!fg) return
+    const controls = fg.controls() as unknown as {
+      enableRotate: boolean
+      mouseButtons: { LEFT: THREE.MOUSE; MIDDLE: THREE.MOUSE; RIGHT: THREE.MOUSE }
+      touches: { ONE: THREE.TOUCH; TWO: THREE.TOUCH }
+      update: () => void
+    }
+    controls.enableRotate = false
+    controls.mouseButtons = { LEFT: THREE.MOUSE.PAN, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN }
+    controls.touches = { ONE: THREE.TOUCH.PAN, TWO: THREE.TOUCH.DOLLY_PAN }
+    controls.update()
+  }, [])
+
+  // Top-down tree: rows are pinned by dagMode, the forces spread siblings so labels do not overprint.
+  // The first settle frames the whole tree; after that the camera is the user's.
+  const sizeRef = useRef(size)
+  useEffect(() => {
+    sizeRef.current = size
+  }, [size])
+  const fitter = useRef<() => void>(() => {})
+  useEffect(() => {
+    fitter.current = fitOnce({
+      nodes: () => [...cache.values()],
+      fov: () => (fgRef.current?.camera() as THREE.PerspectiveCamera | undefined)?.fov ?? 75,
+      view: () => sizeRef.current,
+      move: (position, lookAt, ms) => fgRef.current?.cameraPosition(position, lookAt, ms),
+    })
+  }, [cache])
+  const onEngineStop = useCallback(() => fitter.current(), [])
+  useEffect(() => {
+    if (fgRef.current) applyTreeForces(fgRef.current)
   }, [])
 
   const structureKey = plan.nodes.map(n => `${n.id}:${n.depends_on.join(',')}`).join('|')
@@ -170,6 +208,12 @@ export default function Graph({ plan, selectedId, arming, flyTo, shake, onSelect
         height={size.h}
         graphData={data}
         backgroundColor="#05060a"
+        numDimensions={2}
+        dagMode={TREE.dagMode}
+        dagLevelDistance={TREE.levelDistance}
+        onDagError={(loop: (string | number)[]) => console.warn("dag layout skipped a cycle", loop)}
+        showNavInfo={false}
+        onEngineStop={onEngineStop}
         extraRenderers={extraRenderers}
         nodeThreeObject={(n: GraphNode) => {
           const selected = n.id === selectedId

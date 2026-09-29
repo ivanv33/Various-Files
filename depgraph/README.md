@@ -15,6 +15,7 @@ Arrows point from a dependency to the node that depends on it. Edit the JSON by 
 Controls (click-first):
 
 - Click a node or its label to select it; click empty space to deselect. Every node's title is always shown; hover or select to see its id.
+- The plan is drawn as a top-down tree on a single plane, viewed straight on in 3D: dependencies sit above the tasks that need them, and each row is one dependency depth. Once the layout settles the camera frames the whole tree (roots at the top if it is too tall to fit). Drag with any mouse button to pan and use the wheel to zoom; there is no orbiting, so nothing ever leaves the surface.
 - The card at the bottom edits the selection: click the title to rename (Enter saves, Esc reverts), click a status pip, click the description to expand it, `×` on a tag removes it and `+` adds one, "needs:" chips jump to that node (`×` removes the dependency), "unlocks:" chips show what waits on it.
 - `+` / **L** arms linking: every node you click next becomes a dependency of the selection, until **Esc**.
 - `+next` / **Shift+N** adds a step that depends on the selection. `del` / **Del** (or **Backspace**) asks once, then deletes (disarms after 3 s).
