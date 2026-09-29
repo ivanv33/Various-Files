@@ -113,6 +113,11 @@ describe('NodeHud', () => {
     expect(props.onFocusNode).toHaveBeenCalledWith('c')
   })
 
+  it('names unlock chips "Select <title>"', () => {
+    setup()
+    expect(screen.getByRole('button', { name: 'Select Gamma' })).toBe(screen.getByTestId('unlock-c'))
+  })
+
   it('Add dependency toggles and shows a hint while armed', () => {
     const props = setup()
     expect(button('Add dependency').getAttribute('aria-pressed')).toBe('false')
