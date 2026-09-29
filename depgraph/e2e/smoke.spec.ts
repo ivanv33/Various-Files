@@ -155,3 +155,19 @@ test('Shift+N adds a next step; Del twice deletes it', async ({ page }) => {
   await expect(page.getByTestId('node-hud')).toBeHidden()
   await expect(page.getByTestId('node-count')).toHaveText('8 nodes')
 })
+
+test('invalid external edit keeps last good plan', async ({ page }) => {
+  await page.goto('/?plan=example')
+  await expect(page.getByTestId('node-label')).toHaveCount(8)
+  const good = await planText()
+  const bad = JSON.parse(good)
+  delete bad.nodes[0].title
+  await writeFile('e2e/plans/example.json', JSON.stringify(bad), 'utf8')
+  await expect(page.getByTestId('toast')).toHaveAttribute('data-tone', 'error')
+  await expect(page.getByTestId('plan-select')).toBeVisible()
+  await expect(page.getByTestId('node-label')).toHaveCount(8)
+  await writeFile('e2e/plans/example.json', good, 'utf8')
+  await expect(page.getByTestId('toast')).toBeHidden({ timeout: 8000 })
+  await expect(page.getByTestId('node-label')).toHaveCount(8)
+  await expect(page.getByTestId('plan-select')).toBeVisible()
+})
