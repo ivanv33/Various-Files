@@ -44,3 +44,12 @@ button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-
 .node-label:focus-visible { outline: 2px solid rgb(90 200 250 / 0.7); outline-offset: 2px; border-radius: 4px; }
 
 [data-arming='true'] .node-label { cursor: crosshair; }
+
+@keyframes dg-hud-in {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.hud-in { animation: dg-hud-in 120ms ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .hud-in { animation: none; }
+}
