@@ -127,7 +127,10 @@ function Workspace() {
 
   useHotkeys({
     l: toggleLink,
-    escape: () => dispatch({ type: 'escape' }),
+    escape: () => {
+      if (activeId && confirmDelete.isArmed(activeId)) confirmDelete.reset()
+      else dispatch({ type: 'escape' })
+    },
     n: handleAddNode,
     'shift+n': handleAddNext,
     '1': () => setStatus('todo'),
