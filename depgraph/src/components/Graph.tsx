@@ -4,6 +4,7 @@ import * as THREE from 'three'
 import ForceGraph3D, { type ForceGraphMethods } from 'react-force-graph-3d'
 import { toGraphData, type GraphLink, type GraphNode } from '@/lib/graphData'
 import type { Plan, Status } from '@/lib/schema'
+import { pulseBlocked, type Pulsable } from '@/lib/pulse'
 
 export const STATUS_COLORS: Record<Status, string> = {
   todo: '#8b95a7',
@@ -34,12 +35,12 @@ export default function Graph({ plan, selectedId, linkMode, onSelect, onLinkRigh
     return () => window.removeEventListener('resize', update)
   }, [])
 
-  const blocked = useRef(new Set<THREE.Mesh>())
+  const blocked = useRef(new Set<Pulsable>())
 
   useEffect(() => {
     let raf = 0
     const tick = (t: number) => {
-      for (const m of blocked.current) (m.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.55 + 0.45 * Math.sin(t / 400)
+      pulseBlocked(blocked.current, t)
       raf = requestAnimationFrame(tick)
     }
     raf = requestAnimationFrame(tick)
@@ -53,7 +54,6 @@ export default function Graph({ plan, selectedId, linkMode, onSelect, onLinkRigh
 
   const structureKey = plan.nodes.map(n => `${n.id}:${n.status}:${n.title}:${n.depends_on.join(',')}`).join('|')
   const data = useMemo(() => {
-    blocked.current.clear()
     return toGraphData(plan, cache.current)
   }, [structureKey]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -81,7 +81,7 @@ export default function Graph({ plan, selectedId, linkMode, onSelect, onLinkRigh
           const color = new THREE.Color(STATUS_COLORS[n.status])
           const mat = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: n.status === 'done' ? 0.15 : 0.7, transparent: true, opacity: dim ? 0.18 : 1, roughness: 0.4 })
           const mesh = new THREE.Mesh(new THREE.SphereGeometry(n.id === selectedId ? 6.5 : 5, 24, 24), mat)
-          if (n.status === 'blocked') blocked.current.add(mesh)
+          if (n.status === 'blocked') blocked.current.add(mesh as unknown as Pulsable)
           return mesh
         }}
         nodeThreeObjectExtend={false}
