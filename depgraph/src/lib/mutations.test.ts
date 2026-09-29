@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addDependency, addNode, deleteNode, removeDependency, updateNode } from '@/lib/mutations'
+import { addDependency, addNextNode, addNode, deleteNode, removeDependency, updateNode } from '@/lib/mutations'
 import type { Plan } from '@/lib/schema'
 
 const base: Plan = {
@@ -46,5 +46,26 @@ describe('addDependency / removeDependency', () => {
     expect(p1.nodes[0].depends_on).toEqual(['b'])
     expect(addDependency(p1, 'b', 'a').nodes[0].depends_on).toEqual(['b'])
     expect(removeDependency(p1, 'b', 'a').nodes[0].depends_on).toEqual([])
+  })
+})
+
+describe('addNextNode', () => {
+  it('adds an Untitled node that depends on the given node', () => {
+    const base = {
+      name: 'P',
+      nodes: [{ id: 'a', title: 'A', description: '', status: 'todo' as const, tags: [], depends_on: [] }],
+    }
+    const { plan, id } = addNextNode(base, 'a')
+    expect(id).toBe('untitled')
+    expect(plan.nodes).toHaveLength(2)
+    expect(plan.nodes.find(n => n.id === id)).toEqual({
+      id: 'untitled',
+      title: 'Untitled',
+      description: '',
+      status: 'todo',
+      tags: [],
+      depends_on: ['a'],
+    })
+    expect(base.nodes).toHaveLength(1)
   })
 })

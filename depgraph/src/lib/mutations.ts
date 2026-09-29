@@ -36,3 +36,8 @@ export function removeDependency(plan: Plan, dependencyId: string, dependentId: 
     ),
   }
 }
+
+export function addNextNode(plan: Plan, fromId: string, title = 'Untitled'): { plan: Plan; id: string } {
+  const added = addNode(plan, title)
+  return { plan: addDependency(added.plan, fromId, added.id), id: added.id }
+}
