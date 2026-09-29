@@ -7,7 +7,8 @@ import NodePanel from '@/components/NodePanel'
 import Toast, { useToast } from '@/components/Toast'
 import Toolbar from '@/components/Toolbar'
 import { usePlan } from '@/hooks/usePlan'
-import { addNode, deleteNode, removeDependency, updateNode } from '@/lib/mutations'
+import { linkModeStep, type LinkModeState } from '@/lib/linkMode'
+import { addDependency, addNode, deleteNode, removeDependency, updateNode } from '@/lib/mutations'
 import type { PlanSummary } from '@/lib/store'
 
 const Graph = dynamic(() => import('@/components/Graph'), { ssr: false })
@@ -18,6 +19,7 @@ function Workspace() {
   const slug = params.get('plan')
   const [plans, setPlans] = useState<PlanSummary[]>([])
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [link, setLink] = useState<LinkModeState>({ active: false, pendingId: null })
   const toast = useToast()
   const { plan, loadError, saveState, saveError, apply } = usePlan(slug)
 
@@ -36,6 +38,31 @@ function Workspace() {
 
   const report = (errors: string[]) => {
     if (errors.length) toast.show(errors.join('; '))
+  }
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLink({ active: false, pendingId: null })
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
+  const handleSelect = (id: string | null) => {
+    if (!link.active) {
+      setSelectedId(id)
+      return
+    }
+    const { state, effect } = linkModeStep(link, id)
+    setLink(state)
+    if (effect.type === 'toast') toast.show(effect.message)
+    if (effect.type === 'link') report(apply(p => addDependency(p, effect.dependencyId, effect.dependentId)))
+  }
+
+  const handleToggleLinkMode = () => {
+    const next = !link.active
+    setLink({ active: next, pendingId: null })
+    if (next) toast.show('link mode: click the dependency first')
   }
 
   const handleAddNode = () => {
@@ -74,8 +101,9 @@ function Workspace() {
     <>
       <Graph
         plan={plan}
-        selectedId={selectedId}
-        onSelect={setSelectedId}
+        selectedId={link.pendingId ?? selectedId}
+        linkMode={link.active}
+        onSelect={handleSelect}
         onLinkRightClick={(dep, dependent) => report(apply(p => removeDependency(p, dep, dependent)))}
       />
       <Toolbar
@@ -83,14 +111,12 @@ function Workspace() {
         slug={slug}
         planName={plan.name}
         nodeCount={plan.nodes.length}
-        linkMode={false}
-        onToggleLinkMode={() => {
-          // wired in Slice 4
-        }}
+        linkMode={link.active}
+        onToggleLinkMode={handleToggleLinkMode}
         onAddNode={handleAddNode}
         onNewPlan={handleNewPlan}
       />
-      {selectedId && (
+      {selectedId && !link.active && (
         <NodePanel
           plan={plan}
           nodeId={selectedId}

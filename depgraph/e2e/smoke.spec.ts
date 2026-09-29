@@ -34,3 +34,14 @@ test('edit the new node in the panel, then delete it', async ({ page }) => {
   await expect(page.getByTestId('node-panel')).toBeHidden()
   await expect(page.getByTestId('node-count')).toHaveText('8 nodes')
 })
+
+test('link mode toggles and hints', async ({ page }) => {
+  await page.goto('/?plan=example')
+  const btn = page.getByRole('button', { name: 'Link mode' })
+  await expect(btn).toHaveAttribute('aria-pressed', 'false')
+  await btn.click()
+  await expect(btn).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.getByTestId('toast')).toContainText('click the dependency')
+  await page.keyboard.press('Escape')
+  await expect(btn).toHaveAttribute('aria-pressed', 'false')
+})
