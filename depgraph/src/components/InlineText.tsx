@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState, type KeyboardEvent } from 'react'
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 
 export interface InlineTextProps {
   value: string
@@ -32,6 +32,23 @@ export default function InlineText({
   const [draft, setDraft] = useState(value)
   // Set once an edit is committed or cancelled, so a blur that follows Enter/Esc cannot commit again.
   const closed = useRef(false)
+  // Latest edit state for the unmount cleanup, which must not see stale closures.
+  const live = useRef({ editing: startEditing, draft: value, value, multiline, onCommit })
+
+  useEffect(() => {
+    live.current = { editing, draft, value, multiline, onCommit }
+  })
+
+  // An unmount mid-edit (HUD remount, canvas click) may skip blur; save the pending edit like blur would.
+  useEffect(
+    () => () => {
+      const l = live.current
+      if (!l.editing || closed.current) return
+      const next = l.multiline ? l.draft : l.draft.trim()
+      if (next !== l.value && (l.multiline || next !== '')) l.onCommit(next)
+    },
+    [],
+  )
 
   const open = () => {
     closed.current = false

@@ -7,8 +7,8 @@ afterEach(cleanup)
 
 function setup(overrides: Partial<InlineTextProps> = {}) {
   const onCommit = vi.fn()
-  render(<InlineText value="Alpha" onCommit={onCommit} buttonLabel="Rename" inputLabel="Title" testId="hud-title" {...overrides} />)
-  return { onCommit }
+  const { unmount } = render(<InlineText value="Alpha" onCommit={onCommit} buttonLabel="Rename" inputLabel="Title" testId="hud-title" {...overrides} />)
+  return { onCommit, unmount }
 }
 
 const open = (name = 'Rename') => fireEvent.click(screen.getByRole('button', { name }))
@@ -79,5 +79,22 @@ describe('InlineText', () => {
     expect(onCommit).not.toHaveBeenCalled()
     fireEvent.blur(area)
     expect(onCommit.mock.calls).toEqual([['line one']])
+  })
+
+  it('commits a pending edit when unmounted mid-edit without blur', () => {
+    const { onCommit, unmount } = setup()
+    open()
+    fireEvent.change(box(), { target: { value: 'Delta' } })
+    unmount()
+    expect(onCommit.mock.calls).toEqual([['Delta']])
+  })
+
+  it('does not commit on unmount after Esc', () => {
+    const { onCommit, unmount } = setup()
+    open()
+    fireEvent.change(box(), { target: { value: 'Delta' } })
+    fireEvent.keyDown(box(), { key: 'Escape' })
+    unmount()
+    expect(onCommit).not.toHaveBeenCalled()
   })
 })
