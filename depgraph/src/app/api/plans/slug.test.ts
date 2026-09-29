@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
-import { mkdtemp, readFile, rm } from 'node:fs/promises'
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { GET, PUT } from './[slug]/route'
@@ -51,5 +51,20 @@ describe('/api/plans/[slug]', () => {
     const res = await PUT(new Request('http://x/api/plans/p', { method: 'PUT', body: '{nope' }), ctx('p'))
     expect(res.status).toBe(400)
     expect(await res.json()).toEqual({ errors: ['body must be valid JSON'] })
+  })
+  it('GET fills defaults for a minimal hand-written node', async () => {
+    await writeFile(path.join(dir, 'm.json'), JSON.stringify({ name: 'M', nodes: [{ id: 'x', title: 'X' }] }))
+    const res = await get('m')
+    expect(res.status).toBe(200)
+    expect(await res.json()).toEqual({
+      name: 'M',
+      nodes: [{ id: 'x', title: 'X', description: '', status: 'todo', tags: [], depends_on: [] }],
+    })
+  })
+  it('GET 422 on invalid JSON', async () => {
+    await writeFile(path.join(dir, 'bad.json'), '{not json')
+    const res = await get('bad')
+    expect(res.status).toBe(422)
+    expect((await res.json()).errors[0]).toMatch(/invalid JSON/)
   })
 })

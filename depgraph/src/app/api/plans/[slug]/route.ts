@@ -1,4 +1,4 @@
-import { ID_RE, validatePlan, type Plan } from '@/lib/schema'
+import { ID_RE, normalizePlan, validatePlan, type Plan } from '@/lib/schema'
 import { readPlan, writePlan } from '@/lib/store'
 
 export const dynamic = 'force-dynamic'
@@ -14,9 +14,17 @@ async function slugOf(ctx: Ctx): Promise<string | Response> {
 export async function GET(_req: Request, ctx: Ctx) {
   const slug = await slugOf(ctx)
   if (slug instanceof Response) return slug
-  const plan = await readPlan(slug)
+  let plan: Plan | null
+  try {
+    plan = await readPlan(slug)
+  } catch (e) {
+    if (e instanceof SyntaxError) return Response.json({ errors: [`invalid JSON: ${e.message}`] }, { status: 422 })
+    throw e
+  }
   if (!plan) return Response.json({ errors: ['not found'] }, { status: 404 })
-  return Response.json(plan)
+  const errors = validatePlan(plan)
+  if (errors.length) return Response.json({ errors }, { status: 422 })
+  return Response.json(normalizePlan(plan))
 }
 
 export async function PUT(req: Request, ctx: Ctx) {
