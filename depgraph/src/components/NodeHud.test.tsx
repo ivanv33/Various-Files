@@ -119,6 +119,12 @@ describe('NodeHud', () => {
     expect(screen.getByRole('button', { name: 'Select Gamma' })).toBe(screen.getByTestId('unlock-c'))
   })
 
+  it('names an unlock chip by id when the dependent has an empty title', () => {
+    const untitled: Plan = { ...plan, nodes: plan.nodes.map(n => (n.id === 'c' ? { ...n, title: '' } : n)) }
+    setup({ plan: untitled })
+    expect(screen.getByRole('button', { name: 'Select c' })).toBe(screen.getByTestId('unlock-c'))
+  })
+
   it('Add dependency toggles and shows a hint while armed', () => {
     const props = setup()
     expect(button('Add dependency').getAttribute('aria-pressed')).toBe('false')

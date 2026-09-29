@@ -99,7 +99,7 @@ export default function NodeHud(p: NodeHudProps) {
         </button>
         {unlocks.length > 0 && <span className="ml-2 text-white/50">unlocks:</span>}
         {unlocks.map(n => (
-          <button key={n.id} type="button" data-testid={`unlock-${n.id}`} aria-label={`Select ${n.title}`} className={`${chip} text-white/70`} onClick={() => p.onFocusNode(n.id)}>
+          <button key={n.id} type="button" data-testid={`unlock-${n.id}`} aria-label={`Select ${n.title || n.id}`} className={`${chip} text-white/70`} onClick={() => p.onFocusNode(n.id)}>
             {n.title || n.id}
           </button>
         ))}
