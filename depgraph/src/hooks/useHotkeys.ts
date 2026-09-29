@@ -1,4 +1,5 @@
 'use client'
+import { useEffect, useEffectEvent } from 'react'
 
 export type HotkeyMap = Partial<Record<string, () => void>>
 
@@ -16,4 +17,20 @@ export function isTypingTarget(target: EventTarget | null): boolean {
   if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT') return true
   // jsdom lacks isContentEditable, so check the attribute on the element or an ancestor.
   return target.closest('[contenteditable]:not([contenteditable="false"])') !== null
+}
+
+export function useHotkeys(map: HotkeyMap): void {
+  const onKey = useEffectEvent((e: KeyboardEvent) => {
+    if (e.defaultPrevented || isTypingTarget(e.target)) return
+    const name = hotkeyName(e)
+    const handler = name ? map[name] : undefined
+    if (!handler) return
+    e.preventDefault()
+    handler()
+  })
+  useEffect(() => {
+    const listener = (e: KeyboardEvent) => onKey(e)
+    window.addEventListener('keydown', listener)
+    return () => window.removeEventListener('keydown', listener)
+  }, [])
 }

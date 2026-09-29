@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
-import { afterEach, describe, expect, it } from 'vitest'
-import { cleanup } from '@testing-library/react'
-import { hotkeyName, isTypingTarget } from './useHotkeys'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { cleanup, fireEvent, renderHook } from '@testing-library/react'
+import { hotkeyName, isTypingTarget, useHotkeys } from './useHotkeys'
 
 afterEach(() => {
   cleanup()
@@ -49,5 +49,37 @@ describe('isTypingTarget', () => {
     expect(isTypingTarget(make('<button>x</button>'))).toBe(false)
     expect(isTypingTarget(window)).toBe(false)
     expect(isTypingTarget(null)).toBe(false)
+  })
+})
+
+describe('useHotkeys', () => {
+  it('calls the bound handler and prevents the default action', () => {
+    const l = vi.fn()
+    renderHook(() => useHotkeys({ l }))
+    expect(fireEvent.keyDown(window, { key: 'l' })).toBe(false)
+    expect(l).toHaveBeenCalledTimes(1)
+  })
+
+  it('ignores keys typed into inputs and keys with no binding', () => {
+    const l = vi.fn()
+    renderHook(() => useHotkeys({ l }))
+    const input = document.createElement('input')
+    document.body.append(input)
+    expect(fireEvent.keyDown(input, { key: 'l' })).toBe(true)
+    expect(fireEvent.keyDown(window, { key: 'x' })).toBe(true)
+    expect(l).not.toHaveBeenCalled()
+  })
+
+  it('uses the latest handlers after a rerender and detaches on unmount', () => {
+    const first = vi.fn()
+    const second = vi.fn()
+    const { rerender, unmount } = renderHook(({ fn }) => useHotkeys({ escape: fn }), { initialProps: { fn: first } })
+    rerender({ fn: second })
+    fireEvent.keyDown(window, { key: 'Escape' })
+    expect(first).not.toHaveBeenCalled()
+    expect(second).toHaveBeenCalledTimes(1)
+    unmount()
+    fireEvent.keyDown(window, { key: 'Escape' })
+    expect(second).toHaveBeenCalledTimes(1)
   })
 })
