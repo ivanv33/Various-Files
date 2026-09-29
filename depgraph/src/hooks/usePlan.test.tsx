@@ -234,4 +234,17 @@ describe('usePlan', () => {
     expect(result.current.saveState).toBe('idle')
     expect(result.current.saveError).toBeNull()
   })
+
+  it('a 422 on reload keeps the previous plan and exposes the error', async () => {
+    const { result } = await mountLoaded()
+    const before = result.current.plan
+    act(() => sources[0].emit('changed'))
+    await gets('alpha')[1].respond(422, { errors: ['cycle: a -> b'] })
+    expect(result.current.plan).toBe(before)
+    expect(result.current.loadError).toBe('cycle: a -> b')
+    act(() => sources[0].emit('changed'))
+    await gets('alpha')[2].respond(200, basePlan('Fixed'))
+    expect(result.current.loadError).toBeNull()
+    expect(result.current.plan?.name).toBe('Fixed')
+  })
 })

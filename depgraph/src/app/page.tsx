@@ -36,6 +36,13 @@ function Workspace() {
   const confirmDelete = useConfirm(3000)
   const { plan, loadError, saveState, saveError, apply } = usePlan(slug)
 
+  // A reload failure with a plan on screen keeps the last good plan; tell the user the file is invalid.
+  const showToast = toast.show
+  const planLoaded = plan !== null
+  useEffect(() => {
+    if (loadError && planLoaded) showToast(`plan file invalid: ${loadError}`, 'error')
+  }, [loadError, planLoaded, showToast])
+
   useEffect(() => {
     fetch('/api/plans', { cache: 'no-store' })
       .then(r => {
@@ -150,7 +157,7 @@ function Workspace() {
   }
 
   if (!slug) return <Empty text={plans.length ? 'redirecting…' : 'no plans yet — add a JSON file to plans/'} />
-  if (loadError) return <Empty text={loadError} />
+  if (loadError && !plan) return <Empty text={loadError} />
   if (!plan) return <Empty text="loading…" />
 
   return (
