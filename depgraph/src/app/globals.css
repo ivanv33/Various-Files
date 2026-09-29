@@ -20,3 +20,25 @@ button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-
   outline: 2px solid rgb(90 200 250 / 0.7);
   outline-offset: 1px;
 }
+
+.node-label {
+  pointer-events: auto;
+  cursor: pointer;
+  padding-top: 8px;
+  font-size: 12px;
+  line-height: 1.25;
+  white-space: nowrap;
+  text-align: center;
+  text-shadow: 0 1px 3px rgb(0 0 0 / 0.9);
+  transition: opacity 120ms ease-out;
+}
+.node-label[data-status='todo'] { color: #c3cad6; }
+.node-label[data-status='doing'] { color: #5ac8fa; }
+.node-label[data-status='done'] { color: #7d8699; }
+.node-label[data-status='blocked'] { color: #ff6b6b; }
+.node-label[data-dim='true'] { opacity: 0.25; }
+.node-label[data-selected='true'] .node-label-title { font-weight: 600; }
+.node-label-id { display: none; font-family: ui-monospace, monospace; font-size: 10px; opacity: 0.6; }
+.node-label:hover .node-label-id,
+.node-label[data-selected='true'] .node-label-id { display: block; }
+.node-label:focus-visible { outline: 2px solid rgb(90 200 250 / 0.7); outline-offset: 2px; border-radius: 4px; }

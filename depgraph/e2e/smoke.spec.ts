@@ -1,5 +1,7 @@
-import { expect, test } from '@playwright/test'
+import { expect, test, type Page } from '@playwright/test'
 import { copyFile, mkdir, readFile } from 'node:fs/promises'
+
+const label = (page: Page, id: string) => page.locator(`[data-testid="node-label"][data-node-id="${id}"]`)
 
 test.beforeEach(async () => {
   await mkdir('e2e/plans', { recursive: true })
@@ -22,7 +24,7 @@ test('edit the new node in the panel, then delete it', async ({ page }) => {
   await page.goto('/?plan=example')
   await page.getByRole('button', { name: 'Add node' }).click()
   await expect(page.getByTestId('node-panel')).toBeVisible()
-  await page.getByLabel('Title').fill('Smoke node')
+  await page.getByLabel('Title', { exact: true }).fill('Smoke node')
   await page.getByLabel('Status').selectOption('doing')
   await page.getByRole('checkbox', { name: 'schema' }).check()
   await expect(page.getByTestId('save-indicator')).toHaveAttribute('data-state', 'saved')
@@ -48,11 +50,8 @@ test('link mode toggles and hints', async ({ page }) => {
 
 test('cycle is refused with an error', async ({ page }) => {
   await page.goto('/?plan=example')
-  // Select "schema" via the URL-less route: open panel by adding a node, then use dependency list on it.
   await page.getByRole('button', { name: 'Add node' }).click()
-  await page.getByLabel('Title').fill('Cycle probe')
-  // untitled depends on api-routes; then make api-routes depend on untitled through the file is not possible from UI,
-  // so instead: check "api-routes" then confirm no error, then verify a self-referencing edit is impossible by API.
+  await page.getByLabel('Title', { exact: true }).fill('Cycle probe')
   await page.getByRole('checkbox').first().check()
   await expect(page.getByTestId('save-indicator')).toHaveAttribute('data-state', 'saved')
   const res = await page.request.put('/api/plans/example', {
@@ -66,4 +65,23 @@ test('cycle is refused with an error', async ({ page }) => {
   })
   expect(res.status()).toBe(400)
   expect((await res.json()).errors[0]).toMatch(/^cycle:/)
+})
+
+test('all 8 labels are visible on load', async ({ page }) => {
+  await page.goto('/?plan=example')
+  const labels = page.getByTestId('node-label')
+  await expect(labels).toHaveCount(8)
+  for (const l of await labels.all()) await expect(l).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Schema + validator', exact: true })).toHaveAttribute('data-node-id', 'schema')
+  await expect(label(page, 'node-panel')).toHaveAttribute('data-status', 'blocked')
+})
+
+test('clicking a label selects the node', async ({ page }) => {
+  await page.goto('/?plan=example')
+  await label(page, 'schema').click()
+  await expect(page.getByTestId('node-panel')).toBeVisible()
+  await expect(page.getByRole('textbox', { name: 'Title', exact: true })).toHaveValue('Schema + validator')
+  await expect(label(page, 'schema')).toHaveAttribute('data-selected', 'true')
+  await expect(label(page, 'store')).toHaveAttribute('data-dim', 'false')
+  await expect(label(page, 'watcher')).toHaveAttribute('data-dim', 'true')
 })

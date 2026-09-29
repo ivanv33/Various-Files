@@ -1,11 +1,12 @@
 'use client'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
+import { CSS2DObject, CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js'
 import ForceGraph3D, { type ForceGraphMethods } from 'react-force-graph-3d'
 import { toGraphData, type GraphLink, type GraphNode } from '@/lib/graphData'
+import { labelFor, syncLabels } from '@/lib/nodeLabel'
 import type { Plan, Status } from '@/lib/schema'
 import { pulseBlocked, type Pulsable } from '@/lib/pulse'
-import { escapeHtml } from '@/lib/escapeHtml'
 
 export const STATUS_COLORS: Record<Status, string> = {
   todo: '#8b95a7',
@@ -26,8 +27,16 @@ const idOf = (end: unknown) => (typeof end === 'string' ? end : (end as GraphNod
 
 export default function Graph({ plan, selectedId, linkMode, onSelect, onLinkRightClick }: GraphProps) {
   const [cache] = useState(() => new Map<string, GraphNode>())
+  const [labels] = useState(() => new Map<string, HTMLDivElement>())
+  const [extraRenderers] = useState(() => [new CSS2DRenderer()])
   const fgRef = useRef<ForceGraphMethods<GraphNode, GraphLink> | undefined>(undefined)
   const [size, setSize] = useState({ w: 800, h: 600 })
+  const pick = useRef(onSelect)
+
+  useEffect(() => {
+    pick.current = onSelect
+  })
+  const onPick = useCallback((id: string) => pick.current(id), [])
 
   useEffect(() => {
     const update = () => setSize({ w: window.innerWidth, h: window.innerHeight })
@@ -68,6 +77,20 @@ export default function Graph({ plan, selectedId, linkMode, onSelect, onLinkRigh
     return set
   }, [data, selectedId])
 
+  useEffect(() => {
+    syncLabels(
+      labels,
+      plan.nodes.map(n => ({
+        id: n.id,
+        title: n.title,
+        status: n.status,
+        selected: n.id === selectedId,
+        dim: !!selectedId && n.id !== selectedId && !neighbors.has(n.id),
+      })),
+      onPick,
+    )
+  }, [labels, plan, selectedId, neighbors, onPick])
+
   return (
     <div style={{ cursor: linkMode ? 'crosshair' : 'default' }}>
       <ForceGraph3D<GraphNode, GraphLink>
@@ -76,13 +99,23 @@ export default function Graph({ plan, selectedId, linkMode, onSelect, onLinkRigh
         height={size.h}
         graphData={data}
         backgroundColor="#05060a"
-        nodeLabel={(n: GraphNode) => `${escapeHtml(n.title)} · ${escapeHtml(n.status)}`}
+        extraRenderers={extraRenderers}
         nodeThreeObject={(n: GraphNode) => {
-          const dim = !!selectedId && n.id !== selectedId && !neighbors.has(n.id)
+          const selected = n.id === selectedId
+          const dim = !!selectedId && !selected && !neighbors.has(n.id)
+          const radius = selected ? 6.5 : 5
           const color = new THREE.Color(STATUS_COLORS[n.status])
           const mat = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: n.status === 'done' ? 0.15 : 0.7, transparent: true, opacity: dim ? 0.18 : 1, roughness: 0.4 })
-          const mesh = new THREE.Mesh(new THREE.SphereGeometry(n.id === selectedId ? 6.5 : 5, 24, 24), mat)
+          const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 24, 24), mat)
           if (n.status === 'blocked') blocked.current.add(mesh as unknown as Pulsable)
+          if (selected) {
+            const ringMat = new THREE.MeshBasicMaterial({ color: 0x5ac8fa, transparent: true, opacity: 0.85 })
+            mesh.add(new THREE.Mesh(new THREE.TorusGeometry(radius + 3, 0.45, 8, 48), ringMat))
+          }
+          const label = new CSS2DObject(labelFor(labels, n.id, onPick))
+          label.center.set(0.5, 0)
+          label.position.set(0, -radius, 0)
+          mesh.add(label)
           return mesh
         }}
         nodeThreeObjectExtend={false}
