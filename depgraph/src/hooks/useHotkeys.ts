@@ -21,7 +21,7 @@ export function isTypingTarget(target: EventTarget | null): boolean {
 
 export function useHotkeys(map: HotkeyMap): void {
   const onKey = useEffectEvent((e: KeyboardEvent) => {
-    if (e.defaultPrevented || isTypingTarget(e.target)) return
+    if (e.repeat || e.defaultPrevented || isTypingTarget(e.target)) return
     const name = hotkeyName(e)
     const handler = name ? map[name] : undefined
     if (!handler) return

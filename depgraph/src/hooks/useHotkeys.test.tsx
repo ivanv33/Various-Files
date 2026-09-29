@@ -60,6 +60,14 @@ describe('useHotkeys', () => {
     expect(l).toHaveBeenCalledTimes(1)
   })
 
+  it('ignores auto-repeat keydowns', () => {
+    const del = vi.fn()
+    renderHook(() => useHotkeys({ delete: del }))
+    fireEvent.keyDown(window, { key: 'Delete' })
+    fireEvent.keyDown(window, { key: 'Delete', repeat: true })
+    expect(del).toHaveBeenCalledTimes(1)
+  })
+
   it('ignores keys typed into inputs and keys with no binding', () => {
     const l = vi.fn()
     renderHook(() => useHotkeys({ l }))
