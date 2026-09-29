@@ -7,19 +7,18 @@ interface ToolbarProps {
   slug: string
   planName: string
   nodeCount: number
-  linkMode: boolean
-  onToggleLinkMode: () => void
   onAddNode: () => void
   onNewPlan: () => void
 }
 
-const btn = 'rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-medium transition-colors hover:bg-white/10'
+const btn = 'inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-medium transition-colors hover:bg-white/10'
 
 export default function Toolbar(p: ToolbarProps) {
   const router = useRouter()
   return (
-    <div className="fixed left-4 top-4 flex items-center gap-2 glass rounded-xl p-2">
+    <div className="fixed left-4 top-4 z-10 flex items-center gap-2 glass rounded-xl p-2">
       <select
+        data-testid="plan-select"
         aria-label="Plan"
         className="rounded-md border border-white/10 bg-black/40 px-2 py-1 text-xs"
         value={p.slug}
@@ -31,14 +30,15 @@ export default function Toolbar(p: ToolbarProps) {
           </option>
         ))}
       </select>
-      <button className={btn} onClick={p.onNewPlan}>New plan</button>
-      <button className={btn} onClick={p.onAddNode}>Add node</button>
-      <button className={`${btn} ${p.linkMode ? 'border-sky-400/60 bg-sky-500/20 text-sky-100 shadow-[0_0_12px_rgb(90_200_250/0.3)]' : ''}`} aria-pressed={p.linkMode} onClick={p.onToggleLinkMode}>
-        Link mode
-      </button>
-      <span className="ml-2 font-mono text-xs text-white/50">
-        <span data-testid="node-count">{p.nodeCount} nodes</span>
+      <span data-testid="node-count" className="font-mono text-xs text-white/50">
+        {p.nodeCount} nodes
       </span>
+      <button type="button" data-testid="add-node" aria-label="Add node" className={btn} onClick={p.onAddNode}>
+        + Node
+      </button>
+      <button type="button" data-testid="new-plan" aria-label="New plan" className={btn} onClick={p.onNewPlan}>
+        New plan
+      </button>
     </div>
   )
 }
