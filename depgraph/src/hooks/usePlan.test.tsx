@@ -67,7 +67,10 @@ beforeEach(() => {
                 ok: status >= 200 && status < 300,
                 status,
                 statusText: String(status),
-                json: async () => json,
+                json: async () => {
+                  if (json instanceof Error) throw json
+                  return json
+                },
               })
             })
           },
@@ -246,5 +249,19 @@ describe('usePlan', () => {
     await gets('alpha')[2].respond(200, basePlan('Fixed'))
     expect(result.current.loadError).toBeNull()
     expect(result.current.plan?.name).toBe('Fixed')
+  })
+
+  it('a failed PUT with a non-JSON body reports the status text, not a parser error', async () => {
+    const { result } = await mountLoaded()
+    act(() => {
+      result.current.apply(renamed('A2'))
+    })
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(300)
+    })
+    await puts('alpha')[0].respond(500, new SyntaxError("Unexpected token '<', \"<html>\" is not valid JSON"))
+    expect(result.current.saveState).toBe('error')
+    expect(result.current.saveError).not.toContain('Unexpected token')
+    expect(result.current.saveError).toBe('500')
   })
 })

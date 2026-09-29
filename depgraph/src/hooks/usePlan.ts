@@ -48,7 +48,10 @@ export function usePlan(slug: string | null) {
         body: JSON.stringify(planRef.current),
         keepalive: true,
       })
-      if (!res.ok) throw new Error(((await res.json()).errors as string[]).join('; '))
+      if (!res.ok) {
+        const body = (await res.json().catch(() => null)) as { errors?: string[] } | null
+        throw new Error(body?.errors?.join('; ') || res.statusText || `HTTP ${res.status}`)
+      }
       if (g !== gen.current) return
       setSaveState('saved')
       setSaveError(null)
