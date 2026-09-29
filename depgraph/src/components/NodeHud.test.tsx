@@ -28,6 +28,7 @@ function setup(overrides: Partial<NodeHudProps> = {}) {
     onFocusNode: vi.fn(),
     onRemoveDependency: vi.fn(),
     onDelete: vi.fn(),
+    onAddNext: vi.fn(),
     onClose: vi.fn(),
     ...overrides,
   }
@@ -144,5 +145,12 @@ describe('NodeHud', () => {
     fireEvent.click(screen.getByTestId('hud-close'))
     expect(button('Close')).toBe(screen.getByTestId('hud-close'))
     expect(props.onClose).toHaveBeenCalledTimes(1)
+  })
+
+  it('Add next step calls onAddNext', () => {
+    const props = setup()
+    expect(screen.getByTestId('add-next')).toBe(button('Add next step'))
+    fireEvent.click(button('Add next step'))
+    expect(props.onAddNext).toHaveBeenCalledTimes(1)
   })
 })

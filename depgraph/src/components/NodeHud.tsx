@@ -17,6 +17,7 @@ export interface NodeHudProps {
   onFocusNode: (id: string) => void
   onRemoveDependency: (dependencyId: string) => void
   onDelete: () => void
+  onAddNext: () => void
   onClose: () => void
 }
 
@@ -121,6 +122,9 @@ export default function NodeHud(p: NodeHudProps) {
           onCommit={description => p.onChange({ description })}
           className="min-w-0 flex-1 text-xs text-white/70"
         />
+        <button type="button" data-testid="add-next" aria-label="Add next step" className={btn} onClick={p.onAddNext}>
+          +next <Keycap>⇧N</Keycap>
+        </button>
         <button
           type="button"
           data-testid="delete-node"
