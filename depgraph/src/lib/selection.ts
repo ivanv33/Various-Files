@@ -5,6 +5,7 @@ export interface SelectionState {
 
 export type SelectionEvent =
   | { type: 'selectNode'; id: string }
+  | { type: 'focusNode'; id: string }
   | { type: 'background' }
   | { type: 'armLink' }
   | { type: 'disarm' }
@@ -30,6 +31,8 @@ export function selectionStep(state: SelectionState, event: SelectionEvent): { s
         return { state, effect: { type: 'link', dependencyId: event.id, dependentId: state.selectedId } }
       }
       return { state: { selectedId: event.id, arming: false }, effect: none }
+    case 'focusNode':
+      return { state: { selectedId: event.id, arming: false }, effect: none }
     case 'background':
     case 'escape':
       if (state.arming) return { state: { ...state, arming: false }, effect: none }
@@ -42,4 +45,13 @@ export function selectionStep(state: SelectionState, event: SelectionEvent): { s
     case 'clear':
       return { state: initialSelection, effect: none }
   }
+}
+
+export interface NodeSignal {
+  id: string
+  seq: number
+}
+
+export function nextSignal(prev: NodeSignal | null, id: string): NodeSignal {
+  return { id, seq: (prev?.seq ?? 0) + 1 }
 }

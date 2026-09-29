@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { initialSelection, selectionStep, type SelectionState } from './selection'
+import { initialSelection, nextSignal, selectionStep, type SelectionState } from './selection'
 
 const none = { type: 'none' }
 const selected = (id: string): SelectionState => ({ selectedId: id, arming: false })
@@ -62,5 +62,21 @@ describe('selectionStep: escape backs out one step', () => {
     const two = selectionStep(one.state, { type: 'escape' })
     expect(two).toEqual({ state: initialSelection, effect: none })
     expect(selectionStep(two.state, { type: 'escape' })).toEqual({ state: initialSelection, effect: none })
+  })
+})
+
+describe('selectionStep: focusNode (chip navigation)', () => {
+  it('selects the node and disarms instead of linking', () => {
+    expect(selectionStep(armed('a'), { type: 'focusNode', id: 'b' })).toEqual({ state: selected('b'), effect: none })
+    expect(selectionStep(initialSelection, { type: 'focusNode', id: 'b' })).toEqual({ state: selected('b'), effect: none })
+  })
+})
+
+describe('nextSignal', () => {
+  it('bumps the sequence so the same id can be requested twice', () => {
+    const one = nextSignal(null, 'a')
+    expect(one).toEqual({ id: 'a', seq: 1 })
+    expect(nextSignal(one, 'a')).toEqual({ id: 'a', seq: 2 })
+    expect(nextSignal(one, 'b')).toEqual({ id: 'b', seq: 2 })
   })
 })
