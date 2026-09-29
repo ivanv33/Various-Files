@@ -19,3 +19,48 @@ describe('selectionStep: selecting', () => {
     expect(selectionStep(armed('a'), { type: 'clear' })).toEqual({ state: initialSelection, effect: none })
   })
 })
+
+describe('selectionStep: linking', () => {
+  it('armLink without a selection asks for one', () => {
+    expect(selectionStep(initialSelection, { type: 'armLink' })).toEqual({
+      state: initialSelection,
+      effect: { type: 'toast', message: 'select a node first' },
+    })
+  })
+
+  it('armLink with a selection arms', () => {
+    expect(selectionStep(selected('a'), { type: 'armLink' })).toEqual({ state: armed('a'), effect: none })
+  })
+
+  it('while armed, clicking another node makes it a dependency of the selection and stays armed', () => {
+    expect(selectionStep(armed('a'), { type: 'selectNode', id: 'b' })).toEqual({
+      state: armed('a'),
+      effect: { type: 'link', dependencyId: 'b', dependentId: 'a' },
+    })
+  })
+
+  it('while armed, clicking the selection itself is refused', () => {
+    expect(selectionStep(armed('a'), { type: 'selectNode', id: 'a' })).toEqual({
+      state: armed('a'),
+      effect: { type: 'toast', message: 'a node cannot depend on itself' },
+    })
+  })
+
+  it('while armed, a background click only disarms', () => {
+    expect(selectionStep(armed('a'), { type: 'background' })).toEqual({ state: selected('a'), effect: none })
+  })
+
+  it('disarm keeps the selection', () => {
+    expect(selectionStep(armed('a'), { type: 'disarm' })).toEqual({ state: selected('a'), effect: none })
+  })
+})
+
+describe('selectionStep: escape backs out one step', () => {
+  it('armed -> selected -> nothing', () => {
+    const one = selectionStep(armed('a'), { type: 'escape' })
+    expect(one).toEqual({ state: selected('a'), effect: none })
+    const two = selectionStep(one.state, { type: 'escape' })
+    expect(two).toEqual({ state: initialSelection, effect: none })
+    expect(selectionStep(two.state, { type: 'escape' })).toEqual({ state: initialSelection, effect: none })
+  })
+})
