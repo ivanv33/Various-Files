@@ -3,10 +3,11 @@ import dynamic from 'next/dynamic'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
 import SaveIndicator from '@/components/SaveIndicator'
+import NodePanel from '@/components/NodePanel'
 import Toast, { useToast } from '@/components/Toast'
 import Toolbar from '@/components/Toolbar'
 import { usePlan } from '@/hooks/usePlan'
-import { addNode, removeDependency } from '@/lib/mutations'
+import { addNode, deleteNode, removeDependency, updateNode } from '@/lib/mutations'
 import type { PlanSummary } from '@/lib/store'
 
 const Graph = dynamic(() => import('@/components/Graph'), { ssr: false })
@@ -89,6 +90,18 @@ function Workspace() {
         onAddNode={handleAddNode}
         onNewPlan={handleNewPlan}
       />
+      {selectedId && (
+        <NodePanel
+          plan={plan}
+          nodeId={selectedId}
+          onChange={patch => apply(p => updateNode(p, selectedId, patch))}
+          onDelete={() => {
+            report(apply(p => deleteNode(p, selectedId)))
+            setSelectedId(null)
+          }}
+          onClose={() => setSelectedId(null)}
+        />
+      )}
       <Toast message={toast.message} />
       <SaveIndicator state={saveState} error={saveError} />
     </>
