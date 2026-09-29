@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 export function useConfirm(ms = 3000) {
   const [armedKey, setArmedKey] = useState<string | null>(null)
@@ -26,5 +26,11 @@ export function useConfirm(ms = 3000) {
 
   const isArmed = (key: string) => armedKey === key
 
-  return { isArmed, press }
+  const reset = useCallback(() => {
+    if (timer.current) clearTimeout(timer.current)
+    timer.current = null
+    setArmedKey(null)
+  }, [])
+
+  return { isArmed, press, reset }
 }

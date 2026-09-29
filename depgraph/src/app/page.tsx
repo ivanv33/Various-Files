@@ -48,6 +48,12 @@ function Workspace() {
   const activeId = activeNode?.id ?? null
   const armed = selection.arming && activeId !== null
 
+  // A pending delete confirmation belongs to one node in one plan; drop it when either changes.
+  const resetConfirm = confirmDelete.reset
+  useEffect(() => {
+    resetConfirm()
+  }, [activeId, slug, resetConfirm])
+
   const report = (errors: string[]) => {
     if (errors.length) toast.show(errors.join('; '))
   }

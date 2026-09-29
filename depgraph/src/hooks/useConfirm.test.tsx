@@ -48,4 +48,18 @@ describe('useConfirm', () => {
     expect(result.current.isArmed('b')).toBe(true)
     expect(action).not.toHaveBeenCalled()
   })
+
+  it('reset() disarms and cancels the pending timer', () => {
+    const { result } = renderHook(() => useConfirm())
+    const action = vi.fn()
+    act(() => result.current.press('a', action))
+    act(() => result.current.reset())
+    expect(result.current.isArmed('a')).toBe(false)
+    act(() => result.current.press('a', action))
+    act(() => {
+      vi.advanceTimersByTime(2999)
+    })
+    expect(result.current.isArmed('a')).toBe(true)
+    expect(action).not.toHaveBeenCalled()
+  })
 })
