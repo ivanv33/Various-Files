@@ -9,8 +9,8 @@ import Toolbar from '@/components/Toolbar'
 import { useConfirm } from '@/hooks/useConfirm'
 import { useHotkeys } from '@/hooks/useHotkeys'
 import { usePlan } from '@/hooks/usePlan'
-import { addDependency, addNode, deleteNode, removeDependency, updateNode } from '@/lib/mutations'
-import type { Plan } from '@/lib/schema'
+import { addDependency, addNextNode, addNode, deleteNode, removeDependency, updateNode } from '@/lib/mutations'
+import type { Plan, Status } from '@/lib/schema'
 import {
   initialSelection,
   nextSignal,
@@ -88,6 +88,19 @@ function Workspace() {
 
   const handleAddNode = () => addAndEdit(p => addNode(p))
 
+  const handleAddNext = () => {
+    if (!activeId) {
+      toast.show('select a node first')
+      return
+    }
+    const from = activeId
+    addAndEdit(p => addNextNode(p, from))
+  }
+
+  const setStatus = (status: Status) => {
+    if (activeId) report(apply(p => updateNode(p, activeId, { status })))
+  }
+
   const handleDelete = () => {
     if (!activeId) return
     const id = activeId
@@ -100,6 +113,16 @@ function Workspace() {
   useHotkeys({
     l: toggleLink,
     escape: () => dispatch({ type: 'escape' }),
+    n: handleAddNode,
+    'shift+n': handleAddNext,
+    '1': () => setStatus('todo'),
+    '2': () => setStatus('doing'),
+    '3': () => setStatus('done'),
+    '4': () => setStatus('blocked'),
+    delete: handleDelete,
+    f: () => {
+      if (activeId) setFly(f => nextSignal(f, activeId))
+    },
   })
 
   const handleNewPlan = async () => {
@@ -140,6 +163,11 @@ function Workspace() {
         onAddNode={handleAddNode}
         onNewPlan={handleNewPlan}
       />
+      {plan.nodes.length === 0 && (
+        <p data-testid="empty-hint" className="pointer-events-none fixed inset-x-0 top-1/2 -translate-y-1/2 text-center text-sm text-white/60">
+          Press N or click + Node to place your first step.
+        </p>
+      )}
       {activeNode && (
         <NodeHud
           key={activeNode.id}
@@ -153,6 +181,7 @@ function Workspace() {
           onFocusNode={focusNode}
           onRemoveDependency={dep => report(apply(p => removeDependency(p, dep, activeNode.id)))}
           onDelete={handleDelete}
+          onAddNext={handleAddNext}
           onClose={() => dispatch({ type: 'clear' })}
         />
       )}

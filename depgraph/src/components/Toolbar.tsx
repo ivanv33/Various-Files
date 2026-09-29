@@ -1,5 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation'
+import Keycap from '@/components/Keycap'
 import type { PlanSummary } from '@/lib/store'
 
 interface ToolbarProps {
@@ -34,7 +35,7 @@ export default function Toolbar(p: ToolbarProps) {
         {p.nodeCount} nodes
       </span>
       <button type="button" data-testid="add-node" aria-label="Add node" className={btn} onClick={p.onAddNode}>
-        + Node
+        + Node <Keycap>N</Keycap>
       </button>
       <button type="button" data-testid="new-plan" aria-label="New plan" className={btn} onClick={p.onNewPlan}>
         New plan

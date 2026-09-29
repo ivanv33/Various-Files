@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
-import { copyFile, mkdir, readFile } from 'node:fs/promises'
+import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
 
 const label = (page: Page, id: string) => page.locator(`[data-testid="node-label"][data-node-id="${id}"]`)
 const planText = () => readFile('e2e/plans/example.json', 'utf8')
@@ -111,4 +111,41 @@ test('clicking a label selects the node; a needs chip jumps to the dependency', 
   await page.getByTestId('dep-design-spec').getByRole('button', { name: 'Approve design spec', exact: true }).click()
   await expect(page.getByRole('button', { name: 'Rename', exact: true })).toContainText('Approve design spec')
   await expect(label(page, 'design-spec')).toHaveAttribute('data-selected', 'true')
+})
+
+test('hotkeys 1–4 and N work', async ({ page }) => {
+  await writeFile('e2e/plans/empty.json', JSON.stringify({ name: 'Empty', nodes: [] }, null, 2) + '\n')
+  await page.goto('/?plan=empty')
+  await expect(page.getByTestId('empty-hint')).toHaveText('Press N or click + Node to place your first step.')
+  await page.keyboard.press('n')
+  await expect(page.getByTestId('node-count')).toHaveText('1 nodes')
+  const title = page.getByRole('textbox', { name: 'Title', exact: true })
+  await expect(title).toBeFocused()
+  await title.fill('First step')
+  await title.press('Enter')
+  await expect(page.getByTestId('empty-hint')).toBeHidden()
+  for (const [key, status] of [['2', 'doing'], ['3', 'done'], ['4', 'blocked'], ['1', 'todo'], ['4', 'blocked']] as const) {
+    await page.keyboard.press(key)
+    await expect(page.getByTestId(`status-pip-${status}`)).toHaveAttribute('aria-checked', 'true')
+  }
+  await expect.poll(() => readFile('e2e/plans/empty.json', 'utf8')).toContain('"status": "blocked"')
+  expect(await readFile('e2e/plans/empty.json', 'utf8')).toContain('"title": "First step"')
+})
+
+test('Shift+N adds a next step; Del twice deletes it', async ({ page }) => {
+  await page.goto('/?plan=example')
+  await label(page, 'watcher').click()
+  await page.keyboard.press('Shift+N')
+  await expect(page.getByTestId('node-count')).toHaveText('9 nodes')
+  const title = page.getByRole('textbox', { name: 'Title', exact: true })
+  await expect(title).toBeFocused()
+  await title.fill('After watcher')
+  await title.press('Enter')
+  await expect(page.getByTestId('dep-watcher')).toBeVisible()
+  await expect.poll(planText).toMatch(/"id": "untitled"[\s\S]*?"depends_on": \[\s*"watcher"\s*\]/)
+  await page.keyboard.press('Delete')
+  await expect(page.getByTestId('delete-node')).toHaveAccessibleName('Confirm delete')
+  await page.keyboard.press('Delete')
+  await expect(page.getByTestId('node-hud')).toBeHidden()
+  await expect(page.getByTestId('node-count')).toHaveText('8 nodes')
 })
