@@ -187,4 +187,46 @@ describe('usePlan', () => {
     rerender({ s: 'beta' })
     expect(result.current.loadError).toBeNull()
   })
+
+  it('a reload that resolves while a PUT is in flight does not overwrite the edit', async () => {
+    const { result } = await mountLoaded()
+    act(() => {
+      sources[0].emit('changed')
+    })
+    expect(gets('alpha')).toHaveLength(2)
+    act(() => {
+      result.current.apply(renamed('A2'))
+    })
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(300)
+    })
+    expect(puts()).toHaveLength(1)
+    await gets('alpha')[1].respond(200, basePlan())
+    expect(result.current.plan!.nodes[0].title).toBe('A2')
+  })
+
+  it('a stale GET failure does not set loadError on the new slug', async () => {
+    const { result, rerender } = renderHook(({ s }) => usePlan(s), { initialProps: { s: 'alpha' } })
+    rerender({ s: 'beta' })
+    await gets('beta')[0].respond(200, basePlan('Beta'))
+    await gets('alpha')[0].respond(404, { errors: ['not found'] })
+    expect(result.current.plan!.name).toBe('Beta')
+    expect(result.current.loadError).toBeNull()
+  })
+
+  it('an in-flight PUT for the old slug does not report on the new slug', async () => {
+    const { result, rerender } = await mountLoaded('alpha')
+    act(() => {
+      result.current.apply(renamed('A2'))
+    })
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(300)
+    })
+    expect(puts('alpha')).toHaveLength(1)
+    rerender({ s: 'beta' })
+    await gets('beta')[0].respond(200, basePlan('Beta'))
+    await puts('alpha')[0].respond(400, { errors: ['boom'] })
+    expect(result.current.saveState).toBe('idle')
+    expect(result.current.saveError).toBeNull()
+  })
 })

@@ -15,20 +15,23 @@ export function usePlan(slug: string | null) {
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const dirty = useRef(false)
   const gen = useRef(0)
+  const edits = useRef(0)
 
   const reload = useCallback(async () => {
     if (!slug) return
     if (dirty.current) return // local edits pending; they will overwrite the file anyway
     const g = gen.current
+    const e0 = edits.current
     try {
       const res = await fetch(`/api/plans/${slug}`, { cache: 'no-store' })
       if (!res.ok) throw new Error((await res.json()).errors?.join('; ') ?? res.statusText)
       const next = (await res.json()) as Plan
-      if (g !== gen.current || dirty.current) return // slug changed or a local edit landed meanwhile
+      if (g !== gen.current || e0 !== edits.current) return // slug changed or a local edit landed meanwhile
       planRef.current = next
       setPlan(next)
       setLoadError(null)
     } catch (e) {
+      if (g !== gen.current) return
       setLoadError((e as Error).message)
     }
   }, [slug])
@@ -36,6 +39,7 @@ export function usePlan(slug: string | null) {
   const flush = useCallback(async () => {
     if (!slug || !planRef.current) return
     dirty.current = false
+    const g = gen.current
     setSaveState('saving')
     try {
       const res = await fetch(`/api/plans/${slug}`, {
@@ -44,9 +48,11 @@ export function usePlan(slug: string | null) {
         body: JSON.stringify(planRef.current),
       })
       if (!res.ok) throw new Error(((await res.json()).errors as string[]).join('; '))
+      if (g !== gen.current) return
       setSaveState('saved')
       setSaveError(null)
     } catch (e) {
+      if (g !== gen.current) return
       setSaveState('error')
       setSaveError((e as Error).message)
     }
@@ -61,6 +67,7 @@ export function usePlan(slug: string | null) {
       planRef.current = next
       setPlan(next)
       dirty.current = true
+      edits.current += 1
       if (timer.current) clearTimeout(timer.current)
       timer.current = setTimeout(flush, DEBOUNCE_MS)
       return []
