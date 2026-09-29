@@ -4,8 +4,9 @@ import * as THREE from 'three'
 import { CSS2DObject, CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js'
 import ForceGraph3D, { type ForceGraphMethods } from 'react-force-graph-3d'
 import { cameraFor } from '@/lib/camera'
+import { burstFrame, prefersReducedMotion, takeNewlyDone } from '@/lib/effects'
 import { toGraphData, type GraphLink, type GraphNode } from '@/lib/graphData'
-import { labelFor, syncLabels } from '@/lib/nodeLabel'
+import { labelFor, shakeLabel, syncLabels } from '@/lib/nodeLabel'
 import type { Plan, Status } from '@/lib/schema'
 import { pulseBlocked, type Pulsable } from '@/lib/pulse'
 import type { NodeSignal } from '@/lib/selection'
@@ -22,15 +23,17 @@ interface GraphProps {
   selectedId: string | null
   arming: boolean
   flyTo: NodeSignal | null
+  shake: NodeSignal | null
   onSelect: (id: string | null) => void
   onLinkRightClick: (dependencyId: string, dependentId: string) => void
 }
 
 const idOf = (end: unknown) => (typeof end === 'string' ? end : (end as GraphNode).id)
 
-export default function Graph({ plan, selectedId, arming, flyTo, onSelect, onLinkRightClick }: GraphProps) {
+export default function Graph({ plan, selectedId, arming, flyTo, shake, onSelect, onLinkRightClick }: GraphProps) {
   const [cache] = useState(() => new Map<string, GraphNode>())
   const [labels] = useState(() => new Map<string, HTMLDivElement>())
+  const [seenStatus] = useState(() => new Map<string, Status>())
   const [extraRenderers] = useState(() => [new CSS2DRenderer()])
   const fgRef = useRef<ForceGraphMethods<GraphNode, GraphLink> | undefined>(undefined)
   const [size, setSize] = useState({ w: 800, h: 600 })
@@ -101,6 +104,51 @@ export default function Graph({ plan, selectedId, arming, flyTo, onSelect, onLin
     const { position, lookAt } = cameraFor(node)
     fg.cameraPosition(position, lookAt, 800)
   }, [flyTo, cache])
+
+  useEffect(() => {
+    const el = shake ? labels.get(shake.id) : undefined
+    if (el) shakeLabel(el)
+  }, [shake, labels])
+
+  useEffect(() => {
+    const ids = takeNewlyDone(seenStatus, plan.nodes)
+    const fg = fgRef.current
+    if (!fg || ids.length === 0 || prefersReducedMotion()) return
+    const scene = fg.scene()
+    const camera = fg.camera()
+    const rings = ids.flatMap(id => {
+      const node = cache.get(id)
+      if (!node) return []
+      const ring = new THREE.Mesh(
+        new THREE.RingGeometry(7, 8.5, 48),
+        new THREE.MeshBasicMaterial({ color: 0xcfe8ff, transparent: true, opacity: 0.9, side: THREE.DoubleSide }),
+      )
+      ring.position.set(node.x ?? 0, node.y ?? 0, node.z ?? 0)
+      ring.quaternion.copy(camera.quaternion)
+      scene.add(ring)
+      return [ring]
+    })
+    const start = performance.now()
+    // No cleanup: the burst is one-shot and removes itself. Under StrictMode the effect re-runs,
+    // and a cleanup would cancel the ring on the first run while the second run sees no change.
+    const tick = (t: number) => {
+      const f = burstFrame(t - start)
+      for (const r of rings) {
+        r.scale.setScalar(f.scale)
+        r.material.opacity = f.opacity
+      }
+      if (!f.done) {
+        requestAnimationFrame(tick)
+        return
+      }
+      for (const r of rings) {
+        scene.remove(r)
+        r.geometry.dispose()
+        r.material.dispose()
+      }
+    }
+    requestAnimationFrame(tick)
+  }, [plan, seenStatus, cache])
 
   return (
     <div data-arming={arming} style={{ cursor: arming ? 'crosshair' : 'default' }}>

@@ -31,6 +31,7 @@ function Workspace() {
   const [selection, setSelection] = useState<SelectionState>(initialSelection)
   const [editTitleFor, setEditTitleFor] = useState<string | null>(null)
   const [fly, setFly] = useState<NodeSignal | null>(null)
+  const [shake, setShake] = useState<NodeSignal | null>(null)
   const toast = useToast()
   const confirmDelete = useConfirm(3000)
   const { plan, loadError, saveState, saveError, apply } = usePlan(slug)
@@ -54,8 +55,13 @@ function Workspace() {
     resetConfirm()
   }, [activeId, slug, resetConfirm])
 
-  const report = (errors: string[]) => {
-    if (errors.length) toast.show(errors.join('; '))
+  // Apply a mutation. On refusal, show a red toast and shake the node it targeted.
+  const attempt = (targetId: string | null, mutate: (p: Plan) => Plan): boolean => {
+    const errors = apply(mutate)
+    if (errors.length === 0) return true
+    toast.show(errors.join('; '), 'error')
+    if (targetId) setShake(s => nextSignal(s, targetId))
+    return false
   }
 
   const dispatch = (event: SelectionEvent) => {
@@ -63,7 +69,7 @@ function Workspace() {
     setSelection(state)
     if (state.selectedId !== activeId) setEditTitleFor(null)
     if (effect.type === 'toast') toast.show(effect.message)
-    if (effect.type === 'link') report(apply(p => addDependency(p, effect.dependencyId, effect.dependentId)))
+    if (effect.type === 'link') attempt(effect.dependencyId, p => addDependency(p, effect.dependencyId, effect.dependentId))
   }
 
   const toggleLink = () => dispatch(armed ? { type: 'disarm' } : { type: 'armLink' })
@@ -75,13 +81,12 @@ function Workspace() {
 
   const addAndEdit = (make: (p: Plan) => { plan: Plan; id: string }) => {
     let newId = ''
-    const errors = apply(p => {
+    const ok = attempt(null, p => {
       const r = make(p)
       newId = r.id
       return r.plan
     })
-    report(errors)
-    if (errors.length || !newId) return
+    if (!ok || !newId) return
     setSelection({ selectedId: newId, arming: false })
     setEditTitleFor(newId)
   }
@@ -98,15 +103,14 @@ function Workspace() {
   }
 
   const setStatus = (status: Status) => {
-    if (activeId) report(apply(p => updateNode(p, activeId, { status })))
+    if (activeId) attempt(activeId, p => updateNode(p, activeId, { status }))
   }
 
   const handleDelete = () => {
     if (!activeId) return
     const id = activeId
     confirmDelete.press(id, () => {
-      report(apply(p => deleteNode(p, id)))
-      dispatch({ type: 'clear' })
+      if (attempt(id, p => deleteNode(p, id))) dispatch({ type: 'clear' })
     })
   }
 
@@ -135,7 +139,7 @@ function Workspace() {
     })
     const body = await res.json()
     if (!res.ok) {
-      toast.show((body.errors as string[]).join('; '))
+      toast.show((body.errors as string[]).join('; '), 'error')
       return
     }
     router.push(`/?plan=${body.slug}`)
@@ -152,8 +156,9 @@ function Workspace() {
         selectedId={activeId}
         arming={armed}
         flyTo={fly}
+        shake={shake}
         onSelect={id => dispatch(id ? { type: 'selectNode', id } : { type: 'background' })}
-        onLinkRightClick={(dep, dependent) => report(apply(p => removeDependency(p, dep, dependent)))}
+        onLinkRightClick={(dep, dependent) => attempt(dependent, p => removeDependency(p, dep, dependent))}
       />
       <Toolbar
         plans={plans}
@@ -176,16 +181,16 @@ function Workspace() {
           armed={armed}
           editTitle={editTitleFor === activeNode.id}
           deleteArmed={confirmDelete.isArmed(activeNode.id)}
-          onChange={patch => report(apply(p => updateNode(p, activeNode.id, patch)))}
+          onChange={patch => attempt(activeNode.id, p => updateNode(p, activeNode.id, patch))}
           onToggleLink={toggleLink}
           onFocusNode={focusNode}
-          onRemoveDependency={dep => report(apply(p => removeDependency(p, dep, activeNode.id)))}
+          onRemoveDependency={dep => attempt(activeNode.id, p => removeDependency(p, dep, activeNode.id))}
           onDelete={handleDelete}
           onAddNext={handleAddNext}
           onClose={() => dispatch({ type: 'clear' })}
         />
       )}
-      <Toast message={toast.message} />
+      <Toast message={toast.message} tone={toast.tone} />
       <SaveIndicator state={saveState} error={saveError} />
     </>
   )

@@ -76,6 +76,7 @@ test('cycle is refused with an error', async ({ page }) => {
   await page.getByRole('button', { name: 'Add dependency', exact: true }).click()
   await label(page, 'api-routes').click()
   await expect(page.getByTestId('toast')).toContainText('cycle:')
+  await expect(page.getByTestId('toast')).toHaveAttribute('data-tone', 'error')
   const text = await readFile('e2e/plans/example.json', 'utf8')
   expect(text).toMatch(/"id": "schema"[\s\S]*?"depends_on": \[\s*"design-spec"\s*\]/)
   const res = await page.request.put('/api/plans/example', {
