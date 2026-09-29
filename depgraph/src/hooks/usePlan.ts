@@ -14,14 +14,17 @@ export function usePlan(slug: string | null) {
   const planRef = useRef<Plan | null>(null)
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const dirty = useRef(false)
+  const gen = useRef(0)
 
   const reload = useCallback(async () => {
     if (!slug) return
     if (dirty.current) return // local edits pending; they will overwrite the file anyway
+    const g = gen.current
     try {
       const res = await fetch(`/api/plans/${slug}`, { cache: 'no-store' })
       if (!res.ok) throw new Error((await res.json()).errors?.join('; ') ?? res.statusText)
       const next = (await res.json()) as Plan
+      if (g !== gen.current || dirty.current) return // slug changed or a local edit landed meanwhile
       planRef.current = next
       setPlan(next)
       setLoadError(null)
@@ -66,8 +69,10 @@ export function usePlan(slug: string | null) {
   )
 
   useEffect(() => {
+    gen.current += 1
     planRef.current = null
     setPlan(null)
+    setLoadError(null)
     setSaveState('idle')
     setSaveError(null)
     dirty.current = false
@@ -75,7 +80,11 @@ export function usePlan(slug: string | null) {
     if (!slug) return
     const es = new EventSource(`/api/plans/${slug}/events`)
     es.addEventListener('changed', () => void reload())
-    return () => es.close()
+    return () => {
+      es.close()
+      if (timer.current) clearTimeout(timer.current)
+      timer.current = null
+    }
   }, [slug, reload])
 
   return { plan, loadError, saveState, saveError, apply, reload }
