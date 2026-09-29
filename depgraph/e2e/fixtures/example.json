@@ -1,0 +1,69 @@
+{
+  "name": "Example: ship the visualizer",
+  "nodes": [
+    {
+      "id": "api-routes",
+      "title": "Write API routes",
+      "description": "GET/PUT plan files through Next route handlers.",
+      "status": "doing",
+      "tags": ["server"],
+      "depends_on": ["schema", "store"]
+    },
+    {
+      "id": "design-spec",
+      "title": "Approve design spec",
+      "description": "",
+      "status": "done",
+      "tags": ["planning"],
+      "depends_on": []
+    },
+    {
+      "id": "e2e",
+      "title": "Playwright smoke test",
+      "description": "Add a node, reload, it persists.",
+      "status": "todo",
+      "tags": ["testing"],
+      "depends_on": ["node-panel", "graph-view"]
+    },
+    {
+      "id": "graph-view",
+      "title": "3D force graph view",
+      "description": "react-force-graph-3d wrapper with status colors.",
+      "status": "todo",
+      "tags": ["client"],
+      "depends_on": ["api-routes"]
+    },
+    {
+      "id": "node-panel",
+      "title": "Node edit panel",
+      "description": "Title, description, status, tags, dependencies.",
+      "status": "blocked",
+      "tags": ["client"],
+      "depends_on": ["graph-view"]
+    },
+    {
+      "id": "schema",
+      "title": "Schema + validator",
+      "description": "Types, cycle detection, normalization.",
+      "status": "done",
+      "tags": ["core"],
+      "depends_on": ["design-spec"]
+    },
+    {
+      "id": "store",
+      "title": "File store",
+      "description": "Atomic writes, hash of last write.",
+      "status": "done",
+      "tags": ["server"],
+      "depends_on": ["schema"]
+    },
+    {
+      "id": "watcher",
+      "title": "File watcher + SSE",
+      "description": "Refresh the browser when the file changes on disk.",
+      "status": "todo",
+      "tags": ["server"],
+      "depends_on": ["store"]
+    }
+  ]
+}
