@@ -116,6 +116,7 @@ function Workspace() {
       />
       {activeId && !link.active && (
         <NodePanel
+          key={activeId}
           plan={plan}
           nodeId={activeId}
           onChange={patch => apply(p => updateNode(p, activeId, patch))}
