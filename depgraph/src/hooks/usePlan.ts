@@ -46,6 +46,7 @@ export function usePlan(slug: string | null) {
         method: 'PUT',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(planRef.current),
+        keepalive: true,
       })
       if (!res.ok) throw new Error(((await res.json()).errors as string[]).join('; '))
       if (g !== gen.current) return
@@ -92,8 +93,9 @@ export function usePlan(slug: string | null) {
       es.close()
       if (timer.current) clearTimeout(timer.current)
       timer.current = null
+      if (dirty.current) void flush() // body is built synchronously from planRef; gen check blocks later state writes
     }
-  }, [slug, reload])
+  }, [slug, reload, flush])
 
   return { plan, loadError, saveState, saveError, apply, reload }
 }

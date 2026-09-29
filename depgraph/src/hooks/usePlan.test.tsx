@@ -129,29 +129,34 @@ describe('usePlan', () => {
     expect(body.nodes.map((n: { title: string }) => n.title)).toEqual(['A2', 'B2'])
   })
 
-  it('unmount clears the pending save', async () => {
+  it('unmount flushes a pending edit once', async () => {
     const { result, unmount } = await mountLoaded()
     act(() => {
       result.current.apply(renamed('A2'))
     })
     unmount()
+    expect(puts('alpha')).toHaveLength(1)
+    expect(puts('alpha')[0].body).toContain('A2')
     await act(async () => {
       await vi.advanceTimersByTimeAsync(1000)
     })
-    expect(puts()).toHaveLength(0)
+    expect(puts()).toHaveLength(1)
   })
 
-  it('changing slug clears the pending save for the old slug', async () => {
+  it('flushes a pending edit when the slug changes', async () => {
     const { result, rerender } = await mountLoaded('alpha')
     act(() => {
       result.current.apply(renamed('A2'))
     })
     rerender({ s: 'beta' })
+    expect(puts('alpha')).toHaveLength(1)
+    expect(puts('alpha')[0].body).toContain('A2')
     await gets('beta')[0].respond(200, basePlan('Beta'))
     await act(async () => {
       await vi.advanceTimersByTimeAsync(1000)
     })
-    expect(puts('alpha')).toHaveLength(0)
+    expect(puts()).toHaveLength(1)
+    expect(puts('beta')).toHaveLength(0)
   })
 
   it('a reload response that lands after a local edit does not overwrite it', async () => {
