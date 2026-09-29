@@ -68,10 +68,22 @@ export default function Graph({ plan, selectedId, arming, flyTo, shake, onSelect
     if (fg) fg.scene().fog = new THREE.FogExp2(0x05060a, 0.002)
   }, [])
 
-  const structureKey = plan.nodes.map(n => `${n.id}:${n.status}:${n.title}:${n.depends_on.join(',')}`).join('|')
+  const structureKey = plan.nodes.map(n => `${n.id}:${n.depends_on.join(',')}`).join('|')
   const data = useMemo(() => {
     return toGraphData(plan, cache)
   }, [structureKey]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Status/title changes must not rebuild graphData (that reheats the force layout); patch the cached
+  // nodes in place instead. nodeThreeObject reads them when it rebuilds the meshes on this render.
+  useMemo(() => {
+    for (const n of plan.nodes) {
+      const cached = cache.get(n.id)
+      if (cached) {
+        cached.status = n.status
+        cached.title = n.title
+      }
+    }
+  }, [plan, cache])
 
   const neighbors = useMemo(() => {
     const set = new Set<string>()
